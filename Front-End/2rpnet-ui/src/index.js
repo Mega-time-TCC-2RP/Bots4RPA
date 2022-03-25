@@ -1,17 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+import './index.css';
+
+import Home from './pages/home/';
+import Login from './pages/login/';
+import Guide from './pages/guide/';
+import Marketplace from './pages/marketplace/';
+import MyProcesses from './pages/myProcesses/';
+import Social from './pages/social/';
+import TaskCalendar from './pages/taskCalendar';
+import TaskKanban from './pages/taskKanban';
+
+import Config from './pages/config/';
+
+import NotFound from './pages/notFound/';
+
+const routing = (
+  <Router>
+    <div>
+      <Routes>
+        <Route exact path="/" element={<Home/>} /> {/* Home */}
+        <Route path="/login" element={<Login/>} /> {/* Login */}
+        <Route path="/guide" element={<Guide/>} /> {/* Guide */}
+        <Route path="/marketplace" element={<Marketplace/>} /> {/* Marketplace */}
+        <Route path="/myprocesses" element={<MyProcesses/>} /> {/* MyProcesses */}
+        <Route path="/social" element={<Social/>} /> {/* Social */}
+        <Route path="/taskcalendar" element={<TaskCalendar/>} /> {/* Task Calendar */}
+        <Route path="/taskkanban" element={<TaskKanban/>} /> {/* Task Kanban */}
+
+        <Route path="/config" element={<Config/>} /> {/* Configuration */}
+     
+        <Route path="/notFound" element={<NotFound/>} /> {/* Not Found */}
+        <Route path="*" element={<Navigate to="notFound"/>} /> {/*Redireciona para Not Found caso não encontre nenhuma rota*/}
+      </Routes>
+    </div>
+  </Router>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(routing, document.getElementById('root'));
+
+
