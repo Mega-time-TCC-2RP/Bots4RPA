@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\43392993832\\Desktop\\2RP\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI.csproj": {}
+    "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\a\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\43392993832\\Desktop\\2RP\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI.csproj": {
+    "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\a\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\43392993832\\Desktop\\2RP\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI.csproj",
+        "projectUniqueName": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\a\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI.csproj",
         "projectName": "2rpnet.rpa.webAPI",
-        "projectPath": "C:\\Users\\43392993832\\Desktop\\2RP\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI.csproj",
-        "packagesPath": "C:\\Users\\43392993832\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\43392993832\\Desktop\\2RP\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\obj\\",
+        "projectPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\a\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI.csproj",
+        "packagesPath": "C:\\Users\\37378203840.INFOSCS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\a\\Projeto-2RP\\Back-End\\2rpnet.rpa.webAPI\\2rpnet.rpa.webAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\43392993832\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\37378203840.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
