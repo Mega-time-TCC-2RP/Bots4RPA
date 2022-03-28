@@ -10,8 +10,8 @@ CREATE TABLE Assistant(
    IdFunctionary INT FOREIGN KEY REFERENCES Functionary(IdFunctionary),
    CreationDate DATETIME NOT NULL,
    AlterationDate DATETIME, 
-   AssistantName VARCHAR(40) NOT NULL,
-   AssistantDescription VARCHAR(400) NOT NULL 
+   AssistantName VARCHAR(50) NOT NULL,
+   AssistantDescription VARCHAR(500) NOT NULL 
 );
 GO
 
@@ -20,7 +20,7 @@ CREATE TABLE Process(
    IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
    ProcessPriority INT,
    ProcessName VARCHAR(50),
-   ProcessDescription VARCHAR(400)
+   ProcessDescription VARCHAR(500)
 );
 GO
 
@@ -38,9 +38,9 @@ GO
 CREATE TABLE EmailVerification(
    IdEmailVerification INT PRIMARY KEY IDENTITY(1,1),
    IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
-   Username VARCHAR(),
-   UserPassword VARCHAR(),
-   Domain VARCHAR()
+   Username VARCHAR(100),
+   UserPassword VARCHAR(100),
+   Domain VARCHAR(26)
 );
 GO
 

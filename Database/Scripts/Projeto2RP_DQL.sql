@@ -36,3 +36,9 @@ FROM Run
 INNER JOIN Assistent
 ON Run.IdAssistant = Assistant.IdAssistant
 GO
+
+SELECT IdAssistant,Username,UserPassword,Domain
+FROM EmailVerification
+INNER JOIN Assistent
+ON EmailVerification.IdAssistant = Assistant.IdAssistant
+GO
