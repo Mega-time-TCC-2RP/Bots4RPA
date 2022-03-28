@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import {
   Route,
   BrowserRouter as Router,
@@ -8,7 +9,7 @@ import {
 } from 'react-router-dom';
 
 import './index.css';
-
+import Navbar from './components/menu/Navbar'
 import Home from './pages/home/';
 import Login from './pages/login/';
 import Guide from './pages/guide/';
@@ -25,6 +26,7 @@ import NotFound from './pages/notFound/';
 const routing = (
   <Router>
     <div>
+      <Navbar/>
       <Routes>
         <Route exact path="/" element={<Home/>} /> {/* Home */}
         <Route path="/login" element={<Login/>} /> {/* Login */}
