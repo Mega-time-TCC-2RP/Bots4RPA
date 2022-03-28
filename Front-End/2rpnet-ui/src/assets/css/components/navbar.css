@@ -40,10 +40,10 @@ body{
     opacity: 1;
     pointer-events: auto;
 }
-.sidebar #btn:hover{
+.sidebar .btn:hover{
     cursor: pointer;
 }
-.sidebar #btn{
+.sidebar .btn{
     position: absolute;
     color: #fff;
     left: 50%;
@@ -55,7 +55,7 @@ body{
     line-height: 30px;
     transform: translateX(-50%);
 }
-.sidebar.active #btn{
+.sidebar.active .btn{
     left: 90%;
 }
 .sidebar ul{
