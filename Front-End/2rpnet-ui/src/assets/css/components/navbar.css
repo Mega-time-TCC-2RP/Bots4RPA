@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 body{
     position: relative;
     min-height: 100vh;
@@ -40,10 +41,10 @@ body{
     opacity: 1;
     pointer-events: auto;
 }
-.sidebar #btn:hover{
+.sidebar .btn:hover{
     cursor: pointer;
 }
-.sidebar #btn{
+.sidebar .btn{
     position: absolute;
     color: #fff;
     left: 50%;
@@ -55,7 +56,7 @@ body{
     line-height: 30px;
     transform: translateX(-50%);
 }
-.sidebar.active #btn{
+.sidebar.active .btn{
     left: 90%;
 }
 .sidebar ul{
@@ -156,7 +157,7 @@ body{
     left: 88%;
 }
 .sidebar span{
-    
+    font-family:'Montserrat', sans-serif;
     margin-left: 30px;
 }
 .home_content{
