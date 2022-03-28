@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import '../../assets/css/components/navbar.css'
 
@@ -14,20 +14,23 @@ import * as HiIcons from 'react-icons/hi'
 import Logo from '../../assets/img/logo2RP.png'
 import Profile from '../../assets/img/profile.jpg'
 
- function Navbar() {
-  let btn = document.querySelector('#btn')
-  let sidebar = document.querySelector('.sidebar')
+function Navbar() {
 
-  btn.onclick = function(){
+  function teste() {
+    let btn = document.querySelector('#btn');
+    let sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle("active")
   }
-
+  
+  // btn.onclick = function(){
+  //   sidebar.classList.toggle("active")
+  // }
   return (
 <div id='global'>
     <div className='sidebar'>
       <div className='logo_content'>
         <img className='logo' src={Logo} alt="Logo 2RPnet"/>
-        <FaIcons.FaBars id="btn"/>
+        <FaIcons.FaBars id="btn" onClick={teste}/>
       </div>
       <ul className='nav_list'>
         <li>
@@ -98,5 +101,3 @@ import Profile from '../../assets/img/profile.jpg'
   );
 }
 export default Navbar;
-
-

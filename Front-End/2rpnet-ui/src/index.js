@@ -8,7 +8,9 @@ import {
   Navigate,
 } from 'react-router-dom';
 
+import './assets/css/components/button.css'
 import './index.css';
+
 import Navbar from './components/menu/Navbar'
 import Home from './pages/home/';
 import Login from './pages/login/';
@@ -26,7 +28,6 @@ import NotFound from './pages/notFound/';
 const routing = (
   <Router>
     <div>
-      <Navbar/>
       <Routes>
         <Route exact path="/" element={<Home/>} /> {/* Home */}
         <Route path="/login" element={<Login/>} /> {/* Login */}
