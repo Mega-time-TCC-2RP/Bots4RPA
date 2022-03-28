@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 body{
     position: relative;
     min-height: 100vh;
@@ -156,7 +157,7 @@ body{
     left: 88%;
 }
 .sidebar span{
-    
+    font-family:'Montserrat', sans-serif;
     margin-left: 30px;
 }
 .home_content{
