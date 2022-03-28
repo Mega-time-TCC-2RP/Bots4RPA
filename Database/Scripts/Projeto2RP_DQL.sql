@@ -28,5 +28,11 @@ GO
 SELECT IdAssistant,ProcessPriority,ProcessName,ProcessDescription
 FROM Process
 INNER JOIN Assistent
-ON Process = Usuario.IdUsuario
+ON Process.IdAssistant = Assistant.IdAssistant
+GO
+
+SELECT IdAssistant,RunQuantity,RunDate,RunStatus,RunDescription
+FROM Run
+INNER JOIN Assistent
+ON Run.IdAssistant = Assistant.IdAssistant
 GO
