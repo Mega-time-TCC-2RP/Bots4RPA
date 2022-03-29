@@ -181,7 +181,6 @@ GO
 
 
 
-
 CREATE TABLE Assistant(
    IdAssistant INT PRIMARY KEY IDENTITY(1,1),
    IdFunctionary INT FOREIGN KEY REFERENCES Functionary(IdFunctionary),
@@ -192,12 +191,13 @@ CREATE TABLE Assistant(
 );
 GO
 
-CREATE TABLE Process(
-   IdProcess INT PRIMARY KEY IDENTITY(1,1),
+-- Mudamos o nome de process pra procedure(essa é oq vai ta na assistente
+CREATE TABLE AssistantProcedure(
+   IdAssistantProcedure INT PRIMARY KEY IDENTITY(1,1),
    IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
-   ProcessPriority INT,
-   ProcessName VARCHAR(50),
-   ProcessDescription VARCHAR(500)
+   ProcedurePriority INT,
+   ProcedureName VARCHAR(50),
+   ProcedureDescription VARCHAR(500)
 );
 GO
 
@@ -215,8 +215,10 @@ GO
 CREATE TABLE EmailVerification(
    IdEmailVerification INT PRIMARY KEY IDENTITY(1,1),
    IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
-   Username VARCHAR(100),
-   UserPassword VARCHAR(100),
-   Domain VARCHAR(26)
+   Username VARCHAR(100) NOT NULL UNIQUE,
+   UserPassword VARCHAR(100) NOT NULL,
+   Host VARCHAR() NOT NULL,
+   Gateway VARCHAR(4) NOT NULL,
+   Cryptography VARCHAR(100) NOT NULL
 );
 GO
