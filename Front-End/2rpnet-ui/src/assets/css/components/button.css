@@ -12,3 +12,6 @@
     line-height: 28px;
     border: none;
 }
+.button:hover {
+    background: #38538A;
+}

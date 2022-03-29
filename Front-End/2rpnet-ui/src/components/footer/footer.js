@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { Link } from 'react-router-dom';
 
 //img:
-import Logo from '../../assets/img/logo2RP.png'
+import Logo from '../../assets/img/logo2RPbranco.png'
 import Insta from '../../assets/img/iconeInstagram.png'
 import Twitter from '../../assets/img/iconeTwitter.png'
 import Facebook from '../../assets/img/iconeFacebook.png'

@@ -24,12 +24,14 @@ import TaskKanban from './pages/taskKanban';
 import Config from './pages/config/';
 
 import NotFound from './pages/notFound/';
+import LandingPage from './pages/landingPage/landingPage';
 
 const routing = (
   <Router>
     <div>
       <Routes>
         <Route exact path="/" element={<Home/>} /> {/* Home */}
+        <Route path="/landingPage" element={<LandingPage/>} />
         <Route path="/login" element={<Login/>} /> {/* Login */}
         <Route path="/guide" element={<Guide/>} /> {/* Guide */}
         <Route path="/marketplace" element={<Marketplace/>} /> {/* Marketplace */}
