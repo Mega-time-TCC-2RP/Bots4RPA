@@ -14,6 +14,7 @@ import Login from './pages/login/';
 import Guide from './pages/guide/';
 import Marketplace from './pages/marketplace/';
 import MyProcesses from './pages/myProcesses/';
+import Assistant from './pages/myProcesses/assistant';
 import Social from './pages/social/';
 import TaskCalendar from './pages/taskCalendar';
 import TaskKanban from './pages/taskKanban';
@@ -31,6 +32,7 @@ const routing = (
         <Route path="/guide" element={<Guide/>} /> {/* Guide */}
         <Route path="/marketplace" element={<Marketplace/>} /> {/* Marketplace */}
         <Route path="/myprocesses" element={<MyProcesses/>} /> {/* MyProcesses */}
+        <Route path="/assistant" element={<Assistant/>} />
         <Route path="/social" element={<Social/>} /> {/* Social */}
         <Route path="/taskcalendar" element={<TaskCalendar/>} /> {/* Task Calendar */}
         <Route path="/taskkanban" element={<TaskKanban/>} /> {/* Task Kanban */}
