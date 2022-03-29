@@ -11,7 +11,7 @@ import {
 import './assets/css/components/button.css'
 import './index.css';
 
-import Navbar from './components/menu/Navbar'
+// import Navbar from './components/menu/Navbar'
 import Home from './pages/home/';
 import Login from './pages/login/';
 import Guide from './pages/guide/';
