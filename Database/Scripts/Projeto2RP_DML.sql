@@ -1,4 +1,4 @@
-USE DoisRP_TCC;
+USE DOISRP;
 go
 
 
@@ -44,53 +44,53 @@ values(
 1
 );
 ------------------------
-set IDENTITY_INSERT UserType off;
-go
+--set IDENTITY_INSERT UserType off;
+--go
 
 
-set IDENTITY_INSERT UserName off;
-go
+--set IDENTITY_INSERT UserName off;
+--go
 
 
-set IDENTITY_INSERT Corporation off;
-go
+--set IDENTITY_INSERT Corporation off;
+--go
 
-set IDENTITY_INSERT Roles off;
-go
+--set IDENTITY_INSERT Roles off;
+--go
 
-set IDENTITY_INSERT Employee off;
-go
+--set IDENTITY_INSERT Employee off;
+--go
 
-set IDENTITY_INSERT Player off;
-go
+--set IDENTITY_INSERT Player off;
+--go
 
-set IDENTITY_INSERT StatusQuest off;
-go
+--set IDENTITY_INSERT StatusQuest off;
+--go
 
-set IDENTITY_INSERT Quest off;
-go
+--set IDENTITY_INSERT Quest off;
+--go
 
-set IDENTITY_INSERT Skin off;
-go
+--set IDENTITY_INSERT Skin off;
+--go
 
-set IDENTITY_INSERT LibrarySkins off;
-go
+--set IDENTITY_INSERT LibrarySkins off;
+--go
 
-set IDENTITY_INSERT Post off;
-go
+--set IDENTITY_INSERT Post off;
+--go
 
-set IDENTITY_INSERT Likes off;
-go
+--set IDENTITY_INSERT Likes off;
+--go
 
 
-set IDENTITY_INSERT Comment on;
-go
+--set IDENTITY_INSERT Comment on;
+--go
 
-set IDENTITY_INSERT Trophy off;
-go
+--set IDENTITY_INSERT Trophy off;
+--go
 
-set IDENTITY_INSERT LibraryTrophy off;
-go
+--set IDENTITY_INSERT LibraryTrophy off;
+--go
 
 ------------------------
 
@@ -190,29 +190,29 @@ values(
 ----------------------------------
 
 SELECT * FROM Assistant
-SELECT * FROM Process
+SELECT * FROM AssistantProcedure
 SELECT * FROM Run
 SELECT * FROM EmailVerification
 
 
--- Inserindo dados na tabela Assistant
-INSERT INTO Assistant(IdFunctionary, CreationDate, AlterationDate, AssistantName, AssistantDescription)
+-- Inserting data into the Assistant table
+INSERT INTO Assistant(IdEmployee, CreationDate, AlterationDate, AssistantName, AssistantDescription)
 VALUES (1,'20/03/2022','28/03/2022','Fluxo de tabelas excel','Criações de tabelas de excel')
 SELECT * FROM Assistant
 
--- Inserindo dados na tabela Process
-INSERT INTO Process(IdAssistant, ProcessPriority, ProcessName, ProcessDescription)
+-- Inserting data into the AssistantProcedure table
+INSERT INTO AssistantProcedure(IdAssistant, ProcedurePriority,ProcedureName, ProcedureDescription)
 VALUES (1,1,'Criar Tabelas','Processo para criação de tabelas')
-SELECT * FROM Process
+SELECT * FROM AssistantProcedure
 
--- Inserindo dados na tabela Run
+--  Inserting data into the Run table
 INSERT INTO Run(IdAssistant, RunQuantity, RunDate, RunStatus, RunDescription)
 VALUES (1,2,'28/03/2022',1,'Rodando tabelas de excel')
 SELECT * FROM Run
 
--- Inserindo dados na tabela EmailVerification
-INSERT INTO EmailVerification(IdAssistant, Username, UserPassword, Domain)
-VALUES (1,'ricardinho','12345',,)
+--  Inserting data into the EmailVerification tables
+INSERT INTO EmailVerification(IdAssistant, Username, UserPassword, Host, Gateway, Cryptography)
+VALUES (1,'ricardinho','12345','https://mail.google.com/','1234','fere455564ef')
 SELECT * FROM EmailVerification
 
 

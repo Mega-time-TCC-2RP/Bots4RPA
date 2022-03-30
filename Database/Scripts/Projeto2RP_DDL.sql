@@ -180,10 +180,10 @@ GO
 
 
 
-
+--create Assistant table
 CREATE TABLE Assistant(
    IdAssistant INT PRIMARY KEY IDENTITY(1,1),
-   IdFunctionary INT FOREIGN KEY REFERENCES Functionary(IdFunctionary),
+   IdEmployee INT FOREIGN KEY REFERENCES Employee(IdEmployee),
    CreationDate DATETIME NOT NULL,
    AlterationDate DATETIME, 
    AssistantName VARCHAR(50) NOT NULL,
@@ -191,7 +191,7 @@ CREATE TABLE Assistant(
 );
 GO
 
--- Mudamos o nome de process pra procedure(essa é oq vai ta na assistente
+--create AssistantProcedure table
 CREATE TABLE AssistantProcedure(
    IdAssistantProcedure INT PRIMARY KEY IDENTITY(1,1),
    IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
@@ -201,7 +201,7 @@ CREATE TABLE AssistantProcedure(
 );
 GO
 
-
+--create LibraryTrophy table
 CREATE TABLE Run(
    IdRun INT PRIMARY KEY IDENTITY(1,1),
    IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
@@ -212,12 +212,13 @@ CREATE TABLE Run(
 );
 GO
 
+--create EmailVerification table
 CREATE TABLE EmailVerification(
    IdEmailVerification INT PRIMARY KEY IDENTITY(1,1),
    IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
    Username VARCHAR(100) NOT NULL UNIQUE,
    UserPassword VARCHAR(100) NOT NULL,
-   Host VARCHAR() NOT NULL,
+   Host VARCHAR(100) NOT NULL,
    Gateway VARCHAR(4) NOT NULL,
    Cryptography VARCHAR(100) NOT NULL
 );

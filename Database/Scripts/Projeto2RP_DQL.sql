@@ -1,12 +1,32 @@
-USE DOISRP_MANHA;
+USE DOISRP;
 GO
+
+select * from UserType;
+select * from UserName;
+select * from Corporation;
+select * from Roles;
+select * from Employee;
+select * from Player;
+select * from StatusQuest;
+select * from Quest;
+select * from Skin;
+select * from LibrarySkins;
+select * from Post;
+select * from Likes;
+select * from Comment;
+select * from Trophy;
+select * from LibraryTrophy;
+select * from Assistant;
+select * from AssistantProcedure;
+select * from Run;
+select * from EmailVerification;
 
 -- Quantity of Assistants
 SELECT COUNT(IdAssistant) 'Quantity of Assistants' FROM Assistant;
 GO
 
 -- Quantity of Process
-SELECT COUNT(IdProcess) 'Quantity of Process' FROM Process;
+SELECT COUNT(IdAssistantProcedure) 'Quantity of Process' FROM AssistantProcedure;
 GO
 
 -- Quantity of Runs
@@ -18,27 +38,27 @@ SELECT COUNT(IdEmailVerification) 'Quantity of Runs' FROM EmailVerification;
 GO
 
 --Assistent (Alinhar com pessoal da tarde
-SELECT IdFunctionary,CreationDate,AlterationDate,AssistantName,AssistantDescription
+SELECT IdEmployee,CreationDate,AlterationDate,AssistantName,AssistantDescription
 FROM Assistant
-INNER JOIN Usuario
-ON Assistants.Id = Usuario.IdUsuario
+INNER JOIN Employee
+ON Assistants.IdEmployee = Employee.IdEmployee
 GO
 
 
-SELECT IdAssistant,ProcessPriority,ProcessName,ProcessDescription
-FROM Process
-INNER JOIN Assistent
-ON Process.IdAssistant = Assistant.IdAssistant
+SELECT IdAssistant, ProcedurePriority,ProcedureName,ProcedureDescription
+FROM AssistantProcedure
+INNER JOIN Assistant
+ON AssistantProcedure.IdAssistant = Assistant.IdAssistant
 GO
 
 SELECT IdAssistant,RunQuantity,RunDate,RunStatus,RunDescription
 FROM Run
-INNER JOIN Assistent
+INNER JOIN Assistants
 ON Run.IdAssistant = Assistant.IdAssistant
 GO
 
-SELECT IdAssistant,Username,UserPassword,Domain
+SELECT IdAssistant,Username,UserPassword,Host,Gateway,Cryptography
 FROM EmailVerification
-INNER JOIN Assistent
+INNER JOIN Assistant
 ON EmailVerification.IdAssistant = Assistant.IdAssistant
 GO
