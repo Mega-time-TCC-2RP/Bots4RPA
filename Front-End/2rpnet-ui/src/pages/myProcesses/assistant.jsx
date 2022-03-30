@@ -1,12 +1,39 @@
-import "../../assets/css/assistant.css";
 import React from "react";
-import { useEffect, UseState } from "react";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../../assets/css/assistant.css";
+
+// testar colocar uma lista com informações dos cards/bloquinhos
 
 export default function Assistant() {
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    function Save() {
+        //Get the cards inside the dropzone and number them by order.
+        let parent = document.getElementById("flow");
+        let children = parent.childNodes;
+
+
+        for (let index = 0; index <= children.length; index++) {
+            var child = children[index];
+            child.id = index + 1;
+            console.log(child);
+        }
+
+        // console.log(children);
+    }
 
     function configDragnDrop() {
         const cards = document.querySelectorAll('.card')
         const dropzones = document.querySelectorAll('.dropzone')
+
+
         /** our cards */
         cards.forEach(card => {
             card.addEventListener('dragstart', dragstart)
@@ -66,10 +93,10 @@ export default function Assistant() {
 
         function drop() {
             // log('DROPZONE: dropped ')
-            this.classList.remove('over')
+            this.classList.remove('over');
+
         }
     }
-
 
     useEffect(() => {
         configDragnDrop();
@@ -81,19 +108,37 @@ export default function Assistant() {
                 <div className="board">
                     <h3>Métodos</h3>
                     <div className="dropzone">
-                        <div className="card card-email" draggable="true">
+                        <div className="card card-email" draggable="true" onClick={handleShow}>
                             <div className="content"> Ler ultimo email</div>
                         </div>
                     </div>
                 </div>
                 <div className="board">
                     <h3>Fluxo</h3>
-                    <div className="dropzone">
-                        <div className="card card-math" draggable="true">
+                    <div id="flow" className="dropzone">
+                        <div className="card card-math" draggable="true" onClick={handleShow}>
                             <div className="content"> Somar</div>
                         </div>
                     </div>
                 </div>
+                <button onClick={() => Save()}>Salvar</button>
+
+                {/* Modal */}
+
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title className="hModal">Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="tModal">Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        {/* <Button variant="primary" onClick={handleClose}>
+                            Save Changes
+                        </Button> */}
+                    </Modal.Footer>
+                </Modal>
             </div>
         </div>
     )
