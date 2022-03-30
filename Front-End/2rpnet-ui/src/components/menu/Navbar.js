@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../assets/css/components/navbar.css'
 
@@ -21,11 +21,11 @@ import Profile from '../../assets/img/profile.jpg'
     let sidebar = document.querySelector('.sidebar')
     sidebar.classList.toggle('active')
   }
-  
   // btn.onclick = function(){
   //   sidebar.classList.toggle('active')
   // }
   // onClick={sidebar.classList.toggle('active')}
+  
 return (
 
     <div className='sidebar'>
@@ -48,8 +48,8 @@ return (
         </li>
         <li>
           <Link to="#" className='Link'>
-            <FaIcons.FaUniversalAccess className='icon'/>
-            <span className='Links_name'>Acessibilidade</span>
+            <RiIcons.RiShoppingBagFill className='icon'/>
+            <span className='Links_name'>Loja</span>
           </Link>
         </li>
         <li>
@@ -60,14 +60,8 @@ return (
         </li>
         <li>
           <Link to="#" className='Link'>
-            <FaIcons.FaTshirt className='icon'/>
-            <span className='Links_name'>Coleção</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="#" className='Link'>
             <FaIcons.FaRobot className='icon'/>
-            <span className='Links_name'>Processos</span>
+            <span className='Links_name'>Assistentes</span>
           </Link>
         </li>
         <li>
