@@ -193,7 +193,7 @@ GO
 --create AssistantProcedure table
 CREATE TABLE AssistantProcedure(
    IdAssistantProcedure INT PRIMARY KEY IDENTITY(1,1),
-   IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
+   AssistantId INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
    ProcedurePriority INT,
    ProcedureName VARCHAR(50),
    ProcedureDescription VARCHAR(500)
