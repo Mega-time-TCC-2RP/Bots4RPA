@@ -5,14 +5,29 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../assets/css/assistant.css";
 
+import Procedures from '../../services/process';
+
 // testar colocar uma lista com informações dos cards/bloquinhos
 
 export default function Assistant() {
 
-    const [show, setShow] = useState(false);
+    const [proceduresList, setProceduresList] = useState(Procedures);
+    // const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleClose = () => setShow(false);
+
+    function handleShow(id) {
+        var modal = document.getElementById("modal" + id);
+        console.log(modal);
+        modal.style.display = "flex";
+
+    };
+
+    function handleClose(id) {
+        var modal = document.getElementById("modal" + id);
+        modal.style.display = "none";
+
+    };
 
     function Save() {
         //Get the cards inside the dropzone and number them by order.
@@ -108,37 +123,43 @@ export default function Assistant() {
                 <div className="board">
                     <h3>Métodos</h3>
                     <div className="dropzone">
-                        <div className="card card-email" draggable="true" onClick={handleShow}>
-                            <div className="content"> Ler ultimo email</div>
-                        </div>
+                        {
+                            proceduresList.map((procedure) => {
+                                return (
+                                    <div key={procedure.IdProcedure}>
+                                        <div className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure.IdProcedure)}>
+                                            <div className="content"> {procedure.ProcedureName}</div>
+                                        </div>
+
+                                        <div id={"modal" + procedure.IdProcedure} className="modal">
+                                            <Modal id={"modal" + procedure.IdProcedure} onHide={() => handleClose()}>
+                                                <Modal.Header closeButton>
+                                                    <Modal.Title className="hModal">{procedure.ProcedureName}</Modal.Title>
+                                                </Modal.Header>
+                                                <Modal.Body className="tModal">{procedure.ProcedureDescription}</Modal.Body>
+                                                <Modal.Footer>
+                                                    <Button variant="secondary" onClick={() => handleClose()}>
+                                                        Close
+                                                    </Button>
+
+                                                </Modal.Footer>
+                                            </Modal>
+                                        </div>
+                                    </div>
+                                )
+                            })
+
+                        }
+
                     </div>
                 </div>
                 <div className="board">
                     <h3>Fluxo</h3>
                     <div id="flow" className="dropzone">
-                        <div className="card card-math" draggable="true" onClick={handleShow}>
-                            <div className="content"> Somar</div>
-                        </div>
+
                     </div>
                 </div>
                 <button onClick={() => Save()}>Salvar</button>
-
-                {/* Modal */}
-
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title className="hModal">Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body className="tModal">Woohoo, you're reading this text in a modal!</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        {/* <Button variant="primary" onClick={handleClose}>
-                            Save Changes
-                        </Button> */}
-                    </Modal.Footer>
-                </Modal>
             </div>
         </div>
     )
