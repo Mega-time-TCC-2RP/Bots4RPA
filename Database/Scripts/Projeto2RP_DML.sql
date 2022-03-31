@@ -1,16 +1,6 @@
 USE DOISRP;
-go
+GO
 
-
--------------------------
---PARTE DA TARDE
--------------------------
---table usertype
-insert into UserType(IdUserType, TitleUserType)
-values(1, '3');
-
-
---SELECTS
 select * from UserType;
 select * from UserName;
 select * from Corporation;
@@ -25,165 +15,44 @@ select * from Post;
 select * from Likes;
 select * from Comment;
 select * from Trophy;
-select * from LibraryTrophy;
--------
 
+insert into Roles(TitleRoles)
+values('Funcionario');
 
---INSERTS
-insert into UserName(IdUser, userName, Email, Passwd, CPF, PhotoUser, Phone, BirthDate, RG, UserValidation)
-values(
-1,
-'erick',
-'erick@gmail.com',
-'Senai@132',
-'47955470842',
-'fotolegal.png',
-'11940028922',
-'',
-'349025897',
-1
-);
-------------------------
---set IDENTITY_INSERT UserType off;
---go
+insert into Employee(Confirmation)
+values(1);
 
+insert into Player(Score)
+values(1000);
 
---set IDENTITY_INSERT UserName off;
---go
+insert into StatusQuest(Title)
+values('A fazer');
 
+insert into Quest(DateHour, DescriptionQuest)
+values('08/10/2022','Realizando CRUD dos Repositories');
 
---set IDENTITY_INSERT Corporation off;
---go
-
---set IDENTITY_INSERT Roles off;
---go
-
---set IDENTITY_INSERT Employee off;
---go
-
---set IDENTITY_INSERT Player off;
---go
-
---set IDENTITY_INSERT StatusQuest off;
---go
-
---set IDENTITY_INSERT Quest off;
---go
-
---set IDENTITY_INSERT Skin off;
---go
-
---set IDENTITY_INSERT LibrarySkins off;
---go
-
---set IDENTITY_INSERT Post off;
---go
-
---set IDENTITY_INSERT Likes off;
---go
-
-
---set IDENTITY_INSERT Comment on;
---go
-
---set IDENTITY_INSERT Trophy off;
---go
-
---set IDENTITY_INSERT LibraryTrophy off;
---go
-
-------------------------
-
-insert into Corporation(IdCorporation, NameFantasy, CorporateName, AddressName, Phone, Email, Passwd, CNPJ, CorporatePhoto)
-values(1 ,
-'Live Evil',
-'descricao da empresa',
-'avenida paulista 123',
-'11940028923',
-'LiveEvil@gmail.com',
-'Senai@132',
-'29632507000140',
-'fotoempresa.png'
-);
-
---------COMEÇAR DAQUI--------
-
-insert into Roles(
-IdRoles, TitleRoles)
-values(1, 'Funcionario');
-
-insert into Employee(IdEmployee, Confirmation)
-values(
-2,
-1
-);
-
-insert into Player(IdPlayer, Score)
-values(
-1,
-1000
-);
-
-insert into StatusQuest(IdStatus, Title)
-values(
-3,
-'A fazer'
-);
-
-insert into Quest(IdQuest, DateHour, DescriptionQuest)
-values(
-1,
-'08/10/2022',
-'Realizando CRUD dos Repositories'
-);
-
-insert into Skin(IdSkin, Title, SkinImages, SkinDescription, PrecoSkin)
-values(1, 'Skin do BATMAN', 'BATMAN SKIN', 'skin para aqueles que gostam de morcegos assim como o batman', 20);
+insert into Skin(Title, SkinImages, SkinDescription, PrecoSkin)
+values('Skin do BATMAN', 'BATMAN SKIN', 'skin para aqueles que gostam de morcegos assim como o batman', 20);
 
 
 
-insert into LibrarySkins(IdLibrarySkins, UnlockData)
-values(
-1,
-'30/04/2023'
-);
+insert into LibrarySkins(UnlockData)
+values('30/04/2023');
 
-insert into Post(IdPost, Title, PostDescription, PostImage, DataPost)
-values(
-1,
-'Como consumir uma API',
-'Hoje mostrarei como consumir uma API',
-'',
-'16/09/2022'
-);
+insert into Post(Title, PostDescription, PostImage, DataPost)
+values('Como consumir uma API','Hoje mostrarei como consumir uma API','','16/09/2022');
 
-insert into Likes(IdLikes, LikesNumber)
-values(
-1,
-50
-);
+insert into Likes(LikesNumber)
+values(50);
 
-insert into Comment(IdComment, Title, CommentDescription, DataComment)
-values(
-1,
-'Solução erro 404',
-'achei muito legal a sua postagem',
-'01/06/2022'
-);
+insert into Comment(Title, CommentDescription, DataComment)
+values('Solução erro 404','achei muito legal a sua postagem','01/06/2022');
 
-insert into Trophy(IdTrophy, Title, TrophyImage, TrophyDescription)
-values(
-9,
-'Criar 5 assistentes',
-'ImagemTrofeu.png',
-'Esse troféu é concedido ao usuário que criar 5 assistentes'
-);
+insert into Trophy(Title, TrophyImage, TrophyDescription)
+values('Criar 5 assistentes','ImagemTrofeu.png','Esse troféu é concedido ao usuário que criar 5 assistentes');
 
-insert into LibraryTrophy(IdLibraryTrophy, UnlockData)
-values(
-1,
-'07/07/2022'
-);
+insert into LibraryTrophy(UnlockData)
+values('07/07/2022');
 
 ----------------------------------
 --PARTE DA MANHA
@@ -195,7 +64,6 @@ SELECT * FROM Run
 SELECT * FROM EmailVerification
 
 
--- Inserting data into the Assistant table
 INSERT INTO Assistant(IdEmployee, CreationDate, AlterationDate, AssistantName, AssistantDescription)
 VALUES (1,'20/03/2022','28/03/2022','Fluxo de tabelas excel','Criações de tabelas de excel')
 SELECT * FROM Assistant
@@ -214,5 +82,3 @@ SELECT * FROM Run
 INSERT INTO EmailVerification(IdAssistant, Username, UserPassword, Host, Gateway, Cryptography)
 VALUES (1,'ricardinho','12345','https://mail.google.com/','1234','fere455564ef')
 SELECT * FROM EmailVerification
-
-
