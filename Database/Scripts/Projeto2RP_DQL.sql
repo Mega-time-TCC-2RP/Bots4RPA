@@ -34,30 +34,30 @@ SELECT COUNT(IdRun) 'Quantity of Runs' FROM Run;
 GO
 
 -- Quantity of EmailVerification
-SELECT COUNT(IdEmailVerification) 'Quantity of Runs' FROM EmailVerification;
+SELECT COUNT(IdEmailVerification) 'Quantity of Emails' FROM EmailVerification;
 GO
 
 --Assistent (Alinhar com pessoal da tarde
-SELECT IdEmployee,CreationDate,AlterationDate,AssistantName,AssistantDescription
+SELECT Employee.IdEmployee,CreationDate,AlterationDate,AssistantName,AssistantDescription
 FROM Assistant
 INNER JOIN Employee
-ON Assistants.IdEmployee = Employee.IdEmployee
+ON Assistant.IdEmployee = Employee.IdEmployee
 GO
 
 
-SELECT IdAssistant, ProcedurePriority,ProcedureName,ProcedureDescription
+SELECT Assistant.IdAssistant,ProcedurePriority,ProcedureName,ProcedureDescription
 FROM AssistantProcedure
 INNER JOIN Assistant
 ON AssistantProcedure.IdAssistant = Assistant.IdAssistant
 GO
 
-SELECT IdAssistant,RunQuantity,RunDate,RunStatus,RunDescription
+SELECT Assistant.IdAssistant,RunQuantity,RunDate,RunStatus,RunDescription
 FROM Run
-INNER JOIN Assistants
+INNER JOIN Assistant
 ON Run.IdAssistant = Assistant.IdAssistant
 GO
 
-SELECT IdAssistant,Username,UserPassword,Host,Gateway,Cryptography
+SELECT Assistant.IdAssistant,Username,UserPassword,Host,Gateway,Cryptography
 FROM EmailVerification
 INNER JOIN Assistant
 ON EmailVerification.IdAssistant = Assistant.IdAssistant
