@@ -1,28 +1,28 @@
-CREATE DATABASE DOISRP;
+/*CREATE DATABASE DOISRP;
 GO
 
 USE DOISRP;
-GO
+GO*/
 
 --create UserType table
 create table UserType(
         IdUserType INT PRIMARY KEY Identity not null,
-        TitleUserType int not null
+        TitleUserType varchar(50) not null
 );
 GO
 
 --create User table
 create table UserName(
         IdUser INT PRIMARY KEY Identity not null,
-        userName varchar(256) not null,
+        UserName varchar(256) not null,
         Email varchar(256) not null unique,
         Passwd varchar(100),
         CPF char(11) not null unique,
-        PhotoUser varchar(max),
+        PhotoUser varchar(max) default('padrao.png'),
         Phone char(11) unique,
         BirthDate DateTime not null,
         RG varchar(15) not null,
-		  UserValidation BIT,
+		UserValidation BIT,
         
         --add the foreign key
         IdUserType INT FOREIGN KEY REFERENCES UserType(IdUserType)
@@ -43,9 +43,9 @@ create table Corporation(
 );
 GO
 --create Roles table
-create table Roles(
-        IdRoles INT PRIMARY KEY Identity not null,
-        TitleRoles varchar(45) not null
+create table Office(
+        IdOffice INT PRIMARY KEY Identity not null,
+        TitleOffice varchar(45) not null
 );
 GO
 --create Employee table
@@ -56,7 +56,7 @@ create table Employee(
         --add the foreign keys
         IdUser INT FOREIGN KEY REFERENCES UserName(IdUser),
         IdCorporation INT FOREIGN KEY REFERENCES Corporation(IdCorporation),
-        IdRoles INT FOREIGN KEY REFERENCES Roles(IdRoles)
+        IdOffice INT FOREIGN KEY REFERENCES Office(IdOffice)
 
 );
 GO
@@ -130,11 +130,10 @@ GO
 --create Likes table
 create table Likes(
         IdLikes INT PRIMARY KEY Identity not null,
-        LikesNumber int,
 
         --foreign keys
         IdPost INT FOREIGN KEY REFERENCES Post(IdPost),
-        IdPlayer INT FOREIGN KEY REFERENCES Player(IdPlayer)
+        IdPlayer INT FOREIGN KEY REFERENCES	Player(IdPlayer)
 );
 GO
 
@@ -215,7 +214,7 @@ GO
 --create EmailVerification table
 CREATE TABLE EmailVerification(
    IdEmailVerification INT PRIMARY KEY IDENTITY(1,1),
-   IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
+   AssistantId INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
    Username VARCHAR(100) NOT NULL UNIQUE,
    UserPassword VARCHAR(100) NOT NULL,
    Host VARCHAR(100) NOT NULL,
@@ -223,3 +222,28 @@ CREATE TABLE EmailVerification(
    Cryptography VARCHAR(100) NOT NULL
 );
 GO
+
+/*
+Drop table UserType
+Drop table UserName
+Drop table Corporation
+Drop table Office
+Drop table Employee
+Drop table Player
+Drop table StatusQuest
+Drop table Quest
+Drop table Skin
+Drop table LibrarySkins
+Drop table Post
+Drop table Likes
+Drop table Comment
+Drop table Trophy
+Drop table LibraryTrophy
+Drop table Assistant
+Drop table AssistantProcedure
+Drop table Run
+Drop table EmailVerification
+*/
+
+
+
