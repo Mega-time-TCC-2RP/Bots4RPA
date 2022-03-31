@@ -214,7 +214,7 @@ GO
 --create EmailVerification table
 CREATE TABLE EmailVerification(
    IdEmailVerification INT PRIMARY KEY IDENTITY(1,1),
-   IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
+   AssistantId INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
    Username VARCHAR(100) NOT NULL UNIQUE,
    UserPassword VARCHAR(100) NOT NULL,
    Host VARCHAR(100) NOT NULL,
