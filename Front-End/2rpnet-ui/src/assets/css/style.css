@@ -4,3 +4,9 @@
     justify-content: center;
     font-size: 72px;
 }
+.fundotest{
+    position: absolute;
+    background-color: #FCFCFC;
+    height: 100%;
+    width: 100%;
+}

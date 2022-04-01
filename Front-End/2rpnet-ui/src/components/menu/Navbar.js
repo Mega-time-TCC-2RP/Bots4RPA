@@ -12,7 +12,7 @@ import * as BsIcons from 'react-icons/bs'
 import * as HiIcons from 'react-icons/hi'
 
 //logo
-import Logo from '../../assets/img/logo2RP.png'
+import Logo from '../../assets/img/logo2RPbranco.png'
 import Profile from '../../assets/img/profile.jpg'
 
  function Navbar() {

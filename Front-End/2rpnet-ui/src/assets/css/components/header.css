@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+.header2 {
+    background-color: #fff;
+    align-items: center;
+    display: flex;
+    height: 70px;
+    justify-content: right;
+}
+.coins {
+    align-items: center;
+    display: flex;
+}
+.cash{
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 10px;
+}
+.headerInside2{
+    display: flex;
+    width: 230px;
+    justify-content: space-between;
+}
+.profile .profile_details img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.details{
+    right: 60px;
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    height: 250px;
+    width: 220px;
+    background: #fff;
+    padding: 10px 20px;
+    transition: all 0.5s ease;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.details ul{
+     padding: 0px;
+}
+.details ul li{
+    position: relative;
+    height: 40px;
+    width: 200px;
+    margin: 0 5px;
+    list-style: none;
+    /* line-height: 50px; */
+    
+}
+.details ul li .Link{
+    color: #6C757D;
+    font-size: 18px;
+}
+.profile_details{
+    display: flex;
+    align-items: center;
+}
+.profile .profile_details .name_job{
+    color: #6C757D;
+    margin-left: 10px;
+}
+.profile .profile_details .name{
+    font-size: 20px;
+    font-weight: 600;
+}
+.profile .profile_details .job{
+    font-size: 14px;
+    font-weight: 400;
+}
+.logout{
+    color: #BB3434;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.logout #log_out{
+    margin-left: 35px;
+    font-size: 30px;
+    left: 100%;
+}
+.logout span{
+    font-size: 18px;
+    font-weight: 600;
+}
