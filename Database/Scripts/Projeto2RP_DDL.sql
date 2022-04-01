@@ -1,8 +1,8 @@
-/*CREATE DATABASE DOISRP;
+CREATE DATABASE DOISRP;
 GO
 
 USE DOISRP;
-GO*/
+GO
 
 --create UserType table
 create table UserType(
@@ -193,7 +193,7 @@ GO
 --create AssistantProcedure table
 CREATE TABLE AssistantProcedure(
    IdAssistantProcedure INT PRIMARY KEY IDENTITY(1,1),
-   AssistantId INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
+   IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
    ProcedurePriority INT,
    ProcedureName VARCHAR(50),
    ProcedureDescription VARCHAR(500)
@@ -214,7 +214,7 @@ GO
 --create EmailVerification table
 CREATE TABLE EmailVerification(
    IdEmailVerification INT PRIMARY KEY IDENTITY(1,1),
-   AssistantId INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
+   IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
    Username VARCHAR(100) NOT NULL UNIQUE,
    UserPassword VARCHAR(100) NOT NULL,
    Host VARCHAR(100) NOT NULL,

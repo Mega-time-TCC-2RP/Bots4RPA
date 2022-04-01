@@ -84,9 +84,11 @@ values('Live Evil','descricao da empresa','avenida paulista 123','11940028923','
 
 insert into Office (TitleOffice)
 values('Assistente administrativo RH');
+select * from Office
 
 insert into Employee(Confirmation, IdUser, IdCorporation, IdOffice)
 values(1,1,1,1);
+select * from Employee
 
 insert into Player( Score, IdEmployee)
 values(1000, 1);
@@ -133,7 +135,7 @@ VALUES (1,20/03/2022,28/03/2022,'Fluxo de tabelas excel','Criações de tabelas 
 SELECT * FROM Assistant
 
 -- Inserting data into the AssistantProcedure table
-INSERT INTO AssistantProcedure(AssistantId, ProcedurePriority,ProcedureName, ProcedureDescription)
+INSERT INTO AssistantProcedure(IdAssistant, ProcedurePriority,ProcedureName, ProcedureDescription)
 VALUES (1,1,'Criar Tabelas','Processo para criação de tabelas')
 SELECT * FROM AssistantProcedure
 
