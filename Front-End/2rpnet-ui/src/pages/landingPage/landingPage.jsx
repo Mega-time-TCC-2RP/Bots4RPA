@@ -21,7 +21,7 @@ import '../../assets/css/components/fonts.css'
 
 export default function LandingPage() {
     return (
-        <div>
+        <div className='landingPage'>
             <div className='header container'>
                 <div className='headerInside container'>
                     <img src={Logo} className='logoHeader' alt="Logo 2RP" />

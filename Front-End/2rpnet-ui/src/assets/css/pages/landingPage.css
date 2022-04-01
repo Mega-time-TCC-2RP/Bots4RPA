@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-*{
+.landingPage{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -211,4 +211,14 @@ a {
     font-style: normal;
     font-weight: 400;
     line-height: 30px;
+}
+
+@media only screen and (max-device-width: 900px){
+.headerInside{
+    width: 700px;
+}
+.section{
+    flex-direction: column;
+    height: 700px;
+}
 }

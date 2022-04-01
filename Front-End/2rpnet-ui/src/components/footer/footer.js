@@ -8,6 +8,9 @@ import Twitter from '../../assets/img/iconeTwitter.png'
 import Facebook from '../../assets/img/iconeFacebook.png'
 import Youtube from '../../assets/img/iconeYoutube.png'
 
+//Icons:
+import * as BiIcons from 'react-icons/bi'
+
 //css: 
 import '../../assets/css/components/footer.css'
 
@@ -27,7 +30,7 @@ class Footer extends Component {
                         </div>
                     </div>
                 </div>
-                <span className="rightsReserved">Todos os direitos reservados - 2022</span>
+                <span className="rightsReserved"><BiIcons.BiCopyright />Todos os direitos reservados - 2022</span>
             </footer>
         )
     }

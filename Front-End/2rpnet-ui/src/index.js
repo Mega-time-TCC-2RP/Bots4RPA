@@ -25,6 +25,7 @@ import Config from './pages/config/';
 
 import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
+import RegisterCompany from './pages/registerCompany/registerCompany';
 
 const routing = (
   <Router>
@@ -33,6 +34,7 @@ const routing = (
         <Route exact path="/" element={<Home/>} /> {/* Home */}
         <Route path="/landingPage" element={<LandingPage/>} />
         <Route path="/login" element={<Login/>} /> {/* Login */}
+        <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/guide" element={<Guide/>} /> {/* Guide */}
         <Route path="/marketplace" element={<Marketplace/>} /> {/* Marketplace */}
         <Route path="/myprocesses" element={<MyProcesses/>} /> {/* MyProcesses */}
