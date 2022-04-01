@@ -12,21 +12,26 @@ import Procedures from '../../services/process';
 export default function Assistant() {
 
     const [proceduresList, setProceduresList] = useState(Procedures);
-    // const [show, setShow] = useState(false);
+    const [pValue, setPValue] = useState();
 
-    // const handleClose = () => setShow(false);
-
-    function handleShow(id) {
-        var modal = document.getElementById("modal" + id);
-        console.log(modal);
-        modal.style.display = "flex";
-
+    function handleShow(p) {
+        var modal = document.getElementById("modal" + p.IdProcedure);
+        console.log(modal)
+        modal.style.display = "block";
+        if (pValue != p.ProcedureValue) {  
+            if (p.ProcedureValue != 0 || p.ProcedureValue != "") {
+                setPValue(p.ProcedureValue);
+            }     
+            else{
+                setPValue("");
+            }
+        }
     };
 
     function handleClose(id) {
         var modal = document.getElementById("modal" + id);
+        // console.log(id)
         modal.style.display = "none";
-
     };
 
     function Save() {
@@ -127,23 +132,33 @@ export default function Assistant() {
                             proceduresList.map((procedure) => {
                                 return (
                                     <div key={procedure.IdProcedure}>
-                                        <div className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure.IdProcedure)}>
+                                        <div className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure)}>
                                             <div className="content"> {procedure.ProcedureName}</div>
                                         </div>
 
                                         <div id={"modal" + procedure.IdProcedure} className="modal">
-                                            <Modal id={"modal" + procedure.IdProcedure} onHide={() => handleClose()}>
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title className="hModal">{procedure.ProcedureName}</Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body className="tModal">{procedure.ProcedureDescription}</Modal.Body>
-                                                <Modal.Footer>
-                                                    <Button variant="secondary" onClick={() => handleClose()}>
-                                                        Close
-                                                    </Button>
-
-                                                </Modal.Footer>
-                                            </Modal>
+                                            {/* Modal content */}
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <span onClick={() => handleClose(procedure.IdProcedure)} className="close">&times;</span>
+                                                    <div className="modal-header--content">
+                                                        <p className="modal__text--heading">Nome:</p>
+                                                        <p className="modal__text--heading2">{procedure.ProcedureName}</p>
+                                                    </div>
+                                                    <div className="modal-header--content">
+                                                        <p className="modal__text--heading">Descrição:</p>
+                                                        <p className="modal__text--heading2">{procedure.ProcedureDescription}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <label className="modal__text" htmlFor="">Digite aqui o valor necessário:</label>
+                                                    
+                                                    <input className="modal__input" type="text" value={pValue} onChange={(campo) =>{
+                                                        setPValue(campo.target.value,  procedure.ProcedureValue = campo.target.value);
+                                                      console.log(procedure.ProcedureValue)}} />
+                                                </div>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 )
