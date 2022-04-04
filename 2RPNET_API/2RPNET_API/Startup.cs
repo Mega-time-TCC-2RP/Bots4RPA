@@ -82,13 +82,14 @@ namespace _2RPNET_API
                 });
 
             services.AddDbContext<RPAContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("Default"))
+               options.UseSqlServer(Configuration.GetConnectionString("RPA"))
            );
 
 
             services.AddTransient<DbContext, RPAContext>();
             services.AddTransient<IUserNameRepository, UserNameRepository>();
             services.AddTransient<IRunRepository, RunRepository>();
+            services.AddTransient<IAssistantProcedureRepository, AssistantProcedureRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

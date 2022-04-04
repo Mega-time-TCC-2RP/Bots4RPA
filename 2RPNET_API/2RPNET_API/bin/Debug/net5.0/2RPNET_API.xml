@@ -4,6 +4,36 @@
         <name>2RPNET_API</name>
     </assembly>
     <members>
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ReadAll">
+            <summary>
+            Method responsible for list all Assistants process
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.SearchByID(System.Int32)">
+            <summary>
+            Method responsible for list Assistant process by unique id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.NewProcedure(_2RPNET_API.Domains.AssistantProcedure)">
+            <summary>
+            Method responsible for create all Assistants process
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.Update(System.Int32,_2RPNET_API.Domains.AssistantProcedure)">
+            <summary>
+            Method responsible for update all Assistants process
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.Deletar(System.Int32)">
+            <summary>
+            Method responsible for delete all Assistants process
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:_2RPNET_API.Controllers.LoginController.Login(_2RPNET_API.ViewModels.LoginViewModel)">
             <summary>
             Method responsible for logging into the application

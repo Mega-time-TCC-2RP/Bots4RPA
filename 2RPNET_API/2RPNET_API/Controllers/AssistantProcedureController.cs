@@ -1,10 +1,16 @@
-﻿using _2RPNET_API.Domains;
-using _2RPNET_API.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Microsoft.EntityFrameworkCore;
+using _2RPNET_API.Context;
+using _2RPNET_API.Domains;
+using _2RPNET_API.Repositories;
+using _2RPNET_API.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 
 namespace _2RPNET_API.Controllers
 {
@@ -14,11 +20,15 @@ namespace _2RPNET_API.Controllers
     {
         private IAssistantProcedureRepository _repository { get; set; }
 
-        public AssistantProcedureController(IAssistantProcedureRepository ass)
+        public AssistantProcedureController(IAssistantProcedureRepository assistant)
         {
-            _repository = ass;
+            _repository = assistant;
         }
 
+        /// <summary>
+        /// Method responsible for list all Assistants process
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult ReadAll()
         {
@@ -32,6 +42,10 @@ namespace _2RPNET_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Method responsible for list Assistant process by unique id
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult SearchByID(int id)
         {
@@ -45,6 +59,10 @@ namespace _2RPNET_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Method responsible for create all Assistants process
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult NewProcedure(AssistantProcedure newProcess)
         {
@@ -59,12 +77,17 @@ namespace _2RPNET_API.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
+        
+        /// <summary>
+        /// Method responsible for update all Assistants process
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, AssistantProcedure newProcess)
         {
             try
             {
-                _repository.Delete(id);
+                _repository.Update(id, newProcess);
                 return StatusCode(204);
             }
             catch (Exception ex)
@@ -72,12 +95,17 @@ namespace _2RPNET_API.Controllers
                 return BadRequest(ex);
             }
         }
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, AssistantProcedure newProcess)
+
+        /// <summary>
+        /// Method responsible for delete all Assistants process
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
         {
             try
             {
-                _repository.Update(id, newProcess);
+                _repository.Delete(id);
                 return StatusCode(204);
             }
             catch (Exception ex)

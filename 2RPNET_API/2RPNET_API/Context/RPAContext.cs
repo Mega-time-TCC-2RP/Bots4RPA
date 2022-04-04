@@ -37,7 +37,7 @@ namespace _2RPNET_API.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("name=Default");
+                optionsBuilder.UseSqlServer("name=RPA");
             }
         }
 

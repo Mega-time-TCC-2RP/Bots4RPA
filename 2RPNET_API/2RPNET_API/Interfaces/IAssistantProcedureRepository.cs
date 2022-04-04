@@ -9,9 +9,9 @@ namespace _2RPNET_API.Interfaces
 
         AssistantProcedure SearchByID(int IdAssistantProcedure);
 
-        void Create(AssistantProcedure newProcess);
+        void Create(AssistantProcedure NewProcess);
 
-        void Update(int IdAssistantProcedure, AssistantProcedure updatedProcess);
+        void Update(int IdAssistantProcedure, AssistantProcedure NewProcess);
 
         void Delete(int IdAssistantProcedure);
     }

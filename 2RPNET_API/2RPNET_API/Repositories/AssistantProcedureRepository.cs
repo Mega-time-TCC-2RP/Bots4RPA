@@ -8,10 +8,19 @@ namespace _2RPNET_API.Repositories
 {
     public class AssistantProcedureRepository : IAssistantProcedureRepository
     {
-        RPAContext ctx = new RPAContext();
-        public void Create(AssistantProcedure newProcess)
+        private readonly RPAContext ctx;
+
+        public AssistantProcedureRepository()
         {
-            ctx.AssistantProcedures.Add(newProcess);
+        }
+
+        public AssistantProcedureRepository(RPAContext appContext)
+        {
+            ctx = appContext;
+        }
+        public void Create(AssistantProcedure NewProcess)
+        {
+            ctx.AssistantProcedures.Add(NewProcess);
             ctx.SaveChanges();
         }
 
@@ -34,19 +43,19 @@ namespace _2RPNET_API.Repositories
             return ctx.AssistantProcedures.FirstOrDefault(c => c.IdAssistantProcedure == IdAssistantProcedure);
         }
 
-        public void Update(int IdAssistantProcedure, AssistantProcedure updatedProcess)
+        public void Update(int IdAssistantProcedure, AssistantProcedure NewProcess)
         {
             AssistantProcedure SearchAssistant = SearchByID(IdAssistantProcedure);
 
-            if (updatedProcess.ProcedureName != null && updatedProcess.ProcedureDescription != null)
+            if (NewProcess.ProcedureName != null && NewProcess.ProcedureDescription != null)
             {
-                updatedProcess.ProcedurePriority = updatedProcess.ProcedurePriority;
-                updatedProcess.ProcedureName = updatedProcess.ProcedureName;
-                updatedProcess.ProcedureDescription = updatedProcess.ProcedureDescription;
-                updatedProcess.IdAssistant = updatedProcess.IdAssistant;
+                SearchAssistant.ProcedurePriority = NewProcess.ProcedurePriority;
+                SearchAssistant.ProcedureName = NewProcess.ProcedureName;
+                SearchAssistant.ProcedureDescription = NewProcess.ProcedureDescription;
+                SearchAssistant.IdAssistant = NewProcess.IdAssistant;
             }
 
-            ctx.AssistantProcedures.Update(updatedProcess);
+            ctx.AssistantProcedures.Update(SearchAssistant);
 
             ctx.SaveChanges();
         }
