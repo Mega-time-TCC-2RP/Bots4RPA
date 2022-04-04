@@ -17,7 +17,7 @@ import Login from './pages/login/';
 import Guide from './pages/guide/';
 import Marketplace from './pages/marketplace/';
 import MyProcesses from './pages/myProcesses/';
-import Social from './pages/social/';
+import Social from './pages/social/index';
 import TaskCalendar from './pages/taskCalendar';
 import TaskKanban from './pages/taskKanban';
 

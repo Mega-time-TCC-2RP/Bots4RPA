@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-wrap: normal;
+    overflow-y: auto;
+}
+
+main{
+    background-color: #FCFCFC;
+}
+
+.ContainerGrid{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.ContainerPosts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 170px;
+    padding-bottom: 170px;
+}
+
+.BoxPost{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 4px 8px 20px 8px rgba(0, 0, 0, 0.25);
+    width: 1060px;
+}
+
+.UsuarioCampo{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    margin-left: 72px;
+}
+
+.Nome{
+    font-weight: 700;
+}
+
+.UsuarioDados{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.UsuarioCampo img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.ImgPost{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.ContainerBotoesPost{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 120px;
+    margin-left: 70px;
+}
+
+.BotaoPost{
+    border: none;
+    background-color: white;
+}
+
+.BoxPost p{
+    
+}
