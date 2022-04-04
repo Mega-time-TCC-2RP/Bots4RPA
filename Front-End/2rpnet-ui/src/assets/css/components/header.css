@@ -2,6 +2,7 @@
 .container {
     width: 1200px;
     margin: 0 auto;
+    display: flex;
 }
 .header2 {
     background-color: #fff;
@@ -9,6 +10,10 @@
     display: flex;
     height: 70px;
     justify-content: right;
+}
+
+.header2 .container{
+    justify-content: end;
 }
 .coins {
     align-items: center;
@@ -24,13 +29,15 @@
     width: 230px;
     justify-content: space-between;
 }
-.profile .profile_details img{
+.profile2 .profile_details img{
     height: 45px;
     width: 45px;
     object-fit: cover;
     border-radius: 12px;
 }
 .details{
+    pointer-events: none;
+    opacity: 0;
     right: 60px;
     position: absolute;
     /* top: 0;
@@ -42,6 +49,11 @@
     transition: all 0.5s ease;
     font-family: 'Montserrat', sans-serif;
     
+    
+}
+.details.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 .details ul{
      padding: 0px;
@@ -58,20 +70,26 @@
 .details ul li .Link{
     color: #6C757D;
     font-size: 18px;
+    /* pointer-events: none; */
 }
+#log_out{
+    cursor: pointer;
+}
+
 .profile_details{
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
-.profile .profile_details .name_job{
+.profile2 .profile_details .name_job{
     color: #6C757D;
     margin-left: 10px;
 }
-.profile .profile_details .name{
+.profile2 .profile_details .name{
     font-size: 20px;
     font-weight: 600;
 }
-.profile .profile_details .job{
+.profile2 .profile_details .job{
     font-size: 14px;
     font-weight: 400;
 }
@@ -80,6 +98,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    /* cursor: pointer; */
 }
 .logout #log_out{
     margin-left: 35px;
@@ -89,4 +108,9 @@
 .logout span{
     font-size: 18px;
     font-weight: 600;
+    cursor: pointer
+}
+.coins img{
+    width: 30px;
+    height: 30px;
 }

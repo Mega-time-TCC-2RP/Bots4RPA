@@ -7,23 +7,30 @@ import * as HiIcons from 'react-icons/hi'
 
 class Header extends Component {
     render(){
+        function click(){
+            let details = document.querySelector('.details')
+            details.classList.toggle('active')
+          }
         return (
           <div> 
             <div className='header2'>
-                <div className='headerInside2 container'>
-                    <div className='coins'>
+                <div className='container'>
+                    <div className='headerInside2'>
+                        <div className='coins'>
                         <img src={Coin} alt="img coin"/>
                         <div className='cash'>1000</div>
                     </div>
-                    <div className='profile'>
+                    <div className='profile2'>
                         <div className='profile_details'>
-                        <img src={Profile} alt="img profile"/>
+                        <img src={Profile} className='imgProfile' alt="img profile"  onClick={click}/>
                         </div>
                     </div>
+                    </div>
+                    
                 </div>
             </div>
             <div className='details'>
-            <div className='profile'>
+            <div className='profile2'>
             <div className='profile_details'>
                 <img src={Profile} alt="img profile"/>
                 <div className='name_job'>

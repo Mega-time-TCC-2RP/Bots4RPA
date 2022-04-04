@@ -35,43 +35,43 @@ return (
       </div>
       <ul className='nav_list'>
         <li>
-          <Link to="#" className='Link'>
+          <Link to="/" className='Link'>
             <ImIcons.ImHome3 className='icon'/>
             <span className='Links_name'>Home</span>
           </Link>
         </li>
         <li>
-          <Link to="#" className='Link'>
+          <Link to="/guide" className='Link'>
             <RiIcons.RiGuideFill className='icon'/>
             <span className='Links_name'>Guias</span>
           </Link>
         </li>
         <li>
-          <Link to="#" className='Link'>
+          <Link to="/marketplace" className='Link'>
             <RiIcons.RiShoppingBagFill className='icon'/>
             <span className='Links_name'>Loja</span>
           </Link>
         </li>
         <li>
-          <Link to="#" className='Link'>
+          <Link to="/taskcalendar" className='Link'>
             <FaIcons.FaTasks className='icon'/>
             <span className='Links_name'>Tarefas</span>
           </Link>
         </li>
         <li>
-          <Link to="#" className='Link'>
+          <Link to="/myprocesses" className='Link'>
             <FaIcons.FaRobot className='icon'/>
             <span className='Links_name'>Assistentes</span>
           </Link>
         </li>
         <li>
-          <Link to="#" className='Link'>
+          <Link to="/social" className='Link'>
             <AiIcons.AiFillMessage className='icon'/>
             <span className='Links_name'>Social</span>
           </Link>
         </li>
         <li>
-          <Link to="#" className='Link'>
+          <Link to="/config" className='Link'>
             <BsIcons.BsFillGearFill className='icon'/>
             <span className='Links_name'>Configurações</span>
           </Link>
