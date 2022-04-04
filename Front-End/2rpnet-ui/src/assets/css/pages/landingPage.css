@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+body {
+    overflow: unset;
+}
+
 .landingPage{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     overflow: auto;
-}
+} 
 
 .container {
     width: 1200px;

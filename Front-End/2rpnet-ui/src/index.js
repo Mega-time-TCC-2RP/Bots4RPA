@@ -11,7 +11,7 @@ import {
 import './assets/css/components/button.css'
 import './index.css';
 
-// import Navbar from './components/menu/Navbar'
+import Navbar from './components/menu/Navbar'
 import Home from './pages/home/';
 import Login from './pages/login/';
 import Guide from './pages/guide/';
@@ -26,6 +26,7 @@ import Config from './pages/config/';
 import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
 import RegisterCompany from './pages/registerCompany/registerCompany';
+import RegisterUser from './pages/registerUser/registerUser';
 
 const routing = (
   <Router>
@@ -35,6 +36,7 @@ const routing = (
         <Route path="/landingPage" element={<LandingPage/>} />
         <Route path="/login" element={<Login/>} /> {/* Login */}
         <Route path="/registerCompany" element={<RegisterCompany />} />
+        <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/guide" element={<Guide/>} /> {/* Guide */}
         <Route path="/marketplace" element={<Marketplace/>} /> {/* Marketplace */}
         <Route path="/myprocesses" element={<MyProcesses/>} /> {/* MyProcesses */}
