@@ -47,7 +47,20 @@ namespace _2RPNET_API.Repositories
 
         public void Update(int IdAssistant, Assistant UpdatedAsssistant)
         {
-            throw new NotImplementedException();
+            Assistant AssistantSought = SearchByID(IdAssistant);
+
+            if (UpdatedAsssistant.IdEmployee > 0 && UpdatedAsssistant.CreationDate >= DateTime.Now && UpdatedAsssistant.AlterationDate >= DateTime.Now && UpdatedAsssistant.AssistantName != null && UpdatedAsssistant.AssistantDescription != null)
+            {
+                AssistantSought.IdEmployee = UpdatedAsssistant.IdEmployee;
+                AssistantSought.CreationDate = UpdatedAsssistant.CreationDate;
+                AssistantSought.AlterationDate = UpdatedAsssistant.AlterationDate;
+                AssistantSought.AssistantName = UpdatedAsssistant.AssistantName;
+                AssistantSought.AssistantDescription = UpdatedAsssistant.AssistantDescription;
+
+                Ctx.Assistants.Update(AssistantSought);
+                Ctx.SaveChanges();
+            }
+           
         }
     }
 }
