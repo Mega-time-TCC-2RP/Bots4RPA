@@ -1,0 +1,42 @@
+.pageTitle{
+
+}
+
+.taskCalendar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.task{
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.toDo, .do, .done{
+    width: 250px;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    box-shadow: 1px 4px 4px #BEBEBE;
+    border-radius: 30px;
+}
+
+.calendarAndBtn {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.calendar{
+    width: 342px;
+    height: 460px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px #BEBEBE;
+    margin-left: 32px;
+}
+
+.btnNewTask{
+    margin-top: 32px;
+}
