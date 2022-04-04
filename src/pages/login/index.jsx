@@ -55,7 +55,7 @@ export default function Login() {
                                                 <div className='Login'>
                                                         <p className='topo-input-senha'>Senha</p>
                                                         <input
-                                                                type="senha"   
+                                                                type="password"   
                                                                 placeholder='Insira sua senha'
                                                                 id="senha"
                                                                 value={password}
