@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../assets/css/assistant.css";
 
 import Procedures from '../../services/process';
+import { wait } from "@testing-library/user-event/dist/utils";
 
 // testar colocar uma lista com informações dos cards/bloquinhos
 
@@ -13,10 +14,32 @@ export default function Assistant() {
 
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
+    const [value, setValue] = useState(0);
+
+    function DefineIValue(number){
+        setValue(number);
+        console.log(value);
+        
+    }
+
+    function Sum(number){
+        setValue(value + number);
+        console.log(value);
+    }
+
+    function Subtract(number){
+        setValue(value - number);
+        console.log(value);
+    }
+
+    function Multiply(number){
+        setValue(value * number);
+        console.log(value);
+    }
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
-        console.log(modal)
+        // console.log(modal)
         modal.style.display = "block";
         if (pValue != p.ProcedureValue) {  
             if (p.ProcedureValue != 0 || p.ProcedureValue != "") {
@@ -34,19 +57,44 @@ export default function Assistant() {
         modal.style.display = "none";
     };
 
-    function Save() {
+    const SaveAndExecute  = () => {
         //Get the cards inside the dropzone and number them by order.
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
-
+        var child = [];
 
         for (let index = 0; index <= children.length; index++) {
             var child = children[index];
-            child.id = index + 1;
             console.log(child);
-        }
+            // console.log("teste " + child.id);
+            var splited = child.id.split(";");
+            child.id = (index + 1) + ";" + splited[1].toString();
+            // console.log(child.id);
+            // console.log(child);
+            // console.log(child.textContent);
 
-        // console.log(children);
+            //Pega a função de acordo com o texto presente no elemento card, sendo este por padrão o nome do procedimento
+            switch (child.textContent) {
+                case "Numero Inicial":
+                    DefineIValue(parseInt(splited[1]));
+                    break;
+                case "Somar":
+                    Sum(parseInt(splited[1]));
+                    break;
+                case "Subtrair":
+                    Subtract(parseInt(splited[1]));
+                    break;
+                case "Multiplicar":
+                    Multiply(parseInt(splited[1]));
+                    break;
+                default:
+                    console.log("deu erro viu");
+                    break;
+            }
+
+            wait(1000)
+
+        }
     }
 
     function configDragnDrop() {
@@ -122,6 +170,10 @@ export default function Assistant() {
         configDragnDrop();
     })
 
+    // useEffect(() => {
+    //     console.log(`effect ${value}`)
+    // },DefineIValue());
+
     return (
         <div>
             <div className="boards">
@@ -132,8 +184,8 @@ export default function Assistant() {
                             proceduresList.map((procedure) => {
                                 return (
                                     <div key={procedure.IdProcedure}>
-                                        <div className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure)}>
-                                            <div className="content"> {procedure.ProcedureName}</div>
+                                        <div id={procedure.IdProcedure+";"+procedure.ProcedureValue} className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure)}>
+                                            <div className="content">{procedure.ProcedureName}</div>
                                         </div>
 
                                         <div id={"modal" + procedure.IdProcedure} className="modal">
@@ -155,7 +207,8 @@ export default function Assistant() {
                                                     
                                                     <input className="modal__input" type="text" value={pValue} onChange={(campo) =>{
                                                         setPValue(campo.target.value,  procedure.ProcedureValue = campo.target.value);
-                                                      console.log(procedure.ProcedureValue)}} />
+                                                    //   console.log(procedure.ProcedureValue)
+                                                      }} />
                                                 </div>
                                                 
                                             </div>
@@ -174,7 +227,9 @@ export default function Assistant() {
 
                     </div>
                 </div>
-                <button onClick={() => Save()}>Salvar</button>
+                <button onClick={() => SaveAndExecute()}>Salvar</button>
+                <h1>{value}</h1>
+                {/* <button onClick={() => Execute()}>Executar</button> */}
             </div>
         </div>
     )

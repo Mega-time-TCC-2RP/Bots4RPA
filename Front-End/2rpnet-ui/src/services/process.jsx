@@ -6,7 +6,8 @@ export default
             "ProcedureName": "Numero Inicial",
             "ProcedureDescription": "Coloca um número inicial",
             "ProcedureValue": 0,
-            "ProcedureType": "math"
+            "ProcedureType": "math",
+            "ProcedureFunction": "DefineIValue()"
         },
         {
             "IdProcedure": 2,
@@ -14,7 +15,8 @@ export default
             "ProcedureName": "Somar",
             "ProcedureDescription": "Soma um numero com o  valor desse",
             "ProcedureValue": 0,
-            "ProcedureType": "math"
+            "ProcedureType": "math",
+            "ProcedureFunction": "Sum()"
         },
         {
             "IdProcedure": 3,
@@ -22,7 +24,8 @@ export default
             "ProcedureName": "Subtrair",
             "ProcedureDescription": "Subtrai um numero com o valor desse",
             "ProcedureValue": 0,
-            "ProcedureType": "math"
+            "ProcedureType": "math",
+            "ProcedureFunction": "Subtract()"
         },
         {
             "IdProcedure": 4,
@@ -30,7 +33,8 @@ export default
             "ProcedureName": "Multiplicar",
             "ProcedureDescription": "Multiplica um numero com o valor desse",
             "ProcedureValue": 0,
-            "ProcedureType": "math"
+            "ProcedureType": "math",
+            "ProcedureFunction": "Multiply()"
         },
         {
             "IdProcedure": 5,
