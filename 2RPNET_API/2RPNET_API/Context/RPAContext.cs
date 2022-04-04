@@ -37,7 +37,7 @@ namespace _2RPNET_API.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("name=Default");
+                optionsBuilder.UseSqlServer("Data Source=NOTE0113F4\\SQLEXPRESS; Initial Catalog=DOISRP; Integrated Security=True;");
             }
         }
 
