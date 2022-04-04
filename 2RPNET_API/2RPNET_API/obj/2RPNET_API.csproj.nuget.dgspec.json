@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ricardo\\Desktop\\BackEnd-TCC\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj": {}
+    "C:\\Users\\Ricardo\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ricardo\\Desktop\\BackEnd-TCC\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj": {
+    "C:\\Users\\Ricardo\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ricardo\\Desktop\\BackEnd-TCC\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
+        "projectUniqueName": "C:\\Users\\Ricardo\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
         "projectName": "2RPNET_API",
-        "projectPath": "C:\\Users\\Ricardo\\Desktop\\BackEnd-TCC\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
+        "projectPath": "C:\\Users\\Ricardo\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
         "packagesPath": "C:\\Users\\Ricardo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ricardo\\Desktop\\BackEnd-TCC\\2RPNET_API\\2RPNET_API\\obj\\",
+        "outputPath": "C:\\Users\\Ricardo\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ricardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,6 +65,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.15, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

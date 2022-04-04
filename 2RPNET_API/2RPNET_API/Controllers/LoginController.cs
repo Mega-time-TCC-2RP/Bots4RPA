@@ -1,4 +1,5 @@
-﻿using _2RPNET_API.Interfaces;
+﻿using _2RPNET_API.Domains;
+using _2RPNET_API.Interfaces;
 using _2RPNET_API.Repositories;
 using _2RPNET_API.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -17,11 +18,16 @@ namespace _2RPNET_API.Controllers
 
         private readonly IUserNameRepository _userRepository;
 
-        public LoginController(UserNameRepository ctx)
+        public LoginController(IUserNameRepository ctx)
         {
             _userRepository = ctx;
         }
 
+        /// <summary>
+        /// Method responsible for logging into the application
+        /// </summary>
+        /// <param name="UserLogin"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Login(LoginViewModel UserLogin)
         {
@@ -49,13 +55,13 @@ namespace _2RPNET_API.Controllers
 
                 };
 
-                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
+                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("RPA-token-autenticacao"));
 
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                 var myToken = new JwtSecurityToken(
-                        issuer: "2rp.webAPI",
-                        audience: "2rp.webAPI",
+                        issuer: "RPA.webAPI",
+                        audience: "RPA.webAPI",
                         claims: tokenClaims,
                         expires: DateTime.Now.AddMinutes(30),
                         signingCredentials: creds

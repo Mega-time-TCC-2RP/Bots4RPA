@@ -8,10 +8,11 @@ namespace _2RPNET_API.ViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Senha inválida")]
-        public string password { get; set; }
 
         [Required(ErrorMessage = "Email inválido")]
         public string email { get; set; }
+        [Required(ErrorMessage = "Senha inválida")]
+        public string password { get; set; }
+
     }
 }
