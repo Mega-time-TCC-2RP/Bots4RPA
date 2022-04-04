@@ -1,8 +1,6 @@
-CREATE DATABASE DOISRP;
+/*USE 2RP-Tarde;
 GO
-
-USE DOISRP;
-GO
+*/
 
 --create UserType table
 create table UserType(
@@ -16,7 +14,7 @@ create table UserName(
         IdUser INT PRIMARY KEY Identity,
         UserName varchar(256) not null,
         Email varchar(256) not null unique,
-        Passwd varchar(100) not null,
+        Passwd varchar(100),
         CPF char(11) not null unique,
         PhotoUser varchar(max) default('padrao.png'),
         Phone char(11) unique,
@@ -242,5 +240,3 @@ Drop table AssistantProcedure
 Drop table Run
 Drop table EmailVerification
 */
-
-
