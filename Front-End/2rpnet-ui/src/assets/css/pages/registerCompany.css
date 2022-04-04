@@ -42,9 +42,15 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 70%;
+    height: 90%;
 }
 
 .formRegister input {
     padding-left: 5%;
+}
+.inputsArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
