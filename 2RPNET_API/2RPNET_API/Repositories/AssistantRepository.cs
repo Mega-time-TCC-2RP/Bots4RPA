@@ -11,7 +11,12 @@ namespace _2RPNET_API.Repositories
 {
     public class AssistantRepository : IAssistantRepository
     {
-        RPAContext Ctx = new RPAContext();
+        private readonly RPAContext Ctx;
+        public AssistantRepository(RPAContext appContext)
+        {
+            Ctx = appContext;
+        }
+
         public void Create(Assistant NewAssistant)
         {
             Ctx.Assistants.Add(NewAssistant);
@@ -28,7 +33,6 @@ namespace _2RPNET_API.Repositories
         public List<Assistant> ReadAll()
         {
             return Ctx.Assistants.ToList();
-            //return Ctx.Assistants.Include(a => a.IdEmployeeNavigation).ToList();
         }
 
         public List<Assistant> ReadMy(int IdUser)

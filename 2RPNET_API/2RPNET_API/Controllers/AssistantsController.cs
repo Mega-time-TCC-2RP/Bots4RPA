@@ -93,7 +93,7 @@ namespace _2RPNET_API.Controllers
         public IActionResult Delete(int IdAssistant)
         {
             try
-            {
+            { 
 
                 if (IdAssistant > 0)
                 {

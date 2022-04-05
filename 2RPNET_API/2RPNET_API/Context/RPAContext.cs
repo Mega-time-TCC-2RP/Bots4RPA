@@ -37,7 +37,7 @@ namespace _2RPNET_API.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-9F56DG6\\SQLEXPRESS; Initial Catalog=DOISRP; Integrated Security=True;");
+                optionsBuilder.UseSqlServer("name=RPA");
             }
         }
 
