@@ -10,7 +10,12 @@ import Azul_Home from '../../assets/img/Azul_Home.png'
 import Vermelho_Home from '../../assets/img/Vermelho_Home.png'
 import Amarelo_Home from '../../assets/img/Amarelo_Home.png'
 import Verde_Home from '../../assets/img/Verde_Home.png'
-import Phost_Perfil_Photo from '../../assets/img/Phost_Perfil_Photo.png'
+import Post_Perfil_Photo from '../../assets/img/Post_Perfil_Photo.png'
+import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
+
+//items
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 
 //Components:
@@ -20,6 +25,12 @@ import Footer from '../../components/footer/footer'
 {/* <Navbar/> */}
 
 function App() {
+  const handleLeftArrow = () => {
+
+  }
+  const handleRightArrow = () => {
+    
+  }
 
   return (
     <div>
@@ -30,6 +41,12 @@ function App() {
           <input type='search' placeholder="Buscar assistente" id="Assistente"></input>
           </form>
           <form className="nao">
+          <div className="movieRow-left">
+              <NavigateBeforeIcon style={{fontSize : 150}}/>
+            </div>
+            <div className="movieRow-right">
+              <NavigateNextIcon style={{fontSize : 150}}/>
+            </div>
             <div className="card1">
               <img src={Azul_Home} className="card1-img"/>
               <h5>Assistente 1</h5>
@@ -82,14 +99,65 @@ function App() {
           <div className="forms-items">
             <h2 className="bottom-title">Posts em destaque</h2>
             <div className="bottom-posts-content">
-              <img src={Phost_Perfil_Photo} className="ItemPost-avatar"/>
-              <div className="chatItemList-line">
-                <div className="PostItem-name">Marcos</div>
+
+              <div className="chatListItem--lines">
+              <img src={Post_Perfil_Photo} className="ItemPost-avatar"/>
+                <div className="chatItemList-line">
+                  <div className="PostItem-name">Marcos</div>
+                  <p className="PostItem-role">DevOps</p>
+                </div>
               </div>
-              <div className="chatItemList-line">
-                <div className="PostItem-role">DevOps</div>
-              </div>
+              <img src={Img_Home_Post} className="img2-home-bottom" />
+                <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+                </p>
             </div>
+            <div className="bottom-posts-content">
+
+<div className="chatListItem--lines">
+<img src={Post_Perfil_Photo} className="ItemPost-avatar"/>
+  <div className="chatItemList-line">
+    <div className="PostItem-name">Marcos</div>
+    <p className="PostItem-role">DevOps</p>
+  </div>
+</div>
+<img src={Img_Home_Post} className="img2-home-bottom" />
+  <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+  </p>
+</div>
+<div className="bottom-posts-content">
+
+<div className="chatListItem--lines">
+<img src={Post_Perfil_Photo} className="ItemPost-avatar"/>
+  <div className="chatItemList-line">
+    <div className="PostItem-name">Marcos</div>
+    <p className="PostItem-role">DevOps</p>
+  </div>
+</div>
+<img src={Img_Home_Post} className="img2-home-bottom" />
+  <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+  </p>
+</div>
+<div className="bottom-posts-content">
+
+<div className="chatListItem--lines">
+<img src={Post_Perfil_Photo} className="ItemPost-avatar"/>
+  <div className="chatItemList-line">
+    <div className="PostItem-name">Marcos</div>
+    <p className="PostItem-role">DevOps</p>
+  </div>
+</div>
+<img src={Img_Home_Post} className="img2-home-bottom" />
+  <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+  </p>
+</div>
           </div>
         </form>
       </div>

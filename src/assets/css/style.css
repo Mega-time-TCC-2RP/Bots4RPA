@@ -61,7 +61,7 @@
     margin-left: 170px;
 }
 .nao{
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: hidden;
     white-space: nowrap;
 
@@ -191,7 +191,6 @@
     text-align: center;
     text-indent: 32px;
     color: #6C757D;
-    display: flex;
     text-align: center;
     justify-content: center;
     align-items: left;
@@ -216,7 +215,7 @@
 }
 .bottom-container{
     background: #F1F1F1;
-    height: 85vh;
+    height: 170vh;
 }
 .bottom-title{
     font-family: 'Montserrat';
@@ -232,31 +231,42 @@
 }
 .bottom-posts-content{
     width: 600px;
-    height: 600px;
+    height: 650px;
     background: #FFFFFF;
     border: 2px solid #F2F2F2;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
     margin-left: 170px;
-    margin-top: 50px;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    border-bottom: 1px solid #eee;
-
+    margin-top: 70px;
+    display: inline-block;
+    cursor: pointer;
 }
 .ItemPost-avatar{
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.chatListItem--lines{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+    padding-right: 15px;
     margin-left: 15px;
 }
 .chatItemList-line{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
     width: 100%;
+    margin-left: 10px;
 }
 .PostItem-name{
     font-family: 'Montserrat';
@@ -275,6 +285,37 @@
     font-size: 20px;
     line-height: 24px;
     display: flex;
-    align-items: center;
     color: #000000;
+}
+.movieRow-right,.movieRow-left{
+    position: absolute;
+    width: 40px;
+    height: 655px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow-x: hidden;
+    cursor: pointer;
+}
+.movieRow-left{
+    left: 30;
+}
+.movieRow-right{
+    right: 0;
+}
+.img2-home-bottom{
+    width: 100%;
+}
+.post-text-bottom-home{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: #6C757D;
+    margin-top: 30px;
 }
