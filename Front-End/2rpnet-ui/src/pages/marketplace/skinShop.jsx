@@ -6,20 +6,22 @@ import Header from '../../components/header/header'
 import Navbar from '../../components/menu/Navbar'
 import skin from '../../assets/img/Robo.png'
 import Coin from '../../assets/img/coin.png'
+import '../../assets/css/pages/skinShop.css'
 
 export default function skinShop() {
     return (
         <div>
             <Header/>
-            {/* <Navbar/> */}
+            <Navbar/>
             <div className='container2'>
+            <div className='Titulo_inputs'>
                 <h1 id='titulo'>Skins</h1>
             <div className='filtragem_Busca'>
-                <input className="input_busca"
+                <input className="input"
                         name="Buscar Skins.."
                         placeholder="Buscar Skins.."
                     />
-                <select name="select">
+                <select className='input' name="select">
                     <option value="valor1">Mais caras</option>
                     <option value="valor2" selected>Mais baratas</option>
                     <option value="valor3">Personalizadas</option>
@@ -27,14 +29,46 @@ export default function skinShop() {
             </div>
             </div>
             
+            
+            <div className='lista'>
             <div className='skin'>
                 <img src={skin} alt="img robot"/>
-                <span>Bôbotron Limão</span>
+                <span className='nameRobot'>Bôbotron Limão</span>
                 <div className ='coin'>
                     <img src={Coin} alt="img coin"/>
                     <span>2000</span>
                 </div>
-                <span>ver detalhes</span>
+                <span className='details2'>ver detalhes</span>
+            </div>
+            <div className='skin'>
+                <img src={skin} alt="img robot"/>
+                <span className='nameRobot'>Bôbotron Limão</span>
+                <div className ='coin'>
+                    <img src={Coin} alt="img coin"/>
+                    <span>2000</span>
+                </div>
+                <span className='details2'>ver detalhes</span>
+            </div>
+            <div className='skin'>
+                <img src={skin} alt="img robot"/>
+                <span className='nameRobot'>Bôbotron Limão</span>
+                <div className ='coin'>
+                    <img src={Coin} alt="img coin"/>
+                    <span>2000</span>
+                </div>
+                <span className='details2'>ver detalhes</span>
+            </div>
+            <div className='skin'>
+                <img src={skin} alt="img robot"/>
+                <span className='nameRobot'>Bôbotron Limão</span>
+                <div className ='coin'>
+                    <img src={Coin} alt="img coin"/>
+                    <span>2000</span>
+                </div>
+                <span className='details2'>ver detalhes</span>
+            </div>
+            </div>
+            
             </div>
 
 
