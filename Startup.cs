@@ -124,12 +124,12 @@ namespace _2rpnet.rpa.webAPI
 
             app.UseCors("CorsPolicy");
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                        Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
-                RequestPath = "/StaticFiles"
-            });
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //            Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
+            //    RequestPath = "/StaticFiles"
+            //});
 
             app.UseAuthentication();
 
