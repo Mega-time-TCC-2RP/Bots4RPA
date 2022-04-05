@@ -7496,19 +7496,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ricardo\\.nuget\\packages\\": {}
+    "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ricardo\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
+      "projectUniqueName": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
       "projectName": "2RPNET_API",
-      "projectPath": "C:\\Users\\Ricardo\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
-      "packagesPath": "C:\\Users\\Ricardo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ricardo\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\obj\\",
+      "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
+      "packagesPath": "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\2RPNET_API\\2RPNET_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Ricardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\50928811867.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

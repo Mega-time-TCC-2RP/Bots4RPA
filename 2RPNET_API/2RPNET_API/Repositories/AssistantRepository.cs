@@ -37,15 +37,14 @@ namespace _2RPNET_API.Repositories
 
         public List<Assistant> ReadMy(int IdUser)
         {
-            return Ctx.Assistants.Include("IdEmployeeNavigation")
-                .Where(a => a.IdEmployeeNavigation.IdEmployee == IdUser)
+            return Ctx.Assistants
+                .Where(a => a.IdAssistant == IdUser)
                  .ToList();
         }
 
         public Assistant SearchByID(int IdAssistant)
         {
             return Ctx.Assistants
-                .Include("IdEmployeeNavigation")
                 .FirstOrDefault(a => a.IdAssistant == IdAssistant);
         }
 

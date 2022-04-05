@@ -58,23 +58,6 @@ namespace _2RPNET_API.Controllers
             }
         }
 
-        /// <summary>
-        /// Method responsible for lists all processes for a given wizard
-        /// </summary>
-        [HttpGet("AssistantList")]
-        public IActionResult AssistantList()
-        {
-            try
-            {
-                int IdAssistant = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                return Ok(_repository.AssistantList(IdAssistant));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-
 
         /// <summary>
         /// Method responsible for create a Run process

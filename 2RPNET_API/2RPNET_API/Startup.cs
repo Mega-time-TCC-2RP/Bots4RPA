@@ -91,6 +91,7 @@ namespace _2RPNET_API
             services.AddTransient<IRunRepository, RunRepository>();
             services.AddTransient<IAssistantProcedureRepository, AssistantProcedureRepository>();
             services.AddTransient<IAssistantRepository, AssistantRepository>();
+            services.AddTransient<IEmailVerificationRepository, EmailVerificationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

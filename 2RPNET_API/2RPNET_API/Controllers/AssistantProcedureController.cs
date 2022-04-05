@@ -26,7 +26,7 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for list all Assistants process
+        /// Method responsible for list all Assistants Process
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -43,7 +43,7 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for list Assistant process by unique id
+        /// Method responsible for list Assistant Process by unique id
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id}")]
@@ -60,7 +60,7 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for create all Assistants process
+        /// Method responsible for create all Assistants Process
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -79,7 +79,7 @@ namespace _2RPNET_API.Controllers
 
         
         /// <summary>
-        /// Method responsible for update all Assistants process
+        /// Method responsible for update all Assistants Process
         /// </summary>
         /// <returns></returns>
         [HttpPut("{id}")]
@@ -97,7 +97,7 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for delete all Assistants process
+        /// Method responsible for delete all Assistants Process
         /// </summary>
         /// <returns></returns>
         [HttpDelete("{id}")]

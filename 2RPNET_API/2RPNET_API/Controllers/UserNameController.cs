@@ -22,14 +22,21 @@ namespace _2RPNET_API.Controllers
             _context = context;
         }
 
-        // GET: api/UserName
+        /// <summary>
+        /// Method responsible for list all Users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserName>>> GetUserNames()
         {
             return await _context.UserNames.ToListAsync();
         }
 
-        // GET: api/UserName/5
+        /// <summary>
+        /// Method responsible for list User by unique id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<UserName>> GetUserName(int id)
         {
@@ -43,8 +50,12 @@ namespace _2RPNET_API.Controllers
             return userName;
         }
 
-        // PUT: api/UserName/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Method responsible for update user by unique id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUserName(int id, UserName userName)
         {
@@ -74,8 +85,11 @@ namespace _2RPNET_API.Controllers
             return NoContent();
         }
 
-        // POST: api/UserName
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Method responsible for create all users
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         public async Task<ActionResult<UserName>> PostUserName(UserName userName)
@@ -86,7 +100,11 @@ namespace _2RPNET_API.Controllers
             return CreatedAtAction("GetUserName", new { id = userName.IdUser }, userName);
         }
 
-        // DELETE: api/UserName/5
+        /// <summary>
+        /// Method responsible for delete user by unique id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUserName(int id)
         {

@@ -1,11 +1,9 @@
 ﻿using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
-using _2RPNET_API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,17 +12,17 @@ namespace _2RPNET_API.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class AssistantsController : ControllerBase
+    public class EmailsVerificationsController : ControllerBase
     {
-        private IAssistantRepository _AssistantRepository { get; set; }
+        private IEmailVerificationRepository _EmailVerificationRepository { get; set; }
 
-        public AssistantsController(IAssistantRepository Assistant)
+        public EmailsVerificationsController(IEmailVerificationRepository EmailVerification)
         {
-            _AssistantRepository = Assistant;
+            _EmailVerificationRepository = EmailVerification;
         }
 
         /// <summary>
-        /// Method responsible for list all Assistants
+        /// Method responsible for list all Emails Verifications 
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -32,7 +30,7 @@ namespace _2RPNET_API.Controllers
         {
             try
             {
-                return Ok(_AssistantRepository.ReadAll());
+                return Ok(_EmailVerificationRepository.ReadAll());
             }
             catch (Exception Ex)
             {
@@ -41,32 +39,15 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for list Assistant by unique id
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("{Id}")]
-        public IActionResult ReadMy(int Id)
-        {
-            try
-            {
-                return Ok(_AssistantRepository.SearchByID(Id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-
-        /// <summary>
-        /// Method responsible for create all Assistants
+        /// Method responsible for create all Emails Verifications 
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Create(Assistant NewAssistant)
+        public IActionResult Create(EmailVerification NewEmailVerification)
         {
             try
             {
-                _AssistantRepository.Create(NewAssistant);
+                _EmailVerificationRepository.Create(NewEmailVerification);
                 return StatusCode(201);
             }
             catch (Exception ex)
@@ -76,20 +57,20 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for update all Assistants
+        /// Method responsible for update all Emails Verifications
         /// </summary>
         /// <returns></returns>
-        [HttpPut("{IdAssistant}")]
-        public IActionResult Update(int IdAssistant, Assistant UpdatedAsssistant)
+        [HttpPut("{IdEmailVerification}")]
+        public IActionResult Update(int IdEmailVerification, EmailVerification UpdatedEmailVerification)
         {
             try
             {
-                Assistant AssistantSought = _AssistantRepository.SearchByID(IdAssistant);
+                EmailVerification EmailVerificationSought = _EmailVerificationRepository.SearchByID(IdEmailVerification);
 
-                if (AssistantSought != null)
+                if (EmailVerificationSought != null)
                 {
-                    if (UpdatedAsssistant != null)
-                        _AssistantRepository.Update(IdAssistant, UpdatedAsssistant);
+                    if (UpdatedEmailVerification != null)
+                        _EmailVerificationRepository.Update(IdEmailVerification, UpdatedEmailVerification);
                 }
                 else
                 {
@@ -105,20 +86,19 @@ namespace _2RPNET_API.Controllers
             }
         }
 
-
         /// <summary>
-        /// Method responsible for delete all Assistants 
+        /// Method responsible for delete all Emails Verifications
         /// </summary>
         /// <returns></returns>
-        [HttpDelete("{IdAssistant}")]
-        public IActionResult Delete(int IdAssistant)
+        [HttpDelete("{IdEmailVerification}")]
+        public IActionResult Delete(int IdEmailVerification)
         {
             try
             {
 
-                if (IdAssistant > 0)
+                if (IdEmailVerification > 0)
                 {
-                    _AssistantRepository.Delete(IdAssistant);
+                    _EmailVerificationRepository.Delete(IdEmailVerification);
                 }
                 else
                 {
@@ -134,5 +114,4 @@ namespace _2RPNET_API.Controllers
             }
         }
     }
-
 }
