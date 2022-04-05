@@ -20,6 +20,7 @@ import '../../assets/css/components/button.css'
 import '../../assets/css/components/fonts.css'
 
 export default function LandingPage() {
+
     return (
         <div>
             <div className='landingPage'>

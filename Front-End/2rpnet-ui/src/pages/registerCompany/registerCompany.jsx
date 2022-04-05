@@ -40,6 +40,24 @@ export default function RegisterCompany() {
     const [cnpj, setCnpj] = useState();
     const [loading, setLoading] = useState(false);
 
+    function register() {
+        setLoading(true);
+        let company = {
+            razaoSocial : razaoSocial,
+            nomeFantasia : nomeFantasia,
+            cnpj : cnpj,
+        }
+        axios.post('requisição', company)
+        .then((resposta) => {
+            if (resposta.status === 201) {
+                console.log("criado")
+            }
+        })
+        .catch((erro) => {
+            console.log(erro)
+        })
+    }
+
     return (
         <div>
             <div className='backgroudRegister'>

@@ -47,10 +47,55 @@
 
 .formRegister input {
     padding-left: 5%;
+    padding-right: 5%;
 }
 .inputsArea {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     height: 100%;
 }
+
+button {
+    cursor: pointer;
+}
+
+input[type="file"] {
+    border: none;
+    display: block;
+    text-align: center;
+    font: message-box;
+}
+
+.imageProfileInput {
+    cursor: pointer;
+}
+
+input#file-upload-button {
+    background-color: aqua;
+}
+/* RegisterUser */
+
+.passwordArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.passwordArea input {
+    width: 92%;
+}
+
+.eyePassword {
+    align-items: center;
+    text-decoration: none;
+    padding-left: 15px;
+}
+
+#buttonBackStep {
+    width: 180px;
+    height: 45px;
+    font-size: 1.2em;
+}
+

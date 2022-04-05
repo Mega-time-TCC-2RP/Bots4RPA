@@ -16,6 +16,9 @@ import '../../assets/css/pages/registerCompany.css'
 import '../../assets/css/components/button.css'
 import '../../assets/css/components/fonts.css'
 
+//icons:
+import * as AiIcons from 'react-icons/ai'
+
 const steps = [
     {
         id: 'Step1'
@@ -57,6 +60,7 @@ const MaskedInputTelephone = ({ value, onChange }) => {
     />
 }
 
+
 export default function RegisterUser() {
     const [currentStep, setCurrentStep] = useState(0);
     const [email, setEmail] = useState();
@@ -68,6 +72,7 @@ export default function RegisterUser() {
     const [cpf, setCpf] = useState();
     const [telephone, setTelephone] = useState();
     const [loading, setLoading] = useState(false);
+    const [show, setShow] = useState(false);
 
     function handleNext() {
         setCurrentStep((prevState) => prevState + 1);
@@ -75,6 +80,17 @@ export default function RegisterUser() {
 
     function handleBack() {
         setCurrentStep((prevState) => prevState - 1);
+    }
+
+    function showPassword() {
+        var password = document.getElementById("password");
+        if (password.type == "password") {
+            password.type = "text";
+            setShow(true);
+        } else {
+            password.type = "password"
+            setShow(false);
+        }
     }
 
     return (
@@ -96,19 +112,32 @@ export default function RegisterUser() {
                                         </div>
                                         <div className='foreachInput'>
                                             <label className='h5'>Senha</label>
-                                            <input id='placeholder-text' type="password" name="password" placeholder='Insira sua senha...' value={password} onChange={(event) => setPassword(event.target.value)} required />
+                                            <div className='passwordArea'>
+                                                <input id='password' type="password" name="password" className='placeholder-text' placeholder='Insira sua senha...' value={password} onChange={(event) => setPassword(event.target.value)} required />
+                                                {
+                                                    show === false && (
+                                                        <AiIcons.AiFillEyeInvisible className='eyePass' onClick={showPassword} />
+                                                    )
+                                                }
+                                                {
+                                                    show === true && (
+                                                        <AiIcons.AiFillEye className='eyePass' onClick={showPassword} />
+                                                    )
+                                                }
+
+                                            </div>
                                         </div>
                                         <div className='foreachInput'>
                                             <label className='h5'>Data de Nascimento</label>
-                                            <input id='placeholder-text' type="date" name="birthDate" placeholder='Insira sua Data de nascimento...' value={birthDate} onChange={(event) => setBirthDate(event.target.value)} />
-                                        </div>
-                                        <div className='foreachInput'>
-                                            <label className='h5'>Imagem de Perfil</label>
-                                            <input id='placeholder-text' type="file" name="imageProfile" placeholder='Insira sua foto de Perfil...' value={imageProfile} onChange={(event) => setImageProfile(event.target.value)} />
+                                            <input id='placeholder-text birthDate' type="date" name="birthDate" placeholder='Insira sua Data de nascimento...' value={birthDate} onChange={(event) => setBirthDate(event.target.value)} />
                                         </div>
                                         <div className='foreachInput'>
                                             <label className='h5'>Nome</label>
                                             <input id='placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={name} onChange={(event) => setName(event.target.value)} />
+                                        </div>
+                                        <div className='foreachInput'>
+                                            <label className='h5' >Imagem de Perfil</label>
+                                            <input id='placeholder-text' className='imageProfileInput' type="file" name="imageProfile" placeholder='Insira sua foto de Perfil...' value={imageProfile} onChange={(event) => setImageProfile(event.target.value)} />
                                         </div>
                                         <button className='button' type="submit" onClick={handleNext}>Avançar</button>
                                     </div>
@@ -130,7 +159,7 @@ export default function RegisterUser() {
                                             <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} />
                                         </div>
                                         <button className='button' type="submit">Finalizar Cadastro</button>
-                                        <button className='button' onClick={handleBack}>Voltar</button>
+                                        <button id='buttonBackStep' className='button' onClick={handleBack}>Voltar</button>
                                     </div>
                                 )
                             }
