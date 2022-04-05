@@ -60,6 +60,12 @@
     margin-top: 50px;
     margin-left: 170px;
 }
+.nao{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+}
 .card1{
     margin-top: 50px;
     margin-left: 170px;
@@ -71,7 +77,19 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
     display: inline-block;
+
+    /* efeito de zoom */
+    max-width: 100%;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
 }
+.card1:hover{
+    -moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+    /* efeito de zoom */
 .card1 img{
     margin-left: 80px;
     cursor: pointer;
@@ -117,18 +135,34 @@
     margin-top: 40px;
     overflow-y: hidden;
 }
+.body-container{
+    background: #ffffff;
+    height: 87vh;
+}
 .card-body-content{
     width: 400px;
-    height: 500px;
+    height: 550px;
     background: #FFFFFF;
     border: 2px solid #F2F2F2;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-    margin-top: 50px;
+    margin-top: 60px;
     margin-left: 170px;
     display: inline-block;
+
+    /* efeito de zoom */
+	max-width: 100%;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
 }
+.card-body-content:hover{
+    -moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+    /* efeito de zoom */
 
 .title-card-content{
     font-family: 'Montserrat';
@@ -144,7 +178,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 .text-body1{
     font-family: 'Montserrat';
@@ -161,7 +195,7 @@
     text-align: center;
     justify-content: center;
     align-items: left;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .data-body{
     font-family: 'Montserrat';
@@ -178,5 +212,69 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 40px;
+}
+.bottom-container{
+    background: #F1F1F1;
+    height: 85vh;
+}
+.bottom-title{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 33px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-left: 170px;
+    margin-top: 50px;
+}
+.bottom-posts-content{
+    width: 600px;
+    height: 600px;
+    background: #FFFFFF;
+    border: 2px solid #F2F2F2;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    margin-left: 170px;
+    margin-top: 50px;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+
+}
+.ItemPost-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-left: 15px;
+}
+.chatItemList-line{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.PostItem-name{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+.PostItem-role{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #000000;
 }
