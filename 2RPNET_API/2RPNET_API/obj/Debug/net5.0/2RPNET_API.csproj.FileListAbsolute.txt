@@ -133,7 +133,6 @@ C:\Users\Ricardo\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\stat
 C:\Users\Ricardo\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.RazorTargetAssemblyInfo.cache
 C:\Users\Ricardo\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.csproj.CopyComplete
 C:\Users\Ricardo\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.dll
-C:\Users\Ricardo\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\refint\2RPNET_API.dll
 C:\Users\Ricardo\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.pdb
 C:\Users\Ricardo\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.genruntimeconfig.cache
 C:\Users\Ricardo\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\ref\2RPNET_API.dll
@@ -280,3 +279,4 @@ C:\Users\50928811867.INFOSCS\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug
 C:\Users\50928811867.INFOSCS\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.xml
 C:\Users\50928811867.INFOSCS\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.pdb
 C:\Users\50928811867.INFOSCS\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.genruntimeconfig.cache
+C:\Users\Ricardo\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\bin\Debug\net5.0\ref\2RPNET_API.dll
