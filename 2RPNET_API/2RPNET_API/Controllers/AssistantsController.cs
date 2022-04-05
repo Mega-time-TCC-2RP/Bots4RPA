@@ -37,7 +37,7 @@ namespace _2RPNET_API.Controllers
         }
 
         [HttpGet("{Id}")]
-        public IActionResult ReadMy(int Id)
+        public IActionResult ReadSearchByID(int Id)
         {
             try
             {

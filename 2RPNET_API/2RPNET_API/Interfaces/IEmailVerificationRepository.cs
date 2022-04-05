@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _2RPNET_API.Interfaces
 {
-    interface IEmailVerificationRepository
+    public interface IEmailVerificationRepository
     {
         List<EmailVerification> ReadAll();
 

@@ -24,7 +24,9 @@ namespace _2RPNET_API.Repositories
 
         public void Delete(int IdEmailVerification)
         {
-            throw new NotImplementedException();
+            EmailVerification EmailVerificationSought = SearchByID(IdEmailVerification);
+            Ctx.EmailVerifications.Remove(EmailVerificationSought);
+            Ctx.SaveChanges();
         }
 
         public List<EmailVerification> ReadAll()
@@ -41,7 +43,21 @@ namespace _2RPNET_API.Repositories
 
         public void Update(int IdEmailVerification, EmailVerification UpdatedEmailVerification)
         {
-            throw new NotImplementedException();
+            EmailVerification EmailVerificationSought = SearchByID(IdEmailVerification);
+
+            if (UpdatedEmailVerification.IdAssistant > 0 && UpdatedEmailVerification.Username != null && UpdatedEmailVerification.UserPassword != null && UpdatedEmailVerification.Host != null && UpdatedEmailVerification.Gateway != null && UpdatedEmailVerification.Cryptography != null)
+            {
+                EmailVerificationSought.IdAssistant = UpdatedEmailVerification.IdAssistant;
+                EmailVerificationSought.Username = UpdatedEmailVerification.Username;
+                EmailVerificationSought.UserPassword = UpdatedEmailVerification.UserPassword;
+                EmailVerificationSought.Host = UpdatedEmailVerification.Host;
+                EmailVerificationSought.Gateway = UpdatedEmailVerification.Gateway;
+                EmailVerificationSought.Cryptography = UpdatedEmailVerification.Cryptography;
+
+
+                Ctx.EmailVerifications.Update(EmailVerificationSought);
+                Ctx.SaveChanges();
+            }
         }
     }
 }

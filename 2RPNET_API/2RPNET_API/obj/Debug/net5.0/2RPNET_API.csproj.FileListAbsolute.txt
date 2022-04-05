@@ -422,3 +422,4 @@ C:\Users\livia\OneDrive\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5
 C:\Users\livia\OneDrive\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.xml
 C:\Users\livia\OneDrive\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.pdb
 C:\Users\livia\OneDrive\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\obj\Debug\net5.0\2RPNET_API.genruntimeconfig.cache
+C:\Users\46755453862.INFOSCS\Desktop\Projeto-2RP\2RPNET_API\2RPNET_API\bin\Debug\net5.0\2RPNET_API.StaticWebAssets.xml

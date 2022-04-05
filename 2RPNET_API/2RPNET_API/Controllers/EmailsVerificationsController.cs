@@ -24,7 +24,6 @@ namespace _2RPNET_API.Controllers
         [HttpGet]
         public IActionResult ReadAll()
         {
-
             try
             {
                 return Ok(_EmailVerificationRepository.ReadAll());
@@ -46,6 +45,56 @@ namespace _2RPNET_API.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex);
+            }
+        }
+
+        [HttpPut("{IdEmailVerification}")]
+        public IActionResult Update(int IdEmailVerification, EmailVerification UpdatedEmailVerification)
+        {
+            try
+            {
+                EmailVerification EmailVerificationSought = _EmailVerificationRepository.SearchByID(IdEmailVerification);
+
+                if (EmailVerificationSought != null)
+                {
+                    if (UpdatedEmailVerification != null)
+                        _EmailVerificationRepository.Update(IdEmailVerification, UpdatedEmailVerification);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+                return Ok();
+
+            }
+            catch (Exception Ex)
+            {
+                return BadRequest(Ex);
+            }
+        }
+
+        [HttpDelete("{IdEmailVerification}")]
+        public IActionResult Delete(int IdEmailVerification)
+        {
+            try
+            {
+
+                if (IdEmailVerification > 0)
+                {
+                    _EmailVerificationRepository.Delete(IdEmailVerification);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+                return Ok();
+
+            }
+            catch (Exception Ex)
+            {
+                return BadRequest(Ex);
             }
         }
     }

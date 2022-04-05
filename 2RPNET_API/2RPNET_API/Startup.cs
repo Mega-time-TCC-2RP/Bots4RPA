@@ -91,6 +91,7 @@ namespace _2RPNET_API
             services.AddTransient<IRunRepository, RunRepository>();
             services.AddTransient<IAssistantProcedureRepository, AssistantProcedureRepository>();
             services.AddTransient<IAssistantRepository, AssistantRepository>();
+            services.AddTransient<IEmailVerificationRepository, EmailVerificationRepository>();
 
         }
 
