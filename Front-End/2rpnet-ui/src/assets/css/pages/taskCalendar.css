@@ -1,5 +1,10 @@
-.pageTitle{
+:root {
+    --box-shadow-var: 1px 4px 4px #BEBEBE;
+}
 
+.pageTitle{
+    margin-top: 82px;
+    margin-left: 80px;
 }
 
 .taskCalendar {
@@ -17,10 +22,28 @@
     width: 250px;
     height: 70vh;
     display: flex;
-    justify-content: center;
-    box-shadow: 1px 4px 4px #BEBEBE;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--box-shadow-var);
     border-radius: 30px;
 }
+
+.cardTask {
+    margin-left: 26px;
+    margin-right: 26px;
+    background-color: #D37A40;
+    border-radius: 30px;
+    color: white;
+    padding: 55px 16px 55px 16px;
+    box-shadow: var(--box-shadow-var);
+    border: 2px solid #DE834D;
+    font-weight: 600;
+}
+
+/* .taskSpace {
+    display: flex;
+    flex-direction: column;
+} */
 
 .calendarAndBtn {
     width: 25%;
