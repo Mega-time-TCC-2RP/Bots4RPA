@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2rpnet.rpa.webAPI", "2rpnet.rpa.webAPI\2rpnet.rpa.webAPI.csproj", "{92323C4C-F4F3-4461-9381-5DC3747BD398}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2rpnet.rpa.webAPI", "2rpnet.rpa.webAPI.csproj", "{92323C4C-F4F3-4461-9381-5DC3747BD398}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
