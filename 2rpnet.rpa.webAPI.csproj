@@ -31,7 +31,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
-  <!--<ItemGroup>
+  <ItemGroup>
     <None Update="StaticFiles\Images\88a21fe1-d779-4180-8ad3-a817802d921f.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -56,7 +56,7 @@
     <None Update="StaticFiles\Images\padraoTrofeu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>-->
+  </ItemGroup>
 
 	<PropertyGroup>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>

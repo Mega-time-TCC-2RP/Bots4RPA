@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\f deploy\\Projeto-2RP\\2rpnet.rpa.webAPI.csproj": {}
+    "C:\\Users\\mauro_000\\Desktop\\estudos\\back\\tcc\\Projeto-2RP\\2rpnet.rpa.webAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\f deploy\\Projeto-2RP\\2rpnet.rpa.webAPI.csproj": {
+    "C:\\Users\\mauro_000\\Desktop\\estudos\\back\\tcc\\Projeto-2RP\\2rpnet.rpa.webAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\f deploy\\Projeto-2RP\\2rpnet.rpa.webAPI.csproj",
+        "projectUniqueName": "C:\\Users\\mauro_000\\Desktop\\estudos\\back\\tcc\\Projeto-2RP\\2rpnet.rpa.webAPI.csproj",
         "projectName": "2rpnet.rpa.webAPI",
-        "projectPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\f deploy\\Projeto-2RP\\2rpnet.rpa.webAPI.csproj",
-        "packagesPath": "C:\\Users\\37378203840.INFOSCS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\f deploy\\Projeto-2RP\\obj\\",
+        "projectPath": "C:\\Users\\mauro_000\\Desktop\\estudos\\back\\tcc\\Projeto-2RP\\2rpnet.rpa.webAPI.csproj",
+        "packagesPath": "C:\\Users\\mauro_000\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mauro_000\\Desktop\\estudos\\back\\tcc\\Projeto-2RP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\37378203840.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mauro_000\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
