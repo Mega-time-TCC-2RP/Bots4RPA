@@ -138,6 +138,7 @@
 .body-container{
     background: #ffffff;
     height: 87vh;
+    overflow-y: hidden;
 }
 .card-body-content{
     width: 400px;
@@ -282,14 +283,13 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 24px;
     display: flex;
     color: #000000;
 }
 .movieRow-right,.movieRow-left{
     position: absolute;
-    width: 40px;
     height: 655px;
     z-index: 99;
     display: flex;
@@ -298,6 +298,8 @@
     text-align: center;
     overflow-x: hidden;
     cursor: pointer;
+    margin-left: 10px;
+    opacity: 0.6;
 }
 .movieRow-left{
     left: 30;

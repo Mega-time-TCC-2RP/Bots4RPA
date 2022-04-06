@@ -26,7 +26,7 @@ import Footer from '../../components/footer/footer'
 
 function App() {
   const handleLeftArrow = () => {
-
+    
   }
   const handleRightArrow = () => {
     
