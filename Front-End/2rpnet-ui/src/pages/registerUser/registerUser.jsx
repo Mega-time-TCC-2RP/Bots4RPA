@@ -18,6 +18,7 @@ import '../../assets/css/components/fonts.css'
 
 //icons:
 import * as AiIcons from 'react-icons/ai'
+import * as GrIcons from 'react-icons/gr'
 
 const steps = [
     {
@@ -135,9 +136,10 @@ export default function RegisterUser() {
                                             <label className='h5'>Nome</label>
                                             <input id='placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={name} onChange={(event) => setName(event.target.value)} />
                                         </div>
-                                        <div className='foreachInput'>
+                                        <div className='foreachInput' id='areaPhoto'>
                                             <label className='h5' >Imagem de Perfil</label>
-                                            <input id='placeholder-text' className='imageProfileInput' type="file" name="imageProfile" placeholder='Insira sua foto de Perfil...' value={imageProfile} onChange={(event) => setImageProfile(event.target.value)} />
+                                            <label className='sendPhoto h6' for='imageProfile'>Enviar foto</label>
+                                            <input id='imageProfile' className='imageProfileInput' type="file" name="imageProfile" placeholder='Insira sua foto de Perfil...' value={imageProfile} onChange={(event) => setImageProfile(event.target.value)} />
                                         </div>
                                         <button className='button' type="submit" onClick={handleNext}>Avançar</button>
                                     </div>

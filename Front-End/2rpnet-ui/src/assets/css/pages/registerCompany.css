@@ -33,8 +33,9 @@
 }
 
 .logoRegister {
-    width: 325px;
-    height: 100px;
+    width: 312px;
+    height: 108px;
+    margin-bottom: 15px;
 }
 
 .formRegister {
@@ -63,13 +64,13 @@ button {
 
 input[type="file"] {
     border: none;
-    display: block;
+    display: none;
     text-align: center;
     font: message-box;
 }
 
 .imageProfileInput {
-    cursor: pointer;
+    display: none;
 }
 
 input#file-upload-button {
@@ -99,3 +100,19 @@ input#file-upload-button {
     font-size: 1.2em;
 }
 
+.icon {
+    color: white;
+}
+
+.sendPhoto {
+    width: 100px;
+    background: #3375BA;
+    align-items: center;
+}
+
+#areaPhoto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

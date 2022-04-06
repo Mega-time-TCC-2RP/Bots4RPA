@@ -50,13 +50,27 @@
     width: 100%;
 }
 
+.foreachInput .sendPhoto {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-left: 0%;
+    margin-left: 5%;
+    color: white;
+    border-radius: 32px;
+    width: 50%;
+}
+
+.foreachInput .sendPhoto:hover {
+    background: #38538A;
+}
+
 .formRegister label {
     color: #17233C;
     line-height: 28px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 100%;
     padding-left: 5%;
 }
 

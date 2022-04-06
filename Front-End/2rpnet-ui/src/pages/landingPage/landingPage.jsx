@@ -29,7 +29,7 @@ export default function LandingPage() {
                         <img src={Logo} alt="Logo 2RP" />
                         <div className='headerNav'>
                             <Link to="#"><span className='login h6'>Login</span></Link>
-                            <Link to="#"><button className='button h6' id='buttonSignUp' >Inscreva-se</button></Link>
+                            <Link to="/registerUser"><button className='button h6' id='buttonSignUp' >Inscreva-se</button></Link>
                         </div>
                     </div>
                 </div>
