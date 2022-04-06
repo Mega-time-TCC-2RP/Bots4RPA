@@ -39,6 +39,7 @@ export const TelaTimeline = () => {
         setComentariosModal(listaComentarios);
         console.log(listaComentarios);
         setComentariosIsOpen(true);
+        console.log(ModalComentariosIsOpen)
     }
 
     function afterOpenModal() {
@@ -145,28 +146,92 @@ export const TelaTimeline = () => {
                                         class="ReactModal"
                                         closeTimeoutMS={2000}
                                     >
-                                        <div className="HeaderModal">
-                                            <h2>Adicionar publicação</h2>
-                                            <button onClick={closeModalCadastro}>X</button>
-                                        </div>
-                                        {
-                                            ComentariosModal != undefined &&
-                                            ComentariosModal.map((comentario) => {
-                                                return(
-                                                    <div className="Comentario">
-                                                        <div>
-                                                            <img src={"http://localhost:5000/StaticFiles/Images/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                                            <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                        <div className='ContainerModalComentarios'>
+                                            <div className="HeaderModal">
+                                                <form className='CadastroComentarioContainer'>
+                                                    <div className='LinhaCampoCadastroComentarios'>
+                                                        <div className="CampoCadastro">
+                                                            <label className="LabelCampoCadastro">Título</label>
+                                                            <input placeholder="Digite o título..." type="text"></input>
+                                                        </div>
+                                                        <div className="CampoCadastro">
+                                                            <label className="LabelCampoCadastro">Descrição</label>
+                                                            <input placeholder="Digite a descrição..." type="text"></input>
                                                         </div>
                                                     </div>
-                                                )
-                                            })
-                                        }
+                                                    <button className="BtnSubmitForm">Publicar</button>
+                                                </form>
+                                                <button onClick={closeModalComentarios}>X</button>
+                                            </div>
+                                            <div className='ContainerComentarios'>
+                                                {
+                                                    ComentariosModal != undefined &&
+                                                    ComentariosModal.map((comentario) => {
+                                                        return (
+                                                            <div className="Comentario">
+                                                                <div className='ComentarioUsuario'>
+                                                                    <img src={"http://localhost:5000/StaticFiles/Images/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                                                    <span>{"http://localhost:5000/StaticFiles/Images/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                </div>
+                                                                <h2 className='TituloComentario'>{comentario.title}</h2>
+                                                                <p className='TextoComentario'>{comentario.commentDescription}
+                                                                </p>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
                                     </Modal>
                                 </div>
                             )
                         })
                     }
+                    {/* Estilização Modal Comentários */}
+                    {/* <Modal
+                        isOpen={ModalComentariosIsOpen}
+                        onAfterOpen={afterOpenModal}
+                        onRequestClose={closeModalComentarios}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                        class="ReactModal"
+                        closeTimeoutMS={2000}
+                    >
+                        <div className='ContainerModalComentarios'>
+                            <div className="HeaderModal">
+                                <form className='CadastroComentarioContainer'>
+                                    <div className='LinhaCampoCadastroComentarios'>
+                                        <div className="CampoCadastro">
+                                            <label className="LabelCampoCadastro">Título</label>
+                                            <input placeholder="Digite o título..." type="text"></input>
+                                        </div>
+                                        <div className="CampoCadastro">
+                                            <label className="LabelCampoCadastro">Descrição</label>
+                                            <input placeholder="Digite a descrição..." type="text"></input>
+                                        </div>
+                                    </div>
+                                    <button className="BtnSubmitForm">Publicar</button>
+                                </form>
+                                <button onClick={closeModalComentarios}>X</button>
+                            </div>
+                            <div className='ContainerComentarios'>
+
+                                <div className="Comentario">
+                                    <div className='ComentarioUsuario'>
+                                        <img src={ImagemModalCadastro}></img>
+                                        <span>Nome</span>
+                                    </div>
+                                    <h2 className='TituloComentario'>Titulum</h2>
+                                    <p className='TextoComentario'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </Modal> */}
                 </div>
             </main>
         </>
