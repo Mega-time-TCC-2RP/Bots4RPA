@@ -65,12 +65,12 @@ function App() {
               <a className="play-button">▶</a>
               <a className="details-button">Ver detalhes</a>
             </div>
-            <div className="card1">
+            {/* <div className="card1">
               <img src={Verde_Home} className="card1-img"/>
               <h5>Assistente 4</h5>
               <a className="play-button">▶</a>
               <a className="details-button">Ver detalhes</a>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>
