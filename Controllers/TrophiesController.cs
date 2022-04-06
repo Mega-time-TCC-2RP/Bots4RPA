@@ -76,9 +76,9 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return BadRequest("Extensão de arquivo não permitida");
                 }
 
-                var QueryCorporation = ctx.SearchByID(id);
+                var QueryTrophy = ctx.SearchByID(id);
 
-                if (QueryCorporation == null)
+                if (QueryTrophy == null)
                 {
                     return NotFound();
                 }
@@ -86,7 +86,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 trophy.IdTrophy = id;
                 trophy.TrophyImage = UploadResult;
 
-                Upload.RemoveFile(QueryCorporation.TrophyImage);
+                Upload.RemoveFile(QueryTrophy.TrophyImage);
                 #endregion
 
                 ctx.Update(trophy);

@@ -76,9 +76,9 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return BadRequest("Extensão de arquivo não permitida");
                 }
 
-                var QueryCorporation = ctx.SearchByID(id);
+                var QuerySkin = ctx.SearchByID(id);
 
-                if (QueryCorporation == null)
+                if (QuerySkin == null)
                 {
                     return NotFound();
                 }
@@ -86,7 +86,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 skin.IdSkin = id;
                 skin.SkinImages = UploadResult;
 
-                Upload.RemoveFile(QueryCorporation.SkinImages);
+                Upload.RemoveFile(QuerySkin.SkinImages);
                 #endregion
 
                 ctx.Update(skin);

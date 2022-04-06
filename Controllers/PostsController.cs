@@ -77,9 +77,9 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return BadRequest("Extensão de arquivo não permitida");
                 }
 
-                var QueryCorporation = ctx.SearchByID(id);
+                var QueryPost = ctx.SearchByID(id);
 
-                if (QueryCorporation == null)
+                if (QueryPost == null)
                 {
                     return NotFound();
                 }
@@ -87,7 +87,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 post.IdPost = id;
                 post.PostImage = UploadResult;
 
-                Upload.RemoveFile(QueryCorporation.PostImage);
+                Upload.RemoveFile(QueryPost.PostImage);
                 #endregion
 
                 ctx.Update(post);
