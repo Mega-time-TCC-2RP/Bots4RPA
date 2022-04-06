@@ -36,22 +36,22 @@ export default
             "ProcedureType": "math",
             "ProcedureFunction": "Multiply()"
         },
-        {
-            "IdProcedure": 5,
-            "ProcedurePriority": null,
-            "ProcedureName": "Ler email",
-            "ProcedureDescription": "Lê o último e mail e busca informações",
-            "ProcedureValue": "",
-            "ProcedureType": "email"
-        },
-        {
-            "IdProcedure": 6,
-            "ProcedurePriority": null,
-            "ProcedureName": "Mandar email",
-            "ProcedureDescription": "Lê o último e mail e busca informações",
-            "ProcedureValue": "",
-            "ProcedureType": "email"
-        },
+        // {
+        //     "IdProcedure": 5,
+        //     "ProcedurePriority": null,
+        //     "ProcedureName": "Ler email",
+        //     "ProcedureDescription": "Lê o último e mail e busca informações",
+        //     "ProcedureValue": "",
+        //     "ProcedureType": "email"
+        // },
+        // {
+        //     "IdProcedure": 6,
+        //     "ProcedurePriority": null,
+        //     "ProcedureName": "Mandar email",
+        //     "ProcedureDescription": "Lê o último e mail e busca informações",
+        //     "ProcedureValue": "",
+        //     "ProcedureType": "email"
+        // },
     ]
 
 

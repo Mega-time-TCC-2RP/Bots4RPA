@@ -16,25 +16,34 @@ export default function Assistant() {
     const [pValue, setPValue] = useState();
     const [value, setValue] = useState(0);
 
+    var result = 0;
+
+    function AtualizarResultado(FinalResult) {
+        document.getElementById("result").innerHTML = `Resultado: ${FinalResult}`;
+    };
+
     function DefineIValue(number){
-        setValue(number);
-        console.log(value);
-        
+        result = number;
+        AtualizarResultado(result);
+        // console.log(result);
     }
 
     function Sum(number){
-        setValue(value + number);
-        console.log(value);
+        result = result + number;
+        AtualizarResultado(result);
+        // console.log(result);
     }
 
     function Subtract(number){
-        setValue(value - number);
-        console.log(value);
+        result = result - number;
+        AtualizarResultado(result);
+        // console.log(result);
     }
 
     function Multiply(number){
-        setValue(value * number);
-        console.log(value);
+        result = result * number;
+        AtualizarResultado(result);
+        // console.log(result);
     }
 
     function handleShow(p) {
@@ -65,13 +74,10 @@ export default function Assistant() {
 
         for (let index = 0; index <= children.length; index++) {
             var child = children[index];
-            console.log(child);
-            // console.log("teste " + child.id);
+
             var splited = child.id.split(";");
             child.id = (index + 1) + ";" + splited[1].toString();
-            // console.log(child.id);
-            // console.log(child);
-            // console.log(child.textContent);
+            console.log(child);
 
             //Pega a função de acordo com o texto presente no elemento card, sendo este por padrão o nome do procedimento
             switch (child.textContent) {
@@ -92,9 +98,9 @@ export default function Assistant() {
                     break;
             }
 
-            wait(1000)
-
         }
+
+        setValue(result);
     }
 
     function configDragnDrop() {
@@ -170,9 +176,6 @@ export default function Assistant() {
         configDragnDrop();
     })
 
-    // useEffect(() => {
-    //     console.log(`effect ${value}`)
-    // },DefineIValue());
 
     return (
         <div>
@@ -227,9 +230,8 @@ export default function Assistant() {
 
                     </div>
                 </div>
-                <button onClick={() => SaveAndExecute()}>Salvar</button>
-                <h1>{value}</h1>
-                {/* <button onClick={() => Execute()}>Executar</button> */}
+                <button className="boards__button" onClick={() => SaveAndExecute()}>Salvar</button>
+                <p id="result" className="boards__text">Resultado: {result}</p>
             </div>
         </div>
     )
