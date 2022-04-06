@@ -9,7 +9,7 @@ go
 select * from UserType;
 select * from UserName;
 select * from Corporation;
-select * from Roles;
+select * from Office;
 select * from Employee;
 select * from Player;
 select * from StatusQuest;
