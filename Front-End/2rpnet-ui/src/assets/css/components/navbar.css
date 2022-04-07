@@ -137,7 +137,28 @@ body{
     object-fit: cover;
     border-radius: 12px;
 }
-
+.profile .profile_details .name_job{
+    color: #fff;
+    margin-left: 10px;
+}
+.profile .profile_details .name{
+    font-size: 20px;
+    font-weight: 600;
+}
+.profile .profile_details .job{
+    font-size: 14px;
+    font-weight: 400;
+}
+/* .profile .profile_details .name_job{
+    margin-left: 10px;
+}
+.profile .profile_details .name{
+    font-size: 15px;
+    font-weight: 400;
+}
+.profile .profile_details .job{
+    font-size: 12px;
+} */
 .profile #log_out{
     cursor: pointer;
     position: absolute;
@@ -161,16 +182,4 @@ body{
     height: 100%;
     width: calc(100% - 240px);
     left: 240px;
-}
-.profile .profile_details .name_job{
-    color: #fff;
-    margin-left: 10px;
-}
-.profile .profile_details .name{
-    font-size: 20px;
-    font-weight: 600;
-}
-.profile .profile_details .job{
-    font-size: 14px;
-    font-weight: 400;
 }
