@@ -12,7 +12,7 @@
 
 .registerArea {
     width: 850px;
-    height: 700px;
+    height: 85%;
     background: #FFF;
     border: 2px solid #F2F2F2;
     box-sizing: border-box;
@@ -43,7 +43,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 90%;
+    height: 92%;
 }
 
 .formRegister input {

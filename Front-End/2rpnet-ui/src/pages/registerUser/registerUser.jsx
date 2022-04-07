@@ -106,7 +106,7 @@ export default function RegisterUser() {
                         <form className='formRegister'>
                             {
                                 steps[currentStep].id === "Step1" && (
-                                    <div>
+                                    <div className='inputsArea'>
                                         <div className='foreachInput'>
                                             <label className='h5'>Email</label>
                                             <input id='placeholder-text' type="email" name="email" placeholder='Insira o seu email...' value={email} onChange={(event) => setEmail(event.target.value)} autoFocus required />
