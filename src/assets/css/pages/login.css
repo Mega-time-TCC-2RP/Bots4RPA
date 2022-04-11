@@ -1,0 +1,173 @@
+*{
+        margin: 0;
+        padding: 0;
+        /* box-sizing: border-box; */
+}
+.logo-Header{
+        width: 350;
+        height: 150;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 50px;
+}
+.login{
+        background-color: #FCFCFC;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        
+}
+.login-container{
+        background-color: #fff;
+        height: 90vh;
+        width: 60%;
+        margin: 0 auto;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.topo-input-email{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 23px;
+        line-height: 28px;
+        text-indent: 32px;
+        color: #38538A;
+        display: flex;
+        text-align: start;
+}
+
+.topo-input-senha{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 23px;
+        line-height: 28px;
+        text-indent: 32px;
+        color: #38538A;
+        display: flex;
+        margin-top: 90px;
+}
+.formsLogin-Email input{
+        border-radius: 50px;
+        width: 370px;
+        height: 70px;
+        position: absolute;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 23px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-indent: 32px;
+        opacity: 0.5;
+        background: #FFFFFF;
+/* Cinza */
+        border: 1px solid #8B919D;
+        box-sizing: border-box;
+        border-radius: 32px;
+}
+.Login input{
+        border-radius: 50px;
+        width: 370px;
+        height: 70px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 23px;
+        line-height: 28px;
+        text-indent: 32px;
+        margin-right: 0 auto;
+        margin-left: 0 auto;
+        opacity: 0.6;
+        background: #FFFFFF;
+        /* Cinza */
+        border: 1px solid #8B919D;
+        box-sizing: border-box;
+        border-radius: 32px;
+}
+.botaoLogin{
+        background: #3375BA;
+        width: 200px;
+        height: 55px;
+        color: #FFF;
+        border-radius: 64px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 28px;
+        border: none;
+        margin-top: 30px;
+        cursor: pointer;
+        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+.botaoLogin:hover, .google-button:hover{
+        background: #38538A;
+}
+.EsqueceuSenha a, .NotSigned-login{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight: 250;
+        font-size: 23px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #38538A;
+        margin-left: 70px;
+        margin-top: 20px;
+        cursor: pointer;
+        opacity: 0.8;
+}
+.divider{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight: 250;
+        font-size: 23px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #38538A;
+        margin-left: 90px;
+        margin-top: 20px;
+        opacity: 0.2;
+}
+.google-button{
+        background: #3375BA;
+        width: 200px;
+        height: 65px;
+        color: #FFF;
+        border-radius: 64px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 28px;
+        border: none;
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-left: 85px;
+        cursor: pointer;
+        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+.img-red{
+        position: fixed;
+        top: 0;
+        right: 0;
+}
+.img-blue{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+}
