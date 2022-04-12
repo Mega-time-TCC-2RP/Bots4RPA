@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'grupo8api'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2804DDCA42524DCA970097E3BE31828C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_30BC5A04516F499DACECB0FE6D9BA8AD }}
           package: .
