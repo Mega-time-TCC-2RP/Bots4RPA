@@ -10,7 +10,7 @@ import '../../assets/css/pages/skinShop.css'
 
 export default function skinShop() {
     return (
-        <div>
+        <div id='all'>
             <Header/>
             <Navbar/>
             <div className='container2'>
