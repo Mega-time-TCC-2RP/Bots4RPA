@@ -7,7 +7,7 @@ namespace _2RPNET_API.Domains
 {
     public partial class AssistantProcedure
     {
-        public int IdAssistantProcedure { get; set; }
+        public int IdAprocedure { get; set; }
         public int? IdAssistant { get; set; }
         public int? ProcedurePriority { get; set; }
         public string ProcedureName { get; set; }

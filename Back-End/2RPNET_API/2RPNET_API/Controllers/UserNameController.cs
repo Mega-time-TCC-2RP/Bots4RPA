@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using _2RPNET_API.Context;
 using _2RPNET_API.Domains;
 using Microsoft.AspNetCore.Authorization;
+using _2RPNET_API.Interfaces;
 
 namespace _2RPNET_API.Controllers
 {
@@ -15,21 +16,28 @@ namespace _2RPNET_API.Controllers
     [ApiController]
     public class UserNameController : ControllerBase
     {
-        private readonly RPAContext _context;
+        private IUserNameRepository _repository { get; set; }
 
-        public UserNameController(RPAContext context)
+        public UserNameController(IUserNameRepository user)
         {
-            _context = context;
+            _repository = user;
         }
 
         /// <summary>
         /// Method responsible for list all Users
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserName>>> GetUserNames()
+        [HttpGet("ListAll")]
+        public IActionResult ReadAll()
         {
-            return await _context.UserNames.ToListAsync();
+            try
+            {
+                return Ok(_repository.ReadAll());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
@@ -37,92 +45,97 @@ namespace _2RPNET_API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UserName>> GetUserName(int id)
+        [HttpGet("{Id}")]
+        public IActionResult ReadMy(int Id)
         {
-            var userName = await _context.UserNames.FindAsync(id);
-
-            if (userName == null)
+            try
             {
-                return NotFound();
+                return Ok(_repository.SearchByID(Id));
             }
-
-            return userName;
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
         /// Method responsible for update user by unique id 
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="userName"></param>
+        /// <param name="IdUserName"></param>
+        /// <param name="UpdatedUser"></param>
         /// <returns></returns>
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUserName(int id, UserName userName)
+        [HttpPut("{IdUserName}")]
+        public IActionResult Update(int IdUserName, UserName UpdatedUser)
         {
-            if (id != userName.IdUser)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(userName).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserNameExists(id))
+                UserName UserNameSought = _repository.SearchByID(IdUserName);
+
+                if (UserNameSought != null)
                 {
-                    return NotFound();
+                    if (UpdatedUser != null)
+                        _repository.Update(IdUserName, UpdatedUser);
                 }
                 else
                 {
-                    throw;
+                    return BadRequest();
                 }
-            }
 
-            return NoContent();
+                return Ok();
+
+            }
+            catch (Exception Ex)
+            {
+                return BadRequest(Ex);
+            }
         }
 
         /// <summary>
         /// Method responsible for create all users
         /// </summary>
-        /// <param name="userName"></param>
+        /// <param name="NewUser"></param>
         /// <returns></returns>
-        [Authorize]
         [HttpPost]
-        public async Task<ActionResult<UserName>> PostUserName(UserName userName)
+        public IActionResult Create(UserName NewUser)
         {
-            _context.UserNames.Add(userName);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUserName", new { id = userName.IdUser }, userName);
+            try
+            {
+                _repository.Create(NewUser);
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
         /// Method responsible for delete user by unique id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="IdUserName"></param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUserName(int id)
+        [HttpDelete("{IdUserName}")]
+        public IActionResult Delete(int IdUserName)
         {
-            var userName = await _context.UserNames.FindAsync(id);
-            if (userName == null)
+            try
             {
-                return NotFound();
+
+                if (IdUserName > 0)
+                {
+                    _repository.Delete(IdUserName);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+                return Ok();
+
             }
-
-            _context.UserNames.Remove(userName);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool UserNameExists(int id)
-        {
-            return _context.UserNames.Any(e => e.IdUser == id);
+            catch (Exception Ex)
+            {
+                return BadRequest(Ex);
+            }
         }
     }
 }

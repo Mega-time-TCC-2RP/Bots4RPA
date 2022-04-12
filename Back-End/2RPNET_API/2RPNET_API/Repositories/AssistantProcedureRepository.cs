@@ -40,7 +40,7 @@ namespace _2RPNET_API.Repositories
 
         public AssistantProcedure SearchByID(int IdAssistantProcedure)
         {
-            return ctx.AssistantProcedures.FirstOrDefault(c => c.IdAssistantProcedure == IdAssistantProcedure);
+            return ctx.AssistantProcedures.FirstOrDefault(c => c.IdAprocedure == IdAssistantProcedure);
         }
 
         public void Update(int IdAssistantProcedure, AssistantProcedure NewProcess)

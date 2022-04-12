@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace _2RPNET_API.Domains
 {
-    public partial class LibrarySkin
+    public partial class LibraryTrophy
     {
-        public int IdLibrarySkins { get; set; }
+        public int IdLibraryTrophy { get; set; }
         public DateTime? UnlockData { get; set; }
         public int IdPlayer { get; set; }
-        public int IdSkin { get; set; }
+        public int IdTrophy { get; set; }
 
         public virtual Player IdPlayerNavigation { get; set; }
-        public virtual Skin IdSkinNavigation { get; set; }
+        public virtual Trophy IdTrophyNavigation { get; set; }
     }
 }

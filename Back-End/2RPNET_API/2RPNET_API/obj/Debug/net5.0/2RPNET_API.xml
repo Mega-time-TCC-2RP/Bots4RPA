@@ -111,39 +111,39 @@
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.GetUserNames">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.ReadAll">
             <summary>
             Method responsible for list all Users
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.GetUserName(System.Int32)">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.ReadMy(System.Int32)">
             <summary>
             Method responsible for list User by unique id
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.PutUserName(System.Int32,_2RPNET_API.Domains.UserName)">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.Update(System.Int32,_2RPNET_API.Domains.UserName)">
             <summary>
             Method responsible for update user by unique id 
             </summary>
-            <param name="id"></param>
-            <param name="userName"></param>
+            <param name="IdUserName"></param>
+            <param name="UpdatedUser"></param>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.PostUserName(_2RPNET_API.Domains.UserName)">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.Create(_2RPNET_API.Domains.UserName)">
             <summary>
             Method responsible for create all users
             </summary>
-            <param name="userName"></param>
+            <param name="NewUser"></param>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.DeleteUserName(System.Int32)">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.Delete(System.Int32)">
             <summary>
             Method responsible for delete user by unique id
             </summary>
-            <param name="id"></param>
+            <param name="IdUserName"></param>
             <returns></returns>
         </member>
     </members>
