@@ -19,7 +19,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public Employee Create(Employee employee)
         {
             ctx.Employees.Add(employee);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
 
             return employee;
         }

@@ -20,7 +20,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public UserName Create(UserName datauser)
         {
             ctx.UserNames.Add(datauser);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
 
             return datauser;
         }

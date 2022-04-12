@@ -1,6 +1,7 @@
 ﻿using _2rpnet.rpa.webAPI.Contexts;
 using _2rpnet.rpa.webAPI.Domains;
 using _2rpnet.rpa.webAPI.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo GET - Listagem
         [HttpGet]
+        [Authorize(Roles = "1,2")]
         public IActionResult ReadAll()
         {
             return Ok(ctx.ReadAll());
@@ -33,6 +35,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo GET por ID - Procurar pela ID
         [HttpGet("{id}")]
+        [Authorize(Roles = "1,2")]
         public IActionResult SearchByID(int id)
         {
             var player = ctx.SearchByID(id);
@@ -47,6 +50,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo PUT - Atualizacao
         [HttpPut("{id}")]
+        [Authorize(Roles = "1,2")]
         public IActionResult Update(int id, Player player)
         {
             try
@@ -71,6 +75,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo POST - Cadastro
         [HttpPost]
+        [Authorize(Roles = "1,2")]
         public IActionResult Post(Player player)
         {
             try
@@ -88,6 +93,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo DELETE - Remocao
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1,2")]
         public IActionResult Delete(int id)
         {
             try

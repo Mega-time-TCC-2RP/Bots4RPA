@@ -2,6 +2,7 @@
 using _2rpnet.rpa.webAPI.Domains;
 using _2rpnet.rpa.webAPI.Interfaces;
 using _2rpnet.rpa.webAPI.Utils;
+using _2rpnet.rpa.webAPI.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +22,16 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         // Vincular a Context
         private readonly IUserNameRepository ctx;
+        private readonly IEmployeeRepository Ectx;
+        private readonly ICorporationRepository Cctx;
+        private readonly IPlayerRepository Pctx;
 
-        public UserNamesController(IUserNameRepository context)
+        public UserNamesController(IUserNameRepository context, IEmployeeRepository contextEmployee, ICorporationRepository contextCorporation, IPlayerRepository contextPlayer)
         {
             ctx = context;
+            Ectx = contextEmployee;
+            Cctx = contextCorporation;
+            Pctx = contextPlayer;
         }
 
         // Metodo GET - Listagem
@@ -36,6 +43,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo GET por ID - Procurar pela ID
         [HttpGet("{id}")]
+        [Authorize(Roles = "1,2")]
         public IActionResult SearchByID(int id)
         {
             var userName = ctx.SearchByID(id);
@@ -50,6 +58,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo PUT - Atualizacao
         [HttpPut("{id}")]
+        [Authorize(Roles = "3")]
         public IActionResult Update(int id, [FromForm] UserName user, IFormFile File)
         {
             try
@@ -91,7 +100,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo POST - Cadastro
         [HttpPost]
-        public IActionResult Post([FromForm] UserName user, IFormFile File)
+        public IActionResult Post([FromForm] PostUserViewModel user, IFormFile File)
         {
             try
             {
@@ -110,12 +119,60 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     return BadRequest("Extensão de arquivo não permitida");
                 }
+                if(user.IdUserType == 1)
+                {
+                    return BadRequest("Apenas usuários comuns ou com nível de administração interna (empresa) podem ser cadastrados");
+                }
+                else
+                if (Cctx.SearchByID(user.IdCorporation) != null)
+                {
 
+                    user.PhotoUser = UploadResult;
+                    UserName PostUser = new UserName()
+                    {
+                        UserName1 = user.UserName1,
+                        Passwd = user.Passwd,
+                        Email = user.Email,
+                        Cpf = user.Cpf,
+                        PhotoUser = UploadResult,
+                        Phone = user.Phone,
+                        Rg = user.Rg,
+                        IdUserType = user.IdUserType,
+                        UserValidation = false,
+                        BirthDate = user.BirthDate
+                    };
+                    UserName PostedUser = ctx.Create(PostUser);
 
-                user.PhotoUser = UploadResult;
-                ctx.Create(user);
+                    Employee PostEmployee = new Employee()
+                    {
+                        IdUser = PostedUser.IdUser,
+                        IdCorporation = user.IdCorporation
+                    };
 
-                return Ok(user);
+                    Employee PostedEmployee = Ectx.Create(PostEmployee);
+
+                    if (user.IdUserType == 3)
+                    {
+                        Player PostPlayer = new()
+                        {
+                            IdEmployee = PostedEmployee.IdEmployee
+                        };
+
+                        Player PostedPlayer = Pctx.Create(PostPlayer);
+
+                        return Ok(new
+                        {
+                            Usuario = PostedUser,
+                            Employee = PostedEmployee,
+                            Player = PostedPlayer
+                        });
+                    }
+                    return Ok(new { 
+                        Usuario = PostedUser,
+                        Employee = PostedEmployee
+                    });
+                }
+                else return NotFound("Id da empresa inválido");
             }
             catch (Exception error)
             {
@@ -126,6 +183,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo DELETE - Remocao
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1,2")]
         public IActionResult Delete(int id)
         {
             try
@@ -147,7 +205,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         [HttpGet("MyTrophiesAndSkins")]
-        [Authorize(Roles = "1,2,3")]
+        [Authorize(Roles = "3")]
         public IActionResult GetTrophiesAndSkins()
         {
             try
@@ -162,7 +220,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         [HttpGet("Validate/{idUser}")]
-        [Authorize(Roles = "1,2,3")]
+        [Authorize(Roles = "2")]
         public IActionResult ValidateUser(int idUser)
         {
             try

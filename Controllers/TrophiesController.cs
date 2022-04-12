@@ -103,7 +103,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo POST - Cadastro
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post([FromForm] Trophy trophy, IFormFile File)
         {

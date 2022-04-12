@@ -52,7 +52,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo PUT - Atualizacao
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "3")]
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromForm] Post post, IFormFile File)
         {
@@ -104,7 +104,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo POST - Cadastro
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "3")]
         [HttpPost]
         public IActionResult Post([FromForm] Post post, IFormFile File)
         {
@@ -143,7 +143,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo DELETE - Remocao
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "3")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -182,7 +182,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "1,2,3")]
+        [Authorize(Roles = "3")]
         [HttpGet("MyPosts")]
         public IActionResult GetMyPosts()
         {

@@ -84,7 +84,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo POST - Cadastro
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "3")]
         [HttpPost]
         public IActionResult Post(Like like)
         {
@@ -102,7 +102,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo DELETE - Remocao
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "3")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -19,7 +19,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public Player Create(Player player)
         {
             ctx.Players.Add(player);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
 
             return player;
         }

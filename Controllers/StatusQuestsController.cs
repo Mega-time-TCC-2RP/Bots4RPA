@@ -50,7 +50,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo PUT - Atualizacao
-        [Authorize(Roles = "1,2,3")]
+        [Authorize(Roles = "1")]
         [HttpPut("{id}")]
         public IActionResult Update(int id, StatusQuest status)
         {
@@ -71,7 +71,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo POST - Cadastro
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post(StatusQuest status)
         {
@@ -89,7 +89,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo DELETE - Remocao
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "1")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
