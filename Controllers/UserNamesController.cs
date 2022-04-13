@@ -57,13 +57,13 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo PUT - Atualizacao
-        [HttpPut("{id}")]
+        [HttpPut]
         [Authorize(Roles = "3")]
-        public IActionResult Update(int id, [FromForm] UserName user, IFormFile File)
+        public IActionResult Update([FromForm] UserName user, IFormFile File)
         {
             try
             {
-                user.IdUser = id;
+                user.IdUser = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
                 if (File == null)
                     return BadRequest("É necessário enviar um arquivo de imagem válido!");
 
@@ -78,11 +78,12 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     return BadRequest("Extensão de arquivo não permitida");
                 }
-                var QueryUser = ctx.SearchByID(id);
+                var QueryUser = ctx.SearchByID(Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value));
                 user.PhotoUser = UploadResult;
 
                 if(QueryUser == null)
                 {
+                    Upload.RemoveFile(user.PhotoUser);
                     return NotFound();
                 }
                 else
@@ -126,8 +127,6 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 else
                 if (Cctx.SearchByID(user.IdCorporation) != null)
                 {
-
-                    user.PhotoUser = UploadResult;
                     UserName PostUser = new UserName()
                     {
                         UserName1 = user.UserName1,
@@ -194,6 +193,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return NotFound();
                 }
                 Upload.RemoveFile(user.PhotoUser);
+                Pctx.Delete(Pctx.SearchByID(Ectx.ReadAll().FirstOrDefault(e => e.IdUser == id).Players.First().IdPlayer));
+                Ectx.Delete(Ectx.SearchByID(user.Employees.First().IdEmployee));
                 ctx.Delete(user);
                 return NoContent();
             }

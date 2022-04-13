@@ -44,7 +44,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                 BirthDate = user.BirthDate,
                 Rg = user.Rg,
                 UserValidation = user.UserValidation,
-            }).ToList();
+            }).Include(user => user.Employees).ThenInclude(employee => employee.Players).ToList();
         }
 
         public UserName SearchByID(int id)
@@ -60,7 +60,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                 BirthDate = user.BirthDate,
                 Rg = user.Rg,
                 UserValidation = user.UserValidation,
-            }).AsNoTracking().ToList().FirstOrDefault(u => u.IdUser == id);
+            }).Include(user => user.Employees).ThenInclude(employee => employee.Players).AsNoTracking().ToList().FirstOrDefault(u => u.IdUser == id);
         }
 
         public UserName Update(UserName datauser)

@@ -48,71 +48,80 @@ namespace _2rpnet.rpa.webAPI.Controllers
             return Ok(player);
         }
 
+
         // Metodo PUT - Atualizacao
-        [HttpPut("{id}")]
-        [Authorize(Roles = "1,2")]
-        public IActionResult Update(int id, Player player)
-        {
-            try
-            {
-                player.IdPlayer = id;
-                Player QueryPlayer = ctx.SearchByID(id);
 
-                if (QueryPlayer == null)
-                {
-                    return NotFound();
-                }
 
-                ctx.Update(player);
-                return NoContent();
-            }
-            catch (Exception error)
-            {
-                return BadRequest(error);
-                throw;
-            }
-        }
+        //[HttpPut("{id}")]
+        //[Authorize(Roles = "1,2")]
+        //public IActionResult Update(int id, Player player)
+        //{
+        //    try
+        //    {
+        //        player.IdPlayer = id;
+        //        Player QueryPlayer = ctx.SearchByID(id);
+
+        //        if (QueryPlayer == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        ctx.Update(player);
+        //        return NoContent();
+        //    }
+        //    catch (Exception error)
+        //    {
+        //        return BadRequest(error);
+        //        throw;
+        //    }
+        //}
+
 
         // Metodo POST - Cadastro
-        [HttpPost]
-        [Authorize(Roles = "1,2")]
-        public IActionResult Post(Player player)
-        {
-            try
-            {
-                ctx.Create(player);
 
-                return Ok(player);
-            }
-            catch (Exception error)
-            {
-                return BadRequest(error);
-                throw;
-            }
-        }
+
+        //[HttpPost]
+        //[Authorize(Roles = "1,2")]
+        //public IActionResult Post(Player player)
+        //{
+        //    try
+        //    {
+        //        ctx.Create(player);
+
+        //        return Ok(player);
+        //    }
+        //    catch (Exception error)
+        //    {
+        //        return BadRequest(error);
+        //        throw;
+        //    }
+        //}
+
 
         // Metodo DELETE - Remocao
-        [HttpDelete("{id}")]
-        [Authorize(Roles = "1,2")]
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                Player QueryPlayer = ctx.SearchByID(id);
 
-                if (QueryPlayer == null)
-                {
-                    return NotFound();
-                }
 
-                ctx.Delete(QueryPlayer);
-                return NoContent();
-            }
-            catch (Exception error)
-            {
-                return BadRequest(error);
-                throw;
-            }
-        }
+        //[HttpDelete("{id}")]
+        //[Authorize(Roles = "1,2")]
+        //public IActionResult Delete(int id)
+        //{
+        //    try
+        //    {
+        //        Player QueryPlayer = ctx.SearchByID(id);
+
+        //        if (QueryPlayer == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        ctx.Delete(QueryPlayer);
+        //        return NoContent();
+        //    }
+        //    catch (Exception error)
+        //    {
+        //        return BadRequest(error);
+        //       throw;
+        //    }
+        //}
     }
 }

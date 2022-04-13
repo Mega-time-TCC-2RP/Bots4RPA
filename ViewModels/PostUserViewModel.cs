@@ -15,7 +15,6 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public string Passwd { get; set; }
         [Required(ErrorMessage = "CPF do usuário necessário")]
         public string Cpf { get; set; }
-        public string PhotoUser { get; set; }
         public string Phone { get; set; }
         [Required(ErrorMessage = "Data de nascimento do usuário necessária")]
         public DateTime BirthDate { get; set; }
