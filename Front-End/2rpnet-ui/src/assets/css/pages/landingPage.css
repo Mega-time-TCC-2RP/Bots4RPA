@@ -13,19 +13,11 @@ body {
 *{
     margin: 0;
     padding: 0;
-<<<<<<< HEAD
-    box-sizing: border-box;
-}
-
-.container {
-    width: 1200px;
-=======
     /* box-sizing: border-box; */
 }
 
 .container {
     width: 1440px;
->>>>>>> origin/tarde-front-footer
     margin: 0 auto;
 }
 

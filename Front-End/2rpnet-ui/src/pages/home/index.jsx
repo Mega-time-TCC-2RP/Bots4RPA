@@ -1,4 +1,5 @@
 import "../../assets/css/style.css";
+import "../../assets/css/components/navbar.css"
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
@@ -36,6 +37,7 @@ function App() {
   return (
     <div>
       <Navbar />
+      <div className='body-pd'>
       <div className="top-container">
         <div className="top-buttons">
           <form>
@@ -162,6 +164,7 @@ function App() {
 </div>
           </div>
         </form>
+      </div>
       </div>
       <Footer />
     </div>
