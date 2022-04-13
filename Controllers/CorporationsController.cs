@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,15 +22,18 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         // Vincular a Context
         private readonly ICorporationRepository ctx;
+        private readonly IEmployeeRepository Ectx;
+        private readonly IUserNameRepository Uctx;
 
-        public CorporationsController(ICorporationRepository context)
+        public CorporationsController(ICorporationRepository context, IEmployeeRepository contextEmployee, IUserNameRepository contextUser)
         {
             ctx = context;
+            Ectx = contextEmployee;
+            Uctx = contextUser;
         }
 
         // Metodo GET - Listagem
         [HttpGet]
-        [Authorize(Roles = "1")]
         public IActionResult ReadAll()
         {
             return Ok(ctx.ReadAll());
@@ -130,10 +134,16 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
                 var corporate = ctx.SearchByID(id);
                 if (corporate == null)
                 {
                     return NotFound();
+                }
+                else if (Ectx.ReadAll().FirstOrDefault(E => E.IdCorporation == corporate.IdCorporation && E.Confirmation == true).IdUser != UserId && UserRole == 2)
+                {
+                    return Unauthorized("Apenas o administrador dono da empresa pode deletá-la");
                 }
 
                 Upload.RemoveFile(corporate.CorporatePhoto);
