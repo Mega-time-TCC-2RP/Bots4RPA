@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import VLibras from '@djpfs/react-vlibras'
 
 //img:
 import logoMaior from '../../assets/img/logoMaior.png'
@@ -68,10 +69,12 @@ export default function Login() {
 
         return (
                 <div>
+
                         <div className='login'>
                         <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
-
+                        <VLibras/>
                                 <div className='login-container'>
+                                        
                                         
                                         <div className='forms-login'>
                                         <img src={logoMaior} className='logo-Header' alt="Logo 2RP" />

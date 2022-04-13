@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/menu/Navbar'
+import VLibras from '@djpfs/react-vlibras'
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -34,10 +35,18 @@ function App() {
     
   }
 
+  const HideArrow = () => {
+    
+  }
+
   return (
     <div>
       <Navbar />
+<<<<<<< HEAD
       <div className='body-pd'>
+=======
+      <VLibras/>
+>>>>>>> 07a20a42388ec0a6d4b3cc9c8930fb03f54484de
       <div className="top-container">
         <div className="top-buttons">
           <form>
