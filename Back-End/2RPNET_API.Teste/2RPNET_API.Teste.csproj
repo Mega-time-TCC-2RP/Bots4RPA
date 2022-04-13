@@ -25,4 +25,8 @@
     <Folder Include="Utils\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\2RPNET_API\2RPNET_API.csproj" />
+  </ItemGroup>
+
 </Project>
