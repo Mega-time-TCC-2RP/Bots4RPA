@@ -180,7 +180,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
             catch (Exception error)
             {
-                return BadRequest(erro);
+                return BadRequest(error);
                 throw;
             }
         }
