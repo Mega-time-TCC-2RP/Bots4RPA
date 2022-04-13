@@ -28,10 +28,16 @@ import LandingPage from './pages/landingPage/landingPage';
 import RegisterCompany from './pages/registerCompany/registerCompany';
 import RegisterUser from './pages/registerUser/registerUser';
 
+
+import { history } from './history';
+
+
+// Sem cadastro
+
 const routing = (
   <Router>
     <div>
-      <Routes>
+      <Routes history={history}>
         <Route exact path="/" element={<Home/>} /> {/* Home */}
         <Route path="/landingPage" element={<LandingPage/>} />
         <Route path="/login" element={<Login/>} /> {/* Login */}

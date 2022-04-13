@@ -37,43 +37,43 @@ return (
       <ul className='nav_list'>
         <li>
           <Link to="/" className='Link'>
-            <ImIcons.ImHome3 className='icon'/>
+            <ImIcons.ImHome3 className='icon2'/>
             <span className='Links_name'>Home</span>
           </Link>
         </li>
         <li>
           <Link to="/guide" className='Link'>
-            <RiIcons.RiGuideFill className='icon'/>
+            <RiIcons.RiGuideFill className='icon2'/>
             <span className='Links_name'>Guias</span>
           </Link>
         </li>
         <li>
           <Link to="/marketplace" className='Link'>
-            <RiIcons.RiShoppingBagFill className='icon'/>
+            <RiIcons.RiShoppingBagFill className='icon2'/>
             <span className='Links_name'>Loja</span>
           </Link>
         </li>
         <li>
           <Link to="/taskcalendar" className='Link'>
-            <FaIcons.FaTasks className='icon'/>
+            <FaIcons.FaTasks className='icon2'/>
             <span className='Links_name'>Tarefas</span>
           </Link>
         </li>
         <li>
           <Link to="/myprocesses" className='Link'>
-            <FaIcons.FaRobot className='icon'/>
+            <FaIcons.FaRobot className='icon2'/>
             <span className='Links_name'>Assistentes</span>
           </Link>
         </li>
         <li>
           <Link to="/social" className='Link'>
-            <AiIcons.AiFillMessage className='icon'/>
+            <AiIcons.AiFillMessage className='icon2'/>
             <span className='Links_name'>Social</span>
           </Link>
         </li>
         <li>
           <Link to="/config" className='Link'>
-            <BsIcons.BsFillGearFill className='icon'/>
+            <BsIcons.BsFillGearFill className='icon2'/>
             <span className='Links_name'>Configurações</span>
           </Link>
         </li>

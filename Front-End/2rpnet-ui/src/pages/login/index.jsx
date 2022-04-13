@@ -2,6 +2,7 @@ import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //img:
 import logoMaior from '../../assets/img/logoMaior.png'
@@ -21,17 +22,49 @@ import '../../assets/css/components/button.css';
 import '../../assets/css/components/fonts.css';
 
 
+//services
+import { history } from '../../history';
+import { parseJwt, usuarioAutenticado } from '../../services/auth';
+
+
+
 export default function Login() {
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
 
+        let history = useNavigate();
 
         const handleSubmit = (e) => {
                 e.preventDefault();
-
-                console.log("LOGADO", {email, password});
-        };
-
+        
+                axios.post('https://grupo7.azurewebsites.net/api/Login', {
+                    email: email,
+                    password: password
+                })        
+                    .then(resposta => {
+                        if (resposta.status === 200) {
+                            localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
+                            // define a variável base64 que vai receber o payload do token
+                            let base64 = localStorage.getItem('2rp-chave-autenticacao').split('.')[1];
+                            console.log(base64);
+                            // exibe as propriedades da página
+                            console.log(parseJwt());
+                            // verifica se o usuário logado é do tipo administrador
+                            //mudar aqui e no menu principal se o cadastro for liberado para
+                            //todos os usuarios
+                            if (parseJwt().role === '1' ) {
+                                history('/')
+                                console.log('logado: ' + usuarioAutenticado())
+                            }
+                            else{
+                                history('/notFound')
+                            }
+                        }
+                    })
+                    .catch(() => {
+                        this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
+                    })
+            };
 
         return (
                 <div>

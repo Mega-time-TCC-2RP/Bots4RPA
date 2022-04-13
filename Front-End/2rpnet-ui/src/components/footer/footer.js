@@ -10,6 +10,8 @@ import Youtube from '../../assets/img/iconeYoutube.png'
 
 //Icons:
 import * as BiIcons from 'react-icons/bi'
+import * as AiIcons from 'react-icons/ai'
+import * as FaIcons from 'react-icons/fa'
 
 //css: 
 import '../../assets/css/components/footer.css'
@@ -23,10 +25,9 @@ class Footer extends Component {
                     <div className="socialNetworkArea">
                         <span>Nossas Redes Sociais:</span>
                         <div className="socialNetworkIcons">
-                            <Link to="/"><img className="instagramIcon" src={Insta} alt="Logo Instagram"/></Link>
-                            <Link to="/"><img className="twitterIcon" src={Twitter} alt="Logo Twitter"/></Link>
-                            <Link to="/"><img className="facebookIcon" src={Facebook} alt="Logo Facebook"/></Link>
-                            <Link to="/"><img className="youtubeIcon" src={Youtube} alt="Logo Youtube"/></Link>
+                            <a href="https://www.linkedin.com/company/2rp-informatica/" to="/"><AiIcons.AiFillLinkedin color="white" size='70px' /></a>
+                            <a href="https://www.facebook.com/2rpnetservicos/?modal=admin_todo_tour" className="linkedin" to="/"><AiIcons.AiFillFacebook color="white" size='70px'/></a>
+                            <a href="https://www.youtube.com/channel/UC9n0XxkktvDXpsVoc1s5FQg" className="linkedin" to="/"><FaIcons.FaYoutubeSquare color="white" size='70px' /></a>
                         </div>
                     </div>
                 </div>

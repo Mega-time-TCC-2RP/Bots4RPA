@@ -13,8 +13,8 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    overflow-y: auto;
+    /* box-sizing: border-box;
+    overflow-y: auto; */
 }
 .top-container{
     background: #F1F1F1;
@@ -73,6 +73,7 @@
 
 }
 .card1{
+    margin-bottom: 50px;
     margin-top: 50px;
     margin-left: 170px;
     width: 400px;
@@ -296,7 +297,7 @@
 }
 .movieRow-right,.movieRow-left{
     position: absolute;
-    height: 655px;
+    margin-top: 256px;
     z-index: 99;
     display: flex;
     align-items: center;

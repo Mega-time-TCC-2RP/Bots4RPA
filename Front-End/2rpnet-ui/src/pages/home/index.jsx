@@ -19,6 +19,7 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 
 //Components:
+import menu from '../../components/menu/Navbar'
 import Footer from '../../components/footer/footer'
 
 
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div>
+      <Navbar />
       <div className="top-container">
         <div className="top-buttons">
           <form>
@@ -161,6 +163,7 @@ function App() {
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   );
 }
