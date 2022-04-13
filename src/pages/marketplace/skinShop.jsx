@@ -7,12 +7,15 @@ import Navbar from '../../components/menu/Navbar'
 import skin from '../../assets/img/Robo.png'
 import Coin from '../../assets/img/coin.png'
 import '../../assets/css/pages/skinShop.css'
+import VLibras from '@djpfs/react-vlibras'
+
 
 export default function skinShop() {
     return (
         <div id='all'>
             <Header/>
             <Navbar/>
+            <VLibras/>
             <div className='container2'>
             <div className='Titulo_inputs'>
                 <h1 id='titulo'>Skins</h1>

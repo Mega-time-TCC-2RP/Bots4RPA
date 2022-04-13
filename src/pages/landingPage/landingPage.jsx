@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
+import VLibras from '@djpfs/react-vlibras'
+
 
 //img:
 import Logo from '../../assets/img/logo2RP.png'
@@ -23,6 +25,7 @@ export default function LandingPage() {
 
     return (
         <div>
+            <VLibras/>
             <div className='landingPage'>
                 <div className='header container'>
                     <div className='headerInside container'>

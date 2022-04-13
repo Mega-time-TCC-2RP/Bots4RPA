@@ -5,6 +5,8 @@ import botaoCurtirImg from "../../assets/img/botaoLike.png";
 import "../../assets/css/pages/Timeline.css"
 import Modal from 'react-modal';
 import ImagemModalCadastro from "../../assets/img/CadastroPostBtn.png"
+import VLibras from '@djpfs/react-vlibras'
+
 
 const customStyles = {
     content: {
@@ -70,6 +72,7 @@ export const TelaTimeline = () => {
     return (
         <>
             <main id="Main">
+                <VLibras/>
                 <div className="ContainerGrid ContainerPosts">
                     <div className="BotoesModais">
                         <button onClick={openModalCadastro}><img src={ImagemModalCadastro}></img></button>
