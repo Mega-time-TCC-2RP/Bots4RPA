@@ -10,3 +10,10 @@ A porta 3000 irá abrir automaticamente no navegador padrão para a visualizaç�
 Ou abra manualmente em: [http://localhost:3000](http://localhost:3000) para ver no navegador.
 
 # Link da API em núvem: [https://grupo7.azurewebsites.net/](https://grupo7.azurewebsites.net/)
+
+Faremos uso de diverass bibliotecas em nossa aplicação, para economizar tempo, instalaremos todas que foram utilizadas de uma vez.
+Para a instalação, usaremos o terminal do git bash
+![image](https://user-images.githubusercontent.com/19197082/163263666-eee02f74-aa58-4a39-83f2-4454a6dc6abb.png)
+
+# Bibliotecas usadas:
+
