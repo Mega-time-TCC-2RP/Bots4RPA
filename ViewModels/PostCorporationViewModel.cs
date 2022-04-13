@@ -14,7 +14,6 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public string CorpPhone { get; set; }
         [Required(ErrorMessage = "CNPJ da corporação/empresa necessário")]
         public string Cnpj { get; set; }
-        public string CorpPhoto { get; set; }
 
 
 
@@ -29,5 +28,9 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public DateTime BirthDate { get; set; }
         [Required(ErrorMessage = "Rg do usuário necessário")]
         public string Rg { get; set; }
+
+
+
+        public int IdOffice { get; set; }
     }
 }

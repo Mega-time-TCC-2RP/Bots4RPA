@@ -19,7 +19,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public Corporation Create(Corporation corporate)
         {
             ctx.Corporations.Add(corporate);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
 
             return corporate;
         }

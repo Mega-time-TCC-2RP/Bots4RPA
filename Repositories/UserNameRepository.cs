@@ -19,8 +19,14 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public UserName Create(UserName datauser)
         {
+            if (datauser.Passwd != null)
+            {
+                datauser.Passwd = Crypt.GenerateHash(datauser.Passwd);
+            }
             ctx.UserNames.Add(datauser);
             ctx.SaveChanges();
+
+            datauser.Passwd = null;
 
             return datauser;
         }

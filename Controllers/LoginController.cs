@@ -44,6 +44,11 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return Unauthorized(new { msg = "Realize o login com o google!" });
                 }
 
+                if (queryUser.UserValidation == false)
+                {
+                    Unauthorized("Apenas usuários validados podem logar");
+                }
+
                 var tokenClaims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Email, queryUser.Email),

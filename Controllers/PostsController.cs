@@ -54,7 +54,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo PUT - Atualizacao
-        [Authorize(Roles = "3")]
+        [Authorize(Roles = "1,2,3")]
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromForm] Post post, IFormFile File)
         {

@@ -32,12 +32,12 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public IEnumerable<Employee> ReadAll()
         {
-            return ctx.Employees.ToList();
+            return ctx.Employees.Include(E => E.Players).ToList();
         }
 
         public Employee SearchByID(int id)
         {
-            return ctx.Employees.AsNoTracking().ToList().FirstOrDefault(e => e.IdEmployee == id);
+            return ctx.Employees.Include(E => E.Players).AsNoTracking().ToList().FirstOrDefault(e => e.IdEmployee == id);
         }
 
         public Employee Update(Employee employee)

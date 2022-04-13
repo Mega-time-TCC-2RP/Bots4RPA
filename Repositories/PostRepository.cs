@@ -26,6 +26,16 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public void Delete(Post post)
         {
+            List<Like> LikesPost = ctx.Likes.AsNoTracking().Where(L => L.IdPost == post.IdPost).ToList();
+            List<Comment> CommentsPost = ctx.Comments.AsNoTracking().Where(C => C.IdPost == post.IdPost).ToList();
+            foreach (var item in LikesPost)
+            {
+                ctx.Likes.Remove(item);
+            }
+            foreach (var item in CommentsPost)
+            {
+                ctx.Comments.Remove(item);
+            }
             ctx.Posts.Remove(post);
             ctx.SaveChangesAsync();
         }

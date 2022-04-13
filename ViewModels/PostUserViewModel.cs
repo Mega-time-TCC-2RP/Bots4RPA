@@ -22,5 +22,6 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public string Rg { get; set; }
         public int IdUserType { get; set; }
         public int IdCorporation { get; set; }
+        public int IdOffice { get; set; }
     }
 }

@@ -25,13 +25,15 @@ namespace _2rpnet.rpa.webAPI.Controllers
         private readonly IEmployeeRepository Ectx;
         private readonly ICorporationRepository Cctx;
         private readonly IPlayerRepository Pctx;
+        private readonly IOfficeRepository Octx;
 
-        public UserNamesController(IUserNameRepository context, IEmployeeRepository contextEmployee, ICorporationRepository contextCorporation, IPlayerRepository contextPlayer)
+        public UserNamesController(IUserNameRepository context, IEmployeeRepository contextEmployee, ICorporationRepository contextCorporation, IPlayerRepository contextPlayer, IOfficeRepository contextOffice)
         {
             ctx = context;
             Ectx = contextEmployee;
             Cctx = contextCorporation;
             Pctx = contextPlayer;
+            Octx = contextOffice;
         }
 
         // Metodo GET - Listagem
@@ -122,7 +124,13 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 if(user.IdUserType == 1)
                 {
-                    return BadRequest("Apenas usuários comuns ou com nível de administração interna (empresa) podem ser cadastrados");
+                    Upload.RemoveFile(UploadResult);
+                    return Unauthorized("Apenas usuários comuns ou com nível de administração interna (empresa) podem ser cadastrados");
+                }
+                else if (Octx.ReadAll().FirstOrDefault(O => O.IdOffice == user.IdOffice) == null)
+                {
+                    Upload.RemoveFile(UploadResult);
+                    return NotFound("Cargo inválido");
                 }
                 else
                 if (Cctx.SearchByID(user.IdCorporation) != null)
@@ -145,7 +153,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     Employee PostEmployee = new Employee()
                     {
                         IdUser = PostedUser.IdUser,
-                        IdCorporation = user.IdCorporation
+                        IdCorporation = user.IdCorporation,
+                        Confirmation = false
                     };
 
                     Employee PostedEmployee = Ectx.Create(PostEmployee);
@@ -226,7 +235,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+
                 UserName QueryUser = ctx.SearchByID(idUser);
+                if (ctx.SearchByID(UserId).Employees.First().IdCorporation == QueryUser.Employees.First().IdCorporation)
+                {
+                    return Unauthorized("O usuário administrador só pode validar usuários da sua empresa");
+                }
                 if (QueryUser == null)
                 {
                     return NotFound("Id do usuário inválido");
