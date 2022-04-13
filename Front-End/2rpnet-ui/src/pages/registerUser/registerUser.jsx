@@ -56,11 +56,10 @@ const MaskedInputTelephone = ({ value, onChange }) => {
         })
     }
 
-    return <InputMask id='placeholder-text' placeholder='Insira seu telefone...' mask="(99)99999-9999" value={value} required
+    return <InputMask id='placeholder-text' placeholder='Insira seu telefone...' mask="(99)99999-9999" value={value}
         onChange={handleChange}
     />
 }
-
 
 export default function RegisterUser() {
     const [currentStep, setCurrentStep] = useState(0);
@@ -114,7 +113,7 @@ export default function RegisterUser() {
                                         <div className='foreachInput'>
                                             <label className='h5'>Senha</label>
                                             <div className='passwordArea'>
-                                                <input id='password' type="password" name="password" className='placeholder-text' placeholder='Insira sua senha...' value={password} onChange={(event) => setPassword(event.target.value)} required />
+                                                <input id='password' type="password" name="password" className='placeholder-text' placeholder='Insira sua senha...' value={password} onChange={(event) => setPassword(event.target.value)} />
                                                 {
                                                     show === false && (
                                                         <AiIcons.AiFillEyeInvisible className='eyePass' onClick={showPassword} />
@@ -134,7 +133,7 @@ export default function RegisterUser() {
                                         </div>
                                         <div className='foreachInput'>
                                             <label className='h5'>Nome</label>
-                                            <input id='placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={name} onChange={(event) => setName(event.target.value)} />
+                                            <input id='placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={name} onChange={(event) => setName(event.target.value)} required />
                                         </div>
                                         <div className='foreachInput' id='areaPhoto'>
                                             <label className='h5' >Imagem de Perfil</label>

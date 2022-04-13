@@ -22,8 +22,6 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import Footer from '../../components/footer/footer'
 
 
-{/* <Navbar/> */}
-
 function App() {
   const handleLeftArrow = () => {
     
@@ -34,6 +32,7 @@ function App() {
 
   return (
     <div>
+      <Navbar/>
       <div className="top-container">
         <div className="top-buttons">
           <form>
