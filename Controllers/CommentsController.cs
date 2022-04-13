@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,10 +20,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         // Vincular a Interface
         private readonly ICommentRepository ctx;
+        private readonly IEmployeeRepository Ectx;
+        private readonly IPlayerRepository Pctx;
 
-        public CommentsController(ICommentRepository context)
+        public CommentsController(ICommentRepository context, IEmployeeRepository contextEmployee, IUserNameRepository contextUser, IPlayerRepository contextPlayer)
         {
             ctx = context;
+            Ectx = contextEmployee;
+            Pctx = contextPlayer;
         }
 
         // Metodo GET - Listagem
@@ -56,6 +61,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 comment.IdComment = id;
+                if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == comment.IdPlayer).IdEmployee).IdUser != Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value) && Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value) == 3)
+                {
+                    return Unauthorized("O usuário comum só pode atualizar seus comentários");
+                }
                 Comment UpdatedComment = ctx.Update(comment);
                 if (UpdatedComment == null)
                 {
@@ -101,6 +110,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 else
                 {
+                    if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == comment.IdPlayer).IdEmployee).IdUser != Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value) && Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value) == 3)
+                    {
+                        return Unauthorized("O usuário comum só pode excluir seus comentários");
+                    }
                     ctx.Delete(comment);
                     return NoContent();
                 }

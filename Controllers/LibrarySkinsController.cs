@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,10 +21,16 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         // Vincular a Context
         private readonly ILibrarySkinRepository ctx;
+        private readonly IEmployeeRepository Ectx;
+        private readonly IPlayerRepository Pctx;
+        private readonly ISkinRepository Sctx;
 
-        public LibrarySkinsController(ILibrarySkinRepository context)
+        public LibrarySkinsController(ILibrarySkinRepository context, IEmployeeRepository contextEmployee, IUserNameRepository contextUser, IPlayerRepository contextPlayer, ISkinRepository contextSkin)
         {
             ctx = context;
+            Ectx = contextEmployee;
+            Pctx = contextPlayer;
+            Sctx = contextSkin;
         }
 
         // Metodo GET - Listagem
@@ -58,7 +65,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo PUT - Atualizacao
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "1, 2")]
         [HttpPut("{id}")]
         public IActionResult Update(int id, LibrarySkin librarySkin)
         {
@@ -83,12 +90,28 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo POST - Cadastro
-        [Authorize(Roles = "1, 2, 3")]
-        [HttpPost]
-        public IActionResult Post(LibrarySkin librarySkin)
+        [Authorize(Roles = "3")]
+        [HttpPost("{SkinId}")]
+        public IActionResult Post(int SkinId)
         {
             try
             {
+                Skin QuerySkin = Sctx.SearchByID(SkinId);
+                Player QueryPlayer = Pctx.SearchByID(Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer);
+                if (QuerySkin == null)
+                {
+                    return NotFound("Skin inexistente");
+                }
+                else if (QuerySkin.SkinPrice > QueryPlayer.Score)
+                {
+                    return Unauthorized("O jogador não possui pontos sufuicientes para adquirir a Skin");
+                }
+                Pctx.DecreaseScore(QueryPlayer, QuerySkin.SkinPrice);
+                LibrarySkin librarySkin = new LibrarySkin()
+                {
+                    IdPlayer = QueryPlayer.IdPlayer,
+                    IdSkin = QuerySkin.IdSkin
+                };
                 ctx.Create(librarySkin);
                 return Ok(librarySkin);
             }
@@ -110,6 +133,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 if (librarySkin == null)
                 {
                     return NotFound();
+                }
+                if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == librarySkin.IdPlayer).IdEmployee).IdUser != Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value) && Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value) == 3)
+                {
+                    return Unauthorized("O usuário comum só pode deletar suas skins");
                 }
 
                 ctx.Delete(librarySkin);

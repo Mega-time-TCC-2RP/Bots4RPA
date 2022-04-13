@@ -10,5 +10,7 @@ namespace _2rpnet.rpa.webAPI.Interfaces
         Player Update(Player player);
         void Delete(Player player);
         Player SearchByID(int id);
+        Player DecreaseScore(Player player, int DecreaseValue);
+        Player IncreaseScore(Player player, int DecreaseValue);
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,14 +21,18 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         // Vincular a Interface
         private readonly IQuestRepository ctx;
+        private readonly IUserNameRepository Uctx;
+        private readonly IStatusQuestRepository Sctx;
 
-        public QuestsController(IQuestRepository context)
+        public QuestsController(IQuestRepository context, IUserNameRepository contextUser, IStatusQuestRepository contextStatus)
         {
             ctx = context;
+            Uctx = contextUser;
+            Sctx = contextStatus;
         }
 
         // Metodo GET - Listagem
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "1,2")]
         [HttpGet]
         public IActionResult ReadAll()
         {
@@ -35,7 +40,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo GET por ID - Procurar pela ID
-        [Authorize(Roles = "1,2,3")]
+        [Authorize(Roles = "1,2")]
         [HttpGet("{id}")]
         public IActionResult SearchByID(int id)
         {
@@ -56,11 +61,17 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
                 task.IdQuest = id;
                 Quest UpdateTask = ctx.Update(task);
                 if (UpdateTask == null)
                 {
                     return NotFound(new { msg = "Tarefa não encontrada" });
+                }
+                else if (task.IdEmployee != Uctx.SearchByID(UserId).Employees.First().IdEmployee && UserRole == 3)
+                {
+                    return Unauthorized("O usuário comum só pode atualizar suas tarefas");
                 }
                 else return NoContent();
             }
@@ -71,12 +82,15 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo POST - Cadastro
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "3")]
         [HttpPost]
         public IActionResult Post(Quest task)
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                task.IdEmployee = Uctx.SearchByID(UserId).Employees.First().IdEmployee;
+
                 ctx.Create(task);
 
                 return Ok(task);
@@ -95,10 +109,17 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+
                 var task = ctx.SearchByID(id);
                 if (task == null)
                 {
                     return NotFound(new { msg = "Tarefa não encontrada ou deletada" });
+                }
+                else if (task.IdEmployee != Uctx.SearchByID(UserId).Employees.First().IdEmployee && UserRole == 3)
+                {
+                    return Unauthorized("O usuário comum só pode deletar suas tarefas");
                 }
                 else
                 {
@@ -120,10 +141,20 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
                 Quest QueryQuest = ctx.SearchByID(idQuest);
                 if (QueryQuest == null)
                 {
                     return NotFound("Id da tarefa inválido!");
+                }
+                else if (Sctx.SearchByID(idStatus) == null)
+                {
+                    return NotFound("Id do status inválido!");
+                }
+                else if(QueryQuest.IdEmployee != Uctx.SearchByID(UserId).Employees.First().IdEmployee && UserRole == 3)
+                {
+                    return Unauthorized("O usuário comum só pode alterar o status das suas tarefas");
                 }
                 else
                 {
@@ -131,7 +162,23 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return NoContent();
                 }
             }
-            catch (Exception erro)
+            catch (Exception error)
+            {
+                return BadRequest(error);
+                throw;
+            }
+        }
+
+        [Authorize(Roles = "3")]
+        [HttpGet("ListarMinhas")]
+        public IActionResult GetUserQuests()
+        {
+            try
+            {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                return Ok(ctx.ReadAll().Where(quest => quest.IdEmployee == Uctx.SearchByID(UserId).Employees.First().IdEmployee));
+            }
+            catch (Exception error)
             {
                 return BadRequest(erro);
                 throw;

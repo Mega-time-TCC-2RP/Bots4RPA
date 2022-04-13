@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,10 +21,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         // Vincular a Context
         private readonly ILikeRepository ctx;
+        private readonly IEmployeeRepository Ectx;
+        private readonly IPostRepository Pctx;
 
-        public LikesController(ILikeRepository context)
+        public LikesController(ILikeRepository context, IEmployeeRepository Econtext, IPostRepository Pcontext)
         {
             ctx = context;
+            Ectx = Econtext;
+            Pctx = Pcontext;
         }
 
         // Metodo GET - Listagem
@@ -58,30 +63,32 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo PUT - Atualizacao
-        [Authorize(Roles = "1, 2, 3")]
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, Like like)
-        {
-            try
-            {
-                Like QueryLike = ctx.SearchByID(id);
-                like.IdLikes = id;
-                if (QueryLike == null)
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    ctx.Update(like);
-                    return NoContent();
-                }
-            }
-            catch (Exception error)
-            {
-                return BadRequest(error);
-                throw;
-            }
-        }
+
+
+        //[Authorize(Roles = "1, 2, 3")]
+        //[HttpPut("{id}")]
+        //public IActionResult Update(int id, Like like)
+        //{
+        //    try
+        //    {
+        //        Like QueryLike = ctx.SearchByID(id);
+        //        like.IdLikes = id;
+        //        if (QueryLike == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            ctx.Update(like);
+        //            return NoContent();
+        //        }
+        //    }
+        //    catch (Exception error)
+        //    {
+        //        return BadRequest(error);
+        //        throw;
+        //    }
+        //}
 
         // Metodo POST - Cadastro
         [Authorize(Roles = "3")]
@@ -90,6 +97,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                like.IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
                 ctx.Create(like);
 
                 return Ok(like);
@@ -103,13 +111,18 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo DELETE - Remocao
         [Authorize(Roles = "3")]
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{idPost}")]
+        public IActionResult Delete(int idPost)
         {
             try
             {
-                Like QueryLike = ctx.SearchByID(id);
-
+                Post QueryPost = Pctx.SearchByID(idPost);
+                int PlayerId = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
+                if (QueryPost == null)
+                {
+                    return NotFound("Post inexistente");
+                }
+                Like QueryLike = ctx.ReadAll().FirstOrDefault(like => like.IdPost == QueryPost.IdPost && like.IdPlayer == PlayerId);
                 if (QueryLike == null)
                 {
                     return NotFound();

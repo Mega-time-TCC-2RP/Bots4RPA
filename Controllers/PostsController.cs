@@ -22,10 +22,12 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         // Vincular a Interface
         private readonly IPostRepository ctx;
+        private readonly IEmployeeRepository Ectx;
 
-        public PostsController(IPostRepository context)
+        public PostsController(IPostRepository context, IEmployeeRepository contextEmployee)
         {
             ctx = context;
+            Ectx = contextEmployee;
         }
 
         // Metodo GET - Listagem
@@ -59,6 +61,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 post.IdPost = id;
+                post.IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
+                int UserType = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
 
                 #region Upload da Imagem com extensões permitidas apenas
                 if (File == null)
@@ -81,16 +85,21 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
                 if (QueryPost == null)
                 {
+                    Upload.RemoveFile(UploadResult);
                     return NotFound();
                 }
+                else if (QueryPost.IdPlayer != post.IdPlayer && UserType == 3)
+                {
+                    Upload.RemoveFile(UploadResult);
+                    return Unauthorized("Usuários comuns só podem atualizar seus próprios posts");
+                }
 
-                post.IdPost = id;
-                post.PostImage = UploadResult;
 
                 Upload.RemoveFile(QueryPost.PostImage);
+                QueryPost.PostImage = UploadResult;
                 #endregion
 
-                ctx.Update(post);
+                ctx.Update(QueryPost);
 
                 return NoContent();
             }
@@ -110,6 +119,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                post.IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
                 #region Upload da Imagem com extensões permitidas apenas
                 if (File == null)
                     return BadRequest("É necessário enviar um arquivo de imagem válido!");
@@ -143,16 +153,22 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo DELETE - Remocao
-        [Authorize(Roles = "3")]
+        [Authorize(Roles = "1,2,3")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             try
             {
                 var post = ctx.SearchByID(id);
+                int IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
+                int UserType = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
                 if (post == null)
                 {
                     return NotFound(new { msg = "Post não encontrado ou deletado" });
+                }
+                else if (UserType == 3 && post.IdPlayer != IdPlayer)
+                {
+                    Unauthorized("O usuário comum só pode deletar seus próprios posts");
                 }
 
                 Upload.RemoveFile(post.PostImage);

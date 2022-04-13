@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,10 +20,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         // Vincular a Context
         private readonly ILibraryTrophyRepository ctx;
+        private readonly IEmployeeRepository Ectx;
+        private readonly ITrophyRepository Tctx;
 
-        public LibraryTrophiesController(ILibraryTrophyRepository context)
+        public LibraryTrophiesController(ILibraryTrophyRepository context, IEmployeeRepository contextEmployee, ITrophyRepository contextTrophy)
         {
             ctx = context;
+            Ectx = contextEmployee;
+            Tctx = contextTrophy;
         }
 
         // Metodo GET - Listagem
@@ -57,7 +62,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo PUT - Atualizacao
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "1, 2")]
         [HttpPut("{id}")]
         public IActionResult Update(int id, LibraryTrophy libraryTro)
         {
@@ -83,12 +88,21 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo POST - Cadastro
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "3")]
         [HttpPost]
-        public IActionResult Post(LibraryTrophy libraryTro)
+        public IActionResult Post(int trophyId)
         {
             try
             {
+                if (Tctx.SearchByID(trophyId) == null)
+                {
+                    return NotFound("Troféu inexistente");
+                }
+                LibraryTrophy libraryTro = new LibraryTrophy()
+                {
+                    IdTrophy = trophyId,
+                    IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer
+                };
                 ctx.Create(libraryTro);
                 return Ok(libraryTro);
             }
@@ -100,7 +114,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo DELETE - Remocao
-        [Authorize(Roles = "1, 2, 3")]
+        [Authorize(Roles = "1, 2")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

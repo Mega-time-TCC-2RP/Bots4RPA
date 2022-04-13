@@ -27,7 +27,6 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo GET - Listagem
         [HttpGet]
-        [Authorize(Roles = "1,2,3")]
         public IActionResult ReadAll()
         {
             return Ok(ctx.ReadAll());
@@ -35,7 +34,6 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo GET por ID - Procurar pela ID
         [HttpGet("{id}")]
-        [Authorize(Roles = "1,2,3")]
         public IActionResult SearchByID(int id)
         {
             var role = ctx.SearchByID(id);
