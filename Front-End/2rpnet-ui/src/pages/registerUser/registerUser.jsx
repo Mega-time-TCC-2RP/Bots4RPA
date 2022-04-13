@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import InputMask from 'react-input-mask';
+import VLibras from '@djpfs/react-vlibras'
+
 
 //img:
 import Logo from '../../assets/img/logo2RPcadastro.png'
@@ -96,6 +98,7 @@ export default function RegisterUser() {
 
     return (
         <div>
+            <VLibras/>
             <div className='backgroudRegister'>
                 <div className='robotBlue'>
                     <img src={RoboAzul} alt="Robo Azul" />

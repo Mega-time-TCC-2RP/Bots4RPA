@@ -30,6 +30,8 @@ import RegisterUser from './pages/registerUser/registerUser';
 
 
 import { history } from './history';
+import VLibras from '@djpfs/react-vlibras'
+
 
 
 // Sem cadastro
@@ -49,6 +51,7 @@ const routing = (
         <Route path="/social" element={<TelaTimeline/>} /> {/* Social */}
         <Route path="/taskcalendar" element={<TaskCalendar/>} /> {/* Task Calendar */}
         <Route path="/taskkanban" element={<TaskKanban/>} /> {/* Task Kanban */}
+        
 
         {/*<Route path="/config" element={<Config/>} /> {/* Configuration */}
      
