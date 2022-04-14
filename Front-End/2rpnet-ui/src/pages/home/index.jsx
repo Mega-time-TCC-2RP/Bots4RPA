@@ -42,11 +42,7 @@ function App() {
   return (
     <div>
       <Navbar />
-<<<<<<< HEAD
       <div className='body-pd'>
-=======
-      <VLibras/>
->>>>>>> 07a20a42388ec0a6d4b3cc9c8930fb03f54484de
       <div className="top-container">
         <div className="top-buttons">
           <form>
@@ -174,8 +170,9 @@ function App() {
           </div>
         </form>
       </div>
-      </div>
+      
       <Footer />
+      </div>
     </div>
   );
 }
