@@ -40,7 +40,7 @@ export default function LandingPage() {
                     <div className='content'>
                         <h2 className='h2'>A melhor solução de automatização para qualquer empresa</h2>
                         <h6 className='h6'>Não perca tempo, automatize os processos dentro da sua empresa com qualidade e confiança</h6>
-                        <Link to="#"><button className='button h5'>Teste Agora</button></Link>
+                        <Link to="/registerUser"><button className='button h5'>Teste Agora</button></Link>
                     </div>
                     <img src={Robo} alt="" />
                 </section>
@@ -75,7 +75,7 @@ export default function LandingPage() {
                                 <img className='pageRepresentation' src={PageRepresentation} alt="" />
                                 <div className='textConteint'>
                                     <p>Crie os seus próprios assistentes através do fluxo de automação de acordo com as suas necessidades. Com diversas funcionalidades que podem atuar em qualquer área, é possível rodar os assistentes quando for necessário</p>
-                                    <Link to="#"><button className='button'>Começar</button></Link>
+                                    <Link to="/registerUser"><button className='button'>Começar</button></Link>
                                 </div>
                             </div>
                         </div>
