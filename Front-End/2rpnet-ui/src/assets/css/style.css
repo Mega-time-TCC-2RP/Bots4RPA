@@ -6,7 +6,7 @@
 }
 .fundotest{
     position: absolute;
-    background-color: #FCFCFC;
+    background-color: var(--ScreenBackground);
     height: 100%;
     width: 100%;
 }
@@ -17,14 +17,14 @@
     overflow-y: auto; */
 }
 .top-container{
-    background: #F1F1F1;
+    background: var(--ScreenBackground);
     height: 87vh;
 }
 .button-assistant{
-    background: #3375BA;
+    background: var(--PrimaryColor2);
     width: 200px;
     height: 55px;
-    color: #FFF;
+    color: var(--WHITE);
     border-radius: 64px;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
@@ -36,20 +36,20 @@
     margin-left: 170px;
 }
 .button-assistant:hover{
-    background: #38538A;
+    background: var(--PrimaryColor2);
 }
 .top-buttons input{
     width: 200px;
     height: 55px;
-    color: #FFF;
+    color: var(--WHITE);
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    color: #929292;
-    background: #FFFFFF;
-    border: 1px solid #C0C0C0;
+    color: var(--ComplementaryColor2);
+    background: var(--WHITE);
+    border: 1px solid var(--ComplementaryColor4);
     box-sizing: border-box;
     border-radius: 64px;
     margin-left: 20px;
@@ -62,7 +62,7 @@
     line-height: 40px;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--BLACK);
     margin-top: 50px;
     margin-left: 170px;
 }
@@ -78,8 +78,8 @@
     margin-left: 170px;
     width: 400px;
     height: 600px;
-    background: #FFFFFF;
-    border: 5px solid #F2F2F2;
+    background: var(--WHITE);
+    border: 5px solid var(--ComplementaryColor1);
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
@@ -116,7 +116,7 @@
     display: flex;
     align-items: center;
     text-indent: 32px;
-    color: #17233C;
+    color: var(--ComplementaryColor3);
     display: flex;
     text-align: center;
     justify-content: center;
@@ -133,7 +133,7 @@
     line-height: 24px;
     display: flex;
     align-items: center;
-    color: #3375BA;
+    color: var(--PrimaryColor2);
     cursor: pointer;
     display: flex;
     text-align: center;
@@ -143,15 +143,15 @@
     overflow-y: hidden;
 }
 .body-container{
-    background: #ffffff;
+    background: var(--WHITE);
     height: 87vh;
     overflow-y: hidden;
 }
 .card-body-content{
     width: 400px;
     height: 550px;
-    background: #FFFFFF;
-    border: 2px solid #F2F2F2;
+    background: var(--WHITE);
+    border: 2px solid var(--ComplementaryColor1);
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
@@ -181,7 +181,7 @@
     display: flex;
     align-items: center;
     text-align: center;
-    color: #000000;
+    color: var(--BLACK);
     display: flex;
     text-align: center;
     justify-content: center;
@@ -198,7 +198,7 @@
     align-items: center;
     text-align: center;
     text-indent: 32px;
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     text-align: center;
     justify-content: center;
     align-items: left;
@@ -214,7 +214,7 @@
     align-items: center;
     text-align: center;
     text-indent: 32px;
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     display: flex;
     text-align: center;
     justify-content: center;
@@ -222,7 +222,7 @@
     margin-top: 40px;
 }
 .bottom-container{
-    background: #F1F1F1;
+    background: var(--ComplementaryColor1);
     height: 170vh;
 }
 .bottom-title{
@@ -233,15 +233,15 @@
     line-height: 40px;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--BLACK);
     margin-left: 170px;
     margin-top: 50px;
 }
 .bottom-posts-content{
     width: 600px;
     height: 650px;
-    background: #FFFFFF;
-    border: 2px solid #F2F2F2;
+    background: var(--WHITE);
+    border: 2px solid var(--ComplementaryColor1);
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
@@ -262,7 +262,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--ComplementaryColor1);
     padding-right: 15px;
     margin-left: 15px;
 }
@@ -284,7 +284,7 @@
     line-height: 26px;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--BLACK);
 }
 .PostItem-role{
     font-family: 'Montserrat';
@@ -293,7 +293,7 @@
     font-size: 16px;
     line-height: 24px;
     display: flex;
-    color: #000000;
+    color: var(--BLACK);
 }
 .movieRow-right,.movieRow-left{
     position: absolute;
@@ -325,7 +325,7 @@
     line-height: 22px;
     display: flex;
     align-items: center;
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     margin-top: 30px;
 }
 

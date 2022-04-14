@@ -6,6 +6,7 @@ import "../../assets/css/pages/Timeline.css"
 import Modal from 'react-modal';
 import ImagemModalCadastro from "../../assets/img/CadastroPostBtn.png"
 import VLibras from '@djpfs/react-vlibras'
+import Navbar from '../../components/menu/Navbar'
 
 
 const customStyles = {
@@ -71,6 +72,7 @@ export const TelaTimeline = () => {
     }, [])
     return (
         <>
+            <Navbar />
             <main id="Main">
                 <VLibras/>
                 <div className="ContainerGrid ContainerPosts">

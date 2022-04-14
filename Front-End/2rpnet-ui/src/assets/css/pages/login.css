@@ -12,7 +12,7 @@
         margin-bottom: 50px;
 }
 .login{
-        background-color: #FCFCFC;
+        background-color: var(--ScreenBackground);
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -21,7 +21,7 @@
         
 }
 .login-container{
-        background-color: #fff;
+        background-color: var(--WHITE);
         height: 90vh;
         width: 60%;
         margin: 0 auto;
@@ -39,7 +39,7 @@
         font-size: 23px;
         line-height: 28px;
         text-indent: 32px;
-        color: #38538A;
+        color: var(--PrimaryColor2);
         display: flex;
         text-align: start;
 }
@@ -51,7 +51,7 @@
         font-size: 23px;
         line-height: 28px;
         text-indent: 32px;
-        color: #38538A;
+        color: var(--PrimaryColor2);
         display: flex;
         margin-top: 90px;
 }
@@ -69,9 +69,9 @@
         align-items: center;
         text-indent: 32px;
         opacity: 0.5;
-        background: #FFFFFF;
+        background: var(--WHITE);
 /* Cinza */
-        border: 1px solid #8B919D;
+        border: 1px solid var(--ComplementaryColor2);
         box-sizing: border-box;
         border-radius: 32px;
 }
@@ -88,17 +88,17 @@
         margin-right: 0 auto;
         margin-left: 0 auto;
         opacity: 0.6;
-        background: #FFFFFF;
+        background: var(--WHITE);
         /* Cinza */
-        border: 1px solid #8B919D;
+        border: 1px solid var(--ComplementaryColor2);
         box-sizing: border-box;
         border-radius: 32px;
 }
 .botaoLogin{
-        background: #3375BA;
+        background: var(--PrimaryColor2);
         width: 200px;
         height: 55px;
-        color: #FFF;
+        color: var(--WHITE);
         border-radius: 64px;
         font-family: 'Montserrat', sans-serif;
         font-size: 24px;
@@ -110,7 +110,7 @@
         box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
 }
 .botaoLogin:hover, .google-button:hover{
-        background: #38538A;
+        background: var(--PrimaryColor2);
 }
 .EsqueceuSenha a, .NotSigned-login{
         font-family: 'Montserrat';
@@ -121,7 +121,7 @@
         display: flex;
         align-items: center;
         text-align: center;
-        color: #38538A;
+        color: var(--PrimaryColor2);
         margin-left: 70px;
         margin-top: 20px;
         cursor: pointer;
@@ -136,16 +136,16 @@
         display: flex;
         align-items: center;
         text-align: center;
-        color: #38538A;
+        color: var(--PrimaryColor2);
         margin-left: 90px;
         margin-top: 20px;
         opacity: 0.2;
 }
 .google-button{
-        background: #3375BA;
+        background: var(--PrimaryColor2);
         width: 200px;
         height: 65px;
-        color: #FFF;
+        color: var(--WHITE);
         border-radius: 64px;
         font-family: 'Montserrat', sans-serif;
         font-size: 20px;

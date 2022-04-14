@@ -5,7 +5,7 @@
     display: flex;
 }
 .header2 {
-    background-color: #fff;
+    background-color: var(--WHITE);
     align-items: center;
     display: flex;
     height: 70px;
@@ -44,7 +44,7 @@
     left: 0; */
     height: 250px;
     width: 220px;
-    background: #fff;
+    background: var(--WHITE);
     padding: 10px 20px;
     transition: all 0.5s ease;
     font-family: 'Montserrat', sans-serif;
@@ -71,7 +71,7 @@
     
 }
 .details ul li .Link{
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     font-size: 18px;
     /* pointer-events: none; */
 }
@@ -86,7 +86,7 @@
     cursor: pointer;
 }
 .profile2 .profile_details .name_job{
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     margin-left: 10px;
 }
 .profile2 .profile_details .name{
@@ -98,7 +98,7 @@
     font-weight: 400;
 }
 .logout{
-    color: #BB3434;
+    color: var(--CTA2);
     display: flex;
     align-items: center;
     width: 100%;

@@ -35,7 +35,7 @@
 }
 
 .backgroudRegister {
-    background: #FCFCFC;
+    background: var(--ScreenBackground);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,17 +56,17 @@
     text-align: center;
     padding-left: 0%;
     margin-left: 5%;
-    color: white;
+    color: var(--WHITE);
     border-radius: 32px;
     width: 50%;
 }
 
 .foreachInput .sendPhoto:hover {
-    background: #38538A;
+    background: var(--PrimaryColor2);
 }
 
 .formRegister label {
-    color: #17233C;
+    color: var(--PrimaryColor1);
     line-height: 28px;
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@
 }
 
 .formRegister input {
-    border: 1px solid #8B919D;
+    border: 1px solid var(--SecundaryColor2);
     box-sizing: border-box;
     border-radius: 32px;
     height: 45px;
@@ -91,4 +91,3 @@
     color: rgba(0, 0, 0, 0.3);
     font-size: 1.2em;
 }
-

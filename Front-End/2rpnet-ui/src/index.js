@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import '../src/assets/css/colorVariables.css';
+import '../src/assets/css/colorBlind.css';
 
 import {
   Route,
@@ -20,6 +22,7 @@ import MyProcesses from './pages/myProcesses/';
 import {TelaTimeline} from './pages/social/index';
 import TaskCalendar from './pages/taskCalendar';
 import TaskKanban from './pages/taskKanban';
+import TesteDaltonicMode from './pages/DaltonicModeTest'
 
 import Config from './pages/config/config';
 
@@ -52,6 +55,7 @@ const routing = (
         <Route path="/social" element={<TelaTimeline/>} /> {/* Social */}
         <Route path="/taskcalendar" element={<TaskCalendar/>} /> {/* Task Calendar */}
         <Route path="/taskkanban" element={<TaskKanban/>} /> {/* Task Kanban */}
+        <Route path="/testeDaltonic" element={<TesteDaltonicMode/>} />
         
 
         {/*<Route path="/config" element={<Config/>} /> {/* Configuration */}

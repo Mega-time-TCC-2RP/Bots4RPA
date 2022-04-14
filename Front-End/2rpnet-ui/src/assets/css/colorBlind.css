@@ -1,0 +1,63 @@
+.Acromatopsia{
+    --PrimaryColor1: #232323;
+    --PrimaryColor2: #6C6C6C;
+    --SecundaryColor1: #929292;
+    --SecundaryColor2: #AEAEAE;
+    --CTA1: #B5B5B5;
+    --CTA2: #3F3F3F;
+    --ScreenBackground: #FCFCFC;
+    --ComplementaryColor1: #F2F2F2;
+    --ComplementaryColor2: #747474;
+    --ComplementaryColor3: #1C1C1C;
+    --ComplementaryColor4: #CFCFCF;
+    --WHITE: #FFF;
+    --BLACK: #000;
+}
+
+.Tritanopia{
+    --PrimaryColor1: #172B2F;
+    --PrimaryColor2: #007E88;
+    --SecundaryColor1: #E17B84;
+    --SecundaryColor2: #FD96A1;
+    --CTA1: #62D0E0;
+    --CTA2: #E41A15;
+    --ScreenBackground: #FCFBFF;
+    --ComplementaryColor1: #F4EFFF;
+    --ComplementaryColor2: #6C747D;
+    --ComplementaryColor3: #00292C;
+    --ComplementaryColor4: #D0CCDC;
+    --WHITE: #FFF;
+    --BLACK: #000;
+}
+
+.Deuteranopia{
+    --PrimaryColor1: #1B283F;
+    --PrimaryColor2: #4273BA;
+    --SecundaryColor1: #BE914A;
+    --SecundaryColor2: #DCAA61;
+    --CTA1: #DDB9A8;
+    --CTA2: #916C00;
+    --ScreenBackground: #FFFBFC;
+    --ComplementaryColor1: #FFEDF3;
+    --ComplementaryColor2: #7A707E;
+    --ComplementaryColor3: #002642;
+    --ComplementaryColor4: #E1C7D2;
+    --WHITE: #FFF;
+    --BLACK: #000;
+}
+
+.Protanopia{
+    --PrimaryColor1: #1F283F;
+    --PrimaryColor2: #5670B6;
+    --SecundaryColor1: #A89955;
+    --SecundaryColor2: #C4B36C;
+    --CTA1: #CEC093;
+    --CTA2: #81731A;
+    --ScreenBackground: #FFFBFB;
+    --ComplementaryColor1: #F6F0F1;
+    --ComplementaryColor2: #73727B;
+    --ComplementaryColor3: #162442;
+    --ComplementaryColor4: #D1CDCF;
+    --WHITE: #FFF;
+    --BLACK: #000;
+}

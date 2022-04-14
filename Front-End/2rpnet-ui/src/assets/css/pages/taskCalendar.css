@@ -1,5 +1,5 @@
 :root {
-    --box-shadow-var: 1px 4px 4px #BEBEBE;
+    --box-shadow-var: 1px 4px 4px var(--ComplementaryColor4);
 }
 
 .pageTitle{
@@ -32,12 +32,12 @@
 .cardTask {
     margin-left: 26px;
     margin-right: 26px;
-    background-color: #D37A40;
+    background-color: var(--SecundaryColor2);
     border-radius: 30px;
-    color: white;
+    color: var(--WHITE);
     padding: 55px 16px 55px 16px;
     box-shadow: var(--box-shadow-var);
-    border: 2px solid #DE834D;
+    border: 2px solid var(--SecundaryColor1);
     font-weight: 600;
 }
 
@@ -57,15 +57,15 @@
     width: 342px;
     height: 460px;
     border-radius: 30px;
-    box-shadow: 0px 4px 4px #BEBEBE;
+    box-shadow: 0px 4px 4px var(--ComplementaryColor4);
     margin-left: 32px;
 }
 
 .btnCalendar {
     width: 64px;
     height: 64px;
-    color: white;
-    background-color: #3375BA;
+    color: var(--WHITE);
+    background-color: var(--PrimaryColor2);
     border-radius: 30px;
     box-shadow: var(--box-shadow-var);
 }
