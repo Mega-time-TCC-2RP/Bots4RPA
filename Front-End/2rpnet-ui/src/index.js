@@ -21,7 +21,7 @@ import {TelaTimeline} from './pages/social/index';
 import TaskCalendar from './pages/taskCalendar';
 import TaskKanban from './pages/taskKanban';
 
-import Config from './pages/config/';
+import Config from './pages/config/config';
 
 import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
@@ -45,6 +45,7 @@ const routing = (
         <Route path="/login" element={<Login/>} /> {/* Login */}
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
+        <Route path="/Config" element={<Config />} />
         <Route path="/guide" element={<Guide/>} /> {/* Guide */}
         <Route path="/marketplace" element={<Marketplace/>} /> {/* Marketplace */}
         <Route path="/myprocesses" element={<MyProcesses/>} /> {/* MyProcesses */}

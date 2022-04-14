@@ -91,7 +91,7 @@ export default function RegisterCompany() {
                 <div className='registerArea'>
                     <div className='registerContent'>
                         <img className='logoRegister' src={Logo} alt="Logo 2RPnet" />
-                        <form className='formRegister'>
+                        <form onSubmit={register} className='formRegister'>
                             <div className='foreachInput'>
                                 <label className='h5'>Nome Fantasia</label>
                                 <input id='placeholder-text' type="text" placeholder='Insira o Nome Fantasia...' value={nomeFantasia} onChange={(event) => setNomeFantasia(event.target.value)} autoFocus required />
@@ -119,7 +119,7 @@ export default function RegisterCompany() {
                             }
                             {
                                 loading === false && (
-                                    <button className='button' type="submit" onClick={register}>Ir ao cadastro do dono</button>
+                                    <button className='button' type="submit">Ir ao cadastro do dono</button>
                                 )
                             }
                         </form>
