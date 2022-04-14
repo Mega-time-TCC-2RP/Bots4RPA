@@ -26,14 +26,20 @@ namespace _2rpnet.rpa.webAPI.Controllers
         private readonly ICorporationRepository Cctx;
         private readonly IPlayerRepository Pctx;
         private readonly IOfficeRepository Octx;
+        private readonly IPostRepository PostCtx;
+        private readonly ILibrarySkinRepository LSctx;
+        private readonly ILibraryTrophyRepository LTctx;
 
-        public UserNamesController(IUserNameRepository context, IEmployeeRepository contextEmployee, ICorporationRepository contextCorporation, IPlayerRepository contextPlayer, IOfficeRepository contextOffice)
+        public UserNamesController(IUserNameRepository context, IEmployeeRepository contextEmployee, ICorporationRepository contextCorporation, IPlayerRepository contextPlayer, IOfficeRepository contextOffice, IPostRepository contextPost, ILibrarySkinRepository contextLibrarySkin, ILibraryTrophyRepository contextLibraryTrophy)
         {
             ctx = context;
             Ectx = contextEmployee;
             Cctx = contextCorporation;
             Pctx = contextPlayer;
             Octx = contextOffice;
+            PostCtx = contextPost;
+            LSctx = contextLibrarySkin;
+            LTctx = contextLibraryTrophy;
         }
 
         // Metodo GET - Listagem
@@ -196,12 +202,34 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+
                 var user = ctx.SearchByID(id);
+                if (ctx.SearchByID(UserId).Employees.First().IdCorporation != user.Employees.First().IdCorporation && UserRole == 2)
+                {
+                    return Unauthorized("O usuário administrador só pode deletar usuários da sua empresa");
+                }
                 if (user == null)
                 {
                     return NotFound();
                 }
                 Upload.RemoveFile(user.PhotoUser);
+                List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                foreach (var item in UserPosts)
+                {
+                    PostCtx.Delete(item);
+                }
+                foreach (var item in UserSkins)
+                {
+                    LSctx.Delete(item);
+                }
+                foreach (var item in UserTrophies)
+                {
+                    LTctx.Delete(item);
+                }
                 Pctx.Delete(Pctx.SearchByID(Ectx.ReadAll().FirstOrDefault(e => e.IdUser == id).Players.First().IdPlayer));
                 Ectx.Delete(Ectx.SearchByID(user.Employees.First().IdEmployee));
                 ctx.Delete(user);
@@ -239,7 +267,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
 
                 UserName QueryUser = ctx.SearchByID(idUser);
-                if (ctx.SearchByID(UserId).Employees.First().IdCorporation == QueryUser.Employees.First().IdCorporation)
+                if (ctx.SearchByID(UserId).Employees.First().IdCorporation != QueryUser.Employees.First().IdCorporation)
                 {
                     return Unauthorized("O usuário administrador só pode validar usuários da sua empresa");
                 }

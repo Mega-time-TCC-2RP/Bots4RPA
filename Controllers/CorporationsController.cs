@@ -26,14 +26,20 @@ namespace _2rpnet.rpa.webAPI.Controllers
         private readonly IUserNameRepository Uctx;
         private readonly IPlayerRepository Pctx;
         private readonly IOfficeRepository Octx;
+        private readonly IPostRepository PostCtx;
+        private readonly ILibrarySkinRepository LSctx;
+        private readonly ILibraryTrophyRepository LTctx;
 
-        public CorporationsController(ICorporationRepository context, IEmployeeRepository contextEmployee, IUserNameRepository contextUser, IPlayerRepository contextPlayer, IOfficeRepository contextOffice)
+        public CorporationsController(ICorporationRepository context, IEmployeeRepository contextEmployee, IUserNameRepository contextUser, IPlayerRepository contextPlayer, IOfficeRepository contextOffice, IPostRepository contextPost, ILibrarySkinRepository contextLibrarySkin, ILibraryTrophyRepository contextLibraryTrophy)
         {
             ctx = context;
             Ectx = contextEmployee;
             Uctx = contextUser;
             Pctx = contextPlayer;
             Octx = contextOffice;
+            PostCtx = contextPost;
+            LSctx = contextLibrarySkin;
+            LTctx = contextLibraryTrophy;
         }
 
         // Metodo GET - Listagem
@@ -227,9 +233,24 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 List<Employee> employeeList = Ectx.ReadAll().Where(E => E.IdCorporation == corporate.IdCorporation).ToList();
                 foreach (Employee item in employeeList)
                 {
-                    Uctx.Delete(Uctx.SearchByID(item.IdUser));
+                    List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).ToList();
+                    List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).ToList();
+                    List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).ToList();
+                    foreach (var item2 in UserPosts)
+                    {
+                        PostCtx.Delete(item2);
+                    }
+                    foreach (var item2 in UserSkins)
+                    {
+                        LSctx.Delete(item2);
+                    }
+                    foreach (var item2 in UserTrophies)
+                    {
+                        LTctx.Delete(item2);
+                    }
                     Pctx.Delete(item.Players.First());
                     Ectx.Delete(item);
+                    Uctx.Delete(Uctx.SearchByID(item.IdUser));
                 }
                 Upload.RemoveFile(corporate.CorporatePhoto);
                 ctx.Delete(corporate);
