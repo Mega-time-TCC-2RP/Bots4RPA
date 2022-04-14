@@ -4,6 +4,6 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
 export default function Play() {
     return (
-        <FontAwesomeIcon icon={faPlay} />
+        <FontAwesomeIcon class="icon-play" icon={faPlay} />
     )
 }

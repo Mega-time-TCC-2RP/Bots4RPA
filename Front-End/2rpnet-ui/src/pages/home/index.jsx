@@ -22,6 +22,14 @@ import PlayIcon from '../../components/icones/play'
 import Footer from '../../components/footer/footer'
 
 
+
+function handleClose(idCard) {
+  var modal = document.getElementById("modal");
+  // console.log(id)
+  modal.style.display = "none";
+};
+
+
 {/* <Navbar/> */ }
 
 function App() {
@@ -36,58 +44,118 @@ function App() {
     <div>
       <div className="top-container">
         <div className="top-buttons">
-          <form>
+          <form class="form-home">
             <button className="button-assistant">Criar Assistente</button>
             <input type='search' placeholder="Buscar assistente" id="Assistente"></input>
           </form>
           <form className="nao">
             <div className="movieRow-left">
-              <NavigateBeforeIcon style={{ fontSize: 150 }} />
+              <NavigateBeforeIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
             </div>
             <div className="movieRow-right">
-              <NavigateNextIcon style={{ fontSize: 150 }} />
+              <NavigateNextIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
             </div>
+
             <div className="card1">
               <img src={Azul_Home} className="card1-img" />
               <h5>Assistente 1</h5>
-              <a className="play-button"></a>
-              <PlayIcon/>
-            
-              
-             <div class="box_details">
+              <PlayIcon />
+              <div class="box-details">
+                <button
+                  onClick="document.getElementById('idCard').style.display='block'"
+                  className="details-button"
+                >Ver detalhes
+                </button>
 
-              <button 
+                {/* <div id="idCard" class="modal">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <span onclick="document.getElementById('idCard').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                      <p>Some text. Some text. Some text.</p>
+                      <p>Some text. Some text. Some text.</p>
+                    </div>
+                  </div>
+                </div> */}
+
+                <div id="idCard"className="modal">
+                  {/* Modal content */}
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <span onClick={() => handleClose("idCard")} className="close">&times;</span>
+                      <div className="modal-header--content">
+                        <p className="modal__text--heading">Nome:</p>
+                        <p className="modal__text--heading2">oi</p>
+                      </div>
+                      <div className="modal-header--content">
+                        <p className="modal__text--heading">Descrição:</p>
+                        <p className="modal__text--heading2">descrição}</p>
+                      </div>
+                    </div>
+                    <div className="modal-body">
+                      <label className="modal__text" htmlFor="">Digite aqui o valor necessário:</label>
+
+      
+                    </div>
+
+                  </div>
+               </div>
+            </div>
+
+        </div>
+
+        <div className="card1">
+          <img src={Vermelho_Home} className="card1-img" />
+          <h5>Assistente 2</h5>
+          <PlayIcon />
+          <div class="box-details">
+            <button
               onClick="document.getElementById('idCard').style.display='block'"
               className="details-button"
-              >Ver detalhes</button>
-              <div class="modal">
- 
-              </div>
-             </div>
-
+            >Ver detalhes</button>
+            <div class="modal">
             </div>
-            <div className="card1">
-              <img src={Vermelho_Home} className="card1-img" />
-              <h5>Assistente 2</h5>
-              <a className="play-button">▶</a>
-              <button className="details-button">Ver detalhes</button>
-            </div>
-            <div className="card1">
-              <img src={Amarelo_Home} className="card1-img" />
-              <h5>Assistente 3</h5>
-              <a className="play-button">▶</a>
-              <button className="details-button">Ver detalhes</button>
-              </div>
+          </div>
+        </div>
 
-            {/* <div className="card1">
+        <div className="card1">
+          <img src={Amarelo_Home} className="card1-img" />
+          <h5>Assistente 3</h5>
+          <PlayIcon />
+          <div class="box-details">
+            <button
+              onClick="document.getElementById('idCard').style.display='block'"
+              className="details-button"
+            >Ver detalhes</button>
+            <div class="modal">
+            </div>
+          </div>
+        </div>
+
+        <div className="card1">
+          <img src={Verde_Home} className="card1-img" />
+          <h5>Assistente 4</h5>
+          <PlayIcon />
+          <div class="box-details">
+            <button
+              onClick="document.getElementById('idCard').style.display='block'"
+              className="details-button"
+            >Ver detalhes</button>
+            <div class="modal">
+            </div>
+          </div>
+        </div>
+
+
+
+        {/* <div className="card1">
               <img src={Verde_Home} className="card1-img"/>
               <h5>Assistente 4</h5>
               <a className="play-button">▶</a>
               <a className="details-button">Ver detalhes</a>
             </div> */}
-          </form>
-        </div>
-      </div>
+      </form>
+    </div>
+      </div >
       <div className="body-container">
         <form>
           <h2 className="body-title-task">Minhas Tarefas</h2>
@@ -175,7 +243,7 @@ function App() {
           </div>
         </form>
       </div>
-    </div>
+    </div >
   );
 }
 
