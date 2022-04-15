@@ -14,6 +14,10 @@
     --BLACK: #000;
 }
 
+.Acromatopsia img{
+    filter: url(#acromatopsiaFilter);
+}
+
 .Tritanopia{
     --PrimaryColor1: #172B2F;
     --PrimaryColor2: #007E88;
@@ -28,6 +32,10 @@
     --ComplementaryColor4: #D0CCDC;
     --WHITE: #FFF;
     --BLACK: #000;
+}
+
+.Tritanopia img{
+    filter: url(#tritanopiaFilter);
 }
 
 .Deuteranopia{
@@ -46,6 +54,10 @@
     --BLACK: #000;
 }
 
+.Deuteranopia img{
+    filter: url(#deuteranopiaFilter);
+}
+
 .Protanopia{
     --PrimaryColor1: #1F283F;
     --PrimaryColor2: #5670B6;
@@ -60,4 +72,88 @@
     --ComplementaryColor4: #D1CDCF;
     --WHITE: #FFF;
     --BLACK: #000;
+}
+
+.Protanopia img{
+    filter: url(#protanopiaFilter);
+}
+
+.Acromatomalia{
+    --PrimaryColor1: #1F232C;
+    --PrimaryColor2: #586F89;
+    --SecundaryColor1: #AE8D79;
+    --SecundaryColor2: #C9A893;
+    --CTA1: #8AC2AD;
+    --CTA2: #7B3028;
+    --ScreenBackground: #FCFCFC;
+    --ComplementaryColor1: #F2F2F2;
+    --ComplementaryColor2: #717477;
+    --ComplementaryColor3: #131D29;
+    --ComplementaryColor4: #CFCFD0;
+    --WHITE: #FFF;
+    --BLACK: #000;
+}
+
+.Acromatomalia img{
+    filter: url(#acromatomaliaFilter);
+}
+
+.Tritanomalia{
+    --PrimaryColor1: #182834;
+    --PrimaryColor2: #137B9B;
+    --SecundaryColor1: #E07E70;
+    --SecundaryColor2: #FB998B;
+    --CTA1: #55D3C9;
+    --CTA2: #E4180D;
+    --ScreenBackground: #FCFCFE;
+    --ComplementaryColor1: #F3F0FA;
+    --ComplementaryColor2: #6C747D;
+    --ComplementaryColor3: #012633;
+    --ComplementaryColor4: #D0CDD8;
+    --WHITE: #FFF;
+    --BLACK: #000;
+}
+
+.Tritanomalia img{
+    filter: url(#tritanomaliaFilter);
+}
+
+.Deuteranomalia{
+    --PrimaryColor1: #1A263E;
+    --PrimaryColor2: #3D74BB;
+    --SecundaryColor1: #CA8C4B;
+    --SecundaryColor2: #E6A663;
+    --CTA1: #A3C5A5;
+    --CTA2: #B04D00;
+    --ScreenBackground: #FEFBFC;
+    --ComplementaryColor1: #FAEFF3;
+    --ComplementaryColor2: #75727D;
+    --ComplementaryColor3: #012441;
+    --ComplementaryColor4: #DACAD2;
+    --WHITE: #FFF;
+    --BLACK: #000;
+}
+
+.Deuteranomalia img{
+    filter: url(#deuteranomaliaFilter);
+}
+
+.Protanomalia{
+    --PrimaryColor1: #1D263E;
+    --PrimaryColor2: #4972B8;
+    --SecundaryColor1: #BC9152;
+    --SecundaryColor2: #D7AB69;
+    --CTA1: #9AC997;
+    --CTA2: #A55010;
+    --ScreenBackground: #FEFBFC;
+    --ComplementaryColor1: #F5F1F1;
+    --ComplementaryColor2: #70737C;
+    --ComplementaryColor3: #0F2342;
+    --ComplementaryColor4: #D0CED0;
+    --WHITE: #FFF;
+    --BLACK: #000;
+}
+
+.Protanomalia img{
+    filter: url(#protanomaliaFilter);
 }
