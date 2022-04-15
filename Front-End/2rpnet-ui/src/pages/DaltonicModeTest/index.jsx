@@ -23,61 +23,138 @@ import '../../assets/css/components/fonts.css'
 import Navbar from '../../components/menu/Navbar'
 
 export default function TesteDaltonicMode() {
-    const MudarTema = () => {
-        let form = document.querySelector('.color_mode');
+    const SetTema = () => {
+        let mode = localStorage.getItem('temaApp');
+        if (mode === "normal") {
+            document.documentElement.classList.toggle("normal")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "achromatopsia") {
+            document.documentElement.classList.toggle("Acromatopsia")
+            document.documentElement.classList.remove("default")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "protanopia") {
+            document.documentElement.classList.toggle("Protanopia")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("default")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "deuteranopia") {
+            document.documentElement.classList.toggle("Deuteranopia")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("default")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "tritanopia") {
+            document.documentElement.classList.toggle("Tritanopia")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("default")
+            localStorage.setItem('temaApp', mode);
+        }
+        else {
+            document.documentElement.classList.toggle("normal")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', "normal");
+        }
+      }
 
-        form.addEventListener('change', (e) => {
-            let mode = e.target.value;
+    const MudarTema = (theme) => {
+        let mode = theme;
 
-            if (mode === "normal") {
-                document.documentElement.classList.toggle("normal")
-            }
-            else if (mode === "achromatopsia") {
-                document.documentElement.classList.toggle("Acromatopsia")
-            }
-            else if (mode === "protanopia") {
-                document.documentElement.classList.toggle("Protanopia")
-            }
-            else if (mode === "deuteranopia") {
-                document.documentElement.classList.toggle("Deuteranopia")
-            }
-            else if (mode === "tritanopia") {
-                document.documentElement.classList.toggle("Tritanopia")
-            }
-            else {
-                document.documentElement.classList.toggle("normal")
-            }
-        })
+        if (mode === "normal") {
+            document.documentElement.classList.toggle("normal")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "achromatopsia") {
+            document.documentElement.classList.toggle("Acromatopsia")
+            document.documentElement.classList.remove("default")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "protanopia") {
+            document.documentElement.classList.toggle("Protanopia")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("default")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "deuteranopia") {
+            document.documentElement.classList.toggle("Deuteranopia")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("default")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "tritanopia") {
+            document.documentElement.classList.toggle("Tritanopia")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("default")
+            localStorage.setItem('temaApp', mode);
+        }
+        else {
+            document.documentElement.classList.toggle("normal")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+            localStorage.setItem('temaApp', "normal");
+        }
     }
     return (
         <div>
             <Navbar />
             <VLibras />
-            <div>
-                <form onSubmit={() => MudarTema()}>
-                    <label for="normal_mode">
-                        <input type="radio" name="color_mode" id="normal_mode" value="normal" checked></input>
-                        Padrão
-                    </label>
-                    <label for="normal_mode">
-                        <input type="radio" name="color_mode" id="achromatopsia_mode" value="achromatopsia" checked></input>
-                        Acromatopsia
-                    </label>
-                    <label for="normal_mode">
-                        <input type="radio" name="color_mode" id="protanopia_mode" value="protanopia" checked></input>
-                        Protanopia
-                    </label>
-                    <label for="normal_mode">
-                        <input type="radio" name="color_mode" id="delteranopia_mode" value="deuteranopia" checked></input>
-                        Delteranopia
-                    </label>
-                    <label for="normal_mode">
-                        <input type="radio" name="color_mode" id="tritanopia_mode" value="tritanopia" checked></input>
-                        Tritanopia
-                    </label>
-                    <button type="submit" value="Confirmar">AAAAAAAA</button>
-                </form>
-            </div>
+            <select onChange={(e) => MudarTema(e.target.value)}>
+                <optgroup>
+                    {
+                        localStorage.getItem('temaApp') === "normal" ?
+                        <option value="normal" selected>Padrão</option> : <option value="normal">Padrão</option>
+                    }
+                    {
+                        localStorage.getItem('temaApp') === "tritanopia" ?
+                        <option value="tritanopia" selected>Tritanopia</option> : <option value="tritanopia">Tritanopia</option>
+                    }
+                    {
+                        localStorage.getItem('temaApp') === "deuteranopia" ?
+                        <option value="deuteranopia" selected>Deuteranopia</option> : <option value="deuteranopia">Deuteranopia</option>
+                    }
+                    {
+                        localStorage.getItem('temaApp') === "protanopia" ?
+                        <option value="protanopia" selected>Protanopia</option> : <option value="protanopia">Protanopia</option>
+                    }
+                    {
+                        localStorage.getItem('temaApp') === "achromatopsia" ?
+                        <option value="achromatopsia" selected>Acromatopsia</option> : <option value="achromatopsia">Acromatopsia</option>
+                    }
+                </optgroup>
+            </select>
             <Footer />
         </div>
     );
