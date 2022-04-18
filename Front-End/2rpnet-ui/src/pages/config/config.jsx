@@ -11,10 +11,12 @@ import Amarelo_Home from '../../assets/img/Amarelo_Home.png'
 import Verde_Home from '../../assets/img/Verde_Home.png'
 import Post_Perfil_Photo from '../../assets/img/Post_Perfil_Photo.png'
 import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
+import Profile from '../../assets/img/profile.jpg'
 
 //css:
 import '../../assets/css/components/button.css'
 import '../../assets/css/components/fonts.css'
+import '../../assets/css/pages/config.css'
 
 //icons:
 import * as AiIcons from 'react-icons/ai'
@@ -38,38 +40,69 @@ const steps = [
 export default function Config() {
     const [currentStep, setCurrentStep] = useState(0);
 
+    function select(nextStep) {
+        setCurrentStep(nextStep)
+        switch (nextStep) {
+            case 0:
+                document.querySelector('.myData').classList.toggle('selected')
+                document.querySelector('.Acessibilidade').classList.remove('selected')
+                document.querySelector('.validarUsuarios').classList.remove('selected')
+                document.querySelector('.validarEmpresas').classList.remove('selected')
+                break;
+            case 1:
+                document.querySelector('.myData').classList.remove('selected')
+                document.querySelector('.Acessibilidade').classList.toggle('selected')
+                document.querySelector('.validarUsuarios').classList.remove('selected')
+                document.querySelector('.validarEmpresas').classList.remove('selected')
+                break;
+            case 2:
+                document.querySelector('.myData').classList.remove('selected')
+                document.querySelector('.Acessibilidade').classList.remove('selected')
+                document.querySelector('.validarUsuarios').classList.toggle('selected')
+                document.querySelector('.validarEmpresas').classList.remove('selected')
+                break;
+            case 3:
+                document.querySelector('.myData').classList.remove('selected')
+                document.querySelector('.Acessibilidade').classList.remove('selected')
+                document.querySelector('.validarUsuarios').classList.remove('selected')
+                document.querySelector('.validarEmpresas').classList.toggle('selected')
+                break;
+            default:
+                break;
+        }
+    }
+
     return (
         <div>
-            {/* <Navbar /> */}
+            <Navbar />
             <div className='configPage'>
                 <h1 className='container h1'>Configurações</h1>
-                <nav>
-                    <span onClick={() => setCurrentStep(0)}>Meus Dados</span>
-                    <span onClick={() => setCurrentStep(1)}>Acessibilidade</span>
-                    <span onClick={() => setCurrentStep(2)}>Validar usuários</span>
-                    <span onClick={() => setCurrentStep(3)}>Validar Empresas</span>
+                <nav className='navAreaConfig container'>
+                    <span className='h3 myData' id='myData' onClick={() => select(0)}>Meus Dados</span>
+                    <span className='h3 Acessibilidade' id='Acessibilidade' onClick={() => select(1)}>Acessibilidade</span>
+                    <span className='h3 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span>
+                    <span className='h3 validarEmpresas' id='validarEmpresas' onClick={() => select(3)}>Validar Empresas</span>
                 </nav>
-                <section>
+                <section className='configContent validUser container'>
                     {
                         steps[currentStep].id === 'Step1' && (
-                            <div>
-                                <div>
-                                    <h2>Meus Dados</h2>
-                                    <div>
-                                        <div>
-                                            <h3>Email</h3>
-                                            <h3>Nome</h3>
-                                            <h3>Idade</h3>
+                            <div className='areaStep'>
+                                <div className='contentAreaConfig'>
+                                    <div className='mainContentArea'>
+                                        <div className='contentConfig'>
+                                            <h3 className='h5'>Email: <p>LoremIpsum</p></h3>
+                                            <h3 className='h5'>Nome: <p>LoremIpsum</p></h3>
+                                            <h3 className='h5'>Idade: <p>LoremIpsum</p></h3>
                                         </div>
-                                        <div>
-                                            <h3>CPF</h3>
-                                            <h3>RG</h3>
-                                            <h3>Telefone</h3>
+                                        <div className='contentConfig'>
+                                            <h3 className='h5'>CPF: <p>LoremIpsum</p></h3>
+                                            <h3 className='h5'>RG: <p>LoremIpsum</p></h3>
+                                            <h3 className='h5'>Telefone: <p>LoremIpsum</p></h3>
                                         </div>
                                     </div>
-                                    <img src="" alt="" />
+                                    <img src={Profile} className='profileImage' alt="Imagem de perfil" />
                                 </div>
-                                <button>Atualizar Dados</button>
+                                <button className='button'>Atualizar Dados</button>
                             </div>
                         )
                     }
@@ -82,20 +115,19 @@ export default function Config() {
                     }
                     {
                         steps[currentStep].id === 'Step3' && (
-                            <div>
-                                <h2>Validar Usuários</h2>
-                                <div>
-                                    <div>
-                                        <span>Email <p>LoremIpsum</p></span>
-                                        <span>CPF <p>LoremIpsum</p></span>
-                                        <span>Nome <p>LoremIpsum</p></span>
-                                        <span>RG <p>LoremIpsum</p></span>
-                                        <span>Telefone <p>LoremIpsum</p></span>
-                                        <span>Data de Nascimento <p>LoremIpsum</p></span>
+                            <div className='scrollDiv'>
+                                <div className='mainContentArea contentValidUser'>
+                                    <div className='contentConfig'>
+                                        <h3>Email <p>LoremIpsum</p></h3>
+                                        <h3>CPF <p>LoremIpsum</p></h3>
+                                        <h3>Nome <p>LoremIpsum</p></h3>
+                                        <h3>RG <p>LoremIpsum</p></h3>
+                                        <h3>Telefone <p>LoremIpsum</p></h3>
+                                        <h3>Data de Nascimento <p>LoremIpsum</p></h3>
                                     </div>
                                     <div>
-                                        <SiIcons.SiVerizon />
-                                        <AiIcons.AiOutlineClose />
+                                        <SiIcons.SiVerizon className='iconConfig' />
+                                        <AiIcons.AiOutlineClose className='iconConfig2' />
                                     </div>
                                 </div>
                             </div>
@@ -103,17 +135,16 @@ export default function Config() {
                     }
                     {
                         steps[currentStep].id === "Step4" && (
-                            <div>
-                                <h2>Validar Empresas</h2>
-                                <div>
-                                    <div>
-                                        <span>CNPJ <p>LoremIpsum</p></span>
-                                        <span>Razão Social <p>LoremIpsum</p></span>
-                                        <span>Nome Fantasia <p>LoremIpsum</p></span>
+                            <div className='scrollDiv'>
+                                <div className='mainContentArea contentValidCompany'>
+                                    <div className='contentConfig'>
+                                        <h3>CNPJ <p>LoremIpsum</p></h3>
+                                        <h3>Razão Social <p>LoremIpsum</p></h3>
+                                        <h3>Nome Fantasia <p>LoremIpsum</p></h3>
                                     </div>
                                     <div>
-                                        <SiIcons.SiVerizon />
-                                        <AiIcons.AiOutlineClose />
+                                        <SiIcons.SiVerizon className='iconConfig' />
+                                        <AiIcons.AiOutlineClose className='iconConfig2' />
                                     </div>
                                 </div>
                             </div>
