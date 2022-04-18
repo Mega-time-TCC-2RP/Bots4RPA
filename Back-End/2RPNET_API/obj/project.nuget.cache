@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YNdgN9r1cPSk8QTHG8tFzsKHFib3A1bQl64FuAZjk+kuYYvOy5Cs2Bs1Z7LlOGacsAjvwMd+GiCeQ9bPTyAJmQ==",
+  "dgSpecHash": "wVRbouAJmyiylH2rUHWJj9rAkJXuyN0eJJuiibByW9iXdiF8Qoev68bJ3RpSXodC6d3XMSsWHbJxb+7ZHPzQ6g==",
   "success": true,
   "projectFilePath": "C:\\Users\\46755453862.INFOSCS\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
   "expectedPackageFiles": [
@@ -139,7 +139,7 @@
     "C:\\Users\\46755453862.INFOSCS\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\46755453862.INFOSCS\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\46755453862.INFOSCS\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\46755453862.INFOSCS\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
+    "C:\\Users\\46755453862.INFOSCS\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.16\\microsoft.netcore.app.host.win-x64.5.0.16.nupkg.sha512"
   ],
   "logs": []
 }
