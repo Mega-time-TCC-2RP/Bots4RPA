@@ -17,12 +17,12 @@ class Header extends Component {
                 <div className='container'>
                     <div className='headerInside2'>
                         <div className='coins'>
-                        <img src={Coin} alt="img coin"/>
+                        <img src={Coin} alt="moedas"/>
                         <div className='cash'>1000</div>
                     </div>
                     <div className='profile2'>
                         <div className='profile_details'>
-                        <img src={Profile} className='imgProfile' alt="img profile"  onClick={click}/>
+                        <img src={Profile} className='imgProfile' alt="imagem de perfil"  onClick={click}/>
                         </div>
                     </div>
                     </div>
@@ -32,7 +32,7 @@ class Header extends Component {
             <div className='details'>
             <div className='profile2'>
             <div className='profile_details'>
-                <img src={Profile} alt="img profile"/>
+                <img src={Profile} alt="imagem de perfil"/>
                 <div className='name_job'>
                     <div className='name'>Name</div>
                     <div className='job'>Job</div>
@@ -42,22 +42,22 @@ class Header extends Component {
                 <ul>
                     <li>
                     <Link to="#" className='Link'>
-                        <span className='Links_name'>Acessar Consquistas</span>
+                        <span className='Links_name' alt="botão acessar conquistas">Acessar Consquistas</span>
                     </Link>
                     </li>
                     <li>
                     <Link to="#" className='Link'>
-                        <span className='Links_name'>Acessar Skins</span>
+                        <span className='Links_name' alt="botão acessar skins">Acessar Skins</span>
                     </Link>
                     </li>
                     <li>
                     <Link to="#" className='Link'>
-                        <span className='Links_name'>Acessar Progresso</span>
+                        <span className='Links_name' alt="botão acessar skins">Acessar Progresso</span>
                     </Link>
                     </li>
                 </ul>
                 <div className='logout'>
-                    <span>Sair</span>
+                    <span alt="botão sair">Sair</span>
                     <HiIcons.HiOutlineLogout id='log_out'/>
                 </div>
                 

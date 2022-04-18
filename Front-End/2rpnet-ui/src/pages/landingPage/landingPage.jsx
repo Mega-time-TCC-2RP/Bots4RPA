@@ -31,37 +31,36 @@ export default function LandingPage() {
                     <div className='headerInside container'>
                         <img src={Logo} alt="Logo 2RP" />
                         <div className='headerNav'>
-                            <Link to="/login"><span className='login h6'>Login</span></Link>
-                            <Link to="/registerUser"><button className='button h6' id='buttonSignUp' >Inscreva-se</button></Link>
+                            <Link to="/login"><span className='login h6' alt="Login">Login</span></Link>
+                            <Link to="/registerUser"><button className='button h6' id='buttonSignUp' alt="Inscreva-se">Inscreva-se</button></Link>
                         </div>
                     </div>
                 </div>
                 <section className='container section'>
                     <div className='content'>
-                        <h2 className='h2'>A melhor solução de automatização para qualquer empresa</h2>
-                        <h6 className='h6'>Não perca tempo, automatize os processos dentro da sua empresa com qualidade e confiança</h6>
-                        <Link to="/registerUser"><button className='button h5'>Teste Agora</button></Link>
+                        <h2 className='h2' alt="A melhor solução de automatização para qualquer empresa">A melhor solução de automatização para qualquer empresa</h2>
+                        <h6 className='h6' alt="Não perca tempo, automatize os processos dentro da sua empresa com qualidade e confiança">Não perca tempo, automatize os processos dentro da sua empresa com qualidade e confiança</h6>
+                        <Link to="/registerUser"><button className='button h5' alt="Teste agora">Teste Agora</button></Link>
                     </div>
-                    <img src={Robo} alt="" />
+                    <img src={Robo} alt="Imagem robô" />
                 </section>
                 <section className='section section2'>
                     <div className='container section2Content'>
-                        <h3 className='h3'>Áreas de atendimento</h3>
+                        <h3 className='h3' alt="Áreas de atendimento">Áreas de atendimento</h3>
                         <div className='articleArea'>
                             <article>
-                                <img src={Financas} alt="Finanças" />
-                                <h5>Finanças</h5>
-                                <p>Possíveis soluções na área de finanças para o desempenho do seu negócio</p>
+                                <img src={Financas} alt="Imagem Finanças" />
+                                <h5 alt="Finanças">Finanças</h5>
+                                <p alt="Possíveis soluções na área de finanças para o desempenho do seu negócio">Possíveis soluções na área de finanças para o desempenho do seu negócio</p>
                             </article>
                             <article>
-                                <img src={Banco} alt="Banco" />
-                                <h5>Banco</h5>
-                                <p>Através da automação, tarefas no setor bancário são feitas em tempo reduzido com qualidade</p>
+                                <img src={Banco} alt="imagem Banco" />
+                                <h5 alt="Banco">Banco</h5>
+                                <p alt="Através da automação, tarefas no setor bancário são feitas em tempo reduzido com qualidade">Através da automação, tarefas no setor bancário são feitas em tempo reduzido com qualidade</p>
                             </article>
                             <article>
-                                <img src={Admin} alt="Administração" />
-                                <h5>Admin</h5>
-                                <p>A área administrativa leva demandas que são facilmente simplificadas através da aplicação</p>
+                                <img src={Admin} alt="Imagem Administração" />
+                                <h5 alt="Administração">Admin</h5>
                             </article>
                         </div>
                     </div>

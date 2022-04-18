@@ -42,7 +42,7 @@ export default function Config() {
         <div>
             {/* <Navbar /> */}
             <div className='configPage'>
-                <h1 className='container h1'>Configurações</h1>
+                <h1 className='container h1' alt="configurações">Configurações</h1>
                 <nav>
                     <span onClick={() => setCurrentStep(0)}>Meus Dados</span>
                     <span onClick={() => setCurrentStep(1)}>Acessibilidade</span>
@@ -54,36 +54,36 @@ export default function Config() {
                         steps[currentStep].id === 'Step1' && (
                             <div>
                                 <div>
-                                    <h2>Meus Dados</h2>
+                                    <h2 alt="Meus Dados">Meus Dados</h2>
                                     <div>
                                         <div>
-                                            <h3>Email</h3>
-                                            <h3>Nome</h3>
-                                            <h3>Idade</h3>
+                                            <h3 alt="Email">Email</h3>
+                                            <h3 alt="Nome">Nome</h3>
+                                            <h3 alt="Idade">Idade</h3>
                                         </div>
                                         <div>
-                                            <h3>CPF</h3>
-                                            <h3>RG</h3>
-                                            <h3>Telefone</h3>
+                                            <h3 alt="CPF">CPF</h3>
+                                            <h3 alt="RG">RG</h3>
+                                            <h3 alt="Telefone">Telefone</h3>
                                         </div>
                                     </div>
                                     <img src="" alt="" />
                                 </div>
-                                <button>Atualizar Dados</button>
+                                <button alt="Atualizar Dados">Atualizar Dados</button>
                             </div>
                         )
                     }
                     {
                         steps[currentStep].id === 'Step2' && (
                             <div>
-                                <h2>Acessibilidade</h2>
+                                <h2 alt="Acessibilidade">Acessibilidade</h2>
                             </div>
                         )
                     }
                     {
                         steps[currentStep].id === 'Step3' && (
                             <div>
-                                <h2>Validar Usuários</h2>
+                                <h2 alt="Validar Usuários">Validar Usuários</h2>
                                 <div>
                                     <div>
                                         <span>Email <p>LoremIpsum</p></span>
@@ -104,12 +104,12 @@ export default function Config() {
                     {
                         steps[currentStep].id === "Step4" && (
                             <div>
-                                <h2>Validar Empresas</h2>
+                                <h2 alt="Validar Empresas">Validar Empresas</h2>
                                 <div>
                                     <div>
-                                        <span>CNPJ <p>LoremIpsum</p></span>
-                                        <span>Razão Social <p>LoremIpsum</p></span>
-                                        <span>Nome Fantasia <p>LoremIpsum</p></span>
+                                        <span alt="CNPJ">CNPJ <p>LoremIpsum</p></span>
+                                        <span alt="Razão Social">Razão Social <p>LoremIpsum</p></span>
+                                        <span alt="Nome Fantasia">Nome Fantasia <p>LoremIpsum</p></span>
                                     </div>
                                     <div>
                                         <SiIcons.SiVerizon />
