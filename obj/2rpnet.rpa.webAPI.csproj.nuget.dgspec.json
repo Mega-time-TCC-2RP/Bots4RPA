@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\branch-api-nuvem\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj": {}
+    "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\branch-api-nuvem\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj": {
+    "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\branch-api-nuvem\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
+        "projectUniqueName": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj",
         "projectName": "2rpnet.rpa.webAPI",
-        "projectPath": "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\branch-api-nuvem\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
-        "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\branch-api-nuvem\\Bots-4RPA\\obj\\",
+        "projectPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj",
+        "packagesPath": "C:\\Users\\37378203840.INFOSCS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\37378203840.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,12 +89,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.14, 5.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -103,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
