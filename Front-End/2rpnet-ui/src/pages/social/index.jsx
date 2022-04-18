@@ -19,8 +19,8 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
         width: '1000px',
         height: '90vh',
-        background: '#FFFFFF',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        background: 'var(--WHITE)',
+        boxShadow: 'var(--darkShadow)',
         borderRadius: '30px'
     },
 };

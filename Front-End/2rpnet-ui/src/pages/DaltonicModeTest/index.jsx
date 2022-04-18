@@ -38,6 +38,24 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark")
+
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "darkMode"){
+            document.documentElement.classList.toggle("Dark")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+
+            document.documentElement.classList.remove("Acromatomalia")
+            document.documentElement.classList.remove("Tritanomalia")
+            document.documentElement.classList.remove("Deuteranomalia")
+            document.documentElement.classList.remove("Protanomalia")
+
+            document.documentElement.classList.remove("normal");
+
             localStorage.setItem('temaApp', mode);
         }
         else if (mode === "achromatopsia") {
@@ -51,6 +69,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Tritanomalia")
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
+
+            document.documentElement.classList.remove("Dark");
 
             localStorage.setItem('temaApp', mode);
         }
@@ -66,6 +86,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark");
+
             localStorage.setItem('temaApp', mode);
         }
         else if (mode === "deuteranopia") {
@@ -79,6 +101,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Tritanomalia")
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
+
+            document.documentElement.classList.remove("Dark");
 
             localStorage.setItem('temaApp', mode);
         }
@@ -94,6 +118,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark");
+
             localStorage.setItem('temaApp', mode);
         }
         else if(mode === "achromatomaly"){
@@ -107,6 +133,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Tritanomalia")
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
+
+            document.documentElement.classList.remove("Dark");
 
             localStorage.setItem('temaApp', mode);
         }
@@ -122,6 +150,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark");
+
             localStorage.setItem('temaApp', mode);
         }
         else if(mode === "protanomaly"){
@@ -135,6 +165,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Tritanomalia")
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("normal")
+
+            document.documentElement.classList.remove("Dark");
 
             localStorage.setItem('temaApp', mode);
         }
@@ -150,6 +182,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("normal")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark");
+
             localStorage.setItem('temaApp', mode);
         }
         else {
@@ -163,6 +197,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Tritanomalia")
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
+
+            document.documentElement.classList.remove("Dark");
 
             localStorage.setItem('temaApp', "normal");
         }
@@ -183,6 +219,24 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark")
+
+            localStorage.setItem('temaApp', mode);
+        }
+        else if (mode === "darkMode"){
+            document.documentElement.classList.toggle("Dark")
+            document.documentElement.classList.remove("Acromatopsia")
+            document.documentElement.classList.remove("Protanopia")
+            document.documentElement.classList.remove("Deuteranopia")
+            document.documentElement.classList.remove("Tritanopia")
+
+            document.documentElement.classList.remove("Acromatomalia")
+            document.documentElement.classList.remove("Tritanomalia")
+            document.documentElement.classList.remove("Deuteranomalia")
+            document.documentElement.classList.remove("Protanomalia")
+
+            document.documentElement.classList.remove("normal");
+
             localStorage.setItem('temaApp', mode);
         }
         else if (mode === "achromatopsia") {
@@ -196,6 +250,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Tritanomalia")
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
+
+            document.documentElement.classList.remove("Dark");
 
             localStorage.setItem('temaApp', mode);
         }
@@ -211,6 +267,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark");
+
             localStorage.setItem('temaApp', mode);
         }
         else if (mode === "deuteranopia") {
@@ -225,6 +283,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark");
+
             localStorage.setItem('temaApp', mode);
         }
         else if (mode === "tritanopia") {
@@ -238,6 +298,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Tritanomalia")
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
+            
+            document.documentElement.classList.remove("Dark");
 
             localStorage.setItem('temaApp', mode);
         }
@@ -253,6 +315,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark");
+
             localStorage.setItem('temaApp', mode);
         }
         else if(mode === "tritanomaly"){
@@ -266,6 +330,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("normal")
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
+
+            document.documentElement.classList.remove("Dark");
 
             localStorage.setItem('temaApp', mode);
         }
@@ -281,6 +347,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("normal")
 
+            document.documentElement.classList.remove("Dark");
+
             localStorage.setItem('temaApp', mode);
         }
         else if(mode === "deuteranomaly"){
@@ -295,6 +363,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("normal")
             document.documentElement.classList.remove("Protanomalia")
 
+            document.documentElement.classList.remove("Dark");
+
             localStorage.setItem('temaApp', mode);
         }
         else {
@@ -308,6 +378,8 @@ export default function TesteDaltonicMode() {
             document.documentElement.classList.remove("Tritanomalia")
             document.documentElement.classList.remove("Deuteranomalia")
             document.documentElement.classList.remove("Protanomalia")
+
+            document.documentElement.classList.remove("Dark");
 
             localStorage.setItem('temaApp', "normal");
         }
@@ -357,6 +429,10 @@ export default function TesteDaltonicMode() {
                         {
                             localStorage.getItem('temaApp') === "deuteranomaly" ?
                                 <option value="deuteranomaly" selected>Deuteranomalia</option> : <option value="deuteranomaly">Deuteranomalia</option>
+                        }
+                        {
+                            localStorage.getItem('temaApp') === "darkMode" ?
+                            <option value="darkMode" selected>Tema escuro</option> : <option value="darkMode">Tema escuro</option> 
                         }
                     </optgroup>
                 </select>

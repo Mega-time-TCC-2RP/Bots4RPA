@@ -81,7 +81,7 @@
     background: var(--WHITE);
     border: 5px solid var(--ComplementaryColor1);
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 50px;
     display: inline-block;
 
@@ -153,7 +153,7 @@
     background: var(--WHITE);
     border: 2px solid var(--ComplementaryColor1);
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
     margin-top: 60px;
     margin-left: 170px;
@@ -243,7 +243,7 @@
     background: var(--WHITE);
     border: 2px solid var(--ComplementaryColor1);
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
     margin-left: 170px;
     margin-top: 70px;
