@@ -7,4 +7,8 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = _2RPNET_API
+<<<<<<< HEAD:Back-End/2RPNET_API/obj/Debug/net5.0/2RPNET_API.GeneratedMSBuildEditorConfig.editorconfig
 build_property.ProjectDir = C:\Users\50928811867.INFOSCS\Desktop\Projeto-2RP\Back-End\2RPNET_API\
+=======
+build_property.ProjectDir = C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\2RPNET_API\
+>>>>>>> 7febaecc6a4f3ee332cf39247a85f721f5e42083:Back-End/2RPNET_API/2RPNET_API/obj/Debug/net5.0/2RPNET_API.GeneratedMSBuildEditorConfig.editorconfig
