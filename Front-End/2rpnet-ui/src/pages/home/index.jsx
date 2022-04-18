@@ -21,8 +21,11 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 
 //Components:
-import menu from '../../components/menu/Navbar'
 import Footer from '../../components/footer/footer'
+
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {

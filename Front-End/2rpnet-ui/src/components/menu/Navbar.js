@@ -37,44 +37,44 @@ return (
       <ul className='nav_list'>
         <li>
           <Link to="/" className='Link'>
-            <ImIcons.ImHome3 className='icon2'/>
-            <span className='Links_name'>Home</span>
+            <ImIcons.ImHome3 className='icon2' alt="botão página inicial"/>
+            <span className='Links_name' alt="botão página inicial">Home</span>
           </Link>
         </li>
         <li>
           <Link to="/guide" className='Link'>
-            <RiIcons.RiGuideFill className='icon2'/>
-            <span className='Links_name'>Guias</span>
+            <RiIcons.RiGuideFill className='icon2' alt="botão guias"/>
+            <span className='Links_name' alt="botão guias">Guias</span>
           </Link>
         </li>
         <li>
           <Link to="/marketplace" className='Link'>
-            <RiIcons.RiShoppingBagFill className='icon2'/>
-            <span className='Links_name'>Loja</span>
+            <RiIcons.RiShoppingBagFill className='icon2' alt="botão loja"/>
+            <span className='Links_name' alt="botão loja">Loja</span>
           </Link>
         </li>
         <li>
           <Link to="/taskcalendar" className='Link'>
-            <FaIcons.FaTasks className='icon2'/>
-            <span className='Links_name'>Tarefas</span>
+            <FaIcons.FaTasks className='icon2' alt="botão tarefas"/>
+            <span className='Links_name' alt="botão tarefas">Tarefas</span>
           </Link>
         </li>
         <li>
           <Link to="/myprocesses" className='Link'>
-            <FaIcons.FaRobot className='icon2'/>
-            <span className='Links_name'>Assistentes</span>
+            <FaIcons.FaRobot className='icon2' alt="botão assistentes"/>
+            <span className='Links_name' alt="botão assistentes">Assistentes</span>
           </Link>
         </li>
         <li>
           <Link to="/social" className='Link'>
-            <AiIcons.AiFillMessage className='icon2'/>
-            <span className='Links_name'>Social</span>
+            <AiIcons.AiFillMessage className='icon2' alt="botão fórum social"/>
+            <span className='Links_name' alt="botão fórum social">Social</span>
           </Link>
         </li>
         <li>
           <Link to="/config" className='Link'>
-            <BsIcons.BsFillGearFill className='icon2'/>
-            <span className='Links_name'>Configurações</span>
+            <BsIcons.BsFillGearFill className='icon2' alt="botão configurações"/>
+            <span className='Links_name' alt="botão configurações">Configurações</span>
           </Link>
         </li>
         
@@ -82,7 +82,7 @@ return (
         <div className='profile_content'>
           <div className='profile'>
             <div className='profile_details'>
-            <img src={Profile} alt="img profile"/>
+            <img src={Profile} alt="Imagem de perfíl"/>
               <div className='name_job'>
                 <div className='name'>Name</div>
                 <div className='job'>Job</div>
