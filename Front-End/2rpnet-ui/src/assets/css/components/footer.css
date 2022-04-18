@@ -12,7 +12,7 @@
 }
 
 footer {
-    background: #17233C;
+    background: var(--PrimaryColor1);
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@ footer {
 
 footer span {
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: var(--WHITE);
     font-style: normal;
     font-weight: 400;
     font-size: 23px;

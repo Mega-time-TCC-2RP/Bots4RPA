@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import '../src/assets/css/colorVariables.css';
+import '../src/assets/css/colorBlind.css';
+import '../src/assets/css/darkMode.css'
 
 import {
   Route,
@@ -17,9 +20,10 @@ import Login from './pages/login/';
 import Guide from './pages/guide/';
 import Marketplace from './pages/marketplace/skinShop';
 import MyProcesses from './pages/myProcesses/';
-import {TelaTimeline} from './pages/social/index';
+import { TelaTimeline } from './pages/social/index';
 import TaskCalendar from './pages/taskCalendar';
 import TaskKanban from './pages/taskKanban';
+import TesteDaltonicMode from './pages/DaltonicModeTest'
 
 import Config from './pages/config/config';
 
@@ -40,29 +44,208 @@ const routing = (
   <Router>
     <div>
       <Routes history={history}>
-        <Route exact path="/" element={<Home/>} /> {/* Home */}
-        <Route path="/landingPage" element={<LandingPage/>} />
-        <Route path="/login" element={<Login/>} /> {/* Login */}
+        <Route exact path="/" element={<Home />} /> {/* Home */}
+        <Route path="/landingPage" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} /> {/* Login */}
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/Config" element={<Config />} />
-        <Route path="/guide" element={<Guide/>} /> {/* Guide */}
-        <Route path="/marketplace" element={<Marketplace/>} /> {/* Marketplace */}
-        <Route path="/myprocesses" element={<MyProcesses/>} /> {/* MyProcesses */}
-        <Route path="/social" element={<TelaTimeline/>} /> {/* Social */}
-        <Route path="/taskcalendar" element={<TaskCalendar/>} /> {/* Task Calendar */}
-        <Route path="/taskkanban" element={<TaskKanban/>} /> {/* Task Kanban */}
-        
+        <Route path="/guide" element={<Guide />} /> {/* Guide */}
+        <Route path="/marketplace" element={<Marketplace />} /> {/* Marketplace */}
+        <Route path="/myprocesses" element={<MyProcesses />} /> {/* MyProcesses */}
+        <Route path="/social" element={<TelaTimeline />} /> {/* Social */}
+        <Route path="/taskcalendar" element={<TaskCalendar />} /> {/* Task Calendar */}
+        <Route path="/taskkanban" element={<TaskKanban />} /> {/* Task Kanban */}
+        <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />
+
 
         {/*<Route path="/config" element={<Config/>} /> {/* Configuration */}
-     
-        <Route path="/notFound" element={<NotFound/>} /> {/* Not Found */}
-        <Route path="*" element={<Navigate to="notFound"/>} /> {/*Redireciona para Not Found caso não encontre nenhuma rota*/}
+
+        <Route path="/notFound" element={<NotFound />} /> {/* Not Found */}
+        <Route path="*" element={<Navigate to="notFound" />} /> {/*Redireciona para Not Found caso não encontre nenhuma rota*/}
       </Routes>
     </div>
   </Router>
 );
 
+const SetTema = () => {
+  let mode = localStorage.getItem('temaApp');
+
+  if (mode === "normal") {
+    document.documentElement.classList.toggle("normal")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("Protanomalia")
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else if (mode === "darkMode") {
+    document.documentElement.classList.toggle("Dark")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("Protanomalia")
+
+    document.documentElement.classList.remove("normal");
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else if (mode === "achromatopsia") {
+    document.documentElement.classList.toggle("Acromatopsia")
+    document.documentElement.classList.remove("normal")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("Protanomalia")
+
+    document.documentElement.classList.remove("Dark");
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else if (mode === "protanopia") {
+    document.documentElement.classList.toggle("Protanopia")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("normal")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("Protanomalia")
+
+    document.documentElement.classList.remove("Dark");
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else if (mode === "deuteranopia") {
+    document.documentElement.classList.toggle("Deuteranopia")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("normal")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("Protanomalia")
+
+    document.documentElement.classList.remove("Dark");
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else if (mode === "tritanopia") {
+    document.documentElement.classList.toggle("Tritanopia")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("normal")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("Protanomalia")
+
+    document.documentElement.classList.remove("Dark");
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else if (mode === "achromatomaly") {
+    document.documentElement.classList.toggle("Acromatomalia")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("normal")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("Protanomalia")
+
+    document.documentElement.classList.remove("Dark");
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else if (mode === "tritanomaly") {
+    document.documentElement.classList.toggle("Tritanomalia")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("normal")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("Protanomalia")
+
+    document.documentElement.classList.remove("Dark");
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else if (mode === "protanomaly") {
+    document.documentElement.classList.toggle("Protanomalia")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("normal")
+
+    document.documentElement.classList.remove("Dark");
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else if (mode === "deuteranomaly") {
+    document.documentElement.classList.toggle("Deuteranomalia")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("normal")
+    document.documentElement.classList.remove("Protanomalia")
+
+    document.documentElement.classList.remove("Dark");
+
+    localStorage.setItem('temaApp', mode);
+  }
+  else {
+    document.documentElement.classList.toggle("normal")
+    document.documentElement.classList.remove("Acromatopsia")
+    document.documentElement.classList.remove("Protanopia")
+    document.documentElement.classList.remove("Deuteranopia")
+    document.documentElement.classList.remove("Tritanopia")
+
+    document.documentElement.classList.remove("Acromatomalia")
+    document.documentElement.classList.remove("Tritanomalia")
+    document.documentElement.classList.remove("Deuteranomalia")
+    document.documentElement.classList.remove("Protanomalia")
+
+    document.documentElement.classList.remove("Dark");
+
+    localStorage.setItem('temaApp', "normal");
+  }
+}
+
 ReactDOM.render(routing, document.getElementById('root'));
-
-
+ReactDOM.render(SetTema())

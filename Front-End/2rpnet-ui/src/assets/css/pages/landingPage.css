@@ -58,11 +58,11 @@ a {
     font-weight: 400;
     line-height: 27px;
     font-style: normal;
-    color: #818181;
+    color: var(--ComplementaryColor2);
 }
 
 .hr {
-    background: #17233C;
+    background: var(--PrimaryColor1);
     transform: rotate(90deg);
     width: 33px;
     height: 0px;
@@ -74,7 +74,7 @@ a {
     font-weight: 400;
     line-height: 27px;
     font-style: normal;
-    color: #17233C;
+    color: var(--PrimaryColor1);
 }
 
 #buttonSignUp {
@@ -105,7 +105,7 @@ a {
     font-style: normal;
     font-weight: 700;
     line-height: 49px;
-    color: #17233C;
+    color: var(--PrimaryColor1);
 }
 
 .section h6 {
@@ -113,12 +113,12 @@ a {
     font-style: normal;
     font-weight: 700;
     line-height: 30px;
-    color: #818181;    ;
+    color: var(--ComplementaryColor2);
 }
 
 .section2 {
     flex-direction: column;
-    background: #F8F8F8;
+    background: var(--ComplementaryColor1);
 }
 
 .section2Content {
@@ -136,8 +136,8 @@ a {
 }
 
 .articleArea article {
-    background: #FFFFFF;
-    box-shadow: 4px 4px 4px rgba(189, 189, 189, 0.25);
+    background: var(--WHITE);
+    box-shadow: 4px 4px 4px var(--lightShadow);
     border-radius: 30px;
     width: 325px;
     height: 325px;
@@ -157,7 +157,7 @@ a {
     font-weight: 700;
     font-size: 25px;
     line-height: 30px;
-    color: #17233C;
+    color: var(--PrimaryColor1);
 }
 
 .articleArea article p {
@@ -166,7 +166,7 @@ a {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    color: #818181;
+    color: var(--ComplementaryColor2);
     text-align: center;
 }
 
@@ -188,13 +188,13 @@ a {
 .sectionH3 {
     font-weight: 400;
     line-height: 40px;
-    color: #17233C;
+    color: var(--PrimaryColor1);
 }
 
 .sectionH5 {
     font-weight: 400;
     line-height: 30px;
-    color: #818181;
+    color: var(--ComplementaryColor2);
     text-align: center;
     align-items: center;
     width: 632px;
@@ -215,7 +215,7 @@ a {
 }
 
 .textConteint p {
-    color: #17233C;
+    color: var(--PrimaryColor1);
     align-items: center;
     text-align: center;
     font-style: normal;

@@ -42,6 +42,7 @@ function App() {
   return (
     <div>
       <Navbar />
+      <div className='body-pd'>
       <VLibras />
       <div className="top-container">
         <div className="top-buttons">
@@ -170,8 +171,10 @@ function App() {
           </div>
         </form>
       </div>
+      
       <Footer />
-    </div >
+      </div>
+    </div>
   );
 }
 

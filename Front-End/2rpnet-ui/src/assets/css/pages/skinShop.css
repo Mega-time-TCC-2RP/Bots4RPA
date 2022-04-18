@@ -14,16 +14,16 @@
     
 }
 #all{
-    background: #F2F2F2;
+    background: var(--ComplementaryColor1);
 }
 
 .Titulo_inputs h1{
     font-size: 50px;
-    color: #17233C;
+    color: var(--PrimaryColor1);
 }
 
 .filtragem_Busca .input{
-    border: 1px solid #8B919D;
+    border: 1px solid var(--ComplementaryColor2);
     box-sizing: border-box;
     border-radius: 32px;
     height: 45px;
@@ -40,8 +40,8 @@
     margin-bottom: 50px;
 } 
 .skin{
-    background: #fff;
-    border: 4px solid #F2F2F2;
+    background: var(--WHITE);
+    border: 4px solid var(--ComplementaryColor1);
     height: 310px;
     width: 250px;
     display: flex;
@@ -52,7 +52,7 @@
     margin-bottom: 80px;
     font-family: 'Montserrat';
     border-radius: 50px;
-    box-shadow: #3375BA 0px 10px 11px 0px;
+    box-shadow: var(--PrimaryColor2) 0px 10px 11px 0px;
 }
 .skin img{
     width: 200px;
@@ -63,21 +63,22 @@
     text-align: center;
     font-size: 25px;
     margin-bottom: 8px;
+    color: var(--BLACK);
 }
 .coin{
     padding: 5px;
     width: 80px;
-    background: #3375BA;
+    background: var(--PrimaryColor2);
     border-radius: 40px;
     display: flex;
     align-items: center;
-    color:#fff;
+    color:var(--WHITE);
     margin-bottom: 16px;
 }
 .coin:hover{
     cursor: pointer;
-    background: #F2F2F2;
-    color: #3375BA;
+    background: var(--ComplementaryColor1);
+    color: var(--PrimaryColor2);
 }
 .coin img{
     margin: 0;
@@ -89,5 +90,5 @@
 .skin .details2{
     cursor: pointer;
     font-size: 18px;
-    color: #3375BA;
+    color: var(--PrimaryColor2);
 }
