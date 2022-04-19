@@ -91,3 +91,13 @@
     color: var(--darkShadow);
     font-size: 1.2em;
 }
+
+.input {
+    border: 1px solid var(--PrimaryColor1);
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    border-radius: 32px;
+    height: 45px;
+    width: 100%;
+}
