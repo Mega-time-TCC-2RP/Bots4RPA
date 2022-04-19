@@ -109,7 +109,7 @@
         cursor: pointer;
         box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
 }
-.botaoLogin:hover, .google-button:hover{
+.botaoLogin:hover{
         background: var(--PrimaryColor2);
 }
 .EsqueceuSenha a, .NotSigned-login{
@@ -141,15 +141,24 @@
         margin-top: 20px;
         opacity: 0.2;
 }
-.google-button{
-        background: var(--PrimaryColor2);
-        width: 200px;
+button{
+        border-radius: 32px;
+}
+.google-button{ 
+        /* border: 2px solid !important; 
+        border-image-slice: 30 !important;
+        border-image-source: linear-gradient(90deg, #4885ED 0%, #4885ED 26.04%, #DB3236 26.18%, #DB3236 51.03%, #F4C20D 51.04%, #F4C20D 76.56%, #3CBA54 76.57%) !important; */
+        position: relative;
+        border: solid 2px !important;
+        border-image-slice: 30 !important;
+        border-radius: 20px !important;
+        background-image: linear-gradient(white, white), radial-gradient(circle at top left, red, blue) !important;
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        cursor: pointer;
+        width: 400px;
         height: 65px;
-        color: var(--WHITE);
-        border-radius: 64px;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 20px;
-        font-weight: 400;
+        border-radius: 32px;
         line-height: 28px;
         border: none;
         margin-top: 30px;
@@ -157,9 +166,18 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin-left: 85px;
-        cursor: pointer;
-        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+        /* margin-left: 35px; */
+        box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+        background-color: rgb(255, 255, 255);
+        display: inline-flex;
+        align-items: center;
+        
+        
+        padding: 0px;
+        
+        font-size: 14px;
+        font-weight: 500;
+        
 }
 .img-red{
         position: fixed;
@@ -170,4 +188,22 @@
         position: fixed;
         bottom: 0;
         left: 0;
+}
+form{
+        align-items: center;
+}
+#googleLogin{
+        /* color: rgba(0, 0, 0, 0.54); */
+        padding-right: 5px;
+        font-size: 18px;
+        font-weight: 500;
+        font-family: 'Montserrat', sans-serif;
+}
+.icon3{
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+        background: rgb(255, 255, 255);
+        padding: 5px;
+        border-radius: 2px
 }
