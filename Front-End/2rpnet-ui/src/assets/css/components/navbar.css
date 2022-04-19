@@ -18,6 +18,7 @@ body{
     background: var(--PrimaryColor2);
     padding: 6px 14px;
     transition: all 0.5s ease;
+    z-index: 99;
 }
 .sidebar.active{
     width: 240px;
