@@ -4,22 +4,25 @@ using Xunit;
 
 namespace Rpa.Test.Domains
 {
-    public class LibrarySkinDomainTest
+    public class QuestDomainTest
     {
         [Fact]
-        public void Must_Return_Employee()
+        public void Must_Return_Quest()
         {
             // Arrange
-            LibrarySkin librarySkin = new LibrarySkin();
-            librarySkin.UnlockData = new DateTime(05 / 02 / 2022);
+            Quest quest = new Quest();
+            quest.DateHour = DateTime.Now;
+            quest.DescriptionQuest = "Apagar o tweet";
+            quest.IdStatus = 2;
 
             // Act
             bool result = true;
 
-            if (librarySkin.UnlockData == null)
+            if (quest.DateHour == null || quest.DescriptionQuest == null)
             {
                 result = false;
             }
+
             // Assert
             Assert.True(result);
         }

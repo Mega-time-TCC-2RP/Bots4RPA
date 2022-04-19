@@ -24,7 +24,6 @@ C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\bin\Debug\net5.0\Rpa.Te
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\bin\Debug\net5.0\Rpa.Test.runtimeconfig.json
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\bin\Debug\net5.0\Rpa.Test.runtimeconfig.dev.json
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\bin\Debug\net5.0\Rpa.Test.dll
-C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\bin\Debug\net5.0\ref\Rpa.Test.dll
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\bin\Debug\net5.0\Rpa.Test.pdb
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\bin\Debug\net5.0\BCrypt.Net-Next.dll
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\bin\Debug\net5.0\Humanizer.dll
@@ -232,3 +231,4 @@ C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\obj\Debug\net5.0\Rpa.Te
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\obj\Debug\net5.0\ref\Rpa.Test.dll
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\obj\Debug\net5.0\Rpa.Test.pdb
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\obj\Debug\net5.0\Rpa.Test.genruntimeconfig.cache
+C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\Rpa.Test\obj\Debug\net5.0\refint\Rpa.Test.dll

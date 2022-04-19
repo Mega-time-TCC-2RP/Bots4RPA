@@ -469,7 +469,6 @@ C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\bin\Debug\net5
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\bin\Debug\net5.0\2rpnet.rpa.webAPI.runtimeconfig.json
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\bin\Debug\net5.0\2rpnet.rpa.webAPI.runtimeconfig.dev.json
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\bin\Debug\net5.0\2rpnet.rpa.webAPI.dll
-C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\bin\Debug\net5.0\ref\2rpnet.rpa.webAPI.dll
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\bin\Debug\net5.0\2rpnet.rpa.webAPI.pdb
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\bin\Debug\net5.0\2rpnet.rpa.webAPI.xml
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\bin\Debug\net5.0\BCrypt.Net-Next.dll
@@ -605,3 +604,4 @@ C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\obj\Debug\net5
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\obj\Debug\net5.0\2rpnet.rpa.webAPI.xml
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\obj\Debug\net5.0\2rpnet.rpa.webAPI.pdb
 C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\obj\Debug\net5.0\2rpnet.rpa.webAPI.genruntimeconfig.cache
+C:\Users\37378203840.INFOSCS\Desktop\TCC\k back\tarde-api-develop\obj\Debug\net5.0\refint\2rpnet.rpa.webAPI.dll

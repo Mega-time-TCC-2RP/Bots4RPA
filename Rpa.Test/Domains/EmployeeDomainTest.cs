@@ -1,25 +1,28 @@
 ﻿using _2rpnet.rpa.webAPI.Domains;
-using System;
 using Xunit;
 
 namespace Rpa.Test.Domains
 {
-    public class LibrarySkinDomainTest
+    public class EmployeeDomainTest
     {
         [Fact]
         public void Must_Return_Employee()
         {
             // Arrange
-            LibrarySkin librarySkin = new LibrarySkin();
-            librarySkin.UnlockData = new DateTime(05 / 02 / 2022);
+            Employee employee = new Employee();
+            employee.IdCorporation = 1;
+            employee.IdOffice = 2;
+            employee.IdUser = 3;
+            employee.Confirmation = true;
 
             // Act
             bool result = true;
 
-            if (librarySkin.UnlockData == null)
+            if (employee.IdOffice == null)
             {
                 result = false;
             }
+
             // Assert
             Assert.True(result);
         }

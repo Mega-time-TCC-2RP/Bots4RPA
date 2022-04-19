@@ -1,25 +1,25 @@
 ﻿using _2rpnet.rpa.webAPI.Domains;
-using System;
 using Xunit;
 
 namespace Rpa.Test.Domains
 {
-    public class LibrarySkinDomainTest
+    public class OfficeDomainTest
     {
         [Fact]
-        public void Must_Return_Employee()
+        public void Must_Return_Office()
         {
             // Arrange
-            LibrarySkin librarySkin = new LibrarySkin();
-            librarySkin.UnlockData = new DateTime(05 / 02 / 2022);
+            Office role = new Office();
+            role.TitleOffice = "Funcionário 2RP net";
 
             // Act
             bool result = true;
 
-            if (librarySkin.UnlockData == null)
+            if (role.TitleOffice == null)
             {
                 result = false;
             }
+
             // Assert
             Assert.True(result);
         }

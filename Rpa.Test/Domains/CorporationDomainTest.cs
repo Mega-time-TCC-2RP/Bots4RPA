@@ -1,9 +1,4 @@
 ﻿using _2rpnet.rpa.webAPI.Domains;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Rpa.Test.Domains
