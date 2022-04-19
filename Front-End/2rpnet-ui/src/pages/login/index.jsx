@@ -4,9 +4,6 @@ import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import VLibras from '@djpfs/react-vlibras'
-import GoogleLogin from 'react-google-login'
-import GoogleButton from 'react-google-button'
-import * as FcIcons from 'react-icons/fc'
 
 //img:
 import logoMaior from '../../assets/img/logoMaior.png'
@@ -66,13 +63,6 @@ export default function Login() {
         
         let history = useNavigate();
 
-        // const googleBtnStyles ={
-        //         content :{
-        //                 borderRadius: '50px',
-        //                 fontSize: '18px'
-        //         }
-        // }
-
         const handleSubmit = (e) => {
                 e.preventDefault();
         
@@ -117,10 +107,6 @@ export default function Login() {
                         this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
                     })
             };
-
-            const responseGoogle = (response) => {
-                    console.log(response);
-            }
 
         return (
                 <div>
@@ -167,22 +153,7 @@ export default function Login() {
                                                         <span alt="divisor de elementos">---------ou---------</span>
                                                 </div>
 
-<<<<<<< HEAD
-                                                        <GoogleLogin 
-                                                                clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
-                                                                render={renderProps => (
-                                                                        <button className='google-button' onClick={renderProps.onClick}>
-                                                                                <FcIcons.FcGoogle className='icon3'/>
-                                                                                <span id='googleLogin'>Continuar com o Google</span>
-                                                                        </button>
-                                                                      )}
-                                                                onSuccess={responseGoogle}
-                                                                onFailure={responseGoogle}
-
-                                                        />
-=======
                                                         <button className='google-button' alt="Entrar com o Google">Continuar com o Google</button>
->>>>>>> ca01e17dc73ccdb8c453bc501fdc5349c59b62d2
 
                                                 <div className='NotSigned-login'>
                                                         <a alt="Não possui cadastro?">Não possui cadastro?</a>
