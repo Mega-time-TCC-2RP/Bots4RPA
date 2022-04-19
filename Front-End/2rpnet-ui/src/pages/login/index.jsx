@@ -29,6 +29,9 @@ import '../../assets/css/components/fonts.css';
 //services
 import { history } from '../../history';
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -36,6 +39,31 @@ export default function Login() {
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
 
+        const diffToast = () => {
+                toast.success('Autenticando...', {
+                        position: "top-right",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+        }
+        const errorToast = () => {
+                toast.error('Ops! Ocorreu um erro', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+        }
+
+
+        
         let history = useNavigate();
 
         // const googleBtnStyles ={
@@ -51,27 +79,40 @@ export default function Login() {
                 axios.post('https://grupo7.azurewebsites.net/api/Login', {
                     email: email,
                     password: password
-                })        
+                })  
+                .then(diffToast(),
+                        bazinga => {
+                                if (bazinga.status !== 200) {
+                                        toast.dismiss(diffToast());
+                                        errorToast()
+                                }
+                        }
+                )  
                     .then(resposta => {
                         if (resposta.status === 200) {
                             localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
+                            
                             // define a variável base64 que vai receber o payload do token
                             let base64 = localStorage.getItem('2rp-chave-autenticacao').split('.')[1];
-                            console.log(base64);
+                        //     console.log(base64);
                             // exibe as propriedades da página
-                            console.log(parseJwt());
+                        //     console.log(parseJwt());
                             // verifica se o usuário logado é do tipo administrador
                             //mudar aqui e no menu principal se o cadastro for liberado para
                             //todos os usuarios
                             if (parseJwt().role === '1' ) {
                                 history('/')
-                                console.log('logado: ' + usuarioAutenticado())
+
+                                // console.log('logado: ' + usuarioAutenticado())
                             }
+                            
                             else{
                                 history('/notFound')
+
                             }
                         }
                     })
+
                     .catch(() => {
                         this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
                     })
@@ -85,16 +126,18 @@ export default function Login() {
                 <div>
 
                         <div className='login'>
+                        <ToastContainer/>
                         <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
                         <VLibras/>
                                 <div className='login-container'>
                                         
                                         
+                                        
                                         <div className='forms-login'>
                                         <img src={logoMaior} className='logo-Header' alt="Logo 2RP" />
-                                        <form onSubmit={handleSubmit}>
+                                        <form onSubmit={handleSubmit} >
                                                 <div className='formsLogin-Email'>
-                                                        <p className='topo-input-email'>E-mail</p>
+                                                        <p className='topo-input-email' alt="Email">E-mail</p>
                                                         <input
                                                                 type="email"
                                                                 placeholder='Insira seu E-mail'
@@ -104,7 +147,7 @@ export default function Login() {
                                                         />
                                                 </div>
                                                 <div className='Login'>
-                                                        <p className='topo-input-senha'>Senha</p>
+                                                        <p className='topo-input-senha' alt="Senha">Senha</p>
                                                         <input
                                                                 type="password"   
                                                                 placeholder='Insira sua senha'
@@ -114,16 +157,17 @@ export default function Login() {
                                                         />
                                                 </div>
                                                 
-                                                <button className='botaoLogin'>Logar</button>
+                                                        <button className='botaoLogin' >Logar</button>
                                                 
                                                 <div className='EsqueceuSenha'>
-                                                        <a className='re-passwq'>Esqueceu a senha?</a>
+                                                        <a className='re-passwq' alt="Esqueceu a senha?" >Esqueceu a senha?</a>
                                                 </div>
 
                                                 <div className='divider'>
-                                                        <span>---------ou---------</span>
+                                                        <span alt="divisor de elementos">---------ou---------</span>
                                                 </div>
 
+<<<<<<< HEAD
                                                         <GoogleLogin 
                                                                 clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
                                                                 render={renderProps => (
@@ -136,9 +180,12 @@ export default function Login() {
                                                                 onFailure={responseGoogle}
 
                                                         />
+=======
+                                                        <button className='google-button' alt="Entrar com o Google">Continuar com o Google</button>
+>>>>>>> ca01e17dc73ccdb8c453bc501fdc5349c59b62d2
 
                                                 <div className='NotSigned-login'>
-                                                        <a>Não possui cadastro?</a>
+                                                        <a alt="Não possui cadastro?">Não possui cadastro?</a>
                                                 </div>
                                                 </form>
                                                 <div>

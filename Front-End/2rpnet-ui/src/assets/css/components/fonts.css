@@ -83,11 +83,11 @@
 }
 
 #placeholder-text::placeholder {
-    color: rgba(0, 0, 0, 0.3);
+    color: var(--darkShadow);
     font-size: 1.2em;
 }
 
 .placeholder-text::placeholder {
-    color: rgba(0, 0, 0, 0.3);
+    color: var(--darkShadow);
     font-size: 1.2em;
 }

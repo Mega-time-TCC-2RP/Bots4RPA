@@ -7,6 +7,9 @@ import Modal from 'react-modal';
 import ImagemModalCadastro from "../../assets/img/CadastroPostBtn.png"
 import VLibras from '@djpfs/react-vlibras'
 import Navbar from '../../components/menu/Navbar'
+import { usuarioAutenticado, parseJwt } from '../../services/auth';
+import Header from '../../components/header/header'
+import Footer from '../../components/footer/footer'
 
 
 const customStyles = {
@@ -19,8 +22,8 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
         width: '1000px',
         height: '90vh',
-        background: '#FFFFFF',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        background: 'var(--WHITE)',
+        boxShadow: 'var(--darkShadow)',
         borderRadius: '30px'
     },
 };
@@ -48,18 +51,20 @@ export const TelaTimeline = () => {
     function afterOpenModal() {
     }
 
-    function closeModalCadastro() {
+    function closeModalCadastro(e) {
+        e.preventDefault();
         setModalCadastroIsOpen(false);
     }
 
-    function closeModalComentarios() {
+    function closeModalComentarios(e) {
+        e.preventDefault();
         setComentariosIsOpen(false)
     }
 
     const ListarPosts = () => {
-        axios.get('http://localhost:5000/api/Posts', {
+        axios.get('http://grupo7.azurewebsites.net/api/Posts', {
             headers: {
-                Authorization: 'Bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVyaWNrQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwicm9sZSI6IjEiLCJleHAiOjE2NDkxOTAwOTQsImlzcyI6IjJycC53ZWJBUEkiLCJhdWQiOiIycnAud2ViQVBJIn0.m-HJBiOBP9Ii513fif1Y7lKXPSO6CmlaGyp0txvXksU"
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
         }).then((resposta) => {
             console.log(resposta.data);
@@ -67,11 +72,20 @@ export const TelaTimeline = () => {
         })
     }
 
+    const PublicarPost = (e) => {
+        e.preventDefault();
+        
+    }
+
     useEffect(() => {
         ListarPosts();
+        console.log(usuarioAutenticado())
+        console.log(parseJwt())
+        console.log(localStorage.getItem('2rp-chave-autenticacao'))
     }, [])
     return (
-        <>
+        <div className="containerPag">
+            <Header/>
             <Navbar />
             <main id="Main">
                 <VLibras/>
@@ -91,7 +105,7 @@ export const TelaTimeline = () => {
                         <form className="CadastroModalContainer">
                             <div className="HeaderModal">
                                 <h2>Adicionar publicação</h2>
-                                <button onClick={closeModalCadastro}>X</button>
+                                <button onClick={(e) => closeModalCadastro(e)}>X</button>
                             </div>
                             <div>
                                 <div className="CamposCadastro">
@@ -121,7 +135,7 @@ export const TelaTimeline = () => {
                             return (
                                 < div className="BoxPost" >
                                     <div className="UsuarioCampo">
-                                        <img src={"http://localhost:5000/StaticFiles/Images/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                        <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
                                         <div className="UsuarioDados">
                                             <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
                                             <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
@@ -129,7 +143,7 @@ export const TelaTimeline = () => {
                                     </div>
                                     {
                                         post.postImage != undefined ?
-                                            <img className="ImgPost" src={"http://localhost:5000/StaticFiles/Images/" + post.postImage}></img> :
+                                            <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
                                             <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
                                     }
                                     <div className="ContainerBotoesPost">
@@ -138,6 +152,7 @@ export const TelaTimeline = () => {
                                         </button>
                                         <button className="BotaoCurtir BotaoPost">
                                             <img src={botaoCurtirImg}></img>
+                                            <span>{post.likes.length}</span>
                                         </button>
                                     </div>
                                     <h2 className="TituloPost">{post.title}</h2>
@@ -166,7 +181,7 @@ export const TelaTimeline = () => {
                                                     </div>
                                                     <button className="BtnSubmitForm">Publicar</button>
                                                 </form>
-                                                <button onClick={closeModalComentarios}>X</button>
+                                                <button onClick={(e) => closeModalComentarios(e)}>X</button>
                                             </div>
                                             <div className='ContainerComentarios'>
                                                 {
@@ -175,8 +190,8 @@ export const TelaTimeline = () => {
                                                         return (
                                                             <div className="Comentario">
                                                                 <div className='ComentarioUsuario'>
-                                                                    <img src={"http://localhost:5000/StaticFiles/Images/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                                                    <span>{"http://localhost:5000/StaticFiles/Images/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                    <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                                                    <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
                                                                 </div>
                                                                 <h2 className='TituloComentario'>{comentario.title}</h2>
                                                                 <p className='TextoComentario'>{comentario.commentDescription}
@@ -239,7 +254,8 @@ export const TelaTimeline = () => {
                     </Modal> */}
                 </div>
             </main>
-        </>
+            <Footer />
+        </div>
     );
 }
 

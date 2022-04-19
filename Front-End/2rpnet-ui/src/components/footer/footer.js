@@ -23,15 +23,15 @@ class Footer extends Component {
                 <div className="container footerMainContent">
                     <img className="footer2RP" src={Logo} alt="Logo 2RPnet"/>
                     <div className="socialNetworkArea">
-                        <span>Nossas Redes Sociais:</span>
+                        <span alt="Nossas redes sociais">Nossas Redes Sociais:</span>
                         <div className="socialNetworkIcons">
-                            <a href="https://www.linkedin.com/company/2rp-informatica/" to="/"><AiIcons.AiFillLinkedin color="white" size='70px' /></a>
-                            <a href="https://www.facebook.com/2rpnetservicos/?modal=admin_todo_tour" className="linkedin" to="/"><AiIcons.AiFillFacebook color="white" size='70px'/></a>
-                            <a href="https://www.youtube.com/channel/UC9n0XxkktvDXpsVoc1s5FQg" className="linkedin" to="/"><FaIcons.FaYoutubeSquare color="white" size='70px' /></a>
+                            <a href="https://www.linkedin.com/company/2rp-informatica/" to="/"><AiIcons.AiFillLinkedin color="white" alt="Imagem Logo Linkedin" size='70px'/></a>
+                            <a href="https://www.facebook.com/2rpnetservicos/?modal=admin_todo_tour" className="linkedin" to="/"><AiIcons.AiFillFacebook color="white" alt="Imagem Logo Facebook" size='70px'/></a>
+                            <a href="https://www.youtube.com/channel/UC9n0XxkktvDXpsVoc1s5FQg" className="linkedin" to="/"><FaIcons.FaYoutubeSquare color="white" alt="Imagem Logo Youtube" size='70px' /></a>
                         </div>
                     </div>
                 </div>
-                <span className="rightsReserved"><BiIcons.BiCopyright />Todos os direitos reservados - 2022</span>
+                <span className="rightsReserved"><BiIcons.BiCopyright alt="Todos os direitos resevados 2022" />Todos os direitos reservados - 2022</span>
             </footer>
         )
     }
