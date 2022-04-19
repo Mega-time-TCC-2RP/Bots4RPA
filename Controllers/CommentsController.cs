@@ -85,6 +85,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                comment.IdComment = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
                 ctx.Create(comment);
 
                 return Ok(comment);
