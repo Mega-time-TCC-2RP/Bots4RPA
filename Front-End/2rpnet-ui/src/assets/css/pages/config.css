@@ -135,3 +135,56 @@
 .selected {
     font-weight: bold;
 }
+
+.modalConfig {
+    height: 100%;
+}
+
+.profileImageArea {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.closeModal {
+    margin-left: 30%;
+}
+
+.inputsModalArea {
+    width: 80%;
+}
+
+.inputsModal {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputsModal label {
+    padding-left: 5%;
+    color: var(--PrimaryColor2);
+    font-weight: 500;
+}
+
+.maskProfile {
+    background-color: #6C757D;
+    height: 320px;
+}
+
+.editProfileImage {
+    opacity: 0.4;
+}
+
+.inputsModalArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 35%;
+}
+
+.inputsModal {
+    display: flex;
+    flex-direction: column;
+}
