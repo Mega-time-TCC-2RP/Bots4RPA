@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import botaoComentarImg from "../../assets/img/botaoComentar.png";
 import botaoCurtirImg from "../../assets/img/botaoLike.png";
+import botaoCurtidoImg from "../../assets/img/botaoLikeLiked.png";
+
 import "../../assets/css/pages/Timeline.css"
 import Modal from 'react-modal';
 import ImagemModalCadastro from "../../assets/img/CadastroPostBtn.png"
@@ -33,9 +35,18 @@ Modal.setAppElement('#root');
 
 export const TelaTimeline = () => {
     const [ListaPosts, setListaPosts] = useState([]);
+
     const [ModalCadastroIsOpen, setModalCadastroIsOpen] = useState(false);
     const [ModalComentariosIsOpen, setComentariosIsOpen] = useState(false);
     const [ComentariosModal, setComentariosModal] = useState([]);
+
+    const [labelImgCadastroPost, setLabelImgCadastroPost] = useState('Selecione o arquivo de imagem...');
+    const [TituloPostCadastro, setTituloPostCadastro] = useState('');
+    const [DescricaoPostCadastro, setDescricaoPostCadastro] = useState('');
+
+    const [tituloCadastroComentario, setTituloCadastroComentario] = useState('');
+    const [descricaoCadastroComentario, setDescricaoCadastroComentario] = useState('');
+    const [idPostComentarios, setIdPostComentarios] = useState(0);
 
     function openModalCadastro() {
         setModalCadastroIsOpen(true);
@@ -61,34 +72,114 @@ export const TelaTimeline = () => {
         setComentariosIsOpen(false)
     }
 
-    const ListarPosts = () => {
-        axios.get('http://grupo7.azurewebsites.net/api/Posts', {
+    const ListarPosts = async () => {
+        let ListaPostsRetorno;
+        await axios.get('http://grupo7.azurewebsites.net/api/Posts', {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
         }).then((resposta) => {
             console.log(resposta.data);
+            ListaPostsRetorno = resposta.data;
             setListaPosts(resposta.data);
+        })
+
+        return ListaPostsRetorno;
+    }
+
+    const LikesCurtir = (e, idPost) => {
+        e.preventDefault();
+        axios.post('http://grupo7.azurewebsites.net/api/Likes', {
+            "idPost": idPost,
+        } ,{
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        }).then((response) => {
+            ListarPosts();
+            console.log(response.data);
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+
+    const LikesDescurtir = (e, idPostLike) => {
+        e.preventDefault();
+        console.log(idPostLike)
+        axios.delete('http://grupo7.azurewebsites.net/api/Likes/' + idPostLike, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        }).then((response) => {
+            console.log(response.data);
+            ListarPosts();
+        }).catch((error) => {
+            console.log(error);
         })
     }
 
     const PublicarPost = (e) => {
         e.preventDefault();
-        
+
+        var formData = new FormData();
+
+        const element = document.getElementById('InputImagemCadastroPost')
+        const file = element.files[0]
+        formData.append('File', file, file.name)
+
+        formData.append('Title', TituloPostCadastro);
+        formData.append('PostDescription', DescricaoPostCadastro);
+
+        axios({
+            method: "post",
+            url: "http://grupo7.azurewebsites.net/api/Posts",
+            data: formData,
+            headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            },
+        })
+            .then(function (response) {
+                console.log(response);
+                ListarPosts();
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+            });
+    }
+
+    const PublicarComentario = async (e) => {
+        e.preventDefault();
+
+        axios.post("http://grupo7.azurewebsites.net/api/Comments", {
+            "idPost": idPostComentarios,
+            "title": tituloCadastroComentario,
+            "commentDescription": descricaoCadastroComentario
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        }).then(async (response) => {
+            console.log(response)
+            let ListaPostsPosComentar = await ListarPosts();
+            console.log(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments);
+            setComentariosModal(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments)
+        }).catch((error) => {
+            console.log(error);
+        })
     }
 
     useEffect(() => {
         ListarPosts();
-        console.log(usuarioAutenticado())
-        console.log(parseJwt())
-        console.log(localStorage.getItem('2rp-chave-autenticacao'))
+        console.log(parseJwt());
     }, [])
     return (
         <div className="containerPag">
-            <Header/>
+            <Header />
             <Navbar />
             <main id="Main">
-                <VLibras/>
+                <VLibras />
                 <div className="ContainerGrid ContainerPosts">
                     <div className="BotoesModais">
                         <button onClick={openModalCadastro}><img src={ImagemModalCadastro}></img></button>
@@ -102,7 +193,7 @@ export const TelaTimeline = () => {
                         class="ReactModal"
                         closeTimeoutMS={2000}
                     >
-                        <form className="CadastroModalContainer">
+                        <form className="CadastroModalContainer" onSubmit={(e) => PublicarPost(e)}>
                             <div className="HeaderModal">
                                 <h2>Adicionar publicação</h2>
                                 <button onClick={(e) => closeModalCadastro(e)}>X</button>
@@ -112,17 +203,23 @@ export const TelaTimeline = () => {
                                     <div className="LinhaCampoCadastro">
                                         <div className="CampoCadastro">
                                             <label className="LabelCampoCadastro">Título</label>
-                                            <input placeholder="Digite o título..." type="text"></input>
+                                            <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
                                         </div>
                                         <div className="CampoCadastro">
                                             <label className="LabelCampoCadastro">Descrição</label>
-                                            <input placeholder="Digite a descrição..." type="text"></input>
+                                            <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
                                         </div>
                                     </div>
                                     <div className="CampoCadastro">
                                         <label className="LabelCampoCadastro">Imagem</label>
-                                        <label className="ImagemInputExibição" for="InputImagemCadastroPost">Selecione a imagem...</label>
-                                        <input className="ImagemInputReal" id="InputImagemCadastroPost" placeholder="Selecione a imagem..." type="file" accept="image/*"></input>
+                                        <label className="ImagemInputExibição" for="InputImagemCadastroPost">{
+                                            labelImgCadastroPost
+                                        }</label>
+                                        <input className="ImagemInputReal" id="InputImagemCadastroPost" placeholder="Selecione a imagem..." type="file" accept="image/*" onChange={() => {
+                                            document.getElementById('InputImagemCadastroPost') != null ?
+                                                setLabelImgCadastroPost("O arquivo " + document.getElementById('InputImagemCadastroPost').files[0].name + " foi selecionado") : setLabelImgCadastroPost("Selecione o arquivo de imagem...")
+                                        }
+                                        }></input>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +230,7 @@ export const TelaTimeline = () => {
                         ListaPosts != undefined &&
                         ListaPosts.map((post) => {
                             return (
-                                < div className="BoxPost" >
+                                < div className="BoxPost" key={post.idPost} >
                                     <div className="UsuarioCampo">
                                         <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
                                         <div className="UsuarioDados">
@@ -147,13 +244,25 @@ export const TelaTimeline = () => {
                                             <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
                                     }
                                     <div className="ContainerBotoesPost">
-                                        <button onClick={() => openModalComentarios(post.comments)} className="BotaoComentar BotaoPost">
+                                        <button onClick={() => {
+                                            openModalComentarios(post.comments)
+                                            setIdPostComentarios(post.idPost)
+                                        }} className="BotaoComentar BotaoPost">
                                             <img src={botaoComentarImg}></img>
                                         </button>
-                                        <button className="BotaoCurtir BotaoPost">
-                                            <img src={botaoCurtirImg}></img>
-                                            <span>{post.likes.length}</span>
-                                        </button>
+                                        {
+                                            post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+
+                                                <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
+                                                    <img src={botaoCurtidoImg}></img>
+                                                    <span>{post.likes.length}</span>
+                                                </button>
+                                                :
+                                                <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)}>
+                                                    <img src={botaoCurtirImg}></img>
+                                                    <span>{post.likes.length}</span>
+                                                </button>
+                                        }
                                     </div>
                                     <h2 className="TituloPost">{post.title}</h2>
                                     <p className="DescricaoPost">{post.postDescription}</p>
@@ -168,15 +277,15 @@ export const TelaTimeline = () => {
                                     >
                                         <div className='ContainerModalComentarios'>
                                             <div className="HeaderModal">
-                                                <form className='CadastroComentarioContainer'>
+                                                <form onSubmit={(e) => PublicarComentario(e)} className='CadastroComentarioContainer'>
                                                     <div className='LinhaCampoCadastroComentarios'>
                                                         <div className="CampoCadastro">
                                                             <label className="LabelCampoCadastro">Título</label>
-                                                            <input placeholder="Digite o título..." type="text"></input>
+                                                            <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloCadastroComentario(e.target.value)} value={tituloCadastroComentario}></input>
                                                         </div>
                                                         <div className="CampoCadastro">
                                                             <label className="LabelCampoCadastro">Descrição</label>
-                                                            <input placeholder="Digite a descrição..." type="text"></input>
+                                                            <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
                                                         </div>
                                                     </div>
                                                     <button className="BtnSubmitForm">Publicar</button>
@@ -188,7 +297,7 @@ export const TelaTimeline = () => {
                                                     ComentariosModal != undefined &&
                                                     ComentariosModal.map((comentario) => {
                                                         return (
-                                                            <div className="Comentario">
+                                                            <div className="Comentario" key={comentario.idComentario}>
                                                                 <div className='ComentarioUsuario'>
                                                                     <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
                                                                     <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
