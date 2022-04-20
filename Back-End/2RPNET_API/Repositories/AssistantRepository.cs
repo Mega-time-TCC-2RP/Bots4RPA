@@ -52,7 +52,7 @@ namespace _2RPNET_API.Repositories
         {
             Assistant AssistantSought = SearchByID(IdAssistant);
 
-            if (UpdatedAsssistant.IdEmployee > 0 && UpdatedAsssistant.CreationDate >= DateTime.Now && UpdatedAsssistant.AlterationDate >= DateTime.Now && UpdatedAsssistant.AssistantName != null && UpdatedAsssistant.AssistantDescription != null)
+            if (UpdatedAsssistant.IdEmployee > 0 && UpdatedAsssistant.CreationDate <= DateTime.Now && UpdatedAsssistant.AlterationDate == DateTime.Now && UpdatedAsssistant.AssistantName != null && UpdatedAsssistant.AssistantDescription != null)
             {
                 AssistantSought.IdEmployee = UpdatedAsssistant.IdEmployee;
                 AssistantSought.CreationDate = UpdatedAsssistant.CreationDate;
@@ -63,7 +63,6 @@ namespace _2RPNET_API.Repositories
                 Ctx.Assistants.Update(AssistantSought);
                 Ctx.SaveChanges();
             }
-
         }
     }
 }

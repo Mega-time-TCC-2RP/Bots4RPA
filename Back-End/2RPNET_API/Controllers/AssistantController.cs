@@ -89,7 +89,9 @@ namespace _2RPNET_API.Controllers
                 if (AssistantSought != null)
                 {
                     if (UpdatedAsssistant != null)
+                    {
                         _AssistantRepository.Update(IdAssistant, UpdatedAsssistant);
+                    }
                 }
                 else
                 {

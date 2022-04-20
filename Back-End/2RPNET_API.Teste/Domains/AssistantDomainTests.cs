@@ -6,31 +6,32 @@ namespace _2RPNET_API.Teste.Domains
 {
     public class AssistantDomainTests
     {
-        //[Fact]
-        //public void ShouldReturnAListOfAssistants(){
+        [Fact]
+        public void ShouldReturnAListOfAssistants()
+        {
 
-            //Pre-condiçao / Arrange
-            //Assistant assistant = new Assistant();
-            //assistant.IdEmployee = 1;
-            //assistant.CreationDate = "1900-01-01";
-            //assistant.AlterationDate = "1900-01-01";
-            //assistant.AssistantName = "Fluxo de tabelas excel";
-            //assistant.AssistantDescription = "Criações de tabelas de excel";
+            //Pre - condiçao / Arrange
+            Assistant assistant = new Assistant();
+            assistant.IdEmployee = 1;
+            assistant.CreationDate = Convert.ToDateTime("2022-01-01 00:00:00");
+            assistant.AlterationDate = Convert.ToDateTime("2022-04-20 00:00:00");
+            assistant.AssistantName = "Fluxo de tabelas excel";
+            assistant.AssistantDescription = "Criações de tabelas de excel";
 
             //Procedimento / Act
 
-            //bool resultado = true;
+            bool Resultado = true;
 
-            //if (assistant.IdEmployee < 0 && assistant.CreationDate == null && assistant.AlterationDate == null && assistant.AssistantName == null && assistant.AssistantDescription == null)
-            //{
-                //resultado = false;
-            //}
+            if (assistant.IdEmployee < 0 && assistant.CreationDate >= DateTime.Now && assistant.AlterationDate != DateTime.Now && assistant.AssistantName == null && assistant.AssistantDescription == null)
+            {
+                Resultado = false;
+            }
 
             //Resultado esperado / Assert
 
-            //Assert.True(resultado);
+            Assert.True(Resultado);
 
-        //}
+        }
 
     }
 }
