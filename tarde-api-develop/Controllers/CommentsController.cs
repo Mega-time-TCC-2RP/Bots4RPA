@@ -1,14 +1,10 @@
-﻿using _2rpnet.rpa.webAPI.Contexts;
-using _2rpnet.rpa.webAPI.Domains;
+﻿using _2rpnet.rpa.webAPI.Domains;
 using _2rpnet.rpa.webAPI.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace _2rpnet.rpa.webAPI.Controllers
 {
