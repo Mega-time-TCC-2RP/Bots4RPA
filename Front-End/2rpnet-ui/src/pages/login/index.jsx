@@ -4,9 +4,6 @@ import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import VLibras from '@djpfs/react-vlibras'
-import GoogleLogin from 'react-google-login'
-import GoogleButton from 'react-google-button'
-import * as FcIcons from 'react-icons/fc'
 
 //img:
 import logoMaior from '../../assets/img/logoMaior.png'
@@ -16,6 +13,7 @@ import Robo from '../../assets/img/roboLandingPage.png'
 import Financas from '../../assets/img/financas.png'
 import Banco from '../../assets/img/banco.png'
 import Admin from '../../assets/img/admin.png'
+import * as FcIcons from 'react-icons/fc'
 
 //Components:
 import Footer from '../../components/footer/footer'
@@ -31,6 +29,7 @@ import { history } from '../../history';
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GoogleLogin from 'react-google-login';
 
 
 
@@ -66,13 +65,6 @@ export default function Login() {
         
         let history = useNavigate();
 
-        // const googleBtnStyles ={
-        //         content :{
-        //                 borderRadius: '50px',
-        //                 fontSize: '18px'
-        //         }
-        // }
-
         const handleSubmit = (e) => {
                 e.preventDefault();
         
@@ -100,7 +92,7 @@ export default function Login() {
                             // verifica se o usuário logado é do tipo administrador
                             //mudar aqui e no menu principal se o cadastro for liberado para
                             //todos os usuarios
-                            if (parseJwt().role === '1' ) {
+                            if (parseJwt().role === '1' || parseJwt().role === '2' || parseJwt().role === '3') {
                                 history('/')
 
                                 // console.log('logado: ' + usuarioAutenticado())
@@ -119,7 +111,7 @@ export default function Login() {
             };
 
             const responseGoogle = (response) => {
-                    console.log(response);
+                    console.log(response)
             }
 
         return (
@@ -130,8 +122,6 @@ export default function Login() {
                         <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
                         <VLibras/>
                                 <div className='login-container'>
-                                        
-                                        
                                         
                                         <div className='forms-login'>
                                         <img src={logoMaior} className='logo-Header' alt="Logo 2RP" />
@@ -167,6 +157,7 @@ export default function Login() {
                                                         <span alt="divisor de elementos">---------ou---------</span>
                                                 </div>
 
+<<<<<<< HEAD
                                                         <GoogleLogin 
                                                                 clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
                                                                 render={renderProps => (
@@ -179,6 +170,19 @@ export default function Login() {
                                                                 onFailure={responseGoogle}
 
                                                         />
+=======
+                                                <GoogleLogin
+                                                        clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
+                                                        render={renderProps => (
+                                                        <button className='google-button' alt="Entrar com o Google" onClick={renderProps.onClick}>
+                                                                <FcIcons.FcGoogle className='icon3' alt="Google Icon"/>
+                                                                Continuar com o Google
+                                                        </button>
+                                                        )}
+                                                        onSuccess={responseGoogle}
+                                                        onFailure={responseGoogle}
+                                                />
+>>>>>>> b7705e2666188b6c69e1a9deb1e30a8ceeb4256a
 
                                                 <div className='NotSigned-login'>
                                                         <a alt="Não possui cadastro?">Não possui cadastro?</a>
