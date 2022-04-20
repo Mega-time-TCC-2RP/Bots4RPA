@@ -38,7 +38,7 @@ nota: no projeto, foi usado o **Azure Cloud**, mas é possível utilizar outros 
 
 Diagrama de casos de uso:
 
-![image](https://user-images.githubusercontent.com/19197082/164284966-5e4ef28d-6b53-45f9-923e-fca1ed999dee.png =200x80)
+![image width="250"](https://user-images.githubusercontent.com/19197082/164284966-5e4ef28d-6b53-45f9-923e-fca1ed999dee.png)
 
 Diagrama lógico:
 
