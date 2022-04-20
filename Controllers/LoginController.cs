@@ -55,7 +55,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
                     new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
                     new Claim("role", queryUser.IdUserType.ToString()),
-
+                    new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString())
 
                 };
 
@@ -67,7 +67,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         issuer: "2rp.webAPI",
                         audience: "2rp.webAPI",
                         claims: tokenClaims,
-                        expires: DateTime.Now.AddMinutes(30),
+                        expires: DateTime.Now.AddDays(30),
                         signingCredentials: creds
                     );
 

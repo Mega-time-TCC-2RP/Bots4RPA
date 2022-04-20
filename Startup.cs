@@ -78,7 +78,7 @@ namespace _2rpnet.rpa.webAPI
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao")),
-                        ClockSkew = TimeSpan.FromMinutes(30),
+                        ClockSkew = TimeSpan.FromDays(30),
                         ValidIssuer = "2rp.webAPI",
                         ValidAudience = "2rp.webAPI"
                     };

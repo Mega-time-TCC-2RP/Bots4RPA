@@ -98,9 +98,9 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 like.IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
-                ctx.Create(like);
+                Like postedLike = ctx.Create(like);
 
-                return Ok(like);
+                return Ok(postedLike);
             }
             catch (Exception error)
             {
