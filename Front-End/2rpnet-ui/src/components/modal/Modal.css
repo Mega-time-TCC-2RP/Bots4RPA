@@ -1,0 +1,89 @@
+.modalBackground {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-header {
+    width: 100%;
+    height: 2.938em;
+    display: flex;
+    justify-content: end;
+}
+
+.exit-button {
+    width: 1.938em;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    color: #8B919D;
+    background-color: transparent;
+}
+
+.modalContainer {
+    width: 94.125em;
+    height: 55.2em;
+    display: flex;
+    flex-direction: column;
+    padding: 1.563rem;
+
+    background: #F3F3F3;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.modalContainer .body {
+    flex: 50%;
+    display: flex;
+    font-size: 1.7rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.assistant-info {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    background-color: brown;
+}
+
+.assistant-info div{
+   width: 100%;
+   height: 430px;;
+    background-color: rgb(0, 134, 60);
+}
+
+.assistant-graphics {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    background-color: rgb(65, 110, 188);
+}
+
+.assistant-modal img {
+    height:240.18px;
+    width: 270.69px;
+
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.assistant-info h5 {
+    margin-top: 1.3rem;
+    display: flex;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 27px;
+    justify-content: center;
+    overflow-y: hidden;
+    color: #17233C;
+}

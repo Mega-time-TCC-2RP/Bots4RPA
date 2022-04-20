@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
 
-
+.all-screen{
+    /* -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);   */
+}
 
 .test {
     width: 100%;
@@ -192,6 +198,7 @@
     color: #3375BA;
     margin-left: 8.188rem;
     margin-top: 1.063rem;
+    cursor: pointer;
 }
 
 .body-container {
