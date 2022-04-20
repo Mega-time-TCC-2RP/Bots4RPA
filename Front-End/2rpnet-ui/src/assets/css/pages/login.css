@@ -6,7 +6,6 @@
 .logo-Header{
         width: 350;
         height: 150;
-        display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: 50px;
@@ -22,7 +21,7 @@
 }
 .login-container{
         background-color: var(--WHITE);
-        height: 90vh;
+        /* height: 90vh; */
         width: 60%;
         margin: 0 auto;
         border-radius: 20px;
@@ -31,6 +30,9 @@
         justify-content: center;
         text-align: center;
         filter: drop-shadow(0px 4px 4px var(--darkShadow));
+        padding-top: 50px;
+        padding-bottom: 50px;
+        margin-top: 100px;
 }
 .topo-input-email{
         font-family: 'Montserrat';
@@ -54,6 +56,9 @@
         color: var(--PrimaryColor2);
         display: flex;
         margin-top: 90px;
+}
+.formsLogin-Email{
+        width: 370px;
 }
 .formsLogin-Email input{
         border-radius: 50px;
@@ -122,7 +127,6 @@
         align-items: center;
         text-align: center;
         color: var(--PrimaryColor2);
-        margin-left: 70px;
         margin-top: 20px;
         cursor: pointer;
         opacity: 0.8;
@@ -137,7 +141,7 @@
         align-items: center;
         text-align: center;
         color: var(--PrimaryColor2);
-        margin-left: 90px;
+        /* margin-left: 90px; */
         margin-top: 20px;
         opacity: 0.2;
 }
@@ -149,26 +153,33 @@ button{
         border-image-slice: 30 !important;
         border-image-source: linear-gradient(90deg, #4885ED 0%, #4885ED 26.04%, #DB3236 26.18%, #DB3236 51.03%, #F4C20D 51.04%, #F4C20D 76.56%, #3CBA54 76.57%) !important; */
         position: relative;
-        border: solid 2px !important;
-        border-image-slice: 30 !important;
-        border-radius: 20px !important;
-        background-image: linear-gradient(white, white), radial-gradient(circle at top left, red, blue) !important;
+        /* border: solid 2px ;
+        border-image-slice: 30;
+        border-radius: 20px;
+        background-image: linear-gradient(white, white), radial-gradient(circle at top left, red, blue);
+        background-origin: border-box;
+        background-clip: content-box, border-box; */
+
+        border: double 3px transparent;
+        border-radius: 20px;
+        background-image: linear-gradient(white, white), radial-gradient(circle at top left, #4885ED, #DB3236, #F4C20D, #3CBA54);
         background-origin: border-box;
         background-clip: content-box, border-box;
+
         cursor: pointer;
         width: 400px;
         height: 65px;
-        border-radius: 32px;
+        /* border-radius: 32px; */
         line-height: 28px;
-        border: none;
+        /* border: none; */
         margin-top: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         /* margin-left: 35px; */
-        box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
-        background-color: rgb(255, 255, 255);
+        /* box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+        background-color: rgb(255, 255, 255); */
         display: inline-flex;
         align-items: center;
         
@@ -178,7 +189,7 @@ button{
         font-size: 14px;
         font-weight: 500;
         
-        margin-left: 85px;
+        /* margin-left: 85px; */
         cursor: pointer;
         box-shadow: 0px 6px 6px var(--darkShadow);
 }
@@ -192,8 +203,11 @@ button{
         bottom: 0;
         left: 0;
 }
-form{
+.forms-login form{
         align-items: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
 }
 #googleLogin{
         /* color: rgba(0, 0, 0, 0.54); */
