@@ -13,6 +13,7 @@ import Robo from '../../assets/img/roboLandingPage.png'
 import Financas from '../../assets/img/financas.png'
 import Banco from '../../assets/img/banco.png'
 import Admin from '../../assets/img/admin.png'
+import * as FcIcons from 'react-icons/fc'
 
 //Components:
 import Footer from '../../components/footer/footer'
@@ -153,7 +154,10 @@ export default function Login() {
                                                         <span alt="divisor de elementos">---------ou---------</span>
                                                 </div>
 
-                                                        <button className='google-button' alt="Entrar com o Google">Continuar com o Google</button>
+                                                        <button className='google-button' alt="Entrar com o Google">
+                                                                <FcIcons.FcGoogle className='icon3' alt="Google Icon"/>
+                                                                Continuar com o Google
+                                                        </button>
 
                                                 <div className='NotSigned-login'>
                                                         <a alt="Não possui cadastro?">Não possui cadastro?</a>
