@@ -10,6 +10,7 @@ body{
     padding: 0;
 }
 .sidebar{
+    
     position: fixed;
     top: 0;
     left: 0;
@@ -21,6 +22,7 @@ body{
     z-index: 99;
 }
 .sidebar.active{
+    
     width: 240px;
 }
 .sidebar .logo_content .logo{
@@ -64,6 +66,9 @@ body{
 }
 .sidebar ul{
     margin-top: 20px;
+}
+.sidebar li span{
+    pointer-events: none;
 }
 
 .sidebar ul li{
