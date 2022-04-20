@@ -7496,27 +7496,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\46755453862.INFOSCS\\.nuget\\packages\\": {}
+    "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD:Back-End/2RPNET_API/obj/project.assets.json
       "projectUniqueName": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
       "projectName": "2RPNET_API",
       "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
       "packagesPath": "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\46755453862.INFOSCS\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
-      "projectName": "2RPNET_API",
-      "projectPath": "C:\\Users\\46755453862.INFOSCS\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API\\2RPNET_API.csproj",
-      "packagesPath": "C:\\Users\\46755453862.INFOSCS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\46755453862.INFOSCS\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API\\obj\\",
->>>>>>> 7febaecc6a4f3ee332cf39247a85f721f5e42083:Back-End/2RPNET_API/2RPNET_API/obj/project.assets.json
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\46755453862.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\50928811867.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7591,12 +7583,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.14, 5.0.14]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7605,12 +7591,16 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD:Back-End/2RPNET_API/obj/project.assets.json
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
->>>>>>> 7febaecc6a4f3ee332cf39247a85f721f5e42083:Back-End/2RPNET_API/2RPNET_API/obj/project.assets.json
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

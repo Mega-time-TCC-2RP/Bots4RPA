@@ -43,18 +43,18 @@ namespace _2RPNET_API.Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=NOTE0113I2\\SQLEXPRESS; Initial Catalog=2RP-Tarde; integrated security=true;");
+                optionsBuilder.UseSqlServer("Server=tcp:grupo7.database.windows.net,1433;Initial Catalog=2RP-Tarde;Persist Security Info=False;User ID=admin7;Password=Senai@132;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<Assistant>(entity =>
             {
                 entity.HasKey(e => e.IdAssistant)
-                    .HasName("PK__Assistan__72DCFF80509A0AE5");
+                    .HasName("PK__Assistan__72DCFF80C01DCA62");
 
                 entity.ToTable("Assistant");
 
@@ -75,13 +75,13 @@ namespace _2RPNET_API.Context
                 entity.HasOne(d => d.IdEmployeeNavigation)
                     .WithMany(p => p.Assistants)
                     .HasForeignKey(d => d.IdEmployee)
-                    .HasConstraintName("FK__Assistant__IdEmp__70DDC3D8");
+                    .HasConstraintName("FK__Assistant__IdEmp__1A34DF26");
             });
 
             modelBuilder.Entity<AssistantProcedure>(entity =>
             {
                 entity.HasKey(e => e.IdAprocedure)
-                    .HasName("PK__Assistan__2A41E0FABDF82B10");
+                    .HasName("PK__Assistan__2A41E0FA1144431D");
 
                 entity.ToTable("AssistantProcedure");
 
@@ -95,16 +95,20 @@ namespace _2RPNET_API.Context
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.ProcedureValue)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.IdAssistantNavigation)
                     .WithMany(p => p.AssistantProcedures)
                     .HasForeignKey(d => d.IdAssistant)
-                    .HasConstraintName("FK__Assistant__IdAss__73BA3083");
+                    .HasConstraintName("FK__Assistant__IdAss__1D114BD1");
             });
 
             modelBuilder.Entity<Comment>(entity =>
             {
                 entity.HasKey(e => e.IdComment)
-                    .HasName("PK__Comment__57C9AD588BCE1607");
+                    .HasName("PK__Comment__57C9AD587CC65530");
 
                 entity.ToTable("Comment");
 
@@ -123,26 +127,26 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Comment__IdPlaye__66603565");
+                    .HasConstraintName("FK__Comment__IdPlaye__0FB750B3");
 
                 entity.HasOne(d => d.IdPostNavigation)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.IdPost)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Comment__IdPost__656C112C");
+                    .HasConstraintName("FK__Comment__IdPost__0EC32C7A");
             });
 
             modelBuilder.Entity<Corporation>(entity =>
             {
                 entity.HasKey(e => e.IdCorporation)
-                    .HasName("PK__Corporat__2BAEF03D05EEE184");
+                    .HasName("PK__Corporat__2BAEF03D99FF0305");
 
                 entity.ToTable("Corporation");
 
-                entity.HasIndex(e => e.Phone, "UQ__Corporat__5C7E359ED18D2D8C")
+                entity.HasIndex(e => e.Phone, "UQ__Corporat__5C7E359EE6B65A0F")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Cnpj, "UQ__Corporat__AA57D6B4B2E534B3")
+                entity.HasIndex(e => e.Cnpj, "UQ__Corporat__AA57D6B410758B0D")
                     .IsUnique();
 
                 entity.Property(e => e.AddressName)
@@ -178,11 +182,11 @@ namespace _2RPNET_API.Context
             modelBuilder.Entity<EmailVerification>(entity =>
             {
                 entity.HasKey(e => e.IdEmailVerification)
-                    .HasName("PK__EmailVer__E64B1416579512DD");
+                    .HasName("PK__EmailVer__E64B1416DBAF315F");
 
                 entity.ToTable("EmailVerification");
 
-                entity.HasIndex(e => e.Username, "UQ__EmailVer__536C85E464FF4F2D")
+                entity.HasIndex(e => e.Username, "UQ__EmailVer__536C85E48C3E4794")
                     .IsUnique();
 
                 entity.Property(e => e.Cryptography)
@@ -213,13 +217,13 @@ namespace _2RPNET_API.Context
                 entity.HasOne(d => d.IdAssistantNavigation)
                     .WithMany(p => p.EmailVerifications)
                     .HasForeignKey(d => d.IdAssistant)
-                    .HasConstraintName("FK__EmailVeri__IdAss__7A672E12");
+                    .HasConstraintName("FK__EmailVeri__IdAss__23BE4960");
             });
 
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.IdEmployee)
-                    .HasName("PK__Employee__51C8DD7A2D732ABD");
+                    .HasName("PK__Employee__51C8DD7A02540B4A");
 
                 entity.ToTable("Employee");
 
@@ -227,24 +231,24 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.IdCorporation)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Employee__IdCorp__48CFD27E");
+                    .HasConstraintName("FK__Employee__IdCorp__7226EDCC");
 
                 entity.HasOne(d => d.IdOfficeNavigation)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.IdOffice)
-                    .HasConstraintName("FK__Employee__IdOffi__49C3F6B7");
+                    .HasConstraintName("FK__Employee__IdOffi__731B1205");
 
                 entity.HasOne(d => d.IdUserNavigation)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.IdUser)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Employee__IdUser__47DBAE45");
+                    .HasConstraintName("FK__Employee__IdUser__7132C993");
             });
 
             modelBuilder.Entity<LibrarySkin>(entity =>
             {
                 entity.HasKey(e => e.IdLibrarySkins)
-                    .HasName("PK__LibraryS__AEA1FBE6B8AF1B5A");
+                    .HasName("PK__LibraryS__AEA1FBE612636611");
 
                 entity.Property(e => e.UnlockData)
                     .HasColumnType("datetime")
@@ -254,19 +258,19 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.LibrarySkins)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LibrarySk__IdPla__59063A47");
+                    .HasConstraintName("FK__LibrarySk__IdPla__025D5595");
 
                 entity.HasOne(d => d.IdSkinNavigation)
                     .WithMany(p => p.LibrarySkins)
                     .HasForeignKey(d => d.IdSkin)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LibrarySk__IdSki__59FA5E80");
+                    .HasConstraintName("FK__LibrarySk__IdSki__035179CE");
             });
 
             modelBuilder.Entity<LibraryTrophy>(entity =>
             {
                 entity.HasKey(e => e.IdLibraryTrophy)
-                    .HasName("PK__LibraryT__06B3A134A65EFE98");
+                    .HasName("PK__LibraryT__06B3A134DFEAD71E");
 
                 entity.ToTable("LibraryTrophy");
 
@@ -278,37 +282,37 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.LibraryTrophies)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LibraryTr__IdPla__6D0D32F4");
+                    .HasConstraintName("FK__LibraryTr__IdPla__16644E42");
 
                 entity.HasOne(d => d.IdTrophyNavigation)
                     .WithMany(p => p.LibraryTrophies)
                     .HasForeignKey(d => d.IdTrophy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LibraryTr__IdTro__6E01572D");
+                    .HasConstraintName("FK__LibraryTr__IdTro__1758727B");
             });
 
             modelBuilder.Entity<Like>(entity =>
             {
                 entity.HasKey(e => e.IdLikes)
-                    .HasName("PK__Likes__3FDC4886F5281AFA");
+                    .HasName("PK__Likes__3FDC4886B38F60B7");
 
                 entity.HasOne(d => d.IdPlayerNavigation)
                     .WithMany(p => p.Likes)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Likes__IdPlayer__619B8048");
+                    .HasConstraintName("FK__Likes__IdPlayer__0AF29B96");
 
                 entity.HasOne(d => d.IdPostNavigation)
                     .WithMany(p => p.Likes)
                     .HasForeignKey(d => d.IdPost)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Likes__IdPost__60A75C0F");
+                    .HasConstraintName("FK__Likes__IdPost__09FE775D");
             });
 
             modelBuilder.Entity<Office>(entity =>
             {
                 entity.HasKey(e => e.IdOffice)
-                    .HasName("PK__Office__57A12F4F39458805");
+                    .HasName("PK__Office__57A12F4F60813359");
 
                 entity.ToTable("Office");
 
@@ -321,7 +325,7 @@ namespace _2RPNET_API.Context
             modelBuilder.Entity<Player>(entity =>
             {
                 entity.HasKey(e => e.IdPlayer)
-                    .HasName("PK__Player__0A2C3D929671A3B3");
+                    .HasName("PK__Player__0A2C3D92D86E3FC1");
 
                 entity.ToTable("Player");
 
@@ -329,13 +333,13 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.Players)
                     .HasForeignKey(d => d.IdEmployee)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Player__IdEmploy__4CA06362");
+                    .HasConstraintName("FK__Player__IdEmploy__75F77EB0");
             });
 
             modelBuilder.Entity<Post>(entity =>
             {
                 entity.HasKey(e => e.IdPost)
-                    .HasName("PK__Post__F8DCBD4D3366EE22");
+                    .HasName("PK__Post__F8DCBD4DA48B7BD1");
 
                 entity.ToTable("Post");
 
@@ -356,13 +360,13 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.Posts)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Post__IdPlayer__5DCAEF64");
+                    .HasConstraintName("FK__Post__IdPlayer__07220AB2");
             });
 
             modelBuilder.Entity<Quest>(entity =>
             {
                 entity.HasKey(e => e.IdQuest)
-                    .HasName("PK__Quest__CDB9F57B07AB5A26");
+                    .HasName("PK__Quest__CDB9F57B94DCE3D6");
 
                 entity.ToTable("Quest");
 
@@ -376,19 +380,19 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.Quests)
                     .HasForeignKey(d => d.IdEmployee)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Quest__IdEmploye__5165187F");
+                    .HasConstraintName("FK__Quest__IdEmploye__7ABC33CD");
 
                 entity.HasOne(d => d.IdStatusNavigation)
                     .WithMany(p => p.Quests)
                     .HasForeignKey(d => d.IdStatus)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Quest__IdStatus__52593CB8");
+                    .HasConstraintName("FK__Quest__IdStatus__7BB05806");
             });
 
             modelBuilder.Entity<Run>(entity =>
             {
                 entity.HasKey(e => e.IdRun)
-                    .HasName("PK__Run__2A49CE1FA87A9F9A");
+                    .HasName("PK__Run__2A49CE1F58B9BB5F");
 
                 entity.ToTable("Run");
 
@@ -401,13 +405,13 @@ namespace _2RPNET_API.Context
                 entity.HasOne(d => d.IdAssistantNavigation)
                     .WithMany(p => p.Runs)
                     .HasForeignKey(d => d.IdAssistant)
-                    .HasConstraintName("FK__Run__IdAssistant__76969D2E");
+                    .HasConstraintName("FK__Run__IdAssistant__1FEDB87C");
             });
 
             modelBuilder.Entity<Skin>(entity =>
             {
                 entity.HasKey(e => e.IdSkin)
-                    .HasName("PK__Skin__A6FFA88B5E5BED29");
+                    .HasName("PK__Skin__A6FFA88B947A5213");
 
                 entity.ToTable("Skin");
 
@@ -428,7 +432,7 @@ namespace _2RPNET_API.Context
             modelBuilder.Entity<StatusQuest>(entity =>
             {
                 entity.HasKey(e => e.IdStatus)
-                    .HasName("PK__StatusQu__B450643A331798ED");
+                    .HasName("PK__StatusQu__B450643A22B4AB54");
 
                 entity.ToTable("StatusQuest");
 
@@ -441,7 +445,7 @@ namespace _2RPNET_API.Context
             modelBuilder.Entity<Trophy>(entity =>
             {
                 entity.HasKey(e => e.IdTrophy)
-                    .HasName("PK__Trophy__E3A7B71BE83C2017");
+                    .HasName("PK__Trophy__E3A7B71B40FBA678");
 
                 entity.ToTable("Trophy");
 
@@ -462,17 +466,17 @@ namespace _2RPNET_API.Context
             modelBuilder.Entity<UserName>(entity =>
             {
                 entity.HasKey(e => e.IdUser)
-                    .HasName("PK__UserName__B7C926387F642B32");
+                    .HasName("PK__UserName__B7C92638AC3052FF");
 
                 entity.ToTable("UserName");
 
-                entity.HasIndex(e => e.Phone, "UQ__UserName__5C7E359E7724F113")
+                entity.HasIndex(e => e.Phone, "UQ__UserName__5C7E359E4369E8AB")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Email, "UQ__UserName__A9D10534261EDC08")
+                entity.HasIndex(e => e.Email, "UQ__UserName__A9D1053480351576")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Cpf, "UQ__UserName__C1F8973114E78501")
+                entity.HasIndex(e => e.Cpf, "UQ__UserName__C1F89731DA0CBDD2")
                     .IsUnique();
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
@@ -520,13 +524,13 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.UserNames)
                     .HasForeignKey(d => d.IdUserType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserName__IdUser__3D5E1FD2");
+                    .HasConstraintName("FK__UserName__IdUser__66B53B20");
             });
 
             modelBuilder.Entity<UserType>(entity =>
             {
                 entity.HasKey(e => e.IdUserType)
-                    .HasName("PK__UserType__047ED66D3F13F16D");
+                    .HasName("PK__UserType__047ED66DCB368C6C");
 
                 entity.ToTable("UserType");
 
