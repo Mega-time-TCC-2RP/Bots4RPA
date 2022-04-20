@@ -112,7 +112,8 @@
         border: none;
         margin-top: 30px;
         cursor: pointer;
-        box-shadow: 0px 6px 6px var(--darkShadow);
+        /* box-shadow: 0px 6px 6px var(--darkShadow); */
+        box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
 }
 .botaoLogin:hover{
         background: var(--PrimaryColor2);
@@ -149,9 +150,6 @@ button{
         border-radius: 32px;
 }
 .google-button{ 
-        /* border: 2px solid !important; 
-        border-image-slice: 30 !important;
-        border-image-source: linear-gradient(90deg, #4885ED 0%, #4885ED 26.04%, #DB3236 26.18%, #DB3236 51.03%, #F4C20D 51.04%, #F4C20D 76.56%, #3CBA54 76.57%) !important; */
         position: relative;
         /* border: solid 2px ;
         border-image-slice: 30;
@@ -161,37 +159,30 @@ button{
         background-clip: content-box, border-box; */
 
         border: double 3px transparent;
-        border-radius: 20px;
         background-image: linear-gradient(white, white), radial-gradient(circle at top left, #4885ED, #DB3236, #F4C20D, #3CBA54);
         background-origin: border-box;
         background-clip: content-box, border-box;
-
         cursor: pointer;
         width: 400px;
         height: 65px;
-        /* border-radius: 32px; */
         line-height: 28px;
-        /* border: none; */
         margin-top: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        /* margin-left: 35px; */
-        /* box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
-        background-color: rgb(255, 255, 255); */
+        box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+        background-color: rgb(255, 255, 255);
         display: inline-flex;
         align-items: center;
-        
-        
         padding: 0px;
-        
-        font-size: 14px;
-        font-weight: 500;
+        font-size: 20px;
+        font-weight: 400;
+        color: darkgray;
         
         /* margin-left: 85px; */
         cursor: pointer;
-        box-shadow: 0px 6px 6px var(--darkShadow);
+        
 }
 .img-red{
         position: fixed;
@@ -219,7 +210,7 @@ button{
 .icon3{
         width: 30px;
         height: 30px;
-        margin-right: 5px;
+        margin-right: 10px;
         background: rgb(255, 255, 255);
         padding: 5px;
         border-radius: 2px
