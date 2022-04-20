@@ -73,6 +73,9 @@ export default function RegisterUser() {
     const [rg, setRg] = useState();
     const [cpf, setCpf] = useState();
     const [telephone, setTelephone] = useState();
+    const [idUserType, setIdUserType] = useState(3);
+    const [idCorporation, setIdCorporation] = useState(1);
+    const [idOffice, setIdOficce] = useState(1);
     const [loading, setLoading] = useState(false);
     const [show, setShow] = useState(false);
 
@@ -95,6 +98,43 @@ export default function RegisterUser() {
         }
     }
 
+    const RegisterUser = (event) => {
+        event.preventDefault();
+        var formData = new FormData();
+        const element = document.getElementById('imageProfile')
+        console.log(element)
+        const file = element.files[0]
+        formData.append('File', file, file.name)
+
+        formData.append('UserName1', name)
+        formData.append('Email', email)
+        formData.append('Passwd', password)
+        formData.append('BirthDate', birthDate)
+        formData.append('Rg', rg)
+        formData.append('Cpf', cpf)
+        formData.append('Phone', telephone)
+        formData.append('idUserType', idUserType)
+        formData.append('idCorporation', idCorporation)
+        formData.append('idOffice', idOffice)
+
+        console.log(formData)
+
+        axios({
+            method: "POST",
+            url:"http://grupo7.azurewebsites.net/api/UserNames",
+            data: formData,
+            headers: {"Content-type" : "multipart/form-data"},
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log('cadastrado com sucesso')
+                }
+            })
+            .catch((erro) => {
+                console.log(erro)
+            })
+    }
+
     return (
         <div>
             <VLibras/>
@@ -105,7 +145,7 @@ export default function RegisterUser() {
                 <div className='registerArea'>
                     <div className='registerContent'>
                         <img className='logoRegister' src={Logo} alt="Logo 2RPnet" />
-                        <form className='formRegister'>
+                        <form className='formRegister' encType='multipart/form-data'>
                             {
                                 steps[currentStep].id === "Step1" && (
                                     <div className='inputsArea'>
@@ -138,11 +178,7 @@ export default function RegisterUser() {
                                             <label className='h5'>Nome</label>
                                             <input id='placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={name} onChange={(event) => setName(event.target.value)} required />
                                         </div>
-                                        <div className='foreachInput' id='areaPhoto'>
-                                            <label className='h5' >Imagem de Perfil</label>
-                                            <label className='sendPhoto h6' for='imageProfile'>Enviar foto</label>
-                                            <input id='imageProfile' className='imageProfileInput' type="file" name="imageProfile" placeholder='Insira sua foto de Perfil...' value={imageProfile} onChange={(event) => setImageProfile(event.target.value)} />
-                                        </div>
+
                                         <button className='button' type="submit" onClick={handleNext}>Avançar</button>
                                     </div>
                                 )
@@ -150,6 +186,13 @@ export default function RegisterUser() {
                             {
                                 steps[currentStep].id === "Step2" && (
                                     <div className='inputsArea'>
+                                                                                <div className='foreachInput' id='areaPhoto'>
+                                            <label className='h5' >Imagem de Perfil</label>
+                                            <label className='sendPhoto h6' for='imageProfile'>Enviar foto</label>
+                                            <input id='imageProfile' className='imageProfileInput' type="file" accept="image/png, image/jpeg" name="imageProfile" placeholder='Insira sua foto de Perfil...' 
+                                            value={imageProfile} onChange={(event) => setImageProfile(event.target.value)} 
+                                            />
+                                        </div>
                                         <div className='foreachInput'>
                                             <label className='h5'>RG</label>
                                             <input id='placeholder-text' type="number" name="RG" placeholder='Insira o seu RG...' value={rg} onChange={(event) => setRg(event.target.value)} autoFocus required />
@@ -162,7 +205,7 @@ export default function RegisterUser() {
                                             <label className='h5'>Telefone</label>
                                             <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} />
                                         </div>
-                                        <button className='button' type="submit">Finalizar Cadastro</button>
+                                        <button className='button' type="submit" onClick={RegisterUser}>Finalizar Cadastro</button>
                                         <button id='buttonBackStep' className='button' onClick={handleBack}>Voltar</button>
                                     </div>
                                 )

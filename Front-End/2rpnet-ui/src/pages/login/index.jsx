@@ -157,7 +157,7 @@ export default function Login() {
                                                         />
                                                 </div>
                                                 
-                                                        <button className='botaoLogin' >Logar</button>
+                                                        <button className='botaoLogin' type='submit' >Logar</button>
                                                 
                                                 <div className='EsqueceuSenha'>
                                                         <a className='re-passwq' alt="Esqueceu a senha?" >Esqueceu a senha?</a>
@@ -167,7 +167,6 @@ export default function Login() {
                                                         <span alt="divisor de elementos">---------ou---------</span>
                                                 </div>
 
-<<<<<<< HEAD
                                                         <GoogleLogin 
                                                                 clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
                                                                 render={renderProps => (
@@ -180,9 +179,6 @@ export default function Login() {
                                                                 onFailure={responseGoogle}
 
                                                         />
-=======
-                                                        <button className='google-button' alt="Entrar com o Google">Continuar com o Google</button>
->>>>>>> ca01e17dc73ccdb8c453bc501fdc5349c59b62d2
 
                                                 <div className='NotSigned-login'>
                                                         <a alt="Não possui cadastro?">Não possui cadastro?</a>

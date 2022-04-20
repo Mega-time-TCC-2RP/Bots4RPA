@@ -68,8 +68,6 @@ export default function Config() {
         setModalConfig(false);
     }
 
-
-
     function select(nextStep) {
         setCurrentStep(nextStep)
         switch (nextStep) {

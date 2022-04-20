@@ -25,7 +25,7 @@ const NotFound = () => {
       <p className="texto-aaa">Parece que essa página não existe ou há algum erro de conexão.</p>
       <p className="texto-aaa">Por favor, volte e tente novamente.</p>
       <Link to="/">
-      <button id='buttonBackStep' to="/" className='button'>Voltar</button>
+      <button id='buttonBackStep' to="/" className='buttonNotFound'>Voltar</button>
       </Link>
       </div>
       <div>

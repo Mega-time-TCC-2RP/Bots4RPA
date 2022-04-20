@@ -75,7 +75,7 @@
 }
 
 .formRegister input {
-    border: 1px solid var(--SecundaryColor2);
+    border: 1px solid var(--PrimaryColor1);
     box-sizing: border-box;
     border-radius: 32px;
     height: 45px;
