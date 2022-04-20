@@ -13,11 +13,14 @@
     height: 2.938em;
     display: flex;
     justify-content: end;
+
+    /* background-color: #66ff6e; */
 }
 
 .exit-button {
-    width: 1.938em;
-    font-size: 30px;
+    /* width: 1.938em; */
+    align-items: center;
+    font-size: 32px;
     border: none;
     cursor: pointer;
     color: #8B919D;
@@ -34,39 +37,40 @@
     background: #F3F3F3;
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    /* background-color: #ff7dde; */
 }
 
-.modalContainer .body {
+.modalContainer .body-modal {
     flex: 50%;
     display: flex;
     font-size: 1.7rem;
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    /* background-color: #ffe386; */
 }
 
-.assistant-info {
+
+
+.box-modal-assistant {
     width: 50%;
     height: 100%;
     display: flex;
-    background-color: brown;
+    flex-direction: column;
 }
 
-.assistant-info div{
-   width: 100%;
-   height: 430px;;
-    background-color: rgb(0, 134, 60);
-}
+.assistant-id {
+    width: 100%;
+    height: 50%;
+    margin-top: 1.25rem;
 
-.assistant-graphics {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    background-color: rgb(65, 110, 188);
+    /* background-color: rgb(0, 134, 60); */
 }
 
 .assistant-modal img {
-    height:240.18px;
+    height: 240.18px;
     width: 270.69px;
 
     cursor: pointer;
@@ -76,7 +80,7 @@
     align-items: center;
 }
 
-.assistant-info h5 {
+.assistant-id h3 {
     margin-top: 1.3rem;
     display: flex;
     font-family: 'Montserrat';
@@ -86,4 +90,129 @@
     justify-content: center;
     overflow-y: hidden;
     color: #17233C;
+}
+
+.assistant-info {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    /* background-color: brown; */
+}
+
+.box-description {
+    width: 100%;
+    height: 2.25em;
+
+    /* background-color: rgb(255, 234, 117); */
+}
+
+.assistant-info h4 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-indent: 20px;
+ 
+
+    color: #3475BB;
+}
+
+.box-paragraph {
+    width: 25.188em;
+    height: 12.688em;
+    margin-top: 1.3rem;
+    display: flex;
+
+    /* background-color: darkcyan; */
+}
+
+.box-paragraph p {
+    display: flex;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    text-align: left;
+    line-height: 31px;
+    color: #636363;
+}
+
+.assistant-date {
+    height: 4.813em;
+    margin-top: 1.25rem;
+    margin-bottom: 1.3rem;
+    display: flex;
+    line-height: 27px;
+    flex-direction: column;
+
+    /* background-color: coral; */
+}
+
+.span1 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+
+    color: #3475BB;
+}
+
+.span2 {
+    margin-top: 1rem;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    
+    color: #636363;
+}
+
+.assistant-graphics {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.graphic-1 {
+    width: 98%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+
+    /* background-color: rgb(0, 134, 149); */
+}
+
+.graphic-1 div {
+    width: 670px;
+    height: 362px;
+    border-radius: 30px;
+
+    background: #FFFFFF;
+}
+
+.graphic-2 {
+    width: 98%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* background-color: rgb(190, 147, 255); */
+}
+
+.graphic-2 div {
+    width: 670px;
+    height: 362px;
+    border-radius: 30px;
+
+    background: #FFFFFF;
 }
