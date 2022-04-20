@@ -29,6 +29,7 @@ import { history } from '../../history';
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GoogleLogin from 'react-google-login';
 
 
 
@@ -109,6 +110,10 @@ export default function Login() {
                     })
             };
 
+            const responseGoogle = (response) => {
+                    console.log(response)
+            }
+
         return (
                 <div>
 
@@ -117,8 +122,6 @@ export default function Login() {
                         <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
                         <VLibras/>
                                 <div className='login-container'>
-                                        
-                                        
                                         
                                         <div className='forms-login'>
                                         <img src={logoMaior} className='logo-Header' alt="Logo 2RP" />
@@ -154,10 +157,17 @@ export default function Login() {
                                                         <span alt="divisor de elementos">---------ou---------</span>
                                                 </div>
 
-                                                        <button className='google-button' alt="Entrar com o Google">
+                                                <GoogleLogin
+                                                        clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
+                                                        render={renderProps => (
+                                                        <button className='google-button' alt="Entrar com o Google" onClick={renderProps.onClick}>
                                                                 <FcIcons.FcGoogle className='icon3' alt="Google Icon"/>
                                                                 Continuar com o Google
                                                         </button>
+                                                        )}
+                                                        onSuccess={responseGoogle}
+                                                        onFailure={responseGoogle}
+                                                />
 
                                                 <div className='NotSigned-login'>
                                                         <a alt="Não possui cadastro?">Não possui cadastro?</a>
