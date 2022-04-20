@@ -9,6 +9,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Navigate,
+  useNavigate
 } from 'react-router-dom';
 
 import './assets/css/components/button.css'
@@ -35,7 +36,8 @@ import RegisterUser from './pages/registerUser/registerUser';
 
 import { history } from './history';
 import VLibras from '@djpfs/react-vlibras'
-
+import { usuarioAutenticado, parseJwt } from '../src/services/auth';
+import { LayersClear } from '@material-ui/icons';
 
 
 // Sem cadastro
@@ -247,5 +249,12 @@ const SetTema = () => {
   }
 }
 
+const ValidateToken = () => {
+  let navigate = useNavigate();
+  console.log("Bom dia!")
+  console.log(parseJwt())
+}
+
 ReactDOM.render(routing, document.getElementById('root'));
-ReactDOM.render(SetTema())
+ReactDOM.render(SetTema());
+ReactDOM.render(ValidateToken())
