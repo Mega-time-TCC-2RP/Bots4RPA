@@ -16,4 +16,8 @@ Para a instalação, usaremos o terminal do git bash
 ![image](https://user-images.githubusercontent.com/19197082/163263666-eee02f74-aa58-4a39-83f2-4454a6dc6abb.png)
 
 # Bibliotecas usadas:
+nota: é possível também usar yarn para a instação, mas neste projeto optamos pelo uso do npm.
 
+`npm install -S @djpfs/react-vlibras`
+`npm install axios`
+`npm install --save react-toastify`
