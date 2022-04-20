@@ -29,3 +29,8 @@ nota: é possível também usar yarn para a instação, mas neste projeto optamo
 `npm install react-input-mask --save`\
 `npm install --save react-modal`\
 `npm i react-router-dom`\
+
+# Banco de Dados
+Optamos por utilizar o banco de dados relacional(SQL), e no primeiro momento, realizamos os diagramas necessários para o entendimento das tabelas e para apresentação ao cliente. Foi então realizado a construção de tabelas através do **SSMS(SQL Server Management Studio)**, onde fizemos os primeiros testes em um ambiente local para inserir os primeiros dados e verificar se as tabelas estavam se conversando. Por fim, depois de realizar os primeiros testes e fazer as DDL's, DML'Se DQL's, foi possível adicionar o banco ao ambiente em núvem, para que todos tivessem acesso ao mesmo banco e sempre atualizado.
+
+nota: no projeto, foi usado o **Azure Cloud**, mas é possível utilizar outros serviços de núvem como **AWS Cloud** e **GCP(Google Cloud Platform)**, fica a critério do time de desenvolvimento ou do que o cliente solicitar.
