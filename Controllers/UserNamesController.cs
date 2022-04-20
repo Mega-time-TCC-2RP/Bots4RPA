@@ -155,7 +155,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         BirthDate = user.BirthDate
                     };
                     UserName PostedUser = ctx.Create(PostUser);
-
+                    PostedUser.Passwd = null;
                     Employee PostEmployee = new Employee()
                     {
                         IdUser = PostedUser.IdUser,

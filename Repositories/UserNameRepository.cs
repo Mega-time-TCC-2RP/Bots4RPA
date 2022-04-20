@@ -26,8 +26,6 @@ namespace _2rpnet.rpa.webAPI.Repositories
             ctx.UserNames.Add(datauser);
             ctx.SaveChanges();
 
-            datauser.Passwd = null;
-
             return datauser;
         }
 
