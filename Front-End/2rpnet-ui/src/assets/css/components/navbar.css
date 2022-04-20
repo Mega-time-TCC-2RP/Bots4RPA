@@ -67,12 +67,12 @@ body{
 .sidebar ul{
     margin-top: 20px;
 }
-.sidebar li span{
-    pointer-events: none;
+.sidebar li .icon2{
+    pointer-events: auto;
 }
 
 .sidebar ul li{
-    
+    pointer-events: none;
     position: relative;
     height: 50px;
     width: 200px;
