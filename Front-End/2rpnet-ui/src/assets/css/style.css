@@ -10,14 +10,64 @@
 .top-container {
     background: #F1F1F1;
     height: 73vh;
+    display: flex;
+    justify-content: center;
+
+    /* background-color: #f9ff7e; */
+}
+
+.form-container {
+    width: 100%;
+    height: 6.938em;
+    display: flex;
+    align-items: flex-end;
+
+    /* background-color: #ff88ef; */
+}
+
+.form-home {
+    width: 84%;
+    height: 50%;
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+
+    /* background-color: #83ffaa; */
+}
+
+.top-buttons {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    /* background-color: #77b9ff; */
+}
+
+.top-buttons input {
+    width: 11.4em;
+    height: 2.6em;
+    margin-left: 20px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 24px;
+    box-sizing: border-box;
+    border-radius: 64px;
+    padding: 1.25rem;
+    background: #FFFFFF;
+    border: 1px solid #C0C0C0;
+    color: #242424;
+   
 }
 
 .button-assistant {
     width: 10em;
     height: 2.6em;
 
-    margin-top: 3.125rem;
-    margin-left: 9.125rem;
+    /* margin-top: 3.125rem;
+    margin-left: 9.125rem; */
 
     cursor: pointer;
     border-radius: 64px;
@@ -32,26 +82,9 @@
 }
 
 .button-assistant:hover {
-    background: #38538A; 
+    background: #38538A;
 }
 
-.top-buttons input {
-    width: 11.4em;
-    height: 2.6em;
-    color: #FFF;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 19px;
-    line-height: 24px;
-    color: #929292;
-    background: #FFFFFF;
-    border: 1px solid #C0C0C0;
-    box-sizing: border-box;
-    border-radius: 64px;
-    margin-left: 20px;
-    padding: 1.25rem;
-}
 
 .body-title-task {
     font-family: 'Montserrat';
@@ -66,33 +99,42 @@
     margin-left: 170px;
 }
 
-.form-home {
-    height: 6.938em;
-}
-
 .nao {
-    width: 89.75;
+    /* width: 89.75em; */
+    width: 100%;
     height: 29.188em;
     overflow-x: hidden;
     overflow-y: hidden;
     white-space: nowrap;
+    
+    /* background-color: #767676; */
+}
+
+.cards-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #ffa0a0; */
 }
 
 .card1 {
-    width: 293px;
-    height: 386.3px;
-
-    margin-top: 3.75rem;
-    margin-left: 9.125rem;
-
+    width: 273px;
+    height: 365px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    margin-left: 10px; 
+    margin-right: 10px; 
 
     background: #FFFFFF;
     border: 5px solid #F2F2F2;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
-    display: inline-block;
-
+ 
     /* efeito de zoom */
     max-width: 100%;
     -moz-transition: all 0.3s;
@@ -108,10 +150,10 @@
 
 /* efeito de zoom */
 .card1 img {
-    margin-left: 2.813rem;
-    margin-top: 1.563rem;
-    cursor: pointer;
+    margin-top: 0.813rem; 
+    margin-left: 0.938rem;
     display: flex;
+    cursor: pointer;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -150,31 +192,13 @@
     color: #3375BA;
 }
 
-/* .card1 a {
-    border-style: none;
-    font-family: 'Exo';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    color: #3375BA;
-    cursor: pointer;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1.1rem;
-    overflow-y: hidden;
-} */
-
 .icon-play {
     width: 1.875em;
     height: 2.313em;
-    color: #3375BA;
-    margin-left: 8.188rem;
+    /* margin-left: 8.188rem; */
     margin-top: 1.063rem;
     cursor: pointer;
+    color: #3375BA;
 }
 
 .body-container {
@@ -346,8 +370,8 @@
 
 .movieRow-right,
 .movieRow-left {
-    position: absolute;
     height: 32.5em;
+    position: absolute;
     z-index: 99;
     display: flex;
     align-items: center;
@@ -355,12 +379,12 @@
     text-align: center;
     overflow-x: hidden;
     cursor: pointer;
-    margin-left: 10px;
     opacity: 0.6;
+    /* margin-left: 10px; */
 }
 
 .movieRow-left {
-    left: 30;
+    left: 0;
 }
 
 .movieRow-right {

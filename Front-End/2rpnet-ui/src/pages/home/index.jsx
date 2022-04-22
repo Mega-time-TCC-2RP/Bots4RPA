@@ -43,10 +43,12 @@ function App(event) {
       {openModal && <Modal closeModal={setOpenModal} />}
       <div className="top-container">
         <div className="top-buttons">
-          <form class="form-home">
-            <button className="button-assistant">Criar Assistente</button>
-            <input type='search' placeholder="Buscar assistente" id="Assistente"></input>
-          </form>
+          <div className="form-container">
+            <form class="form-home">
+              <button className="button-assistant">Criar Assistente</button>
+              <input type='search' placeholder="Buscar assistente" id="Assistente"></input>
+            </form>
+          </div>
           <form className="nao">
             <div className="movieRow-left">
               <NavigateBeforeIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
@@ -55,66 +57,67 @@ function App(event) {
               <NavigateNextIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
             </div>
 
-            <div className="card1">
-              <img src={Azul_Home} className="card1-img" />
-              <h5>Assistente 1</h5>
-              <PlayIcon />
-              <div class="box-details">
-                <button
-                  onClick={(event) => {
-                    event.preventDefault()
-                    setOpenModal(true)
-                  }}>
-                  Ver detalhes
-                </button>
+            <div className="cards-container">
+              <div className="card1">
+                <img src={Azul_Home} className="card1-img" />
+                <h5>Assistente 1</h5>
+                <PlayIcon />
+                <div class="box-details">
+                  <button
+                    onClick={(event) => {
+                      event.preventDefault()
+                      setOpenModal(true)
+                    }}>
+                    Ver detalhes
+                  </button>
+                </div>
               </div>
 
-            </div>
-
-
-            <div className="card1">
-              <img src={Vermelho_Home} className="card1-img" />
-              <h5>Assistente 2</h5>
-              <PlayIcon />
-              <div class="box-details">
-                <button
-                  onClick={(event) => {
-                    event.preventDefault()
-                    setOpenModal(true)
-                  }}>
-                  Ver detalhes
-                </button>
+              {/* <div className="card1">
+                <img src={Vermelho_Home} className="card1-img" />
+                <h5>Assistente 2</h5>
+                <PlayIcon />
+                <div class="box-details">
+                  <button
+                    onClick={(event) => {
+                      event.preventDefault()
+                      setOpenModal(true)
+                    }}>
+                    Ver detalhes
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div className="card1">
-              <img src={Amarelo_Home} className="card1-img" />
-              <h5>Assistente 3</h5>
-              <PlayIcon />
-              <div class="box-details">
-                <button
-                  onClick={(event) => {
-                    event.preventDefault()
-                    setOpenModal(true)
-                  }}>
-                  Ver detalhes
-                </button>
+              <div className="card1">
+                <img src={Amarelo_Home} className="card1-img" />
+                <h5>Assistente 3</h5>
+                <PlayIcon />
+                <div class="box-details">
+                  <button
+                    onClick={(event) => {
+                      event.preventDefault()
+                      setOpenModal(true)
+                    }}>
+                    Ver detalhes
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div className="card1">
-              <img src={Verde_Home} className="card1-img" />
-              <h5>Assistente 4</h5>
-              <PlayIcon />
-              <div class="box-details">
-                <button
-                  onClick={(event) => {
-                    event.preventDefault()
-                    setOpenModal(true)
-                  }}>
-                  Ver detalhes
-                </button>
-              </div>
+              <div className="card1">
+                <img src={Verde_Home} className="card1-img" />
+                <h5>Assistente 4</h5>
+                <PlayIcon />
+                <div class="box-details">
+                  <button
+                    onClick={(event) => {
+                      event.preventDefault()
+                      setOpenModal(true)
+                    }}>
+                    Ver detalhes
+                  </button>
+                </div>
+              </div> */}
+
             </div>
           </form>
         </div>
@@ -207,7 +210,7 @@ function App(event) {
           </div>
         </form>
       </div>
-<Footer />
+      <Footer />
     </div >
   );
 }

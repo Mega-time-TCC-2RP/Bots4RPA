@@ -62,7 +62,6 @@ function Modal({ closeModal }) {
                 </div>
             </div>
         </div>
-
     )
 }
 
