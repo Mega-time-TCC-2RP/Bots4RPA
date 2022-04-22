@@ -6,7 +6,7 @@ namespace _2RPNET_API.Interfaces
     public interface IAssistantRepository
     {
         List<Assistant> ReadAll();
-        List<Assistant> ReadMy(int IdUser);
+        List<Assistant> ReadMyProcess(int IdUser);
 
         Assistant SearchByID(int IdAssistant);
 

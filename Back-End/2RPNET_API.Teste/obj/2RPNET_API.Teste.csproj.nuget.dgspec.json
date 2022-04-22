@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj": {}
+    "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj": {}
   },
   "projects": {
-    "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj": {
+    "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
+        "projectUniqueName": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
         "projectName": "2RPNET_API.Teste",
-        "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
-        "packagesPath": "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API.Teste\\obj\\",
+        "projectPath": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
+        "packagesPath": "C:\\Users\\Ricardo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API.Teste\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\50928811867.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ricardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj": {
-                "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj"
+              "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj": {
+                "projectPath": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj"
               }
             }
           }
@@ -84,21 +84,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj": {
+    "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+        "projectUniqueName": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
         "projectName": "2RPNET_API",
-        "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
-        "packagesPath": "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\obj\\",
+        "projectPath": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+        "packagesPath": "C:\\Users\\Ricardo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\50928811867.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ricardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -150,6 +150,10 @@
               "target": "Package",
               "version": "[5.0.15, )"
             },
+            "Microsoft.Playwright": {
+              "target": "Package",
+              "version": "[1.21.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
@@ -181,7 +185,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

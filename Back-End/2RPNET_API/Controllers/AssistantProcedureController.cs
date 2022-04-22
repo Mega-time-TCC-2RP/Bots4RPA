@@ -59,6 +59,19 @@ namespace _2RPNET_API.Controllers
             }
         }
 
+        [HttpGet("Assistant/{id}")]
+        public IActionResult ListProcessByAssistant(int id)
+        {
+            try
+            {
+                return Ok(_repository.SearchByAssistant(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
         /// <summary>
         /// Method responsible for create all Assistants Process
         /// </summary>
