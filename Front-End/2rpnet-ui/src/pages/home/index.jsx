@@ -21,30 +21,63 @@ import PlayIcon from '../../components/icones/play'
 
 //Components:
 import Footer from '../../components/footer/footer'
+import { render } from "@testing-library/react";
 
 
 {/* <Navbar/> */ }
 
-function App(event) {
-  // event.preventDefault()
+export default function Home() {
 
-  // Modal:
+  const [AssistantsList, setAssistantsList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
-  const handleLeftArrow = () => {
+  function GetMyAssistants() {
 
-  }
-  const handleRightArrow = () => {
+    console.log('Realizando chamada para a api')
 
+    fetch('http://grupo8api.azurewebsites.net/api/Assistants', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+      },
+
+    })
+      .then((response) => response.json())
+
+      .then((data) => 
+      // this.setState({ AssistantsList: data }),
+      setAssistantsList(data)
+      // console.log(data)
+      )
+      
+      .catch((error) => console.log(error));
+
+      
+  };
+
+  useEffect(GetMyAssistants, [])
+
+
+
+  function App() {
+    // event.preventDefault()
+
+    const handleLeftArrow = () => {
+
+    }
+    const handleRightArrow = () => {
+
+    }
   }
+  useEffect(App)
 
   return (
+
     <div>
       {openModal && <Modal closeModal={setOpenModal} />}
       <div className="top-container">
         <div className="top-buttons">
           <div className="form-container">
-            <form class="form-home">
+            <form className="form-home">
               <button className="button-assistant">Criar Assistente</button>
               <input type='search' placeholder="Buscar assistente" id="Assistente"></input>
             </form>
@@ -58,26 +91,34 @@ function App(event) {
             </div>
 
             <div className="cards-container">
-              <div className="card1">
-                <img src={Azul_Home} className="card1-img" />
-                <h5>Assistente 1</h5>
-                <PlayIcon />
-                <div class="box-details">
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault()
-                      setOpenModal(true)
-                    }}>
-                    Ver detalhes
-                  </button>
-                </div>
-              </div>
+
+              {AssistantsList.map((assistant) => {
+                return (
+
+                  <div className="card1">
+                    <img src={Azul_Home} className="card1-img" />
+                    <h5>{assistant.assistantName}</h5>
+                    <PlayIcon />
+                    <div className="box-details">
+                      <button
+                        onClick={(event) => {
+                          event.preventDefault()
+                          setOpenModal(true)
+                        }}>
+                        Ver detalhes
+                      </button>
+                    </div>
+                  </div>
+
+                )
+              })}
+
 
               {/* <div className="card1">
                 <img src={Vermelho_Home} className="card1-img" />
                 <h5>Assistente 2</h5>
                 <PlayIcon />
-                <div class="box-details">
+                <div className="box-details">
                   <button
                     onClick={(event) => {
                       event.preventDefault()
@@ -92,7 +133,7 @@ function App(event) {
                 <img src={Amarelo_Home} className="card1-img" />
                 <h5>Assistente 3</h5>
                 <PlayIcon />
-                <div class="box-details">
+                <div className="box-details">
                   <button
                     onClick={(event) => {
                       event.preventDefault()
@@ -107,7 +148,7 @@ function App(event) {
                 <img src={Verde_Home} className="card1-img" />
                 <h5>Assistente 4</h5>
                 <PlayIcon />
-                <div class="box-details">
+                <div className="box-details">
                   <button
                     onClick={(event) => {
                       event.preventDefault()
@@ -214,5 +255,3 @@ function App(event) {
     </div >
   );
 }
-
-export default App;
