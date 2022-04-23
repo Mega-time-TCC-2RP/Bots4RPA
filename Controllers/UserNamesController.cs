@@ -192,8 +192,16 @@ namespace _2rpnet.rpa.webAPI.Controllers
                                 UserValidation = false,
                                 BirthDate = user.BirthDate
                             },
-                            Employee = PostedEmployee,
-                            Player = PostedPlayer
+                            Employee = new Employee()
+                            {
+                                IdUser = PostedUser.IdUser,
+                                IdCorporation = user.IdCorporation,
+                                Confirmation = false
+                            },
+                            Player = new Player()
+                            {
+                                IdEmployee = PostedEmployee.IdEmployee
+                            }
                         });
                     }
                     return Ok(new {
@@ -209,7 +217,12 @@ namespace _2rpnet.rpa.webAPI.Controllers
                             UserValidation = false,
                             BirthDate = user.BirthDate
                         },
-                        Employee = PostedEmployee
+                        Employee = new Employee()
+                        {
+                            IdUser = PostedUser.IdUser,
+                            IdCorporation = user.IdCorporation,
+                            Confirmation = false
+                        }
                     });
                 }
                 else return NotFound("Id da empresa inválido");
