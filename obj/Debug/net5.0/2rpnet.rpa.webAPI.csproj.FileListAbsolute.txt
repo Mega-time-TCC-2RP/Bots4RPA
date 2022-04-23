@@ -305,11 +305,6 @@ C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\a
 C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\appsettings.json
 C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\2rpnet.rpa.webAPI.StaticWebAssets.xml
 C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\2rpnet.rpa.webAPI.exe
-C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\88a21fe1-d779-4180-8ad3-a817802d921f.jpg
-C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\c0b3f852-f0f1-478a-880f-2ddefeaaada6.jpg
-C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\edd1735c-c933-4bbe-949d-f03cdcbbb5c5.jpg
-C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\f5ceac70-109a-4194-bb36-57e4e71fe686.jpg
-C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\fe0103e2-4302-4baa-b237-a46ef0501d8a.jpg
 C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\padrao.png
 C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\padraoEmpresa.png
 C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\padraoTrofeu.png
@@ -453,3 +448,5 @@ C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\obj\Debug\net5.0\2
 C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\obj\Debug\net5.0\2rpnet.rpa.webAPI.pdb
 C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\obj\Debug\net5.0\2rpnet.rpa.webAPI.genruntimeconfig.cache
 C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\obj\Debug\net5.0\ref\2rpnet.rpa.webAPI.dll
+C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\74a03564-b66e-4c46-80bc-d6c5beeca2fe.jpg
+C:\Users\Pichau\Desktop\ProjetoTcc\branch-api-nuvem\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\945fe2b0-0b6e-4a65-9b0a-7ad15a02ac23.jpg

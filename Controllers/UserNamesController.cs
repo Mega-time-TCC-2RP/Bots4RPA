@@ -113,29 +113,34 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
-
-                if (File == null)
-                    return BadRequest("É necessário enviar um arquivo de imagem válido!");
-
                 string[] FileTypes = { "jpg", "png", "jpeg", "gif" };
                 string UploadResult = Upload.UploadFile(File, FileTypes);
-                if (UploadResult == "")
+                if (File != null)
                 {
-                    return BadRequest("Arquivo não encontrado");
-                }
+                    if (UploadResult == "")
+                    {
+                        return BadRequest("Arquivo não encontrado");
+                    }
 
-                if (UploadResult == "Extensão não permitida")
-                {
-                    return BadRequest("Extensão de arquivo não permitida");
+                    if (UploadResult == "Extensão não permitida")
+                    {
+                        return BadRequest("Extensão de arquivo não permitida");
+                    }
                 }
                 if(user.IdUserType == 1)
                 {
-                    Upload.RemoveFile(UploadResult);
+                    if (File != null)
+                    {
+                        Upload.RemoveFile(UploadResult);
+                    }
                     return Unauthorized("Apenas usuários comuns ou com nível de administração interna (empresa) podem ser cadastrados");
                 }
                 else if (Octx.ReadAll().FirstOrDefault(O => O.IdOffice == user.IdOffice) == null)
                 {
-                    Upload.RemoveFile(UploadResult);
+                    if (File != null)
+                    {
+                        Upload.RemoveFile(UploadResult);
+                    }
                     return NotFound("Cargo inválido");
                 }
                 else
@@ -155,7 +160,6 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         BirthDate = user.BirthDate
                     };
                     UserName PostedUser = ctx.Create(PostUser);
-                    PostedUser.Passwd = null;
                     Employee PostEmployee = new Employee()
                     {
                         IdUser = PostedUser.IdUser,
@@ -176,13 +180,35 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
                         return Ok(new
                         {
-                            Usuario = PostedUser,
+                            User = new UserName()
+                            {
+                                UserName1 = user.UserName1,
+                                Email = user.Email,
+                                Cpf = user.Cpf,
+                                PhotoUser = UploadResult,
+                                Phone = user.Phone,
+                                Rg = user.Rg,
+                                IdUserType = user.IdUserType,
+                                UserValidation = false,
+                                BirthDate = user.BirthDate
+                            },
                             Employee = PostedEmployee,
                             Player = PostedPlayer
                         });
                     }
-                    return Ok(new { 
-                        Usuario = PostedUser,
+                    return Ok(new {
+                        User = new UserName()
+                        {
+                            UserName1 = user.UserName1,
+                            Email = user.Email,
+                            Cpf = user.Cpf,
+                            PhotoUser = UploadResult,
+                            Phone = user.Phone,
+                            Rg = user.Rg,
+                            IdUserType = user.IdUserType,
+                            UserValidation = false,
+                            BirthDate = user.BirthDate
+                        },
                         Employee = PostedEmployee
                     });
                 }
