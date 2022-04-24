@@ -133,7 +133,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     {
                         Upload.RemoveFile(UploadResult);
                     }
-                    return Unauthorized("Apenas usuários comuns ou com nível de administração interna (empresa) podem ser cadastrados");
+                    return Forbid("Apenas usuários comuns ou com nível de administração interna (empresa) podem ser cadastrados");
                 }
                 else if (Octx.ReadAll().FirstOrDefault(O => O.IdOffice == user.IdOffice) == null)
                 {
@@ -247,7 +247,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 var user = ctx.SearchByID(id);
                 if (ctx.SearchByID(UserId).Employees.First().IdCorporation != user.Employees.First().IdCorporation && UserRole == 2)
                 {
-                    return Unauthorized("O usuário administrador só pode deletar usuários da sua empresa");
+                    return Forbid("O usuário administrador só pode deletar usuários da sua empresa");
                 }
                 if (user == null)
                 {
@@ -308,7 +308,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 UserName QueryUser = ctx.SearchByID(idUser);
                 if (ctx.SearchByID(UserId).Employees.First().IdCorporation != QueryUser.Employees.First().IdCorporation)
                 {
-                    return Unauthorized("O usuário administrador só pode validar usuários da sua empresa");
+                    return Forbid("O usuário administrador só pode validar usuários da sua empresa");
                 }
                 if (QueryUser == null)
                 {

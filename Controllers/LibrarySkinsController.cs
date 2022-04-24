@@ -104,7 +104,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 else if (QuerySkin.SkinPrice > QueryPlayer.Score)
                 {
-                    return Unauthorized("O jogador não possui pontos sufuicientes para adquirir a Skin");
+                    return Forbid("O jogador não possui pontos sufuicientes para adquirir a Skin");
                 }
                 Pctx.DecreaseScore(QueryPlayer, QuerySkin.SkinPrice);
                 LibrarySkin librarySkin = new LibrarySkin()
@@ -136,7 +136,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == librarySkin.IdPlayer).IdEmployee).IdUser != Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value) && Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value) == 3)
                 {
-                    return Unauthorized("O usuário comum só pode deletar suas skins");
+                    return Forbid("O usuário comum só pode deletar suas skins");
                 }
 
                 ctx.Delete(librarySkin);

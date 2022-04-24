@@ -91,7 +91,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 else if (QueryPost.IdPlayer != post.IdPlayer && UserType == 3)
                 {
                     Upload.RemoveFile(UploadResult);
-                    return Unauthorized("Usuários comuns só podem atualizar seus próprios posts");
+                    return Forbid("Usuários comuns só podem atualizar seus próprios posts");
                 }
 
 
@@ -168,7 +168,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 else if (UserType == 3 && post.IdPlayer != IdPlayer)
                 {
-                    Unauthorized("O usuário comum só pode deletar seus próprios posts");
+                    Forbid("O usuário comum só pode deletar seus próprios posts");
                 }
 
                 Upload.RemoveFile(post.PostImage);

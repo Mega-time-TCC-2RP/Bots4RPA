@@ -63,7 +63,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 comment.IdComment = id;
                 if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == comment.IdPlayer).IdEmployee).IdUser != Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value) && Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value) == 3)
                 {
-                    return Unauthorized("O usuário comum só pode atualizar seus comentários");
+                    return Forbid("O usuário comum só pode atualizar seus comentários");
                 }
                 Comment UpdatedComment = ctx.Update(comment);
                 if (UpdatedComment == null)
@@ -113,7 +113,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == comment.IdPlayer).IdEmployee).IdUser != Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value) && Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value) == 3)
                     {
-                        return Unauthorized("O usuário comum só pode excluir seus comentários");
+                        return Forbid("O usuário comum só pode excluir seus comentários");
                     }
                     ctx.Delete(comment);
                     return NoContent();

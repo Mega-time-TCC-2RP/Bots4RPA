@@ -97,7 +97,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 else if(UserRole == 2 && UserId != Ectx.ReadAll().Where(E => E.IdCorporation == QueryCorporation.IdCorporation).FirstOrDefault(E => E.Confirmation == true).IdUser){
                     Upload.RemoveFile(UploadResult);
-                    return Unauthorized("Apenas o administrador dono da empresa pode alterar sesus dados");
+                    return Forbid("Apenas o administrador dono da empresa pode alterar sesus dados");
                 }
                 corporate.IdCorporation = id;
                 corporate.CorporatePhoto = UploadResult;
@@ -228,7 +228,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 else if (Ectx.ReadAll().FirstOrDefault(E => E.IdCorporation == corporate.IdCorporation && E.Confirmation == true).IdUser != UserId && UserRole == 2)
                 {
-                    return Unauthorized("Apenas o administrador dono da empresa pode deletá-la");
+                    return Forbid("Apenas o administrador dono da empresa pode deletá-la");
                 }
                 List<Employee> employeeList = Ectx.ReadAll().Where(E => E.IdCorporation == corporate.IdCorporation).ToList();
                 foreach (Employee item in employeeList)

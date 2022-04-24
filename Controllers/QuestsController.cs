@@ -71,7 +71,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 else if (task.IdEmployee != Uctx.SearchByID(UserId).Employees.First().IdEmployee && UserRole == 3)
                 {
-                    return Unauthorized("O usuário comum só pode atualizar suas tarefas");
+                    return Forbid("O usuário comum só pode atualizar suas tarefas");
                 }
                 else return NoContent();
             }
@@ -119,7 +119,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 else if (task.IdEmployee != Uctx.SearchByID(UserId).Employees.First().IdEmployee && UserRole == 3)
                 {
-                    return Unauthorized("O usuário comum só pode deletar suas tarefas");
+                    return Forbid("O usuário comum só pode deletar suas tarefas");
                 }
                 else
                 {
@@ -154,7 +154,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 else if(QueryQuest.IdEmployee != Uctx.SearchByID(UserId).Employees.First().IdEmployee && UserRole == 3)
                 {
-                    return Unauthorized("O usuário comum só pode alterar o status das suas tarefas");
+                    return Forbid("O usuário comum só pode alterar o status das suas tarefas");
                 }
                 else
                 {
