@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
+import { AxiosError } from 'axios';
 import botaoComentarImg from "../../assets/img/botaoComentar.png";
 import botaoCurtirImg from "../../assets/img/botaoLike.png";
 import botaoCurtidoImg from "../../assets/img/botaoLikeLiked.png";
@@ -9,9 +10,11 @@ import Modal from 'react-modal';
 import ImagemModalCadastro from "../../assets/img/CadastroPostBtn.png"
 import VLibras from '@djpfs/react-vlibras'
 import Navbar from '../../components/menu/Navbar'
-import { usuarioAutenticado, parseJwt } from '../../services/auth';
+import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
+
+import { useNavigate } from 'react-router-dom'
 
 
 const customStyles = {
@@ -34,6 +37,9 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export const TelaTimeline = () => {
+    const Navigate = useNavigate();
+
+    const [IsLoading, setIsLoading] = useState(false);
     const [ListaPosts, setListaPosts] = useState([]);
 
     const [ModalCadastroIsOpen, setModalCadastroIsOpen] = useState(false);
@@ -82,45 +88,62 @@ export const TelaTimeline = () => {
             console.log(resposta.data);
             ListaPostsRetorno = resposta.data;
             setListaPosts(resposta.data);
+        }).catch(async (error) => {
+            if (await handleAuthException(error) === true) {
+                localStorage.removeItem('2rp-chave-autenticacao')
+                Navigate('/login')
+            }
         })
 
         return ListaPostsRetorno;
     }
 
-    const LikesCurtir = (e, idPost) => {
+    const LikesCurtir = async (e, idPost) => {
         e.preventDefault();
+        setIsLoading(true);
         axios.post('http://grupo7.azurewebsites.net/api/Likes', {
             "idPost": idPost,
-        } ,{
+        }, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
-        }).then((response) => {
-            ListarPosts();
+        }).then(async (response) => {
+            await ListarPosts();
+            setIsLoading(false);
             console.log(response.data);
         }).catch((error) => {
-            console.log(error);
+            if (handleAuthException(error) === true) {
+                localStorage.removeItem('2rp-chave-autenticacao')
+                Navigate('/login')
+            }
+            setIsLoading(false);
         })
     }
 
-    const LikesDescurtir = (e, idPostLike) => {
+    const LikesDescurtir = async (e, idPostLike) => {
         e.preventDefault();
+        setIsLoading(true);
         console.log(idPostLike)
         axios.delete('http://grupo7.azurewebsites.net/api/Likes/' + idPostLike, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
-        }).then((response) => {
+        }).then(async (response) => {
             console.log(response.data);
-            ListarPosts();
-        }).catch((error) => {
-            console.log(error);
+            await ListarPosts();
+            setIsLoading(false);
+        }).catch(async (error) => {
+            if (await handleAuthException(error) === true) {
+                localStorage.removeItem('2rp-chave-autenticacao')
+                Navigate('/login')
+            }
+            setIsLoading(false);
         })
     }
 
     const PublicarPost = (e) => {
         e.preventDefault();
-
+        setIsLoading(true);
         var formData = new FormData();
 
         const element = document.getElementById('InputImagemCadastroPost')
@@ -142,15 +165,21 @@ export const TelaTimeline = () => {
             .then(function (response) {
                 console.log(response);
                 ListarPosts();
+                setIsLoading(false);
             })
-            .catch(function (response) {
+            .catch(function (error) {
                 //handle error
-                console.log(response);
+                if (handleAuthException(error) === true) {
+                    localStorage.removeItem('2rp-chave-autenticacao')
+                    Navigate('/login')
+                }
+                setIsLoading(false);
             });
     }
 
-    const PublicarComentario = async (e) => {
+    const PublicarComentario = (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         axios.post("http://grupo7.azurewebsites.net/api/Comments", {
             "idPost": idPostComentarios,
@@ -160,19 +189,27 @@ export const TelaTimeline = () => {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
-        }).then(async (response) => {
+        }).then((response) => {
             console.log(response)
-            let ListaPostsPosComentar = await ListarPosts();
+            let ListaPostsPosComentar = ListarPosts();
             console.log(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments);
             setComentariosModal(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments)
+            setIsLoading(false);
         }).catch((error) => {
-            console.log(error);
+            if (handleAuthException(error) === true) {
+                localStorage.removeItem('2rp-chave-autenticacao')
+                Navigate('/login')
+            }
+            setIsLoading(false);
         })
     }
 
     useEffect(() => {
         ListarPosts();
-        console.log(parseJwt());
+        if (handleAuthException() === true) {
+            localStorage.removeItem('2rp-chave-autenticacao')
+            Navigate('/login')
+        }
     }, [])
     return (
         <div className="containerPag">
@@ -223,7 +260,10 @@ export const TelaTimeline = () => {
                                     </div>
                                 </div>
                             </div>
-                            <button className="BtnSubmitForm">Publicar</button>
+                            {
+                                IsLoading == true ?
+                                    <button className="BtnSubmitForm" type="submit" disabled>Carregando</button> : <button className="BtnSubmitForm" type="submit">Publicar</button>
+                            }
                         </form>
                     </Modal>
                     {
@@ -251,17 +291,31 @@ export const TelaTimeline = () => {
                                             <img src={botaoComentarImg}></img>
                                         </button>
                                         {
-                                            post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+                                            IsLoading == true ?
+                                                post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
 
-                                                <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
-                                                    <img src={botaoCurtidoImg}></img>
-                                                    <span>{post.likes.length}</span>
-                                                </button>
+                                                    <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
+                                                        <img src={botaoCurtidoImg}></img>
+                                                        <span>{post.likes.length}</span>
+                                                    </button>
+                                                    :
+                                                    <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
+                                                        <img src={botaoCurtirImg}></img>
+                                                        <span>{post.likes.length}</span>
+                                                    </button>
                                                 :
-                                                <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)}>
-                                                    <img src={botaoCurtirImg}></img>
-                                                    <span>{post.likes.length}</span>
-                                                </button>
+                                                post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+
+                                                    <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
+                                                        <img src={botaoCurtidoImg}></img>
+                                                        <span>{post.likes.length}</span>
+                                                    </button>
+                                                    :
+                                                    <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)}>
+                                                        <img src={botaoCurtirImg}></img>
+                                                        <span>{post.likes.length}</span>
+                                                    </button>
+
                                         }
                                     </div>
                                     <h2 className="TituloPost">{post.title}</h2>
@@ -288,7 +342,10 @@ export const TelaTimeline = () => {
                                                             <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
                                                         </div>
                                                     </div>
-                                                    <button className="BtnSubmitForm">Publicar</button>
+                                                    {
+                                                        IsLoading == true ?
+                                                            <button type="submit" className="BtnSubmitForm" disabled>Carregando...</button> : <button type="submit" className="BtnSubmitForm">Publicar</button>
+                                                    }
                                                 </form>
                                                 <button onClick={(e) => closeModalComentarios(e)}>X</button>
                                             </div>
@@ -316,51 +373,6 @@ export const TelaTimeline = () => {
                             )
                         })
                     }
-                    {/* Estilização Modal Comentários */}
-                    {/* <Modal
-                        isOpen={ModalComentariosIsOpen}
-                        onAfterOpen={afterOpenModal}
-                        onRequestClose={closeModalComentarios}
-                        style={customStyles}
-                        contentLabel="Example Modal"
-                        class="ReactModal"
-                        closeTimeoutMS={2000}
-                    >
-                        <div className='ContainerModalComentarios'>
-                            <div className="HeaderModal">
-                                <form className='CadastroComentarioContainer'>
-                                    <div className='LinhaCampoCadastroComentarios'>
-                                        <div className="CampoCadastro">
-                                            <label className="LabelCampoCadastro">Título</label>
-                                            <input placeholder="Digite o título..." type="text"></input>
-                                        </div>
-                                        <div className="CampoCadastro">
-                                            <label className="LabelCampoCadastro">Descrição</label>
-                                            <input placeholder="Digite a descrição..." type="text"></input>
-                                        </div>
-                                    </div>
-                                    <button className="BtnSubmitForm">Publicar</button>
-                                </form>
-                                <button onClick={closeModalComentarios}>X</button>
-                            </div>
-                            <div className='ContainerComentarios'>
-
-                                <div className="Comentario">
-                                    <div className='ComentarioUsuario'>
-                                        <img src={ImagemModalCadastro}></img>
-                                        <span>Nome</span>
-                                    </div>
-                                    <h2 className='TituloComentario'>Titulum</h2>
-                                    <p className='TextoComentario'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </Modal> */}
                 </div>
             </main>
             <Footer />

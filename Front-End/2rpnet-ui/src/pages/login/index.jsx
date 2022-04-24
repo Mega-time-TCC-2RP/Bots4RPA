@@ -35,6 +35,7 @@ import GoogleLogin from 'react-google-login';
 
 
 export default function Login() {
+        const [IsLoading, setIsLoading] = useState(false);
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
 
@@ -66,6 +67,7 @@ export default function Login() {
         let history = useNavigate();
 
         const handleSubmit = (e) => {
+                setIsLoading(true);
                 e.preventDefault();
         
                 axios.post('https://grupo7.azurewebsites.net/api/Login', {
@@ -103,10 +105,13 @@ export default function Login() {
 
                             }
                         }
+                        setIsLoading(false);
                     })
 
                     .catch(() => {
+                        
                         this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
+                        setIsLoading(false);
                     })
             };
 
@@ -146,8 +151,10 @@ export default function Login() {
                                                                 onChange={(e) => setPassword(e.target.value)}        
                                                         />
                                                 </div>
-                                                
-                                                        <button className='botaoLogin' type='submit' >Logar</button>
+                                                {
+                                                        IsLoading === true ?
+                                                        <button className='botaoLogin' type='submit' disabled>Carregando...</button> : <button className='botaoLogin' type='submit'>Entrar</button>
+                                                }
                                                 
                                                 <div className='EsqueceuSenha'>
                                                         <a className='re-passwq' alt="Esqueceu a senha?" >Esqueceu a senha?</a>
@@ -157,20 +164,6 @@ export default function Login() {
                                                         <span alt="divisor de elementos">---------ou---------</span>
                                                 </div>
 
-<<<<<<< HEAD
-                                                        <GoogleLogin 
-                                                                clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
-                                                                render={renderProps => (
-                                                                        <button className='google-button' onClick={renderProps.onClick}>
-                                                                                <FcIcons.FcGoogle className='icon3'/>
-                                                                                <span id='googleLogin'>Continuar com o Google</span>
-                                                                        </button>
-                                                                      )}
-                                                                onSuccess={responseGoogle}
-                                                                onFailure={responseGoogle}
-
-                                                        />
-=======
                                                 <GoogleLogin
                                                         clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
                                                         render={renderProps => (
@@ -182,7 +175,6 @@ export default function Login() {
                                                         onSuccess={responseGoogle}
                                                         onFailure={responseGoogle}
                                                 />
->>>>>>> b7705e2666188b6c69e1a9deb1e30a8ceeb4256a
 
                                                 <div className='NotSigned-login'>
                                                         <a alt="Não possui cadastro?">Não possui cadastro?</a>

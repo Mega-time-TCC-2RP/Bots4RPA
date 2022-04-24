@@ -257,4 +257,3 @@ const ValidateToken = () => {
 
 ReactDOM.render(routing, document.getElementById('root'));
 ReactDOM.render(SetTema());
-ReactDOM.render(ValidateToken())
