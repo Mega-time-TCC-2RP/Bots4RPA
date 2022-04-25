@@ -59,6 +59,7 @@ const routing = (
         <Route path="/taskcalendar" element={<TaskCalendar />} /> {/* Task Calendar */}
         <Route path="/taskkanban" element={<TaskKanban />} /> {/* Task Kanban */}
         <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />
+        
 
 
         {/*<Route path="/config" element={<Config/>} /> {/* Configuration */}

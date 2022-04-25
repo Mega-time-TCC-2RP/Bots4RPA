@@ -113,6 +113,7 @@ export default function Login() {
                         this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
                         setIsLoading(false);
                     })
+                    setIsLoading(false);
             };
 
             const responseGoogle = (response) => {

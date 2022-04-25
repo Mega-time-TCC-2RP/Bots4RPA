@@ -14,6 +14,8 @@ import Amarelo_Home from '../../assets/img/Amarelo_Home.png'
 import Verde_Home from '../../assets/img/Verde_Home.png'
 import Post_Perfil_Photo from '../../assets/img/Post_Perfil_Photo.png'
 import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
+import { useNavigate } from 'react-router-dom'
+import Header from '../../components/header/header'
 
 //items
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -26,9 +28,14 @@ import Footer from '../../components/footer/footer'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 
 
 function App() {
+  const [myQuests, setMyQuests] = useState([]);
+  const [highlightedPosts, setHighlightedPosts] = useState([]);
+  const Navigate = useNavigate();
+
   const handleLeftArrow = () => {
 
   }
@@ -40,140 +47,142 @@ function App() {
 
   }
 
+  const GetMyQuests = () => {
+    axios.get('http://grupo7.azurewebsites.net/api/Quests/ListarMinhas', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      }
+    }).then((response) => {
+      console.log(response)
+      console.log(response.data)
+      setMyQuests(response.data)
+    }).catch(async (error) => {
+      if (await handleAuthException(error) === true) {
+        localStorage.removeItem('2rp-chave-autenticacao')
+        Navigate('/login')
+        console.log(error.status);
+      }
+    })
+  }
+
+  const GetHighlightedPosts = () => {
+    axios.get('http://grupo7.azurewebsites.net/api/Posts/Highlights', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      }
+    }).then((response) => {
+      console.log(response)
+      console.log(response.data)
+      setHighlightedPosts(response.data)
+    }).catch(async (error) => {
+      if (await handleAuthException(error) === true) {
+        localStorage.removeItem('2rp-chave-autenticacao')
+        Navigate('/login')
+        console.log(error.status);
+      }
+    })
+  }
+
+  useEffect(() => {
+    GetMyQuests();
+    GetHighlightedPosts();
+  }, [])
   return (
     <div>
       <Navbar />
       <div className='body-pd'>
-      <VLibras />
-      <div className="top-container">
-        <div className="top-buttons">
-          <form>
-            <button className="button-assistant">Criar Assistente</button>
-            <input type='search' placeholder="Buscar assistente" id="Assistente"></input>
-          </form>
-          <form className="nao">
-            <div className="movieRow-left">
-              <NavigateBeforeIcon style={{ fontSize: 150 }} />
-            </div>
-            <div className="movieRow-right">
-              <NavigateNextIcon style={{ fontSize: 150 }} />
-            </div>
-            <div className="card1">
-              <img src={Azul_Home} className="card1-img" />
-              <h5>Assistente 1</h5>
-              <a className="play-button">▶</a>
-              <a className="details-button">Ver detalhes</a>
-            </div>
-            <div className="card1">
-              <img src={Vermelho_Home} className="card1-img" />
-              <h5>Assistente 2</h5>
-              <a className="play-button">▶</a>
-              <a className="details-button">Ver detalhes</a>
-            </div>
-            <div className="card1">
-              <img src={Amarelo_Home} className="card1-img" />
-              <h5>Assistente 3</h5>
-              <a className="play-button">▶</a>
-              <a className="details-button">Ver detalhes</a>
-            </div>
-            {/* <div className="card1">
+        <Header />
+        <VLibras />
+        <div className="top-container">
+          <div className="top-buttons">
+            <form>
+              <button className="button-assistant">Criar Assistente</button>
+              <input type='search' placeholder="Buscar assistente" id="Assistente"></input>
+            </form>
+            <form className="nao">
+              <div className="movieRow-left">
+                <NavigateBeforeIcon style={{ fontSize: 150 }} />
+              </div>
+              <div className="movieRow-right">
+                <NavigateNextIcon style={{ fontSize: 150 }} />
+              </div>
+              <div className="card1">
+                <img src={Azul_Home} className="card1-img" />
+                <h5>Assistente 1</h5>
+                <a className="play-button">▶</a>
+                <a className="details-button">Ver detalhes</a>
+              </div>
+              <div className="card1">
+                <img src={Vermelho_Home} className="card1-img" />
+                <h5>Assistente 2</h5>
+                <a className="play-button">▶</a>
+                <a className="details-button">Ver detalhes</a>
+              </div>
+              <div className="card1">
+                <img src={Amarelo_Home} className="card1-img" />
+                <h5>Assistente 3</h5>
+                <a className="play-button">▶</a>
+                <a className="details-button">Ver detalhes</a>
+              </div>
+              {/* <div className="card1">
               <img src={Verde_Home} className="card1-img"/>
               <h5>Assistente 4</h5>
               <a className="play-button">▶</a>
               <a className="details-button">Ver detalhes</a>
             </div> */}
+            </form>
+          </div>
+        </div>
+        <div className="body-container">
+          <form>
+            <h2 className="body-title-task">Minhas Tarefas</h2>
+            {
+              myQuests != undefined && myQuests != null ?
+                myQuests.map((Quest) => {
+                  return (
+                    <div className="card-body-content">
+                      <h3 className="title-card-content">Título</h3>
+                      <p className="text-body1">{Quest.descriptionQuest}</p>
+                      <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Quest.dateHour))}</p>
+                    </div>
+                  )
+                }) : <span>Não há tarefas pra esse usuário</span>
+            }
           </form>
         </div>
-      </div>
-      <div className="body-container">
-        <form>
-          <h2 className="body-title-task">Minhas Tarefas</h2>
-          <div className="card-body-content">
-            <h3 className="title-card-content">Título</h3>
-            <p className="text-body1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p className="data-body">Data de entrega : xx/xx/xxxx</p>
-          </div>
-          <div className="card-body-content">
-            <h3 className="title-card-content">Título</h3>
-            <p className="text-body1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p className="data-body">Data de entrega : xx/xx/xxxx</p>
-          </div>
-          <div className="card-body-content">
-            <h3 className="title-card-content">Título</h3>
-            <p className="text-body1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p className="data-body">Data de entrega : xx/xx/xxxx</p>
-          </div>
-        </form>
-      </div>
-      <div className="bottom-container">
-        <form>
-          <div className="forms-items">
-            <h2 className="bottom-title">Posts em destaque</h2>
-            <div className="bottom-posts-content">
-
-              <div className="chatListItem--lines">
-                <img src={Post_Perfil_Photo} className="ItemPost-avatar" />
-                <div className="chatItemList-line">
-                  <div className="PostItem-name">Marcos</div>
-                  <p className="PostItem-role">DevOps</p>
-                </div>
-              </div>
-              <img src={Img_Home_Post} className="img2-home-bottom" />
-              <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-              </p>
+        <div className="bottom-container">
+          <form>
+            <div className="forms-items">
+              <h2 className="bottom-title">Posts em destaque</h2>
+              {
+                highlightedPosts != undefined && highlightedPosts != null ?
+                  highlightedPosts.map((post) => {
+                    return (
+                      <div className="bottom-posts-content">
+                        <div className="chatListItem--lines">
+                          <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                          <div className="chatItemList-line">
+                            <div className="PostItem-name">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
+                            <p className="PostItem-role">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+                          </div>
+                        </div>
+                        {
+                          post.postImage != undefined ?
+                            <img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
+                            <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
+                        }
+                        <h2 className="TituloPost">{post.title}</h2>
+                        <p className="post-text-bottom-home">{post.postDescription}</p>
+                      </div>
+                    )
+                  }) :
+                  <span>Não há posts em destaque</span>
+              }
             </div>
-            <div className="bottom-posts-content">
+          </form>
+        </div>
 
-              <div className="chatListItem--lines">
-                <img src={Post_Perfil_Photo} className="ItemPost-avatar" />
-                <div className="chatItemList-line">
-                  <div className="PostItem-name">Marcos</div>
-                  <p className="PostItem-role">DevOps</p>
-                </div>
-              </div>
-              <img src={Img_Home_Post} className="img2-home-bottom" />
-              <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-              </p>
-            </div>
-            <div className="bottom-posts-content">
-
-              <div className="chatListItem--lines">
-                <img src={Post_Perfil_Photo} className="ItemPost-avatar" />
-                <div className="chatItemList-line">
-                  <div className="PostItem-name">Marcos</div>
-                  <p className="PostItem-role">DevOps</p>
-                </div>
-              </div>
-              <img src={Img_Home_Post} className="img2-home-bottom" />
-              <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-              </p>
-            </div>
-            <div className="bottom-posts-content">
-
-              <div className="chatListItem--lines">
-                <img src={Post_Perfil_Photo} className="ItemPost-avatar" />
-                <div className="chatItemList-line">
-                  <div className="PostItem-name">Marcos</div>
-                  <p className="PostItem-role">DevOps</p>
-                </div>
-              </div>
-              <img src={Img_Home_Post} className="img2-home-bottom" />
-              <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-              </p>
-            </div>
-          </div>
-        </form>
-      </div>
-      
-      <Footer />
+        <Footer />
       </div>
     </div>
   );
