@@ -127,6 +127,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         return BadRequest("Extensão de arquivo não permitida");
                     }
                 }
+                else
+                {
+                    UploadResult = null;
+                }
                 if(user.IdUserType == 1)
                 {
                     if (File != null)
