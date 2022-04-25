@@ -1,5 +1,18 @@
 # Bots-4RPA
 
+# Situação Problema
+
+![image](https://user-images.githubusercontent.com/19197082/165102225-f331e851-75a8-42a4-98a0-78670ff04242.png)
+
+
+# Design e Telas
+
+Nossa prototipação foi feito majoritariamente no figma. Até o atual commit, o design e visual da plataforma está sujeito a mudanças em decorrência da não finalização do projeto e, portanto, caso o link de visualização seja acessado por algum usuário externo, poderá notar mudanças no design entre um dia e outro.
+- link da prototipação: https://www.figma.com/file/UCqHavOcG2CM6Ljjd0tLZj/Bots4RPA?node-id=159%3A331
+
+![image](https://user-images.githubusercontent.com/19197082/165103383-61a094ec-d809-4b38-8e1e-ee37f3ad86fb.png)
+
+
 # Comandos Iniciais para a rápida criação do projeto
 
 `npx create-react-app my-app`\
@@ -36,18 +49,7 @@ Optamos por utilizar o banco de dados relacional(SQL), e no primeiro momento, re
 
 nota: no projeto, foi usado o **Azure Cloud**, mas é possível utilizar outros serviços de núvem como **AWS Cloud** e **GCP(Google Cloud Platform)**, fica a critério do time de desenvolvimento ou do que o cliente solicitar.
 
-Diagrama de casos de uso:
-
-![image width="100", height="100"](https://user-images.githubusercontent.com/19197082/164284966-5e4ef28d-6b53-45f9-923e-fca1ed999dee.png)
-
 Diagrama lógico:
 
 ![image width="100"](https://user-images.githubusercontent.com/19197082/164285099-b5d7f398-e739-417a-ab70-7892aa560234.png)
 
-SSMS - DDL: 
-
-![image width="100"](https://user-images.githubusercontent.com/19197082/164286909-dcae2d3f-02e7-4ce0-8932-600524ce41c7.png)
-
-SSMS - DML:
-
-![image width="100"](https://user-images.githubusercontent.com/19197082/164286656-709bca4d-bae7-49e4-b328-d9e380bb557d.png)
