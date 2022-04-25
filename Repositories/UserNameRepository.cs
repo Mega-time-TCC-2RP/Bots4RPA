@@ -48,7 +48,21 @@ namespace _2rpnet.rpa.webAPI.Repositories
                 BirthDate = user.BirthDate,
                 Rg = user.Rg,
                 UserValidation = user.UserValidation,
-            }).Include(user => user.Employees).ThenInclude(employee => employee.Players).ToList();
+                Employees = user.Employees.Select(E => new Employee()
+                {
+                    IdEmployee = E.IdEmployee,
+                    Confirmation = E.Confirmation,
+                    IdUser = E.IdUser,
+                    IdCorporation = E.IdCorporation,
+                    IdOffice = E.IdOffice,
+                    Players = E.Players.Select(P => new Player()
+                    {
+                        IdPlayer = P.IdPlayer,
+                        Score = P.Score,
+                        IdEmployee = P.IdEmployee
+                    }).ToList()
+                }).ToList()
+            }).ToList();
         }
 
         public UserName SearchByID(int id)
@@ -64,7 +78,21 @@ namespace _2rpnet.rpa.webAPI.Repositories
                 BirthDate = user.BirthDate,
                 Rg = user.Rg,
                 UserValidation = user.UserValidation,
-            }).Include(user => user.Employees).ThenInclude(employee => employee.Players).AsNoTracking().ToList().FirstOrDefault(u => u.IdUser == id);
+                Employees = user.Employees.Select(E => new Employee()
+                {
+                    IdEmployee = E.IdEmployee,
+                    Confirmation = E.Confirmation,
+                    IdUser = E.IdUser,
+                    IdCorporation = E.IdCorporation,
+                    IdOffice = E.IdOffice,
+                    Players = E.Players.Select(P => new Player()
+                    {
+                        IdPlayer = P.IdPlayer,
+                        Score = P.Score,
+                        IdEmployee = P.IdEmployee
+                    }).ToList()
+                }).ToList()
+            }).ToList().FirstOrDefault(u => u.IdUser == id);
         }
 
         public UserName Update(UserName datauser)

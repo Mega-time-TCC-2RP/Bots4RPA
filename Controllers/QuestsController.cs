@@ -169,12 +169,13 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "3")]
+        [Authorize(Roles = "1,2,3")]
         [HttpGet("ListarMinhas")]
         public IActionResult GetUserQuests()
         {
             try
             {
+                List<UserName> Usuarios = Uctx.ReadAll().ToList();
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
                 return Ok(ctx.ReadAll().Where(quest => quest.IdEmployee == Uctx.SearchByID(UserId).Employees.First().IdEmployee));
             }
