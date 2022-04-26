@@ -36,16 +36,18 @@ namespace Rpa.Test.Controllers
         [Fact]
         public void Must_Return_Comment_Read()
         {
-
+            // Arrange
             var mockRepo = new Mock<ICommentRepository>();
+            mockRepo.Setup(x => x.ReadAll());
             var mockEmployee = new Mock<IEmployeeRepository>();
             var mockUser = new Mock<IUserNameRepository>();
             var mockPlayer = new Mock<IPlayerRepository>();
-            mockRepo.Setup(x => x.ReadAll());
             var controller = new CommentsController((ICommentRepository)mockRepo, (IEmployeeRepository)mockEmployee, (IUserNameRepository)mockUser, (IPlayerRepository)mockPlayer);
 
+            // Act
             var result = controller.ReadAll();
 
+            // Assert
             Assert.IsType<OkObjectResult>(result);
 
             // Arrange

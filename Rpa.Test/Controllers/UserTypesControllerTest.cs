@@ -13,26 +13,11 @@ using Xunit;
 
 namespace Rpa.Test.Controllers
 {
-    public class UserTypesControllerTest : ControllerBase
+    public class UserTypesControllerTest
     {
 
         [Fact]
         public void Must_Return_Ok_in_UserType_Read()
-        {
-            // Arrange
-            var mockRepo = new Mock<IUserTypeRepository>();
-            mockRepo.Setup(x => x.ReadAll());
-            var controller = new UserTypesController(mockRepo.Object);
-
-            // Act  
-            var result = controller.ReadAll();
-
-            // Assert  
-            Assert.IsType<OkObjectResult>(result);
-        }
-
-        [Fact]
-        public void Must_Return_NotFound_in_UserType_Read()
         {
             // Arrange
             var mockRepo = new Mock<IUserTypeRepository>();
