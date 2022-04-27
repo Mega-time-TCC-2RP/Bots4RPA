@@ -94,11 +94,11 @@ namespace _2RPNET_API.Teste.Controllers
         public void Should_Update_Assistants()
         {
             var Assistant1 = new Assistant();
-            Assistant1.IdAssistant = 1;
+            Assistant1.IdAssistant = 2;
             Assistant1.IdEmployee = 1;
             Assistant1.CreationDate = DateTime.Now;
             Assistant1.AlterationDate = DateTime.Now;
-            Assistant1.AssistantName = "testshfsbklssdgkfjh";
+            Assistant1.AssistantName = "tes";
             Assistant1.AssistantDescription = "sdfghjkls";
 
             var FakeRepository = new Mock<IAssistantRepository>();
@@ -106,11 +106,9 @@ namespace _2RPNET_API.Teste.Controllers
 
             var Controller = new AssistantsController(FakeRepository.Object);
 
-
             var Resultado = Controller.Update(Assistant1.IdAssistant, Assistant1);
 
-
-            Assert.IsType<StatusCodeResult>(Resultado);
+            Assert.IsType<BadRequestResult>(Resultado);
         }
     }
 }
