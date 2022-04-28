@@ -6,8 +6,7 @@ namespace _2RPNET_API.Interfaces
 {
     public interface IAssistantProcedureRepository
     {
-        string RunProcess(int IdAssistant);
-        string ManipulateScript(int IdAssistant);
+        void ManipulateScript(int IdAssistant);
         List<AssistantProcedure> SearchByAssistant(int IdAssistant);
         List<AssistantProcedure> ReadAll();
 

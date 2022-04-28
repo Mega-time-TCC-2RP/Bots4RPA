@@ -11223,19 +11223,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ricardo\\.nuget\\packages\\": {}
+    "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
+      "projectUniqueName": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
       "projectName": "2RPNET_API.Teste",
-      "projectPath": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
-      "packagesPath": "C:\\Users\\Ricardo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API.Teste\\obj\\",
+      "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
+      "packagesPath": "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API.Teste\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Ricardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\50928811867.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11249,8 +11249,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj": {
-              "projectPath": "C:\\Users\\Ricardo\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj"
+            "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj": {
+              "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj"
             }
           }
         }
@@ -11305,7 +11305,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

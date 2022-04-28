@@ -17,7 +17,7 @@ namespace _2RPNET_API.StaticFiles
         {
             try
             {
-                var pasta = Path.Combine("StaticFiles", "Files");
+                var pasta = Path.Combine("StaticFiles", "Files", $"Assistant");
                 var caminho = Path.Combine(Directory.GetCurrentDirectory(), pasta);
 
                 if (arquivo.Length > 0)

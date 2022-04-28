@@ -90,6 +90,19 @@ namespace _2RPNET_API.Controllers
             }
         }
 
+        [HttpPost("ManipulateScript/{IdAssistant}")]
+        public IActionResult ManipulateScript(int IdAssistant)
+        {
+            try
+            {
+                _repository.ManipulateScript(IdAssistant);
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
         
         /// <summary>
         /// Method responsible for update all Assistants Process

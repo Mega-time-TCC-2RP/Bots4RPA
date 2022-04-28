@@ -1,6 +1,7 @@
 ﻿using _2RPNET_API.Context;
 using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
+using _2RPNET_API.StaticFiles;
 using Microsoft.Playwright;
 using System.Collections.Generic;
 using System.IO;
@@ -27,11 +28,6 @@ namespace _2RPNET_API.Repositories
             ctx.SaveChanges();
         }
 
-        public void CreateScript(List<AssistantProcedure> assistantProcedures)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void Delete(int IdAssitantProcedure)
         {
             AssistantProcedure SearchAssistant = SearchByID(IdAssitantProcedure);
@@ -41,32 +37,37 @@ namespace _2RPNET_API.Repositories
             ctx.SaveChanges();
         }
 
-        public string ManipulateScript(int IdAssistant)
+        public void ManipulateScript(int IdAssistant)
         {
+
             List<AssistantProcedure> AssistantProcedures = SearchByAssistant(IdAssistant);
-            string path = "http://localhost:5000/StaticFiles/Files/Assistant" + IdAssistant + ".cs";
-            if (!File.Exists(path))
+            string path = $"./StaticFiles/Files/Assistant{IdAssistant}/Program.cs";
+            //SOBRESCREVER
+            if (File.Exists(path))
             {
                 // Create a file to write to.
                 using (StreamWriter sw = File.CreateText(path))
                 {
-                    sw.WriteLine(@"using Microsoft.Playwright;{
-                                   using System;
-                                   using System.Threading.Tasks;
-                                   class Program{
-                                   public static async Task Main(){
-                                   using var playwright = await Playwright.CreateAsync();
-                                   await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-                                   {
-                                       Headless = true,
-                                       SlowMo = 1000
-                                   });
-                                   var context = await browser.NewContextAsync();
-                                   
-                                   // Open new page
-                                   var page = await context.NewPageAsync(); ");
+                    sw.WriteLine(@"
+using Microsoft.Playwright;
+using System;
+using System.Threading.Tasks;
+class Program
+{
+public static async Task Main()
+{
+using var playwright = await Playwright.CreateAsync();
+await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+{
+    Headless = true,
+    SlowMo = 1000
+});
+var context = await browser.NewContextAsync();
 
-                    foreach(AssistantProcedure Procedure in AssistantProcedures)
+// Open new page
+var page = await context.NewPageAsync(); ");
+
+                    foreach (AssistantProcedure Procedure in AssistantProcedures)
                     {
                         switch (Procedure.ProcedureName)
                         {
@@ -85,22 +86,67 @@ namespace _2RPNET_API.Repositories
                         }
                     }
 
-                    sw.WriteLine($@"await page.ScreenshotAsync(new PageScreenshotOptions { Path = 'caminhodafoto.png' });");
+                    sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + "screenshot" + IdAssistant + ".png });");
 
                 }
             }
-            return "a";
+            //ESCREVER
+            else
+            {
+                CopyFile.CopyDirectory(@".\StaticFiles\Files\DefaultStructure\", $@".\StaticFiles\Files\Assistant{IdAssistant}\", true);
 
+
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine(@"
+using Microsoft.Playwright;
+using System;
+using System.Threading.Tasks;
+class Program
+{
+public static async Task Main()
+{
+using var playwright = await Playwright.CreateAsync();
+await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+{
+    Headless = true,
+    SlowMo = 1000
+});
+var context = await browser.NewContextAsync();
+
+// Open new page
+var page = await context.NewPageAsync(); ");
+
+                    foreach (AssistantProcedure Procedure in AssistantProcedures)
+                    {
+                        switch (Procedure.ProcedureName)
+                        {
+                            case "Pesquisar no google":
+                                sw.WriteLine(@"await page.GotoAsync(" + '"' + "https://www.google.com/?gws_rd=ssl%22" + '"' + ");");
+                                sw.WriteLine($@"await page.FillAsync(" + '"' + "input[title = " + "'" + "Pesquisar" + "'" + "]" + '"'+ "," + '"' + $"{Procedure.ProcedureValue}" + '"' +");");
+                                sw.WriteLine($@"await page.PressAsync(" + '"' + "input[title = " + "'" + "Pesquisar" + "'" + "]" + '"' + "," + '"' + "Enter" + '"' + ");");
+                                //sw.WriteLine($@"await page.PressAsync('input[title = 'Pesquisar']', 'Enter');");
+
+                                break;
+                            case "Ir para a url":
+                                sw.WriteLine(@"await page.GotoAsync('http://eelslap.com/');");
+
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + '"' + "../../Images/Assistant" + IdAssistant + ".png" + '"' + " });}}");
+
+                }
+            }
         }
 
         public List<AssistantProcedure> ReadAll()
         {
             return ctx.AssistantProcedures.ToList();
-        }
-
-        public string RunProcess(int IdAssistant)
-        {
-            throw new System.NotImplementedException();
         }
 
         public List<AssistantProcedure> SearchByAssistant(int IdAssistant)
