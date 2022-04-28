@@ -40,4 +40,3 @@ namespace _2RPNET_API.Teste.Domains
         }
     }
 }
-s
