@@ -1,55 +1,57 @@
 import React from 'react'
 import "../../components/modal/Modal.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
+import { Assistant } from '@material-ui/icons';
+import Grafico from '../../components/graphic/graphic'
 
-function Modal({ closeModal }) {
+function CloseModal(idAssistant) {
+    var modal = document.getElementById("modal" + idAssistant);
+    // console.log(id)
+    modal.style.display = "none";
+};
+
+export default function Modal({ assistant }) {
     return (
-        <div className='modalBackground'>
-            <div className='modalContainer'>
-                <div className='modal-header'>
+        <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
+            <div className='SmodalContainer'>
+                <div className='Smodal-header'>
                     <button
-                        className='exit-button'
+                        className='Sexit-button'
                         onClick={(event) => {
                             event.preventDefault()
-                            closeModal(false)
-                        }}>x
+                            CloseModal(assistant.idAssistant)
+                        }}
+                    >x
                     </button>
                 </div>
-
-                <div className='body-modal'>
-
-                    <div className='box-modal-assistant'>
-
+                <div className='Sbody-modal'>
+                    <div className='Sbox-modal-assistant'>
                         <div className='assistant-id'>
                             <img src={Azul_Home} className="assistant-modal" />
-                            <h3>Assistente 1</h3>
+                            <h3>{assistant.assistantName}</h3>
                         </div>
 
                         <div className='assistant-info'>
                             <div className='box-description'>
                                 <h4>Descrição:</h4>
                             </div>
-
                             <div className='box-paragraph'>
-                                <p> Esse assistênte exerce a função de executar uma operação matemática
-                                    com os dados fornecidos pela equipe de RH, logo após é gerado um arquivo
-                                    que é enviado para o email do gerente geral.</p>
+                                <p>{assistant.assistantDescription}</p>
                             </div>
-
                             <div className='assistant-date'>
-                                <span className='span1'> Útima vez executado: </span>
-                                <span className='span2'> 12/04/2022 </span>
+                                <span className='span1'> Última alteração: </span>
+                                {/* <span className='span2'> {assistant.alterationDate} </span> */}
+                                <span className='span2'> {Intl.DateTimeFormat("pt-BR", {
+                                    year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"
+                                }).format(new Date(assistant.alterationDate))} </span>
                             </div>
-
                         </div>
-
                     </div>
-
                     <div className='assistant-graphics'>
 
                         <div className='graphic-1'>
                             <div>
-
+                                {/* <Grafico /> */}
                             </div>
                         </div>
 
@@ -58,6 +60,7 @@ function Modal({ closeModal }) {
 
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -65,4 +68,4 @@ function Modal({ closeModal }) {
     )
 }
 
-export default Modal
+// export default Modal

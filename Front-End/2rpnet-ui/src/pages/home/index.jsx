@@ -3,8 +3,6 @@ import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
-import Navbar from '../../components/menu/Navbar'
-import Modal from '../../components/modal/Modal'
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -14,52 +12,55 @@ import Verde_Home from '../../assets/img/Verde_Home.png'
 import Post_Perfil_Photo from '../../assets/img/Post_Perfil_Photo.png'
 import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
 
-//items
+//items:
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import PlayIcon from '../../components/icones/play'
 
 //Components:
+import Navbar from '../../components/menu/Navbar'
+import Modal from '../../components/modal/Modal'
 import Footer from '../../components/footer/footer'
 import { render } from "@testing-library/react";
-
 
 {/* <Navbar/> */ }
 
 export default function Home() {
 
   const [AssistantsList, setAssistantsList] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
 
   function GetMyAssistants() {
-
-    console.log('Realizando chamada para a api')
-
     fetch('http://grupo8api.azurewebsites.net/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
-
     })
       .then((response) => response.json())
 
-      .then((data) => 
-      // this.setState({ AssistantsList: data }),
-      setAssistantsList(data)
-      // console.log(data)
+      .then((data) =>
+        // this.setState({ AssistantsList: data }),
+        setAssistantsList(data)
+        // console.log(data)
       )
-      
       .catch((error) => console.log(error));
-
-      
   };
 
   useEffect(GetMyAssistants, [])
 
+  function OpenModal(idAssistant) {
+    // console.log('chamou o open')
+    var modal = document.getElementById("modal" + idAssistant);
+    // console.log(modal)
+    modal.style.display = "flex";
+  };
 
+  function CloseModal(idAssistant) {
+    var modal = document.getElementById("modal" + idAssistant);
+    // console.log(id)
+    modal.style.display = "none";
+  };
 
   function App() {
-    // event.preventDefault()
 
     const handleLeftArrow = () => {
 
@@ -71,9 +72,8 @@ export default function Home() {
   useEffect(App)
 
   return (
-
     <div>
-      {openModal && <Modal closeModal={setOpenModal} />}
+
       <div className="top-container">
         <div className="top-buttons">
           <div className="form-container">
@@ -91,73 +91,27 @@ export default function Home() {
             </div>
 
             <div className="cards-container">
-
               {AssistantsList.map((assistant) => {
                 return (
-
-                  <div className="card1">
-                    <img src={Azul_Home} className="card1-img" />
-                    <h5>{assistant.assistantName}</h5>
-                    <PlayIcon />
-                    <div className="box-details">
-                      <button
-                        onClick={(event) => {
-                          event.preventDefault()
-                          setOpenModal(true)
-                        }}>
-                        Ver detalhes
-                      </button>
+                  <div className="containerSmodal">
+                    <Modal assistant={assistant} />
+                    <div className="card1">
+                      <img src={Azul_Home} className="card1-img" />
+                      <h5>{assistant.assistantName}</h5>
+                      <PlayIcon />
+                      <div className="box-details">
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault()
+                            OpenModal(assistant.idAssistant)
+                          }}
+                        >Ver detalhes
+                        </button>
+                      </div>
                     </div>
                   </div>
-
                 )
               })}
-
-
-              {/* <div className="card1">
-                <img src={Vermelho_Home} className="card1-img" />
-                <h5>Assistente 2</h5>
-                <PlayIcon />
-                <div className="box-details">
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault()
-                      setOpenModal(true)
-                    }}>
-                    Ver detalhes
-                  </button>
-                </div>
-              </div>
-
-              <div className="card1">
-                <img src={Amarelo_Home} className="card1-img" />
-                <h5>Assistente 3</h5>
-                <PlayIcon />
-                <div className="box-details">
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault()
-                      setOpenModal(true)
-                    }}>
-                    Ver detalhes
-                  </button>
-                </div>
-              </div>
-
-              <div className="card1">
-                <img src={Verde_Home} className="card1-img" />
-                <h5>Assistente 4</h5>
-                <PlayIcon />
-                <div className="box-details">
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault()
-                      setOpenModal(true)
-                    }}>
-                    Ver detalhes
-                  </button>
-                </div>
-              </div> */}
 
             </div>
           </form>
