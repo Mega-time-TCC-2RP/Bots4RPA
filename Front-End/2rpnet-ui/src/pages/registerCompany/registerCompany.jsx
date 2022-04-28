@@ -17,6 +17,7 @@ import RoboVermeho from '../../assets/img/roboVermelho.png'
 import '../../assets/css/pages/registerCompany.css'
 import '../../assets/css/components/button.css'
 import '../../assets/css/components/fonts.css'
+import { parseJwt, usuarioAutenticado } from '../../services/auth';
 
 const onlyNumbers = (string) => string.replace(/[^0-9]/g, '')
 
@@ -30,7 +31,7 @@ const MaskedInputPhone = ({ value, onChange }) => {
         })
     }
 
-    return <InputMask id='placeholder-text' placeholder='Insira o seu Contato...' mask="(99)99999-9999" value={value} required 
+    return <InputMask id='placeholder-text' placeholder='Insira o seu Contato...' mask="(99)99999-9999" value={value} required
         onChange={handleChange}
     />
 }
@@ -45,7 +46,7 @@ const MaskedInput = ({ value, onChange }) => {
         })
     }
 
-    return <InputMask id='placeholder-text' placeholder='Insira o CNPJ...' mask="99.999.999/999-99" value={value} required 
+    return <InputMask id='placeholder-text' placeholder='Insira o CNPJ...' mask="99.999.999/999-99" value={value} required
         onChange={handleChange}
     />
 }
@@ -59,31 +60,51 @@ export default function RegisterCompany() {
     const [cnpj, setCnpj] = useState();
     const [loading, setLoading] = useState(false);
 
-    function register() {
+    const register = (event) => {
+        event.preventDefault();
+        var formData = new FormData();
         setLoading(true);
-        let company = {
-            NameFantasy : nomeFantasia,
-            CorporateName : razaoSocial,
-            AddressName : addressName,
-            Phone : phone,
-            Cnpj : cnpj,
-        }
-        axios.post('http://grupo7.azurewebsites.net/api/Corporations', company)
-        .then((resposta) => {
-            if (resposta.status === 201) {
-                console.log("criado")
+
+        axios("http://grupo7.azurewebsites.net/api/UserNames/" + 'id do usuario logado')
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    formData.append('Username1', resposta.data.UserName1)
+                    formData.append('Email', resposta.data.Email)
+                    formData.append('Passwd', resposta.data.Passwd)
+                    formData.append('BirthDate', resposta.data.BirthDate)
+                    formData.append('Rg', resposta.data.Rg)
+                    formData.append('Cpf', resposta.data.Cpf)
+                    formData.append('Phone', resposta.data.Phone)
+                    formData.append('idUserType', resposta.data.idUserType)
+                    formData.append('idCorporation', resposta.data.IdCorporation)
+                    formData.append('idOffice', resposta.data.IdOffice)
+                    formData.append('CorporateName', nomeFantasia)
+                    formData.append('AddressName', addressName)
+                    formData.append('CorpPhone', phone)
+                    formData.append('Cnpj', cnpj)
+                }
+            })
+
+        axios({
+            method: "POST",
+            url: "http://grupo7.azurewebsites.net/api/Corporations",
+            data: formData,
+            headers: { "Content-type": "multipart/form-data" },
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    setLoading(false)
+                }
+            })
+            .catch((erro) => {
+                console.log(erro)
                 setLoading(false)
-            }
-        })
-        .catch((erro) => {
-            console.log(erro)
-            setLoading(false)
-        })
+            })
     }
 
     return (
         <div>
-            <VLibras/>
+            <VLibras />
             <div className='backgroudRegister'>
                 <div className='robotBlue'>
                     <img src={RoboAzul} alt="Robo Azul" />
@@ -91,7 +112,7 @@ export default function RegisterCompany() {
                 <div className='registerArea'>
                     <div className='registerContent'>
                         <img className='logoRegister' src={Logo} alt="Logo 2RPnet" />
-                        <form onSubmit={register} className='formRegister'>
+                        <form encType='multipart/form-data' className='formRegister'>
                             <div className='foreachInput'>
                                 <label className='h5'>Nome Fantasia</label>
                                 <input id='placeholder-text' type="text" placeholder='Insira o Nome Fantasia...' value={nomeFantasia} onChange={(event) => setNomeFantasia(event.target.value)} autoFocus required />
@@ -119,7 +140,7 @@ export default function RegisterCompany() {
                             }
                             {
                                 loading === false && (
-                                    <button className='button' type="submit">Ir ao cadastro do dono</button>
+                                    <button className='button' onClick={register}>Ir ao cadastro do dono</button>
                                 )
                             }
                         </form>

@@ -157,7 +157,6 @@ export default function Login() {
                                                         <span alt="divisor de elementos">---------ou---------</span>
                                                 </div>
 
-<<<<<<< HEAD
                                                         <GoogleLogin 
                                                                 clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
                                                                 render={renderProps => (
@@ -170,19 +169,6 @@ export default function Login() {
                                                                 onFailure={responseGoogle}
 
                                                         />
-=======
-                                                <GoogleLogin
-                                                        clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
-                                                        render={renderProps => (
-                                                        <button className='google-button' alt="Entrar com o Google" onClick={renderProps.onClick}>
-                                                                <FcIcons.FcGoogle className='icon3' alt="Google Icon"/>
-                                                                Continuar com o Google
-                                                        </button>
-                                                        )}
-                                                        onSuccess={responseGoogle}
-                                                        onFailure={responseGoogle}
-                                                />
->>>>>>> b7705e2666188b6c69e1a9deb1e30a8ceeb4256a
 
                                                 <div className='NotSigned-login'>
                                                         <a alt="Não possui cadastro?">Não possui cadastro?</a>
