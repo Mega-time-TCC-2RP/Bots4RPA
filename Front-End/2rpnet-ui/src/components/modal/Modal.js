@@ -51,7 +51,7 @@ export default function Modal({ assistant }) {
 
                         <div className='graphic-1'>
                             <div>
-                                {/* <Grafico /> */}
+                                <Grafico />
                             </div>
                         </div>
 

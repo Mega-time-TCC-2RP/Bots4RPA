@@ -36,35 +36,35 @@
 
 
 import React, { useState } from 'react';
-import BarChart from '../../components/graphic/rendergraphic'
+import { Doughnut } from 'react-chartjs-2';
 import { UserData } from '../../components/graphic/graphicTest'
 
 export default function Grafico() {
     const [userData, setUserData] = useState({
-        labels: UserData.map((data) => data.month),
+        // labels: UserData.map((data) => data.month),
+        labels: ['Red', 'Green'],
         datasets: [
             {
-                label: "Lucros",
-                data: UserData.map((data) => data.userGain),
+                label: "Êxitos",
+                data: UserData.map((data) => data.exitos),
                 backgroundColor: [
-                    "#90F926",
+                    "#3FDA9F",
                 ],
             },
             {
-                label: "Perdas",
-                data: UserData.map((data) => data.userLost),
+                label: "Falhas",
+                data: UserData.map((data) => data.falhas),
                 backgroundColor: [
-                    "#F92626",
+                    "#E41500",
                 ],
             },
         ],
     });
-
     return (
         <div>
 
             <div className="container_grafico">
-                <BarChart chartData={userData} className="" />
+                <Doughnut chartData={userData} className="" />
             </div>
 
         </div>
