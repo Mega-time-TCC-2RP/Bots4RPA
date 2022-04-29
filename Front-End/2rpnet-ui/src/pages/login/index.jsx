@@ -165,17 +165,18 @@ export default function Login() {
                                                         <span alt="divisor de elementos">---------ou---------</span>
                                                 </div>
 
-                                                <GoogleLogin
-                                                        clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
-                                                        render={renderProps => (
-                                                        <button className='google-button' alt="Entrar com o Google" onClick={renderProps.onClick}>
-                                                                <FcIcons.FcGoogle className='icon3' alt="Google Icon"/>
-                                                                Continuar com o Google
-                                                        </button>
-                                                        )}
-                                                        onSuccess={responseGoogle}
-                                                        onFailure={responseGoogle}
-                                                />
+                                                        <GoogleLogin 
+                                                                clientId="129629597162-d06hd5esb90feonsp0flldnq6r37cq8b.apps.googleusercontent.com"
+                                                                render={renderProps => (
+                                                                        <button className='google-button' onClick={renderProps.onClick}>
+                                                                                <FcIcons.FcGoogle className='icon3'/>
+                                                                                <span id='googleLogin'>Continuar com o Google</span>
+                                                                        </button>
+                                                                      )}
+                                                                onSuccess={responseGoogle}
+                                                                onFailure={responseGoogle}
+
+                                                        />
 
                                                 <div className='NotSigned-login'>
                                                         <a alt="Não possui cadastro?">Não possui cadastro?</a>

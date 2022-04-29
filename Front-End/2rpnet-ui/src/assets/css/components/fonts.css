@@ -50,6 +50,18 @@
     width: 100%;
 }
 
+.foreachInput select {
+    border: 1px solid var(--PrimaryColor1);
+    box-sizing: border-box;
+    border-radius: 32px;
+    height: 45px;
+    width: 100%;
+}
+
+.selectContent{
+    padding-left: 5%
+}
+
 .foreachInput .sendPhoto {
     display: flex;
     align-items: center;
