@@ -107,19 +107,27 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
         }
 
-        [HttpGet]
-        [Authorize]
-        public IActionResult GetMe()
+        [HttpGet("GetMe")]
+        [Authorize(Roles ="1,2,3")]
+        public IActionResult GetMyData()
         {
-            int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-            var userName = ctx.SearchByID(UserId);
-
-            if (userName == null)
+            try
             {
-                return NotFound();
-            }
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                UserName user = ctx.SearchByID(UserId);
 
-            return Ok(userName);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(user);
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error);
+                throw;
+            }
         }
 
         // Metodo POST - Cadastro
