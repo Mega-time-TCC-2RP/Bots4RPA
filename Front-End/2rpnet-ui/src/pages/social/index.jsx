@@ -212,170 +212,172 @@ export const TelaTimeline = () => {
         }
     }, [])
     return (
-        <div className="containerPag">
-            <Header />
+        <div>
             <Navbar />
-            <main id="Main">
+            <div className="body-pd">
                 <VLibras />
-                <div className="ContainerGrid ContainerPosts">
-                    <div className="BotoesModais">
-                        <button onClick={openModalCadastro}><img src={ImagemModalCadastro}></img></button>
-                    </div>
-                    <Modal
-                        isOpen={ModalCadastroIsOpen}
-                        onAfterOpen={afterOpenModal}
-                        onRequestClose={closeModalCadastro}
-                        style={customStyles}
-                        contentLabel="Example Modal"
-                        class="ReactModal"
-                        closeTimeoutMS={2000}
-                    >
-                        <form className="CadastroModalContainer" onSubmit={(e) => PublicarPost(e)}>
-                            <div className="HeaderModal">
-                                <h2>Adicionar publicação</h2>
-                                <button onClick={(e) => closeModalCadastro(e)}>X</button>
-                            </div>
-                            <div>
-                                <div className="CamposCadastro">
-                                    <div className="LinhaCampoCadastro">
-                                        <div className="CampoCadastro">
-                                            <label className="LabelCampoCadastro">Título</label>
-                                            <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
+                <Header />
+                <main id="Main">
+                    <div className="ContainerGrid ContainerPosts">
+                        <div className="BotoesModais">
+                            <button onClick={openModalCadastro}><img src={ImagemModalCadastro}></img></button>
+                        </div>
+                        <Modal
+                            isOpen={ModalCadastroIsOpen}
+                            onAfterOpen={afterOpenModal}
+                            onRequestClose={closeModalCadastro}
+                            style={customStyles}
+                            contentLabel="Example Modal"
+                            class="ReactModal"
+                            closeTimeoutMS={2000}
+                        >
+                            <form className="CadastroModalContainer" onSubmit={(e) => PublicarPost(e)}>
+                                <div className="HeaderModal">
+                                    <h2>Adicionar publicação</h2>
+                                    <button onClick={(e) => closeModalCadastro(e)}>X</button>
+                                </div>
+                                <div>
+                                    <div className="CamposCadastro">
+                                        <div className="LinhaCampoCadastro">
+                                            <div className="CampoCadastro">
+                                                <label className="LabelCampoCadastro">Título</label>
+                                                <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
+                                            </div>
+                                            <div className="CampoCadastro">
+                                                <label className="LabelCampoCadastro">Descrição</label>
+                                                <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
+                                            </div>
                                         </div>
                                         <div className="CampoCadastro">
-                                            <label className="LabelCampoCadastro">Descrição</label>
-                                            <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
+                                            <label className="LabelCampoCadastro">Imagem</label>
+                                            <label className="ImagemInputExibição" for="InputImagemCadastroPost">{
+                                                labelImgCadastroPost
+                                            }</label>
+                                            <input className="ImagemInputReal" id="InputImagemCadastroPost" placeholder="Selecione a imagem..." type="file" accept="image/*" onChange={() => {
+                                                document.getElementById('InputImagemCadastroPost') != null ?
+                                                    setLabelImgCadastroPost("O arquivo " + document.getElementById('InputImagemCadastroPost').files[0].name + " foi selecionado") : setLabelImgCadastroPost("Selecione o arquivo de imagem...")
+                                            }
+                                            }></input>
                                         </div>
-                                    </div>
-                                    <div className="CampoCadastro">
-                                        <label className="LabelCampoCadastro">Imagem</label>
-                                        <label className="ImagemInputExibição" for="InputImagemCadastroPost">{
-                                            labelImgCadastroPost
-                                        }</label>
-                                        <input className="ImagemInputReal" id="InputImagemCadastroPost" placeholder="Selecione a imagem..." type="file" accept="image/*" onChange={() => {
-                                            document.getElementById('InputImagemCadastroPost') != null ?
-                                                setLabelImgCadastroPost("O arquivo " + document.getElementById('InputImagemCadastroPost').files[0].name + " foi selecionado") : setLabelImgCadastroPost("Selecione o arquivo de imagem...")
-                                        }
-                                        }></input>
                                     </div>
                                 </div>
-                            </div>
-                            {
-                                IsLoading == true ?
-                                    <button className="BtnSubmitForm" type="submit" disabled>Carregando</button> : <button className="BtnSubmitForm" type="submit">Publicar</button>
-                            }
-                        </form>
-                    </Modal>
-                    {
-                        ListaPosts != undefined &&
-                        ListaPosts.map((post) => {
-                            return (
-                                < div className="BoxPost" key={post.idPost} >
-                                    <div className="UsuarioCampo">
-                                        <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                        <div className="UsuarioDados">
-                                            <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                            <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                {
+                                    IsLoading == true ?
+                                        <button className="BtnSubmitForm" type="submit" disabled>Carregando</button> : <button className="BtnSubmitForm" type="submit">Publicar</button>
+                                }
+                            </form>
+                        </Modal>
+                        {
+                            ListaPosts != undefined &&
+                            ListaPosts.map((post) => {
+                                return (
+                                    < div className="BoxPost" key={post.idPost} >
+                                        <div className="UsuarioCampo">
+                                            <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                            <div className="UsuarioDados">
+                                                <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    {
-                                        post.postImage != undefined ?
-                                            <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                                            <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
-                                    }
-                                    <div className="ContainerBotoesPost">
-                                        <button onClick={() => {
-                                            openModalComentarios(post.comments)
-                                            setIdPostComentarios(post.idPost)
-                                        }} className="BotaoComentar BotaoPost">
-                                            <img src={botaoComentarImg}></img>
-                                        </button>
                                         {
-                                            IsLoading == true ?
-                                                post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
-
-                                                    <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
-                                                        <img src={botaoCurtidoImg}></img>
-                                                        <span>{post.likes.length}</span>
-                                                    </button>
-                                                    :
-                                                    <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
-                                                        <img src={botaoCurtirImg}></img>
-                                                        <span>{post.likes.length}</span>
-                                                    </button>
-                                                :
-                                                post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
-
-                                                    <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
-                                                        <img src={botaoCurtidoImg}></img>
-                                                        <span>{post.likes.length}</span>
-                                                    </button>
-                                                    :
-                                                    <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)}>
-                                                        <img src={botaoCurtirImg}></img>
-                                                        <span>{post.likes.length}</span>
-                                                    </button>
-
+                                            post.postImage != undefined ?
+                                                <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
+                                                <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
                                         }
-                                    </div>
-                                    <h2 className="TituloPost">{post.title}</h2>
-                                    <p className="DescricaoPost">{post.postDescription}</p>
-                                    <Modal
-                                        isOpen={ModalComentariosIsOpen}
-                                        onAfterOpen={afterOpenModal}
-                                        onRequestClose={closeModalComentarios}
-                                        style={customStyles}
-                                        contentLabel="Example Modal"
-                                        class="ReactModal"
-                                        closeTimeoutMS={2000}
-                                    >
-                                        <div className='ContainerModalComentarios'>
-                                            <div className="HeaderModal">
-                                                <form onSubmit={(e) => PublicarComentario(e)} className='CadastroComentarioContainer'>
-                                                    <div className='LinhaCampoCadastroComentarios'>
-                                                        <div className="CampoCadastro">
-                                                            <label className="LabelCampoCadastro">Título</label>
-                                                            <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloCadastroComentario(e.target.value)} value={tituloCadastroComentario}></input>
-                                                        </div>
-                                                        <div className="CampoCadastro">
-                                                            <label className="LabelCampoCadastro">Descrição</label>
-                                                            <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
-                                                        </div>
-                                                    </div>
-                                                    {
-                                                        IsLoading == true ?
-                                                            <button type="submit" className="BtnSubmitForm" disabled>Carregando...</button> : <button type="submit" className="BtnSubmitForm">Publicar</button>
-                                                    }
-                                                </form>
-                                                <button onClick={(e) => closeModalComentarios(e)}>X</button>
-                                            </div>
-                                            <div className='ContainerComentarios'>
-                                                {
-                                                    ComentariosModal != undefined &&
-                                                    ComentariosModal.map((comentario) => {
-                                                        return (
-                                                            <div className="Comentario" key={comentario.idComentario}>
-                                                                <div className='ComentarioUsuario'>
-                                                                    <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                                                    <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                                                </div>
-                                                                <h2 className='TituloComentario'>{comentario.title}</h2>
-                                                                <p className='TextoComentario'>{comentario.commentDescription}
-                                                                </p>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
+                                        <div className="ContainerBotoesPost">
+                                            <button onClick={() => {
+                                                openModalComentarios(post.comments)
+                                                setIdPostComentarios(post.idPost)
+                                            }} className="BotaoComentar BotaoPost">
+                                                <img src={botaoComentarImg}></img>
+                                            </button>
+                                            {
+                                                IsLoading == true ?
+                                                    post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+
+                                                        <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
+                                                            <img src={botaoCurtidoImg}></img>
+                                                            <span>{post.likes.length}</span>
+                                                        </button>
+                                                        :
+                                                        <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
+                                                            <img src={botaoCurtirImg}></img>
+                                                            <span>{post.likes.length}</span>
+                                                        </button>
+                                                    :
+                                                    post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+
+                                                        <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
+                                                            <img src={botaoCurtidoImg}></img>
+                                                            <span>{post.likes.length}</span>
+                                                        </button>
+                                                        :
+                                                        <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)}>
+                                                            <img src={botaoCurtirImg}></img>
+                                                            <span>{post.likes.length}</span>
+                                                        </button>
+
+                                            }
                                         </div>
-                                    </Modal>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </main>
-            <Footer />
+                                        <h2 className="TituloPost">{post.title}</h2>
+                                        <p className="DescricaoPost">{post.postDescription}</p>
+                                        <Modal
+                                            isOpen={ModalComentariosIsOpen}
+                                            onAfterOpen={afterOpenModal}
+                                            onRequestClose={closeModalComentarios}
+                                            style={customStyles}
+                                            contentLabel="Example Modal"
+                                            class="ReactModal"
+                                            closeTimeoutMS={2000}
+                                        >
+                                            <div className='ContainerModalComentarios'>
+                                                <div className="HeaderModal">
+                                                    <form onSubmit={(e) => PublicarComentario(e)} className='CadastroComentarioContainer'>
+                                                        <div className='LinhaCampoCadastroComentarios'>
+                                                            <div className="CampoCadastro">
+                                                                <label className="LabelCampoCadastro">Título</label>
+                                                                <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloCadastroComentario(e.target.value)} value={tituloCadastroComentario}></input>
+                                                            </div>
+                                                            <div className="CampoCadastro">
+                                                                <label className="LabelCampoCadastro">Descrição</label>
+                                                                <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
+                                                            </div>
+                                                        </div>
+                                                        {
+                                                            IsLoading == true ?
+                                                                <button type="submit" className="BtnSubmitForm" disabled>Carregando...</button> : <button type="submit" className="BtnSubmitForm">Publicar</button>
+                                                        }
+                                                    </form>
+                                                    <button onClick={(e) => closeModalComentarios(e)}>X</button>
+                                                </div>
+                                                <div className='ContainerComentarios'>
+                                                    {
+                                                        ComentariosModal != undefined &&
+                                                        ComentariosModal.map((comentario) => {
+                                                            return (
+                                                                <div className="Comentario" key={comentario.idComentario}>
+                                                                    <div className='ComentarioUsuario'>
+                                                                        <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                                                        <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                    </div>
+                                                                    <h2 className='TituloComentario'>{comentario.title}</h2>
+                                                                    <p className='TextoComentario'>{comentario.commentDescription}
+                                                                    </p>
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                            </div>
+                                        </Modal>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </main>
+                <Footer />
+            </div>
         </div>
     );
 }

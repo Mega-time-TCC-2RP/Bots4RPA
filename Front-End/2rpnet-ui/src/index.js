@@ -24,8 +24,8 @@ import MyProcesses from './pages/myProcesses/';
 import { TelaTimeline } from './pages/social/index';
 import TaskCalendar from './pages/taskCalendar';
 import TaskKanban from './pages/taskKanban';
-import TesteDaltonicMode from './pages/DaltonicModeTest'
-
+import TesteDaltonicMode from './pages/DaltonicModeTest';
+import Profile from './pages/profile/index';
 import Config from './pages/config/config';
 
 import NotFound from './pages/notFound/';
@@ -52,6 +52,7 @@ const routing = (
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/Config" element={<Config />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/guide" element={<Guide />} /> {/* Guide */}
         <Route path="/marketplace" element={<Marketplace />} /> {/* Marketplace */}
         <Route path="/myprocesses" element={<MyProcesses />} /> {/* MyProcesses */}

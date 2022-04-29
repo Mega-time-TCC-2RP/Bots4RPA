@@ -1,4 +1,4 @@
-.configPage{
+.configPage {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,24 +7,25 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-} 
+}
 
 .container {
     width: 1440px;
     margin: 0 auto;
 }
 
-.configPage h1{
+.configPage h1 {
     display: flex;
     justify-content: center;
 }
 
-.navAreaConfig{
+.navAreaConfig {
     display: flex;
     justify-content: space-between;
 }
-.navAreaConfig span{
-    cursor:pointer;
+
+.navAreaConfig span {
+    cursor: pointer;
 }
 
 .areaStep {
@@ -33,6 +34,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 100%;
 }
 
 .contentAreaConfig {
@@ -92,15 +94,18 @@
     width: 42px;
     height: 48px;
 }
+
 .iconConfig2 {
     width: 42px;
     height: 48px;
 }
+
 .iconConfig:hover {
     color: green;
 }
+
 .iconConfig2:hover {
-    color:red;
+    color: red;
 }
 
 .validUser {
@@ -187,4 +192,117 @@
 .inputsModal {
     display: flex;
     flex-direction: column;
+}
+
+.profile h2 {
+    font-size: 40px;
+    margin-bottom: 52px;
+}
+
+.profile .configContent {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.TrophiesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 120px;
+    row-gap: 52px;
+}
+
+.TrophiesContainer img {
+    width: 60px;
+    height: 60px;
+}
+
+.TrophiesContainer button {
+    border: none;
+    background-color: var(--WHITE);
+}
+
+.imgAcinzentada {
+    filter: grayscale(1);
+}
+
+.ContainerModalTrophiesAlinhamento{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.ContainerModalTrophies {
+    display: flex;
+    align-items: flex-start;
+    padding: 56px;
+    overflow-x: hidden;
+    justify-content: space-between;
+    width: 100%;
+    height: 300px;
+    overflow-y: hidden;
+}
+
+.ContainerModalTrophies img{
+    width: 300px;
+    height: 300px;
+}
+
+.ImgTrophyModalNotEarned{
+    filter: grayscale(1);
+}
+
+.ContainerModalTrophies button{
+    border: none;
+    background-color: var(--WHITE);
+    color: var(--ComplementaryColor4);
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.TrophyData{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 550px;
+    height: 300px;
+    justify-content: space-between;
+}
+
+.TrophyData h3{
+    font-size: 56px;
+    font-weight: 400;
+}
+
+.TrophyDataField h4{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.TrophyDataField span{
+    font-size: 24px;
+}
+
+.profile .container{
+    width: 90%;
+}
+
+.profile section{
+    margin-bottom: 72px;
+    margin-top: 36px;
+}
+
+.profile h1{
+    margin-top: 72px;
+}
+
+.ProfileContainer .body-pd{
+    height: auto;
+}
+
+.ProfileContainer .configPage{
+    height: auto;
 }

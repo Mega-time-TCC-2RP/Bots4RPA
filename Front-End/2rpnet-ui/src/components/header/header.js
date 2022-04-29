@@ -1,22 +1,35 @@
 import React, { Component } from 'react'
 import { render } from '@testing-library/react'
 import { Link, useNavigate, Navigate, } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import Profile from '../../assets/img/profile.jpg'
 import Coin from '../../assets/img/coin.png'
 import '../../assets/css/components/header.css'
 import * as HiIcons from 'react-icons/hi'
+import axios from 'axios'
+import { handleAuthException } from '../../services/auth'
 
 export const Header = () => {
-
-    // let navigate = useNavigate();
-
-    // function Logout() {
-    //     console.log("Logout");
-
-    //     navigate('/login');
-    // }
+    const [myUser, setMyUser] = useState({});
 
     let navigate = useNavigate();
+
+    const GetMe = async () => {
+        await axios.get('http://grupo7.azurewebsites.net/api/UserNames/GetMe', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        }).then((resposta) => {
+            console.log("A");
+            setMyUser(resposta.data);
+            console.log(resposta.data);
+        }).catch(async (error) => {
+            if (await handleAuthException(error) === true) {
+                localStorage.removeItem('2rp-chave-autenticacao')
+                Navigate('/login')
+            }
+        })
+    }
 
     function Logout() {
         localStorage.removeItem('2rp-chave-autenticacao')
@@ -27,6 +40,10 @@ export const Header = () => {
         let details = document.querySelector('.details')
         details.classList.toggle('active')
     }
+
+    useEffect(() => {
+        GetMe()
+    }, [])
     return (
         <div>
             <div className='header2'>
@@ -38,7 +55,7 @@ export const Header = () => {
                         </div>
                         <div className='profile2'>
                             <div className='profile_details'>
-                                <img src={Profile} className='imgProfile' alt="imagem de perfil" onClick={click} />
+                                <img src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} className='imgProfile' alt="imagem de perfil" onClick={click} />
                             </div>
                         </div>
                     </div>
@@ -48,10 +65,10 @@ export const Header = () => {
             <div className='details'>
                 <div className='profile2'>
                     <div className='profile_details'>
-                        <img src={Profile} alt="imagem de perfil" />
+                        <img src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
                         <div className='name_job'>
-                            <div className='name'>Name</div>
-                            <div className='job'>Job</div>
+                            <div className='name'>{myUser.userName1}</div>
+                            <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
                         </div>
                     </div>
                 </div>
