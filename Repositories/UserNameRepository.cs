@@ -85,6 +85,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                     IdUser = E.IdUser,
                     IdCorporation = E.IdCorporation,
                     IdOffice = E.IdOffice,
+                    IdOfficeNavigation = E.IdOfficeNavigation,
                     Players = E.Players.Select(P => new Player()
                     {
                         IdPlayer = P.IdPlayer,
