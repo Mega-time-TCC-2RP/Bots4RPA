@@ -1,12 +1,17 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+// import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
 import { useEffect, useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../assets/css/assistant.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
+import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
+
+import bolinhas from "../../assets/img/Bolinhas.svg"
+
 
 import Procedures from '../../services/process';
-import { wait } from "@testing-library/user-event/dist/utils";
 
 // testar colocar uma lista com informações dos cards/bloquinhos
 
@@ -22,25 +27,25 @@ export default function Assistant() {
         document.getElementById("result").innerHTML = `Resultado: ${FinalResult}`;
     };
 
-    function DefineIValue(number){
+    function DefineIValue(number) {
         result = number;
         AtualizarResultado(result);
         // console.log(result);
     }
 
-    function Sum(number){
+    function Sum(number) {
         result = result + number;
         AtualizarResultado(result);
         // console.log(result);
     }
 
-    function Subtract(number){
+    function Subtract(number) {
         result = result - number;
         AtualizarResultado(result);
         // console.log(result);
     }
 
-    function Multiply(number){
+    function Multiply(number) {
         result = result * number;
         AtualizarResultado(result);
         // console.log(result);
@@ -50,11 +55,11 @@ export default function Assistant() {
         var modal = document.getElementById("modal" + p.IdProcedure);
         // console.log(modal)
         modal.style.display = "block";
-        if (pValue != p.ProcedureValue) {  
+        if (pValue != p.ProcedureValue) {
             if (p.ProcedureValue != 0 || p.ProcedureValue != "") {
                 setPValue(p.ProcedureValue);
-            }     
-            else{
+            }
+            else {
                 setPValue("");
             }
         }
@@ -66,7 +71,7 @@ export default function Assistant() {
         modal.style.display = "none";
     };
 
-    const SaveAndExecute  = () => {
+    const SaveAndExecute = () => {
         //Get the cards inside the dropzone and number them by order.
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
@@ -179,60 +184,67 @@ export default function Assistant() {
 
     return (
         <div>
-            <div className="boards">
-                <div className="board">
-                    <h3>Métodos</h3>
-                    <div className="dropzone">
-                        {
-                            proceduresList.map((procedure) => {
-                                return (
-                                    <div key={procedure.IdProcedure}>
-                                        <div id={procedure.IdProcedure+";"+procedure.ProcedureValue} className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure)}>
-                                            <div className="content">{procedure.ProcedureName}</div>
-                                        </div>
+            <header className="header">
+                <h1 className="header__text">Assistant</h1>
+            </header>
+            <main>
+                <div className="boards">
+                    <div className="boards__board boards__board--pointy">
+                        <h3 className="board_title">Métodos</h3>
+                        <div className="dropzone">
+                            {
+                                proceduresList.map((procedure) => {
+                                    return (
+                                        <div key={procedure.IdProcedure}>
+                                            <div id={procedure.IdProcedure + ";" + procedure.ProcedureValue} className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure)}>
+                                                <img className="card__balls" src={bolinhas} alt="bolinhas" />
+                                                <div className="card__content">{procedure.ProcedureName}</div>
+                                            </div>
 
-                                        <div id={"modal" + procedure.IdProcedure} className="modal">
-                                            {/* Modal content */}
-                                            <div className="modal-content">
-                                                <div className="modal-header">
-                                                    <span onClick={() => handleClose(procedure.IdProcedure)} className="close">&times;</span>
-                                                    <div className="modal-header--content">
-                                                        <p className="modal__text--heading">Nome:</p>
-                                                        <p className="modal__text--heading2">{procedure.ProcedureName}</p>
+                                            <div id={"modal" + procedure.IdProcedure} className="modal">
+                                                {/* Modal content */}
+                                                <div className="modal-content">
+                                                    <div className="modal-header">
+                                                        <span onClick={() => handleClose(procedure.IdProcedure)} className="close">&times;</span>
+                                                        <div className="modal-header--content">
+                                                            <p className="modal__text--heading">Nome:</p>
+                                                            <p className="modal__text--heading2">{procedure.ProcedureName}</p>
+                                                        </div>
+                                                        <div className="modal-header--content">
+                                                            <p className="modal__text--heading">Descrição:</p>
+                                                            <p className="modal__text--heading2">{procedure.ProcedureDescription}</p>
+                                                        </div>
                                                     </div>
-                                                    <div className="modal-header--content">
-                                                        <p className="modal__text--heading">Descrição:</p>
-                                                        <p className="modal__text--heading2">{procedure.ProcedureDescription}</p>
+                                                    <div className="modal-body">
+                                                        <label className="modal__text" htmlFor="">Digite aqui o valor necessário:</label>
+
+                                                        <input className="modal__input" type="text" value={pValue} onChange={(campo) => {
+                                                            setPValue(campo.target.value, procedure.ProcedureValue = campo.target.value);
+                                                            //   console.log(procedure.ProcedureValue)
+                                                        }} />
                                                     </div>
+
                                                 </div>
-                                                <div className="modal-body">
-                                                    <label className="modal__text" htmlFor="">Digite aqui o valor necessário:</label>
-                                                    
-                                                    <input className="modal__input" type="text" value={pValue} onChange={(campo) =>{
-                                                        setPValue(campo.target.value,  procedure.ProcedureValue = campo.target.value);
-                                                    //   console.log(procedure.ProcedureValue)
-                                                      }} />
-                                                </div>
-                                                
                                             </div>
                                         </div>
-                                    </div>
-                                )
-                            })
+                                    )
+                                })
 
-                        }
+                            }
 
+                        </div>
+                        <button className="boards__button boards__button--small" onClick={() => SaveAndExecute()}><FontAwesomeIcon icon={faFloppyDisk} size="lg" /><p className="button__text">Salvar</p></button>
+                    </div>
+                    <div className="flow">
+                        <div className="boards__board">
+                            <h3 className="board_title">Fluxo</h3>
+                            <div id="flow" className="dropzone">
+                            </div>
+                            <button className="boards__button" onClick={() => SaveAndExecute()}><FontAwesomeIcon icon={faCirclePlay} size="lg" /> <p className="button__text">Executar assistente</p></button>
+                        </div>
                     </div>
                 </div>
-                <div className="board">
-                    <h3>Fluxo</h3>
-                    <div id="flow" className="dropzone">
-
-                    </div>
-                </div>
-                <button className="boards__button" onClick={() => SaveAndExecute()}>Salvar</button>
-                <p id="result" className="boards__text">Resultado: {result}</p>
-            </div>
+            </main>
         </div>
     )
 }
