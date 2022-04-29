@@ -107,6 +107,21 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetMe()
+        {
+            int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+            var userName = ctx.SearchByID(UserId);
+
+            if (userName == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(userName);
+        }
+
         // Metodo POST - Cadastro
         [HttpPost]
         public IActionResult Post([FromForm] PostUserViewModel user, IFormFile File)
