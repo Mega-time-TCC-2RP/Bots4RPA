@@ -157,10 +157,12 @@ namespace _2rpnet.rpa.webAPI.Repositories
                         LibrarySkins = player.LibrarySkins.Select(ls => new LibrarySkin()
                         {
                             IdSkinNavigation = ls.IdSkinNavigation,
+                            UnlockData = ls.UnlockData,
                         }).ToList(),
                         LibraryTrophies = player.LibraryTrophies.Select(lt => new LibraryTrophy() 
                         {
                             IdTrophyNavigation = lt.IdTrophyNavigation,
+                            UnlockData = lt.UnlockData,
                         }).ToList()
                     }).ToList()
                 }).ToList()
