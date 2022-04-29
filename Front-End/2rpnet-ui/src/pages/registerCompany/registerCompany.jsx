@@ -59,15 +59,30 @@ export default function RegisterCompany() {
     const [phone, setPhone] = useState('');
     const [cnpj, setCnpj] = useState();
     const [loading, setLoading] = useState(false);
+    const [imageLoad, setImageLoad] = useState(false);
+
+    function inputImageVerify() {
+        setImageLoad(true);
+    }
 
     const register = (event) => {
         event.preventDefault();
         var formData = new FormData();
         setLoading(true);
 
-        axios("http://grupo7.azurewebsites.net/api/UserNames/" + 'id do usuario logado')
+        axios("http://grupo7.azurewebsites.net/api/UserNames/" + parseJwt().jti)
             .then((resposta) => {
                 if (resposta.status === 200) {
+                    console.log(resposta.data)
+                    const element = document.getElementById('imageCompany')
+                    const file = element.files[0]
+
+                    if (element.files[0] == undefined) {
+                        formData.append('CorpPhoto', file)
+                    } else {
+                        formData.append('CorpPhoto', file, file.name)
+                    }
+
                     formData.append('Username1', resposta.data.UserName1)
                     formData.append('Email', resposta.data.Email)
                     formData.append('Passwd', resposta.data.Passwd)
@@ -78,11 +93,15 @@ export default function RegisterCompany() {
                     formData.append('idUserType', resposta.data.idUserType)
                     formData.append('idCorporation', resposta.data.IdCorporation)
                     formData.append('idOffice', resposta.data.IdOffice)
+                    formData.append('CorpUser', resposta.data.photoUser, resposta.data.photoUser.name)
                     formData.append('CorporateName', nomeFantasia)
                     formData.append('AddressName', addressName)
                     formData.append('CorpPhone', phone)
                     formData.append('Cnpj', cnpj)
                 }
+            })
+            .catch((erro) => {
+                console.log(erro)
             })
 
         axios({
@@ -93,6 +112,7 @@ export default function RegisterCompany() {
         })
             .then((resposta) => {
                 if (resposta.status === 200) {
+                    console.log("CADASTROU")
                     setLoading(false)
                 }
             })
@@ -113,13 +133,10 @@ export default function RegisterCompany() {
                     <div className='registerContent'>
                         <img className='logoRegister' src={Logo} alt="Logo 2RPnet" />
                         <form encType='multipart/form-data' className='formRegister'>
+
                             <div className='foreachInput'>
                                 <label className='h5'>Nome Fantasia</label>
                                 <input id='placeholder-text' type="text" placeholder='Insira o Nome Fantasia...' value={nomeFantasia} onChange={(event) => setNomeFantasia(event.target.value)} autoFocus required />
-                            </div>
-                            <div className='foreachInput'>
-                                <label className='h5'>Razão Social</label>
-                                <input id='placeholder-text' type="text" name="razaoSocial" placeholder='Insira a Razão Social...' value={razaoSocial} onChange={(event) => setRazaoSocial(event.target.value)} required />
                             </div>
                             <div className='foreachInput'>
                                 <label className='h5'>Endereço</label>
@@ -133,6 +150,18 @@ export default function RegisterCompany() {
                                 <label className='h5'>CNPJ</label>
                                 <MaskedInput value={cnpj} onChange={(event) => setCnpj(event.target.value)} />
                             </div>
+                            <div className='foreachInput'>
+                                <label className='h5'>Foto da Empresa</label>
+                                <label className='sendPhoto h6' for='imageCompany'>Enviar foto</label>
+                                <input id='imageCompany' className='imageCompanyInput' type="file" accept="image/png, image/jpeg" name="imageCompany" onChange={inputImageVerify} />
+                                {
+                                    imageLoad == true && (
+                                        <div>
+                                            <p className='p '>Imagem Carregada</p>
+                                        </div>
+                                    )
+                                }
+                            </div>
                             {
                                 loading === true && (
                                     <button className='button' type="submit" disabled>Loading...</button>
@@ -143,6 +172,7 @@ export default function RegisterCompany() {
                                     <button className='button' onClick={register}>Ir ao cadastro do dono</button>
                                 )
                             }
+
                         </form>
                     </div>
                 </div>

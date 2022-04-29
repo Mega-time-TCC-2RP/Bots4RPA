@@ -144,9 +144,9 @@ export default function RegisterUser() {
         formData.append('Rg', rg)
         formData.append('Cpf', cpf)
         formData.append('Phone', telephone)
-        formData.append('idUserType', idUserType)
-        formData.append('idCorporation', idCorporation)
-        formData.append('idOffice', idOffice)
+        formData.append('IdUserType', idUserType)
+        formData.append('IdCorporation', idCorporation)
+        formData.append('IdOffice', idOffice)
 
         console.log(formData)
 
@@ -248,6 +248,13 @@ export default function RegisterUser() {
                                             <div className='foreachInput'>
                                                 <label className='h5'>Telefone</label>
                                                 <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} />
+                                            </div>
+                                            <div className='foreachInput'>
+                                                <label className='h5'>Tipo de Usuário</label>
+                                                <select onChange={(event) => setIdUserType(event.target.value)}>
+                                                    <option value={3}>Usuario normal</option>
+                                                    <option value={2}>Administrador de Empresa</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <button className='button' onClick={RegisterUser}>Finalizar Cadastro</button>

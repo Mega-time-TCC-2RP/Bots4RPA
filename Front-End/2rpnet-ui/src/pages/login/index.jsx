@@ -35,6 +35,7 @@ import GoogleLogin from 'react-google-login';
 
 
 export default function Login() {
+        const [IsLoading, setIsLoading] = useState(false);
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
 
@@ -66,6 +67,7 @@ export default function Login() {
         let history = useNavigate();
 
         const handleSubmit = (e) => {
+                setIsLoading(true);
                 e.preventDefault();
         
                 axios.post('https://grupo7.azurewebsites.net/api/Login', {
@@ -103,11 +105,15 @@ export default function Login() {
 
                             }
                         }
+                        setIsLoading(false);
                     })
 
                     .catch(() => {
+                        
                         this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
+                        setIsLoading(false);
                     })
+                    setIsLoading(false);
             };
 
             const responseGoogle = (response) => {
@@ -146,8 +152,10 @@ export default function Login() {
                                                                 onChange={(e) => setPassword(e.target.value)}        
                                                         />
                                                 </div>
-                                                
-                                                        <button className='botaoLogin' type='submit' >Logar</button>
+                                                {
+                                                        IsLoading === true ?
+                                                        <button className='botaoLogin' type='submit' disabled>Carregando...</button> : <button className='botaoLogin' type='submit'>Entrar</button>
+                                                }
                                                 
                                                 <div className='EsqueceuSenha'>
                                                         <a className='re-passwq' alt="Esqueceu a senha?" >Esqueceu a senha?</a>

@@ -171,7 +171,10 @@ button{
         align-items: center;
         justify-content: center;
         text-align: center;
+<<<<<<< HEAD
         /* margin-left: 35px; */
+=======
+>>>>>>> f4ab7f2794734657d2ce21455199a705a03ea373
         box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
         background-color: rgb(255, 255, 255);
         display: inline-flex;
@@ -181,8 +184,13 @@ button{
         font-weight: 400;
         color: darkgray;
         
+<<<<<<< HEAD
         font-size: 14px;
         font-weight: 500;
+=======
+        /* margin-left: 85px; */
+        cursor: pointer;
+>>>>>>> f4ab7f2794734657d2ce21455199a705a03ea373
         
 }
 .img-red{
