@@ -1,39 +1,64 @@
 export const UserData = [
 
-{
-  exitos: 40,
-  falhas: 13,
-},
-
-    // {
-    //   id: 1,
-    //  
-    //   month: 'Janeiro',
-    //   userGain: 80000,
-    //   userLost: 823,
-    // },
-    // {
-    //   id: 2,
-    //   month: 'Fevereiro',
-    //   userGain: 45677,
-    //   userLost: 345,
-    // },
-    // {
-    //   id: 3,
-    //   month: 'Março',
-    //   userGain: 78888,
-    //   userLost: 555,
-    // },
-    // {
-    //   id: 4,
-    //   month: 'Abril',
-    //   userGain: 90000,
-    //   userLost: 4555,
-    // },
-    // {
-    //   id: 5,
-    //   month: 'Maio',
-    //   userGain: 4300,
-    //   userLost: 234,
-    // },
+    {
+      id: 1,
+      month: 'Jan',
+      amount: 60,
+    },
+    {
+      id: 2,
+      month: 'Fev',
+      amount: 50,
+    },
+    {
+      id: 3,
+      month: 'Mar',
+      amount: 55,
+    },
+    {
+      id: 4,
+      month: 'Abr',
+      amount: 40,
+    },
+    {
+      id: 5,
+      month: 'Mai',
+      amount: 35,
+    },
+    {
+      id: 6,
+      month: 'Jun',
+      amount: 30,
+    },
+    {
+      id: 7,
+      month: 'Jul',
+      amount: 42,
+    },
+    {
+      id: 8,
+      month: 'Ago',
+      amount: 54,
+    },
+    {
+      id: 9,
+      month: 'Set',
+      amount: 19,
+    },
+    {
+      id: 10,
+      month: 'Out',
+      amount: 67
+    },
+    {
+      id: 11,
+      month: 'Nov',
+      amount: 80,
+    },
+    {
+      id: 12,
+      month: 'Dez',
+      amount: 90,
+    },
+   
   ];

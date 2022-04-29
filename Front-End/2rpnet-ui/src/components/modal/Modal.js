@@ -2,7 +2,8 @@ import React from 'react'
 import "../../components/modal/Modal.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
-import Grafico from '../../components/graphic/graphic'
+import Graphic from '../../components/graphic/graphic'
+import BarChart from '../../components/graphic/graphicBar'
 
 function CloseModal(idAssistant) {
     var modal = document.getElementById("modal" + idAssistant);
@@ -40,7 +41,6 @@ export default function Modal({ assistant }) {
                             </div>
                             <div className='assistant-date'>
                                 <span className='span1'> Última alteração: </span>
-                                {/* <span className='span2'> {assistant.alterationDate} </span> */}
                                 <span className='span2'> {Intl.DateTimeFormat("pt-BR", {
                                     year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"
                                 }).format(new Date(assistant.alterationDate))} </span>
@@ -50,14 +50,32 @@ export default function Modal({ assistant }) {
                     <div className='assistant-graphics'>
 
                         <div className='graphic-1'>
-                            <div>
-                                <Grafico />
+
+                            <div className='graphic-left-side'>
+                                <div className='container-left'>
+                                    <h1>Falhas ao execultar</h1>
+                                    <div>
+                                        <div className='box-label1-health'>
+                                            <div className='square-green'></div>
+                                            <span>Êxitos na execução</span>
+                                        </div>
+
+                                        <div className='box-label2-health'>
+                                            <div className='square-red'></div>
+                                            <span>Falhas na execução</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='graphic-right-side'>
+                                <Graphic />
                             </div>
                         </div>
 
                         <div className='graphic-2'>
-                            <div>
-
+                            <div className='container-grafico'>
+                                <BarChart />
                             </div>
                         </div>
 
