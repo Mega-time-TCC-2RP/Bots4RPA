@@ -118,13 +118,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
-
-                //UploadImgCorporation
-                if (CorpPhoto == null)
-                    return BadRequest("É necessário enviar um arquivo de imagem válido!");
-
                 string[] FileTypes = { "jpg", "png", "jpeg", "gif" };
                 string CorpUploadResult = Upload.UploadFile(CorpPhoto, FileTypes);
+                string UserUploadResult = Upload.UploadFile(CorpUser, FileTypes);
+
                 if (CorpUploadResult == "")
                 {
                     return BadRequest("Arquivo não encontrado");
@@ -134,12 +131,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     return BadRequest("Extensão de arquivo não permitida");
                 }
-
                 if (CorpPhoto == null)
-                    return BadRequest("É necessário enviar um arquivo de imagem válido!");
+                    CorpUploadResult = null;
+                
 
-
-                string UserUploadResult = Upload.UploadFile(CorpUser, FileTypes);
                 if (UserUploadResult == "")
                 {
                     Upload.RemoveFile(CorpUploadResult);
@@ -151,7 +146,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     Upload.RemoveFile(CorpUploadResult);
                     return BadRequest("Extensão de arquivo não permitida");
                 }
-
+                if (CorpUser == null)
+                {
+                    UserUploadResult = null;
+                }
 
 
                 if (Octx.ReadAll().FirstOrDefault(O => O.IdOffice == corporateForm.IdOffice) == null)
