@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.top-container{
+        /* position: absolute; */
+        width: 592px;
+        height: 300px;
+        position: absolute;
+        background: rgba(51, 117, 186, 0.75);
+        box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.25);
+        border-radius: 30px 30px 30px 29px;
+}
+.background-body{
+        /* position: absolute; */
+        width: 544px;
+        height: 252px;
+        margin-left: 0;
+        margin-right: 0;
+        display: flex;
+        background: #F3F0F0;
+        box-shadow: inset 0px 0px 4px #5F91C4;
+        border-radius: 20px;
+}
