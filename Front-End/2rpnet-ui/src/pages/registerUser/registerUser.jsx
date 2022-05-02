@@ -92,6 +92,8 @@ export default function RegisterUser() {
     const [idUserType, setIdUserType] = useState(3);
     const [idCorporation, setIdCorporation] = useState(1);
     const [idOffice, setIdOficce] = useState(1);
+    const [companyList, setCompanyList] = useState([]);
+    const [officeList, setOfficeList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [show, setShow] = useState(false);
     const [imageLoad, setImageLoad] = useState(false);
@@ -122,6 +124,30 @@ export default function RegisterUser() {
     function inputImageVerify() {
         setImageLoad(true);
     }
+
+    function listCompany() {
+        axios("http://grupo7.azurewebsites.net/api/Corporations")
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    setCompanyList(resposta.data)
+                }
+            })
+            .catch(erro => console.log(erro))
+    }
+
+    useEffect(listCompany, [])
+
+    function listOffice() {
+        axios("http://grupo7.azurewebsites.net/api/Offices")
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    setOfficeList(resposta.data)
+                }
+            })
+            .catch(erro => console.log(erro))
+    }
+
+    useEffect(listOffice, [])
 
     const RegisterUser = (event) => {
         event.preventDefault();
@@ -167,8 +193,6 @@ export default function RegisterUser() {
             })
     }
 
-
-
     return (
         <div>
             <VLibras />
@@ -213,6 +237,13 @@ export default function RegisterUser() {
                                                 <label className='h5'>Nome</label>
                                                 <input id='placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={name} onChange={(event) => setName(event.target.value)} required />
                                             </div>
+                                            <div className='foreachInput'>
+                                                <label className='h5'>Tipo de Usuário</label>
+                                                <select onChange={(event) => setIdUserType(event.target.value)}>
+                                                    <option value={3}>Usuario normal</option>
+                                                    <option value={2}>Administrador de Empresa</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <button className='button' type="submit" onClick={handleNext}>Avançar</button>
                                     </div>
@@ -250,10 +281,27 @@ export default function RegisterUser() {
                                                 <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} />
                                             </div>
                                             <div className='foreachInput'>
-                                                <label className='h5'>Tipo de Usuário</label>
-                                                <select onChange={(event) => setIdUserType(event.target.value)}>
-                                                    <option value={3}>Usuario normal</option>
-                                                    <option value={2}>Administrador de Empresa</option>
+                                                <label className='h5'>Empresa relacionada</label>
+                                                <select onChange={(event) => setIdCorporation(event.target.value)}>
+                                                    {
+                                                        companyList.map((company) => {
+                                                            return(
+                                                                <option value={company.idCorporation}>{company.nameFantasy}</option>
+                                                            )
+                                                        })
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div className='foreachInput'>
+                                                <label className='h5'>Cargo</label>
+                                                <select onChange={(event) => setIdOficce(event.target.value)}>
+                                                    {
+                                                        officeList.map((office) => {
+                                                            return(
+                                                                <option value={office.idOffice}>{office.titleOffice}</option>
+                                                            )
+                                                        })
+                                                    }
                                                 </select>
                                             </div>
                                         </div>
