@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import BarChart from '../../components/graphic/rendergraphic'
-import { UserData } from '../../components/graphic/graphicTest'
+import { UserData } from './dataBar'
 
-export default function Barras() {
+export default function BarGraphic() {
     const [userData, setUserData] = useState({
         labels: UserData.map((data) => data.month),
         datasets: [
@@ -18,11 +18,9 @@ export default function Barras() {
 
     return (
         <div>
-
             <div className="container_grafico">
                 <BarChart chartData={userData} className="" />
             </div>
-
         </div>
     )
 }
