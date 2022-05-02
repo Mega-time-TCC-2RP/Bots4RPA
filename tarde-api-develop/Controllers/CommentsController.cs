@@ -83,7 +83,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             {
                 ctx.Create(comment);
 
-                return Ok(comment);
+                return Created("Criado no Banco de Dados", comment);
             }
             catch (Exception error)
             {

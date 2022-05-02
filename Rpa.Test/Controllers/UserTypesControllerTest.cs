@@ -35,16 +35,38 @@ namespace Rpa.Test.Controllers
         public void Must_Return_Ok_in_UserType_Searched_For_By_ID()
         {
             // Arrange
+            UserType fakeType = new UserType();
+            fakeType.IdUserType = 1;
+
             var mockRepo = new Mock<IUserTypeRepository>();
-            //var mockID = 1;
-            //mockRepo.Setup(x => x.SearchByID(1));
+            mockRepo
+                .Setup(x => x.SearchByID(fakeType.IdUserType))
+                .Returns(fakeType);
+
             var controller = new UserTypesController(mockRepo.Object);
 
             // Act
-            var result = controller.SearchByID(2);
+            var result = controller.SearchByID(fakeType.IdUserType);
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public void Must_Return_Not_Found_in_UserType_Searched_For_By_ID()
+        {
+            // Arrange
+            var mockRepo = new Mock<IUserTypeRepository>();
+            mockRepo
+                .Setup(x => x.SearchByID(1));
+
+            var controller = new UserTypesController(mockRepo.Object);
+
+            // Act
+            var result = controller.SearchByID(1);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
         }
     }
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\Rpa.Test\\Rpa.Test.csproj": {}
+    "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\Rpa.Test\\Rpa.Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\Rpa.Test\\Rpa.Test.csproj": {
+    "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\Rpa.Test\\Rpa.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\Rpa.Test\\Rpa.Test.csproj",
+        "projectUniqueName": "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\Rpa.Test\\Rpa.Test.csproj",
         "projectName": "Rpa.Test",
-        "projectPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\Rpa.Test\\Rpa.Test.csproj",
-        "packagesPath": "C:\\Users\\37378203840.INFOSCS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\Rpa.Test\\obj\\",
+        "projectPath": "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\Rpa.Test\\Rpa.Test.csproj",
+        "packagesPath": "C:\\Users\\mauro_000\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\Rpa.Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\37378203840.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mauro_000\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj": {
-                "projectPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj"
+              "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj": {
+                "projectPath": "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj"
               }
             }
           }
@@ -88,17 +88,17 @@
         }
       }
     },
-    "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj": {
+    "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj",
+        "projectUniqueName": "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj",
         "projectName": "2rpnet.rpa.webAPI",
-        "projectPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj",
-        "packagesPath": "C:\\Users\\37378203840.INFOSCS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\37378203840.INFOSCS\\Desktop\\TCC\\k back\\tarde-api-develop\\obj\\",
+        "projectPath": "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\tarde-api-develop\\2rpnet.rpa.webAPI.csproj",
+        "packagesPath": "C:\\Users\\mauro_000\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mauro_000\\Desktop\\estudos\\tcc\\Bots-4RPA\\tarde-api-develop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\37378203840.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mauro_000\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
