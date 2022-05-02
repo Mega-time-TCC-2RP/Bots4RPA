@@ -1,9 +1,10 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/* 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 .container {
     width: 1200px;
@@ -11,16 +12,17 @@
 }
 
 footer {
-    background: #17233C;
+    background: var(--PrimaryColor1);
     height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    
 }
 
 footer span {
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: var(--WHITE);
     font-style: normal;
     font-weight: 400;
     font-size: 23px;
@@ -50,6 +52,7 @@ footer span {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100px;
 }
 
 .instagramIcon {
