@@ -16,6 +16,10 @@
     --complementDark: #17233C;
 }
 
+.container{
+  max-width: 1820px;
+  width: 90%;
+}
 
 body {
     background-color: #FCFCFC;
@@ -38,12 +42,14 @@ body {
 .boards {
     display: flex;
     align-items: center;
+    margin: 16px 0 0 60px;
+    min-height: 530px;
 }
 
 .flow{
   /* background-color: wheat; */
   height: 100%;
-  width: 60%;
+  width: 50%;
   display: flex;
   justify-content: center;
 }
@@ -60,7 +66,7 @@ body {
 }
 
 .boards__board--pointy{
-  width: 400px;
+  /* width: 400px; */
   border-radius: 0;
 }
 
@@ -139,12 +145,17 @@ body {
 
 .boards__button--small{
   width: 160px;
+  margin: 0 0 1rem;
 }
 
 .boards__text{
   color: var(--complementColor);
   font-weight: bold;
   font-size: 32px;
+}
+
+.footer{
+  margin: 64px 0 0;
 }
 
 

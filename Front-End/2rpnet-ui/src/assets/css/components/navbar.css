@@ -9,8 +9,7 @@ body{
 .sidebar .nav_list{
     padding: 0;
 }
-.sidebar{
-    
+.sidebar{  
     position: fixed;
     top: 0;
     left: 0;
@@ -19,7 +18,7 @@ body{
     background: var(--PrimaryColor2);
     padding: 6px 14px;
     transition: all 0.5s ease;
-    z-index: 99;
+    /* z-index: 0; */
 }
 .sidebar.active{
     
