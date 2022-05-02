@@ -13,8 +13,11 @@ import Navbar from '../../components/menu/Navbar'
 import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
+import onBoarding from '../../components/onboarding/OnBoarding'
+import Blue_Head from '../../assets/img/Blue_Head.png'
 
 import { useNavigate } from 'react-router-dom'
+import { Button } from '@material-ui/core';
 
 
 const customStyles = {
@@ -213,10 +216,24 @@ export const TelaTimeline = () => {
     }, [])
     return (
         <div>
+
             <Navbar />
             <div className="body-pd">
                 <VLibras />
-                <Header />
+                <div className="top-container">
+                                        <div className="background-body">
+                                                <div className="boarding-image">
+                                                        <img src={Blue_Head} />
+                                                </div>
+                                                <div className="body-content">
+                                                    <h2>Assistentes</h2>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                    <button>aaafr</button>
+                                                    <button>asoncisa</button>
+                                                </div>
+
+                                        </div>
+                                </div>
                 <main id="Main">
                     <div className="ContainerGrid ContainerPosts">
                         <div className="BotoesModais">

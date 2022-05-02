@@ -193,6 +193,8 @@ export default function RegisterUser() {
             })
     }
 
+
+
     return (
         <div>
             <VLibras />
@@ -280,6 +282,7 @@ export default function RegisterUser() {
                                                 <label className='h5'>Telefone</label>
                                                 <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} />
                                             </div>
+                                            
                                             <div className='foreachInput'>
                                                 <label className='h5'>Empresa relacionada</label>
                                                 <select onChange={(event) => setIdCorporation(event.target.value)}>

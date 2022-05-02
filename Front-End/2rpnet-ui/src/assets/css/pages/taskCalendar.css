@@ -46,6 +46,14 @@
     color: var(--BLACK);
 }
 
+.pageTitle {
+    margin-bottom: 3.5rem;
+}
+
+.taskTitle {
+    margin: 2rem 0 3rem 0;
+}
+
 /* .taskSpace {
     display: flex;
     flex-direction: column;
@@ -63,14 +71,28 @@
     height: 460px;
     border-radius: 30px;
     box-shadow: 0px 4px 4px var(--ComplementaryColor4);
-    margin-left: 32px;
+    margin-left: 2rem;
+    display: grid;
+    grid-template-columns: 1rem 1rem 1rem 1rem 1rem;
+    grid-template-rows: 1rem 1rem 1rem 1rem 1rem 1rem 1rem;
+    gap: 3rem;
+    /* justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; */
+}
+
+.calendarTitle {
+    grid-column: span 5;
 }
 
 .btnCalendar {
-    width: 64px;
-    height: 64px;
-    color: var(--WHITE);
-    background-color: var(--PrimaryColor2);
+    width: 3rem;
+    height: 3rem;
+    margin: 0 0.5rem 0 0.5rem;
+    /* color: var(--WHITE); */
+    color: #000000;
+    /* background-color: var(--PrimaryColor2); */
+    background-color: #F2F2F2;
     border-radius: 30px;
     box-shadow: 4px 4px 4px var(--darkShadow);
 }

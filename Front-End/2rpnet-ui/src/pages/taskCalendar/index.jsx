@@ -43,8 +43,9 @@ function App() {
           </div>
         </section>
         <div className="calendarAndBtn">
-          <section className="calendar">
-            <input className="btnCalendar"
+          <section className="calendar p">
+          <h5 className="calendarTitle h5">Calendário</h5>
+            <input className="btnCalendar p"
             type="button"
             value="1" />
             <input className="btnCalendar"
