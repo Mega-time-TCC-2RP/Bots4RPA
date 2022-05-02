@@ -306,3 +306,7 @@
 .ProfileContainer .configPage{
     height: auto;
 }
+
+.profile .configContent{
+    height: auto;
+}

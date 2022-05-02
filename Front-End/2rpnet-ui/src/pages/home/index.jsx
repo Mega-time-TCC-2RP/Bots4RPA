@@ -84,6 +84,7 @@ function App() {
   }
 
   useEffect(() => {
+    console.log(parseJwt())
     GetMyQuests();
     GetHighlightedPosts();
   }, [])
