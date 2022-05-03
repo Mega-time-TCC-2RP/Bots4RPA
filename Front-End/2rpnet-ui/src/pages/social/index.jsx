@@ -16,6 +16,9 @@ import Footer from '../../components/footer/footer'
 import onBoarding from '../../components/onboarding/OnBoarding'
 import Blue_Head from '../../assets/img/Blue_Head.png'
 
+import '../../assets/css/components/button.css'
+import '../../assets/css/components/fonts.css'
+
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@material-ui/core';
 
@@ -223,13 +226,15 @@ export const TelaTimeline = () => {
                 <div className="top-container">
                                         <div className="background-body">
                                                 <div className="boarding-image">
-                                                        <img src={Blue_Head} />
+                                                        <img className="bot-img" src={Blue_Head} />
                                                 </div>
                                                 <div className="body-content">
                                                     <h2>Assistentes</h2>
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                                    <button>aaafr</button>
-                                                    <button>asoncisa</button>
+                                                    <p>o erick é bobão mongolão palhação gostosão cabeçudão cocozão bobalhão cabeludão e meu pau na sua mão. =)</p>
+                                                    <div className='buttons'>
+                                                    <button className='button'>Voltar</button>
+                                                    <button className='button'>Próximo</button>
+                                                    </div>
                                                 </div>
 
                                         </div>
