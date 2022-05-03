@@ -15,5 +15,7 @@ namespace _2RPNET_API.Interfaces
         void Create(Assistant NewAssistant);
 
         void Delete(int IdAssistant);
+
+        void ChangeVerification(int IdAssistant, string[] AssistantProcedure);
     }
 }

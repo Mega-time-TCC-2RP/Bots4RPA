@@ -16,6 +16,24 @@ namespace _2RPNET_API.Repositories
         {
             Ctx = appContext;
         }
+
+        public void ChangeVerification(int IdAssistant, string[] AssistantProcedure)
+        {
+
+            Assistant AssistantSought = SearchByID(IdAssistant);
+
+            //List<Assistant> Proccedures = AssistantSought.AssistantProcedures.ToList();
+
+            //if (Procedures != null)
+            //{
+            //    if (AssistantProcedure == Procedures)
+            //    {
+            //        AssistantProcedure = Procedures
+
+            //    }
+            //}
+        }
+
         public void Create(Assistant NewAssistant)
         {
             NewAssistant.CreationDate = DateTime.Now;
