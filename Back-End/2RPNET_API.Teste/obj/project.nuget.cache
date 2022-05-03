@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qZ4UUKUFzALoYrBcLGIBtNisqfPF8q//sk0/2kS0jhp1JqFi/aC+35/VKC8tOByRJhaGulze9iaK2dh8AhCjiw==",
+  "dgSpecHash": "hPpVPYEFYD90W5bkB7y6PrmPZa4uR0DZi7L/BrZboYT7Ozy5jHw5Lf78X6pcSLPMM2kYCkNjFxJli4ILSGOHHw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
+  "projectFilePath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API.Teste\\2RPNET_API.Teste.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Pb6TMp1+Wy4BRRiX8+QvDAjhFuLBmzc+UEDRtz5og882o9stP/wuVN5+hgWnkQgsftYNy67j+Npw0TULrDDtxQ==",
+  "dgSpecHash": "xUOp8gdQiQbrbjnMWPxaMrevZL6MT67tvDbODcfoPmiWv3b6/RVcTRScxz8GX3KR9vkUJ5ZAV8GW7c/JAc7Seg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+  "projectFilePath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

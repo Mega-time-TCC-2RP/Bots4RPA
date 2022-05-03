@@ -4,6 +4,7 @@ using _2RPNET_API.Interfaces;
 using _2RPNET_API.StaticFiles;
 using Microsoft.Playwright;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,65 +42,18 @@ namespace _2RPNET_API.Repositories
         {
 
             List<AssistantProcedure> AssistantProcedures = SearchByAssistant(IdAssistant);
-            string path = $"./StaticFiles/Files/Assistant{IdAssistant}/Program.cs";
-            //SOBRESCREVER
-            if (File.Exists(path))
-            {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(path))
-                {
-                    sw.WriteLine(@"
-using Microsoft.Playwright;
-using System;
-using System.Threading.Tasks;
-class Program
-{
-public static async Task Main()
-{
-using var playwright = await Playwright.CreateAsync();
-await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-{
-    Headless = true,
-    SlowMo = 1000
-});
-var context = await browser.NewContextAsync();
+            string path = $"./StaticFiles/Files/AssistantProcess/Program.cs";
 
-// Open new page
-var page = await context.NewPageAsync(); ");
-
-                    foreach (AssistantProcedure Procedure in AssistantProcedures)
-                    {
-                        switch (Procedure.ProcedureName)
-                        {
-                            case "Pesquisar no google":
-                                sw.WriteLine(@"await page.GotoAsync('https://www.google.com/?gws_rd=ssl%22'); \n");
-                                sw.WriteLine($@"await page.FillAsync('input[title = 'Pesquisar']',{Procedure.ProcedureValue});");
-                                sw.WriteLine($@"await page.PressAsync('input[title = 'Pesquisar']', 'Enter');");
-
-                                break;
-                            case "Ir para a url":
-                                sw.WriteLine(@"await page.GotoAsync('http://eelslap.com/'); \n");
-
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-
-                    sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + "screenshot" + IdAssistant + ".png });");
-
-                }
-            }
             //ESCREVER
-            else
+
+
+            CopyFile.CopyDirectory(@".\StaticFiles\Files\DefaultStructure\", $@".\StaticFiles\Files\AssistantProcess\", true);
+
+
+            // Create a file to write to.
+            using (StreamWriter sw = File.CreateText(path))
             {
-                CopyFile.CopyDirectory(@".\StaticFiles\Files\DefaultStructure\", $@".\StaticFiles\Files\Assistant{IdAssistant}\", true);
-
-
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(path))
-                {
-                    sw.WriteLine(@"
+                sw.WriteLine(@"
 using Microsoft.Playwright;
 using System;
 using System.Threading.Tasks;
@@ -118,30 +72,34 @@ var context = await browser.NewContextAsync();
 // Open new page
 var page = await context.NewPageAsync(); ");
 
-                    foreach (AssistantProcedure Procedure in AssistantProcedures)
+                foreach (AssistantProcedure Procedure in AssistantProcedures)
+                {
+                    switch (Procedure.ProcedureName)
                     {
-                        switch (Procedure.ProcedureName)
-                        {
-                            case "Pesquisar no google":
-                                sw.WriteLine(@"await page.GotoAsync(" + '"' + "https://www.google.com/?gws_rd=ssl%22" + '"' + ");");
-                                sw.WriteLine($@"await page.FillAsync(" + '"' + "input[title = " + "'" + "Pesquisar" + "'" + "]" + '"'+ "," + '"' + $"{Procedure.ProcedureValue}" + '"' +");");
-                                sw.WriteLine($@"await page.PressAsync(" + '"' + "input[title = " + "'" + "Pesquisar" + "'" + "]" + '"' + "," + '"' + "Enter" + '"' + ");");
-                                //sw.WriteLine($@"await page.PressAsync('input[title = 'Pesquisar']', 'Enter');");
+                        case "Pesquisar no google":
+                            sw.WriteLine(@"await page.GotoAsync(" + '"' + "https://www.google.com/?gws_rd=ssl%22" + '"' + ");");
+                            sw.WriteLine($@"await page.FillAsync(" + '"' + "input[title = " + "'" + "Pesquisar" + "'" + "]" + '"' + "," + '"' + $"{Procedure.ProcedureValue}" + '"' + ");");
+                            sw.WriteLine($@"await page.PressAsync(" + '"' + "input[title = " + "'" + "Pesquisar" + "'" + "]" + '"' + "," + '"' + "Enter" + '"' + ");");
+                            //sw.WriteLine($@"await page.PressAsync('input[title = 'Pesquisar']', 'Enter');");
 
-                                break;
-                            case "Ir para a url":
-                                sw.WriteLine(@"await page.GotoAsync('http://eelslap.com/');");
+                            break;
+                        case "Ir para a url":
+                            sw.WriteLine(@"await page.GotoAsync('http://eelslap.com/');");
 
-                                break;
-                            default:
-                                break;
-                        }
+                            break;
+                        default:
+                            break;
                     }
-
-                    sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + '"' + "../../Images/Assistant" + IdAssistant + ".png" + '"' + " });}}");
-
                 }
+
+                sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + '"' + "../../Images/Assistant" + IdAssistant + ".png" + '"' + " });}}");
             }
+
+            Process.Start("../FileManager/main.exe");
+
+            System.Threading.Thread.Sleep(20000);
+            string pathD = "./StaticFiles/Files/AssistantProcess/";
+            Directory.Delete(pathD, true);
         }
 
         public List<AssistantProcedure> ReadAll()

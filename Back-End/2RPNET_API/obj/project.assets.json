@@ -8371,11 +8371,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+      "projectUniqueName": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
       "projectName": "2RPNET_API",
-      "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+      "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
       "packagesPath": "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Projeto-2RP\\Back-End\\2RPNET_API\\obj\\",
+      "outputPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\50928811867.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
