@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "e437f2e4-3a62-4dd7-abbd-01a2a2c2686b",
+		"name": "2RP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Assistants",
+			"item": [
+				{
+					"name": "Assistant.Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEmployee\": 1,\r\n    \"creationDate\": \"0000-00-00 00:00:00\",\r\n    \"alterationDate\": \"\",\r\n    \"assistantName\": \"testando leozinho\",\r\n    \"assistantDescription\": \"testando metodo leozinho que agora vai funcionar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http:///localhost:5000/api/Assistants",
+							"protocol": "http",
+							"path": [
+								"localhost:5000",
+								"api",
+								"Assistants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assistant.ReadMy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.4.14:5000/api/Assistants/2",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"4",
+								"14"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Assistants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assistant.RaedAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/Assistants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Assistants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assistant.Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.4.14:5000/api/Assistants/2",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"4",
+								"14"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Assistants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assistant.Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idEmployee\": 1,\r\n        \"creationDate\": \"2022-04-20T00:00:00\",\r\n        \"alterationDate\": \"2022-04-20T00:01:00\",\r\n        \"assistantName\": \"Liviazinha\",\r\n        \"assistantDescription\": \"t\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/Assistants/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Assistants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EmailsVerifications",
+			"item": [
+				{
+					"name": "EmailVerification.Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idAssistant\": 1,\r\n        \"username\": \"livinha\",\r\n        \"userPassword\": \"123456789\",\r\n        \"host\": \"https://mail.google.com/\",\r\n        \"gateway\": \"1234\",\r\n        \"cryptography\": \"fere455564ef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.4.14:5000/api/EmailsVerifications",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"4",
+								"14"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"EmailsVerifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EmailVerification.ReadAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.4.14:5000/api/EmailsVerifications",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"4",
+								"14"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"EmailsVerifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EmailVerification.Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idAssistant\": 1,\r\n        \"username\": \"livinha linda\",\r\n        \"userPassword\": \"12345678910\",\r\n        \"host\": \"https://mail.google.com/\",\r\n        \"gateway\": \"1234\",\r\n        \"cryptography\": \"fere455564ef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.4.14:5000/api/EmailsVerifications/3",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"4",
+								"14"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"EmailsVerifications",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EmailVerification.Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.4.14:5000/api/EmailsVerifications/3",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"4",
+								"14"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"EmailsVerifications",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"erick@gmail.com\",\r\n    \"password\": \"Senai@132\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.0.15:5000/api/Login",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"15"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
