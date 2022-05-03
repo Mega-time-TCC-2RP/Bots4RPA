@@ -20,6 +20,7 @@ import PlayIcon from '../../components/icones/play'
 //Components:
 import Navbar from '../../components/menu/Navbar'
 import Modal from '../../components/modal/Modal'
+import ModalA from '../../components/modal/ModalAssistant'
 import Footer from '../../components/footer/footer'
 import { render } from "@testing-library/react";
 
@@ -28,9 +29,10 @@ import { render } from "@testing-library/react";
 export default function Home() {
 
   const [AssistantsList, setAssistantsList] = useState([]);
+  const [ExecutionsList, setExecutionsList] = useState([]);
 
   function GetMyAssistants() {
-    fetch('http://grupo8api.azurewebsites.net/api/Assistants', {
+    fetch('https://grupo8api.azurewebsites.net/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
@@ -47,17 +49,37 @@ export default function Home() {
 
   useEffect(GetMyAssistants, [])
 
+
+  // Open Modal to create assistant
+
+  function OpenModalAssistant() {
+    var modalA = document.getElementById("modalAssistant");
+    // console.log(modalA)
+    modalA.style.display = "flex";
+  };
+
+  // Open Assistant details modal
+
   function OpenModal(idAssistant) {
-    // console.log('chamou o open')
     var modal = document.getElementById("modal" + idAssistant);
     // console.log(modal)
     modal.style.display = "flex";
   };
 
+  // Close Assistant details modal
+
   function CloseModal(idAssistant) {
     var modal = document.getElementById("modal" + idAssistant);
     // console.log(id)
     modal.style.display = "none";
+  };
+
+  // Close Modal to create assistant
+
+  function CloseModalAssistant() {
+    var modalA = document.getElementById("modalAssistant");
+    // console.log(id)
+    modalA.style.display = "none";
   };
 
   function App() {
@@ -78,8 +100,15 @@ export default function Home() {
         <div className="top-buttons">
           <div className="form-container">
             <form className="form-home">
-              <button className="button-assistant">Criar Assistente</button>
-              <input type='search' placeholder="Buscar assistente" id="Assistente"></input>
+              <ModalA />
+              <button className="button-assistant"
+                onClick={(event) => {
+                  event.preventDefault()
+                  OpenModalAssistant()
+                }}
+              >Criar Assistente
+              </button>
+              <input className="Input-Home" type='search' placeholder="Buscar assistente" id="Assistente"></input>
             </form>
           </div>
           <form className="nao">

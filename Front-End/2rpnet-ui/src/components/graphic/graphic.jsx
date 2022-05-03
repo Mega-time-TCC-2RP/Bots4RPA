@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { DataGraphic } from './dataGraphic'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Graphic() {
-    const data = {
+
+    const [dataGraphic, setDataGraphic] = useState({
         labels: [],
         datasets: [
             {
-                data: [43, 13 ],
+                data: [DataGraphic.map((data) => data.exitos), DataGraphic.map((data) => data.falhas)],
                 backgroundColor: [
                     '#3FDA9F',
                     '#E41500'
                 ],
-             
+
                 borderWidth: 1,
             },
         ],
-    };
+    });
 
-    return <Doughnut data={data} className="GraphicHealth" />;
+    return <Doughnut data={dataGraphic} className="GraphicHealth" />;
 }
 
 
