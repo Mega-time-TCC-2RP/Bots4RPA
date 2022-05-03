@@ -1087,19 +1087,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\": {}
+    "C:\\Users\\44037739828.INFOSCS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\50928811867.INFOSCS\\Desktop\\PlaywrightDemo\\PlaywrightDemo.csproj",
+      "projectUniqueName": "C:\\Users\\44037739828.INFOSCS\\Desktop\\Bots-4RPA\\PlaywrightDemo\\PlaywrightDemo.csproj",
       "projectName": "PlaywrightDemo",
-      "projectPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\PlaywrightDemo\\PlaywrightDemo.csproj",
-      "packagesPath": "C:\\Users\\50928811867.INFOSCS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\50928811867.INFOSCS\\Desktop\\PlaywrightDemo\\obj\\",
+      "projectPath": "C:\\Users\\44037739828.INFOSCS\\Desktop\\Bots-4RPA\\PlaywrightDemo\\PlaywrightDemo.csproj",
+      "packagesPath": "C:\\Users\\44037739828.INFOSCS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\44037739828.INFOSCS\\Desktop\\Bots-4RPA\\PlaywrightDemo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\50928811867.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\44037739828.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
