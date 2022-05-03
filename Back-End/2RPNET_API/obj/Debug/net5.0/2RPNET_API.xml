@@ -64,12 +64,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.ChartsController.GraphicInformations(System.Int32)">
-            <summary>
-            Method responsible for list Procedure Assistant by unique id
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.ReadAll">
             <summary>
             Method responsible for list all Emails Verifications 

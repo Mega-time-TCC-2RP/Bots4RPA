@@ -703,3 +703,4 @@ C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\obj\Debug\net
 C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\obj\Debug\net5.0\2RPNET_API.xml
 C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\obj\Debug\net5.0\2RPNET_API.pdb
 C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\obj\Debug\net5.0\2RPNET_API.genruntimeconfig.cache
+C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\bin\Debug\net5.0\Back-End\Postman\2RP.postman_collection.json
