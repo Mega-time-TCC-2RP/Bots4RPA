@@ -2,11 +2,11 @@
 
 .button {
     background: var(--PrimaryColor2);
-    width: 400px;
-    height: 45px;
+    width: 400px !important;
+    height: 45px !important;
     color: var(--WHITE);
     border-radius: 64px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif !important;
     font-size: 22px;
     font-weight: 400;
     line-height: 28px;
