@@ -4,6 +4,7 @@ import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import Navbar from '../../components/menu/Navbar'
+import { parseJwt, usuarioAutenticado } from '../../services/auth';
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -59,6 +60,79 @@ Modal.setAppElement('#root');
 export default function Config() {
     const [currentStep, setCurrentStep] = useState(0);
     const [modalConfig, setModalConfig] = useState(false);
+    const [userLogado, setUserLogado] = useState({});
+    const [invalidUsers, setInvalidUsers] = useState([]);
+    const [invalidCorporations, setInvalidCorporations] = useState([]);
+
+    function listUser() {
+        axios('https://grupo7.azurewebsites.net/api/UserNames/' + parseJwt().jti, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    setUserLogado(resposta.data)
+                    console.log(resposta.data)
+                }
+            })
+            .catch((erro) => console.log(erro))
+    }
+
+    useEffect(listUser, []);
+
+    function alterUserData(event) {
+        event.preventDefault()
+        var formData = new FormData();
+        formData = userLogado;
+        axios({
+            method: "PUT",
+            url: "http://grupo7.azurewebsites.net/api/UserNames",
+            data: formData,
+            headers: { "Content-type": "multipart/form-data", 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    closeModalConfig();
+                    console.log("alterado com sucesso")
+                }
+            })
+            .catch((erro) => console.log(erro))
+
+    }
+
+    function listInvalidUsers() {
+        axios('http://grupo7.azurewebsites.net/api/Corporations/UsuariosInvalidos', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    setInvalidUsers(resposta.data)
+                    console.log("Listou")
+                }
+            })
+            .catch((erro) => console.log(erro))
+    }
+
+    useEffect(listInvalidUsers, [])
+
+    function listInvalidCorporation() {
+        axios('http://grupo7.azurewebsites.net/api/Corporations/EmpresasInvalidas', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    setInvalidCorporations(resposta.data)
+                    console.log("listando corps")
+                }
+            })
+            .catch((erro) => console.log(erro))
+    }
+    useEffect(listInvalidCorporation, [])
 
     function openModalConfig() {
         setModalConfig(true);
@@ -66,6 +140,7 @@ export default function Config() {
 
     function closeModalConfig() {
         setModalConfig(false);
+        listUser();
     }
 
     function select(nextStep) {
@@ -291,6 +366,7 @@ export default function Config() {
                 <nav className='navAreaConfig container'>
                     <span className='h3 myData' id='myData' onClick={() => select(0)}>Meus Dados</span>
                     <span className='h3 Acessibilidade' id='Acessibilidade' onClick={() => select(1)}>Acessibilidade</span>
+                    {/* {parseJwt().role === '1' ? <span className='h3 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span> : null} */}
                     <span className='h3 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span>
                     <span className='h3 validarEmpresas' id='validarEmpresas' onClick={() => select(3)}>Validar Empresas</span>
                 </nav>
@@ -301,17 +377,17 @@ export default function Config() {
                                 <div className='contentAreaConfig'>
                                     <div className='mainContentArea'>
                                         <div className='contentConfig'>
-                                            <h3 className='h5'>Email: <p>LoremIpsum</p></h3>
-                                            <h3 className='h5'>Nome: <p>LoremIpsum</p></h3>
-                                            <h3 className='h5'>Idade: <p>LoremIpsum</p></h3>
+                                            <h3 className='h5'>Email: <p>{userLogado.email}</p></h3>
+                                            <h3 className='h5'>Nome: <p>{userLogado.userName1}</p></h3>
+                                            <h3 className='h5'>Nascimento: <p>{userLogado.birthDate}</p></h3>
                                         </div>
                                         <div className='contentConfig'>
-                                            <h3 className='h5'>CPF: <p>LoremIpsum</p></h3>
-                                            <h3 className='h5'>RG: <p>LoremIpsum</p></h3>
-                                            <h3 className='h5'>Telefone: <p>LoremIpsum</p></h3>
+                                            <h3 className='h5'>CPF: <p>{userLogado.cpf}</p></h3>
+                                            <h3 className='h5'>RG: <p>{userLogado.rg}</p></h3>
+                                            <h3 className='h5'>Telefone: <p>{userLogado.phone}</p></h3>
                                         </div>
                                     </div>
-                                    <img src={Profile} className='profileImage' alt="Imagem de perfil" />
+                                    <img src={userLogado.photoUser} className='profileImage' alt="Imagem de perfil" />
                                 </div>
                                 <button className='button' onClick={() => setModalConfig(true)}>Atualizar Dados</button>
                                 <Modal
@@ -321,7 +397,7 @@ export default function Config() {
                                     class="ReactModal"
                                     closeTimeoutMS={2000}
                                 >
-                                    <div className='modalConfig areaStep'>
+                                    <form encType='multipart/form-data' className='modalConfig areaStep'>
                                         <div className='profileImageArea'>
                                             <div className='maskProfile'><img src={Profile} alt="Imagem de Perfil" className='profileImage editProfileImage' /></div>
                                             <AiIcons.AiOutlineClose className='closeModal iconConfig2' onClick={() => closeModalConfig()} />
@@ -329,23 +405,23 @@ export default function Config() {
                                         <div className='inputsModalArea'>
                                             <div className='inputsModal'>
                                                 <label className='h5' htmlFor='emailModals'>Nome</label>
-                                                <input id='emailModals' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' />
+                                                <input id='emailModals' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={userLogado.userName1} onChange={(event) => setUserLogado({ userName1: event.target.value })} />
                                                 <label className='h5' htmlFor='cpf'>CPF</label>
-                                                <input id='cpf' className='input placeholder-text' type="text" name="name" placeholder='Insira seu CPF...' />
+                                                <input id='cpf' className='input placeholder-text' type="text" name="name" placeholder='Insira seu CPF...' value={userLogado.cpf} onChange={(event) => setUserLogado({ cpf: event.target.value })} />
                                                 <label className='h5' htmlFor='dataNascimento'>Data de Nascimento</label>
-                                                <input id='dataNascimento' className='input placeholder-text' type="text" name="name" placeholder='Insira sua Data de Nascimento...' />
+                                                <input id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userLogado.birthDate} onChange={(event) => setUserLogado({ birthDate: event.target.value })} />
                                             </div>
                                             <div className='inputsModal'>
                                                 <label className='h5' htmlFor='email'>Email</label>
-                                                <input id='email' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Email...' />
+                                                <input id='email' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Email...' value={userLogado.email} onChange={(event) => setUserLogado({ email: event.target.value })} />
                                                 <label className='h5' htmlFor='rg'>RG</label>
-                                                <input id='rg' className='input placeholder-text' type="text" name="name" placeholder='Insira seu RG...' />
+                                                <input id='rg' className='input placeholder-text' type="text" name="name" placeholder='Insira seu RG...' value={userLogado.rg} onChange={(event) => setUserLogado({ rg: event.target.value })} />
                                                 <label className='h5' htmlFor='telefone'>Telefone</label>
-                                                <input id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' />
+                                                <input id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' value={userLogado.phone} onChange={(event) => setUserLogado({ phone: event.target.value })} />
                                             </div>
                                         </div>
-                                        <button className='button'>Salvar Alterações</button>
-                                    </div>
+                                        <button className='button' onClick={alterUserData}>Salvar Alterações</button>
+                                    </form>
                                 </Modal>
                             </div>
                         )
@@ -407,37 +483,49 @@ export default function Config() {
                     {
                         steps[currentStep].id === 'Step3' && (
                             <div className='scrollDiv'>
-                                <div className='mainContentArea contentValidUser'>
-                                    <div className='contentConfig'>
-                                        <h3>Email <p>LoremIpsum</p></h3>
-                                        <h3>CPF <p>LoremIpsum</p></h3>
-                                        <h3>Nome <p>LoremIpsum</p></h3>
-                                        <h3>RG <p>LoremIpsum</p></h3>
-                                        <h3>Telefone <p>LoremIpsum</p></h3>
-                                        <h3>Data de Nascimento <p>LoremIpsum</p></h3>
-                                    </div>
-                                    <div>
-                                        <SiIcons.SiVerizon className='iconConfig' />
-                                        <AiIcons.AiOutlineClose className='iconConfig2' />
-                                    </div>
-                                </div>
+                                {
+                                    invalidUsers.map((user) => {
+                                        return (
+                                            <div className='mainContentArea contentValidUser'>
+                                                <div className='contentConfig'>
+                                                    <h3>Email <p>{user.email}</p></h3>
+                                                    <h3>CPF <p>{user.cpf}</p></h3>
+                                                    <h3>Nome <p>{user.userName1}</p></h3>
+                                                    <h3>RG <p>{user.rg}</p></h3>
+                                                    <h3>Telefone <p>{user.phone}</p></h3>
+                                                    <h3>Data de Nascimento <p>{user.birthDate}</p></h3>
+                                                </div>
+                                                <div>
+                                                    <SiIcons.SiVerizon className='iconConfig' />
+                                                    <AiIcons.AiOutlineClose className='iconConfig2' />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         )
                     }
                     {
                         steps[currentStep].id === "Step4" && (
                             <div className='scrollDiv'>
-                                <div className='mainContentArea contentValidCompany'>
-                                    <div className='contentConfig'>
-                                        <h3>CNPJ <p>LoremIpsum</p></h3>
-                                        <h3>Razão Social <p>LoremIpsum</p></h3>
-                                        <h3>Nome Fantasia <p>LoremIpsum</p></h3>
-                                    </div>
-                                    <div>
-                                        <SiIcons.SiVerizon className='iconConfig' />
-                                        <AiIcons.AiOutlineClose className='iconConfig2' />
-                                    </div>
-                                </div>
+                                {
+                                    invalidCorporations.map((corp) => {
+                                        return (
+                                            <div className='mainContentArea contentValidCompany'>
+                                                <div className='contentConfig'>
+                                                    <h3>CNPJ <p>{corp.cnpj}</p></h3>
+                                                    <h3>Razão Social <p>{corp.corporateName}</p></h3>
+                                                    <h3>Nome Fantasia <p>{corp.nameFantasy}</p></h3>
+                                                </div>
+                                                <div>
+                                                    <SiIcons.SiVerizon className='iconConfig' />
+                                                    <AiIcons.AiOutlineClose className='iconConfig2' />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         )
                     }

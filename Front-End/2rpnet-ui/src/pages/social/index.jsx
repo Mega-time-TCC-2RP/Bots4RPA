@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import botaoComentarImg from "../../assets/img/botaoComentar.png";
 import botaoCurtirImg from "../../assets/img/botaoLike.png";
 import botaoCurtidoImg from "../../assets/img/botaoLikeLiked.png";
-
+import '../../assets/css/pages/onBoarding.css'
 import "../../assets/css/pages/Timeline.css"
 import Modal from 'react-modal';
 import ImagemModalCadastro from "../../assets/img/CadastroPostBtn.png"
@@ -13,7 +13,6 @@ import Navbar from '../../components/menu/Navbar'
 import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
-import onBoarding from '../../components/onboarding/OnBoarding'
 import Blue_Head from '../../assets/img/Blue_Head.png'
 
 import '../../assets/css/components/button.css'
@@ -60,6 +59,24 @@ export const TelaTimeline = () => {
     const [descricaoCadastroComentario, setDescricaoCadastroComentario] = useState('');
     const [idPostComentarios, setIdPostComentarios] = useState(0);
 
+    const [openOnBoarding, setopenOnBoarding] = useState(false);
+
+    const [dropdown, setDropdown] = useState("");
+
+    const showDropdown = () => {
+      console.log("show");
+      //se clicar no botão, modal aparece
+      setDropdown("show");
+      document.body.addEventListener("click", closeDropdown);
+    }
+  
+    const closeDropdown = event => {
+      console.log("hidden");
+      setDropdown("");
+      document.body.removeEventListener("click", closeDropdown);
+    };
+
+
     function openModalCadastro() {
         setModalCadastroIsOpen(true);
     }
@@ -83,6 +100,7 @@ export const TelaTimeline = () => {
         e.preventDefault();
         setComentariosIsOpen(false)
     }
+    
 
     const ListarPosts = async () => {
         let ListaPostsRetorno;
@@ -223,17 +241,18 @@ export const TelaTimeline = () => {
             <Navbar />
             <div className="body-pd">
                 <VLibras />
-                <div className="top-container">
-                                        <div className="background-body">
+                <button onClick={() => {setopenOnBoarding(true)}}>ERICK</button>
+                <div className="top-container" isOpen={openOnBoarding}>
+                                        <div className="background-body" >
                                                 <div className="boarding-image">
                                                         <img className="bot-img" src={Blue_Head} />
                                                 </div>
                                                 <div className="body-content">
                                                     <h2>Assistentes</h2>
-                                                    <p>o erick é bobão mongolão palhação gostosão cabeçudão cocozão bobalhão cabeludão e meu pau na sua mão. =)</p>
-                                                    <div className='buttons'>
-                                                    <button className='button'>Voltar</button>
-                                                    <button className='button'>Próximo</button>
+                                                    <p>Seja bem vindo(a) à página social!</p>
+                                                    <div className='buttons-boarding'>
+                                                    <button className='action-buttons'>Voltar</button>
+                                                    <button className='action-buttons'>Próximo</button>
                                                     </div>
                                                 </div>
 
