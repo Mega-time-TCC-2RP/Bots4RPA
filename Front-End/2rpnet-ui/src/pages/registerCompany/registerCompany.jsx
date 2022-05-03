@@ -4,6 +4,7 @@ import axios, { Axios } from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import VLibras from '@djpfs/react-vlibras'
+import { parseJwt, usuarioAutenticado } from '../../services/auth';
 
 
 //img:
@@ -21,7 +22,7 @@ import * as IoIcons from 'react-icons/io5'
 import '../../assets/css/pages/registerCompany.css'
 import '../../assets/css/components/button.css'
 import '../../assets/css/components/fonts.css'
-import { parseJwt, usuarioAutenticado } from '../../services/auth';
+
 
 const steps = [
     {
