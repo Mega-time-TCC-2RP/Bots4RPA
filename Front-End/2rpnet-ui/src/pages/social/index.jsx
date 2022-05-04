@@ -21,6 +21,9 @@ import '../../assets/css/components/fonts.css'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@material-ui/core';
 
+// PeopleList.jsx
+import FlatList from 'flatlist-react';
+
 
 const customStyles = {
     content: {
@@ -37,11 +40,19 @@ const customStyles = {
         borderRadius: '30px'
     },
 };
+const stylesCustom = {
+    content: {
+        width: 1,
+        height: 1,
+        // backgroundcolor: rgba(0, 255, 255, 0.75),
+        boxShadow: ''
+    },
+};
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
-export const TelaTimeline = () => {
+export const TelaTimeline = (person, idx) => {
     const Navigate = useNavigate();
 
     const [IsLoading, setIsLoading] = useState(false);
@@ -59,22 +70,32 @@ export const TelaTimeline = () => {
     const [descricaoCadastroComentario, setDescricaoCadastroComentario] = useState('');
     const [idPostComentarios, setIdPostComentarios] = useState(0);
 
-    const [openOnBoarding, setopenOnBoarding] = useState(false);
+    // const [openOnBoarding, setopenOnBoarding] = useState(false);
 
-    const [dropdown, setDropdown] = useState("");
+    // const [dropdown, setDropdown] = useState("");
 
-    const showDropdown = () => {
-      console.log("show");
-      //se clicar no botão, modal aparece
-      setDropdown("show");
-      document.body.addEventListener("click", closeDropdown);
-    }
+    // const showDropdown = () => {
+    //   console.log("show");
+    //   //se clicar no botão, modal aparece
+    //   setDropdown("show");
+    //   document.body.addEventListener("click", closeDropdown);
+    // }
   
-    const closeDropdown = event => {
-      console.log("hidden");
-      setDropdown("");
-      document.body.removeEventListener("click", closeDropdown);
-    };
+    // const closeDropdown = event => {
+    //   console.log("hidden");
+    //   setDropdown("");
+    //   document.body.removeEventListener("click", closeDropdown);
+    // };
+
+    const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
+
+    function handleOpenOnBoarding(){
+        setOnBoardingIsOpen(true)
+    }
+    function handleCloseOnBoarding(){
+        setOnBoardingIsOpen(false)
+    }
+
 
 
     function openModalCadastro() {
@@ -228,6 +249,24 @@ export const TelaTimeline = () => {
         })
     }
 
+    const people = [
+        {zfirstName: 'Seja bem-vindo(a) a página social!'},
+        
+    ]
+    const secondText = [
+        {dcdccdcd: 'Aqui você poderá'},
+
+    ]
+    const thirdText = [
+        {cdcdcdcccdcdc: 'oiwencioweicjweoiojiew'},
+    ]
+
+    const renderPerson = (person, secondText, thirdText) => {
+        return (
+              <p className='body-content'>{person.firstName}</p> 
+        );
+      }
+
     useEffect(() => {
         ListarPosts();
         if (handleAuthException() === true) {
@@ -241,23 +280,45 @@ export const TelaTimeline = () => {
             <Navbar />
             <div className="body-pd">
                 <VLibras />
-                <button onClick={() => {setopenOnBoarding(true)}}>ERICK</button>
-                <div className="top-container" isOpen={openOnBoarding}>
-                                        <div className="background-body" >
-                                                <div className="boarding-image">
-                                                        <img className="bot-img" src={Blue_Head} />
-                                                </div>
-                                                <div className="body-content">
-                                                    <h2>Assistentes</h2>
-                                                    <p>Seja bem vindo(a) à página social!</p>
-                                                    <div className='buttons-boarding'>
-                                                    <button className='action-buttons'>Voltar</button>
-                                                    <button className='action-buttons'>Próximo</button>
+                <button onClick={handleOpenOnBoarding}>ABRIR</button>
+                <button onClick={handleCloseOnBoarding}>FECHAR</button>
+                <Modal
+                    isOpen={onBoardingIsOpen}
+                    onRequestClose={handleCloseOnBoarding}
+                    style={stylesCustom}
+                >
+                    <div className="top-container" >
+                                            <div className="background-body" >
+                                                    <div className="boarding-image">
+                                                            <img className="bot-img" src={Blue_Head} />
                                                     </div>
-                                                </div>
+                                                    <div className="body-content">
+                                                        <h2>Assistente</h2>
+                                                        <ul className='body-content'>
+                                                            <FlatList
+                                                            
+                                                            list={people}
+                                                            renderItem={renderPerson}
+                                                            />
+                                                            <FlatList
+                                                            id='1'
+                                                            list={secondText}
+                                                            renderItem={renderPerson}
+                                                            />
+                                                            <FlatList
+                                                            list={thirdText}
+                                                            renderItem={renderPerson}
+                                                            />
+                                                        </ul>
+                                                        <div className='buttons-boarding'>
+                                                        <button className='action-buttons'>Voltar</button>
+                                                        <button className='action-buttons'>Próximo</button>
+                                                        </div>
+                                                    </div>
 
-                                        </div>
-                                </div>
+                                            </div>
+                                    </div>
+                </Modal>
                 <main id="Main">
                     <div className="ContainerGrid ContainerPosts">
                         <div className="BotoesModais">

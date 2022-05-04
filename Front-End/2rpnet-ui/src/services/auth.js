@@ -27,7 +27,7 @@ export const handleAuthException = async (error) => {
     else {
         const jwt = parseJwt();
         let jwtDate = new Date(jwt.dataExpiracao);
-        if (jwtDate >= new Date(Date.now())) {
+        if (jwtDate <= new Date(Date.now())) {
             return true
         }
     }

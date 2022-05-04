@@ -2,6 +2,16 @@ import "../../assets/css/style.css";
 import "../../assets/css/components/navbar.css"
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
+
+
+// import Swiper, { Navigation, Pagination } from 'swiper';
+import { Pagination, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/menu/Navbar'
@@ -29,7 +39,6 @@ import Footer from '../../components/footer/footer'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
-
 
 function App() {
   const [myQuests, setMyQuests] = useState([]);
@@ -94,7 +103,7 @@ function App() {
       <div className='body-pd'>
         <Header />
         <VLibras />
-        <div className="top-container">
+        {/* <div className="top-container">
           <div className="top-buttons">
             <form>
               <button className="button-assistant">Criar Assistente</button>
@@ -125,67 +134,105 @@ function App() {
                 <a className="play-button">▶</a>
                 <a className="details-button">Ver detalhes</a>
               </div>
-              {/* <div className="card1">
+              <div className="card1">
               <img src={Verde_Home} className="card1-img"/>
               <h5>Assistente 4</h5>
               <a className="play-button">▶</a>
               <a className="details-button">Ver detalhes</a>
-            </div> */}
+            </div>
             </form>
           </div>
-        </div>
+        </div> */}
         <div className="body-container">
-          <form>
-            <h2 className="body-title-task">Minhas Tarefas</h2>
-            {
-              myQuests != undefined && myQuests != null ?
-                myQuests.map((Quest) => {
-                  return (
-                    <div className="card-body-content">
-                      <h3 className="title-card-content">Título</h3>
-                      <p className="text-body1">{Quest.descriptionQuest}</p>
-                      <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Quest.dateHour))}</p>
-                    </div>
-                  )
-                }) : <span>Não há tarefas pra esse usuário</span>
-            }
-          </form>
-        </div>
-        <div className="bottom-container">
-          <form>
-            <div className="forms-items">
-              <h2 className="bottom-title">Posts em destaque</h2>
+          <h2 className="body-title-task">Minhas Tarefas</h2>
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={0}
+            slidesPerGroup={2}
+            loop={false}
+            loopFillGroupWithBlank={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="swiperHomeTasks"
+          >
+              <SwiperSlide className="swiper-slide-HomeTasks">
+                <div className="card-body-content">
+                  <h3 className="title-card-content">Título</h3>
+                  <p className="text-body1"></p>
+                  <p className="data-body">Data de entrega :</p>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="swiper-slide-HomeTasks">
+                <div className="card-body-content">
+                  <h3 className="title-card-content">Título</h3>
+                  <p className="text-body1"></p>
+                  <p className="data-body">Data de entrega :</p>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="swiper-slide-HomeTasks">
+                <div className="card-body-content">
+                  <h3 className="title-card-content">Título</h3>
+                  <p className="text-body1"></p>
+                  <p className="data-body">Data de entrega :</p>
+                </div>
+              </SwiperSlide>
               {
-                highlightedPosts != undefined && highlightedPosts != null ?
-                  highlightedPosts.map((post) => {
+                myQuests != undefined && myQuests != null ?
+                  myQuests.map((Quest) => {
                     return (
-                      <div className="bottom-posts-content">
-                        <div className="chatListItem--lines">
-                          <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
-                          <div className="chatItemList-line">
-                            <div className="PostItem-name">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
-                            <p className="PostItem-role">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
-                          </div>
+                      <SwiperSlide className="swiper-slide-HomeTasks">
+                        <div className="card-body-content">
+                          <h3 className="title-card-content">Título</h3>
+                          <p className="text-body1">{Quest.descriptionQuest}</p>
+                          <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Quest.dateHour))}</p>
                         </div>
-                        {
-                          post.postImage != undefined ?
-                            <img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                            <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
-                        }
-                        <h2 className="TituloPost">{post.title}</h2>
-                        <p className="post-text-bottom-home">{post.postDescription}</p>
-                      </div>
+                      </SwiperSlide>
                     )
                   }) :
-                  <span>Não há posts em destaque</span>
+                  <SwiperSlide className="swiper-slide-HomeTasks">
+                    <span>Não há tarefas...</span>
+                  </SwiperSlide>
               }
-            </div>
-          </form>
-        </div>
-
-        <Footer />
+        </Swiper>
       </div>
+      <div className="bottom-container">
+        <form>
+          <div className="forms-items">
+            <h2 className="bottom-title">Posts em destaque</h2>
+            {
+              highlightedPosts != undefined && highlightedPosts != null ?
+                highlightedPosts.map((post) => {
+                  return (
+                    <div className="bottom-posts-content">
+                      <div className="chatListItem--lines">
+                        <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                        <div className="chatItemList-line">
+                          <div className="PostItem-name">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
+                          <p className="PostItem-role">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+                        </div>
+                      </div>
+                      {
+                        post.postImage != undefined ?
+                          <img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
+                          <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
+                      }
+                      <h2 className="TituloPost">{post.title}</h2>
+                      <p className="post-text-bottom-home">{post.postDescription}</p>
+                    </div>
+                  )
+                }) :
+                <span>Não há posts em destaque</span>
+            }
+          </div>
+        </form>
+      </div>
+
+      <Footer />
     </div>
+    </div >
   );
 }
 
