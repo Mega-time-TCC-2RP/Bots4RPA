@@ -59,22 +59,32 @@ export const TelaTimeline = () => {
     const [descricaoCadastroComentario, setDescricaoCadastroComentario] = useState('');
     const [idPostComentarios, setIdPostComentarios] = useState(0);
 
-    const [openOnBoarding, setopenOnBoarding] = useState(false);
+    // const [openOnBoarding, setopenOnBoarding] = useState(false);
 
-    const [dropdown, setDropdown] = useState("");
+    // const [dropdown, setDropdown] = useState("");
 
-    const showDropdown = () => {
-      console.log("show");
-      //se clicar no botão, modal aparece
-      setDropdown("show");
-      document.body.addEventListener("click", closeDropdown);
-    }
+    // const showDropdown = () => {
+    //   console.log("show");
+    //   //se clicar no botão, modal aparece
+    //   setDropdown("show");
+    //   document.body.addEventListener("click", closeDropdown);
+    // }
   
-    const closeDropdown = event => {
-      console.log("hidden");
-      setDropdown("");
-      document.body.removeEventListener("click", closeDropdown);
-    };
+    // const closeDropdown = event => {
+    //   console.log("hidden");
+    //   setDropdown("");
+    //   document.body.removeEventListener("click", closeDropdown);
+    // };
+
+    const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
+
+    function handleOpenOnBoarding(){
+        setOnBoardingIsOpen(true)
+    }
+    function handleCloseOnBoarding(){
+        setOnBoardingIsOpen(false)
+    }
+
 
 
     function openModalCadastro() {
@@ -228,6 +238,29 @@ export const TelaTimeline = () => {
         })
     }
 
+    // const slide = [
+    //     {
+    //         key: 1,
+    //         title: Assistente,
+    //         desc: 'Seja bem vindo(a) à página social!',
+    //     },
+    //     {
+    //         key: 2,
+    //         title: Assistente,
+    //         desc: 'Seja bem vindo(a) à página social!',
+    //     },
+    //     {
+    //         key: 3,
+    //         title: Assistente,
+    //         desc: 'Seja bem vindo(a) à página social!',
+    //     },
+    //     {
+    //         key: 4,
+    //         title: Assistente,
+    //         desc: 'Seja bem vindo(a) à página social!',
+    //     },
+    // ]
+
     useEffect(() => {
         ListarPosts();
         if (handleAuthException() === true) {
@@ -241,23 +274,30 @@ export const TelaTimeline = () => {
             <Navbar />
             <div className="body-pd">
                 <VLibras />
-                <button onClick={() => {setopenOnBoarding(true)}}>ERICK</button>
-                <div className="top-container" isOpen={openOnBoarding}>
-                                        <div className="background-body" >
-                                                <div className="boarding-image">
-                                                        <img className="bot-img" src={Blue_Head} />
-                                                </div>
-                                                <div className="body-content">
-                                                    <h2>Assistentes</h2>
-                                                    <p>Seja bem vindo(a) à página social!</p>
-                                                    <div className='buttons-boarding'>
-                                                    <button className='action-buttons'>Voltar</button>
-                                                    <button className='action-buttons'>Próximo</button>
+                <button onClick={handleOpenOnBoarding}>ABRIR</button>
+                <button onClick={handleCloseOnBoarding}>FECHAR</button>
+                <Modal
+                    isOpen={onBoardingIsOpen}
+                    onRequestClose={handleCloseOnBoarding}
+                
+                >
+                    <div className="top-container" >
+                                            <div className="background-body" >
+                                                    <div className="boarding-image">
+                                                            <img className="bot-img" src={Blue_Head} />
                                                     </div>
-                                                </div>
+                                                    <div className="body-content">
+                                                        <h2>Assistentes</h2>
+                                                        <p>Seja bem vindo(a) à página social!</p>
+                                                        <div className='buttons-boarding'>
+                                                        <button className='action-buttons'>Voltar</button>
+                                                        <button className='action-buttons'>Próximo</button>
+                                                        </div>
+                                                    </div>
 
-                                        </div>
-                                </div>
+                                            </div>
+                                    </div>
+                </Modal>
                 <main id="Main">
                     <div className="ContainerGrid ContainerPosts">
                         <div className="BotoesModais">

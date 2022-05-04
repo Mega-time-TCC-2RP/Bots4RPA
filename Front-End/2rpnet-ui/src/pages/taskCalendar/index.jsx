@@ -40,7 +40,7 @@ function App() {
   }
 
   useEffect(() => {
-    data()
+    // data()
   });
 
 
