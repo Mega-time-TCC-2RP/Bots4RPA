@@ -3118,3 +3118,4 @@ C:\Users\50928811867.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\obj\Debug\net
 C:\Users\50928811867.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\obj\Debug\net5.0\2RPNET_API.pdb
 C:\Users\50928811867.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\obj\Debug\net5.0\2RPNET_API.genruntimeconfig.cache
 C:\Users\50928811867.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\obj\Debug\net5.0\ref\2RPNET_API.dll
+C:\Users\50928811867.INFOSCS\Desktop\Bots-4RPA\Back-End\2RPNET_API\bin\Debug\net5.0\FileManager\venv\Lib\site-packages\_pyinstaller_hooks_contrib\tests\data\netcore5_runtime_config.json

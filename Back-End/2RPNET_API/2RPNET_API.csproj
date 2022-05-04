@@ -5,6 +5,8 @@
     <RootNamespace>_2RPNET_API</RootNamespace>
   </PropertyGroup>
 
+  
+
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.15" />
@@ -23,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="StaticFiles\Files\" />
-    <Folder Include="StaticFiles\Image\" />
   </ItemGroup>
 	<PropertyGroup>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>

@@ -95,7 +95,7 @@ var page = await context.NewPageAsync(); ");
                 sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + '"' + "../../Images/Assistant" + IdAssistant + ".png" + '"' + " });}}");
             }
 
-            Process.Start("../FileManager/main.exe");
+            Process.Start("./FileManager/main.exe");
 
             System.Threading.Thread.Sleep(20000);
             string pathD = "./StaticFiles/Files/AssistantProcess/";
