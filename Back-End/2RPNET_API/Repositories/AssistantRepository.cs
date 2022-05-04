@@ -22,16 +22,9 @@ namespace _2RPNET_API.Repositories
 
             Assistant AssistantSought = SearchByID(IdAssistant);
 
-            //List<Assistant> Proccedures = AssistantSought.AssistantProcedures.ToList();
+            
 
-            //if (Procedures != null)
-            //{
-            //    if (AssistantProcedure == Procedures)
-            //    {
-            //        AssistantProcedure = Procedures
-
-            //    }
-            //}
+            
         }
 
         public void Create(Assistant NewAssistant)
