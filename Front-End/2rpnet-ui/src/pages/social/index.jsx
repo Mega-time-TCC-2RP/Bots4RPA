@@ -21,6 +21,9 @@ import '../../assets/css/components/fonts.css'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@material-ui/core';
 
+// PeopleList.jsx
+import FlatList from 'flatlist-react';
+
 
 const customStyles = {
     content: {
@@ -37,11 +40,19 @@ const customStyles = {
         borderRadius: '30px'
     },
 };
+const stylesCustom = {
+    content: {
+        width: 1,
+        height: 1,
+        // backgroundcolor: rgba(0, 255, 255, 0.75),
+        boxShadow: ''
+    },
+};
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
-export const TelaTimeline = () => {
+export const TelaTimeline = (person, idx) => {
     const Navigate = useNavigate();
 
     const [IsLoading, setIsLoading] = useState(false);
@@ -238,28 +249,23 @@ export const TelaTimeline = () => {
         })
     }
 
-    // const slide = [
-    //     {
-    //         key: 1,
-    //         title: Assistente,
-    //         desc: 'Seja bem vindo(a) à página social!',
-    //     },
-    //     {
-    //         key: 2,
-    //         title: Assistente,
-    //         desc: 'Seja bem vindo(a) à página social!',
-    //     },
-    //     {
-    //         key: 3,
-    //         title: Assistente,
-    //         desc: 'Seja bem vindo(a) à página social!',
-    //     },
-    //     {
-    //         key: 4,
-    //         title: Assistente,
-    //         desc: 'Seja bem vindo(a) à página social!',
-    //     },
-    // ]
+    const people = [
+        {zfirstName: 'Seja bem-vindo(a) a página social!'},
+        
+    ]
+    const secondText = [
+        {dcdccdcd: 'Aqui você poderá'},
+
+    ]
+    const thirdText = [
+        {cdcdcdcccdcdc: 'oiwencioweicjweoiojiew'},
+    ]
+
+    const renderPerson = (person, secondText, thirdText) => {
+        return (
+              <p className='body-content'>{person.firstName}</p> 
+        );
+      }
 
     useEffect(() => {
         ListarPosts();
@@ -279,7 +285,7 @@ export const TelaTimeline = () => {
                 <Modal
                     isOpen={onBoardingIsOpen}
                     onRequestClose={handleCloseOnBoarding}
-                
+                    style={stylesCustom}
                 >
                     <div className="top-container" >
                                             <div className="background-body" >
@@ -287,8 +293,23 @@ export const TelaTimeline = () => {
                                                             <img className="bot-img" src={Blue_Head} />
                                                     </div>
                                                     <div className="body-content">
-                                                        <h2>Assistentes</h2>
-                                                        <p>Seja bem vindo(a) à página social!</p>
+                                                        <h2>Assistente</h2>
+                                                        <ul className='body-content'>
+                                                            <FlatList
+                                                            
+                                                            list={people}
+                                                            renderItem={renderPerson}
+                                                            />
+                                                            <FlatList
+                                                            id='1'
+                                                            list={secondText}
+                                                            renderItem={renderPerson}
+                                                            />
+                                                            <FlatList
+                                                            list={thirdText}
+                                                            renderItem={renderPerson}
+                                                            />
+                                                        </ul>
                                                         <div className='buttons-boarding'>
                                                         <button className='action-buttons'>Voltar</button>
                                                         <button className='action-buttons'>Próximo</button>
