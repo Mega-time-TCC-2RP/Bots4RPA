@@ -37,7 +37,9 @@ export default function Modal({ assistant }) {
                                 <h4>Descrição:</h4>
                             </div>
                             <div className='box-paragraph'>
-                                <p>{assistant.assistantDescription}</p>
+                                <p>
+                                    {assistant.assistantDescription}
+                                </p>
                             </div>
                             <div className='assistant-date'>
                                 <span className='span1'> Última alteração: </span>
@@ -74,7 +76,7 @@ export default function Modal({ assistant }) {
                         </div>
 
                         <div className='graphic-2'>
-                            <div className='container-grafico'>
+                            <div className='container-grafico'>  
                                 <BarChart />
                             </div>
                         </div>
@@ -85,5 +87,3 @@ export default function Modal({ assistant }) {
         </div>
     )
 }
-
-// export default Modal

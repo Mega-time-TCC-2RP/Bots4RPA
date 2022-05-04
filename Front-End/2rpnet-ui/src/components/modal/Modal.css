@@ -136,10 +136,12 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 21px;
+    font-size: 20px;
     text-align: left;
     line-height: 31px;
     color: #636363;
+    white-space: normal;
+    word-wrap: anywhere;
 }
 
 .assistant-date {

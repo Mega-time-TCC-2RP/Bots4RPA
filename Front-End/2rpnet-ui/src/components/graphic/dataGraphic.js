@@ -5,4 +5,5 @@ export const DataGraphic = [
         exitos: 43,
         falhas: 13,
     },
+    
 ]

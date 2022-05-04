@@ -7,7 +7,7 @@ export default function BarGraphic() {
     const [ExecutionsList, setExecutionsList] = useState([]);
 
     function GetRunQuantity() {
-        fetch('http://grupo8api.azurewebsites.net/api/Run/ListAll', {
+        fetch('https://grupo8api.azurewebsites.net/api/Run/ListAll', {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
@@ -16,7 +16,7 @@ export default function BarGraphic() {
 
             .then((d) =>
                 setExecutionsList(d),
-                // console.log(d[0])
+                // console.log(d)
             )
             .catch((error) => console.log(error));
     };
@@ -24,23 +24,22 @@ export default function BarGraphic() {
     useEffect(GetRunQuantity, [])
 
 
-
     // Fazer isso funcionar 
 
     const dataRun = ExecutionsList.map((da) => da.runDate)
     console.log('é esse', { dataRun })
 
-   // ------------------------------------------//
+    // ------------------------------------------//
 
 
-   
     const [userData, setUserData] = useState({
         labels: UserData.map((data) => data.month),
 
         datasets: [
             {
                 label: "Qtde",
-                data: ExecutionsList.map((data) => data.RunQuantity),
+                // data: ExecutionsList.map((data) => data.RunQuantity),
+                data: UserData.map((data) => data.amount),
                 backgroundColor: [
                     "#3FDA9F",
                 ],

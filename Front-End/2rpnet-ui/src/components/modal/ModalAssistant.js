@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import "../../components/modal/ModalAssistant.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 
@@ -10,32 +10,33 @@ function CloseModalAssistant() {
 
 export default function Modal() {
 
+    // Foi comentado o que não será utilizado : 
 
-    // function createAssistant(event) {
-    //     event.preventDefault();
-    //     fetch("http://localhost:5000/api/Consultas", {
-    //         idAssistant: idPaciente,
-    //         idMedico: idMedico,
-    //         idSituacao: idSituacao,
-    //         dataConsulta: dataConsulta,
-    //         descricaoConsulta: descricaoConsulta
-    //     }, {
-    //         headers: {
-    //             'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-    //         }
-    //     })
-    //         .then(resposta => {
-    //             if (resposta.status === 201) {
-    //                 console.log("consulta cadastrada");
-    //                 buscarConsultas();
-    //                 setIdPaciente(0);
-    //                 setIdMedico(0);
-    //                 setIdSituacao(0);
-    //                 setDataConsulta("");
-    //                 setDescricaoConsulta("");
-    //             }
-    //         }).catch(erro => console.log(erro))
-    // }
+    // const [idEmployee, setIdEmployee] = useState(0);
+    // const [creationDate, setCreationDate] = useState(new Date());
+    // const [alterationDate, setAlterationDate] = useState(new Date())
+    const [assistantName, setAssistantName] = useState("");
+    const [assistantDescription, setAssistantDescription] = useState("");
+
+    function createAssistant(event) {
+        event.preventDefault();
+        fetch("http://localhost:5000/api/Consultas", {
+            assistantName: assistantName,
+            assistantDescription: assistantDescription
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+              },
+        })
+            .then(resposta => {
+                if (resposta.status === 201) {
+                    console.log("assistente criado");
+
+                    setAssistantName("");
+                    setAssistantDescription("");
+                }
+            }).catch(error => console.log(error))
+    }
 
     return (
         <div id={"modalAssistant"} className='modalABackground'>
@@ -55,22 +56,22 @@ export default function Modal() {
                         <img src={Azul_Home} className="assistant-modalA" />
                     </div>
 
-                    <form className='form-modalA'>
+                    <form onSubmit={createAssistant} className='form-modalA'>
                         <div className='box-ModalA'>
                             <div>
                             <label className='Label-ModalA'> Nome do Assistente </label>
                             </div>
-                            <input className='Input-ModalA' type="text" name="Name" placeholder='Insira o nome do Assistente'></input>
+                            <input className='Input-ModalA' type="text" name="Name" value={assistantName} onChange={(campo) => setAssistantName(campo.target.value)} placeholder='Insira o nome do Assistente'></input>
                         </div>
 
                         <div className='box-ModalA'>
                             <div>
                             <label className='Label-ModalA'> Descrição </label>
                             </div>
-                            <input className='Input-ModalA ' type="text" name="Name" placeholder='Insira a Descrição'></input>
+                            <input className='Input-ModalA ' type="text" name="Description" value={assistantDescription} onChange={(campo) => setAssistantDescription(campo.target.value)} placeholder='Insira a Descrição'></input>
                         </div>
                     </form>
-                    <button className='Button-ModalA'> Criar </button>
+                    <button type='submit' className='Button-ModalA'> Criar </button>
                 </div>
             </div>
         </div>
