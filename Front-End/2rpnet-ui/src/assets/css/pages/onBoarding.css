@@ -47,14 +47,14 @@
         color: #3475BB;
         margin-top: 10px;
 }
-.body-content ul{
+.bayer{
         margin-top: 10px;
         text-align: left;
         max-width: 370px;
         font-family: 'Montserrat';
         font-style: normal;
         font-weight: 400;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 29px;
         display: flex;
         align-items: center;

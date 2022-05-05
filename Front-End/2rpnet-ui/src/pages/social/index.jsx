@@ -15,14 +15,19 @@ import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 import Blue_Head from '../../assets/img/Blue_Head.png'
 
+
+import { Pagination, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+// import Swiper and modules styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import '../../assets/css/components/button.css'
 import '../../assets/css/components/fonts.css'
 
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@material-ui/core';
-
-// PeopleList.jsx
-import FlatList from 'flatlist-react';
 
 
 const customStyles = {
@@ -70,29 +75,13 @@ export const TelaTimeline = (person, idx) => {
     const [descricaoCadastroComentario, setDescricaoCadastroComentario] = useState('');
     const [idPostComentarios, setIdPostComentarios] = useState(0);
 
-    // const [openOnBoarding, setopenOnBoarding] = useState(false);
-
-    // const [dropdown, setDropdown] = useState("");
-
-    // const showDropdown = () => {
-    //   console.log("show");
-    //   //se clicar no botão, modal aparece
-    //   setDropdown("show");
-    //   document.body.addEventListener("click", closeDropdown);
-    // }
-  
-    // const closeDropdown = event => {
-    //   console.log("hidden");
-    //   setDropdown("");
-    //   document.body.removeEventListener("click", closeDropdown);
-    // };
 
     const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
 
-    function handleOpenOnBoarding(){
+    function handleOpenOnBoarding() {
         setOnBoardingIsOpen(true)
     }
-    function handleCloseOnBoarding(){
+    function handleCloseOnBoarding() {
         setOnBoardingIsOpen(false)
     }
 
@@ -121,7 +110,7 @@ export const TelaTimeline = (person, idx) => {
         e.preventDefault();
         setComentariosIsOpen(false)
     }
-    
+
 
     const ListarPosts = async () => {
         let ListaPostsRetorno;
@@ -249,24 +238,6 @@ export const TelaTimeline = (person, idx) => {
         })
     }
 
-    const people = [
-        {zfirstName: 'Seja bem-vindo(a) a página social!'},
-        
-    ]
-    const secondText = [
-        {dcdccdcd: 'Aqui você poderá'},
-
-    ]
-    const thirdText = [
-        {cdcdcdcccdcdc: 'oiwencioweicjweoiojiew'},
-    ]
-
-    const renderPerson = (person, secondText, thirdText) => {
-        return (
-              <p className='body-content'>{person.firstName}</p> 
-        );
-      }
-
     useEffect(() => {
         ListarPosts();
         if (handleAuthException() === true) {
@@ -288,36 +259,50 @@ export const TelaTimeline = (person, idx) => {
                     style={stylesCustom}
                 >
                     <div className="top-container" >
-                                            <div className="background-body" >
-                                                    <div className="boarding-image">
-                                                            <img className="bot-img" src={Blue_Head} />
-                                                    </div>
-                                                    <div className="body-content">
-                                                        <h2>Assistente</h2>
-                                                        <ul className='body-content'>
-                                                            <FlatList
-                                                            
-                                                            list={people}
-                                                            renderItem={renderPerson}
-                                                            />
-                                                            <FlatList
-                                                            id='1'
-                                                            list={secondText}
-                                                            renderItem={renderPerson}
-                                                            />
-                                                            <FlatList
-                                                            list={thirdText}
-                                                            renderItem={renderPerson}
-                                                            />
-                                                        </ul>
-                                                        <div className='buttons-boarding'>
-                                                        <button className='action-buttons'>Voltar</button>
-                                                        <button className='action-buttons'>Próximo</button>
-                                                        </div>
-                                                    </div>
+                        <div className="background-body" >
+                            <div className="boarding-image">
+                                <img className="bot-img" src={Blue_Head} />
+                            </div>
+                            <div className="body-content">
+                                <h2>Assistente</h2>
+                                <Swiper
+                                    pagination={{
+                                        type: "fraction",
+                                      }}
+                                      navigation={true}
+                                      modules={[Pagination, Navigation]}
+                                      
+                                    className="swiperHomeTasks-social"
+                                >
+                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                        <div>
+                                        <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div>
+                                            <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div>
+                                            <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div>
+                                            <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
+                                        </div>
+                                    </SwiperSlide>
+                                </Swiper>
+                                {/* <div className='buttons-boarding'>
+                                    <button className='action-buttons'>Voltar</button>
+                                    <button className='action-buttons'>Próximo</button>
+                                </div> */}
+                            </div>
 
-                                            </div>
-                                    </div>
+                        </div>
+                    </div>
                 </Modal>
                 <main id="Main">
                     <div className="ContainerGrid ContainerPosts">

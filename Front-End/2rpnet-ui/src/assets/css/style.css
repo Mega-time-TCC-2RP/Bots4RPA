@@ -340,3 +340,23 @@
     align-items: center !important;
     justify-content: center !important;
 }
+/* --------------------------------------- */
+.swiperHomeTasks-social {
+    width: 325px;
+    height: 100px;
+}
+
+.swiper-slide-HomeTasks{
+    width: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.swiper-slide-OnBoarding-social{
+    width: 100% !important;
+    height: 110% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
