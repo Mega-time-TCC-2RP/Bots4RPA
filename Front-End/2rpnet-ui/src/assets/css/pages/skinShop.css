@@ -20,6 +20,7 @@
 .Titulo_inputs h1{
     font-size: 50px;
     color: var(--PrimaryColor1);
+    margin: 30px;
 }
 
 .filtragem_Busca .input{

@@ -15,11 +15,12 @@ import {
 import './assets/css/components/button.css'
 import './index.css';
 
+
 // import Navbar from './components/menu/Navbar'
 import Home from './pages/home/';
 import Login from './pages/login/';
 import Guide from './pages/guide/';
-import Marketplace from './pages/marketplace/skinShop';
+import SkinShop from './pages/skinShop/skinShop';
 import MyProcesses from './pages/myProcesses/';
 import { TelaTimeline } from './pages/social/index';
 import TaskCalendar from './pages/taskCalendar';
@@ -42,6 +43,11 @@ import { LayersClear } from '@material-ui/icons';
 
 // Sem cadastro
 
+
+  
+
+  
+
 const routing = (
   <Router>
     <div>
@@ -54,7 +60,7 @@ const routing = (
         <Route path="/Config" element={<Config />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/guide" element={<Guide />} /> {/* Guide */}
-        <Route path="/marketplace" element={<Marketplace />} /> {/* Marketplace */}
+        <Route path="/skinShop" element={<SkinShop />} /> {/* Marketplace */}
         <Route path="/myprocesses" element={<MyProcesses />} /> {/* MyProcesses */}
         <Route path="/social" element={<TelaTimeline />} /> {/* Social */}
         <Route path="/taskcalendar" element={<TaskCalendar />} /> {/* Task Calendar */}
@@ -71,6 +77,7 @@ const routing = (
     </div>
   </Router>
 );
+
 
 const SetTema = () => {
   let mode = localStorage.getItem('temaApp');
