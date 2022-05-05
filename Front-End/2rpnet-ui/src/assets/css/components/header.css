@@ -57,6 +57,7 @@
 .details.active {
     opacity: 1;
     pointer-events: auto;
+    z-index: 100;
 }
 .details ul{
     margin-top: 16px;
@@ -77,7 +78,7 @@
     /* pointer-events: none; */
 }
 #log_out{
-    margin-top: 16px;
+    margin-top: 0;
     cursor: pointer;
 }
 

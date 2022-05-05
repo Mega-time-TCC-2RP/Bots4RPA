@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import axios, { Axios } from 'axios';
-import { Link } from 'react-router-dom';
+// import { useState, useEffect } from 'react';
+// import axios, { Axios } from 'axios';
+// import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/footer'
 import Header from '../../components/header/header'
 import Navbar from '../../components/menu/Navbar'
@@ -8,6 +8,7 @@ import skin from '../../assets/img/Robo.png'
 import Coin from '../../assets/img/coin.png'
 import '../../assets/css/pages/skinShop.css'
 import VLibras from '@djpfs/react-vlibras'
+import React from "react"
 
 
 export default function skinShop() {

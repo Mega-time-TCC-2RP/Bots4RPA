@@ -48,6 +48,12 @@ return (
           </Link>
         </li>
         <li>
+          <Link to="/skinShop" className='Link'>
+            <FaIcons.FaTshirt className='icon2' alt="botão loja"/>
+            <span className='Links_name' alt="botão loja de skins">Skins</span>
+          </Link>
+        </li>
+        <li>
           <Link to="/marketplace" className='Link'>
             <RiIcons.RiShoppingBagFill className='icon2' alt="botão loja"/>
             <span className='Links_name' alt="botão loja">Loja</span>
@@ -82,10 +88,8 @@ return (
         <div className='profile_content'>
           <div className='profile'>
             <div className='profile_details'>
-            <img src={Profile} alt="Imagem de perfíl"/>
               <div className='name_job'>
-                <div className='name'>Name</div>
-                <div className='job'>Job</div>
+                <div className='name'>Logout</div>
               </div>
             </div>
             <HiIcons.HiOutlineLogout id='log_out'/>

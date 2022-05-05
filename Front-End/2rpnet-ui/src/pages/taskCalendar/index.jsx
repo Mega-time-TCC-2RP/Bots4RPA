@@ -40,7 +40,7 @@ function App() {
   }
 
   useEffect(() => {
-    // data()
+    day()
   });
 
 
@@ -56,6 +56,14 @@ function App() {
           <div className="toDo">
             <h5 className="taskTitle h5">A Fazer</h5>
             <div className="taskSpace" draggable="true">
+              <p className="cardTask p">Lorem Ipsum is simply dummy text.</p>
+              <p className="cardTask p">Lorem Ipsum is simply dummy text.</p>
+              <p className="cardTask p">Lorem Ipsum is simply dummy text.</p>
+              <p className="cardTask p">Lorem Ipsum is simply dummy text.</p>
+              <p className="cardTask p">Lorem Ipsum is simply dummy text.</p>
+              <p className="cardTask p">Lorem Ipsum is simply dummy text.</p>
+              <p className="cardTask p">Lorem Ipsum is simply dummy text.</p>
+              <p className="cardTask p">Lorem Ipsum is simply dummy text.</p>
               <p className="cardTask p">Lorem Ipsum is simply dummy text.</p>
             </div>
           </div>

@@ -2,7 +2,7 @@
     --box-shadow-var: 1px 4px 4px var(--ComplementaryColor4);
 }
 
-.pageTitle{
+.pageTitle {
     margin-top: 82px;
     margin-left: 20vh;
 }
@@ -12,14 +12,16 @@
     justify-content: space-around;
 }
 
-.task{
+.task {
     padding-left: 80px;
     width: 75%;
     display: flex;
     justify-content: space-around;
 }
 
-.toDo, .do, .done{
+.toDo,
+.do,
+.done {
     width: 250px;
     height: 70vh;
     display: flex;
@@ -31,8 +33,7 @@
 }
 
 .cardTask {
-    margin-left: 26px;
-    margin-right: 26px;
+    margin: 0 1.625rem 0.5rem 1.625rem;
     background-color: var(--SecundaryColor2);
     border-radius: 30px;
     color: var(--WHITE);
@@ -42,7 +43,8 @@
     font-weight: 600;
 }
 
-.taskTitle, .pageTitle{
+.taskTitle,
+.pageTitle {
     color: var(--BLACK);
 }
 
@@ -54,10 +56,24 @@
     margin: 2rem 0 3rem 0;
 }
 
-/* .taskSpace {
-    display: flex;
-    flex-direction: column;
-} */
+.taskSpace {
+    overflow: auto;
+    zoom: 80%;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+    padding: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--PrimaryColor2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--PrimaryColor1);
+}
 
 .calendarAndBtn {
     width: 25%;
@@ -67,8 +83,6 @@
 }
 
 .calendar {
-    /* width: 342px;
-    height: 460px; */
     border-radius: 30px;
     margin: auto;
     padding: 1rem;
@@ -94,19 +108,13 @@
 .btnCalendar {
     width: 3rem;
     height: 3rem;
-    /* margin: 0 0.5rem 0 0.5rem; */
-    /* color: var(--WHITE); */
-    color: #000000;
+    color: var(--BLACK);
     font-weight: bold;
-    /* background-color: var(--PrimaryColor2); */
-    background-color: #F2F2F2;
+    background-color: var(--ComplementaryColor1);
     border: none;
     border-radius: 30px;
-    /* box-shadow: 4px 4px 4px var(--darkShadow); */
 }
 
-
-
-.btnNewTask{
+.btnNewTask {
     margin: 2rem auto;
 }

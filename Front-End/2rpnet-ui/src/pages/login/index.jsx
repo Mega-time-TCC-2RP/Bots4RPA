@@ -117,6 +117,13 @@ export default function Login() {
             };
 
             const responseGoogle = (response) => {
+                if (response !== null) {
+                        history('/')
+                      }
+                        else{
+                          history('/notFound')
+                        }
+                      
                     console.log(response)
             }
 
