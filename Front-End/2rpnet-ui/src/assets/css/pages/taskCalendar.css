@@ -22,7 +22,7 @@
 .toDo,
 .do,
 .done {
-    width: 250px;
+    width: 16vw;
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -59,6 +59,8 @@
 .taskSpace {
     overflow: auto;
     zoom: 80%;
+    background-color: aqua;
+    height: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -117,4 +119,33 @@
 
 .btnNewTask {
     margin: 2rem auto;
+}
+
+/* Drag n' Drop CSS */
+/* .highlights {
+    background-color: var(--ComplementaryColor2);
+} */
+
+.cardTask,
+.taskSpace {
+    transition: 400ms;
+}
+
+.isDragging {
+    cursor: move;
+    opacity: 0.3;
+}
+
+.over {
+    background-color: var(--ComplementaryColor4);
+}
+
+.invisibleCard {
+    display: none;
+}
+
+.lineSpaceTask {
+    height: 1px;
+    width: 100%;
+    background-color: black;
 }
