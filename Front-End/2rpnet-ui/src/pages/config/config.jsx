@@ -63,9 +63,10 @@ export default function Config() {
     const [userLogado, setUserLogado] = useState({});
     const [invalidUsers, setInvalidUsers] = useState([]);
     const [invalidCorporations, setInvalidCorporations] = useState([]);
+    const [userAlterado, setUserAlterado] = useState({});
 
     function listUser() {
-        axios('https://grupo7.azurewebsites.net/api/UserNames/' + parseJwt().jti, {
+        axios('https://grupo7.azurewebsites.net/api/UserNames/GetMe', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
@@ -81,10 +82,19 @@ export default function Config() {
 
     useEffect(listUser, []);
 
-    function alterUserData(event) {
+    const alterUserData = (event) => {
         event.preventDefault()
-        var formData = new FormData();
-        formData = userLogado;
+        var formData = new FormData()
+        formData.append('userName1', userAlterado.userName1)
+        formData.append('cpf', userAlterado.cpf)
+        formData.append('BirthDate', userAlterado.birthDate)
+        formData.append('Email', userAlterado.email)
+        formData.append('Phone', userAlterado.phone)
+        formData.append('Rg', userAlterado.rg)
+        formData.append('IdUser', userLogado.idUser)
+        formData.append('IdUserType', userLogado.idUserType)
+        formData.append('userValidation', userLogado.userValidation)
+        formData.append('File', userLogado.photoUser)
         axios({
             method: "PUT",
             url: "http://grupo7.azurewebsites.net/api/UserNames",
@@ -98,7 +108,6 @@ export default function Config() {
                 }
             })
             .catch((erro) => console.log(erro))
-
     }
 
     function listInvalidUsers() {
@@ -136,10 +145,13 @@ export default function Config() {
 
     function openModalConfig() {
         setModalConfig(true);
+        setUserAlterado(userLogado)
+        console.log(userAlterado)
     }
 
     function closeModalConfig() {
         setModalConfig(false);
+        setUserAlterado(userLogado)
         listUser();
     }
 
@@ -389,7 +401,7 @@ export default function Config() {
                                     </div>
                                     <img src={userLogado.photoUser} className='profileImage' alt="Imagem de perfil" />
                                 </div>
-                                <button className='button' onClick={() => setModalConfig(true)}>Atualizar Dados</button>
+                                <button className='button' onClick={openModalConfig}>Atualizar Dados</button>
                                 <Modal
                                     isOpen={modalConfig}
                                     onRequestClose={closeModalConfig}
@@ -405,19 +417,19 @@ export default function Config() {
                                         <div className='inputsModalArea'>
                                             <div className='inputsModal'>
                                                 <label className='h5' htmlFor='emailModals'>Nome</label>
-                                                <input id='emailModals' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={userLogado.userName1} onChange={(event) => setUserLogado({ userName1: event.target.value })} />
+                                                <input id='emailModals' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={userAlterado.userName1} onChange={(event) => setUserAlterado({userName1: event.target.value, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone})} />
                                                 <label className='h5' htmlFor='cpf'>CPF</label>
-                                                <input id='cpf' className='input placeholder-text' type="text" name="name" placeholder='Insira seu CPF...' value={userLogado.cpf} onChange={(event) => setUserLogado({ cpf: event.target.value })} />
+                                                <input id='cpf' className='input placeholder-text' type="text" name="name" placeholder='Insira seu CPF...' value={userAlterado.cpf} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: event.target.value, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='dataNascimento'>Data de Nascimento</label>
-                                                <input id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userLogado.birthDate} onChange={(event) => setUserLogado({ birthDate: event.target.value })} />
+                                                <input id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userAlterado.birthDate} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: event.target.value, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                             </div>
                                             <div className='inputsModal'>
                                                 <label className='h5' htmlFor='email'>Email</label>
-                                                <input id='email' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Email...' value={userLogado.email} onChange={(event) => setUserLogado({ email: event.target.value })} />
+                                                <input id='email' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Email...' value={userAlterado.email} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: event.target.value, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='rg'>RG</label>
-                                                <input id='rg' className='input placeholder-text' type="text" name="name" placeholder='Insira seu RG...' value={userLogado.rg} onChange={(event) => setUserLogado({ rg: event.target.value })} />
+                                                <input id='rg' className='input placeholder-text' type="text" name="name" placeholder='Insira seu RG...' value={userAlterado.rg} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: event.target.value, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='telefone'>Telefone</label>
-                                                <input id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' value={userLogado.phone} onChange={(event) => setUserLogado({ phone: event.target.value })} />
+                                                <input id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' value={userAlterado.phone} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
                                             </div>
                                         </div>
                                         <button className='button' onClick={alterUserData}>Salvar Alterações</button>

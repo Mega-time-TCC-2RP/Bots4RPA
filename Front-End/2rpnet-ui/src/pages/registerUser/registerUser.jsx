@@ -241,7 +241,7 @@ export default function RegisterUser() {
                                             </div>
                                             <div className='foreachInput'>
                                                 <label className='h5'>Tipo de Usuário</label>
-                                                <select onChange={(event) => setIdUserType(event.target.value)}>
+                                                <select value={idUserType} onChange={(event) => setIdUserType(event.target.value)}>
                                                     <option value={3}>Usuario normal</option>
                                                     <option value={2}>Administrador de Empresa</option>
                                                 </select>
