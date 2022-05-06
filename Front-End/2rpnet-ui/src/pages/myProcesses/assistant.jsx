@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "../../assets/css/assistant.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
+import { faCirclePlay, faL } from '@fortawesome/free-solid-svg-icons'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import bolinhas from "../../assets/img/Bolinhas.svg"
 
@@ -120,6 +120,7 @@ export default function Assistant() {
             .catch((erro) => {
                 console.log(erro)
                 toast.error("A execução deu errado :/");
+                setIsExecuting(false);
             })
     }
 
