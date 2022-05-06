@@ -7,40 +7,40 @@ using System.Linq;
 
 namespace _2rpnet.rpa.webAPI.Repositories
 {
-    public class StatusQuestRepository : IStatusQuestRepository
+    public class StatusWorkflowRepository : IStatusWorkflowRepository
     {
         private readonly DoisRPnetContext ctx;
 
-        public StatusQuestRepository(DoisRPnetContext appContext)
+        public StatusWorkflowRepository(DoisRPnetContext appContext)
         {
             ctx = appContext;
         }
 
-        public StatusQuest Create(StatusQuest status)
+        public StatusWorkflow Create(StatusWorkflow status)
         {
-            ctx.StatusQuests.Add(status);
+            ctx.StatusWorkflows.Add(status);
             ctx.SaveChangesAsync();
 
             return status;
         }
 
-        public void Delete(StatusQuest status)
+        public void Delete(StatusWorkflow status)
         {
-            ctx.StatusQuests.Remove(status);
+            ctx.StatusWorkflows.Remove(status);
             ctx.SaveChangesAsync();
         }
 
-        public IEnumerable<StatusQuest> ReadAll()
+        public IEnumerable<StatusWorkflow> ReadAll()
         {
-            return ctx.StatusQuests.ToList();
+            return ctx.StatusWorkflows.ToList();
         }
 
-        public StatusQuest SearchByID(int id)
+        public StatusWorkflow SearchByID(int id)
         {
-            return ctx.StatusQuests.Find(id);
+            return ctx.StatusWorkflows.Find(id);
         }
 
-        public StatusQuest Update(StatusQuest status)
+        public StatusWorkflow Update(StatusWorkflow status)
         {
             ctx.Entry(status).State = EntityState.Modified;
             ctx.SaveChangesAsync();

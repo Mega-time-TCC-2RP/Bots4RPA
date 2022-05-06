@@ -16,9 +16,13 @@ namespace _2rpnet.rpa.webAPI.Repositories
             ctx = appContext;
         }
 
-        public void ChangeQuestStatus(int idStatus, Quest quest)
+        public void ChangeQuestStatus(Quest quest)
         {
-            quest.IdStatus = idStatus;
+            if (quest.Completed == true)
+            {
+                quest.Completed = false;
+            }
+            else quest.Completed = true;
             ctx.Quests.Update(quest);
             ctx.SaveChanges();
         }
@@ -39,20 +43,26 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public IEnumerable<Quest> ReadAll()
         {
-            return ctx.Quests.ToList();
+            return ctx.Quests.Include(Q => Q.IdWorkflowNavigation).ToList();
         }
 
         public Quest SearchByID(int id)
         {
-            return ctx.Quests.AsNoTracking().ToList().FirstOrDefault(q => q.IdQuest == id);
+            return ctx.Quests.AsNoTracking().Include(Q => Q.IdWorkflowNavigation).ToList().FirstOrDefault(q => q.IdQuest == id);
         }
 
         public Quest Update(Quest quest)
         {
+            Quest queryQuest = SearchByID(quest.IdQuest);
+            if (queryQuest == null)
+            {
+                return null;
+            }
+            quest.IdWorkflow = queryQuest.IdWorkflow;
             ctx.Entry(quest).State = EntityState.Modified;
             ctx.SaveChangesAsync();
 
-            return quest;
+            return SearchByID(quest.IdQuest);
         }
     }
 }

@@ -16,12 +16,12 @@ namespace _2rpnet.rpa.webAPI.Controllers
     [ApiController]
     [Produces("application/json")]
     [Authorize]
-    public class StatusQuestsController : ControllerBase
+    public class StatusWorkflowsController : ControllerBase
     {
         // Vincular a Interface
-        private readonly IStatusQuestRepository ctx;
+        private readonly IStatusWorkflowRepository ctx;
 
-        public StatusQuestsController(IStatusQuestRepository context)
+        public StatusWorkflowsController(IStatusWorkflowRepository context)
         {
             ctx = context;
         }
@@ -52,12 +52,12 @@ namespace _2rpnet.rpa.webAPI.Controllers
         // Metodo PUT - Atualizacao
         [Authorize(Roles = "1")]
         [HttpPut("{id}")]
-        public IActionResult Update(int id, StatusQuest status)
+        public IActionResult Update(int id, StatusWorkflow status)
         {
             try
             {
                 status.IdStatus = id;
-                StatusQuest UpdatedStatus = ctx.Update(status);
+                StatusWorkflow UpdatedStatus = ctx.Update(status);
                 if (UpdatedStatus == null)
                 {
                     return NotFound(new { msg = "Status da Tarefa não encontrado" });
@@ -73,7 +73,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         // Metodo POST - Cadastro
         [Authorize(Roles = "1")]
         [HttpPost]
-        public IActionResult Post(StatusQuest status)
+        public IActionResult Post(StatusWorkflow status)
         {
             try
             {

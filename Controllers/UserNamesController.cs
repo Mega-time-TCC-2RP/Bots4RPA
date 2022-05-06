@@ -323,7 +323,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
         }
 
-        [HttpGet("Validate/{idUser}")]
+        [HttpPatch("Validate/{idUser}")]
         [Authorize(Roles = "2")]
         public IActionResult ValidateUser(int idUser)
         {

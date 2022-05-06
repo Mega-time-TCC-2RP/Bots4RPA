@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -19,7 +18,6 @@ namespace _2rpnet.rpa.webAPI.Domains
 
         public int IdPlayer { get; set; }
         public int? Score { get; set; }
-        [Required(ErrorMessage = "Id do funcionário necessário")]
         public int IdEmployee { get; set; }
 
         public virtual Employee IdEmployeeNavigation { get; set; }

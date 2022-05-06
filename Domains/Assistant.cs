@@ -11,6 +11,7 @@ namespace _2rpnet.rpa.webAPI.Domains
         {
             AssistantProcedures = new HashSet<AssistantProcedure>();
             EmailVerifications = new HashSet<EmailVerification>();
+            LibraryAssistants = new HashSet<LibraryAssistant>();
             Runs = new HashSet<Run>();
         }
 
@@ -24,6 +25,7 @@ namespace _2rpnet.rpa.webAPI.Domains
         public virtual Employee IdEmployeeNavigation { get; set; }
         public virtual ICollection<AssistantProcedure> AssistantProcedures { get; set; }
         public virtual ICollection<EmailVerification> EmailVerifications { get; set; }
+        public virtual ICollection<LibraryAssistant> LibraryAssistants { get; set; }
         public virtual ICollection<Run> Runs { get; set; }
     }
 }

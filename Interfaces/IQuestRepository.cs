@@ -11,6 +11,6 @@ namespace _2rpnet.rpa.webAPI.Interfaces
         Quest Update(Quest quest);
         void Delete(Quest quest);
         Quest SearchByID(int id);
-        void ChangeQuestStatus(int idStatus, Quest quest);
+        void ChangeQuestStatus(Quest quest);
     }
 }
