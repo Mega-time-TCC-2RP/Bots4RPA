@@ -81,12 +81,28 @@ var page = await context.NewPageAsync(); ");
                             sw.WriteLine($@"await page.FillAsync(" + '"' + "input[title = " + "'" + "Pesquisar" + "'" + "]" + '"' + "," + '"' + $"{Procedure.ProcedureValue}" + '"' + ");");
                             sw.WriteLine($@"await page.PressAsync(" + '"' + "input[title = " + "'" + "Pesquisar" + "'" + "]" + '"' + "," + '"' + "Enter" + '"' + ");");
                             //sw.WriteLine($@"await page.PressAsync('input[title = 'Pesquisar']', 'Enter');");
-
                             break;
+
                         case "Ir para a url":
                             sw.WriteLine(@"await page.GotoAsync('http://eelslap.com/');");
-
                             break;
+
+                        case "Clicar no primeiro link":
+                            
+                            break;
+
+                        case "Clicar na aba imagens":
+                            break;
+
+                        case "Clicar na primeira imagem":
+                            break;
+
+                        case "Clicar na aba noticias":
+                            break;
+
+                        case "Clicar na primeira noticia":
+                            break;
+
                         default:
                             break;
                     }
@@ -95,7 +111,7 @@ var page = await context.NewPageAsync(); ");
                 sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + '"' + "../../Images/Assistant" + IdAssistant + ".png" + '"' + " });}}");
             }
 
-            Process.Start("./FileManager/main.exe");
+             Process.Start("./StaticFiles/Files/main.exe");
 
             System.Threading.Thread.Sleep(20000);
             string pathD = "./StaticFiles/Files/AssistantProcess/";
