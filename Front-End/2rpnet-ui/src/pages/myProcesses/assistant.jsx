@@ -20,6 +20,8 @@ export default function Assistant() {
     const [pValue, setPValue] = useState();
     const [value, setValue] = useState(0);
 
+    var idAssistant = 6;
+
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
         // console.log(modal)
@@ -57,7 +59,7 @@ export default function Assistant() {
             console.log(child);
 
             var myBody = JSON.stringify({
-                "idAssistant": 1,
+                "idAssistant": idAssistant,
                 "procedurePriority": splited[0],
                 "procedureName": child.textContent,
                 "procedureDescription": "",
@@ -78,6 +80,25 @@ export default function Assistant() {
                 })
 
         }
+
+    }
+
+    function Execute(){
+        var myURL = "/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+        var myBody = "";
+
+        fetch(myURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: myBody
+        })
+            .then((response) => {
+                console.log("before if");
+                if (response.status === 201) {
+                    console.log("after if");
+                    // console.log(response.json());
+                }
+            })
 
     }
 
@@ -214,7 +235,7 @@ export default function Assistant() {
                             <div id="flow" className="dropzone">
                             </div>
                             <button className="boards__button boards__button--small" onClick={() => Save()}><FontAwesomeIcon icon={faFloppyDisk} size="lg" /><p className="button__text">Salvar</p></button>
-                            {/* <button className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faCirclePlay} size="lg" /> <p className="button__text">Executar assistente</p></button> */}
+                            <button className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faCirclePlay} size="lg" /> <p className="button__text">Executar assistente</p></button>
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ export default
         {
             "IdProcedure": 3,
             "ProcedurePriority": null,
-            "ProcedureName": "Ir para uma URL",
+            "ProcedureName": "Ir para a URL",
             "ProcedureDescription": "Vai para a url que é o valor desse",
             "ProcedureValue": "",
         },
