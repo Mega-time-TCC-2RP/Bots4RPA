@@ -63,20 +63,6 @@
     height: 100%;
 }
 
-::-webkit-scrollbar {
-    width: 1rem;
-    padding: 0.5rem;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--PrimaryColor2);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--PrimaryColor1);
-}
-
 .calendarAndBtn {
     width: 25%;
     display: flex;

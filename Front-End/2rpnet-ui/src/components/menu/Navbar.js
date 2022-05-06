@@ -60,7 +60,7 @@ return (
           </Link>
         </li>
         <li>
-          <Link to="/taskcalendar" className='Link'>
+          <Link to="/quests" className='Link'>
             <FaIcons.FaTasks className='icon2' alt="botão tarefas"/>
             <span className='Links_name' alt="botão tarefas">Tarefas</span>
           </Link>
