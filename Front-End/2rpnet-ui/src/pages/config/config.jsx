@@ -63,9 +63,11 @@ export default function Config() {
     const [userLogado, setUserLogado] = useState({});
     const [invalidUsers, setInvalidUsers] = useState([]);
     const [invalidCorporations, setInvalidCorporations] = useState([]);
-    const [userAlterado, setUserAlterado] = useState({});
+    const [userAlterado, setUserAlterado] = useState({})
+
 
     function listUser() {
+        select(0);
         axios('https://grupo7.azurewebsites.net/api/UserNames/GetMe', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
@@ -111,35 +113,39 @@ export default function Config() {
     }
 
     function listInvalidUsers() {
-        axios('http://grupo7.azurewebsites.net/api/Corporations/UsuariosInvalidos', {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-            }
-        })
-            .then((resposta) => {
-                if (resposta.status === 200) {
-                    setInvalidUsers(resposta.data)
-                    console.log("Listou")
+        if (parseJwt().role == 2) {
+            axios('http://grupo7.azurewebsites.net/api/Corporations/UsuariosInvalidos', {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
                 }
             })
-            .catch((erro) => console.log(erro))
+                .then((resposta) => {
+                    if (resposta.status === 200) {
+                        setInvalidUsers(resposta.data)
+                        console.log("Listou")
+                    }
+                })
+                .catch((erro) => console.log(erro))
+        }
     }
 
     useEffect(listInvalidUsers, [])
 
     function listInvalidCorporation() {
-        axios('http://grupo7.azurewebsites.net/api/Corporations/EmpresasInvalidas', {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-            }
-        })
-            .then((resposta) => {
-                if (resposta.status === 200) {
-                    setInvalidCorporations(resposta.data)
-                    console.log("listando corps")
+        if (parseJwt().role == 1) {
+            axios('http://grupo7.azurewebsites.net/api/Corporations/EmpresasInvalidas', {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
                 }
             })
-            .catch((erro) => console.log(erro))
+                .then((resposta) => {
+                    if (resposta.status === 200) {
+                        setInvalidCorporations(resposta.data)
+                        console.log(resposta.data)
+                    }
+                })
+                .catch((erro) => console.log(erro))
+        }
     }
     useEffect(listInvalidCorporation, [])
 
@@ -156,34 +162,53 @@ export default function Config() {
     }
 
     function select(nextStep) {
-        setCurrentStep(nextStep)
-        switch (nextStep) {
-            case 0:
-                document.querySelector('.myData').classList.toggle('selected')
-                document.querySelector('.Acessibilidade').classList.remove('selected')
-                document.querySelector('.validarUsuarios').classList.remove('selected')
-                document.querySelector('.validarEmpresas').classList.remove('selected')
-                break;
-            case 1:
-                document.querySelector('.myData').classList.remove('selected')
-                document.querySelector('.Acessibilidade').classList.toggle('selected')
-                document.querySelector('.validarUsuarios').classList.remove('selected')
-                document.querySelector('.validarEmpresas').classList.remove('selected')
-                break;
-            case 2:
-                document.querySelector('.myData').classList.remove('selected')
-                document.querySelector('.Acessibilidade').classList.remove('selected')
-                document.querySelector('.validarUsuarios').classList.toggle('selected')
-                document.querySelector('.validarEmpresas').classList.remove('selected')
-                break;
-            case 3:
-                document.querySelector('.myData').classList.remove('selected')
-                document.querySelector('.Acessibilidade').classList.remove('selected')
-                document.querySelector('.validarUsuarios').classList.remove('selected')
-                document.querySelector('.validarEmpresas').classList.toggle('selected')
-                break;
-            default:
-                break;
+        if (currentStep != nextStep) {
+            setCurrentStep(nextStep)
+            switch (nextStep) {
+                case 0:
+                    document.querySelector('.myData').classList.toggle('selected')
+                    document.querySelector('.Acessibilidade').classList.remove('selected')
+                    if (parseJwt().role == 2) {
+                        document.querySelector('.validarUsuarios').classList.remove('selected')
+                    }
+                    if (parseJwt().role == 1) {
+                        document.querySelector('.validarEmpresas').classList.remove('selected')
+                    }
+                    break;
+                case 1:
+                    document.querySelector('.myData').classList.remove('selected')
+                    document.querySelector('.Acessibilidade').classList.toggle('selected')
+                    if (parseJwt().role == 2) {
+                        document.querySelector('.validarUsuarios').classList.remove('selected')
+                    }
+                    if (parseJwt().role == 1) {
+                        document.querySelector('.validarEmpresas').classList.remove('selected')
+                    }
+                    break;
+                case 2:
+                    document.querySelector('.myData').classList.remove('selected')
+                    document.querySelector('.Acessibilidade').classList.remove('selected')
+                    if (parseJwt().role == 2) {
+                        document.querySelector('.validarUsuarios').classList.toggle('selected')
+                    }
+                    if (parseJwt().role == 1) {
+                        document.querySelector('.validarEmpresas').classList.remove('selected')
+                    }
+                    break;
+                case 3:
+                    listInvalidCorporation();
+                    document.querySelector('.myData').classList.remove('selected')
+                    document.querySelector('.Acessibilidade').classList.remove('selected')
+                    if (parseJwt().role == 2) {
+                        document.querySelector('.validarUsuarios').classList.remove('selected')
+                    }
+                    if (parseJwt().role == 1) {
+                        document.querySelector('.validarEmpresas').classList.toggle('selected')
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -368,8 +393,6 @@ export default function Config() {
         }
     }
 
-    useEffect(() => select(0), [])
-
     return (
         <div>
             <Navbar />
@@ -378,9 +401,8 @@ export default function Config() {
                 <nav className='navAreaConfig container'>
                     <span className='h3 myData' id='myData' onClick={() => select(0)}>Meus Dados</span>
                     <span className='h3 Acessibilidade' id='Acessibilidade' onClick={() => select(1)}>Acessibilidade</span>
-                    {/* {parseJwt().role === '1' ? <span className='h3 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span> : null} */}
-                    <span className='h3 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span>
-                    <span className='h3 validarEmpresas' id='validarEmpresas' onClick={() => select(3)}>Validar Empresas</span>
+                    {parseJwt().role == 2 ? <span className='h3 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span> : null}
+                    {parseJwt().role == 1 ? <span className='h3 validarEmpresas' id='validarEmpresas' onClick={() => select(3)}>Validar Empresas</span> : null}
                 </nav>
                 <section className='configContent validUser container'>
                     {
@@ -389,14 +411,32 @@ export default function Config() {
                                 <div className='contentAreaConfig'>
                                     <div className='mainContentArea'>
                                         <div className='contentConfig'>
-                                            <h3 className='h5'>Email: <p>{userLogado.email}</p></h3>
-                                            <h3 className='h5'>Nome: <p>{userLogado.userName1}</p></h3>
-                                            <h3 className='h5'>Nascimento: <p>{userLogado.birthDate}</p></h3>
+                                            <div className='dataUser'>
+                                                <label className='h5' htmlFor="emailUser">Email:</label>
+                                                <p id='emailUser'>{userLogado.email}</p>
+                                            </div>
+                                            <div className='dataUser'>
+                                                <label className='h5' htmlFor="nameUser">Nome:</label>
+                                                <p id='nameUser'>{userLogado.userName1}</p>
+                                            </div>
+                                            <div className='dataUser'>
+                                                <label className='h5' htmlFor="birthDateUser">Nascimento:</label>
+                                                <p id='birthDateUser'>{userLogado.birthDate}</p>
+                                            </div>
                                         </div>
                                         <div className='contentConfig'>
-                                            <h3 className='h5'>CPF: <p>{userLogado.cpf}</p></h3>
-                                            <h3 className='h5'>RG: <p>{userLogado.rg}</p></h3>
-                                            <h3 className='h5'>Telefone: <p>{userLogado.phone}</p></h3>
+                                            <div className='dataUser'>
+                                                <label className='h5' htmlFor="cpfUser">CPF:</label>
+                                                <p id='cpfUser'>{userLogado.cpf}</p>
+                                            </div>
+                                            <div className='dataUser'>
+                                                <label className='h5' htmlFor="rgUser">RG:</label>
+                                                <p id='rgUser'>{userLogado.rg}</p>
+                                            </div>
+                                            <div className='dataUser'>
+                                                <label className='h5' htmlFor="phoneUser">Telefone:</label>
+                                                <p id='phoneUser'>{userLogado.phone}</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <img src={userLogado.photoUser} className='profileImage' alt="Imagem de perfil" />
@@ -417,19 +457,19 @@ export default function Config() {
                                         <div className='inputsModalArea'>
                                             <div className='inputsModal'>
                                                 <label className='h5' htmlFor='emailModals'>Nome</label>
-                                                <input id='emailModals' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={userAlterado.userName1} onChange={(event) => setUserAlterado({userName1: event.target.value, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone})} />
+                                                <input id='emailModals' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={userAlterado.userName1} onChange={(event) => setUserAlterado({ userName1: event.target.value, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='cpf'>CPF</label>
-                                                <input id='cpf' className='input placeholder-text' type="text" name="name" placeholder='Insira seu CPF...' value={userAlterado.cpf} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: event.target.value, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
+                                                <input id='cpf' className='input placeholder-text' type="text" name="name" placeholder='Insira seu CPF...' value={userAlterado.cpf} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: event.target.value, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='dataNascimento'>Data de Nascimento</label>
-                                                <input id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userAlterado.birthDate} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: event.target.value, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
+                                                <input id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userAlterado.birthDate} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: event.target.value, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                             </div>
                                             <div className='inputsModal'>
                                                 <label className='h5' htmlFor='email'>Email</label>
-                                                <input id='email' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Email...' value={userAlterado.email} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: event.target.value, rg: userAlterado.rg, phone: userAlterado.phone })} />
+                                                <input id='email' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Email...' value={userAlterado.email} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: event.target.value, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='rg'>RG</label>
-                                                <input id='rg' className='input placeholder-text' type="text" name="name" placeholder='Insira seu RG...' value={userAlterado.rg} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: event.target.value, phone: userAlterado.phone })} />
+                                                <input id='rg' className='input placeholder-text' type="text" name="name" placeholder='Insira seu RG...' value={userAlterado.rg} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: event.target.value, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='telefone'>Telefone</label>
-                                                <input id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' value={userAlterado.phone} onChange={(event) => setUserAlterado({userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
+                                                <input id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' value={userAlterado.phone} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
                                             </div>
                                         </div>
                                         <button className='button' onClick={alterUserData}>Salvar Alterações</button>

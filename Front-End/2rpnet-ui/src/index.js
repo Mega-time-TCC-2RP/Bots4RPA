@@ -21,10 +21,10 @@ import Home from './pages/home/';
 import Login from './pages/login/';
 import Guide from './pages/guide/';
 import SkinShop from './pages/skinShop/skinShop';
+import Marketplace from './pages/marketplace/marketplace';
 import MyProcesses from './pages/myProcesses/';
 import { TelaTimeline } from './pages/social/index';
-import TaskCalendar from './pages/taskCalendar';
-import TaskKanban from './pages/taskKanban';
+import Quest from './pages/quests';
 import TesteDaltonicMode from './pages/DaltonicModeTest';
 import Profile from './pages/profile/index';
 import Config from './pages/config/config';
@@ -61,10 +61,10 @@ const routing = (
         <Route path="/profile" element={<Profile />} />
         <Route path="/guide" element={<Guide />} /> {/* Guide */}
         <Route path="/skinShop" element={<SkinShop />} /> {/* Marketplace */}
+        <Route path="/marketplace" element={<Marketplace />} /> {/* Marketplace */}
         <Route path="/myprocesses" element={<MyProcesses />} /> {/* MyProcesses */}
         <Route path="/social" element={<TelaTimeline />} /> {/* Social */}
-        <Route path="/taskcalendar" element={<TaskCalendar />} /> {/* Task Calendar */}
-        <Route path="/taskkanban" element={<TaskKanban />} /> {/* Task Kanban */}
+        <Route path="/quests" element={<Quest />} /> {/* Task Calendar */}
         <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />
         
 

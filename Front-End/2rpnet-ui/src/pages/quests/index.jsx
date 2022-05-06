@@ -119,33 +119,24 @@ function App() {
           <div className="toDo">
             <h5 className="taskTitle h5">A Fazer</h5>
             <div className="taskSpace">
-              <p className="cardTask p" draggable="true">Lorem Ipsum is simply dummy text.</p>
-              <p className="cardTask p" draggable="true">Lorem Ipsum is simply dummy text.</p>
-              <p className="cardTask p" draggable="true">Lorem Ipsum is simply dummy text.</p>
-              <p className="cardTask p" draggable="true">Lorem Ipsum is simply dummy text.</p>
-              <p className="cardTask p" draggable="true">Lorem Ipsum is simply dummy text.</p>
-              <p className="cardTask p" draggable="true">Lorem Ipsum is simply dummy text.</p>
-              <p className="cardTask p" draggable="true">Lorem Ipsum is simply dummy text.</p>
-              <p className="cardTask p" draggable="true">Lorem Ipsum is simply dummy text.</p>
-              <p className="cardTask p" draggable="true">Lorem Ipsum is simply dummy text.</p>
+              <div className="cardTask" draggable="true">
+                <div className="p">Lorem Ipsum is simply dummy text.</div>
+              </div>
             </div>
           </div>
           <div className="do">
             <h5 className="taskTitle h5">Fazendo</h5>
             <div className="taskSpace">
               <div className="cardTask" draggable="true">
-                <div className="p">Lorem Ipsum is simply dummy text.
-                </div>
+                <div className="p">Lorem Ipsum is simply dummy text.</div>
               </div>
             </div>
           </div>
           <div className="done">
             <h5 className="taskTitle h5">Feito</h5>
             <div className="taskSpace">
-              <div className="cardTask">
-                {/* <div className="p">Lorem Ipsum is simply dummy text. */}
-                <div className="lineSpaceTask">
-                </div>
+              <div className="cardTask" draggable="true">
+                <div className="p">Lorem Ipsum is simply dummy text.</div>
               </div>
             </div>
           </div>

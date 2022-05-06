@@ -9,6 +9,10 @@
     justify-content: space-evenly;
 }
 
+.configPage h1 {
+    letter-spacing: 0.035em;
+}
+
 .container {
     width: 1440px;
     margin: 0 auto;
@@ -21,7 +25,7 @@
 
 .navAreaConfig {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .navAreaConfig span {
@@ -50,7 +54,7 @@
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-    height: 70vh;
+    height: 60vh;
     padding: 8vh 8vh;
 }
 
@@ -76,13 +80,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 }
 
-.contentConfig p {
-    font-size: 0.8em;
+.dataUser {
+    display: flex;
+    align-items: center;
+}
+
+.dataUser label {
+    font-weight: bold;
+} 
+
+.dataUser p {
+    font-size: 1.2em;
     font-family: 'Montserrat', sans-serif;
-    color: #6C757D
+    color: #6C757D;
+    margin-left: 3%;
 }
 
 .profileImage {
@@ -126,6 +139,7 @@
     padding-top: 2%;
     border-color: #6C757D;
     height: 25%;
+    width: 80%;
 }
 
 .scrollDiv {
