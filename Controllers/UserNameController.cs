@@ -43,7 +43,7 @@ namespace _2RPNET_API.Controllers
         /// <summary>
         /// Method responsible for list User by unique id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet("{Id}")]
         public IActionResult ReadMy(int Id)

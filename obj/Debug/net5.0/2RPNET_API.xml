@@ -127,7 +127,7 @@
             <summary>
             Method responsible for list User by unique id
             </summary>
-            <param name="id"></param>
+            <param name="Id"></param>
             <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Controllers.UserNameController.Update(System.Int32,_2RPNET_API.Domains.UserName)">

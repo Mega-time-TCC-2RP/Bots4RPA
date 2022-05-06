@@ -66,8 +66,15 @@ namespace _2RPNET_API.Controllers
         {
             try
             {
-                _AssistantRepository.Create(NewAssistant);
-                return StatusCode(201);
+                if (NewAssistant.AssistantName != null || NewAssistant.AssistantDescription != null)
+                {
+                    _AssistantRepository.Create(NewAssistant);
+                    return Created("Assitant created successfully", NewAssistant);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
             catch (Exception ex)
             {

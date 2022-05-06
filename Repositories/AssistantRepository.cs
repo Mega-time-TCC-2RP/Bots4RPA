@@ -17,7 +17,7 @@ namespace _2RPNET_API.Repositories
             Ctx = appContext;
         }
 
-        public string ChangeVerification(int IdAssistant, string[] AssistantProcedure)
+        public void ChangeVerification(int IdAssistant, string[] AssistantProcedure)
         {
 
             Assistant AssistantSought = SearchByID(IdAssistant);
@@ -26,80 +26,58 @@ namespace _2RPNET_API.Repositories
             List<AssistantProcedure> AssistantList = Ctx.AssistantProcedures.Include(c => c.IdAssistant).Where(c => c.IdAssistant == IdAssistant).ToList();
             //var AssistantProcedureList = AssistantProcedure.ToList();
 
-            // ou criar um objeto e mapear
-
-            //foreach (var item in AssistantList)
-            //{
-            //    if (item.IdAssistant == AssistantSought.IdAssistant)
-            //    {
-            //        if (item.ProcedurePriority == Convert.ToInt32(AssistantProcedure[2]))
-            //        {
-            //            if (item.ProcedureName == AssistantProcedure[3])
-            //            {
-            //                if (item.ProcedureDescription == AssistantProcedure.)
-            //                {
-            //                    return ("funciona");
-            //                }
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-
-            //    }
-            //}
-
             foreach (var item in AssistantList)
             {
-                if (item.IdAssistant != AssistantSought.IdAssistant)
+                if (item != null)
                 {
-                    item.IdAssistant = AssistantSought.IdAssistant;
-                }
+                    if (item.IdAssistant != AssistantSought.IdAssistant)
+                    {
+                        item.IdAssistant = AssistantSought.IdAssistant;
+                    }
 
-                if (item.ProcedurePriority != Convert.ToInt32(AssistantProcedure[2]))
-                {
-                    item.ProcedurePriority = Convert.ToInt32(AssistantProcedure[2]);
-                }
+                    if (item.ProcedurePriority != Convert.ToInt32(AssistantProcedure[2]))
+                    {
+                        item.ProcedurePriority = Convert.ToInt32(AssistantProcedure[2]);
+                    }
 
-                if (item.ProcedureName != AssistantProcedure[3])
-                {
-                    item.ProcedureName = AssistantProcedure[3];
-                }
-                if (item.ProcedureDescription != AssistantProcedure[4])
-                {
-                    item.ProcedureDescription = AssistantProcedure[4];
-                }
-                else
-                {
-                    return ("funciona");
+                    if (item.ProcedureName != AssistantProcedure[3])
+                    {
+                        item.ProcedureName = AssistantProcedure[3];
+                    }
+
+                    if (item.ProcedureDescription != AssistantProcedure[4])
+                    {
+                        item.ProcedureDescription = AssistantProcedure[4];
+                    }
+
+                    Ctx.Assistants.Update(AssistantSought);
                 }
             }
 
-            //if (AssistantList != null & AssistantSought != null)
+            //foreach (var item in AssistantList)
             //{
-            //    if (AssistantList.Id != AssistantProcedureList.Id)
+            //    if (item.IdAssistant != AssistantSought.IdAssistant)
             //    {
-            //        AssistantList.Id = AssistantProcedureList.Id
+            //       if (item.ProcedurePriority != Convert.ToInt32(AssistantProcedure[2]))
+            //       {
+            //            if (item.ProcedureName != AssistantProcedure[3])
+            //            {
+            //              if (item.ProcedureDescription != AssistantProcedure[4])
+            //              {
+            //                    Ctx.AssistantProcedures.Add(AssistantProcedure[]);
+            //              }
+            //            }
+            //       }
             //    }
-            //     Ctx.Assistants.Update(AssistantSought);
-            //     Ctx.SaveChanges();
-
             //}
-            //else
-            //{
-            //    //return Ok
-            //}
-
-
-            return "";
         }
 
         public void Create(Assistant NewAssistant)
         {
-            NewAssistant.CreationDate = DateTime.Now;
-            NewAssistant.AlterationDate = DateTime.Now;
-            Ctx.Assistants.Add(NewAssistant);
-            Ctx.SaveChanges();
+                NewAssistant.CreationDate = DateTime.Now;
+                NewAssistant.AlterationDate = DateTime.Now;
+                Ctx.Assistants.Add(NewAssistant);
+                Ctx.SaveChanges();
         }
 
         public void Delete(int IdAssistant)
@@ -132,18 +110,26 @@ namespace _2RPNET_API.Repositories
         {
             Assistant AssistantSought = SearchByID(IdAssistant);
 
+            if (AssistantSought != null)
             {
-                AssistantSought.IdEmployee = UpdatedAsssistant.IdEmployee;
-                AssistantSought.AssistantName = UpdatedAsssistant.AssistantName;
-            }
-            if (UpdatedAsssistant.AssistantDescription != null)
-            {
-                AssistantSought.AssistantDescription = UpdatedAsssistant.AssistantDescription;
-            }
+                AssistantSought.AlterationDate = DateTime.Now;
 
-            Ctx.Assistants.Update(AssistantSought);
-            Ctx.SaveChanges();
+                if (UpdatedAsssistant.IdEmployee > 0)
+                {
+                    AssistantSought.IdEmployee = UpdatedAsssistant.IdEmployee;
+                }
+                if (UpdatedAsssistant.AssistantName != null)
+                {
+                    AssistantSought.AssistantName = UpdatedAsssistant.AssistantName;
+                }
+                if (UpdatedAsssistant.AssistantDescription != null)
+                {
+                    AssistantSought.AssistantDescription = UpdatedAsssistant.AssistantDescription;
+                }
+                
+                Ctx.Assistants.Update(AssistantSought);
+                Ctx.SaveChanges();
+            }
         }
-
     }
 }
