@@ -89,7 +89,9 @@ namespace _2RPNET_API.Controllers
                 if (AssistantSought != null)
                 {
                     if (UpdatedAsssistant != null)
+                    {
                         _AssistantRepository.Update(IdAssistant, UpdatedAsssistant);
+                    }
                 }
                 else
                 {
@@ -133,6 +135,37 @@ namespace _2RPNET_API.Controllers
                 return BadRequest(Ex);
             }
         }
+
+
+        /// <summary>
+        /// Method responsible for get all Assistants
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{IdAssistant}")]
+        public IActionResult ChangeVerification(int IdAssistant, string[] AssistantProcedure)
+        {
+            try
+            {
+                Assistant AssistantSought = _AssistantRepository.SearchByID(IdAssistant);
+
+                if (AssistantSought != null)
+                {
+                    return Ok(_AssistantRepository.SearchByID(IdAssistant));
+                    //return Ok(AssistantSought.AssistantProcedures.ToList());
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+            }
+            catch (Exception Ex)
+            {
+                return BadRequest(Ex);
+            }
+        }
+
+
     }
 
 }

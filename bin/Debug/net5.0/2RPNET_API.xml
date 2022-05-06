@@ -34,6 +34,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantsController.ChangeVerification(System.Int32,System.String[])">
+            <summary>
+            Method responsible for get all Assistants
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ReadAll">
             <summary>
             Method responsible for list all Assistants Process
