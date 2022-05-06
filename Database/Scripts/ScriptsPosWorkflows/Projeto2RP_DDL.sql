@@ -100,9 +100,15 @@ GO
 
 */
 
+create table StatusWorkflow(
+	IdStatus INT PRIMARY KEY IDENTITY,
+	StatusTitle VARCHAR(10)
+);
+
 create table Workflow(
 	IdWorkflow INT PRIMARY KEY IDENTITY,
 	IdEmployee INT FOREIGN KEY REFERENCES Employee(IdEmployee) NOT NULL,
+	IdStatus INT FOREIGN KEY REFERENCES StatusWorkflow(IdStatus) NOT NULL DEFAULT(1),
 	EndDate DATETIME,
 	Title VARCHAR(MAX) NOT NULL,
 	WorkflowDescription VARCHAR(MAX)
@@ -270,8 +276,8 @@ Drop table Corporation
 Drop table Office
 Drop table Employee
 Drop table Player
-Drop table Quest
 Drop table Workflow
+Drop table Quest
 Drop table Skin
 Drop table LibrarySkins
 Drop table Post

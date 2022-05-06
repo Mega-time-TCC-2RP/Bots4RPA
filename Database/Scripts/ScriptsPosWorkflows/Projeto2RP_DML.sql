@@ -101,6 +101,10 @@ insert into Player( Score, IdEmployee)
 values(1000, 2);
 GO
 
+insert into StatusWorkflow(StatusTitle)
+VALUES ('A Fazer'), ('Fazendo'), ('Feito');
+GO
+
 insert into Workflow(IdEmployee, EndDate, Title, WorkflowDescription)
 values (2, 10/06/2022, 'Tarefas ficticias', 'Essas tarefas são completamente ficticias');
 GO
