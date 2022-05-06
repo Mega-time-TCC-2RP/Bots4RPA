@@ -77,7 +77,7 @@ export default function Modal({ assistant }) {
 
                         <div className='graphic-2'>
                             <div className='container-grafico'>  
-                                <BarChart />
+                                {/* <BarChart /> */}
                             </div>
                         </div>
 

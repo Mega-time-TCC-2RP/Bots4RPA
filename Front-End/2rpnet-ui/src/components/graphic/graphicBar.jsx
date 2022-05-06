@@ -1,55 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import BarChart from '../../components/graphic/rendergraphic'
-import { UserData } from './dataBar'
+import { getUserData } from './dataBar'
+// import { UserData } from './dataBar'
 
 export default function BarGraphic() {
+    // ------------------------------------------//
 
-    const [ExecutionsList, setExecutionsList] = useState([]);
+    var List = []; 
 
-    function GetRunQuantity() {
+    function getUserData() {
         fetch('https://grupo8api.azurewebsites.net/api/Run/ListAll', {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
         })
-            .then((response) => response.json())
-
-            .then((d) =>
-                setExecutionsList(d),
-                // console.log(d)
-            )
+            .then((response) =>{
+                console.log("antes");
+                console.log(response.json());
+                response.json()
+            })
             .catch((error) => console.log(error));
-    };
 
-    useEffect(GetRunQuantity, [])
+    }
+    
+    useEffect(setUserData(getUserData()), [])
 
+    let userData = [];
 
-    // Fazer isso funcionar 
+    function setUserData(list){
+        console.log(list);
 
-    const dataRun = ExecutionsList.map((da) => da.runDate)
-    console.log('é esse', { dataRun })
+        userData =
+        {
+            labels: list.map((data) => console.log(data)),
+    
+            datasets: [
+                {
+                    label: "Qtde",
+                    data: "2",
+                    // data: "33",
+                    backgroundColor: [
+                        "#3FDA9F",
+                    ],
+                },
+            ],
+        }
+    }
 
-    // ------------------------------------------//
+   
 
-
-    const [userData, setUserData] = useState({
-        labels: UserData.map((data) => data.month),
-
-        datasets: [
-            {
-                label: "Qtde",
-                // data: ExecutionsList.map((data) => data.RunQuantity),
-                data: UserData.map((data) => data.amount),
-                backgroundColor: [
-                    "#3FDA9F",
-                ],
-            },
-        ],
-    });
 
     return (
         <div>
             <div className="container_grafico">
+                {
+                     console.log(List)
+                }
                 <BarChart chartData={userData} className="" />
             </div>
         </div>
