@@ -275,22 +275,22 @@ export const TelaTimeline = (person, idx) => {
                                     className="swiperHomeTasks-social"
                                 >
                                     <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                        <div>
+                                        <div className="boardingContainer">
                                         <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div>
+                                        <div className="boardingContainer">
                                             <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div>
+                                        <div className="boardingContainer">
                                             <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div>
+                                        <div className="boardingContainer">
                                             <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
                                         </div>
                                     </SwiperSlide>

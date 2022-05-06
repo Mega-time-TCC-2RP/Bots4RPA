@@ -11,10 +11,17 @@ import * as RiIcons from 'react-icons/ri'
 import * as BsIcons from 'react-icons/bs'
 import * as HiIcons from 'react-icons/hi'
 
+import { useNavigate } from 'react-router-dom';
+
+
+
 //logo
 import Logo from '../../assets/img/logo2RPbranco.png'
 // import Logo from '../../assets/img/logo2RP.png'
 import Profile from '../../assets/img/profile.jpg'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
  function Navbar() {
   
@@ -22,6 +29,28 @@ import Profile from '../../assets/img/profile.jpg'
     let sidebar = document.querySelector('.sidebar')
     sidebar.classList.toggle('active')
   }
+
+  // const delay = ms => new Promise(res => setTimeout(res, ms))
+  const signout = () => {
+    // delay(1000);
+    // toast.warning('Saindo...', {
+    //   position: "top-right",
+    //   autoClose: 1000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    // });
+    localStorage.removeItem('2rp-chave-autenticacao')
+    history('/login')
+    window.location.reload()
+    return true
+  }
+  
+
+
+let history = useNavigate();
   // btn.onclick = function(){
   //   sidebar.classList.toggle('active')
   // }
@@ -30,6 +59,7 @@ import Profile from '../../assets/img/profile.jpg'
 return (
 
     <div className='sidebar'>
+      <ToastContainer/>
       <div className='logo_content'>
         <img className='logo' src={Logo} alt="Logo 2RPnet"/>
         <FaIcons.FaBars className='btn' onClick={click} />
@@ -89,10 +119,10 @@ return (
           <div className='profile'>
             <div className='profile_details'>
               <div className='name_job'>
-                <div className='name'>Logout</div>
+                <div className='name' onClick={signout}>Logout</div>
               </div>
             </div>
-            <HiIcons.HiOutlineLogout id='log_out'/>
+            <HiIcons.HiOutlineLogout id='log_out' onClick={signout} />
           </div>
         </div>
      </div>

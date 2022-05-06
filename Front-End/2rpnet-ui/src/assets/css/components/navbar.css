@@ -40,7 +40,11 @@ body{
 .sidebar .Links_name{
     opacity: 0;
     pointer-events: none;
-    
+}
+.Link:hover{
+    background-color: rgb(239, 239, 239);
+    border-radius: 5px;
+    width: 200px;
 }
 .sidebar.active .Links_name{
     opacity: 1;
