@@ -239,6 +239,31 @@ CREATE TABLE Run(
 );
 GO
 
+/*
+--create AssistantProcedure table
+CREATE TABLE AssistantProcedure(
+   IdAProcedure INT PRIMARY KEY IDENTITY(1,1),
+   IdLiraryAssistant INT FOREIGN KEY REFERENCES LibraryAssistant(IdLiraryAssistant),
+   ProcedurePriority INT,
+   ProcedureName VARCHAR(50),
+   ProcedureDescription VARCHAR(500),
+   ProcedureValue VARCHAR(256)
+);
+GO
+
+--create LibraryTrophy table
+CREATE TABLE Run(
+   IdRun INT PRIMARY KEY IDENTITY(1,1),
+   IdLiraryAssistant INT FOREIGN KEY REFERENCES LibraryAssistant(IdLiraryAssistant),
+   IdWorkflow INT FOREIGN KEY REFERENCES Workflow(IdWorkflow),
+   RunQuantity INT,
+   RunDate DATETIME,
+   RunStatus BIT,
+   RunDescription VARCHAR(500)
+);
+GO
+*/
+
 --create EmailVerification table
 CREATE TABLE EmailVerification(
    IdEmailVerification INT PRIMARY KEY IDENTITY(1,1),
