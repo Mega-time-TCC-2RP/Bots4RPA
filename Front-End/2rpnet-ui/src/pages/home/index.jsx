@@ -38,9 +38,7 @@ export default function Home() {
       },
     })
       .then((response) => response.json())
-
       .then((data) =>
-        // this.setState({ AssistantsList: data }),
         setAssistantsList(data)
         // console.log(data)
       )
@@ -51,7 +49,6 @@ export default function Home() {
 
 
   // Open Modal to create assistant
-
   function OpenModalAssistant() {
     var modalA = document.getElementById("modalAssistant");
     // console.log(modalA)
@@ -59,7 +56,6 @@ export default function Home() {
   };
 
   // Open Assistant details modal
-
   function OpenModal(idAssistant) {
     var modal = document.getElementById("modal" + idAssistant);
     // console.log(modal)
@@ -67,7 +63,6 @@ export default function Home() {
   };
 
   // Close Assistant details modal
-
   function CloseModal(idAssistant) {
     var modal = document.getElementById("modal" + idAssistant);
     // console.log(id)
@@ -75,7 +70,6 @@ export default function Home() {
   };
 
   // Close Modal to create assistant
-
   function CloseModalAssistant() {
     var modalA = document.getElementById("modalAssistant");
     // console.log(id)
