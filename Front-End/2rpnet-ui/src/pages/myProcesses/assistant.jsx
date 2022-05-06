@@ -9,6 +9,9 @@ import bolinhas from "../../assets/img/Bolinhas.svg"
 import Navbar from '../../components/menu/Navbar'
 import Footer from '../../components/footer/footer'
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 
 import Procedures from '../../services/process';
 
@@ -18,9 +21,11 @@ export default function Assistant() {
 
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
-    const [value, setValue] = useState(0);
+    // const [value, setValue] = useState(0);
+    const [isSaving, setIsSaving] = useState(false);
+    const [isExecuting, setIsExecuting] = useState(false);
 
-    var idAssistant = 6;
+    var idAssistant = 7;
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
@@ -43,6 +48,7 @@ export default function Assistant() {
     };
 
     const Save = () => {
+        setIsSaving(true);
         //Get the cards inside the dropzone and number them by order.
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
@@ -75,31 +81,46 @@ export default function Assistant() {
                     console.log("before if");
                     if (response.status === 201) {
                         console.log("after if");
-                        // console.log(response.json());
+                        toast.success('o procedimento ' + child.textContent + 'foi salvo');
+                    } else {
+                        toast.error("O salvamento deu errado no " + child.textContent + " :/");
                     }
+                })
+                .catch((erro) => {
+                    console.log(erro);
+                    toast.error("Alguma coisa deu errado :/");
                 })
 
         }
+        
+        setIsSaving(false);
 
     }
 
-    function Execute(){
-        var myURL = "/api/AssistantProcedure/ManipulateScript/" + idAssistant;
-        var myBody = "";
+    function Execute() {
+        setIsExecuting(true);
+
+        var myURL = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
 
         fetch(myURL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: myBody
+            headers: { 'Content-Type': 'application/json' }
         })
             .then((response) => {
                 console.log("before if");
                 if (response.status === 201) {
-                    console.log("after if");
-                    // console.log(response.json());
+                    console.log("FUNCIONOU");
+                    toast.success("O resultado foi enviado para seu email");
+                    setIsExecuting(false);
+                } else{
+                    toast.error("A execução deu errado :/");
+                    setIsExecuting(false);
                 }
             })
-
+            .catch((erro) => {
+                console.log(erro)
+                toast.error("A execução deu errado :/");
+            })
     }
 
     function configDragnDrop() {
@@ -179,7 +200,7 @@ export default function Assistant() {
     return (
         <div>
             <header className="header container">
-                <h1 className="header__text">Assistant</h1>
+                <h1 className="header__text">Assistant {idAssistant}</h1>
             </header>
             <main>
                 <Navbar />
@@ -234,11 +255,24 @@ export default function Assistant() {
                             <h3 className="board_title">Fluxo</h3>
                             <div id="flow" className="dropzone">
                             </div>
-                            <button className="boards__button boards__button--small" onClick={() => Save()}><FontAwesomeIcon icon={faFloppyDisk} size="lg" /><p className="button__text">Salvar</p></button>
-                            <button className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faCirclePlay} size="lg" /> <p className="button__text">Executar assistente</p></button>
+                            {
+                                isSaving === false ? (
+                                    <button className="boards__button boards__button--small" onClick={() => Save()}><FontAwesomeIcon icon={faFloppyDisk} size="lg" /><p className="button__text">Salvar</p></button>
+                                ) : (
+                                    <button disabled className="boards__button boards__button--small" onClick={() => Save()}><FontAwesomeIcon icon={faFloppyDisk} size="lg" /><p className="button__text">Salvando...</p></button>
+                                )
+                            }
+                            {
+                                isExecuting === false ? (
+                                    <button className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faCirclePlay} size="lg" /> <p className="button__text">Executar assistente</p></button>
+                                ) : (
+                                    <button disabled className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faCirclePlay} size="lg" /> <p className="button__text">Executando...</p></button>
+                                )
+                            }
                         </div>
                     </div>
                 </div>
+                <ToastContainer />
             </main>
             <Footer className="footer" />
         </div>
