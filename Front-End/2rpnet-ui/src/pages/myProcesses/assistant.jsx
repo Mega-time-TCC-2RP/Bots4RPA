@@ -48,7 +48,6 @@ export default function Assistant() {
     };
 
     const Save = () => {
-        setIsSaving(true);
         //Get the cards inside the dropzone and number them by order.
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
@@ -58,6 +57,7 @@ export default function Assistant() {
 
 
         for (let index = 0; index <= children.length; index++) {
+            setIsSaving(true);
             var child = children[index];
 
             var splited = child.id.split(";");
@@ -89,11 +89,14 @@ export default function Assistant() {
                 .catch((erro) => {
                     console.log(erro);
                     toast.error("Alguma coisa deu errado :/");
+                    setIsSaving(false);
                 })
+
+            setIsSaving(false);
 
         }
         
-        setIsSaving(false);
+        
 
     }
 

@@ -18,8 +18,8 @@ import { useNavigate } from 'react-router-dom'
 import Header from '../../components/header/header'
 
 //items
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+// import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+// import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 
 //Components:
@@ -101,10 +101,10 @@ function App() {
             </form>
             <form className="nao">
               <div className="movieRow-left">
-                <NavigateBeforeIcon style={{ fontSize: 150 }} />
+                {/* <NavigateBeforeIcon style={{ fontSize: 150 }} /> */}
               </div>
               <div className="movieRow-right">
-                <NavigateNextIcon style={{ fontSize: 150 }} />
+                {/* <NavigateNextIcon style={{ fontSize: 150 }} /> */}
               </div>
               <div className="card1">
                 <img src={Azul_Home} className="card1-img" />
