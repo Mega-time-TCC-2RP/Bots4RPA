@@ -1,4 +1,5 @@
 ﻿using _2RPNET_API.Domains;
+using _2RPNET_API.ViewModels;
 using System.Collections.Generic;
 
 namespace _2RPNET_API.Interfaces
@@ -16,6 +17,6 @@ namespace _2RPNET_API.Interfaces
 
         void Delete(int IdAssistant);
 
-        void ChangeVerification(int IdAssistant, string[] AssistantProcedure);
+        void ChangeVerification(int IdAssistant, ArrayViewModel ArrayViewModel);
     }
 }

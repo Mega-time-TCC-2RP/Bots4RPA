@@ -1,6 +1,7 @@
 ﻿using _2RPNET_API.Context;
 using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
+using _2RPNET_API.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace _2RPNET_API.Repositories
             Ctx = appContext;
         }
 
-        public void ChangeVerification(int IdAssistant, string[] AssistantProcedure)
+        public void ChangeVerification(int IdAssistant, ArrayViewModel ArrayViewModel)
         {
 
             Assistant AssistantSought = SearchByID(IdAssistant);
@@ -35,41 +36,41 @@ namespace _2RPNET_API.Repositories
                         item.IdAssistant = AssistantSought.IdAssistant;
                     }
 
-                    if (item.ProcedurePriority != Convert.ToInt32(AssistantProcedure[2]))
+                    if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
                     {
-                        item.ProcedurePriority = Convert.ToInt32(AssistantProcedure[2]);
+                        item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
                     }
 
-                    if (item.ProcedureName != AssistantProcedure[3])
+                    if (item.ProcedureName != ArrayViewModel.ProcedureName)
                     {
-                        item.ProcedureName = AssistantProcedure[3];
+                        item.ProcedureName = ArrayViewModel.ProcedureName;
                     }
 
-                    if (item.ProcedureDescription != AssistantProcedure[4])
+                    if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
                     {
-                        item.ProcedureDescription = AssistantProcedure[4];
+                        item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
                     }
 
                     Ctx.Assistants.Update(AssistantSought);
                 }
             }
 
-            //foreach (var item in AssistantList)
-            //{
-            //    if (item.IdAssistant != AssistantSought.IdAssistant)
-            //    {
-            //       if (item.ProcedurePriority != Convert.ToInt32(AssistantProcedure[2]))
-            //       {
-            //            if (item.ProcedureName != AssistantProcedure[3])
-            //            {
-            //              if (item.ProcedureDescription != AssistantProcedure[4])
-            //              {
-            //                    Ctx.AssistantProcedures.Add(AssistantProcedure[]);
-            //              }
-            //            }
-            //       }
-            //    }
-            //}
+            foreach (var item in AssistantList)
+            {
+                if (item.IdAssistant != AssistantSought.IdAssistant)
+                {
+                    if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+                    {
+                        if (item.ProcedureName != ArrayViewModel.ProcedureName)
+                        {
+                            if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
+                            {
+                                Ctx.Add(ArrayViewModel);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public void Create(Assistant NewAssistant)
