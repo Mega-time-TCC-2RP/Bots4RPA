@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,10 +20,12 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         // Vincular a Context
         private readonly IPlayerRepository ctx;
+        private readonly IEmployeeRepository Ectx;
 
-        public PlayersController(IPlayerRepository context)
+        public PlayersController(IPlayerRepository context, IEmployeeRepository contextEmployee)
         {
             ctx = context;
+            Ectx = contextEmployee;
         }
 
         // Metodo GET - Listagem
@@ -30,23 +33,29 @@ namespace _2rpnet.rpa.webAPI.Controllers
         [Authorize(Roles = "1,2")]
         public IActionResult ReadAll()
         {
+            int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+            int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+            if (UserRole == 2)
+            {
+                return Ok(ctx.ReadAll().Where(P => P.IdEmployeeNavigation.IdCorporation == Ectx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation));
+            }
             return Ok(ctx.ReadAll());
         }
 
         // Metodo GET por ID - Procurar pela ID
-        [HttpGet("{id}")]
-        [Authorize(Roles = "1,2")]
-        public IActionResult SearchByID(int id)
-        {
-            var player = ctx.SearchByID(id);
+        //[HttpGet("{id}")]
+        //[Authorize(Roles = "1,2")]
+        //public IActionResult SearchByID(int id)
+        //{
+        //    var player = ctx.SearchByID(id);
 
-            if (player == null)
-            {
-                return NotFound();
-            }
+        //    if (player == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(player);
-        }
+        //    return Ok(player);
+        //}
 
 
         // Metodo PUT - Atualizacao

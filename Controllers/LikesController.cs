@@ -32,35 +32,35 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo GET - Listagem
-        [Authorize(Roles = "1, 2, 3")]
-        [HttpGet]
-        public IActionResult ReadAll()
-        {
-            return Ok(ctx.ReadAll());
-        }
+        //[Authorize(Roles = "1, 2, 3")]
+        //[HttpGet]
+        //public IActionResult ReadAll()
+        //{
+        //    return Ok(ctx.ReadAll());
+        //}
 
         // Metodo GET por ID - Procurar pela ID
-        [Authorize(Roles = "1, 2, 3")]
-        [HttpGet("{id}")]
-        public IActionResult SearchByID(int id)
-        {
-            try
-            {
-                var libraryTrophy = ctx.SearchByID(id);
+        //[Authorize(Roles = "1, 2, 3")]
+        //[HttpGet("{id}")]
+        //public IActionResult SearchByID(int id)
+        //{
+        //    try
+        //    {
+        //        var libraryTrophy = ctx.SearchByID(id);
 
-                if (libraryTrophy == null)
-                {
-                    return NotFound();
-                }
+        //        if (libraryTrophy == null)
+        //        {
+        //            return NotFound();
+        //        }
 
-                return Ok(libraryTrophy);
-            }
-            catch (Exception error)
-            {
-                return BadRequest(error);
-                throw;
-            }
-        }
+        //        return Ok(libraryTrophy);
+        //    }
+        //    catch (Exception error)
+        //    {
+        //        return BadRequest(error);
+        //        throw;
+        //    }
+        //}
 
         // Metodo PUT - Atualizacao
 
@@ -97,7 +97,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                if (ctx.ReadAll().FirstOrDefault(L => L.IdPost == like.IdPost && L.IdPlayer == like.IdPlayer) != null)
+                {
+                    return BadRequest("O usuário já curtiu este post!");
+                }
                 like.IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
+                
                 Like postedLike = ctx.Create(like);
 
                 return Ok(postedLike);

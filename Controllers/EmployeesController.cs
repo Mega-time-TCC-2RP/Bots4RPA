@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,23 +31,29 @@ namespace _2rpnet.rpa.webAPI.Controllers
         [Authorize(Roles = "1,2")]
         public IActionResult ReadAll()
         {
+            int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+            int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+            if (UserRole == 2)
+            {
+                return Ok(ctx.ReadAll().Where(E => E.IdCorporation == ctx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation));
+            }
             return Ok(ctx.ReadAll());
         }
 
-        // Metodo GET por ID - Procurar pela ID
-        [HttpGet("{id}")]
-        [Authorize(Roles = "1,2")]
-        public IActionResult SearchByID(int id)
-        {
-            var employee = ctx.SearchByID(id);
+        //// Metodo GET por ID - Procurar pela ID
+        //[HttpGet("{id}")]
+        //[Authorize(Roles = "1,2")]
+        //public IActionResult SearchByID(int id)
+        //{
+        //    var employee = ctx.SearchByID(id);
 
-            if (employee == null)
-            {
-                return NotFound();
-            }
+        //    if (employee == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(employee);
-        }
+        //    return Ok(employee);
+        //}
 
         // Metodo PUT - Atualizacao
 

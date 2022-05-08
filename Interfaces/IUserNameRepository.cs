@@ -14,5 +14,6 @@ namespace _2rpnet.rpa.webAPI.Interfaces
         void EncryptPassword(UserName _user);
         UserName GetSkinsAndTrophiesByUser(int idUser);
         void ValidateUser(UserName queryUser);
+        int GoogleLogin(int googleId);
     }
 }

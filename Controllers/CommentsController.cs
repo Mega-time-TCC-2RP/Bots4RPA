@@ -22,36 +22,40 @@ namespace _2rpnet.rpa.webAPI.Controllers
         private readonly ICommentRepository ctx;
         private readonly IEmployeeRepository Ectx;
         private readonly IPlayerRepository Pctx;
+        private readonly IPostRepository Postctx;
+        private readonly IUserNameRepository Uctx;
 
-        public CommentsController(ICommentRepository context, IEmployeeRepository contextEmployee, IUserNameRepository contextUser, IPlayerRepository contextPlayer)
+        public CommentsController(ICommentRepository context, IEmployeeRepository contextEmployee, IUserNameRepository contextUser, IPlayerRepository contextPlayer, IPostRepository contextPost)
         {
             ctx = context;
             Ectx = contextEmployee;
+            Uctx = contextUser;
             Pctx = contextPlayer;
+            Postctx = contextPost;
         }
 
         // Metodo GET - Listagem
-        [Authorize(Roles = "1, 2, 3")]
-        [HttpGet]
-        public IActionResult ReadAll()
-        {
-            return Ok(ctx.ReadAll());
-        }
+        //[Authorize(Roles = "1, 2, 3")]
+        //[HttpGet]
+        //public IActionResult ReadAll()
+        //{
+        //    return Ok(ctx.ReadAll());
+        //}
 
-        // Metodo GET por ID - Procurar pela ID
-        [Authorize(Roles = "1,2,3")]
-        [HttpGet("{id}")]
-        public IActionResult SearchByID(int id)
-        {
-            var comment = ctx.SearchByID(id);
+        //// Metodo GET por ID - Procurar pela ID
+        //[Authorize(Roles = "1,2,3")]
+        //[HttpGet("{id}")]
+        //public IActionResult SearchByID(int id)
+        //{
+        //    var comment = ctx.SearchByID(id);
 
-            if (comment == null)
-            {
-                return NotFound();
-            }
+        //    if (comment == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(comment);
-        }
+        //    return Ok(comment);
+        //}
 
         // Metodo PUT - Atualizacao
         [Authorize(Roles = "1,2,3")]
@@ -60,11 +64,18 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
                 comment.IdComment = id;
                 if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == comment.IdPlayer).IdEmployee).IdUser != Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value) && Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value) == 3)
                 {
                     return Forbid("O usuário comum só pode atualizar seus comentários");
                 }
+                else if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == comment.IdPlayer).IdEmployee).IdCorporation != Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).IdEmployee).IdCorporation)
+                {
+                    return Forbid("O administrador empresarial só pode alterar comentários de usuários da sua empresa");
+                }
+
                 Comment UpdatedComment = ctx.Update(comment);
                 if (UpdatedComment == null)
                 {
@@ -85,7 +96,13 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
                 comment.IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
+                if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == Postctx.SearchByID(comment.IdPost).IdPlayer).IdEmployee).IdCorporation != Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).IdEmployee).IdCorporation)
+                {
+                    return Forbid("O usuário só pode comentar em posts de outros usuários de sua própria empresa");
+                }
                 Comment ComentarioRetorno = ctx.Create(comment);
 
                 return Ok(ComentarioRetorno);
@@ -104,6 +121,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
                 var comment = ctx.SearchByID(id);
                 if (comment == null)
                 {
@@ -114,6 +133,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == comment.IdPlayer).IdEmployee).IdUser != Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value) && Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value) == 3)
                     {
                         return Forbid("O usuário comum só pode excluir seus comentários");
+                    }
+                    else if (Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == comment.IdPlayer).IdEmployee).IdCorporation != Ectx.SearchByID(Pctx.ReadAll().FirstOrDefault(p => p.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).IdEmployee).IdCorporation && UserRole == 2)
+                    {
+                        return Forbid("O administrador empresarial só pode alterar comentários de usuários da sua empresa");
                     }
                     ctx.Delete(comment);
                     return NoContent();

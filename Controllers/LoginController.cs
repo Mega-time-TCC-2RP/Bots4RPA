@@ -83,6 +83,23 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
         }
 
+        //[HttpGet("{GoogleId}")]
+        //public IActionResult GoogleLoginCheck(int GoogleId)
+        //{
+        //    try
+        //    {
+        //        if ()
+        //        {
+
+        //        }
+        //    }
+        //    catch (Exception error)
+        //    {
+        //        return BadRequest(error);
+        //        throw;
+        //    }
+        //}
+
         //[HttpPost]
         //public IActionResult Login(LoginViewModel UserLogin)
         //{

@@ -36,19 +36,19 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo GET por ID - Procurar pela ID
-        [Authorize(Roles = "1, 2, 3")]
-        [HttpGet("{id}")]
-        public IActionResult SearchByID(int id)
-        {
-            var skin = ctx.SearchByID(id);
+        //[Authorize(Roles = "1, 2, 3")]
+        //[HttpGet("{id}")]
+        //public IActionResult SearchByID(int id)
+        //{
+        //    var skin = ctx.SearchByID(id);
 
-            if (skin == null)
-            {
-                return NotFound(new { msg = "Não encontrado" });
-            }
+        //    if (skin == null)
+        //    {
+        //        return NotFound(new { msg = "Não encontrado" });
+        //    }
 
-            return Ok(skin);
-        }
+        //    return Ok(skin);
+        //}
 
         // Metodo PUT - Atualizacao
         [Authorize(Roles = "1")]

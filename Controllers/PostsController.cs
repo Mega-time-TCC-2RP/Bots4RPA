@@ -35,23 +35,29 @@ namespace _2rpnet.rpa.webAPI.Controllers
         [HttpGet]
         public IActionResult ReadAll()
         {
+            int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+            int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+            if (UserRole == 2 || UserRole == 3)
+            {
+                return Ok(ctx.ReadAll().Where(P => Ectx.ReadAll().FirstOrDefault(E => E.IdUser == P.IdPlayerNavigation.IdEmployeeNavigation.IdUserNavigation.IdUser).IdCorporation == Ectx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation));
+            }
             return Ok(ctx.ReadAll());
         }
 
         // Metodo GET por ID - Procurar pela ID
-        [Authorize(Roles = "1, 2, 3")]
-        [HttpGet("{id}")]
-        public IActionResult SearchByID(int id)
-        {
-            var post = ctx.SearchByID(id);
+        //[Authorize(Roles = "1, 2, 3")]
+        //[HttpGet("{id}")]
+        //public IActionResult SearchByID(int id)
+        //{
+        //    var post = ctx.SearchByID(id);
 
-            if (post == null)
-            {
-                return NotFound(new { msg = "Não encontrado" });
-            }
+        //    if (post == null)
+        //    {
+        //        return NotFound(new { msg = "Não encontrado" });
+        //    }
 
-            return Ok(post);
-        }
+        //    return Ok(post);
+        //}
 
         // Metodo PUT - Atualizacao
         [Authorize(Roles = "1,2,3")]
@@ -60,6 +66,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
                 post.IdPost = id;
                 post.IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
                 int UserType = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
@@ -92,6 +99,11 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     Upload.RemoveFile(UploadResult);
                     return Forbid("Usuários comuns só podem atualizar seus próprios posts");
+                }
+                else if (UserType == 2 && Ectx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation != Ectx.ReadAll().FirstOrDefault(E => E.IdUser == ctx.SearchByID(id).IdPlayerNavigation.IdEmployeeNavigation.IdUserNavigation.IdUser).IdCorporation)
+                {
+                    Upload.RemoveFile(UploadResult);
+                    return Forbid("Administradores só podem atualizar posts dos funcionários de sua empresa");
                 }
 
 
@@ -159,6 +171,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
                 var post = ctx.SearchByID(id);
                 int IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
                 int UserType = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
@@ -169,6 +182,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 else if (UserType == 3 && post.IdPlayer != IdPlayer)
                 {
                     Forbid("O usuário comum só pode deletar seus próprios posts");
+                }
+                else if (UserType == 2 && Ectx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation != Ectx.ReadAll().FirstOrDefault(E => E.IdUser == ctx.SearchByID(id).IdPlayerNavigation.IdEmployeeNavigation.IdUserNavigation.IdUser).IdCorporation)
+                {
+                    return Forbid("Administradores só podem atualizar posts dos funcionários de sua empresa");
                 }
 
                 Upload.RemoveFile(post.PostImage);

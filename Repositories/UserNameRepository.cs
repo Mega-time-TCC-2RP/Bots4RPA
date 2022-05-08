@@ -176,5 +176,10 @@ namespace _2rpnet.rpa.webAPI.Repositories
             ctx.UserNames.Update(queryUser);
             ctx.SaveChanges();
         }
+
+        public int GoogleLogin(int googleId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

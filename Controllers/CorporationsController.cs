@@ -50,19 +50,19 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo GET por ID - Procurar pela ID
-        [HttpGet("{id}")]
-        [Authorize(Roles = "1, 2, 3")]
-        public IActionResult SearchByID(int id)
-        {
-            var corporation = ctx.SearchByID(id);
+        //[HttpGet("{id}")]
+        //[Authorize(Roles = "1, 2, 3")]
+        //public IActionResult SearchByID(int id)
+        //{
+        //    var corporation = ctx.SearchByID(id);
 
-            if (corporation == null)
-            {
-                return NotFound();
-            }
+        //    if (corporation == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(corporation);
-        }
+        //    return Ok(corporation);
+        //}
 
         // Metodo PUT - Atualizacao
         [HttpPut("{id}")]
@@ -75,17 +75,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
                 corporate.IdCorporation = id;
 
-                if (File == null)
-                    return BadRequest("É necessário enviar um arquivo de imagem válido!");
-
                 string[] FileTypes = { "jpg", "png", "jpeg", "gif" };
                 string UploadResult = Upload.UploadFile(File, FileTypes);
-                if (UploadResult == "")
+                if (UploadResult == "" && File != null)
                 {
                     return BadRequest("Arquivo não encontrado");
                 }
 
-                if (UploadResult == "Extensão não permitida")
+                if (UploadResult == "Extensão não permitida" && File != null)
                 {
                     return BadRequest("Extensão de arquivo não permitida");
                 }
@@ -97,10 +94,17 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 else if(UserRole == 2 && UserId != Ectx.ReadAll().Where(E => E.IdCorporation == QueryCorporation.IdCorporation).FirstOrDefault(E => E.Confirmation == true).IdUser){
                     Upload.RemoveFile(UploadResult);
-                    return Forbid("Apenas o administrador dono da empresa pode alterar sesus dados");
+                    return Forbid("Apenas o administrador dono da empresa pode alterar seus dados");
                 }
                 corporate.IdCorporation = id;
-                corporate.CorporatePhoto = UploadResult;
+                if (File != null)
+                {
+                    corporate.CorporatePhoto = UploadResult;
+                }
+                else
+                {
+                    corporate.CorporatePhoto = "padraoEmpresa.png";
+                }
                 Upload.RemoveFile(QueryCorporation.CorporatePhoto);
                 ctx.Update(corporate);
                 return NoContent();
@@ -122,12 +126,12 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 string CorpUploadResult = Upload.UploadFile(CorpPhoto, FileTypes);
                 string UserUploadResult = Upload.UploadFile(CorpUser, FileTypes);
 
-                if (CorpUploadResult == "")
+                if (CorpUploadResult == "" && CorpPhoto != null)
                 {
                     return BadRequest("Arquivo não encontrado");
                 }
 
-                if (CorpUploadResult == "Extensão não permitida")
+                if (CorpUploadResult == "Extensão não permitida" && CorpPhoto != null)
                 {
                     return BadRequest("Extensão de arquivo não permitida");
                 }
@@ -135,13 +139,13 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     CorpUploadResult = null;
                 
 
-                if (UserUploadResult == "")
+                if (UserUploadResult == "" && CorpUser != null)
                 {
                     Upload.RemoveFile(CorpUploadResult);
                     return BadRequest("Arquivo não encontrado");
                 }
 
-                if (UserUploadResult == "Extensão não permitida")
+                if (UserUploadResult == "Extensão não permitida" && CorpUser != null)
                 {
                     Upload.RemoveFile(CorpUploadResult);
                     return BadRequest("Extensão de arquivo não permitida");
@@ -154,8 +158,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
                 if (Octx.ReadAll().FirstOrDefault(O => O.IdOffice == corporateForm.IdOffice) == null)
                 {
-                    Upload.RemoveFile(CorpUploadResult);
-                    Upload.RemoveFile(UserUploadResult);
+                    if(CorpUser != null)
+                        Upload.RemoveFile(CorpUploadResult);
+                    if(CorpUser != null)
+                        Upload.RemoveFile(UserUploadResult);
                     return NotFound("Cargo inválido");
                 }
 
@@ -234,6 +240,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).ToList();
                     List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).ToList();
                     List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).ToList();
+
                     foreach (var item2 in UserPosts)
                     {
                         PostCtx.Delete(item2);
