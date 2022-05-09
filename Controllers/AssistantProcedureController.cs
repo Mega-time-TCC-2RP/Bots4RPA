@@ -124,17 +124,10 @@ namespace _2RPNET_API.Controllers
         {
             try
             {
-                AssistantProcedure AssistantSought = _repository.SearchByName(ProcedureName);
+                //AssistantProcedure AssistantSought = _repository.SearchByName(ProcedureName);
 
-                if (AssistantSought != null)
-                {
-                    return Ok(_repository.SearchByName(ProcedureName));
-                    //return Ok(AssistantSought.AssistantProcedures.ToList());
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                _repository.ChangeVerification(ProcedureName,ArrayViewModel);
+                return Ok();
 
             }
             catch (Exception Ex)

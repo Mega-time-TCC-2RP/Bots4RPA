@@ -74,76 +74,43 @@ namespace _2RPNET_API.Repositories
             // fazer verficação
             List<AssistantProcedure> ProceduresList = new List<AssistantProcedure>();
 
-        //    if (AssistantSought != null)
-        //    {
-        //        foreach (var item in ProceduresList)
-        //        {
-        //            if (item != null)
-        //            {
-        //                if (item.ProcedureName == ArrayViewModel.ProcedureName)
-        //                {
-        //                    if (item.IdAssistant != AssistantSought.IdAssistant)
-        //                    {
-        //                        item.IdAssistant = AssistantSought.IdAssistant;
-        //                    }
+            if (AssistantSought != null)
+            {
+                foreach (var item in ProceduresList)
+                {
+                    if (item != null)
+                    {
+                        if (item.ProcedureName == ArrayViewModel.ProcedureName)
+                        {
+                            if (item.IdAssistant != AssistantSought.IdAssistant)
+                            {
+                                item.IdAssistant = AssistantSought.IdAssistant;
+                            }
 
-        //                    if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
-        //                    {
-        //                        item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
-        //                    }
+                            if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+                            {
+                                item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                            }
 
-        //                    if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
-        //                    {
-        //                        item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
-        //                    }
+                            if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
+                            {
+                                item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
+                            }
 
-        //                    ctx.AssistantProcedures.Update(AssistantSought);
-        //                }
+                            //if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
+                            //{
+                            //    item.ProcedureValue = ArrayViewModel.ProcedureValue;
+                            //} 
 
-        //            }
-        //        }
-
-        //        //foreach (var item in ProceduresList)
-        //        //{
-        //        //    if (item != null)
-        //        //    {
-        //        //        if (item.ProcedureName == ArrayViewModel.ProcedureName)
-        //        //        {
-        //        //            if (item.IdAssistant == AssistantSought.IdAssistant)
-        //        //            {
-        //        //                if (item.ProcedurePriority == ArrayViewModel.ProcedurePriority)
-        //        //                {
-        //        //                    if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
-        //        //                    {
-        //        //                        //return ok
-        //        //                    }
-        //        //                }
-        //        //            }
-        //        //        }
-
-        //        //    }
-        //        //}
-        //    }
-
-        //    //if (AssistantSought == null)
-        //    //{
-        //    //    foreach (var item in AssistantList)
-        //    //    {
-        //    //        if (item.IdAssistant != AssistantSought.IdAssistant)
-        //    //        {
-        //    //            if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
-        //    //            {
-        //    //                if (item.ProcedureName != ArrayViewModel.ProcedureName)
-        //    //                {
-        //    //                    if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
-        //    //                    {
-        //    //                        ctx.Add(ArrayViewModel);
-        //    //                    }
-        //    //                }
-        //    //            }
-        //    //        }
-        //    //    }
-        //    //}
+                            ctx.AssistantProcedures.Update(AssistantSought);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                ctx.AssistantProcedures.Add(AssistantSought);
+            }
         }
 
     }
