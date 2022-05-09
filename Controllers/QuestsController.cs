@@ -64,7 +64,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
                 task.IdQuest = id;
                 Quest QueryTask = ctx.SearchByID(id);
                 if (QueryTask == null)
@@ -116,7 +116,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
 
                 var task = ctx.SearchByID(id);
                 if (task == null)
@@ -148,7 +148,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
                 Quest QueryQuest = ctx.SearchByID(idQuest);
                 if (QueryQuest == null)
                 {

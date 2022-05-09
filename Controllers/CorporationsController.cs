@@ -72,7 +72,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
                 corporate.IdCorporation = id;
 
                 string[] FileTypes = { "jpg", "png", "jpeg", "gif" };
@@ -224,7 +224,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
                 var corporate = ctx.SearchByID(id);
                 if (corporate == null)
                 {
@@ -303,7 +303,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
 
                 List<Employee> CorpsEmployees = Ectx.ReadAll().Where(E => E.Confirmation != true).ToList();
                 foreach (var item in CorpsEmployees)

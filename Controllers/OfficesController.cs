@@ -36,25 +36,25 @@ namespace _2rpnet.rpa.webAPI.Controllers
         //[HttpGet("{id}")]
         //public IActionResult SearchByID(int id)
         //{
-        //    var role = ctx.SearchByID(id);
+        //    var Role = ctx.SearchByID(id);
 
-        //    if (role == null)
+        //    if (Role == null)
         //    {
         //        return NotFound(new { msg = "Não encontrado" });
         //    }
 
-        //    return Ok(role);
+        //    return Ok(Role);
         //}
 
         // Metodo PUT - Atualizacao
         [HttpPut("{id}")]
         [Authorize(Roles = "1")]
-        public IActionResult Update(int id, Office role)
+        public IActionResult Update(int id, Office Role)
         {
             try
             {
-                role.IdOffice = id;
-                Office UpdateRole = ctx.Update(role);
+                Role.IdOffice = id;
+                Office UpdateRole = ctx.Update(Role);
                 if (UpdateRole == null)
                 {
                     return NotFound(new { msg = "Cargo não encontrado" });
@@ -70,13 +70,13 @@ namespace _2rpnet.rpa.webAPI.Controllers
         // Metodo POST - Cadastro
         [HttpPost]
         [Authorize(Roles = "1")]
-        public IActionResult Post(Office role)
+        public IActionResult Post(Office Role)
         {
             try
             {
-                ctx.Create(role);
+                ctx.Create(Role);
 
-                return Ok(role);
+                return Ok(Role);
             }
             catch (Exception error)
             {
@@ -92,14 +92,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
-                var role = ctx.SearchByID(id);
-                if (role == null)
+                var Role = ctx.SearchByID(id);
+                if (Role == null)
                 {
                     return NotFound(new { msg = "Cargo não encontrada ou deletada" });
                 }
                 else
                 {
-                    ctx.Delete(role);
+                    ctx.Delete(Role);
                     return NoContent();
                 }
 

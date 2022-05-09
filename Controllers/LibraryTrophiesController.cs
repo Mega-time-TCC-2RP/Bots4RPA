@@ -38,7 +38,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         public IActionResult ReadAll()
         {
             int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-            int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+            int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
             if (UserRole == 2)
             {
                 return Ok(ctx.ReadAll().Where(Ls => Pctx.ReadAll().FirstOrDefault(P => P.IdPlayer == Ls.IdPlayer).IdEmployeeNavigation.IdCorporation == Ectx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation));
@@ -129,7 +129,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
                 LibraryTrophy QueryLt = ctx.SearchByID(id);
                 if (QueryLt == null)
                 {

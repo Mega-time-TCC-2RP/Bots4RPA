@@ -36,10 +36,11 @@ namespace _2rpnet.rpa.webAPI.Controllers
         public IActionResult ReadAll()
         {
             int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-            int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+            int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
             if (UserRole == 2 || UserRole == 3)
             {
-                return Ok(ctx.ReadAll().Where(P => Ectx.ReadAll().FirstOrDefault(E => E.IdUser == P.IdPlayerNavigation.IdEmployeeNavigation.IdUserNavigation.IdUser).IdCorporation == Ectx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation));
+                List<Post> Posts = ctx.ReadAll().Where(P => Ectx.ReadAll().FirstOrDefault(E => E.IdUser == P.IdPlayerNavigation.IdEmployeeNavigation.IdUserNavigation.IdUser).IdCorporation == Ectx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation).ToList();
+                return Ok(Posts);
             }
             return Ok(ctx.ReadAll());
         }
@@ -69,7 +70,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
                 post.IdPost = id;
                 post.IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
-                int UserType = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserType = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
 
                 #region Upload da Imagem com extensões permitidas apenas
                 if (File == null)
@@ -174,7 +175,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
                 var post = ctx.SearchByID(id);
                 int IdPlayer = Ectx.ReadAll().FirstOrDefault(employee => employee.IdUser == Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value)).Players.First().IdPlayer;
-                int UserType = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserType = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
                 if (post == null)
                 {
                     return NotFound(new { msg = "Post não encontrado ou deletado" });

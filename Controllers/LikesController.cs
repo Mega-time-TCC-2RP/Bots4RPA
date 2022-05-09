@@ -98,7 +98,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "role").Value);
+                int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
                 if (ctx.ReadAll().FirstOrDefault(L => L.IdPost == like.IdPost && L.IdPlayer == like.IdPlayer) != null)
                 {
                     return BadRequest("O usuário já curtiu este post!");

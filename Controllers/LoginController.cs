@@ -54,9 +54,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     new Claim(JwtRegisteredClaimNames.Email, queryUser.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
                     new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
-                    new Claim("role", queryUser.IdUserType.ToString()),
-                    new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString())
-
+                    new Claim("Role", queryUser.IdUserType.ToString()),
+                    new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString()),
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
@@ -122,7 +121,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         //            new Claim(JwtRegisteredClaimNames.Email, queryUser.Email),
         //            new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
         //            new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
-        //            new Claim("role", queryUser.IdUserType.ToString()),
+        //            new Claim("Role", queryUser.IdUserType.ToString()),
 
 
         //        };
