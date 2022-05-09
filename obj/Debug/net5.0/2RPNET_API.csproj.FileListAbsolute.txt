@@ -282,3 +282,5 @@ C:\Users\livia\OneDrive\Desktop\Bots-4RPA\obj\Debug\net5.0\ref\2RPNET_API.dll
 C:\Users\livia\OneDrive\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.xml
 C:\Users\livia\OneDrive\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.pdb
 C:\Users\livia\OneDrive\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.genruntimeconfig.cache
+C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\bin\Debug\net5.0\2RPNET_API.StaticWebAssets.xml
+C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.csproj.AssemblyReference.cache

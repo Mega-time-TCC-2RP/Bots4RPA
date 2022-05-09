@@ -73,12 +73,10 @@ namespace _2RPNET_API.Repositories
             AssistantProcedure AssistantSought = SearchByName(ProcedureName);
             // fazer verficação
             List<AssistantProcedure> ProceduresList = new List<AssistantProcedure>();
-
-            if (AssistantSought != null)
-            {
+            
                 foreach (var item in ProceduresList)
                 {
-                    if (item != null)
+                    if (AssistantSought == item)
                     {
                         if (item.ProcedureName == ArrayViewModel.ProcedureName)
                         {
@@ -105,12 +103,16 @@ namespace _2RPNET_API.Repositories
                             ctx.AssistantProcedures.Update(AssistantSought);
                         }
                     }
-                }
+                    else
+                    {
+                        ctx.AssistantProcedures.Add(AssistantSought);
+                        ctx.SaveChanges();
+                    }
             }
-            else
-            {
-                ctx.AssistantProcedures.Add(AssistantSought);
-            }
+            
+            
+                
+
         }
 
     }

@@ -7496,19 +7496,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\livia\\.nuget\\packages\\": {}
+    "C:\\Users\\46755453862.INFOSCS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\livia\\OneDrive\\Desktop\\Bots-4RPA\\2RPNET_API.csproj",
+      "projectUniqueName": "C:\\Users\\46755453862.INFOSCS\\Desktop\\Bots-4RPA\\2RPNET_API.csproj",
       "projectName": "2RPNET_API",
-      "projectPath": "C:\\Users\\livia\\OneDrive\\Desktop\\Bots-4RPA\\2RPNET_API.csproj",
-      "packagesPath": "C:\\Users\\livia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\livia\\OneDrive\\Desktop\\Bots-4RPA\\obj\\",
+      "projectPath": "C:\\Users\\46755453862.INFOSCS\\Desktop\\Bots-4RPA\\2RPNET_API.csproj",
+      "packagesPath": "C:\\Users\\46755453862.INFOSCS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\46755453862.INFOSCS\\Desktop\\Bots-4RPA\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\livia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\46755453862.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7583,6 +7583,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.16, 5.0.16]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7591,7 +7597,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
