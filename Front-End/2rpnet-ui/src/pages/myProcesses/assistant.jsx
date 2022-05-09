@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "../../assets/css/assistant.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlay, faL } from '@fortawesome/free-solid-svg-icons'
+import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import bolinhas from "../../assets/img/Bolinhas.svg"
 
@@ -270,7 +271,7 @@ export default function Assistant() {
                                 isExecuting === false ? (
                                     <button className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faCirclePlay} size="lg" /> <p className="button__text">Executar assistente</p></button>
                                 ) : (
-                                    <button disabled className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faCirclePlay} size="lg" /> <p className="button__text">Executando...</p></button>
+                                    <button disabled className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faSpinner} size="lg" spin /> <p className="button__text">Executando...</p></button>
                                 )
                             }
                         </div>

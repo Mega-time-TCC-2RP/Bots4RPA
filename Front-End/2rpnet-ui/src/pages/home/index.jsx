@@ -33,16 +33,46 @@ import ModalA from '../../components/modal/ModalAssistant'
 import Footer from '../../components/footer/footer'
 import { render } from "@testing-library/react";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 {/* <Navbar/> */ }
-
 
 export default function Home() {
 
   const [AssistantsList, setAssistantsList] = useState([]);
   const [ExecutionsList, setExecutionsList] = useState([]);
 
+  const [isExecuting, setIsExecuting] = useState(false);
+
+  function Execute(idAssistant) {
+    setIsExecuting(true);
+
+    var myURL = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+
+    fetch(myURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then((response) => {
+        console.log("before if");
+        if (response.status === 201) {
+          console.log("FUNCIONOU");
+          toast.success("O resultado foi enviado para seu email");
+          setIsExecuting(false);
+        } else {
+          toast.error("A execução deu errado :/");
+          setIsExecuting(false);
+        }
+      })
+      .catch((erro) => {
+        console.log(erro)
+        toast.error("A execução deu errado :/");
+        setIsExecuting(false);
+      })
+  }
+
   function GetMyAssistants() {
-    fetch('https://grupo8api.azurewebsites.net/api/Assistants', {
+    fetch('https://2rpnet-rpa.azurewebsites.net/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
@@ -181,7 +211,23 @@ export default function Home() {
                     <div className="card1">
                       <img src={Azul_Home} className="card1-img" />
                       <h5>{assistant.assistantName}</h5>
-                      <PlayIcon />
+                      {
+                        isExecuting === false ? (
+                          <button onClick={(event) => {
+                            event.preventDefault()
+                            Execute(assistant.idAssistant)
+                          }}>
+                          <PlayIcon />
+                          </button>
+                        ) : (
+                          <button disabled onClick={(event) => {
+                            event.preventDefault()
+                            Execute(assistant.idAssistant)
+                          }}>
+                          <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                          </button>
+                        )
+                      }
                       <div className="box-details">
                         <button
                           onClick={(event) => {
