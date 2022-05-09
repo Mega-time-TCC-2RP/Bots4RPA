@@ -109,7 +109,6 @@ export default function Login() {
                     })
 
                     .catch(() => {
-                        
                         this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
                         setIsLoading(false);
                     })
