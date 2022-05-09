@@ -146,35 +146,6 @@
             <param name="IdUserName"></param>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.StaticFiles.UploadFile.SaveFile(Microsoft.AspNetCore.Http.IFormFile,System.String[])">
-            <summary>
-            Faz o upload do arquivo para o servidor
-            </summary>
-            <param name="arquivo">Arquivo vindo de um formulário</param>
-            <param name="extensoesPermitidas">Array com extensões permitidas apenas</param>
-            <returns>Nome do arquivo salvo</returns>
-        </member>
-        <member name="M:_2RPNET_API.StaticFiles.UploadFile.ValidarExtensao(System.String[],System.String)">
-            <summary>
-            Valida o uso de enxtensões permitidas apenas
-            </summary>
-            <param name="extensoes">Array de extensões permitidas</param>
-            <param name="nomeDoArquivo">Nome do arquivo</param>
-            <returns>Verdadeiro/Falso</returns>
-        </member>
-        <member name="M:_2RPNET_API.StaticFiles.UploadFile.RemoveFile(System.String)">
-            <summary>
-            Remove um arquivo do servidor
-            </summary>
-            <param name="nomeDoArquivo">Nome do Arquivo</param>
-        </member>
-        <member name="M:_2RPNET_API.StaticFiles.UploadFile.ReturnExtension(System.String)">
-            <summary>
-            Retorna a extensão de um arquivo
-            </summary>
-            <param name="nomeDoArquivo">Nome do Arquivo</param>
-            <returns>Retorna a extensão de um arquivo</returns>
-        </member>
         <member name="M:_2RPNET_API.Utils.UploadImage.UploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String[])">
             <summary>
             Faz o upload do arquivo para o servidor

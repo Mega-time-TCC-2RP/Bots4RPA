@@ -42,30 +42,23 @@ namespace _2RPNET_API.Repositories
         {
 
             List<AssistantProcedure> AssistantProcedures = SearchByAssistant(IdAssistant);
-            string path = $"./StaticFiles/Files/AssistantProcess/Program.cs";
 
-            //ESCREVER
-
-
-            CopyFile.CopyDirectory(@".\StaticFiles\Files\DefaultStructure\", $@".\StaticFiles\Files\AssistantProcess\", true);
-
-
+            string path = $"./StaticFiles/Files/AssistantProcess" + $"{IdAssistant}" + ".cs";
             // Create a file to write to.
             using (StreamWriter sw = File.CreateText(path))
             {
-                sw.WriteLine(@"
-using Microsoft.Playwright;
+                sw.WriteLine($@"using Microsoft.Playwright;
 using System;
 using System.Threading.Tasks;
-class Program
+class AssistantProcess{IdAssistant}" + @"
 {
-public static async Task Main()
+public  async Task Play()
 {
 using var playwright = await Playwright.CreateAsync();
-await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+await using var browser = await playwright.Webkit.LaunchAsync(new BrowserTypeLaunchOptions
 {
     Headless = true,
-    SlowMo = 1000
+    SlowMo = 2000
 });
 var context = await browser.NewContextAsync();
 
@@ -84,38 +77,88 @@ var page = await context.NewPageAsync(); ");
                             break;
 
                         case "Ir para a url":
-                            sw.WriteLine(@"await page.GotoAsync('http://eelslap.com/');");
+                            sw.WriteLine(@"await page.GotoAsync(" + '"' + $"{Procedure.ProcedureValue}" + '"' + ");");
                             break;
 
                         case "Clicar no primeiro link":
-                            
+                            sw.WriteLine(@"await page.ClickAsync" + '"' + "h3.LC20lb.MBeuO.DKV0Md" + '"' + ");");
                             break;
 
                         case "Clicar na aba imagens":
+                            sw.WriteLine(@"await page.Locator(" + '"' + "#hdtb-msb >> text=Imagens" + '"' + ").ClickAsync();");
                             break;
 
                         case "Clicar na primeira imagem":
+                            sw.WriteLine(@" await page.ClickAsync(" + '"' + "img.rg_i.Q4LuWd" + '"' + ");");
                             break;
 
                         case "Clicar na aba noticias":
+                            sw.WriteLine(@"await page.Locator(" + '"' + "#hdtb-msb >> text=Notícias" + '"' + ").ClickAsync();");
                             break;
 
                         case "Clicar na primeira noticia":
+                            sw.WriteLine(@"await page.ClickAsync(" + '"' + "div.mCBkyc.y355M.JQe2Ld.nDgy9d" + '"' + ");");
+                            break;
+
+                        case "Entrar na primeira noticia":
+                            sw.WriteLine(@"var waitForMessageTask = page.WaitForConsoleMessageAsync();");
+                            sw.WriteLine(@" await page.EvaluateAsync(" + '"' + "console.log(document.URL);" + '"' + ");");
+                            sw.WriteLine(@"var message = await waitForMessageTask;
+Console.WriteLine(message.Text);");
                             break;
 
                         default:
                             break;
                     }
                 }
-
-                sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + '"' + "../../Images/Assistant" + IdAssistant + ".png" + '"' + " });}}");
+                sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + '"' + "./StaticFiles/Images/Assistant" + IdAssistant + ".png" + '"' + " });}}");
             }
-
-             Process.Start("./StaticFiles/Files/main.exe");
-
-            System.Threading.Thread.Sleep(20000);
-            string pathD = "./StaticFiles/Files/AssistantProcess/";
-            Directory.Delete(pathD, true);
+            string pathRun = $"./Controllers/Assistant{IdAssistant}Controller.cs";
+            // Create a file to write to.
+            using (StreamWriter sw2 = File.CreateText(pathRun))
+            {
+                sw2.WriteLine(@"
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using _2RPNET_API.Context;
+using _2RPNET_API.Domains;
+using _2RPNET_API.Repositories;
+using _2RPNET_API.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using System.IdentityModel.Tokens.Jwt;
+using System.Diagnostics;
+namespace _2RPNET_API.Controllers
+{
+    [Route(" + '"' + "api/[controller]" + '"' + @$")]
+    [ApiController]
+    public class Assistant{IdAssistant}Controller : ControllerBase" +
+    @"{
+/// <summary>
+/// Method responsible for create a Run process
+/// </summary>
+[HttpPost(" + '"' + "Post" + '"' + @")]
+public IActionResult NewRun()
+{
+    try
+    {"
+        + $"AssistantProcess{IdAssistant} _program = new AssistantProcess{IdAssistant}();" + @"
+        _program.Play();
+        return StatusCode(201);
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(ex);
+    }
+}
+    }
+}");
+            }
+            //Process.Start("./run.bat");
         }
 
         public List<AssistantProcedure> ReadAll()
@@ -132,11 +175,6 @@ var page = await context.NewPageAsync(); ");
         public AssistantProcedure SearchByID(int IdAssistantProcedure)
         {
             return ctx.AssistantProcedures.FirstOrDefault(c => c.IdAprocedure == IdAssistantProcedure);
-        }
-
-        public void SearchOnGoogle(AssistantProcedure assistantProcedure, string page)
-        {
-            throw new System.NotImplementedException();
         }
 
         public void Update(int IdAssistantProcedure, AssistantProcedure NewProcess)

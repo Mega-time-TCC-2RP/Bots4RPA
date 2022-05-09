@@ -11,6 +11,7 @@ using _2RPNET_API.Repositories;
 using _2RPNET_API.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.IdentityModel.Tokens.Jwt;
+using System.Diagnostics;
 
 namespace _2RPNET_API.Controllers
 {
@@ -63,11 +64,13 @@ namespace _2RPNET_API.Controllers
         /// Method responsible for create a Run process
         /// </summary>
         [HttpPost("Post")]
-        public IActionResult NewRun(Run NewRun)
+        public IActionResult NewRun()
         {
             try
             {
-                _repository.Create(NewRun);
+                //_repository.Create(NewRun);
+                Programa _program = new Programa();
+                _program.Play();
                 return StatusCode(201);
             }
             catch (Exception ex)
