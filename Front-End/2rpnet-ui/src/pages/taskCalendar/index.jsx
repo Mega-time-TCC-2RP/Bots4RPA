@@ -2,6 +2,10 @@
 import Navbar from '../../components/menu/Navbar'
 import Header from '../../components/header/header.js'
 
+//libras
+import VLibras from '@djpfs/react-vlibras'
+
+
 // CSS
 import "../../assets/css/style.css"
 import "../../assets/css/pages/taskCalendar.css"
@@ -15,6 +19,7 @@ function App() {
     <div className='pageTaskCalendar'>
       <Header />
       <Navbar />
+      <VLibras />
       <h3 className="pageTitle h3">Painel Organizacional</h3>
       <div className='taskCalendar'>
         <section className="task">

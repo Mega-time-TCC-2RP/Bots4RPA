@@ -35,7 +35,7 @@
 }
 
 .backgroudRegister {
-    background: #FCFCFC;
+    background: var(--ScreenBackground);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,23 +50,37 @@
     width: 100%;
 }
 
+.foreachInput select {
+    border: 1px solid var(--PrimaryColor1);
+    box-sizing: border-box;
+    border-radius: 32px;
+    height: 45px;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.selectContent{
+    padding-left: 5%
+}
+
 .foreachInput .sendPhoto {
     display: flex;
     align-items: center;
     text-align: center;
     padding-left: 0%;
     margin-left: 5%;
-    color: white;
+    color: var(--WHITE);
     border-radius: 32px;
     width: 50%;
 }
 
 .foreachInput .sendPhoto:hover {
-    background: #38538A;
+    background: var(--PrimaryColor2);
 }
 
 .formRegister label {
-    color: #17233C;
+    color: var(--PrimaryColor1);
     line-height: 28px;
     display: flex;
     flex-direction: column;
@@ -75,7 +89,7 @@
 }
 
 .formRegister input {
-    border: 1px solid #8B919D;
+    border: 1px solid var(--PrimaryColor1);
     box-sizing: border-box;
     border-radius: 32px;
     height: 45px;
@@ -83,12 +97,21 @@
 }
 
 #placeholder-text::placeholder {
-    color: rgba(0, 0, 0, 0.3);
+    color: var(--darkShadow);
     font-size: 1.2em;
 }
 
 .placeholder-text::placeholder {
-    color: rgba(0, 0, 0, 0.3);
+    color: var(--darkShadow);
     font-size: 1.2em;
 }
 
+.input {
+    border: 1px solid var(--PrimaryColor1);
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    border-radius: 32px;
+    height: 45px;
+    width: 100%;
+}

@@ -1,0 +1,17 @@
+:root {
+    --PrimaryColor1: #18233d;
+    --PrimaryColor2: #3475bb;
+    --SecundaryColor1: #DE834D;
+    --SecundaryColor2: #F89F65;
+    --CTA1: #3FDA9F;
+    --CTA2: #E41500;
+    --ScreenBackground: #FCFCFC;
+    --ComplementaryColor1: #F2F2F2;
+    --ComplementaryColor2: #6C757D;
+    --ComplementaryColor3: #022041;
+    --ComplementaryColor4: #CFCFD1;
+    --WHITE: #FFF;
+    --BLACK: #000;
+    --lightShadow: rgba(189, 189, 189, 0.25);
+    --darkShadow: rgba(0, 0, 0, 0.25)
+}

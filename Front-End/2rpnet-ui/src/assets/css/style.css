@@ -1,11 +1,28 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
 
 * {
+=======
+.test {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 72px;
+}
+.fundotest{
+    position: absolute;
+    background-color: var(--ScreenBackground);
+    height: 100%;
+    width: 100%;
+}
+*{
+>>>>>>> manha-front-assistant
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    overflow-y: auto;
+    /* box-sizing: border-box;
+    overflow-y: auto; */
 }
+<<<<<<< HEAD
 
 .top-container {
     height: 73vh;
@@ -48,11 +65,40 @@
     width: 11.4em;
     height: 2.6em;
     margin-left: 20px;
+=======
+.top-container{
+    background: var(--ScreenBackground);
+    height: 87vh;
+}
+.button-assistant{
+    background: var(--PrimaryColor2);
+    width: 200px;
+    height: 55px;
+    color: var(--WHITE);
+    border-radius: 64px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    border: none;
+    margin-top: 50px;
+    cursor: pointer;
+    margin-left: 170px;
+}
+.button-assistant:hover{
+    background: var(--PrimaryColor2);
+}
+.top-buttons input{
+    width: 200px;
+    height: 55px;
+    color: var(--WHITE);
+>>>>>>> manha-front-assistant
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
     font-size: 19px;
     line-height: 24px;
+<<<<<<< HEAD
     box-sizing: border-box;
     border-radius: 64px;
     padding: 1.25rem;
@@ -70,6 +116,12 @@
     /* margin-left: 3.125rem;  */
 
     cursor: pointer;
+=======
+    color: var(--ComplementaryColor2);
+    background: var(--WHITE);
+    border: 1px solid var(--ComplementaryColor4);
+    box-sizing: border-box;
+>>>>>>> manha-front-assistant
     border-radius: 64px;
     font-family: 'Montserrat', sans-serif;
     font-size: 19px;
@@ -94,7 +146,7 @@
     line-height: 40px;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--BLACK);
     margin-top: 50px;
     margin-left: 170px;
 }
@@ -109,6 +161,7 @@
 
     /* background-color: #767676; */
 }
+<<<<<<< HEAD
 
 .cards-container {
     width: 100%;
@@ -140,8 +193,18 @@
 
     background: #FFFFFF;
     border: 5px solid #F2F2F2;
+=======
+.card1{
+    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-left: 170px;
+    width: 400px;
+    height: 600px;
+    background: var(--WHITE);
+    border: 5px solid var(--ComplementaryColor1);
+>>>>>>> manha-front-assistant
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 50px;
 
     /* efeito de zoom */
@@ -177,6 +240,14 @@
     font-weight: 500;
     font-size: 25px;
     line-height: 33px;
+<<<<<<< HEAD
+=======
+    display: flex;
+    align-items: center;
+    text-indent: 32px;
+    color: var(--ComplementaryColor3);
+    display: flex;
+>>>>>>> manha-front-assistant
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -195,6 +266,7 @@
     font-size: 18px;
     line-height: 24px;
     align-items: center;
+<<<<<<< HEAD
     border-style: none;
 
     background-color: unset;
@@ -206,12 +278,20 @@
     height: 2.313em;
     /* margin-left: 8.188rem; */
     margin-top: 1.063rem;
+=======
+    color: var(--PrimaryColor2);
+>>>>>>> manha-front-assistant
     cursor: pointer;
     color: #3375BA;
 }
+<<<<<<< HEAD
 
 .body-container {
     background: #ffffff;
+=======
+.body-container{
+    background: var(--WHITE);
+>>>>>>> manha-front-assistant
     height: 87vh;
     overflow-y: hidden;
 }
@@ -219,10 +299,10 @@
 .card-body-content {
     width: 400px;
     height: 550px;
-    background: #FFFFFF;
-    border: 2px solid #F2F2F2;
+    background: var(--WHITE);
+    border: 2px solid var(--ComplementaryColor1);
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
     margin-top: 60px;
     margin-left: 170px;
@@ -252,7 +332,7 @@
     display: flex;
     align-items: center;
     text-align: center;
-    color: #000000;
+    color: var(--BLACK);
     display: flex;
     text-align: center;
     justify-content: center;
@@ -270,7 +350,7 @@
     align-items: center;
     text-align: center;
     text-indent: 32px;
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     text-align: center;
     justify-content: center;
     align-items: left;
@@ -287,16 +367,21 @@
     align-items: center;
     text-align: center;
     text-indent: 32px;
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
     margin-top: 40px;
 }
+<<<<<<< HEAD
 
 .bottom-container {
     background: #F1F1F1;
+=======
+.bottom-container{
+    background: var(--ComplementaryColor1);
+>>>>>>> manha-front-assistant
     height: 170vh;
 }
 
@@ -308,7 +393,7 @@
     line-height: 40px;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--BLACK);
     margin-left: 170px;
     margin-top: 50px;
 }
@@ -316,10 +401,10 @@
 .bottom-posts-content {
     width: 600px;
     height: 650px;
-    background: #FFFFFF;
-    border: 2px solid #F2F2F2;
+    background: var(--WHITE);
+    border: 2px solid var(--ComplementaryColor1);
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
     margin-left: 170px;
     margin-top: 70px;
@@ -340,7 +425,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--ComplementaryColor1);
     padding-right: 15px;
     margin-left: 15px;
 }
@@ -364,7 +449,7 @@
     line-height: 26px;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--BLACK);
 }
 
 .PostItem-role {
@@ -374,13 +459,17 @@
     font-size: 16px;
     line-height: 24px;
     display: flex;
-    color: #000000;
+    color: var(--BLACK);
 }
 
 .movieRow-right,
 .movieRow-left {
     height: 32.5em;
     position: absolute;
+<<<<<<< HEAD
+=======
+    margin-top: 256px;
+>>>>>>> manha-front-assistant
     z-index: 99;
     display: flex;
     align-items: center;
@@ -412,10 +501,11 @@
     line-height: 22px;
     display: flex;
     align-items: center;
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     margin-top: 30px;
 }
 
+<<<<<<< HEAD
 
 /* ----------------- */
 
@@ -542,3 +632,5 @@
 }
 
 /* Modal Content */
+=======
+>>>>>>> manha-front-assistant

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 .button {
-    background: #3375BA;
+    background: var(--PrimaryColor2);
     width: 400px;
-    height: 65px;
-    color: #FFF;
+    height: 50px;
+    color: var(--WHITE);
     border-radius: 64px;
     font-family: 'Montserrat', sans-serif;
     font-size: 24px;
@@ -16,8 +16,8 @@
     align-items: center;
 }
 .button svg {
-    color: #FFF;
+    color: var(--WHITE);
 }
 .button:hover {
-    background: #38538A;
+    background: var(--PrimaryColor1);
 }

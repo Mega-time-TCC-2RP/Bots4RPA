@@ -1,8 +1,11 @@
 import "../../assets/css/style.css";
+import "../../assets/css/components/navbar.css"
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/menu/Navbar'
+import VLibras from '@djpfs/react-vlibras'
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -11,6 +14,8 @@ import Amarelo_Home from '../../assets/img/Amarelo_Home.png'
 import Verde_Home from '../../assets/img/Verde_Home.png'
 import Post_Perfil_Photo from '../../assets/img/Post_Perfil_Photo.png'
 import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
+import { useNavigate } from 'react-router-dom'
+import Header from '../../components/header/header'
 
 //items:
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -25,6 +30,12 @@ import Footer from '../../components/footer/footer'
 import { render } from "@testing-library/react";
 
 {/* <Navbar/> */ }
+
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
+
 
 export default function Home() {
 
@@ -74,19 +85,64 @@ export default function Home() {
     var modalA = document.getElementById("modalAssistant");
     // console.log(id)
     modalA.style.display = "none";
-  };
+  }
 
-  function App() {
+  const [myQuests, setMyQuests] = useState([]);
+  const [highlightedPosts, setHighlightedPosts] = useState([]);
+  const Navigate = useNavigate();
 
-    const handleLeftArrow = () => {
+  const handleLeftArrow = () => {
 
-    }
-    const handleRightArrow = () => {
+  }
+  const handleRightArrow = () => {
 
-    }
+  }
+
+  const HideArrow = () => {
+
+  }
+
+  const GetMyQuests = () => {
+    axios.get('http://grupo7.azurewebsites.net/api/Quests/ListarMinhas', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      }
+    }).then((response) => {
+      console.log(response)
+      console.log(response.data)
+      setMyQuests(response.data)
+    }).catch(async (error) => {
+      if (await handleAuthException(error) === true) {
+        localStorage.removeItem('2rp-chave-autenticacao')
+        Navigate('/login')
+        console.log(error.status);
+      }
+    })
+  }
+
+  const GetHighlightedPosts = () => {
+    axios.get('http://grupo7.azurewebsites.net/api/Posts/Highlights', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      }
+    }).then((response) => {
+      console.log(response)
+      console.log(response.data)
+      setHighlightedPosts(response.data)
+    }).catch(async (error) => {
+      if (await handleAuthException(error) === true) {
+        localStorage.removeItem('2rp-chave-autenticacao')
+        Navigate('/login')
+        console.log(error.status);
+      }
+    })
   }
   useEffect(App)
 
+  useEffect(() => {
+    GetMyQuests();
+    GetHighlightedPosts();
+  }, [])
   return (
     <div>
 

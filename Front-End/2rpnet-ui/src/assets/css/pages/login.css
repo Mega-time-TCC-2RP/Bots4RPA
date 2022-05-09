@@ -1,18 +1,17 @@
 *{
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
+        /* box-sizing: border-box; */
 }
 .logo-Header{
         width: 350;
         height: 150;
-        display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: 50px;
 }
 .login{
-        background-color: #FCFCFC;
+        background-color: var(--ScreenBackground);
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -21,8 +20,8 @@
         
 }
 .login-container{
-        background-color: #fff;
-        height: 90vh;
+        background-color: var(--WHITE);
+        /* height: 90vh; */
         width: 60%;
         margin: 0 auto;
         border-radius: 20px;
@@ -30,7 +29,10 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        filter: drop-shadow(0px 4px 4px var(--darkShadow));
+        padding-top: 50px;
+        padding-bottom: 50px;
+        margin-top: 100px;
 }
 .topo-input-email{
         font-family: 'Montserrat';
@@ -39,7 +41,7 @@
         font-size: 23px;
         line-height: 28px;
         text-indent: 32px;
-        color: #38538A;
+        color: var(--PrimaryColor2);
         display: flex;
         text-align: start;
 }
@@ -51,9 +53,12 @@
         font-size: 23px;
         line-height: 28px;
         text-indent: 32px;
-        color: #38538A;
+        color: var(--PrimaryColor2);
         display: flex;
         margin-top: 90px;
+}
+.formsLogin-Email{
+        width: 370px;
 }
 .formsLogin-Email input{
         border-radius: 50px;
@@ -69,9 +74,9 @@
         align-items: center;
         text-indent: 32px;
         opacity: 0.5;
-        background: #FFFFFF;
+        background: var(--WHITE);
 /* Cinza */
-        border: 1px solid #8B919D;
+        border: 1px solid var(--ComplementaryColor2);
         box-sizing: border-box;
         border-radius: 32px;
 }
@@ -88,17 +93,17 @@
         margin-right: 0 auto;
         margin-left: 0 auto;
         opacity: 0.6;
-        background: #FFFFFF;
+        background: var(--WHITE);
         /* Cinza */
-        border: 1px solid #8B919D;
+        border: 1px solid var(--ComplementaryColor2);
         box-sizing: border-box;
         border-radius: 32px;
 }
 .botaoLogin{
-        background: #3375BA;
+        background: var(--PrimaryColor2);
         width: 200px;
         height: 55px;
-        color: #FFF;
+        color: var(--WHITE);
         border-radius: 64px;
         font-family: 'Montserrat', sans-serif;
         font-size: 24px;
@@ -107,10 +112,11 @@
         border: none;
         margin-top: 30px;
         cursor: pointer;
-        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+        /* box-shadow: 0px 6px 6px var(--darkShadow); */
+        box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
 }
-.botaoLogin:hover, .google-button:hover{
-        background: #38538A;
+.botaoLogin:hover{
+        background: var(--PrimaryColor2);
 }
 .EsqueceuSenha a, .NotSigned-login{
         font-family: 'Montserrat';
@@ -121,8 +127,7 @@
         display: flex;
         align-items: center;
         text-align: center;
-        color: #38538A;
-        margin-left: 70px;
+        color: var(--PrimaryColor2);
         margin-top: 20px;
         cursor: pointer;
         opacity: 0.8;
@@ -136,30 +141,49 @@
         display: flex;
         align-items: center;
         text-align: center;
-        color: #38538A;
-        margin-left: 90px;
+        color: var(--PrimaryColor2);
+        /* margin-left: 90px; */
         margin-top: 20px;
         opacity: 0.2;
 }
-.google-button{
-        background: #3375BA;
-        width: 200px;
+button{
+        border-radius: 32px;
+}
+.google-button{ 
+        position: relative;
+        /* border: solid 2px ;
+        border-image-slice: 30;
+        border-radius: 20px;
+        background-image: linear-gradient(white, white), radial-gradient(circle at top left, red, blue);
+        background-origin: border-box;
+        background-clip: content-box, border-box; */
+
+        border: double 3px transparent;
+        background-image: linear-gradient(white, white), radial-gradient(circle at top left, #4885ED, #DB3236, #F4C20D, #3CBA54);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        cursor: pointer;
+        width: 400px;
         height: 65px;
-        color: #FFF;
-        border-radius: 64px;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 20px;
-        font-weight: 400;
         line-height: 28px;
-        border: none;
         margin-top: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin-left: 85px;
-        cursor: pointer;
-        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+        /* margin-left: 35px; */
+        box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+        background-color: rgb(255, 255, 255);
+        display: inline-flex;
+        align-items: center;
+        padding: 0px;
+        font-size: 20px;
+        font-weight: 400;
+        color: darkgray;
+        
+        font-size: 14px;
+        font-weight: 500;
+        
 }
 .img-red{
         position: fixed;
@@ -170,4 +194,25 @@
         position: fixed;
         bottom: 0;
         left: 0;
+}
+.forms-login form{
+        align-items: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+}
+#googleLogin{
+        /* color: rgba(0, 0, 0, 0.54); */
+        padding-right: 5px;
+        font-size: 18px;
+        font-weight: 500;
+        font-family: 'Montserrat', sans-serif;
+}
+.icon3{
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        background: rgb(255, 255, 255);
+        padding: 5px;
+        border-radius: 2px
 }
