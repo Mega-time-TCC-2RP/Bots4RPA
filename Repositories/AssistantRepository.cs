@@ -39,7 +39,7 @@ namespace _2RPNET_API.Repositories
             //return Ctx.Assistants.Include(a => a.IdEmployeeNavigation).ToList();
         }
 
-        public List<Assistant> ReadMy(int IdUser)
+        public List<Assistant> ReadMyProcess(int IdUser)
         {
             return Ctx.Assistants
                 .Where(a => a.IdAssistant == IdUser)

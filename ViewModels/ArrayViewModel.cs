@@ -12,5 +12,6 @@ namespace _2RPNET_API.ViewModels
         public int? ProcedurePriority { get; set; }
         public string ProcedureName { get; set; }
         public string ProcedureDescription { get; set; }
+        public string ProcedureValue { get; set; }
     }
 }
