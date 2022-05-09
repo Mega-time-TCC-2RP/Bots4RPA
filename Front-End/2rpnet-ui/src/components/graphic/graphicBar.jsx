@@ -9,7 +9,7 @@ import { getUserData } from './dataBar'
 
 export default function GraphicBar() {
 
-    const [chart, setChart] = useState([])
+    const [chart, setChart] = useState()
 
     var baseUrl = "https://grupo8api.azurewebsites.net/api/Run/ListAll"
     var header = {
@@ -23,7 +23,7 @@ export default function GraphicBar() {
             ).then((response) => {
                 response.json().then((json) => {
                     console.log(json)
-                    setChart(json.data)
+                    setChart(json)
                 })
             }).catch(error => {
                 console.log(error);
@@ -35,13 +35,13 @@ export default function GraphicBar() {
    
     const data = {
         // labels: list.map((data) => console.log(data)),
-        //  labels: chart..map(x => x.runDate),
-         labels: ['oia'],
+         labels: chart.map(x => x.runDate),
+        //  labels: ['oia'],
         datasets: [
             {
                 label: "Qtde",
-                // data: [chart.ListAll.map(x => x.runQuantity)],
-                data: [12],
+                data: chart.map(x => x.runQuantity),
+                // data: [12],
                 backgroundColor: [
                     "#3FDA9F",
                 ],
