@@ -11,6 +11,7 @@ using _2RPNET_API.Repositories;
 using _2RPNET_API.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.IdentityModel.Tokens.Jwt;
+using _2RPNET_API.ViewModels;
 
 namespace _2RPNET_API.Controllers
 {
@@ -111,6 +112,34 @@ namespace _2RPNET_API.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex);
+            }
+        }
+
+        /// <summary>
+        /// Method responsible for get all Assistants
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("ProceduresVerification")]
+        public IActionResult ChangeVerification(string ProcedureName, ArrayViewModel ArrayViewModel)
+        {
+            try
+            {
+                AssistantProcedure AssistantSought = _repository.SearchByName(ProcedureName);
+
+                if (AssistantSought != null)
+                {
+                    return Ok(_repository.SearchByName(ProcedureName));
+                    //return Ok(AssistantSought.AssistantProcedures.ToList());
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+            }
+            catch (Exception Ex)
+            {
+                return BadRequest(Ex);
             }
         }
     }

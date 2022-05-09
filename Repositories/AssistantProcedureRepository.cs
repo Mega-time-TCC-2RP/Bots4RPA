@@ -1,6 +1,8 @@
 ﻿using _2RPNET_API.Context;
 using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
+using _2RPNET_API.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -59,5 +61,90 @@ namespace _2RPNET_API.Repositories
 
             ctx.SaveChanges();
         }
+
+        public AssistantProcedure SearchByName(string ProcedureName)
+        {
+            return ctx.AssistantProcedures.FirstOrDefault(a => a.ProcedureName == ProcedureName);
+        }
+
+        public void ChangeVerification(string ProcedureName, ArrayViewModel ArrayViewModel)
+        {
+
+            AssistantProcedure AssistantSought = SearchByName(ProcedureName);
+            // fazer verficação
+            List<AssistantProcedure> ProceduresList = new List<AssistantProcedure>();
+
+        //    if (AssistantSought != null)
+        //    {
+        //        foreach (var item in ProceduresList)
+        //        {
+        //            if (item != null)
+        //            {
+        //                if (item.ProcedureName == ArrayViewModel.ProcedureName)
+        //                {
+        //                    if (item.IdAssistant != AssistantSought.IdAssistant)
+        //                    {
+        //                        item.IdAssistant = AssistantSought.IdAssistant;
+        //                    }
+
+        //                    if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+        //                    {
+        //                        item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+        //                    }
+
+        //                    if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
+        //                    {
+        //                        item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
+        //                    }
+
+        //                    ctx.AssistantProcedures.Update(AssistantSought);
+        //                }
+
+        //            }
+        //        }
+
+        //        //foreach (var item in ProceduresList)
+        //        //{
+        //        //    if (item != null)
+        //        //    {
+        //        //        if (item.ProcedureName == ArrayViewModel.ProcedureName)
+        //        //        {
+        //        //            if (item.IdAssistant == AssistantSought.IdAssistant)
+        //        //            {
+        //        //                if (item.ProcedurePriority == ArrayViewModel.ProcedurePriority)
+        //        //                {
+        //        //                    if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
+        //        //                    {
+        //        //                        //return ok
+        //        //                    }
+        //        //                }
+        //        //            }
+        //        //        }
+
+        //        //    }
+        //        //}
+        //    }
+
+        //    //if (AssistantSought == null)
+        //    //{
+        //    //    foreach (var item in AssistantList)
+        //    //    {
+        //    //        if (item.IdAssistant != AssistantSought.IdAssistant)
+        //    //        {
+        //    //            if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+        //    //            {
+        //    //                if (item.ProcedureName != ArrayViewModel.ProcedureName)
+        //    //                {
+        //    //                    if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
+        //    //                    {
+        //    //                        ctx.Add(ArrayViewModel);
+        //    //                    }
+        //    //                }
+        //    //            }
+        //    //        }
+        //    //    }
+        //    //}
+        }
+
     }
 }

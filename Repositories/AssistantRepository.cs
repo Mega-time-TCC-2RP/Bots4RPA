@@ -18,61 +18,6 @@ namespace _2RPNET_API.Repositories
             Ctx = appContext;
         }
 
-        public void ChangeVerification(int IdAssistant, ArrayViewModel ArrayViewModel)
-        {
-
-            Assistant AssistantSought = SearchByID(IdAssistant);
-            //Assistant AssistantList = new Assistant();
-
-            List<AssistantProcedure> AssistantList = Ctx.AssistantProcedures.Include(c => c.IdAssistant).Where(c => c.IdAssistant == IdAssistant).ToList();
-            //var AssistantProcedureList = AssistantProcedure.ToList();
-
-            foreach (var item in AssistantList)
-            {
-                if (item != null)
-                {
-                    if (item.IdAssistant != AssistantSought.IdAssistant)
-                    {
-                        item.IdAssistant = AssistantSought.IdAssistant;
-                    }
-
-                    if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
-                    {
-                        item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
-                    }
-
-                    if (item.ProcedureName != ArrayViewModel.ProcedureName)
-                    {
-                        item.ProcedureName = ArrayViewModel.ProcedureName;
-                    }
-
-                    if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
-                    {
-                        item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
-                    }
-
-                    Ctx.Assistants.Update(AssistantSought);
-                }
-            }
-
-            foreach (var item in AssistantList)
-            {
-                if (item.IdAssistant != AssistantSought.IdAssistant)
-                {
-                    if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
-                    {
-                        if (item.ProcedureName != ArrayViewModel.ProcedureName)
-                        {
-                            if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
-                            {
-                                Ctx.Add(ArrayViewModel);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         public void Create(Assistant NewAssistant)
         {
                 NewAssistant.CreationDate = DateTime.Now;

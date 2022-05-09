@@ -41,7 +41,7 @@ namespace _2RPNET_API.Repositories
         }
 
 
-        public IEnumerable<Run> ReadAll()
+        public List<Run> ReadAll()
         {
             return ctx.Runs.ToList();
         }

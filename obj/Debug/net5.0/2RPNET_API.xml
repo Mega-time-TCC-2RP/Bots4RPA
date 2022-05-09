@@ -18,7 +18,7 @@
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.Create(_2RPNET_API.Domains.Assistant)">
             <summary>
-            Method responsible for create all Assistants
+            Method responsible for analyze all Assistants
             </summary>
             <returns></returns>
         </member>
@@ -31,12 +31,6 @@
         <member name="M:_2RPNET_API.Controllers.AssistantsController.Delete(System.Int32)">
             <summary>
             Method responsible for delete all Assistants 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.AssistantsController.ChangeVerification(System.Int32,System.String[])">
-            <summary>
-            Method responsible for get all Assistants
             </summary>
             <returns></returns>
         </member>
@@ -67,6 +61,12 @@
         <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.Deletar(System.Int32)">
             <summary>
             Method responsible for delete all Assistants Process
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ChangeVerification(System.String,_2RPNET_API.ViewModels.ArrayViewModel)">
+            <summary>
+            Method responsible for get all Assistants
             </summary>
             <returns></returns>
         </member>
