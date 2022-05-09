@@ -5,8 +5,6 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2RPNET_API", "2RPNET_API.csproj", "{D0BC9E87-39B5-4ADD-B9E9-563D02F42B6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2RPNET_API.Teste", "..\2RPNET_API.Teste\2RPNET_API.Teste.csproj", "{25929D95-40C6-42CA-B030-1D1B1F985B0F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
