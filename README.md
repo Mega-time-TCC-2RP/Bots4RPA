@@ -53,3 +53,7 @@ Diagrama lógico:
 
 ![image width="100"](https://user-images.githubusercontent.com/19197082/164285099-b5d7f398-e739-417a-ab70-7892aa560234.png)
 
+
+# Equipe
+
+![image](https://user-images.githubusercontent.com/19197082/167431354-5550eb69-96c0-425f-978b-c6c46d444dd3.png) ![image](https://user-images.githubusercontent.com/19197082/167431460-c5f2914f-82e8-46d6-908d-d921ac1b410a.png) ![image](https://user-images.githubusercontent.com/19197082/167431622-2f683a85-bf58-446e-8bf3-033b3cc1ffed.png) 
