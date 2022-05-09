@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import Navbar from '../../components/menu/Navbar'
 import VLibras from '@djpfs/react-vlibras'
 
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
@@ -91,19 +90,24 @@ export default function Home() {
   const [highlightedPosts, setHighlightedPosts] = useState([]);
   const Navigate = useNavigate();
 
-  const handleLeftArrow = () => {
+  function App() {
+    const handleLeftArrow = () => {
+
+    }
+    const handleRightArrow = () => {
+
+    }
+
+    const HideArrow = () => {
+
+    }
 
   }
-  const handleRightArrow = () => {
 
-  }
-
-  const HideArrow = () => {
-
-  }
+  useEffect(App, [])
 
   const GetMyQuests = () => {
-    axios.get('http://grupo7.azurewebsites.net/api/Quests/ListarMinhas', {
+    axios.get('https://grupo7.azurewebsites.net/api/Quests/ListarMinhas', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
@@ -121,7 +125,7 @@ export default function Home() {
   }
 
   const GetHighlightedPosts = () => {
-    axios.get('http://grupo7.azurewebsites.net/api/Posts/Highlights', {
+    axios.get('https://grupo7.azurewebsites.net/api/Posts/Highlights', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
@@ -137,12 +141,12 @@ export default function Home() {
       }
     })
   }
-  useEffect(Home)
 
   useEffect(() => {
     GetMyQuests();
     GetHighlightedPosts();
   }, [])
+
   return (
     <div>
 
