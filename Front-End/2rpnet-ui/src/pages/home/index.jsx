@@ -7,6 +7,11 @@ import { Link } from 'react-router-dom';
 import Navbar from '../../components/menu/Navbar'
 import VLibras from '@djpfs/react-vlibras'
 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
+
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import Vermelho_Home from '../../assets/img/Vermelho_Home.png'
@@ -23,18 +28,13 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import PlayIcon from '../../components/icones/play'
 
 //Components:
-import Navbar from '../../components/menu/Navbar'
+// import Navbar from '../../components/menu/Navbar'
 import Modal from '../../components/modal/Modal'
 import ModalA from '../../components/modal/ModalAssistant'
 import Footer from '../../components/footer/footer'
 import { render } from "@testing-library/react";
 
 {/* <Navbar/> */ }
-
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 
 
 export default function Home() {
@@ -137,7 +137,7 @@ export default function Home() {
       }
     })
   }
-  useEffect(App)
+  useEffect(Home)
 
   useEffect(() => {
     GetMyQuests();

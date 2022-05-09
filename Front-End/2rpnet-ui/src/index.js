@@ -20,7 +20,6 @@ import Home from './pages/home/';
 import Login from './pages/login/';
 import Guide from './pages/guide/';
 import Marketplace from './pages/marketplace/skinShop';
-import MyProcesses from './pages/myProcesses/';
 import Assistant from './pages/myProcesses/assistant';
 import Social from './pages/social/';
 import { TelaTimeline } from './pages/social/index';
@@ -34,8 +33,6 @@ import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
 import RegisterCompany from './pages/registerCompany/registerCompany';
 import RegisterUser from './pages/registerUser/registerUser';
-
-
 import { history } from './history';
 import VLibras from '@djpfs/react-vlibras'
 import { usuarioAutenticado, parseJwt } from '../src/services/auth';
@@ -62,9 +59,6 @@ const routing = (
         <Route path="/taskcalendar" element={<TaskCalendar />} /> {/* Task Calendar */}
         <Route path="/taskkanban" element={<TaskKanban />} /> {/* Task Kanban */}
         <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />
-        
-
-
         {/*<Route path="/config" element={<Config/>} /> {/* Configuration */}
 
         <Route path="/notFound" element={<NotFound />} /> {/* Not Found */}
