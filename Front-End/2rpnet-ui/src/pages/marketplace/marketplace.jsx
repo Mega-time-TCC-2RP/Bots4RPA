@@ -34,8 +34,10 @@ export default function marketplace() {
             
             <div className='lista2'>
             <div className='workflow'>
+                <div className='assistent'>
                 <img src={skin} alt="img robot"/>
                 <span className='nameRobot'>Bôbotron Limão</span>
+                </div>
                 <div className ='coin'>
                     <img src={Coin} alt="img coin"/>
                     <span>2000</span>
