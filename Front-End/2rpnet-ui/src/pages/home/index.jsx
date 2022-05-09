@@ -1,8 +1,15 @@
 import "../../assets/css/style.css";
+import "../../assets/css/components/navbar.css"
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/menu/Navbar'
+import VLibras from '@djpfs/react-vlibras'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -11,6 +18,8 @@ import Amarelo_Home from '../../assets/img/Amarelo_Home.png'
 import Verde_Home from '../../assets/img/Verde_Home.png'
 import Post_Perfil_Photo from '../../assets/img/Post_Perfil_Photo.png'
 import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
+import { useNavigate } from 'react-router-dom'
+import Header from '../../components/header/header'
 
 //items:
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -18,13 +27,14 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import PlayIcon from '../../components/icones/play'
 
 //Components:
-import Navbar from '../../components/menu/Navbar'
+// import Navbar from '../../components/menu/Navbar'
 import Modal from '../../components/modal/Modal'
 import ModalA from '../../components/modal/ModalAssistant'
 import Footer from '../../components/footer/footer'
 import { render } from "@testing-library/react";
 
 {/* <Navbar/> */ }
+
 
 export default function Home() {
 
@@ -74,18 +84,68 @@ export default function Home() {
     var modalA = document.getElementById("modalAssistant");
     // console.log(id)
     modalA.style.display = "none";
-  };
+  }
+
+  const [myQuests, setMyQuests] = useState([]);
+  const [highlightedPosts, setHighlightedPosts] = useState([]);
+  const Navigate = useNavigate();
 
   function App() {
-
     const handleLeftArrow = () => {
 
     }
     const handleRightArrow = () => {
 
     }
+
+    const HideArrow = () => {
+
+    }
+
   }
-  useEffect(App)
+
+  useEffect(App, [])
+
+  const GetMyQuests = () => {
+    axios.get('https://grupo7.azurewebsites.net/api/Quests/ListarMinhas', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      }
+    }).then((response) => {
+      console.log(response)
+      console.log(response.data)
+      setMyQuests(response.data)
+    }).catch(async (error) => {
+      if (await handleAuthException(error) === true) {
+        localStorage.removeItem('2rp-chave-autenticacao')
+        Navigate('/login')
+        console.log(error.status);
+      }
+    })
+  }
+
+  const GetHighlightedPosts = () => {
+    axios.get('https://grupo7.azurewebsites.net/api/Posts/Highlights', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      }
+    }).then((response) => {
+      console.log(response)
+      console.log(response.data)
+      setHighlightedPosts(response.data)
+    }).catch(async (error) => {
+      if (await handleAuthException(error) === true) {
+        localStorage.removeItem('2rp-chave-autenticacao')
+        Navigate('/login')
+        console.log(error.status);
+      }
+    })
+  }
+
+  useEffect(() => {
+    GetMyQuests();
+    GetHighlightedPosts();
+  }, [])
 
   return (
     <div>

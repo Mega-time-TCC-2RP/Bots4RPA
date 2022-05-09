@@ -5,24 +5,27 @@ body{
     width: 100%;
     overflow: hidden;
 }
+
 .sidebar .nav_list{
     padding: 0;
 }
-.sidebar{
+.sidebar{  
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 60px;
-    background: #3475BB;
+    background: var(--PrimaryColor2);
     padding: 6px 14px;
     transition: all 0.5s ease;
+    /* z-index: 0; */
 }
 .sidebar.active{
+    
     width: 240px;
 }
 .sidebar .logo_content .logo{
-    color: #fff;
+    color: var(--WHITE);
     display: flex;
     height: 52.21px;
     width: 150px;
@@ -36,6 +39,7 @@ body{
 .sidebar .Links_name{
     opacity: 0;
     pointer-events: none;
+    
 }
 .sidebar.active .Links_name{
     opacity: 1;
@@ -46,7 +50,7 @@ body{
 }
 .sidebar .btn{
     position: absolute;
-    color: #fff;
+    color: var(--WHITE);
     left: 50%;
     top: 15px;
     font-size: 20px;
@@ -62,8 +66,12 @@ body{
 .sidebar ul{
     margin-top: 20px;
 }
+.sidebar li .icon2{
+    pointer-events: auto;
+}
 
 .sidebar ul li{
+    pointer-events: none;
     position: relative;
     height: 50px;
     width: 200px;
@@ -72,10 +80,14 @@ body{
     line-height: 50px;
     
 }
+.sidebar.active ul li{
+    pointer-events: auto;
+}
 
 .sidebar ul li .Link{
+    
     cursor: default;
-    color: #fff;
+    color: var(--WHITE);
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -83,16 +95,17 @@ body{
 }
 .sidebar.active .Link:hover{
     cursor: pointer;
-    background: #fff;
-    color: #3475BB;
+    background: var(--WHITE);
+    color: var(--PrimaryColor2);
     
 }
-.sidebar .icon:hover{
-    background: #fff;
-    color: #3475BB;
+.sidebar .icon2:hover{
+    
+    background: var(--WHITE);
+    color: var(--PrimaryColor2);
     
 }
-.sidebar ul li .icon{
+.sidebar ul li .icon2{
     height: 50px;
     min-width: 30px;
     border-radius: 12px;
@@ -108,7 +121,7 @@ body{
 
 .sidebar .profile_content{
     position: absolute;
-    color: #fff;
+    color: var(--WHITE);
     bottom: 0;
     left: 0;
     width: 100%;
@@ -117,7 +130,7 @@ body{
     position: relative;
     padding: 10px 6px;
     height: 60px;
-    background: #022041;
+    background: var(--ComplementaryColor3);
 }
 .profile_content .profile .profile_details{
     display: flex;
@@ -138,7 +151,7 @@ body{
     border-radius: 12px;
 }
 .profile .profile_details .name_job{
-    color: #fff;
+    color: var(--WHITE);
     margin-left: 10px;
 }
 .profile .profile_details .name{
@@ -182,4 +195,16 @@ body{
     height: 100%;
     width: calc(100% - 240px);
     left: 240px;
+}
+.body-pd{
+    position: absolute;
+    overflow-x: none;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+    transition: all 0.5s ease;
+}
+.sidebar.active ~ .body-pd{
+    width: calc(100vw - 240px);
+    left: 269px
 }

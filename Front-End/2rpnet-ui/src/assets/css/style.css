@@ -1,10 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
 
-* {
+.test {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 72px;
+}
+.fundotest{
+    position: absolute;
+    background-color: var(--ScreenBackground);
+    height: 100%;
+    width: 100%;
+}
+*{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    overflow-y: auto;
+    /* box-sizing: border-box;
+    overflow-y: auto; */
 }
 
 .top-container {
@@ -94,7 +106,7 @@
     line-height: 40px;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--BLACK);
     margin-top: 50px;
     margin-left: 170px;
 }
@@ -141,7 +153,7 @@
     background: #FFFFFF;
     border: 5px solid #F2F2F2;
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 50px;
 
     /* efeito de zoom */
@@ -177,6 +189,11 @@
     font-weight: 500;
     font-size: 25px;
     line-height: 33px;
+    display: flex;
+    align-items: center;
+    text-indent: 32px;
+    color: var(--ComplementaryColor3);
+    display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -219,10 +236,10 @@
 .card-body-content {
     width: 400px;
     height: 550px;
-    background: #FFFFFF;
-    border: 2px solid #F2F2F2;
+    background: var(--WHITE);
+    border: 2px solid var(--ComplementaryColor1);
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
     margin-top: 60px;
     margin-left: 170px;
@@ -252,7 +269,7 @@
     display: flex;
     align-items: center;
     text-align: center;
-    color: #000000;
+    color: var(--BLACK);
     display: flex;
     text-align: center;
     justify-content: center;
@@ -270,7 +287,7 @@
     align-items: center;
     text-align: center;
     text-indent: 32px;
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     text-align: center;
     justify-content: center;
     align-items: left;
@@ -287,7 +304,7 @@
     align-items: center;
     text-align: center;
     text-indent: 32px;
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     display: flex;
     text-align: center;
     justify-content: center;
@@ -308,7 +325,7 @@
     line-height: 40px;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--BLACK);
     margin-left: 170px;
     margin-top: 50px;
 }
@@ -316,10 +333,10 @@
 .bottom-posts-content {
     width: 600px;
     height: 650px;
-    background: #FFFFFF;
-    border: 2px solid #F2F2F2;
+    background: var(--WHITE);
+    border: 2px solid var(--ComplementaryColor1);
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
     margin-left: 170px;
     margin-top: 70px;
@@ -340,7 +357,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--ComplementaryColor1);
     padding-right: 15px;
     margin-left: 15px;
 }
@@ -364,7 +381,7 @@
     line-height: 26px;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--BLACK);
 }
 
 .PostItem-role {
@@ -374,13 +391,14 @@
     font-size: 16px;
     line-height: 24px;
     display: flex;
-    color: #000000;
+    color: var(--BLACK);
 }
 
 .movieRow-right,
 .movieRow-left {
     height: 32.5em;
     position: absolute;
+    margin-top: 256px;
     z-index: 99;
     display: flex;
     align-items: center;
@@ -412,10 +430,9 @@
     line-height: 22px;
     display: flex;
     align-items: center;
-    color: #6C757D;
+    color: var(--ComplementaryColor2);
     margin-top: 30px;
 }
-
 
 /* ----------------- */
 
