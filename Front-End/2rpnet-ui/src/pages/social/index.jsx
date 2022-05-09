@@ -14,7 +14,7 @@ import { usuarioAutenticado, parseJwt, handleAuthException } from '../../service
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 import Blue_Head from '../../assets/img/Blue_Head.png'
-
+import onBoardingBot from '../../assets/img/onBoardingBot.png'
 
 import { Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -251,8 +251,13 @@ export const TelaTimeline = (person, idx) => {
             <Navbar />
             <div className="body-pd">
                 <VLibras />
-                <button onClick={handleOpenOnBoarding}>ABRIR</button>
-                <button onClick={handleCloseOnBoarding}>FECHAR</button>
+                <img 
+                    src={onBoardingBot} 
+                    onClick={handleOpenOnBoarding} 
+                    className="img-onboarding"
+                />
+                {/* <button onClick={handleOpenOnBoarding}>ABRIR</button>
+                <button onClick={handleCloseOnBoarding}>FECHAR</button> */}
                 <Modal
                     isOpen={onBoardingIsOpen}
                     onRequestClose={handleCloseOnBoarding}
@@ -295,10 +300,6 @@ export const TelaTimeline = (person, idx) => {
                                         </div>
                                     </SwiperSlide>
                                 </Swiper>
-                                {/* <div className='buttons-boarding'>
-                                    <button className='action-buttons'>Voltar</button>
-                                    <button className='action-buttons'>Próximo</button>
-                                </div> */}
                             </div>
 
                         </div>
