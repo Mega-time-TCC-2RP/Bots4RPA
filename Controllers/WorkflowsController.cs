@@ -161,5 +161,21 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 throw;
             }
         }
+
+        [Authorize(Roles = "2,3")]
+        [HttpGet("GetMine")]
+        public IActionResult ReadMine()
+        {
+            try
+            {
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                return Ok(ctx.ReadAll().Where(W => W.IdEmployee == Uctx.SearchByID(UserId).Employees.First().IdEmployee).ToList());
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error);
+                throw;
+            }
+        }
     }
 }

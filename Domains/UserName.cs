@@ -22,7 +22,7 @@ namespace _2rpnet.rpa.webAPI.Domains
         public DateTime BirthDate { get; set; }
         public string Rg { get; set; }
         public bool? UserValidation { get; set; }
-        public int? GoogleId { get; set; }
+        public string GoogleId { get; set; }
         public int IdUserType { get; set; }
 
         public virtual UserType IdUserTypeNavigation { get; set; }

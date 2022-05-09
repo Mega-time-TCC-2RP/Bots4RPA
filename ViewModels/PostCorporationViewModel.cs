@@ -20,6 +20,7 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public string UserName1 { get; set; }
         [Required(ErrorMessage = "Email do usuário necessário")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Senha necessária")]
         public string Passwd { get; set; }
         [Required(ErrorMessage = "CPF do usuário necessário")]
         public string Cpf { get; set; }

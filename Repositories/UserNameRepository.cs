@@ -177,9 +177,40 @@ namespace _2rpnet.rpa.webAPI.Repositories
             ctx.SaveChanges();
         }
 
-        public int GoogleLogin(int googleId)
+        public UserName GoogleLogin(int googleId, string email)
         {
-            throw new System.NotImplementedException();
+            var user = ctx.UserNames.FirstOrDefault(u => u.Email == email);
+
+            if (user.Passwd == null)
+            {
+                return user;
+            }
+
+            if (user != null)
+            {
+                if (Crypt.Validate(user.GoogleId) == true)
+                {
+                    bool IsEncrypted = Crypt.Compare(googleId.ToString(), user.GoogleId);
+                    if (IsEncrypted)
+                        return user;
+                }
+                else
+                {
+                    EncryptGoogleId(user);
+                    bool IsEncrypted = Crypt.Compare(googleId.ToString(), user.GoogleId);
+                    if (IsEncrypted)
+                        return user;
+                }
+            }
+
+            return null;
+        }
+
+        public async void EncryptGoogleId(UserName _user)
+        {
+            _user.GoogleId = Crypt.GenerateHash(_user.GoogleId);
+            ctx.UserNames.Update(_user);
+            await ctx.SaveChangesAsync();
         }
     }
 }
