@@ -26,6 +26,7 @@ function App() {
         })
     .then(resposta => {
       if(resposta.status === 200){
+        console.log(resposta);
         setQuestList( resposta.data );
       }
     })
@@ -34,7 +35,10 @@ function App() {
 
   // Funcionalidade da Data
   const day = () => {
-    let date = new Date().getDay() + 1
+
+
+
+    let date = new Date().getDate()
 
     console.log(`O dia de hoje é: ${date}`);
     
@@ -105,6 +109,7 @@ function App() {
 
   useEffect(() => {
     getQuestList()
+    // getQuestList, []
     day()
     dragNDrop()
   });
