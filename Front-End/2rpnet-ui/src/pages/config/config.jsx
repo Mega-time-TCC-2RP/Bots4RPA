@@ -67,7 +67,7 @@ export default function Config() {
 
 
     function listUser() {
-        select(0);
+        
         axios('https://grupo7.azurewebsites.net/api/UserNames/GetMe', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
@@ -439,7 +439,7 @@ export default function Config() {
                                             </div>
                                         </div>
                                     </div>
-                                    <img src={userLogado.photoUser} className='profileImage' alt="Imagem de perfil" />
+                                    <img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} className='profileImage' alt="Imagem de perfil" />
                                 </div>
                                 <button className='button' onClick={openModalConfig}>Atualizar Dados</button>
                                 <Modal

@@ -134,42 +134,48 @@ export default function Login() {
                                 <ToastContainer />
                                 <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
                                 <VLibras />
-                                <div className='login-container'>
+                                <div className='registerArea'>
 
-                                        <div className='forms-login'>
+                                        <div className='registerContent'>
                                                 <img src={logoMaior} className='logo-Header' alt="Logo 2RP" />
-                                                <form onSubmit={handleSubmit} >
-                                                        <div className='formsLogin-Email'>
-                                                                <p className='topo-input-email' alt="Email">E-mail</p>
-                                                                <input
-                                                                        type="email"
-                                                                        placeholder='Insira seu E-mail'
-                                                                        id="email"
-                                                                        value={email}
-                                                                        onChange={(e) => setEmail(e.target.value)}
-                                                                />
-                                                        </div>
-                                                        <div className='Login'>
-                                                                <p className='topo-input-senha' alt="Senha">Senha</p>
-                                                                <input
-                                                                        type="password"
-                                                                        placeholder='Insira sua senha'
-                                                                        id="senha"
-                                                                        value={password}
-                                                                        onChange={(e) => setPassword(e.target.value)}
-                                                                />
+                                                <form className='loginForm formRegister' onSubmit={handleSubmit} >
+                                                        <div className='inputsAreaLogin'>
+                                                                <div className='foreachInput'>
+                                                                        <label className='h5' alt="Email">E-mail</label>
+                                                                        <input
+                                                                                className='placeholder-text'
+                                                                                type="email"
+                                                                                placeholder='Insira seu E-mail'
+                                                                                id="email"
+                                                                                value={email}
+                                                                                onChange={(e) => setEmail(e.target.value)}
+                                                                        />
+                                                                </div>
+                                                                <div className='foreachInput'>
+                                                                        <label className='h5' alt="Senha">Senha</label>
+                                                                        <input
+                                                                                className='placeholder-text'
+                                                                                type="password"
+                                                                                placeholder='Insira sua senha'
+                                                                                id="senhaInputLogin"
+                                                                                value={password}
+                                                                                onChange={(e) => setPassword(e.target.value)}
+                                                                        />
+                                                                </div>
                                                         </div>
                                                         {
                                                                 IsLoading === true ?
                                                                         <button className='botaoLogin' type='submit' disabled>Carregando...</button> : <button className='botaoLogin' type='submit'>Entrar</button>
                                                         }
 
-                                                        <div className='EsqueceuSenha'>
-                                                                <a className='re-passwq' alt="Esqueceu a senha?" >Esqueceu a senha?</a>
-                                                        </div>
+                                                        {/* <div className='EsqueceuSenha'>
+                                                                <a className='re-passwq h5' alt="Esqueceu a senha?" >Esqueceu a senha?</a>
+                                                        </div> */}
 
                                                         <div className='divider'>
-                                                                <span alt="divisor de elementos">---------ou---------</span>
+                                                                <hr />
+                                                                <span className='h5' alt="divisor de elementos">ou</span>
+                                                                <hr />
                                                         </div>
 
                                                         <GoogleLogin
@@ -186,7 +192,7 @@ export default function Login() {
                                                         />
 
                                                         <div className='NotSigned-login'>
-                                                                <a alt="Não possui cadastro?">Não possui cadastro?</a>
+                                                                <Link className='h5' to="/registerUser" alt="Não possui cadastro?">Não possui cadastro?</Link>
                                                         </div>
                                                 </form>
                                                 <div>
