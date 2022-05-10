@@ -13,13 +13,13 @@ export default function Modal() {
 
     const navigate = useNavigate();
     const [IdAssistant, setIdAssistant] = useState(0)
-    const [assistantName, setAssistantName] = useState("");
-    const [assistantDescription, setAssistantDescription] = useState("");
+    const [assistantName, setAssistantName] = useState();
+    const [assistantDescription, setAssistantDescription] = useState();
 
 
     function createAssistant(event) {
         event.preventDefault();
-        var myUrl = "https://2rpnet-rpa.azurewebsites.net/api/Assistants"
+        var myUrl = "http://localhost:5000/api/Assistants"
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -32,11 +32,8 @@ export default function Modal() {
                     console.log(response)
                     return response.json()
                         .then(data => {
-                            console.log(data)
+                            console.log("data: " + data)
                             navigate("/assistant", { state: { id: data.idAssistant, name: data.assistantName } });
-                            setAssistantName("");
-                            setAssistantDescription("");
-
                         })
                 }
             }).catch(error => console.log(error))

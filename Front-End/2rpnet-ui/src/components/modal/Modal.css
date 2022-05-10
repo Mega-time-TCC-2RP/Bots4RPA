@@ -278,11 +278,6 @@
     height: 258.93px !important;
 }
 
-.GraphicHealth label {
-    width: 200px;
-    background-color: aquamarine;
-}
-
 .graphic-2 {
     width: 98%;
     height: 360px;
@@ -294,6 +289,94 @@
     background: #FFFFFF;
 }
 
-.container-grafico{
-    width: 635px;
+.container-graphic {
+    width: 651px;
+    height: 303px;
+    display: flex;
+    justify-content: space-between;
+
+    /* background-color: #8bb0ff; */
+}
+
+.box-quantity h1 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-indent: 10px;
+    color: #3475BB;
+
+}
+
+.box-quantity {
+    width: 316px;
+    height: 142px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* background-color: #ffa4a4; */
+}
+
+.square-blue {
+    width: 33px;
+    height: 33px;
+
+    border-radius: 10px;
+    background: #022041;
+}
+
+.box-quantity span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-indent: 24px;
+
+    color: #636363;
+}
+
+.subtitle-quantity {
+    display: flex;
+    margin-left: 17px;
+
+    /* background-color: #fff3a4; */
+}
+
+.graphic2-right-side {
+    width: 302px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* background-color: #af7dff; */
+}
+
+.box-graphic-quantity {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    border: 14px solid #3375BA;
+    border-radius: 74px;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-graphic-quantity span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 108px;
+    line-height: 132px;
+    display: flex;
+    align-items: center;
+
+    color: #022041;
 }
