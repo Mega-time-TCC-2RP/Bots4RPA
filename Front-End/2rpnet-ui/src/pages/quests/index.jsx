@@ -16,6 +16,7 @@ import axios from 'axios';
 
 function App() {
   const [questsList, setQuestList] = useState([]);
+  const [titleTask, setTitleTask] = useState('');
   
   // Consumo da API
   const getQuestList = () => {
