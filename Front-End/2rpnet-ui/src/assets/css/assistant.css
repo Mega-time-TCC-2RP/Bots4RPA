@@ -16,57 +16,94 @@
     --complementDark: #17233C;
 }
 
+.container{
+  max-width: 1820px;
+  width: 90%;
+}
 
 body {
-    background-color: #EFEFEF;
+    background-color: #FCFCFC;
     color: white;
+}
+
+.header{
+  height: 72px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__text{
+  color: var(--complementDark);
+  font-weight: 500;
 }
 
 .boards {
     display: flex;
-    margin-top: 32px;
     align-items: center;
+    margin: 16px 0 0 60px;
+    min-height: 530px;
 }
 
-.board {
-    background: #D2D2D2;
-    border: 1px solid #FD951F11;
-    border-radius: 4px;
-
-    margin: 0 16px;
+.flow{
+  /* background-color: wheat; */
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
 }
 
-.board h3 {
+.boards__board{
+  background: #fff;
+  border: 2px solid #C4C4C4;
+  border-radius: 32px;
+  /* margin: 0 16px; */
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.boards__board--pointy{
+  /* width: 400px; */
+  border-radius: 0;
+}
+
+.board_title{
     padding: 16px;
     margin: 0;
-    color: #022041;
+    color: #3475BB;
+    font-size: 1.5em;
+    font-weight: 500;
 }
 
 .dropzone {
-    padding: 16px;
+    padding: 1rem;
     min-width: 282px;
     min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card {
-    background-color: var(--mainColor);
-    padding: 16px;
-    box-shadow: 0 2px 2px -1px #FD951Fcc;
-    width: 250px;
-    margin: 25px 0;
+    background-color: var(--secondaryColor);
+    padding: 1rem;
+    box-shadow: 0 2px 2px -1px var(--complementColor);
+    width: 200px;
+    height: 56px;
+    margin: 1rem 0;
     border-radius: 4px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 18px;
     color: #fff;
+    display: flex;
+    align-items: center;
 }
 
-.card-email{
-    background-color: var(--secondMain);
-}
-
-.card-math{
-    /* background-color: #FF2D2D; */
-    background-color: var(--mainColor);
+.card__content{
+  margin-left: 0.4rem;
 }
 
 .highlight {
@@ -86,6 +123,40 @@ body {
     background-color: #4cd13711;
 }
 
+.boards__button{
+  height: 48px;
+  width: 240px;
+  margin: 0 0 2rem;
+  border-radius: 10px;
+  background-color: var(--secondMain);
+  color: var(--complementLight);
+  border: none;
+  border-radius: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.button__text{
+  margin-left: 0.6rem;
+  font-weight: 550;
+}
+
+.boards__button--small{
+  width: 160px;
+  margin: 0 0 1rem;
+}
+
+.boards__text{
+  color: var(--complementColor);
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.footer{
+  margin: 64px 0 0;
+}
 
 
 /* The Modal (background) */
@@ -106,7 +177,7 @@ body {
   /* Modal Content */
   .modal-content {
     position: relative;
-    background-color: #fefefe;
+    background-color: #f3f3f3;
     margin: auto;
     padding: 0;
     border: 1px solid #888;
@@ -115,7 +186,8 @@ body {
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+    border-radius: 32px;
   }
   
   /* Add Animation */
@@ -136,6 +208,7 @@ body {
     font-size: 40px;
     font-weight: bold;
     height: 100%;
+    margin-right: 0.5rem;
   }
   
   .close:hover,
@@ -147,11 +220,13 @@ body {
   
   .modal-header {
     padding: 2px 16px;
-    background-color: var(--mainColor);
+    /* background-color: var(--mainColor); */
     color: white;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
+    border-radius: 28px 28px 0 0;
+    margin: 1rem 0;
   }
   
   .modal-body {
@@ -168,37 +243,34 @@ body {
 
   .modal-header--content{
       width: auto;
-      min-width: 24%;
-      max-width: 64%;
       display: flex;
       align-items: center;
       flex-direction: row;
       height: 100%;
-      margin: 0 8px 0 0;
+      margin: 0.5rem 0.5rem 0 0;
   }
 
   
   .modal__text--heading{
       font-weight: bold;
-      margin-right: 8px;
+      margin-right: 0.5rem;
+      font-size: 20px;
     }
     
     .modal__text{
         color: var(--complementDark);
+        font-size: 18px;
     }
 
-.boards__button{
-  height: 48px;
-  width: 80px;
-  margin: 64px;
-  border-radius: 10px;
-  background-color: var(--secondaryColor);
-  color: var(--complementLight);
-  font-weight: bold;
-}
+    .modal__input{
+      margin: 1.5rem 0 ;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--complementColor);
+      border-radius: 16px;
+    }
 
-.boards__text{
-  color: var(--complementColor);
-  font-weight: bold;
-  font-size: 32px;
-}
+    .close{
+      color: var(--complementDark);
+      margin: 0.5rem;
+    }
+

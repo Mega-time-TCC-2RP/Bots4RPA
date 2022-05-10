@@ -1,12 +1,20 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import { useEffect, useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../assets/css/assistant.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
+import bolinhas from "../../assets/img/Bolinhas.svg"
+
+import Navbar from '../../components/menu/Navbar'
+import Footer from '../../components/footer/footer'
+
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 
 import Procedures from '../../services/process';
-import { wait } from "@testing-library/user-event/dist/utils";
 
 // testar colocar uma lista com informações dos cards/bloquinhos
 
@@ -14,47 +22,21 @@ export default function Assistant() {
 
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
-    const [value, setValue] = useState(0);
+    // const [value, setValue] = useState(0);
+    const [isSaving, setIsSaving] = useState(false);
+    const [isExecuting, setIsExecuting] = useState(false);
 
-    var result = 0;
-
-    function AtualizarResultado(FinalResult) {
-        document.getElementById("result").innerHTML = `Resultado: ${FinalResult}`;
-    };
-
-    function DefineIValue(number){
-        result = number;
-        AtualizarResultado(result);
-        // console.log(result);
-    }
-
-    function Sum(number){
-        result = result + number;
-        AtualizarResultado(result);
-        // console.log(result);
-    }
-
-    function Subtract(number){
-        result = result - number;
-        AtualizarResultado(result);
-        // console.log(result);
-    }
-
-    function Multiply(number){
-        result = result * number;
-        AtualizarResultado(result);
-        // console.log(result);
-    }
+    var idAssistant = 7;
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
         // console.log(modal)
         modal.style.display = "block";
-        if (pValue != p.ProcedureValue) {  
+        if (pValue != p.ProcedureValue) {
             if (p.ProcedureValue != 0 || p.ProcedureValue != "") {
                 setPValue(p.ProcedureValue);
-            }     
-            else{
+            }
+            else {
                 setPValue("");
             }
         }
@@ -66,41 +48,84 @@ export default function Assistant() {
         modal.style.display = "none";
     };
 
-    const SaveAndExecute  = () => {
+    const Save = () => {
         //Get the cards inside the dropzone and number them by order.
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
         var child = [];
 
+        var myURL = "http://localhost:5000/api/AssistantProcedure";
+
+
         for (let index = 0; index <= children.length; index++) {
+            setIsSaving(true);
             var child = children[index];
 
             var splited = child.id.split(";");
             child.id = (index + 1) + ";" + splited[1].toString();
             console.log(child);
 
-            //Pega a função de acordo com o texto presente no elemento card, sendo este por padrão o nome do procedimento
-            switch (child.textContent) {
-                case "Numero Inicial":
-                    DefineIValue(parseInt(splited[1]));
-                    break;
-                case "Somar":
-                    Sum(parseInt(splited[1]));
-                    break;
-                case "Subtrair":
-                    Subtract(parseInt(splited[1]));
-                    break;
-                case "Multiplicar":
-                    Multiply(parseInt(splited[1]));
-                    break;
-                default:
-                    console.log("deu erro viu");
-                    break;
-            }
+            var myBody = JSON.stringify({
+                "idAssistant": idAssistant,
+                "procedurePriority": splited[0],
+                "procedureName": child.textContent,
+                "procedureDescription": "",
+                "procedureValue": splited[1]
+            });
+
+            fetch(myURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: myBody
+            })
+                .then((response) => {
+                    console.log("before if");
+                    if (response.status === 201) {
+                        console.log("after if");
+                        toast.success('o procedimento ' + child.textContent + 'foi salvo');
+                    } else {
+                        toast.error("O salvamento deu errado no " + child.textContent + " :/");
+                    }
+                })
+                .catch((erro) => {
+                    console.log(erro);
+                    toast.error("Alguma coisa deu errado :/");
+                    setIsSaving(false);
+                })
+
+            setIsSaving(false);
 
         }
+        
+        
 
-        setValue(result);
+    }
+
+    function Execute() {
+        setIsExecuting(true);
+
+        var myURL = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+
+        fetch(myURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then((response) => {
+                console.log("before if");
+                if (response.status === 201) {
+                    console.log("FUNCIONOU");
+                    toast.success("O resultado foi enviado para seu email");
+                    setIsExecuting(false);
+                } else{
+                    toast.error("A execução deu errado :/");
+                    setIsExecuting(false);
+                }
+            })
+            .catch((erro) => {
+                console.log(erro)
+                toast.error("A execução deu errado :/");
+                setIsExecuting(false);
+            })
     }
 
     function configDragnDrop() {
@@ -179,60 +204,82 @@ export default function Assistant() {
 
     return (
         <div>
-            <div className="boards">
-                <div className="board">
-                    <h3>Métodos</h3>
-                    <div className="dropzone">
-                        {
-                            proceduresList.map((procedure) => {
-                                return (
-                                    <div key={procedure.IdProcedure}>
-                                        <div id={procedure.IdProcedure+";"+procedure.ProcedureValue} className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure)}>
-                                            <div className="content">{procedure.ProcedureName}</div>
-                                        </div>
+            <header className="header container">
+                <h1 className="header__text">Assistant {idAssistant}</h1>
+            </header>
+            <main>
+                <Navbar />
+                <div className="boards container">
+                    <div className="boards__board boards__board--pointy">
+                        <h3 className="board_title">Métodos</h3>
+                        <div className="dropzone">
+                            {
+                                proceduresList.map((procedure) => {
+                                    return (
+                                        <div key={procedure.IdProcedure}>
+                                            <div id={procedure.IdProcedure + ";" + procedure.ProcedureValue} className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure)}>
+                                                <img className="card__balls" src={bolinhas} alt="bolinhas" />
+                                                <div className="card__content">{procedure.ProcedureName}</div>
+                                            </div>
 
-                                        <div id={"modal" + procedure.IdProcedure} className="modal">
-                                            {/* Modal content */}
-                                            <div className="modal-content">
-                                                <div className="modal-header">
+                                            <div id={"modal" + procedure.IdProcedure} className="modal">
+                                                {/* Modal content */}
+                                                <div className="modal-content">
                                                     <span onClick={() => handleClose(procedure.IdProcedure)} className="close">&times;</span>
-                                                    <div className="modal-header--content">
-                                                        <p className="modal__text--heading">Nome:</p>
-                                                        <p className="modal__text--heading2">{procedure.ProcedureName}</p>
+                                                    <div className="modal-header">
+                                                        <div className="modal-header--content">
+                                                            <p className="modal__text--heading modal__text">Nome:</p>
+                                                            <p className="modal__text--heading2 modal__text">{procedure.ProcedureName}</p>
+                                                        </div>
+                                                        <div className="modal-header--content">
+                                                            <p className="modal__text--heading modal__text">Descrição:</p>
+                                                            <p className="modal__text--heading2 modal__text">{procedure.ProcedureDescription}</p>
+                                                        </div>
                                                     </div>
-                                                    <div className="modal-header--content">
-                                                        <p className="modal__text--heading">Descrição:</p>
-                                                        <p className="modal__text--heading2">{procedure.ProcedureDescription}</p>
+                                                    <div className="modal-body">
+                                                        <label className="modal__text" htmlFor="">Digite aqui o valor necessário:</label>
+
+                                                        <input className="modal__input" type="text" placeholder={"Digite o valor para " + procedure.ProcedureName} value={pValue} onChange={(campo) => {
+                                                            setPValue(campo.target.value, procedure.ProcedureValue = campo.target.value);
+                                                            //   console.log(procedure.ProcedureValue)
+                                                        }} />
                                                     </div>
+
                                                 </div>
-                                                <div className="modal-body">
-                                                    <label className="modal__text" htmlFor="">Digite aqui o valor necessário:</label>
-                                                    
-                                                    <input className="modal__input" type="text" value={pValue} onChange={(campo) =>{
-                                                        setPValue(campo.target.value,  procedure.ProcedureValue = campo.target.value);
-                                                    //   console.log(procedure.ProcedureValue)
-                                                      }} />
-                                                </div>
-                                                
                                             </div>
                                         </div>
-                                    </div>
+                                    )
+                                })
+
+                            }
+
+                        </div>
+                    </div>
+                    <div className="flow">
+                        <div className="boards__board">
+                            <h3 className="board_title">Fluxo</h3>
+                            <div id="flow" className="dropzone">
+                            </div>
+                            {
+                                isSaving === false ? (
+                                    <button className="boards__button boards__button--small" onClick={() => Save()}><FontAwesomeIcon icon={faFloppyDisk} size="lg" /><p className="button__text">Salvar</p></button>
+                                ) : (
+                                    <button disabled className="boards__button boards__button--small" onClick={() => Save()}><FontAwesomeIcon icon={faFloppyDisk} size="lg" /><p className="button__text">Salvando...</p></button>
                                 )
-                            })
-
-                        }
-
+                            }
+                            {
+                                isExecuting === false ? (
+                                    <button className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faCirclePlay} size="lg" /> <p className="button__text">Executar assistente</p></button>
+                                ) : (
+                                    <button disabled className="boards__button" onClick={() => Execute()}><FontAwesomeIcon icon={faSpinner} size="lg" spin /> <p className="button__text">Executando...</p></button>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
-                <div className="board">
-                    <h3>Fluxo</h3>
-                    <div id="flow" className="dropzone">
-
-                    </div>
-                </div>
-                <button className="boards__button" onClick={() => SaveAndExecute()}>Salvar</button>
-                <p id="result" className="boards__text">Resultado: {result}</p>
-            </div>
+                <ToastContainer />
+            </main>
+            <Footer className="footer" />
         </div>
     )
 }
