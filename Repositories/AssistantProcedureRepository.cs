@@ -204,7 +204,7 @@ public IActionResult NewRun()
             return ctx.AssistantProcedures.FirstOrDefault(a => a.ProcedureName == ProcedureName);
         }
 
-        public void ChangeVerification(Assistant IdAssistant, ArrayViewModel ArrayViewModel)
+        public void ChangeVerification(ArrayViewModel ArrayViewModel)
         {
             // AssistantProcedure UpdateProcess
             string ProcedureName = ArrayViewModel.ProcedureName;
