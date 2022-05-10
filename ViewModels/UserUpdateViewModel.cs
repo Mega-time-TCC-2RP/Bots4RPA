@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace _2rpnet.rpa.webAPI.ViewModels
 {
-    public class GoogleFirstAccesViewModel
+    public class UserUpdateViewModel
     {
         [Required(ErrorMessage = "Nome do usuário necessário")]
         public string UserName1 { get; set; }
-        [Required(ErrorMessage = "Email do usuário necessário")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Id do google do usuário necessário!")]
-        public int GoogleId { get; set; }
+        public string Passwd { get; set; }
         [Required(ErrorMessage = "CPF do usuário necessário")]
         public string Cpf { get; set; }
         public string Phone { get; set; }
@@ -21,9 +19,7 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public DateTime BirthDate { get; set; }
         [Required(ErrorMessage = "Rg do usuário necessário")]
         public string Rg { get; set; }
-        [Required(ErrorMessage = "Id do tipo de usuário inválido")]
-        public int IdUserType { get; set; }
-        [Required(ErrorMessage = "Id de empresa inválido")]
+        [Required(ErrorMessage = "Id da empresa inválido")]
         public int IdCorporation { get; set; }
         [Required(ErrorMessage = "Id do cargo do usuário inválido")]
         public int IdOffice { get; set; }

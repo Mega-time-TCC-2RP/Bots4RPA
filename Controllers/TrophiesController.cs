@@ -86,7 +86,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 trophy.IdTrophy = id;
                 trophy.TrophyImage = UploadResult;
 
-                Upload.RemoveFile(QueryTrophy.TrophyImage);
+                if(QueryTrophy.TrophyImage != "padraoTrofeu.png")
+                    Upload.RemoveFile(QueryTrophy.TrophyImage);
                 #endregion
 
                 ctx.Update(trophy);
@@ -153,8 +154,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     return NotFound(new { msg = "Troféu não encontrado ou deletado" });
                 }
-
-                Upload.RemoveFile(trophy.TrophyImage);
+                if (trophy.TrophyImage != "padraoTrofeu.png")
+                    Upload.RemoveFile(trophy.TrophyImage);
                 ctx.Delete(trophy);
 
                 return NoContent();

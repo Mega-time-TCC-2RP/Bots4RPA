@@ -23,6 +23,7 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public string UserName1 { get; set; }
         [Required(ErrorMessage = "Email do usuário necessário")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Id do google do usuário necessário")]
         public string googleId { get; set; }
         [Required(ErrorMessage = "CPF do usuário necessário")]
         public string Cpf { get; set; }
@@ -33,7 +34,7 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public string Rg { get; set; }
 
 
-
+        [Required(ErrorMessage = "Id do cargo do usuário inválido")]
         public int IdOffice { get; set; }
     }
 }

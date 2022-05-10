@@ -21,8 +21,11 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public DateTime BirthDate { get; set; }
         [Required(ErrorMessage = "Rg do usuário necessário")]
         public string Rg { get; set; }
+        [Required(ErrorMessage = "Id do tipo de usuário inválido")]
         public int IdUserType { get; set; }
+        [Required(ErrorMessage = "Id da empresa inválido")]
         public int IdCorporation { get; set; }
+        [Required(ErrorMessage = "Id do cargo do usuário inválido")]
         public int IdOffice { get; set; }
     }
 }

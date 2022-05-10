@@ -66,38 +66,110 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo PUT - Atualizacao
         [HttpPut]
-        [Authorize(Roles = "3")]
-        public IActionResult Update([FromForm] UserName user, IFormFile File)
+        [Authorize(Roles = "2,3")]
+        public IActionResult Update([FromForm] UserUpdateViewModel user, IFormFile File)
         {
             try
             {
-                user.IdUser = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                if (File == null)
-                    return BadRequest("É necessário enviar um arquivo de imagem válido!");
-
+                UserName putUser = new UserName();
+                Employee putEmployee = new Employee();
+                putUser.IdUser = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
                 string[] FileTypes = { "jpg", "png", "jpeg", "gif" };
                 string UploadResult = Upload.UploadFile(File, FileTypes);
-                if (UploadResult == "")
-                {
-                    return BadRequest("Arquivo não encontrado");
-                }
 
-                if (UploadResult == "Extensão não permitida")
+                if (File != null)
                 {
-                    return BadRequest("Extensão de arquivo não permitida");
+                    if (Octx.SearchByID(user.IdOffice) == null) 
+                    {
+                        return BadRequest("Id do cargo inválido");
+                    }
+                    if ( Cctx.SearchByID(user.IdCorporation) == null )
+                    {
+                        return BadRequest("Id da empresa inválido");
+                    }
+
+                    if (UploadResult == "")
+                    {
+                        return BadRequest("Arquivo não encontrado");
+                    }
+
+                    if (UploadResult == "Extensão não permitida")
+                    {
+                        return BadRequest("Extensão de arquivo não permitida");
+                    }   
                 }
                 var QueryUser = ctx.SearchByID(Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value));
-                user.PhotoUser = UploadResult;
+                if(File != null)
+                    putUser.PhotoUser = UploadResult;
 
                 if(QueryUser == null)
                 {
-                    Upload.RemoveFile(user.PhotoUser);
+                    Upload.RemoveFile(putUser.PhotoUser);
                     return NotFound();
                 }
                 else
                 {
-                    Upload.RemoveFile(QueryUser.PhotoUser);
-                    ctx.Update(user);
+                    if (QueryUser.GoogleId == null && (user.Passwd == null || user.Email == null))
+                    {
+                        Upload.RemoveFile(putUser.PhotoUser);
+                        return BadRequest("O usuário sem login no google deve inserir uma nova senha e email");
+                    }
+                    else if (QueryUser.GoogleId != null)
+                    {
+                        putUser.BirthDate = user.BirthDate;
+                        putUser.Cpf = user.Cpf;
+                        putUser.Email = QueryUser.Email;
+                        putUser.GoogleId = QueryUser.GoogleId;
+                        putUser.IdUser = QueryUser.IdUser;
+                        putUser.IdUserType = QueryUser.IdUserType;
+                        putUser.Phone = user.Phone;
+                        if (File != null)
+                            putUser.PhotoUser = UploadResult;
+                        else
+                            putUser.PhotoUser = "padrao.png";
+                        putUser.Rg = user.Rg;
+                        putUser.UserName1 = user.UserName1;
+                        putUser.UserValidation = putUser.UserValidation;
+
+                        putEmployee.IdEmployee = QueryUser.Employees.First().IdEmployee;
+                        putEmployee.IdCorporation = user.IdCorporation;
+                        if (user.IdCorporation != QueryUser.Employees.First().IdCorporation)
+                        {
+                            putUser.UserValidation = false;
+                        }
+                        putEmployee.IdOffice = user.IdOffice;
+                        putEmployee.IdUser = QueryUser.IdUser;
+                    }
+                    else
+                    {
+                        putUser.BirthDate = user.BirthDate;
+                        putUser.Cpf = user.Cpf;
+                        putUser.Email = user.Email;
+                        putUser.Passwd = user.Passwd;
+                        putUser.IdUser = QueryUser.IdUser;
+                        putUser.IdUserType = QueryUser.IdUserType;
+                        putUser.Phone = user.Phone;
+                        if (File != null)
+                            putUser.PhotoUser = UploadResult;
+                        else
+                            putUser.PhotoUser = "padrao.png";
+                        putUser.Rg = user.Rg;
+                        putUser.UserName1 = user.UserName1;
+                        putUser.UserValidation = putUser.UserValidation;
+
+                        putEmployee.IdEmployee = QueryUser.Employees.First().IdEmployee;
+                        putEmployee.IdCorporation = user.IdCorporation;
+                        if (user.IdCorporation != QueryUser.Employees.First().IdCorporation)
+                        {
+                            putUser.UserValidation = false;
+                        }
+                        putEmployee.IdOffice = user.IdOffice;
+                        putEmployee.IdUser = QueryUser.IdUser;
+                    }
+                    if (QueryUser.PhotoUser != "padrao.png") 
+                        Upload.RemoveFile(QueryUser.PhotoUser);
+                    ctx.Update(putUser);
+                    Ectx.Update(putEmployee);
                     return NoContent();
                 }
             }
@@ -280,7 +352,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     return NotFound();
                 }
-                Upload.RemoveFile(user.PhotoUser);
+                if(user.PhotoUser != "padrao.png")
+                    Upload.RemoveFile(user.PhotoUser);
                 List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
                 List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
                 List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();

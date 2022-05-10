@@ -41,6 +41,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
             {
                 IdUser = user.IdUser,
                 UserName1 = user.UserName1,
+                IdUserType = user.IdUserType,
                 Email = user.Email,
                 Cpf = user.Cpf,
                 PhotoUser = user.PhotoUser,
@@ -70,6 +71,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
             return ctx.UserNames.Select(user => new UserName()
             {
                 IdUser = user.IdUser,
+                IdUserType = user.IdUserType,
                 UserName1 = user.UserName1,
                 Email = user.Email,
                 Cpf = user.Cpf,
@@ -103,7 +105,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                 return null;
             }
             ctx.Entry(datauser).State = EntityState.Modified;
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
 
             return datauser;
         }

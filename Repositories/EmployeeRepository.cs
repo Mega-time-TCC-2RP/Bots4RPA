@@ -43,7 +43,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public Employee Update(Employee employee)
         {
             ctx.Entry(employee).State = EntityState.Modified;
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
 
             return employee;
         }

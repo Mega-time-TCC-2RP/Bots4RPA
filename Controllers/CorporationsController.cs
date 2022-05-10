@@ -105,7 +105,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     corporate.CorporatePhoto = "padraoEmpresa.png";
                 }
-                Upload.RemoveFile(QueryCorporation.CorporatePhoto);
+                if(QueryCorporation.CorporatePhoto == "padraoEmpresa.png")
+                    Upload.RemoveFile(QueryCorporation.CorporatePhoto);
                 ctx.Update(corporate);
                 return NoContent();
             }
@@ -257,7 +258,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     Ectx.Delete(item);
                     Uctx.Delete(Uctx.SearchByID(item.IdUser));
                 }
-                Upload.RemoveFile(corporate.CorporatePhoto);
+                if(corporate.CorporatePhoto != "padraoEmpresa.png")
+                    Upload.RemoveFile(corporate.CorporatePhoto);
                 ctx.Delete(corporate);
 
                 return NoContent();
