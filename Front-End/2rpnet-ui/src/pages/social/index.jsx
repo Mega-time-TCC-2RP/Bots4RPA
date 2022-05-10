@@ -14,7 +14,7 @@ import { usuarioAutenticado, parseJwt, handleAuthException } from '../../service
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 import Blue_Head from '../../assets/img/Blue_Head.png'
-
+import onBoardingBot from '../../assets/img/onBoardingBot.png'
 
 import { Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -251,8 +251,13 @@ export const TelaTimeline = (person, idx) => {
             <Navbar />
             <div className="body-pd">
                 <VLibras />
-                <button onClick={handleOpenOnBoarding}>ABRIR</button>
-                <button onClick={handleCloseOnBoarding}>FECHAR</button>
+                <img 
+                    src={onBoardingBot} 
+                    onClick={handleOpenOnBoarding} 
+                    className="img-onboarding"
+                />
+                {/* <button onClick={handleOpenOnBoarding}>ABRIR</button>
+                <button onClick={handleCloseOnBoarding}>FECHAR</button> */}
                 <Modal
                     isOpen={onBoardingIsOpen}
                     onRequestClose={handleCloseOnBoarding}
@@ -275,30 +280,26 @@ export const TelaTimeline = (person, idx) => {
                                     className="swiperHomeTasks-social"
                                 >
                                     <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                        <div>
+                                        <div className="boardingContainer">
                                         <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div>
+                                        <div className="boardingContainer">
                                             <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div>
+                                        <div className="boardingContainer">
                                             <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div>
+                                        <div className="boardingContainer">
                                             <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
                                         </div>
                                     </SwiperSlide>
                                 </Swiper>
-                                {/* <div className='buttons-boarding'>
-                                    <button className='action-buttons'>Voltar</button>
-                                    <button className='action-buttons'>Próximo</button>
-                                </div> */}
                             </div>
 
                         </div>

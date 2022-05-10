@@ -11,33 +11,40 @@ import "../../assets/css/style.css"
 import "../../assets/css/pages/taskCalendar.css"
 import "../../assets/css/components/fonts.css"
 import "../../assets/css/components/button.css"
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios';
 
 function App() {
+  const [questsList, setQuestList] = useState([]);
+  const [titleTask, setTitleTask] = useState('');
+  
+  // Consumo da API
+  const getQuestList = () => {
+    axios('https://grupo7.azurewebsites.net/api/quests', {
+            headers : {
+                'Authorization' : 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        })
+    .then(resposta => {
+      if(resposta.status === 200){
+        console.log(resposta);
+        setQuestList( resposta.data );
+      }
+    })
+    .catch(erro => console.log(erro));
+  }
 
   // Funcionalidade da Data
   const day = () => {
-    const date = new Date()
 
-    const oneDay = [1, 2, 3, 4,
-      5, 6, 7, 8,
-      9, 10, 11, 12,
-      13, 14, 15, 16,
-      17, 18, 19, 20,
-      21, 22, 23, 24,
-      25, 26, 27, 28,
-      29, 30, 31]
 
-    let getDay = date.getDay()
 
-    let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    let date = new Date().getDate()
 
-    // for (let d = 1; d <= lastDay; d++) {
-    //     days += `<div>${d}</div>`;
-    //     btnCalendar.innerHTML = days
-    // }
-
-    console.log(getDay);
+    console.log(`O dia de hoje é: ${date}`);
+    
+    document.getElementById("calend" + date).style.color = "var(--WHITE)";
+    document.getElementById("calend" + date).style.backgroundColor = "var(--PrimaryColor1)";
   }
 
   // Funcionalidade do Drag n' Drop
@@ -102,6 +109,8 @@ function App() {
   }
 
   useEffect(() => {
+    getQuestList()
+    // getQuestList, []
     day()
     dragNDrop()
   });
@@ -117,7 +126,9 @@ function App() {
       <div className='taskCalendar'>
         <section className="task">
           <div className="toDo">
-            <h5 className="taskTitle h5">A Fazer</h5>
+            <div className="taskTitle">
+              <h5 className="h5">A Fazer</h5>
+            </div>
             <div className="taskSpace">
               <div className="cardTask" draggable="true">
                 <div className="p">Lorem Ipsum is simply dummy text.</div>
@@ -125,7 +136,9 @@ function App() {
             </div>
           </div>
           <div className="do">
-            <h5 className="taskTitle h5">Fazendo</h5>
+            <div className="taskTitle">
+              <h5 className="h5">Fazendo</h5>
+            </div>
             <div className="taskSpace">
               <div className="cardTask" draggable="true">
                 <div className="p">Lorem Ipsum is simply dummy text.</div>
@@ -133,7 +146,9 @@ function App() {
             </div>
           </div>
           <div className="done">
-            <h5 className="taskTitle h5">Feito</h5>
+            <div className="taskTitle">
+              <h5 className="h5">Feito</h5>
+            </div>
             <div className="taskSpace">
               <div className="cardTask" draggable="true">
                 <div className="p">Lorem Ipsum is simply dummy text.</div>
@@ -144,97 +159,128 @@ function App() {
         <div className="calendarAndBtn">
           <section className="calendar p">
             <div className="calendarTitle"><h5 className="h5">Calendário</h5></div>
-            <input className="btnCalendar p calend1"
+            <input id="calend1"
+              className="btnCalendar p"
               type="button"
               value="1" />
-            <input className="btnCalendar p calend2"
+            <input id="calend2"
+              className="btnCalendar p"
               type="button"
               value="2" />
-            <input className="btnCalendar p calend3"
+            <input id="calend3"
+              className="btnCalendar p"
               type="button"
               value="3" />
-            <input className="btnCalendar p calend4"
+            <input id="calend4"
+              className="btnCalendar p"
               type="button"
               value="4" />
-            <input className="btnCalendar p calend5"
+            <input id="calend5"
+              className="btnCalendar p"
               type="button"
               value="5" />
-            <input className="btnCalendar p calend6"
+            <input id="calend6"
+              className="btnCalendar p"
               type="button"
               value="6" />
-            <input className="btnCalendar p calend7"
+            <input id="calend7"
+              className="btnCalendar p"
               type="button"
               value="7" />
-            <input className="btnCalendar p calend8"
+            <input id="calend8"
+              className="btnCalendar p"
               type="button"
               value="8" />
-            <input className="btnCalendar p calend9"
+            <input id="calend9"
+              className="btnCalendar p"
               type="button"
               value="9" />
-            <input className="btnCalendar p calend10"
+            <input id="calend10"
+              className="btnCalendar p"
               type="button"
               value="10" />
-            <input className="btnCalendar p"
+            <input id="calend11"
+              className="btnCalendar p"
               type="button"
               value="11" />
-            <input className="btnCalendar p"
+            <input id="calend12"
+              className="btnCalendar p"
               type="button"
               value="12" />
-            <input className="btnCalendar p"
+            <input id="calend13"
+              className="btnCalendar p"
               type="button"
               value="13" />
-            <input className="btnCalendar p"
+            <input id="calend14"
+              className="btnCalendar p"
               type="button"
               value="14" />
-            <input className="btnCalendar p"
+            <input id="calend15"
+              className="btnCalendar p"
               type="button"
               value="15" />
-            <input className="btnCalendar p"
+            <input id="calend16"
+              className="btnCalendar p"
               type="button"
               value="16" />
-            <input className="btnCalendar p"
+            <input id="calend17"
+              className="btnCalendar p"
               type="button"
               value="17" />
-            <input className="btnCalendar p"
+            <input id="calend18"
+              className="btnCalendar p"
               type="button"
               value="18" />
-            <input className="btnCalendar p"
+            <input id="calend19"
+              className="btnCalendar p"
               type="button"
               value="19" />
-            <input className="btnCalendar p"
+            <input id="calend20"
+              className="btnCalendar p"
               type="button"
               value="20" />
-            <input className="btnCalendar p"
+            <input id="calend21"
+              className="btnCalendar p"
               type="button"
               value="21" />
-            <input className="btnCalendar p"
+            <input id="calend22"
+              className="btnCalendar p"
               type="button"
               value="22" />
-            <input className="btnCalendar p"
+            <input id="calend23"
+              className="btnCalendar p"
               type="button"
               value="23" />
-            <input className="btnCalendar p"
+            <input id="calend24"
+              className="btnCalendar p"
               type="button"
               value="24" />
-            <input className="btnCalendar p"
+            <input id="calend25"
+              className="btnCalendar p"
               type="button"
               value="25" />
-            <input className="btnCalendar p"
+            <input id="calend26"
+              className="btnCalendar p"
               type="button"
               value="26" />
-            <input className="btnCalendar p"
+            <input id="calend27"
+              className="btnCalendar p"
               type="button"
               value="27" />
-            <input className="btnCalendar p"
+            <input id="calend28"
+              className="btnCalendar p"
               type="button"
               value="28" />
-            <input className="btnCalendar p"
+            <input id="calend29"
+              className="btnCalendar p"
               type="button"
               value="29" />
-            <input className="btnCalendar p"
+            <input id="calend30"
+              className="btnCalendar p"
               type="button"
               value="30" />
-            <div className="calend31"><input className="btnCalendar p"
+            <div className="lastCalend"><input id="calend31" 
+              className="btnCalendar p"
               type="button"
               value="31" /></div>
           </section>
@@ -245,7 +291,6 @@ function App() {
         </div>
       </div>
     </div>
-
   );
 }
 

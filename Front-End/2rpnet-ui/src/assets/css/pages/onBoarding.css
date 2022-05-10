@@ -11,10 +11,10 @@
         border-radius: 30px 30px 30px 29px;
 }
 .background-body{
-        width: 604px;
-        height: 172px;
+        width: 614px;
+        height: 182px;
         margin: 0 auto;
-        margin-top: 25px;
+        margin-top: 20px;
         display: flex;
         background: #F3F0F0;
         box-shadow: inset 0px 0px 4px #5F91C4;
@@ -46,19 +46,6 @@
         align-items: center;        
         color: #3475BB;
         margin-top: 10px;
-}
-.bayer{
-        margin-top: 10px;
-        text-align: left;
-        max-width: 370px;
-        font-family: 'Montserrat';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 29px;
-        display: flex;
-        align-items: center;
-        text-align: center;
 }
 .barra{
         position: absolute;

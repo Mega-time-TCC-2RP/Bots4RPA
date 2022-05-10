@@ -24,8 +24,7 @@
 .done {
     width: 16vw;
     height: 70vh;
-    display: flex;
-    flex-direction: column;
+    /* justify-content: center; */
     align-items: center;
     box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
@@ -34,12 +33,12 @@
 
 .cardTask {
     margin: 0 1.625rem 0.5rem 1.625rem;
-    background-color: var(--SecundaryColor2);
+    background-color: var(--PrimaryColor1);
     border-radius: 30px;
     color: var(--WHITE);
     padding: 55px 16px 55px 16px;
     box-shadow: var(--box-shadow-var);
-    border: 2px solid var(--SecundaryColor1);
+    border: 2px solid var(--PrimaryColor2);
     font-weight: 600;
 }
 
@@ -54,13 +53,16 @@
 
 .taskTitle {
     margin: 2rem 0 3rem 0;
+    display: flex;
+    justify-content: center;
 }
 
 .taskSpace {
     overflow: auto;
     zoom: 80%;
-    background-color: aqua;
+    /* background-color: aqua; */
     height: 100%;
+    cursor: pointer;
 }
 
 .calendarAndBtn {
@@ -87,7 +89,7 @@
     justify-content: center;
 }
 
-.calend31 {
+.lastCalend {
     grid-column: span 5;
     display: flex;
     justify-content: center;
@@ -112,22 +114,22 @@
     background-color: var(--ComplementaryColor2);
 } */
 
-.cardTask,
-.taskSpace {
-    transition: 400ms;
-}
+/* .cardTask,
+.taskSpace { */
+    /* transition-property: width; */
+    /* transition: 200ms; */
+/*} */
 
 .isDragging {
     cursor: move;
     opacity: 0.3;
+    /* width: 90%; */
 }
 
 .over {
+    height: 70vh;
     background-color: var(--ComplementaryColor4);
-}
-
-.invisibleCard {
-    display: none;
+    opacity: 0.4;
 }
 
 .lineSpaceTask {
