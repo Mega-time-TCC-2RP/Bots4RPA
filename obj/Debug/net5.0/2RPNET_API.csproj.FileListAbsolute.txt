@@ -897,3 +897,5 @@ C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\obj\Debug\net5.0\ref\2RPNET_API.d
 C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.xml
 C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.pdb
 C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.genruntimeconfig.cache
+C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Assistant1.png
+C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Assistant2.png

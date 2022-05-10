@@ -204,91 +204,96 @@ public IActionResult NewRun()
             return ctx.AssistantProcedures.FirstOrDefault(a => a.ProcedureName == ProcedureName);
         }
 
-        public void ChangeVerification(ArrayViewModel ArrayViewModel)
+        public void ChangeVerification(Assistant IdAssistant, ArrayViewModel ArrayViewModel)
         {
             // AssistantProcedure UpdateProcess
-            string ProcedureName = ArrayViewModel.ProcedureName; 
+            string ProcedureName = ArrayViewModel.ProcedureName;
 
             AssistantProcedure AssistantSought = SearchByName(ProcedureName);
             // fazer verficação
             List<AssistantProcedure> ProceduresList = ctx.AssistantProcedures.ToList();
 
-            foreach (var item in ProceduresList)
+            if (AssistantSought != null)
             {
-                //  if (AssistantSought != item)
-                // {
-                //if (item.ProcedureName == ArrayViewModel.ProcedureName)
-                //{
-                //    if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
-                //    {
-                //        if (item.IdAssistant != AssistantSought.IdAssistant)
-                //        {
-                //            item.IdAssistant = AssistantSought.IdAssistant;
-                //        }
-
-                //        if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
-                //        {
-                //            item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
-                //        }
-
-                //        if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
-                //        {
-                //            item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
-                //        }
-
-                //        if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
-                //        {
-                //            item.ProcedureValue = ArrayViewModel.ProcedureValue;
-                //        }
-
-                //        ctx.AssistantProcedures.Update(item);
-                //        ctx.SaveChanges();
-                //    }
-                //}
-                if (item.ProcedureName == ArrayViewModel.ProcedureName)
+                foreach (var item in ProceduresList)
                 {
-                    if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
-                    {
-                        if (item.IdAssistant != AssistantSought.IdAssistant)
-                        {
-                            item.IdAssistant = AssistantSought.IdAssistant;
-                        }
+                    //if (item.ProcedureName == ArrayViewModel.ProcedureName)
+                    //{
+                    //    if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
+                    //    {
+                    //        if (item.IdAssistant != AssistantSought.IdAssistant)
+                    //        {
+                    //            item.IdAssistant = AssistantSought.IdAssistant;
+                    //        }
 
-                        if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
-                        {
-                            item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
-                        }
-                        ctx.AssistantProcedures.Update(item);
-                        ctx.SaveChanges();
-                    }
-                    if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
-                    {
-                        item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
-                        if (item.IdAssistant != AssistantSought.IdAssistant)
-                        {
-                            item.IdAssistant = AssistantSought.IdAssistant;
-                        }
+                    //        if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+                    //        {
+                    //            item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                    //        }
 
-                        if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+                    //        if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
+                    //        {
+                    //            item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
+                    //        }
+
+                    //        if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
+                    //        {
+                    //            item.ProcedureValue = ArrayViewModel.ProcedureValue;
+                    //        }
+
+                    //        ctx.AssistantProcedures.Update(item);
+                    //        ctx.SaveChanges();
+                    //    }
+                    //}
+                    if (item.ProcedureName == ArrayViewModel.ProcedureName)
+                    {
+                        if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
                         {
-                            item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                            if (item.IdAssistant != AssistantSought.IdAssistant)
+                            {
+                                item.IdAssistant = AssistantSought.IdAssistant;
+                            }
+
+                            if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+                            {
+                                item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                            }
+                            ctx.AssistantProcedures.Update(item);
+                            ctx.SaveChanges();
                         }
-                        ctx.AssistantProcedures.Update(item);
-                        ctx.SaveChanges();
+                        if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
+                        {
+                            item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
+                            if (item.IdAssistant != AssistantSought.IdAssistant)
+                            {
+                                item.IdAssistant = AssistantSought.IdAssistant;
+                            }
+
+                            if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+                            {
+                                item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                            }
+                            ctx.AssistantProcedures.Update(item);
+                            ctx.SaveChanges();
+                        }
                     }
                 }
-            }
-            if (ArrayViewModel.ProcedureName != AssistantSought.ProcedureName)
-            {
-                AssistantProcedure _repository = new AssistantProcedure();
-                _repository.IdAssistant = ArrayViewModel.IdAssistant;
-                _repository.ProcedurePriority = ArrayViewModel.ProcedurePriority;
-                _repository.ProcedureName = ArrayViewModel.ProcedureName;
-                _repository.ProcedureDescription = ArrayViewModel.ProcedureDescription;
-                _repository.ProcedureValue = ArrayViewModel.ProcedureValue;
+                if (ArrayViewModel.ProcedureName != AssistantSought.ProcedureName)
+                {
+                    AssistantProcedure _repository = new AssistantProcedure();
+                    _repository.IdAssistant = ArrayViewModel.IdAssistant;
+                    _repository.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                    _repository.ProcedureName = ArrayViewModel.ProcedureName;
+                    _repository.ProcedureDescription = ArrayViewModel.ProcedureDescription;
+                    _repository.ProcedureValue = ArrayViewModel.ProcedureValue;
 
-                ctx.AssistantProcedures.Add(_repository);
-                ctx.SaveChanges();
+                    ctx.AssistantProcedures.Add(_repository);
+                    ctx.SaveChanges();
+                }
+            }
+            else
+            {
+
             }
         }
 

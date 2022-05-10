@@ -144,11 +144,10 @@ namespace _2RPNET_API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("ProceduresVerification")]
-        public IActionResult ChangeVerification(ArrayViewModel ArrayViewModel)
+        public IActionResult ChangeVerification(Assistant IdAssistant, ArrayViewModel ArrayViewModel)
         {
             try
             {
-                //AssistantProcedure AssistantSought = _repository.SearchByName(ProcedureName);
 
                 _repository.ChangeVerification(ArrayViewModel);
                 return Ok();
