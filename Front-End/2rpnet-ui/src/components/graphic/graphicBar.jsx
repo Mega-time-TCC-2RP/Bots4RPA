@@ -11,7 +11,7 @@ export default function GraphicBar() {
 
     const [chart, setChart] = useState()
 
-    var baseUrl = "https://grupo8api.azurewebsites.net/api/Run/ListAll"
+    var baseUrl = "https://2rpnet-rpa.azurewebsites.net/api/Run/ListAll"
     var header = {
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -29,19 +29,19 @@ export default function GraphicBar() {
                 console.log(error);
             })
         }
-       
+
         fetchRun()
     }, [])
-   
+
     const data = {
         // labels: list.map((data) => console.log(data)),
-         labels: chart.map(x => x.runDate),
-        //  labels: ['oia'],
+        //  labels: chart.map(x => x.runDate),
+        labels: ['oia'],
         datasets: [
             {
                 label: "Qtde",
-                data: chart.map(x => x.runQuantity),
-                // data: [12],
+                // data: chart.map(x => x.runQuantity),
+                data: [12],
                 backgroundColor: [
                     "#3FDA9F",
                 ],

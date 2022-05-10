@@ -42,7 +42,7 @@ export default function Home() {
   const [ExecutionsList, setExecutionsList] = useState([]);
 
   function GetMyAssistants() {
-    fetch('https://grupo8api.azurewebsites.net/api/Assistants', {
+    fetch('https://2rpnet-rpa.azurewebsites.net/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },

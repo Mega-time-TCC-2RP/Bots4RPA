@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../../assets/css/assistant.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay, faL } from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +12,6 @@ import Footer from '../../components/footer/footer'
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-
 
 import Procedures from '../../services/process';
 
@@ -25,7 +25,10 @@ export default function Assistant() {
     const [isSaving, setIsSaving] = useState(false);
     const [isExecuting, setIsExecuting] = useState(false);
 
-    var idAssistant = 7;
+    const location = useLocation();
+    var idAssistant = location.state.id
+    var assistantName = location.state.name
+  
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
@@ -54,7 +57,6 @@ export default function Assistant() {
         var child = [];
 
         var myURL = "http://localhost:5000/api/AssistantProcedure";
-
 
         for (let index = 0; index <= children.length; index++) {
             setIsSaving(true);
@@ -95,9 +97,6 @@ export default function Assistant() {
             setIsSaving(false);
 
         }
-        
-        
-
     }
 
     function Execute() {
@@ -115,7 +114,7 @@ export default function Assistant() {
                     console.log("FUNCIONOU");
                     toast.success("O resultado foi enviado para seu email");
                     setIsExecuting(false);
-                } else{
+                } else {
                     toast.error("A execução deu errado :/");
                     setIsExecuting(false);
                 }
@@ -204,7 +203,7 @@ export default function Assistant() {
     return (
         <div>
             <header className="header container">
-                <h1 className="header__text">Assistant {idAssistant}</h1>
+                <h1 className="header__text">Assistant {assistantName}</h1>
             </header>
             <main>
                 <Navbar />
@@ -278,7 +277,7 @@ export default function Assistant() {
                 </div>
                 <ToastContainer />
             </main>
-            <Footer className="footer" />
+            <Footer className="footerAssistant" />
         </div>
     )
 }

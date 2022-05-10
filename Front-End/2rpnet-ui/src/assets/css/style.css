@@ -191,7 +191,6 @@
     line-height: 33px;
     display: flex;
     align-items: center;
-    text-indent: 32px;
     color: var(--ComplementaryColor3);
     display: flex;
     text-align: center;
@@ -398,7 +397,7 @@
 .movieRow-left {
     height: 32.5em;
     position: absolute;
-    margin-top: 256px;
+    /* margin-top: 256px; */
     z-index: 99;
     display: flex;
     align-items: center;

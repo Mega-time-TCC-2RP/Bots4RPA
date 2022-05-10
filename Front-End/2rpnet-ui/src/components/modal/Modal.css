@@ -64,7 +64,7 @@
 
 .assistant-id {
     width: 100%;
-    height: 50%;
+    height: 47%;
     margin-top: 1.25rem;
 
     /* background-color: rgb(0, 134, 60); */
@@ -125,7 +125,7 @@
 .box-paragraph {
     width: 25.188em;
     height: 12.688em;
-    margin-top: 1.3rem;
+    /* margin-top: 1.3rem; */
     display: flex;
 
     /* background-color: darkcyan; */
@@ -146,7 +146,7 @@
 
 .assistant-date {
     height: 4.813em;
-    margin-top: 1.25rem;
+    /* margin-top: 1.25rem; */
     margin-bottom: 1.3rem;
     display: flex;
     line-height: 27px;
