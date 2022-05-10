@@ -14,9 +14,41 @@ import "../../assets/css/components/button.css"
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 
+//onboarding
+import '../../assets/css/pages/onBoarding.css'
+import Modal from 'react-modal';
+import Blue_Head from '../../assets/img/Blue_Head.png'
+import onBoardingBot from '../../assets/img/onBoardingBot.png'
+import { Pagination, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+const stylesCustom = {
+  content: {
+      width: 1,
+      height: 1,
+      // backgroundcolor: rgba(0, 255, 255, 0.75),
+      boxShadow: ''
+  },
+};
+
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+Modal.setAppElement('#root');
+
 function App() {
   const [questsList, setQuestList] = useState([]);
   const [titleTask, setTitleTask] = useState('');
+
+  const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
+
+    function handleOpenOnBoarding() {
+        setOnBoardingIsOpen(true)
+    }
+    function handleCloseOnBoarding() {
+        setOnBoardingIsOpen(false)
+    }
   
   // Consumo da API
   const getQuestList = () => {
@@ -51,6 +83,7 @@ function App() {
   const dragNDrop = () => {
     const cardTask = document.querySelectorAll('.cardTask')
     const taskSpace = document.querySelectorAll('.taskSpace')
+
 
     // Cards
     cardTask.forEach((card) => {
@@ -108,6 +141,7 @@ function App() {
     }
   }
 
+
   useEffect(() => {
     getQuestList()
     // getQuestList, []
@@ -122,6 +156,63 @@ function App() {
       <Header />
       <Navbar />
       <VLibras />
+      <img 
+                    src={onBoardingBot} 
+                    onClick={handleOpenOnBoarding} 
+                    className="img-onboarding"
+                />
+                <Modal
+                    isOpen={onBoardingIsOpen}
+                    onRequestClose={handleCloseOnBoarding}
+                    style={stylesCustom}
+                >
+                    <div className="top-container" >
+                        <div className="background-body" >
+                            <div className="boarding-image">
+                                <img className="bot-img" src={Blue_Head} />
+                            </div>
+                            <div className="body-content">
+                                <h2>Assistente</h2>
+                                <Swiper
+                                    pagination={{
+                                        type: "fraction",
+                                      }}
+                                      navigation={true}
+                                      modules={[Pagination, Navigation]}
+                                      
+                                    className="swiperHomeTasks-social"
+                                >
+                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                        <div className="boardingContainer">
+                                        <span className='bayer'>Sinta-se a vontade a tela de Tarefas!</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div className="boardingContainer">
+                                            <span className='bayer'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div className="boardingContainer">
+                                            <span className='bayer'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div className="boardingContainer">
+                                            <span className='bayer'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div className="boardingContainer">
+                                            <span className='bayer'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
+                                        </div>
+                                    </SwiperSlide>
+                                </Swiper>
+                            </div>
+
+                        </div>
+                    </div>
+                </Modal>
       <h2 className="pageTitle h2">Painel Organizacional</h2>
       <div className='taskCalendar'>
         <section className="task">

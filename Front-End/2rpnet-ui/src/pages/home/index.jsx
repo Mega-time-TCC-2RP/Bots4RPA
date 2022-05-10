@@ -35,26 +35,43 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 //Components:
 import Footer from '../../components/footer/footer'
 
+//onboarding
+import '../../assets/css/pages/onBoarding.css'
+import Modal from 'react-modal';
+import Blue_Head from '../../assets/img/Blue_Head.png'
+import onBoardingBot from '../../assets/img/onBoardingBot.png'
+
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
+
+const stylesCustom = {
+  content: {
+      width: 1,
+      height: 1,
+      // backgroundcolor: rgba(0, 255, 255, 0.75),
+      boxShadow: ''
+  },
+};
+
+Modal.setAppElement('#root');
 
 function App() {
   const [myQuests, setMyQuests] = useState([]);
   const [highlightedPosts, setHighlightedPosts] = useState([]);
   const Navigate = useNavigate();
 
-  const handleLeftArrow = () => {
+  //onboarding
+  const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
 
+  function handleOpenOnBoarding() {
+      setOnBoardingIsOpen(true)
   }
-  const handleRightArrow = () => {
-
+  function handleCloseOnBoarding() {
+      setOnBoardingIsOpen(false)
   }
-
-  const HideArrow = () => {
-
-  }
+  //onboarding
 
   const GetMyQuests = () => {
     axios.get('http://grupo7.azurewebsites.net/api/Quests/ListarMinhas', {
@@ -103,6 +120,68 @@ function App() {
       <div className='body-pd'>
         <Header />
         <VLibras />
+        <img 
+                    src={onBoardingBot} 
+                    onClick={handleOpenOnBoarding} 
+                    className="img-onboarding"
+                />
+                <Modal
+                    isOpen={onBoardingIsOpen}
+                    onRequestClose={handleCloseOnBoarding}
+                    style={stylesCustom}
+                >
+                    <div className="top-container" >
+                        <div className="background-body" >
+                            <div className="boarding-image">
+                                <img className="bot-img" src={Blue_Head} />
+                            </div>
+                            <div className="body-content">
+                                <h2>Assistente</h2>
+                                <Swiper
+                                    pagination={{
+                                        type: "fraction",
+                                      }}
+                                      navigation={true}
+                                      modules={[Pagination, Navigation]}
+                                      
+                                    className="swiperHomeTasks-social"
+                                >
+                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                        <div className="boardingContainer">
+                                        <span className='bayer'>Seja bem-vindo(a) à sua tela inicial!</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div className="boardingContainer">
+                                            <span className='bayer'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div className="boardingContainer">
+                                            <span className='bayer'>Gostaria de executar um assistente? Ver suas Tarefas? Ou ver as questões mais em alta na área Social?</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <div className="boardingContainer">
+                                            <span className='bayer'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                        <div className="boardingContainer">
+                                        <span className='bayer'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                        <div className="boardingContainer">
+                                        <span className='bayer'>Entre e se divirta!</span>
+                                        </div>
+                                    </SwiperSlide>
+                                </Swiper>
+                            </div>
+
+                        </div>
+                    </div>
+                </Modal>
         {/* <div className="top-container">
           <div className="top-buttons">
             <form>

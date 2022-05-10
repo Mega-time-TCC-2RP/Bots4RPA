@@ -4,21 +4,21 @@ import { AxiosError } from 'axios';
 import botaoComentarImg from "../../assets/img/botaoComentar.png";
 import botaoCurtirImg from "../../assets/img/botaoLike.png";
 import botaoCurtidoImg from "../../assets/img/botaoLikeLiked.png";
-import '../../assets/css/pages/onBoarding.css'
 import "../../assets/css/pages/Timeline.css"
-import Modal from 'react-modal';
 import ImagemModalCadastro from "../../assets/img/CadastroPostBtn.png"
 import VLibras from '@djpfs/react-vlibras'
 import Navbar from '../../components/menu/Navbar'
 import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
+
+//onboarding
+import '../../assets/css/pages/onBoarding.css'
+import Modal from 'react-modal';
 import Blue_Head from '../../assets/img/Blue_Head.png'
 import onBoardingBot from '../../assets/img/onBoardingBot.png'
-
 import { Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import Swiper and modules styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -75,7 +75,7 @@ export const TelaTimeline = (person, idx) => {
     const [descricaoCadastroComentario, setDescricaoCadastroComentario] = useState('');
     const [idPostComentarios, setIdPostComentarios] = useState(0);
 
-
+    //onboarding
     const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
 
     function handleOpenOnBoarding() {
@@ -84,7 +84,7 @@ export const TelaTimeline = (person, idx) => {
     function handleCloseOnBoarding() {
         setOnBoardingIsOpen(false)
     }
-
+    //onboarding
 
 
     function openModalCadastro() {
@@ -196,7 +196,7 @@ export const TelaTimeline = (person, idx) => {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             },
         })
-            .then(function (response) {
+            .then(function (response) { 
                 console.log(response);
                 ListarPosts();
                 setIsLoading(false);
@@ -251,13 +251,12 @@ export const TelaTimeline = (person, idx) => {
             <Navbar />
             <div className="body-pd">
                 <VLibras />
+                {/* onboarding */}
                 <img 
                     src={onBoardingBot} 
                     onClick={handleOpenOnBoarding} 
                     className="img-onboarding"
                 />
-                {/* <button onClick={handleOpenOnBoarding}>ABRIR</button>
-                <button onClick={handleCloseOnBoarding}>FECHAR</button> */}
                 <Modal
                     isOpen={onBoardingIsOpen}
                     onRequestClose={handleCloseOnBoarding}
@@ -305,6 +304,7 @@ export const TelaTimeline = (person, idx) => {
                         </div>
                     </div>
                 </Modal>
+                {/*  */}
                 <main id="Main">
                     <div className="ContainerGrid ContainerPosts">
                         <div className="BotoesModais">
