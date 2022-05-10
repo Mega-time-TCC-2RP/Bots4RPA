@@ -21,3 +21,7 @@
 .button:hover {
     background: var(--PrimaryColor1);
 }
+
+.button-landingPage {
+    width: 150px !important;
+}
