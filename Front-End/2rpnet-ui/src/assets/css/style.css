@@ -223,7 +223,9 @@
 }
 .bottom-container{
     background: var(--ComplementaryColor1);
-    height: 170vh;
+    height: 87vh;
+    overflow-y: hidden;
+    padding-bottom: 100px;
 }
 .bottom-title{
     font-family: 'Montserrat';
@@ -245,7 +247,6 @@
     box-sizing: border-box;
     box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
-    margin-left: 170px;
     margin-top: 70px;
     display: inline-block;
     cursor: pointer;
@@ -317,16 +318,24 @@
 .img2-home-bottom{
     width: 100%;
 }
-.post-text-bottom-home{
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    display: flex;
-    align-items: center;
+
+.TituloPostDestaque{
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top: 20px;
     color: var(--ComplementaryColor2);
-    margin-top: 30px;
+    text-align: center;
+}
+
+.post-text-bottom-home{
+    color: var(--ComplementaryColor2);
+    font-size: 18px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .swiperHomeTasks {

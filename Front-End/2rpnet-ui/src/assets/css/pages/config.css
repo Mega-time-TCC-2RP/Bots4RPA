@@ -101,6 +101,7 @@
 .profileImage {
     width: 320px;
     height: 320px;
+    border-radius: 50%;
 }
 
 .iconConfig {

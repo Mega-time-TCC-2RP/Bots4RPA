@@ -158,80 +158,71 @@ function App() {
             modules={[Pagination, Navigation]}
             className="swiperHomeTasks"
           >
-              <SwiperSlide className="swiper-slide-HomeTasks">
-                <div className="card-body-content">
-                  <h3 className="title-card-content">Título</h3>
-                  <p className="text-body1"></p>
-                  <p className="data-body">Data de entrega :</p>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide-HomeTasks">
-                <div className="card-body-content">
-                  <h3 className="title-card-content">Título</h3>
-                  <p className="text-body1"></p>
-                  <p className="data-body">Data de entrega :</p>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide-HomeTasks">
-                <div className="card-body-content">
-                  <h3 className="title-card-content">Título</h3>
-                  <p className="text-body1"></p>
-                  <p className="data-body">Data de entrega :</p>
-                </div>
-              </SwiperSlide>
-              {
-                myQuests != undefined && myQuests != null ?
-                  myQuests.map((Quest) => {
-                    return (
-                      <SwiperSlide className="swiper-slide-HomeTasks">
-                        <div className="card-body-content">
-                          <h3 className="title-card-content">Título</h3>
-                          <p className="text-body1">{Quest.descriptionQuest}</p>
-                          <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Quest.dateHour))}</p>
-                        </div>
-                      </SwiperSlide>
-                    )
-                  }) :
-                  <SwiperSlide className="swiper-slide-HomeTasks">
-                    <span>Não há tarefas...</span>
-                  </SwiperSlide>
-              }
-        </Swiper>
-      </div>
-      <div className="bottom-container">
-        <form>
-          <div className="forms-items">
-            <h2 className="bottom-title">Posts em destaque</h2>
             {
-              highlightedPosts != undefined && highlightedPosts != null ?
+              myQuests != undefined && myQuests != null && myQuests[0] != undefined && myQuests[0] != null ?
+                myQuests.map((Quest) => {
+                  return (
+                    <SwiperSlide className="swiper-slide-HomeTasks">
+                      <div className="card-body-content">
+                        <h3 className="title-card-content">Título</h3>
+                        <p className="text-body1">{Quest.descriptionQuest}</p>
+                        <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Quest.dateHour))}</p>
+                      </div>
+                    </SwiperSlide>
+                  )
+                }) :
+                <SwiperSlide className="swiper-slide-HomeTasks">
+                  <span>Não há tarefas...</span>
+                </SwiperSlide>
+            }
+          </Swiper>
+        </div>
+        <div className="bottom-container">
+          <h2 className="body-title-task">Posts em destaque</h2>
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={0}
+            slidesPerGroup={2}
+            loop={false}
+            loopFillGroupWithBlank={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="swiperHomeTasks"
+          >
+            {
+              highlightedPosts != undefined && highlightedPosts != null && highlightedPosts[0] != undefined && highlightedPosts[0] != null  ?
                 highlightedPosts.map((post) => {
                   return (
-                    <div className="bottom-posts-content">
-                      <div className="chatListItem--lines">
-                        <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
-                        <div className="chatItemList-line">
-                          <div className="PostItem-name">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
-                          <p className="PostItem-role">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+                    <SwiperSlide className="swiper-slide-HomeTasks">
+                      <div className="bottom-posts-content">
+                        <div className="chatListItem--lines">
+                          <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                          <div className="chatItemList-line">
+                            <div className="PostItem-name">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
+                            <p className="PostItem-role">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+                          </div>
                         </div>
+                        {
+                          post.postImage != undefined ?
+                            <img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
+                            <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
+                        }
+                        <h2 className="TituloPostDestaque">{post.title}</h2>
+                        <p className="post-text-bottom-home">{post.postDescription}</p>
                       </div>
-                      {
-                        post.postImage != undefined ?
-                          <img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                          <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
-                      }
-                      <h2 className="TituloPost">{post.title}</h2>
-                      <p className="post-text-bottom-home">{post.postDescription}</p>
-                    </div>
+                    </SwiperSlide>
                   )
                 }) :
                 <span>Não há posts em destaque</span>
             }
-          </div>
-        </form>
-      </div>
+          </Swiper>
+        </div>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
     </div >
   );
 }

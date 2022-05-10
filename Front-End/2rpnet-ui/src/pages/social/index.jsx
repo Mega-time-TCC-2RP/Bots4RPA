@@ -250,6 +250,7 @@ export const TelaTimeline = (person, idx) => {
 
             <Navbar />
             <div className="body-pd">
+                <Header />
                 <VLibras />
                 <img 
                     src={onBoardingBot} 

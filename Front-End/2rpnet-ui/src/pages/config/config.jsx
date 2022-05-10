@@ -439,7 +439,7 @@ export default function Config() {
                                             </div>
                                         </div>
                                     </div>
-                                    <img src={userLogado.photoUser} className='profileImage' alt="Imagem de perfil" />
+                                    <img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} className='profileImage' alt="Imagem de perfil" />
                                 </div>
                                 <button className='button' onClick={openModalConfig}>Atualizar Dados</button>
                                 <Modal
