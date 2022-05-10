@@ -62,6 +62,7 @@
     zoom: 80%;
     /* background-color: aqua; */
     height: 100%;
+    cursor: pointer;
 }
 
 .calendarAndBtn {
@@ -113,11 +114,11 @@
     background-color: var(--ComplementaryColor2);
 } */
 
-.cardTask,
-.taskSpace {
+/* .cardTask,
+.taskSpace { */
     /* transition-property: width; */
     /* transition: 200ms; */
-}
+/*} */
 
 .isDragging {
     cursor: move;

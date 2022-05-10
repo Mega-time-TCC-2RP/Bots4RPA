@@ -118,7 +118,8 @@ input#file-upload-button {
     height: 45px;
     font-size: 1.2em;
     position: absolute;
-    top: 10px;
+    top: 35px;
+    left: 35px;
     color: var(--PrimaryColor2);
 }
 

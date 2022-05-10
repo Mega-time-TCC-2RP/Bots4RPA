@@ -1,32 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+:root {
+    font-family: 'Montserrat', sans-serif;
+    --widthLogoPadrao: 275px;
+    --heigthLogoPadrao: 95px;
+}
+
 .h1 {
     font-size: 3em;
     font-family: 'Montserrat', sans-serif;
+    line-height: 2em;
 }
 .h2 {
     font-size: 2.5em;
     font-family: 'Montserrat', sans-serif;
+    line-height: 1.9em;
 }
 .h3 {
     font-size: 2.07em;
     font-family: 'Montserrat', sans-serif;
+    line-height: 1.8em;
 }
 .h4 {
     font-size: 1.8em;
     font-family: 'Montserrat', sans-serif;
+    line-height: 1.7em;
 }
 .h5 {
     font-size: 1.44em;
     font-family: 'Montserrat', sans-serif;
+    line-height: 1.6em;
 }
 .h6 {
     font-size: 1.2em;
     font-family: 'Montserrat', sans-serif;
+    line-height: 1.5em;
 }
 .p {
     font-size: 1em;
     font-family: 'Montserrat', sans-serif;
+    line-height: 1.4em;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.box-shadow {
+    box-shadow: 4px 4px var(--lightShadow);
 }
 
 .background {
@@ -68,6 +89,7 @@
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: center;
     padding-left: 0%;
     margin-left: 5%;
     color: var(--WHITE);
@@ -83,7 +105,6 @@
     color: var(--PrimaryColor1);
     line-height: 28px;
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
     padding-left: 5%;
 }
@@ -92,6 +113,7 @@
     border: 1px solid var(--PrimaryColor1);
     box-sizing: border-box;
     border-radius: 32px;
+    font-size: 1em;
     height: 45px;
     width: 100%;
 }
@@ -108,6 +130,7 @@
 
 .input {
     border: 1px solid var(--PrimaryColor1);
+    font-size: 1.2em;
     padding-left: 5%;
     padding-right: 5%;
     box-sizing: border-box;
@@ -115,3 +138,4 @@
     height: 45px;
     width: 100%;
 }
+

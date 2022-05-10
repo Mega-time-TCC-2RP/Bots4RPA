@@ -1,25 +1,28 @@
-*{
+* {
         margin: 0;
         padding: 0;
         /* box-sizing: border-box; */
 }
-.logo-Header{
+
+.logo-Header {
         width: 350;
         height: 150;
         align-items: center;
         justify-content: center;
         margin-bottom: 50px;
 }
-.login{
+
+.login {
         background-color: var(--ScreenBackground);
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        
+
 }
-.login-container{
+
+.login-container {
         background-color: var(--WHITE);
         /* height: 90vh; */
         width: 60%;
@@ -34,7 +37,17 @@
         padding-bottom: 50px;
         margin-top: 100px;
 }
-.topo-input-email{
+
+.inputsAreaLogin {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        height: 35%;
+}
+
+.topo-input-email {
         font-family: 'Montserrat';
         font-style: normal;
         font-weight: 400;
@@ -46,7 +59,7 @@
         text-align: start;
 }
 
-.topo-input-senha{
+.topo-input-senha {
         font-family: 'Montserrat';
         font-style: normal;
         font-weight: 400;
@@ -57,10 +70,12 @@
         display: flex;
         margin-top: 90px;
 }
-.formsLogin-Email{
+
+.formsLogin-Email {
         width: 370px;
 }
-.formsLogin-Email input{
+
+.formsLogin-Email input {
         border-radius: 50px;
         width: 370px;
         height: 70px;
@@ -75,12 +90,13 @@
         text-indent: 32px;
         opacity: 0.5;
         background: var(--WHITE);
-/* Cinza */
+        /* Cinza */
         border: 1px solid var(--ComplementaryColor2);
         box-sizing: border-box;
         border-radius: 32px;
 }
-.Login input{
+
+.Login input {
         border-radius: 50px;
         width: 370px;
         height: 70px;
@@ -99,30 +115,32 @@
         box-sizing: border-box;
         border-radius: 32px;
 }
-.botaoLogin{
+
+.botaoLogin {
         background: var(--PrimaryColor2);
         width: 200px;
-        height: 55px;
+        height: 45px;
         color: var(--WHITE);
         border-radius: 64px;
         font-family: 'Montserrat', sans-serif;
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 400;
         line-height: 28px;
         border: none;
-        margin-top: 30px;
         cursor: pointer;
         /* box-shadow: 0px 6px 6px var(--darkShadow); */
         box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
 }
-.botaoLogin:hover{
+
+.botaoLogin:hover {
         background: var(--PrimaryColor2);
 }
-.EsqueceuSenha a, .NotSigned-login{
+
+.EsqueceuSenha a,
+.NotSigned-login {
         font-family: 'Montserrat';
         font-style: italic;
         font-weight: 250;
-        font-size: 23px;
         line-height: 28px;
         display: flex;
         align-items: center;
@@ -131,25 +149,32 @@
         margin-top: 20px;
         cursor: pointer;
         opacity: 0.8;
+        text-decoration: none;
 }
-.divider{
-        font-family: 'Montserrat';
-        font-style: italic;
+
+.divider {
+        width: 200px;
         font-weight: 250;
-        font-size: 23px;
         line-height: 28px;
         display: flex;
+        justify-content: space-evenly;
         align-items: center;
         text-align: center;
-        color: var(--PrimaryColor2);
+        color: var(--ComplementaryColor2);
         /* margin-left: 90px; */
-        margin-top: 20px;
-        opacity: 0.2;
+        opacity: 0.3;
 }
-button{
+
+.divider hr {
+        width: 75px;
+        border: 1px solid;
+}
+
+button {
         border-radius: 32px;
 }
-.google-button{ 
+
+.google-button {
         position: relative;
         /* border: solid 2px ;
         border-image-slice: 30;
@@ -164,9 +189,8 @@ button{
         background-clip: content-box, border-box;
         cursor: pointer;
         width: 400px;
-        height: 65px;
+        height: 55px;
         line-height: 28px;
-        margin-top: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -180,35 +204,39 @@ button{
         font-size: 20px;
         font-weight: 400;
         color: darkgray;
-        
+
         font-size: 14px;
         font-weight: 500;
-        
+
 }
-.img-red{
+
+.img-red {
         position: fixed;
         top: 0;
         right: 0;
 }
-.img-blue{
+
+.img-blue {
         position: fixed;
         bottom: 0;
         left: 0;
 }
-.forms-login form{
-        align-items: center;
+
+.loginForm {
         align-items: center;
         display: flex;
         flex-direction: column;
 }
-#googleLogin{
+
+#googleLogin {
         /* color: rgba(0, 0, 0, 0.54); */
         padding-right: 5px;
         font-size: 18px;
         font-weight: 500;
         font-family: 'Montserrat', sans-serif;
 }
-.icon3{
+
+.icon3 {
         width: 30px;
         height: 30px;
         margin-right: 10px;

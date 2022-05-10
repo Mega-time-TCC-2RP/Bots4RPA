@@ -67,7 +67,7 @@ export default function Config() {
 
 
     function listUser() {
-        select(0);
+        
         axios('https://grupo7.azurewebsites.net/api/UserNames/GetMe', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')

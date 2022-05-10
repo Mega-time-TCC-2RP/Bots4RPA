@@ -312,7 +312,6 @@ export default function RegisterUser() {
                                     </div>
                                 )
                             }
-
                         </form>
                     </div>
                 </div>

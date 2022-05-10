@@ -10,7 +10,6 @@ body{
     padding: 0;
 }
 .sidebar{
-    
     position: fixed;
     top: 0;
     left: 0;
@@ -33,6 +32,7 @@ body{
     align-items: center;
     opacity: 0;
     pointer-events: none;
+    margin-top: 10px;
 }
 .sidebar.active .logo_content .logo{
     opacity: 1;
@@ -42,7 +42,7 @@ body{
     pointer-events: none;
 }
 .Link:hover{
-    background-color: rgb(239, 239, 239);
+    /* background-color: rgb(239, 239, 239); */
     border-radius: 5px;
     width: 200px;
 }

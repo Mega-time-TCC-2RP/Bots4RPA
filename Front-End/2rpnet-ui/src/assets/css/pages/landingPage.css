@@ -68,7 +68,7 @@ a {
     height: 0px;
 }
 
-.login {
+.loginLanding {
     font-family: 'Montserrat', sans-serif;
     font-size: 22px;
     font-weight: 400;
@@ -98,6 +98,10 @@ a {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.content-landing {
+    align-items: flex-start !important;
 }
 
 .section h2 {
@@ -165,7 +169,6 @@ a {
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 24px;
     color: var(--ComplementaryColor2);
     text-align: center;
 }
