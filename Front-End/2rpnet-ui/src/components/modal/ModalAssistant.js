@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import "../../components/modal/ModalAssistant.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Link, SettingsApplications } from '@material-ui/icons';
-import { props } from 'cypress/types/bluebird';
 
 function CloseModalAssistant() {
     var modal = document.getElementById("modalAssistant");
