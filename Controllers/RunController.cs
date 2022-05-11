@@ -78,5 +78,22 @@ namespace _2RPNET_API.Controllers
                 return BadRequest(ex);
             }
         }
+
+        /// <summary>
+        /// Method responsible for list Run by unique id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{Id}")]
+        public IActionResult ReadMy(int Id)
+        {
+            try
+            {
+                return Ok(_repository.SearchByID(Id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }

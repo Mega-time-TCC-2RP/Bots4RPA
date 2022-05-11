@@ -142,11 +142,5 @@ namespace _2RPNET_API.Controllers
                 return BadRequest(Ex);
             }
         }
-
-
-        
-
-
     }
-
 }

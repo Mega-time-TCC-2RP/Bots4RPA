@@ -127,6 +127,12 @@
             Method responsible for create a Run process
             </summary>
         </member>
+        <member name="M:_2RPNET_API.Controllers.RunController.ReadMy(System.Int32)">
+            <summary>
+            Method responsible for list Run by unique id
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:_2RPNET_API.Controllers.UserNameController.ReadAll">
             <summary>
             Method responsible for list all Users
