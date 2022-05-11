@@ -32,7 +32,7 @@ export default function Modal() {
                     console.log(response)
                     return response.json()
                         .then(data => {
-                            console.log("data: " + data)
+                            console.log(data)
                             navigate("/assistant", { state: { id: data.idAssistant, name: data.assistantName } });
                         })
                 }

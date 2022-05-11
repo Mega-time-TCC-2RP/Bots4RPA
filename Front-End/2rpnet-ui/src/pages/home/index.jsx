@@ -92,16 +92,11 @@ export default function Home() {
 
   function App() {
     const handleLeftArrow = () => {
-
     }
     const handleRightArrow = () => {
-
     }
-
     const HideArrow = () => {
-
     }
-
   }
 
   useEffect(App, [])

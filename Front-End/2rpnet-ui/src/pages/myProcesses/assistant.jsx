@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+
 import "../../assets/css/assistant.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay, faL } from '@fortawesome/free-solid-svg-icons'
@@ -19,6 +20,7 @@ import Procedures from '../../services/process';
 
 export default function Assistant() {
 
+    const [Assistant, setAssistant] = useState("")
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
     // const [value, setValue] = useState(0);
@@ -26,9 +28,11 @@ export default function Assistant() {
     const [isExecuting, setIsExecuting] = useState(false);
 
     const location = useLocation();
-    var idAssistant = location.state.id
-    var assistantName = location.state.name
-  
+    // var idAssistant = location.state.id
+    // var assistantName = location.state.name
+    // console.log(location.state.id)
+    // var idAssistant = 7
+
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
@@ -67,7 +71,7 @@ export default function Assistant() {
             console.log(child);
 
             var myBody = JSON.stringify({
-                "idAssistant": idAssistant,
+                "idAssistant": location.state.id,
                 "procedurePriority": splited[0],
                 "procedureName": child.textContent,
                 "procedureDescription": "",
@@ -99,10 +103,27 @@ export default function Assistant() {
         }
     }
 
+    function GetAssistantById() {
+        var myURL = "http://localhost:5000/api/Assistants/" + location.state.id;
+
+        fetch(myURL, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setAssistant(data)
+                // console.log(data)
+            )
+            .catch((error) => console.log(error));
+    }
+   
+
     function Execute() {
         setIsExecuting(true);
 
-        var myURL = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+        var myURL = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + location.state.id;
 
         fetch(myURL, {
             method: 'POST',
@@ -197,13 +218,14 @@ export default function Assistant() {
 
     useEffect(() => {
         configDragnDrop();
+        GetAssistantById();
     })
 
 
     return (
         <div>
             <header className="header container">
-                <h1 className="header__text">Assistant {assistantName}</h1>
+                    <h1 className="header__text">{Assistant.assistantName}</h1>
             </header>
             <main>
                 <Navbar />
@@ -280,4 +302,5 @@ export default function Assistant() {
             <Footer className="footerAssistant" />
         </div>
     )
+
 }
