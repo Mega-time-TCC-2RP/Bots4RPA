@@ -1,5 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import "../../assets/css/assistant.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
@@ -13,19 +15,24 @@ import Footer from '../../components/footer/footer'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-
 import Procedures from '../../services/process';
 
 // testar colocar uma lista com informações dos cards/bloquinhos
 
 export default function Assistant() {
 
+    const [Assistant, setAssistant] = useState("")
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
     const [isSaving, setIsSaving] = useState(false);
     const [isExecuting, setIsExecuting] = useState(false);
 
-    var idAssistant = 7;
+    const location = useLocation();
+    // var idAssistant = location.state.id
+    // var assistantName = location.state.name
+    // console.log(location.state.id)
+    // var idAssistant = 7
+
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
@@ -47,7 +54,7 @@ export default function Assistant() {
         modal.style.display = "none";
     };
 
-    function Save(){
+    function Save() {
         //Get the cards inside the dropzone and number them by order.
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
@@ -65,7 +72,7 @@ export default function Assistant() {
             console.log(child);
 
             var myBody = JSON.stringify({
-                "idAssistant": idAssistant,
+                "idAssistant": location.state.id,
                 "procedurePriority": splited[0],
                 "procedureName": child.textContent,
                 "procedureDescription": "",
@@ -109,22 +116,38 @@ export default function Assistant() {
                     // console.log("after if");
                     toast.success(`o assistente ${idAssistant} foi salvo`)
                 } else {
-                    toast.success(`Houve erros no processo de salvamento do assistente ${idAssistant}`) 
+                    toast.success(`Houve erros no processo de salvamento do assistente ${idAssistant}`)
                 }
                 setIsSaving(false);
             })
-            .catch((erro) =>{
+            .catch((erro) => {
                 console.log(erro);
                 toast.error("O script de salvamento não foi salvo :/");
                 setIsSaving(false);
             });
-
     }
+    
+    function GetAssistantById() {
+        var myURL = "http://localhost:5000/api/Assistants/" + location.state.id;
+
+        fetch(myURL, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setAssistant(data)
+                // console.log(data)
+            )
+            .catch((error) => console.log(error));
+    }
+
 
     function Execute() {
         setIsExecuting(true);
 
-        var myURL = `/api/Assistant${idAssistant}/Post`;
+        var myURL = `/api/Assistant${location.state.id}/Post`;
 
         fetch(myURL, {
             method: 'POST',
@@ -218,13 +241,14 @@ export default function Assistant() {
 
     useEffect(() => {
         configDragnDrop();
+        GetAssistantById();
     })
 
 
     return (
         <div>
             <header className="header container">
-                <h1 className="header__text">Assistant {idAssistant}</h1>
+                <h1 className="header__text">{Assistant.assistantName}</h1>
             </header>
             <main>
                 <Navbar />
@@ -298,7 +322,8 @@ export default function Assistant() {
                 </div>
                 <ToastContainer />
             </main>
-            <Footer className="footer" />
+            <Footer className="footerAssistant" />
         </div>
     )
+
 }

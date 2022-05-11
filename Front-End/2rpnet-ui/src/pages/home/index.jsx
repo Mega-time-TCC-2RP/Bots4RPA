@@ -72,7 +72,7 @@ export default function Home() {
   }
 
   function GetMyAssistants() {
-    fetch('https://2rpnet-rpa.azurewebsites.net/api/Assistants', {
+    fetch('http://localhost:5000/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
@@ -122,16 +122,11 @@ export default function Home() {
 
   function App() {
     const handleLeftArrow = () => {
-
     }
     const handleRightArrow = () => {
-
     }
-
     const HideArrow = () => {
-
     }
-
   }
 
   useEffect(App, [])

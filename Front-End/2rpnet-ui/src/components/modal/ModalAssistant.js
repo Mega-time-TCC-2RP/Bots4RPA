@@ -10,25 +10,31 @@ function CloseModalAssistant() {
 };
 
 export default function Modal() {
+
     const navigate = useNavigate();
-    const [assistantName, setAssistantName] = useState("");
-    const [assistantDescription, setAssistantDescription] = useState("");
-    
+    const [IdAssistant, setIdAssistant] = useState(0)
+    const [assistantName, setAssistantName] = useState();
+    const [assistantDescription, setAssistantDescription] = useState();
+
+
     function createAssistant(event) {
         event.preventDefault();
-        var myUrl = "https://grupo8api.azurewebsites.net/api/Assistants"
+        var myUrl = "http://localhost:5000/api/Assistants"
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ "assistantName": assistantName, "assistantDescription": assistantDescription })
         };
+
         fetch(myUrl, requestOptions)
             .then(response => {
                 if (response.status === 201) {
-                    navigate("/assistant");
-                    // navigate("/assistant",{ state: { . } });
-                    setAssistantName("");
-                    setAssistantDescription("");
+                    console.log(response)
+                    return response.json()
+                        .then(data => {
+                            console.log(data)
+                            navigate("/assistant", { state: { id: data.idAssistant, name: data.assistantName } });
+                        })
                 }
             }).catch(error => console.log(error))
     }
