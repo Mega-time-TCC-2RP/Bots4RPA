@@ -28,7 +28,7 @@ export default function Assistant() {
     const [isExecuting, setIsExecuting] = useState(false);
 
     const location = useLocation();
-    // var idAssistant = location.state.id
+    var idAssistant = location.state.id;
     // var assistantName = location.state.name
     // console.log(location.state.id)
     // var idAssistant = 7
@@ -147,7 +147,7 @@ export default function Assistant() {
     function Execute() {
         setIsExecuting(true);
 
-        var myURL = `/api/Assistant${location.state.id}/Post`;
+        var myURL = `/api/Assistant${idAssistant}/Post`;
 
         fetch(myURL, {
             method: 'POST',
