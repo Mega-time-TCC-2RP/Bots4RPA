@@ -90,7 +90,7 @@ export const Header = () => {
                                         <div className='name'>{myUser.userName1}</div>
                                         {
                                             myUser.employees === nullUndefinedParams.employees ?
-                                                <div className='job'>Cargo indefinido</div> :
+                                                <div className='job'>Cargo indefinido</div> : 
                                                 <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
                                         }
                                     </div>

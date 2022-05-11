@@ -20,7 +20,6 @@ export const handleAuthException = async (error) => {
             return true
         }
     }
-    
     if (localStorage.getItem('2rp-chave-autenticacao') === null) {
         return true
     }

@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     overflow: auto;
-    height: 100vh;
+    height: 91vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -76,7 +76,7 @@
 
 .contentConfig {
     height: 100%;
-    width: 45%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -105,13 +105,13 @@
 }
 
 .iconConfig {
-    width: 42px;
-    height: 48px;
+    width: 38px;
+    height: 55px;
 }
 
 .iconConfig2 {
-    width: 42px;
-    height: 48px;
+    width: 55px;
+    height: 55px;
 }
 
 .iconConfig:hover {
@@ -140,7 +140,7 @@
     padding-top: 2%;
     border-color: #6C757D;
     height: 25%;
-    width: 80%;
+    width: 85%;
 }
 
 .scrollDiv {
@@ -190,6 +190,7 @@
 .maskProfile {
     background-color: #6C757D;
     height: 320px;
+    border-radius: 50%;
 }
 
 .editProfileImage {

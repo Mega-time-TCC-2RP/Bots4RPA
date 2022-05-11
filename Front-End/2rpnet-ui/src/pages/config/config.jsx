@@ -24,6 +24,9 @@ import '../../assets/css/pages/config.css'
 import * as AiIcons from 'react-icons/ai'
 import * as SiIcons from 'react-icons/si'
 
+//components:
+import Header from '../../components/header/header'
+
 const steps = [
     {
         id: 'Step1'
@@ -67,6 +70,7 @@ export default function Config() {
 
 
     function listUser() {
+        document.querySelector('.myData').classList.toggle('selected')
         
         axios('https://grupo7.azurewebsites.net/api/UserNames/GetMe', {
             headers: {
@@ -84,6 +88,14 @@ export default function Config() {
 
     useEffect(listUser, []);
 
+    const autorizeCorporation = (idUser) => {
+
+    }
+
+    const deleteCorporation = (idCorporation) => {
+
+    }
+
     const alterUserData = (event) => {
         event.preventDefault()
         var formData = new FormData()
@@ -93,9 +105,10 @@ export default function Config() {
         formData.append('Email', userAlterado.email)
         formData.append('Phone', userAlterado.phone)
         formData.append('Rg', userAlterado.rg)
-        formData.append('IdUser', userLogado.idUser)
+        formData.append('IdCorporation', userLogado.employees[0].idCorporation)
         formData.append('IdUserType', userLogado.idUserType)
-        formData.append('userValidation', userLogado.userValidation)
+        formData.append('Passwd', userLogado.passwd)
+        formData.append('IdOffice', userLogado.employees[0].idOffice)
         formData.append('File', userLogado.photoUser)
         axios({
             method: "PUT",
@@ -113,7 +126,7 @@ export default function Config() {
     }
 
     function listInvalidUsers() {
-        if (parseJwt().role == 2) {
+        if (parseJwt().Role == 2) {
             axios('http://grupo7.azurewebsites.net/api/Corporations/UsuariosInvalidos', {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
@@ -132,7 +145,7 @@ export default function Config() {
     useEffect(listInvalidUsers, [])
 
     function listInvalidCorporation() {
-        if (parseJwt().role == 1) {
+        if (parseJwt().Role == 1) {
             axios('http://grupo7.azurewebsites.net/api/Corporations/EmpresasInvalidas', {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
@@ -158,6 +171,7 @@ export default function Config() {
     function closeModalConfig() {
         setModalConfig(false);
         setUserAlterado(userLogado)
+        document.querySelector('.myData').classList.toggle('selected')
         listUser();
     }
 
@@ -168,30 +182,30 @@ export default function Config() {
                 case 0:
                     document.querySelector('.myData').classList.toggle('selected')
                     document.querySelector('.Acessibilidade').classList.remove('selected')
-                    if (parseJwt().role == 2) {
+                    if (parseJwt().Role == 2) {
                         document.querySelector('.validarUsuarios').classList.remove('selected')
                     }
-                    if (parseJwt().role == 1) {
+                    if (parseJwt().Role == 1) {
                         document.querySelector('.validarEmpresas').classList.remove('selected')
                     }
                     break;
                 case 1:
                     document.querySelector('.myData').classList.remove('selected')
                     document.querySelector('.Acessibilidade').classList.toggle('selected')
-                    if (parseJwt().role == 2) {
+                    if (parseJwt().Role == 2) {
                         document.querySelector('.validarUsuarios').classList.remove('selected')
                     }
-                    if (parseJwt().role == 1) {
+                    if (parseJwt().Role == 1) {
                         document.querySelector('.validarEmpresas').classList.remove('selected')
                     }
                     break;
                 case 2:
                     document.querySelector('.myData').classList.remove('selected')
                     document.querySelector('.Acessibilidade').classList.remove('selected')
-                    if (parseJwt().role == 2) {
+                    if (parseJwt().Role == 2) {
                         document.querySelector('.validarUsuarios').classList.toggle('selected')
                     }
-                    if (parseJwt().role == 1) {
+                    if (parseJwt().Role == 1) {
                         document.querySelector('.validarEmpresas').classList.remove('selected')
                     }
                     break;
@@ -199,10 +213,10 @@ export default function Config() {
                     listInvalidCorporation();
                     document.querySelector('.myData').classList.remove('selected')
                     document.querySelector('.Acessibilidade').classList.remove('selected')
-                    if (parseJwt().role == 2) {
+                    if (parseJwt().Role == 2) {
                         document.querySelector('.validarUsuarios').classList.remove('selected')
                     }
-                    if (parseJwt().role == 1) {
+                    if (parseJwt().Role == 1) {
                         document.querySelector('.validarEmpresas').classList.toggle('selected')
                     }
                     break;
@@ -395,14 +409,15 @@ export default function Config() {
 
     return (
         <div>
+            {parseJwt().Role == 3 ? <Header /> : null}
             <Navbar />
             <div className='configPage'>
                 <h1 className='container h1' alt="configurações">Configurações</h1>
                 <nav className='navAreaConfig container'>
                     <span className='h3 myData' id='myData' onClick={() => select(0)}>Meus Dados</span>
                     <span className='h3 Acessibilidade' id='Acessibilidade' onClick={() => select(1)}>Acessibilidade</span>
-                    {parseJwt().role == 2 ? <span className='h3 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span> : null}
-                    {parseJwt().role == 1 ? <span className='h3 validarEmpresas' id='validarEmpresas' onClick={() => select(3)}>Validar Empresas</span> : null}
+                    {parseJwt().Role == 2 ? <span className='h3 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span> : null}
+                    {parseJwt().Role == 1 ? <span className='h3 validarEmpresas' id='validarEmpresas' onClick={() => select(3)}>Validar Empresas</span> : null}
                 </nav>
                 <section className='configContent validUser container'>
                     {
@@ -427,7 +442,7 @@ export default function Config() {
                                         <div className='contentConfig'>
                                             <div className='dataUser'>
                                                 <label className='h5' htmlFor="cpfUser">CPF:</label>
-                                                <p id='cpfUser'>{userLogado.cpf}</p>
+                                                <p id='cpfUser' >{userLogado.cpf}</p>
                                             </div>
                                             <div className='dataUser'>
                                                 <label className='h5' htmlFor="rgUser">RG:</label>
@@ -447,11 +462,13 @@ export default function Config() {
                                     onRequestClose={closeModalConfig}
                                     style={configCustomStyles}
                                     class="ReactModal"
-                                    closeTimeoutMS={2000}
+                                    closeTimeoutMS={1000}
                                 >
                                     <form encType='multipart/form-data' className='modalConfig areaStep'>
                                         <div className='profileImageArea'>
-                                            <div className='maskProfile'><img src={Profile} alt="Imagem de Perfil" className='profileImage editProfileImage' /></div>
+                                            <div className='maskProfile'><img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} alt="Imagem de Perfil" 
+                                            className='profileImage editProfileImage'
+                                             /></div>
                                             <AiIcons.AiOutlineClose className='closeModal iconConfig2' onClick={() => closeModalConfig()} />
                                         </div>
                                         <div className='inputsModalArea'>
@@ -571,8 +588,8 @@ export default function Config() {
                                                     <h3>Nome Fantasia <p>{corp.nameFantasy}</p></h3>
                                                 </div>
                                                 <div>
-                                                    <SiIcons.SiVerizon className='iconConfig' />
-                                                    <AiIcons.AiOutlineClose className='iconConfig2' />
+                                                    <SiIcons.SiVerizon onClick={autorizeCorporation(corp.employees[0].idUser)} className='iconConfig' />
+                                                    <AiIcons.AiOutlineClose onClick={deleteCorporation(corp.idCorporation)} className='iconConfig2' />
                                                 </div>
                                             </div>
                                         )

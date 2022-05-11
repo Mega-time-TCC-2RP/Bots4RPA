@@ -23,7 +23,6 @@ import '../../assets/css/pages/login.css';
 import '../../assets/css/components/button.css';
 import '../../assets/css/components/fonts.css';
 
-
 //services
 import { history } from '../../history';
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
@@ -94,7 +93,7 @@ export default function Login() {
                                         // verifica se o usuário logado é do tipo administrador
                                         //mudar aqui e no menu principal se o cadastro for liberado para
                                         //todos os usuarios
-                                        if (parseJwt().role === '1' || parseJwt().role === '2' || parseJwt().role === '3') {
+                                        if (parseJwt().Role === '1' || parseJwt().Role === '2' || parseJwt().Role === '3') {
                                                 history('/')
 
                                                 // console.log('logado: ' + usuarioAutenticado())
@@ -102,7 +101,6 @@ export default function Login() {
 
                                         else {
                                                 history('/notFound')
-
                                         }
                                 }
                                 setIsLoading(false);
@@ -129,7 +127,6 @@ export default function Login() {
 
         return (
                 <div>
-
                         <div className='login'>
                                 <ToastContainer />
                                 <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
