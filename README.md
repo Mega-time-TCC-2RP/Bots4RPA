@@ -2,7 +2,7 @@
 
 # Situação Problema
 
-![image](https://user-images.githubusercontent.com/19197082/165102225-f331e851-75a8-42a4-98a0-78670ff04242.png)
+![image](https://user-images.githubusercontent.com/19197082/167921012-595db311-8b49-4353-8351-e2dd4dd1d39a.png)
 
 
 # Design e Telas
