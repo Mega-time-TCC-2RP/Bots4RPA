@@ -22,7 +22,6 @@ export default function Assistant() {
 
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
-    // const [value, setValue] = useState(0);
     const [isSaving, setIsSaving] = useState(false);
     const [isExecuting, setIsExecuting] = useState(false);
 
@@ -48,16 +47,16 @@ export default function Assistant() {
         modal.style.display = "none";
     };
 
-    const Save = () => {
+    function Save(){
         //Get the cards inside the dropzone and number them by order.
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
         var child = [];
 
-        var myURL = "http://localhost:5000/api/AssistantProcedure";
+        var myURL = "http://localhost:5000/api/AssistantProcedure/ProceduresVerification";
 
-
-        for (let index = 0; index <= children.length; index++) {
+        for (let index = 0; index < children.length; index++) {
+            console.log(index);
             setIsSaving(true);
             var child = children[index];
 
@@ -79,9 +78,9 @@ export default function Assistant() {
                 body: myBody
             })
                 .then((response) => {
-                    console.log("before if");
+                    // console.log("before if");
                     if (response.status === 201) {
-                        console.log("after if");
+                        // console.log("after if");
                         toast.success('o procedimento ' + child.textContent + 'foi salvo');
                     } else {
                         toast.error("O salvamento deu errado no " + child.textContent + " :/");
@@ -90,21 +89,42 @@ export default function Assistant() {
                 .catch((erro) => {
                     console.log(erro);
                     toast.error("Alguma coisa deu errado :/");
-                    setIsSaving(false);
-                })
-
-            setIsSaving(false);
-
+                });
         }
-        
-        
+
+        // console.log("terminou o for");
+
+        //save the playwright script for the assistant
+        var myURL2 = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+        var myBody2 = JSON.stringify({});
+
+        fetch(myURL2, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: myBody2
+        })
+            .then((response) => {
+                // console.log("before if");
+                if (response.status === 201) {
+                    // console.log("after if");
+                    toast.success(`o assistente ${idAssistant} foi salvo`)
+                } else {
+                    toast.success(`Houve erros no processo de salvamento do assistente ${idAssistant}`) 
+                }
+                setIsSaving(false);
+            })
+            .catch((erro) =>{
+                console.log(erro);
+                toast.error("O script de salvamento não foi salvo :/");
+                setIsSaving(false);
+            });
 
     }
 
     function Execute() {
         setIsExecuting(true);
 
-        var myURL = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+        var myURL = `/api/Assistant${idAssistant}/Post`;
 
         fetch(myURL, {
             method: 'POST',
@@ -115,11 +135,10 @@ export default function Assistant() {
                 if (response.status === 201) {
                     console.log("FUNCIONOU");
                     toast.success("O resultado foi enviado para seu email");
-                    setIsExecuting(false);
-                } else{
+                } else {
                     toast.error("A execução deu errado :/");
-                    setIsExecuting(false);
                 }
+                setIsExecuting(false);
             })
             .catch((erro) => {
                 console.log(erro)
