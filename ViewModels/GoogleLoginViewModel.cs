@@ -9,7 +9,7 @@ namespace _2rpnet.rpa.webAPI.ViewModels
     public class GoogleLoginViewModel
     {
         [Required(ErrorMessage = "Id do google inválido")]
-        public int GoogleId { get; set; }
+        public string GoogleId { get; set; }
         [Required(ErrorMessage = "Email inválido")]
         public string Email { get; set; }
     }

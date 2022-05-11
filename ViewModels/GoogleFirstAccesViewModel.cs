@@ -13,7 +13,7 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         [Required(ErrorMessage = "Email do usuário necessário")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Id do google do usuário necessário!")]
-        public int GoogleId { get; set; }
+        public string GoogleId { get; set; }
         [Required(ErrorMessage = "CPF do usuário necessário")]
         public string Cpf { get; set; }
         public string Phone { get; set; }

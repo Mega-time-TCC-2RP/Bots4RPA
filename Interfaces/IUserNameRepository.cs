@@ -1,4 +1,5 @@
 ﻿using _2rpnet.rpa.webAPI.Domains;
+using System;
 using System.Collections.Generic;
 
 namespace _2rpnet.rpa.webAPI.Interfaces
@@ -14,7 +15,7 @@ namespace _2rpnet.rpa.webAPI.Interfaces
         void EncryptPassword(UserName _user);
         UserName GetSkinsAndTrophiesByUser(int idUser);
         void ValidateUser(UserName queryUser);
-        UserName GoogleLogin(int googleId, string email);
+        UserName GoogleLogin(string googleId, string email);
         void EncryptGoogleId(UserName user);
     }
 }

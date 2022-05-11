@@ -3,6 +3,7 @@ using _2rpnet.rpa.webAPI.Domains;
 using _2rpnet.rpa.webAPI.Interfaces;
 using _2rpnet.rpa.webAPI.Utils;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -179,7 +180,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
             ctx.SaveChanges();
         }
 
-        public UserName GoogleLogin(int googleId, string email)
+        public UserName GoogleLogin(string googleId, string email)
         {
             var user = ctx.UserNames.FirstOrDefault(u => u.Email == email);
 
