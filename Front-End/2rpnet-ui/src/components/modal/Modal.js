@@ -13,24 +13,24 @@ function CloseModal(idAssistant) {
 
 export default function Modal({ assistant }) {
 
-    const [RunList, setRunList] = useState([]);
-
-
+    const [Run, setRun] = useState([]);
 
     function RunQuantity() {
-        fetch('http://localhost:5000/api/Run/ListAll/' + assistant.idAssistant, {
+        var myUrl = "http://localhost:5000/api/Run/" + assistant.idAssistant;
+
+        fetch(myUrl, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
         })
             .then((response) => response.json())
             .then((data) =>
-                // setRunList(data)
-                 console.log(data)
+                setRun(data)
+                //   console.log(data)
             )
             .catch((error) => console.log(error));
     };
-    useEffect(RunQuantity, [])
+    useEffect(RunQuantity)
 
     return (
         <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
@@ -106,11 +106,11 @@ export default function Modal({ assistant }) {
                                     </div>
                                 </div>
                                 <div className='graphic2-right-side'>
-                                    {RunList.map((run) =>
-                                        <div className='box-graphic-quantity'>
-                                            <span>{run.runQuantity}</span>
-                                        </div>
-                                    )}
+
+                                    <div className='box-graphic-quantity'>
+                                        <span>{Run.runQuantity}</span>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

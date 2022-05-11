@@ -6,13 +6,15 @@
     justify-content: center;
     font-size: 72px;
 }
-.fundotest{
+
+.fundotest {
     position: absolute;
     background-color: var(--ScreenBackground);
     height: 100%;
     width: 100%;
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     /* box-sizing: border-box;
@@ -56,7 +58,7 @@
     /* background-color: #77b9ff; */
 }
 
-.Input-Home{
+.Input-Home {
     width: 11.4em;
     height: 2.6em;
     margin-left: 20px;
@@ -221,7 +223,7 @@
     width: 1.875em;
     height: 2.313em;
     /* margin-left: 8.188rem; */
-    margin-top: 1.063rem;
+    margin-top: 0.063rem;
     cursor: pointer;
     color: #3375BA;
 }
