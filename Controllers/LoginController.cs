@@ -91,7 +91,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
         }
 
-        [HttpGet("Google")]
+        [HttpPost("Google")]
         public IActionResult GoogleLogin(GoogleLoginViewModel LoginViewModel)
         {
             try
