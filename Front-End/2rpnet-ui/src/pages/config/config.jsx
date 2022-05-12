@@ -71,7 +71,7 @@ export default function Config() {
 
     function listUser() {
         document.querySelector('.myData').classList.toggle('selected')
-        
+
         axios('https://grupo7.azurewebsites.net/api/UserNames/GetMe', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
@@ -89,11 +89,34 @@ export default function Config() {
     useEffect(listUser, []);
 
     const autorizeCorporation = (idUser) => {
-
+        console.log("funcao")
+        axios.patch("http://grupo7.azurewebsites.net/api/UserNames/Validate/" + idUser, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    console.log("Corporação e usuário dela autorizados")
+                    listInvalidCorporation()
+                }
+            })
+            .catch((erro) => console.log(erro))
     }
 
     const deleteCorporation = (idCorporation) => {
-
+        axios.delete("http://grupo7.azurewebsites.net/api/Corporations/" + idCorporation, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        })
+            .then((resposta) => {
+                if (resposta.status === 204) {
+                    console.log("empresa deletada")
+                    listInvalidCorporation()
+                }
+            })
+            .catch((erro) => console.log(erro))
     }
 
     const alterUserData = (event) => {
@@ -466,9 +489,9 @@ export default function Config() {
                                 >
                                     <form encType='multipart/form-data' className='modalConfig areaStep'>
                                         <div className='profileImageArea'>
-                                            <div className='maskProfile'><img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} alt="Imagem de Perfil" 
-                                            className='profileImage editProfileImage'
-                                             /></div>
+                                            <div className='maskProfile'><img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} alt="Imagem de Perfil"
+                                                className='profileImage editProfileImage'
+                                            /></div>
                                             <AiIcons.AiOutlineClose className='closeModal iconConfig2' onClick={() => closeModalConfig()} />
                                         </div>
                                         <div className='inputsModalArea'>
@@ -588,8 +611,8 @@ export default function Config() {
                                                     <h3>Nome Fantasia <p>{corp.nameFantasy}</p></h3>
                                                 </div>
                                                 <div>
-                                                    <SiIcons.SiVerizon onClick={autorizeCorporation(corp.employees[0].idUser)} className='iconConfig' />
-                                                    <AiIcons.AiOutlineClose onClick={deleteCorporation(corp.idCorporation)} className='iconConfig2' />
+                                                    <SiIcons.SiVerizon onClick={() => autorizeCorporation([corp.employees[0].idUser])} className='iconConfig' />
+                                                    <AiIcons.AiOutlineClose onClick={() => deleteCorporation([corp.idCorporation])} className='iconConfig2' />
                                                 </div>
                                             </div>
                                         )

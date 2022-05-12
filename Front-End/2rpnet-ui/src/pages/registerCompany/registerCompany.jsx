@@ -120,18 +120,18 @@ export default function RegisterCompany() {
     const [nomeFantasia, setNomeFantasia] = useState('');
     const [addressName, setAddressName] = useState('')
     const [phone, setPhone] = useState('');
-    const [cnpj, setCnpj] = useState();
+    const [cnpj, setCnpj] = useState('');
     const [loading, setLoading] = useState(false);
     const [imageLoad, setImageLoad] = useState(false);
     const [imageLoadProfile, setImageLoadProfile] = useState(false);
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [birthDate, setBirthDate] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [birthDate, setBirthDate] = useState('');
     const [imageProfile, setImageProfile] = useState();
-    const [name, setName] = useState();
-    const [rg, setRg] = useState();
-    const [cpf, setCpf] = useState();
-    const [telephone, setTelephone] = useState();
+    const [name, setName] = useState('');
+    const [rg, setRg] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [telephone, setTelephone] = useState('');
     const [idUserType, setIdUserType] = useState();
     const [idCorporation, setIdCorporation] = useState();
     const [idOffice, setIdOficce] = useState(1);
@@ -351,14 +351,8 @@ export default function RegisterCompany() {
                                             </div>
                                         </div>
                                         {
-                                            loading === true && (
-                                                <button className='button' type="submit" disabled>Loading...</button>
-                                            )
-                                        }
-                                        {
-                                            loading === false && (
-                                                <button className='button' onClick={register}>Solicitar cadastro</button>
-                                            )
+                                            loading === false && email === '' || password === '' || birthDate === '' || name === '' || rg === '' || cpf === '' || phone === '' || razaoSocial === '' || telephone === '' || addressName === '' || nomeFantasia === '' || cnpj === '' ?
+                                                <button className='button block' >Solicitar cadastro</button> : <button className='button' onClick={register}>Solicitar cadastro</button>
                                         }
                                     </div>
                                 )

@@ -22,10 +22,11 @@ import Profile from '../../assets/img/profile.jpg'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { parseJwt } from '../../services/auth'
 
- function Navbar() {
-  
-  function click(){
+function Navbar() {
+
+  function click() {
     let sidebar = document.querySelector('.sidebar')
     sidebar.classList.toggle('active')
   }
@@ -47,89 +48,101 @@ import 'react-toastify/dist/ReactToastify.css';
     window.location.reload()
     return true
   }
-  
 
 
-let history = useNavigate();
+
+  let history = useNavigate();
   // btn.onclick = function(){
   //   sidebar.classList.toggle('active')
   // }
   // onClick={sidebar.classList.toggle('active')}
-  
-return (
+
+  return (
 
     <div className='sidebar'>
-      <ToastContainer/>
+      <ToastContainer />
       <div className='logo_content'>
-        <img className='logo' src={Logo} alt="Logo 2RPnet"/>
+        <img className='logo' src={Logo} alt="Logo 2RPnet" />
         <FaIcons.FaBars className='btn' onClick={click} />
       </div>
       <ul className='nav_list'>
         <li>
           <Link to="/" className='Link'>
-            <ImIcons.ImHome3 className='icon2' alt="botão página inicial"/>
+            <ImIcons.ImHome3 className='icon2' alt="botão página inicial" />
             <span className='Links_name' alt="botão página inicial">Home</span>
           </Link>
         </li>
         <li>
           <Link to="/guide" className='Link'>
-            <RiIcons.RiGuideFill className='icon2' alt="botão guias"/>
+            <RiIcons.RiGuideFill className='icon2' alt="botão guias" />
             <span className='Links_name' alt="botão guias">Guias</span>
           </Link>
         </li>
-        <li>
-          <Link to="/skinShop" className='Link'>
-            <FaIcons.FaTshirt className='icon2' alt="botão loja"/>
-            <span className='Links_name' alt="botão loja de skins">Skins</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/marketplace" className='Link'>
-            <RiIcons.RiShoppingBagFill className='icon2' alt="botão loja"/>
-            <span className='Links_name' alt="botão loja">Loja</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/quests" className='Link'>
-            <FaIcons.FaTasks className='icon2' alt="botão tarefas"/>
-            <span className='Links_name' alt="botão tarefas">Tarefas</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/myprocesses" className='Link'>
-            <FaIcons.FaRobot className='icon2' alt="botão assistentes"/>
-            <span className='Links_name' alt="botão assistentes">Assistentes</span>
-          </Link>
-        </li>
+        {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+          <li>
+            <Link to="/skinShop" className='Link'>
+              <FaIcons.FaTshirt className='icon2' alt="botão loja" />
+              <span className='Links_name' alt="botão loja de skins">Skins</span>
+            </Link>
+          </li>
+          : null
+        }
+        {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+          <li>
+            <Link to="/marketplace" className='Link'>
+              <RiIcons.RiShoppingBagFill className='icon2' alt="botão loja" />
+              <span className='Links_name' alt="botão loja">Loja</span>
+            </Link>
+          </li>
+          : null
+        }
+        {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+          <li>
+            <Link to="/quests" className='Link'>
+              <FaIcons.FaTasks className='icon2' alt="botão tarefas" />
+              <span className='Links_name' alt="botão tarefas">Tarefas</span>
+            </Link>
+          </li>
+          : null
+        }
+        {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+          <li>
+            <Link to="/myprocesses" className='Link'>
+              <FaIcons.FaRobot className='icon2' alt="botão assistentes" />
+              <span className='Links_name' alt="botão assistentes">Assistentes</span>
+            </Link>
+          </li>
+          : null
+        }
         <li>
           <Link to="/social" className='Link'>
-            <AiIcons.AiFillMessage className='icon2' alt="botão fórum social"/>
+            <AiIcons.AiFillMessage className='icon2' alt="botão fórum social" />
             <span className='Links_name' alt="botão fórum social">Social</span>
           </Link>
         </li>
         <li>
           <Link to="/config" className='Link'>
-            <BsIcons.BsFillGearFill className='icon2' alt="botão configurações"/>
+            <BsIcons.BsFillGearFill className='icon2' alt="botão configurações" />
             <span className='Links_name' alt="botão configurações">Configurações</span>
           </Link>
         </li>
-        
+
       </ul>
-        <div className='profile_content'>
-          <div className='profile'>
-            <div className='profile_details'>
-              <div className='name_job'>
-                <div className='name' onClick={signout}>Logout</div>
-              </div>
+      <div className='profile_content'>
+        <div className='profile'>
+          <div className='profile_details'>
+            <div className='name_job'>
+              <div className='name' onClick={signout}>Logout</div>
             </div>
-            <HiIcons.HiOutlineLogout id='log_out' onClick={signout} />
           </div>
+          <HiIcons.HiOutlineLogout id='log_out' onClick={signout} />
         </div>
-     </div>
-     
+      </div>
+    </div>
+
 
   );
- 
+
 
 }
 export default Navbar;

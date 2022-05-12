@@ -154,3 +154,11 @@ input#file-upload-button {
 .previewImage {
     
 }
+
+.hidden {
+    display: none;
+}
+
+.block {
+    cursor: no-drop;
+}

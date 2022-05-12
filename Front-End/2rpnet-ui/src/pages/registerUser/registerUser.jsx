@@ -81,14 +81,14 @@ const validateRG = (v) => {
 
 export default function RegisterUser() {
     const [currentStep, setCurrentStep] = useState(0);
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [birthDate, setBirthDate] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [birthDate, setBirthDate] = useState('');
     const [imageProfile, setImageProfile] = useState();
-    const [name, setName] = useState();
-    const [rg, setRg] = useState();
-    const [cpf, setCpf] = useState();
-    const [telephone, setTelephone] = useState();
+    const [name, setName] = useState('');
+    const [rg, setRg] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [telephone, setTelephone] = useState('');
     const [idUserType, setIdUserType] = useState(3);
     const [idCorporation, setIdCorporation] = useState(1);
     const [idOffice, setIdOficce] = useState(1);
@@ -205,15 +205,14 @@ export default function RegisterUser() {
                 <div className='registerArea'>
                     <div className='registerContent'>
                         <img className='logoRegister' src={Logo} alt="Logo 2RPnet" />
-                        <form className='formRegister' encType='multipart/form-data'>
+                        <form className='formRegister' autoComplete="off" encType='multipart/form-data'>
                             {
                                 steps[currentStep].id === "Step1" && (
                                     <div className='contentRender'>
                                         <div className='inputsArea'>
                                             <div className='foreachInput'>
                                                 <label className='h5'>Email</label>
-                                                <input id='placeholder-text' type="email" name="email" placeholder='Insira o seu email...' value={email} onChange={(event) => setEmail(event.target.value)} autoFocus required />
-                                            </div>
+                                                <input id='placeholder-text' type="email" name="email" placeholder='Insira o seu email...' value={email} onChange={(event) => setEmail(event.target.value)} autoFocus required />                                            </div>
                                             <div className='foreachInput'>
                                                 <label className='h5'>Senha</label>
                                                 <div className='passwordArea'>
@@ -308,7 +307,9 @@ export default function RegisterUser() {
                                                 </select>
                                             </div>
                                         </div>
-                                        <button className='button' onClick={RegisterUser}>Finalizar Cadastro</button>
+                                        {
+                                            email === '' || password === '' || birthDate === '' || name === '' || rg === '' || cpf === '' || telephone === '' ? <button className='button block' >Finalizar Cadastro</button> : <button className='button' onClick={RegisterUser}>Finalizar Cadastro</button>
+                                        }
                                     </div>
                                 )
                             }
