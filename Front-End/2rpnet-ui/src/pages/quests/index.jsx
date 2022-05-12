@@ -41,7 +41,9 @@ function App() {
   const [questsList, setQuestList] = useState([]);
   const [titleTask, setTitleTask] = useState('');
   const [descriptionTask, setDescriptionTask] = useState('');
+  const [statusTask, setStatusTask] = useState();
 
+  const [newTaskIsOpen, setNewTaskIsOpen] = useState(false);
   const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
 
   function handleOpenOnBoarding() {
@@ -50,8 +52,14 @@ function App() {
   function handleCloseOnBoarding() {
     setOnBoardingIsOpen(false)
   }
+  function handleOpenNewTask() {
+    setNewTaskIsOpen(true)
+  }
+  function handleCloseNewTask() {
+    setNewTaskIsOpen(false)
+  }
 
-  // Consumo da API
+  // Consumo da API - GET
   const getQuestList = () => {
     axios('http://grupo7.azurewebsites.net/api/Workflows/GetMine', {
       headers: {
@@ -60,21 +68,28 @@ function App() {
     })
       .then(response => {
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
           setQuestList(response.data);
         }
       })
       .catch(erro => console.log(erro));
   }
 
+  // Consumo da API - Patch Status
+  // const patchStatusTask = () => {
+  //   axios
+  //   .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + statusTask, {
+  //     headers: {
+  //       'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+  //     }
+  //   })
+  // }
+
   // Funcionalidade da Data
   const day = () => {
-
-
-
     let date = new Date().getDate()
 
-    console.log(`O dia de hoje é: ${date}`);
+    // console.log(`O dia de hoje é: ${date}`);
 
     document.getElementById("calend" + date).style.color = "var(--WHITE)";
     document.getElementById("calend" + date).style.backgroundColor = "var(--PrimaryColor1)";
@@ -131,9 +146,36 @@ function App() {
       this.appendChild(cardBeingDragged);
     }
 
+    // const toDoTask = document.querySelector('.todo')
+    // const doTask = document.querySelector('.do')
+    // const doneTask = document.querySelector('.done')
+    // const toDoTask = document.getElementById("testtodo")
+    // const doTask = document.getElementById("testdo")
+    // const doneTask = document.getElementById("testdone")
+
     function dragleave() {
       // console.log('Leaving Card');
       this.classList.remove('over')
+      // if (toDoTask) {
+      // setStatusTask(1)
+      //   console.log("Alterado para o tipo 'A Fazer'");
+      // }
+      // if (doTask) {
+      //   console.log("Alterado para o tipo 'Fazendo'");
+      // }
+      // if (doneTask) {
+      //   console.log("Alerado para o tipo 'Feito'");
+      // } else console.log("Ocorreu um Erro ao alterar a Task! Inserindo tarefa em modo a Fazer.");
+      // switch (cardTask) {
+      //   case toDoTask: /*setStatusTask(1)*/ console.log("Alterado para o tipo 'A Fazer'");
+      //     break;
+      //   case doTask: /*setStatusTask(2)*/ console.log("Alterado para o tipo 'Fazendo'");
+      //   break;
+      //   case doneTask: /*setStatusTask(3)*/ console.log("Alerado para o tipo 'Feito'");
+      //   break;
+      //   default: /*setStatusTask(1) &&*/ console.log("Ocorreu um Erro ao alterar a Task! Inserindo tarefa em modo a Fazer.");
+      //     break;
+      // }
     }
 
     function drop() {
@@ -216,48 +258,54 @@ function App() {
       </Modal>
       <h2 className="pageTitle h2">Painel Organizacional</h2>
       <div className='taskCalendar'>
-        <section className="task">
-          <div className="toDo">
-            <div className="taskTitle">
-              <h5 className="h5">A Fazer</h5>
-            </div>
-            {
-              questsList.map((myQuests) => {
-                if (myQuests.idStatus === 1) {
-                  return (
-                    <div key={myQuests.idWorkflow} className="taskSpace">
-                      <div className="cardTask" draggable="true">
-                        <div className="p">Lorem Ipsum is simply dummy text.</div>
-                        <div className="p">{myQuests.title}</div>
-                      </div>
+        {
+          questsList.map((myQuests) => {
+            return (
+              <section className="task">
+                <div id="testtodo"
+                  className="toDo">
+                  <div className="taskTitle">
+                    <h5 className="h5">A Fazer</h5>
+                  </div>
+                  <div key={myQuests.idWorkflow && myQuests.idStatus === 1} className="taskSpace">
+                    <div className="cardTask" draggable="true">
+                      {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                      <div className="p">{myQuests.title}</div>
                     </div>
-                  )
-                }
-              }
-              )
-            }
-          </div>
-          <div className="do">
-            <div className="taskTitle">
-              <h5 className="h5">Fazendo</h5>
-            </div>
-            <div className="taskSpace">
-              <div className="cardTask" draggable="true">
-                <div className="p">Lorem Ipsum is simply dummy text.</div>
-              </div>
-            </div>
-          </div>
-          <div className="done">
-            <div className="taskTitle">
-              <h5 className="h5">Feito</h5>
-            </div>
-            <div className="taskSpace">
-              <div className="cardTask" draggable="true">
-                <div className="p">Lorem Ipsum is simply dummy text.</div>
-              </div>
-            </div>
-          </div>
-        </section>
+                  </div>
+                </div>
+
+                <div id="testdo"
+                  className="do">
+                  <div className="taskTitle">
+                    <h5 className="h5">Fazendo</h5>
+                  </div>
+                  <div key={myQuests.idWorkflow && myQuests.idStatus === 2} className="taskSpace">
+                    <div className="cardTask" draggable="true">
+                      {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                      <div className="p">{myQuests.title}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="testdone"
+                  className="done">
+                  <div className="taskTitle">
+                    <h5 className="h5">Feito</h5>
+                  </div>
+                  <div key={myQuests.idWorkflow && myQuests.idStatus === 3} className="taskSpace">
+                    <div className="cardTask" draggable="true">
+                      {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                      <div className="p">{myQuests.title}</div>
+                    </div>
+                  </div>
+                </div>
+
+              </section>
+            )
+          }
+          )
+        }
         <div className="calendarAndBtn">
           <section className="calendar p">
             <div className="calendarTitle"><h5 className="h5">Calendário</h5></div>
@@ -389,7 +437,15 @@ function App() {
           <input
             className="btnNewTask button"
             type="button"
-            value="Nova Tarefa" />
+            value="Nova Tarefa"
+            onClick={handleOpenNewTask} />
+          <Modal
+            isOpen={newTaskIsOpen}
+            onRequestClose={handleCloseNewTask}
+            style={stylesCustom}
+          >
+            <div className="modalNewTask"></div>
+          </Modal>
         </div>
       </div>
     </div>
