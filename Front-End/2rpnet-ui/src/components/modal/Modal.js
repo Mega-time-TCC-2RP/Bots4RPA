@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import "../../components/modal/Modal.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
-import BarChart from '../../components/graphic/graphicBar'
+// import { run } from 'cypress';
 
 function CloseModal(idAssistant) {
     var modal = document.getElementById("modal" + idAssistant);
@@ -12,6 +12,24 @@ function CloseModal(idAssistant) {
 };
 
 export default function Modal({ assistant }) {
+
+    const [Run, setRun] = useState([]);
+
+    function RunQuantity() {
+        fetch('http://localhost:5000/api/Run/' + assistant.idAssistant, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setRun(data)
+                //console.log(data)
+            )
+            .catch((error) => console.log(error));
+    };
+    useEffect(RunQuantity, [])
+
     return (
         <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
             <div className='SmodalContainer'>
@@ -55,7 +73,7 @@ export default function Modal({ assistant }) {
 
                             <div className='graphic-left-side'>
                                 <div className='container-left'>
-                                    <h1>Falhas ao execultar</h1>
+                                    <h1>Detalhes execução:</h1>
                                     <div>
                                         <div className='box-label1-health'>
                                             <div className='square-green'></div>
@@ -76,8 +94,24 @@ export default function Modal({ assistant }) {
                         </div>
 
                         <div className='graphic-2'>
-                            <div className='container-grafico'>  
-                                <BarChart />
+                            <div className='container-graphic'>
+
+                                <div className='box-quantity'>
+                                    <h1>Quantidade de execuções:</h1>
+                                    <div className='subtitle-quantity'>
+                                        <div className='square-blue'></div>
+                                        <span>Quantidade</span>
+                                    </div>
+                                </div>
+                                <div className='graphic2-right-side'>
+                                    <div className='box-graphic-quantity'>
+                                        {
+                                            Run.runQuantity != undefined && Run.runQuantity != null && Run.runQuantity ?
+                                                <span>{Run.runQuantity}</span> : <span> 0 </span>
+                                        }
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
