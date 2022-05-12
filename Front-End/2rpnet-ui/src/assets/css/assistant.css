@@ -91,7 +91,7 @@ body {
   background-color: var(--secondaryColor);
   padding: 1rem;
   box-shadow: 0 2px 2px -1px var(--complementColor);
-  width: 200px;
+  width: 204px;
   height: 56px;
   margin: 1rem 0;
   border-radius: 4px;
@@ -315,10 +315,11 @@ body {
   box-sizing: border-box;
 }
 
-.box-card-flow{
+.box-card-flow {
+  width: 204px;
   display: flex;
 }
 
-.footerAssistant{
-  padding: 0 0 64px;
+.footerAssistant {
+  padding: 0 0 7%;
 }

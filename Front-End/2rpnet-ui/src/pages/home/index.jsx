@@ -1,10 +1,11 @@
+// css:
 import "../../assets/css/style.css";
 import "../../assets/css/components/navbar.css"
+
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
-import Navbar from '../../components/menu/Navbar'
 import VLibras from '@djpfs/react-vlibras'
 import { API } from "../../services/api";
 
@@ -28,7 +29,7 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import PlayIcon from '../../components/icones/play'
 
 //Components:
-// import Navbar from '../../components/menu/Navbar'
+import Navbar from '../../components/menu/Navbar'
 import Modal from '../../components/modal/Modal'
 import ModalA from '../../components/modal/ModalAssistant'
 import Footer from '../../components/footer/footer'
@@ -36,9 +37,6 @@ import { render } from "@testing-library/react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-{/* <Navbar/> */ }
-
-
 
 export default function Home() {
 
