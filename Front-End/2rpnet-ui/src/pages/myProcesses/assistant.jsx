@@ -279,7 +279,7 @@ export default function Assistant() {
             <header className="header container">
                 <h1 className="header__text">{Assistant.assistantName}</h1>
             </header>
-            <main className="">
+            <main className="footerAssistant">
                 <Navbar />
                 <div className="boards container">
                     <div className="boards__board boards__board--pointy">
@@ -335,7 +335,7 @@ export default function Assistant() {
                                     MyProcedures.map((p) => {
                                         return (
                                             <div className="card-flow" key={p.idAprocedure}>
-                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-fluxo" draggable="true" onClick={() => handleShow(p)}>
+                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-flow" draggable="true" onClick={() => handleShow(p)}>
                                                     <img className="card__balls" src={bolinhas} alt="bolinhas" />
                                                     <div className="card__content">{p.procedureName}</div>
                                                 </div>

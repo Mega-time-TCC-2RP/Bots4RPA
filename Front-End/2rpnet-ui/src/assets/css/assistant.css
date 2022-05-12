@@ -318,3 +318,7 @@ body {
 .box-card-flow{
   display: flex;
 }
+
+.footerAssistant{
+  padding: 0 0 64px;
+}
