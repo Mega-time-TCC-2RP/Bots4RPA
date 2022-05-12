@@ -3,7 +3,6 @@ import "../../components/modal/Modal.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
-import BarChart from '../../components/graphic/graphicBar'
 // import { run } from 'cypress';
 
 function CloseModal(idAssistant) {
