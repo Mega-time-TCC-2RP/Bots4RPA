@@ -37,7 +37,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                 ctx.Comments.Remove(item);
             }
             ctx.Posts.Remove(post);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
         }
 
         public List<Post> GetByUser(int userId)

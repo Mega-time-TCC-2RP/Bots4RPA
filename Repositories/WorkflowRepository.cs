@@ -33,6 +33,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(Workflow workflow)
         {
             ctx.Workflows.Remove(workflow);
+            ctx.SaveChanges();
         }
 
         public IEnumerable<Workflow> ReadAll()

@@ -26,7 +26,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(Skin skin)
         {
             ctx.Skins.Remove(skin);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
         }
 
         public IEnumerable<Skin> ReadAll()

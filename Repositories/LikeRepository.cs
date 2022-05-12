@@ -27,7 +27,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(Like like)
         {
             ctx.Likes.Remove(like);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
         }
 
         public IEnumerable<Like> ReadAll()

@@ -27,7 +27,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(StatusWorkflow status)
         {
             ctx.StatusWorkflows.Remove(status);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
         }
 
         public IEnumerable<StatusWorkflow> ReadAll()

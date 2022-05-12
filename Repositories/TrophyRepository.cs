@@ -27,7 +27,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(Trophy trophy)
         {
             ctx.Trophies.Remove(trophy);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
         }
 
         public IEnumerable<Trophy> ReadAll()

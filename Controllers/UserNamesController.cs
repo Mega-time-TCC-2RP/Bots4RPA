@@ -354,22 +354,25 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
                 if(user.PhotoUser != "padrao.png")
                     Upload.RemoveFile(user.PhotoUser);
-                List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
-                List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
-                List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
-                foreach (var item in UserPosts)
+                if (user.Employees.First().Players.Count > 1)
                 {
-                    PostCtx.Delete(item);
+                    List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                    List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                    List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                    foreach (var item in UserPosts)
+                    {
+                        PostCtx.Delete(item);
+                    }
+                    foreach (var item in UserSkins)
+                    {
+                        LSctx.Delete(item);
+                    }
+                    foreach (var item in UserTrophies)
+                    {
+                        LTctx.Delete(item);
+                    }
+                    Pctx.Delete(Pctx.SearchByID(Ectx.ReadAll().FirstOrDefault(e => e.IdUser == id).Players.First().IdPlayer));
                 }
-                foreach (var item in UserSkins)
-                {
-                    LSctx.Delete(item);
-                }
-                foreach (var item in UserTrophies)
-                {
-                    LTctx.Delete(item);
-                }
-                Pctx.Delete(Pctx.SearchByID(Ectx.ReadAll().FirstOrDefault(e => e.IdUser == id).Players.First().IdPlayer));
                 Ectx.Delete(Ectx.SearchByID(user.Employees.First().IdEmployee));
                 ctx.Delete(user);
                 return NoContent();

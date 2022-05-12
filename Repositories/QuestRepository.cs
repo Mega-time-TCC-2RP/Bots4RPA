@@ -30,7 +30,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public Quest Create(Quest quest)
         {
             ctx.Quests.Add(quest);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
 
             return quest;
         }

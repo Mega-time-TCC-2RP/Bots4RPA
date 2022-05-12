@@ -27,7 +27,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(Employee employee)
         {
             ctx.Employees.Remove(employee);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
         }
 
         public IEnumerable<Employee> ReadAll()

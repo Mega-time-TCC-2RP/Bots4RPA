@@ -27,7 +27,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(LibraryTrophy libraryTro)
         {
             ctx.LibraryTrophies.Remove(libraryTro);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
         }
 
         public IEnumerable<LibraryTrophy> ReadAll()

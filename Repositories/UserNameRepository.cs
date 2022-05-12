@@ -33,7 +33,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(UserName datauser)
         {
             ctx.UserNames.Remove(datauser);
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
         }
 
         public IEnumerable<UserName> ReadAll()

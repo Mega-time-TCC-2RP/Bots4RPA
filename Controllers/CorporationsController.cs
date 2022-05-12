@@ -238,23 +238,26 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 List<Employee> employeeList = Ectx.ReadAll().Where(E => E.IdCorporation == corporate.IdCorporation).ToList();
                 foreach (Employee item in employeeList)
                 {
-                    List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).ToList();
-                    List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).ToList();
-                    List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == Uctx.SearchByID(UserId).Employees.First().Players.First().IdPlayer).ToList();
-
-                    foreach (var item2 in UserPosts)
+                    UserName user = Uctx.SearchByID(item.IdUser);
+                    if(user.Employees.Count > 1)
                     {
-                        PostCtx.Delete(item2);
+                        List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                        List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                        List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                        foreach (var item2 in UserPosts)
+                        {
+                            PostCtx.Delete(item2);
+                        }
+                        foreach (var item2 in UserSkins)
+                        {
+                            LSctx.Delete(item2);
+                        }
+                        foreach (var item2 in UserTrophies)
+                        {
+                            LTctx.Delete(item2);
+                        }
+                        Pctx.Delete(item.Players.First());
                     }
-                    foreach (var item2 in UserSkins)
-                    {
-                        LSctx.Delete(item2);
-                    }
-                    foreach (var item2 in UserTrophies)
-                    {
-                        LTctx.Delete(item2);
-                    }
-                    Pctx.Delete(item.Players.First());
                     Ectx.Delete(item);
                     Uctx.Delete(Uctx.SearchByID(item.IdUser));
                 }
