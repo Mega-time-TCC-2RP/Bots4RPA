@@ -57,7 +57,7 @@ export default function Assistant() {
         let children = parent.childNodes;
         var child = [];
 
-        var myURL = "http://localhost:5000/api/AssistantProcedure/ProceduresVerification";
+        var myURL = "https://da95-189-19-219-247.sa.ngrok.io/api/AssistantProcedure/ProceduresVerification";
 
         for (let index = 0; index < children.length; index++) {
             console.log(index);
@@ -85,9 +85,9 @@ export default function Assistant() {
             })
                 .then((response) => {
                     console.log("before if");
-                    if (response.status === 201) {
+                    if (response.status === 200 || response.status === 201) {
                         console.log("after if");
-                        toast.success('o procedimento ' + child.textContent + 'foi salvo');
+                        toast.success('o procedimento ' + child.textContent + ' foi salvo');
                     } else {
                         toast.error("O salvamento deu errado no " + child.textContent + " :/");
                     }
@@ -101,7 +101,7 @@ export default function Assistant() {
         console.log("terminou o for");
 
         //save the playwright script for the assistant
-        var myURL2 = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+        var myURL2 = "https://da95-189-19-219-247.sa.ngrok.io/api/AssistantProcedure/ManipulateScript/" + idAssistant;
         
 
         fetch(myURL2, {
@@ -112,7 +112,8 @@ export default function Assistant() {
                 console.log("before if");
                 if (response.status === 201) {
                     console.log("after if");
-                    return response.toString()
+                    console.log(response)
+                    return response.json()
                     .then((data) => {
                         console.log(data);
                         toast.success(`o assistente ${idAssistant} foi salvo`)
@@ -135,7 +136,8 @@ export default function Assistant() {
         // console.log(parseJwt());
         // console.log(parseJwt().email);
 
-        var eURL = "http://localhost:5000/api/Assistant" + idAssistant + "/Post";
+        var eURL = "https://da95-189-19-219-247.sa.ngrok.io/api/Assistant" + idAssistant + "/Post";
+        // "email": "parseJwt().email",
         var eBody = JSON.stringify({
             "email": "sgustavo.borges10@gmail.com",
             "emailBody": result
