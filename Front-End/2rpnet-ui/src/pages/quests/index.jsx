@@ -27,10 +27,10 @@ import 'swiper/css/pagination';
 
 const stylesCustom = {
   content: {
-      width: 1,
-      height: 1,
-      // backgroundcolor: rgba(0, 255, 255, 0.75),
-      boxShadow: ''
+    width: 1,
+    height: 1,
+    // backgroundcolor: rgba(0, 255, 255, 0.75),
+    boxShadow: ''
   },
 };
 
@@ -40,30 +40,31 @@ Modal.setAppElement('#root');
 function App() {
   const [questsList, setQuestList] = useState([]);
   const [titleTask, setTitleTask] = useState('');
+  const [descriptionTask, setDescriptionTask] = useState('');
 
   const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
 
-    function handleOpenOnBoarding() {
-        setOnBoardingIsOpen(true)
-    }
-    function handleCloseOnBoarding() {
-        setOnBoardingIsOpen(false)
-    }
-  
+  function handleOpenOnBoarding() {
+    setOnBoardingIsOpen(true)
+  }
+  function handleCloseOnBoarding() {
+    setOnBoardingIsOpen(false)
+  }
+
   // Consumo da API
   const getQuestList = () => {
-    axios('https://grupo7.azurewebsites.net/api/quests', {
-            headers : {
-                'Authorization' : 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-            }
-        })
-    .then(resposta => {
-      if(resposta.status === 200){
-        console.log(resposta);
-        setQuestList( resposta.data );
+    axios('http://grupo7.azurewebsites.net/api/Workflows/GetMine', {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
     })
-    .catch(erro => console.log(erro));
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setQuestList(response.data);
+        }
+      })
+      .catch(erro => console.log(erro));
   }
 
   // Funcionalidade da Data
@@ -74,7 +75,7 @@ function App() {
     let date = new Date().getDate()
 
     console.log(`O dia de hoje é: ${date}`);
-    
+
     document.getElementById("calend" + date).style.color = "var(--WHITE)";
     document.getElementById("calend" + date).style.backgroundColor = "var(--PrimaryColor1)";
   }
@@ -156,75 +157,80 @@ function App() {
       <Header />
       <Navbar />
       <VLibras />
-      <img 
-                    src={onBoardingBot} 
-                    onClick={handleOpenOnBoarding} 
-                    className="img-onboarding"
-                />
-                <Modal
-                    isOpen={onBoardingIsOpen}
-                    onRequestClose={handleCloseOnBoarding}
-                    style={stylesCustom}
-                >
-                    <div className="top-container" >
-                        <div className="background-body" >
-                            <div className="boarding-image">
-                                <img className="bot-img" src={Blue_Head} />
-                            </div>
-                            <div className="body-content">
-                                <h2>Assistente</h2>
-                                <Swiper
-                                    pagination={{
-                                        type: "fraction",
-                                      }}
-                                      navigation={true}
-                                      modules={[Pagination, Navigation]}
-                                      
-                                    className="swiperHomeTasks-social"
-                                >
-                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                        <div className="boardingContainer">
-                                        <span className='bayer'>Sinta-se a vontade a tela de Tarefas!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
-                                        </div>
-                                    </SwiperSlide>
-                                </Swiper>
-                            </div>
+      <img
+        src={onBoardingBot}
+        onClick={handleOpenOnBoarding}
+        className="img-onboarding"
+      />
+      <Modal
+        isOpen={onBoardingIsOpen}
+        onRequestClose={handleCloseOnBoarding}
+        style={stylesCustom}
+      >
+        <div className="top-container" >
+          <div className="background-body" >
+            <div className="boarding-image">
+              <img className="bot-img" src={Blue_Head} />
+            </div>
+            <div className="body-content">
+              <h2>Assistente</h2>
+              <Swiper
+                pagination={{
+                  type: "fraction",
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
 
-                        </div>
-                    </div>
-                </Modal>
+                className="swiperHomeTasks-social"
+              >
+                <SwiperSlide className="swiper-slide-OnBoarding-social">
+                  <div className="boardingContainer">
+                    <span className='bayer'>Sinta-se a vontade a tela de Tarefas!</span>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="swiper-slide-OnBoarding">
+                  <div className="boardingContainer">
+                    <span className='bayer'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="swiper-slide-OnBoarding">
+                  <div className="boardingContainer">
+                    <span className='bayer'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="swiper-slide-OnBoarding">
+                  <div className="boardingContainer">
+                    <span className='bayer'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="swiper-slide-OnBoarding">
+                  <div className="boardingContainer">
+                    <span className='bayer'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+            </div>
+
+          </div>
+        </div>
+      </Modal>
       <h2 className="pageTitle h2">Painel Organizacional</h2>
       <div className='taskCalendar'>
         <section className="task">
+            {/* {
+              questsList.map((myQuests) => {
+                if (myQuests.idStatus === 1) {
+                  return ( */}
           <div className="toDo">
             <div className="taskTitle">
               <h5 className="h5">A Fazer</h5>
             </div>
-            <div className="taskSpace">
-              <div className="cardTask" draggable="true">
-                <div className="p">Lorem Ipsum is simply dummy text.</div>
-              </div>
-            </div>
+                    <div key={myQuests.idWorkflow} className="taskSpace">
+                      <div className="cardTask" draggable="true">
+                        {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                        <div className="p">{myQuests.title}</div>
+                      </div>
+                    </div>
           </div>
           <div className="do">
             <div className="taskTitle">
@@ -246,6 +252,11 @@ function App() {
               </div>
             </div>
           </div>
+      //     )
+      //   }
+      // }
+      // )
+      //     }
         </section>
         <div className="calendarAndBtn">
           <section className="calendar p">
@@ -370,7 +381,7 @@ function App() {
               className="btnCalendar p"
               type="button"
               value="30" />
-            <div className="lastCalend"><input id="calend31" 
+            <div className="lastCalend"><input id="calend31"
               className="btnCalendar p"
               type="button"
               value="31" /></div>
