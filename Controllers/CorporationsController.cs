@@ -322,5 +322,24 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 throw;
             }
         }
+
+        [Authorize(Roles= "1")]
+        [HttpPatch('Validate/{CorporateId}')]
+        public IActionResult ValidateCorp(int CorporateId)
+        {
+            try
+            {
+                if (ctx.SearchByID(CorporateId) == null)
+                    return NotFound("Id da empresa inválido");
+                UserName User = Uctx.ReadAll().FirstOrDefault(U => U.Employees.First().IdCorporation == CorporateId);
+                Uctx.ValidateUser(User);
+                return NoContent();
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error);
+                throw;
+            }
+        }
     }
 }
