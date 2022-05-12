@@ -33,7 +33,6 @@ import GoogleLogin from 'react-google-login';
 
 
 
-
 export default function Login() {
         const [IsLoading, setIsLoading] = useState(false);
         const [email, setEmail] = useState("");
@@ -131,7 +130,7 @@ export default function Login() {
                 <div>
 
                         <div className='login'>
-                                <ToastContainer />
+                                <ToastContainer role="alert" />
                                 <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
                                 <VLibras />
                                 <div className='registerArea'>

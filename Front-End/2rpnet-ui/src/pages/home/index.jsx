@@ -11,6 +11,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+//imports da manhã
+import ModalA from '../../components/modal/ModalAssistant'
+import PlayIcon from '../../components/icones/play'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
@@ -48,16 +53,94 @@ import { usuarioAutenticado, parseJwt, handleAuthException } from '../../service
 
 const stylesCustom = {
   content: {
-      width: 1,
-      height: 1,
-      // backgroundcolor: rgba(0, 255, 255, 0.75),
-      boxShadow: ''
+    width: 1,
+    height: 1,
+    // backgroundcolor: rgba(0, 255, 255, 0.75),
+    boxShadow: ''
   },
 };
 
 Modal.setAppElement('#root');
 
 function App() {
+  const [AssistantsList, setAssistantsList] = useState([]);
+  const [ExecutionsList, setExecutionsList] = useState([]);
+
+  const [isExecuting, setIsExecuting] = useState(false);
+
+  function Execute(idAssistant) {
+    setIsExecuting(true);
+
+    var myURL = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+
+    fetch(myURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then((response) => {
+        console.log("before if");
+        if (response.status === 201) {
+          console.log("FUNCIONOU");
+          toast.success("O resultado foi enviado para seu email");
+          setIsExecuting(false);
+        } else {
+          toast.error("A execução deu errado :/");
+          setIsExecuting(false);
+        }
+      })
+      .catch((erro) => {
+        console.log(erro)
+        toast.error("A execução deu errado :/");
+        setIsExecuting(false);
+      })
+  }
+
+  function GetMyAssistants() {
+    fetch('http://localhost:5000/api/Assistants', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) =>
+        setAssistantsList(data)
+        // console.log(data)
+      )
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(GetMyAssistants, [])
+
+
+  // Open Modal to create assistant
+  function OpenModalAssistant() {
+    var modalA = document.getElementById("modalAssistant");
+    // console.log(modalA)
+    modalA.style.display = "flex";
+  };
+
+  // Open Assistant details modal
+  function OpenModal(idAssistant) {
+    var modal = document.getElementById("modal" + idAssistant);
+    // console.log(modal)
+    modal.style.display = "flex";
+  };
+
+  // Close Assistant details modal
+  function CloseModal(idAssistant) {
+    var modal = document.getElementById("modal" + idAssistant);
+    // console.log(id)
+    modal.style.display = "none";
+  };
+
+  // Close Modal to create assistant
+  function CloseModalAssistant() {
+    var modalA = document.getElementById("modalAssistant");
+    // console.log(id)
+    modalA.style.display = "none";
+  }
+
+  //----------------------------------------------------------------------
   const [myQuests, setMyQuests] = useState([]);
   const [highlightedPosts, setHighlightedPosts] = useState([]);
   const Navigate = useNavigate();
@@ -66,10 +149,10 @@ function App() {
   const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
 
   function handleOpenOnBoarding() {
-      setOnBoardingIsOpen(true)
+    setOnBoardingIsOpen(true)
   }
   function handleCloseOnBoarding() {
-      setOnBoardingIsOpen(false)
+    setOnBoardingIsOpen(false)
   }
   //onboarding
 
@@ -116,112 +199,141 @@ function App() {
   }, [])
   return (
     <div>
+
       <Navbar />
       <div className='body-pd'>
+        
         <Header />
         <VLibras />
-        <img 
-                    src={onBoardingBot} 
-                    onClick={handleOpenOnBoarding} 
-                    className="img-onboarding"
-                />
-                <Modal
-                    isOpen={onBoardingIsOpen}
-                    onRequestClose={handleCloseOnBoarding}
-                    style={stylesCustom}
-                >
-                    <div className="top-container" >
-                        <div className="background-body" >
-                            <div className="boarding-image">
-                                <img className="bot-img" src={Blue_Head} />
-                            </div>
-                            <div className="body-content">
-                                <h2>Assistente</h2>
-                                <Swiper
-                                    pagination={{
-                                        type: "fraction",
-                                      }}
-                                      navigation={true}
-                                      modules={[Pagination, Navigation]}
-                                      
-                                    className="swiperHomeTasks-social"
-                                >
-                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                        <div className="boardingContainer">
-                                        <span className='bayer'>Seja bem-vindo(a) à sua tela inicial!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Gostaria de executar um assistente? Ver suas Tarefas? Ou ver as questões mais em alta na área Social?</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                        <div className="boardingContainer">
-                                        <span className='bayer'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                        <div className="boardingContainer">
-                                        <span className='bayer'>Entre e se divirta!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                </Swiper>
-                            </div>
+        <img
+          src={onBoardingBot}
+          onClick={handleOpenOnBoarding}
+          className="img-onboarding"
+        />
+        <Modal
+          isOpen={onBoardingIsOpen}
+          onRequestClose={handleCloseOnBoarding}
+          style={stylesCustom}
+        >
+          <div className="top-container" >
+            <div className="background-body" >
+              <div className="boarding-image">
+                <img className="bot-img" src={Blue_Head} />
+              </div>
+              <div className="body-content">
+                <h2>Assistente</h2>
+                <Swiper
+                  pagination={{
+                    type: "fraction",
+                  }}
+                  navigation={true}
+                  modules={[Pagination, Navigation]}
 
-                        </div>
+                  className="swiperHomeTasks-social"
+                >
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Seja bem-vindo(a) à sua tela inicial!</span>
                     </div>
-                </Modal>
-        {/* <div className="top-container">
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Gostaria de executar um assistente? Ver suas Tarefas? Ou ver as questões mais em alta na área Social?</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Entre e se divirta!</span>
+                    </div>
+                  </SwiperSlide>
+                </Swiper>
+              </div>
+
+            </div>
+          </div>
+        </Modal>
+        <div className="top-container">
           <div className="top-buttons">
-            <form>
-              <button className="button-assistant">Criar Assistente</button>
-              <input type='search' placeholder="Buscar assistente" id="Assistente"></input>
-            </form>
+            <div className="form-container">
+              <form className="form-home">
+                <ModalA />
+                <button className="button-assistant"
+                  onClick={(event) => {
+                    event.preventDefault()
+                    OpenModalAssistant()
+                  }}
+                >Criar Assistente
+                </button>
+                <input className="Input-Home" type='search' placeholder="Buscar assistente" id="Assistente"></input>
+              </form>
+            </div>
             <form className="nao">
               <div className="movieRow-left">
-                <NavigateBeforeIcon style={{ fontSize: 150 }} />
+                <NavigateBeforeIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
               </div>
               <div className="movieRow-right">
-                <NavigateNextIcon style={{ fontSize: 150 }} />
+                <NavigateNextIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
               </div>
-              <div className="card1">
-                <img src={Azul_Home} className="card1-img" />
-                <h5>Assistente 1</h5>
-                <a className="play-button">▶</a>
-                <a className="details-button">Ver detalhes</a>
+
+              <div className="cards-container">
+                {AssistantsList.map((assistant) => {
+                  return (
+                    <div className="containerSmodal">
+                      <Modal assistant={assistant} />
+                      <div className="card1">
+
+                        <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
+                        <h5>{assistant.assistantName}</h5>
+                        {
+                          isExecuting === false ? (
+                            <button onClick={(event) => {
+                              event.preventDefault()
+                              Execute(assistant.idAssistant)
+                            }}>
+                              <PlayIcon />
+                            </button>
+                          ) : (
+                            <button disabled onClick={(event) => {
+                              event.preventDefault()
+                              Execute(assistant.idAssistant)
+                            }}>
+                              <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                            </button>
+                          )
+                        }
+                        <div className="box-details">
+                          <button
+                            onClick={(event) => {
+                              event.preventDefault()
+                              OpenModal(assistant.idAssistant)
+                            }}
+                          >Ver detalhes
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+
               </div>
-              <div className="card1">
-                <img src={Vermelho_Home} className="card1-img" />
-                <h5>Assistente 2</h5>
-                <a className="play-button">▶</a>
-                <a className="details-button">Ver detalhes</a>
-              </div>
-              <div className="card1">
-                <img src={Amarelo_Home} className="card1-img" />
-                <h5>Assistente 3</h5>
-                <a className="play-button">▶</a>
-                <a className="details-button">Ver detalhes</a>
-              </div>
-              <div className="card1">
-              <img src={Verde_Home} className="card1-img"/>
-              <h5>Assistente 4</h5>
-              <a className="play-button">▶</a>
-              <a className="details-button">Ver detalhes</a>
-            </div>
             </form>
           </div>
-        </div> */}
+        </div >
         <div className="body-container">
           <h2 className="body-title-task">Minhas Tarefas</h2>
           <Swiper
@@ -272,7 +384,7 @@ function App() {
             className="swiperHomeTasks"
           >
             {
-              highlightedPosts != undefined && highlightedPosts != null && highlightedPosts[0] != undefined && highlightedPosts[0] != null  ?
+              highlightedPosts != undefined && highlightedPosts != null && highlightedPosts[0] != undefined && highlightedPosts[0] != null ?
                 highlightedPosts.map((post) => {
                   return (
                     <SwiperSlide className="swiper-slide-HomeTasks">
