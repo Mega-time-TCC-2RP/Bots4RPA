@@ -137,8 +137,8 @@ export default function Home() {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
     }).then((response) => {
-      console.log(response)
-      console.log(response.data)
+      // console.log(response)
+      // console.log(response.data)
       setMyQuests(response.data)
     }).catch(async (error) => {
       if (await handleAuthException(error) === true) {
@@ -155,8 +155,8 @@ export default function Home() {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
     }).then((response) => {
-      console.log(response)
-      console.log(response.data)
+      // console.log(response)
+      // console.log(response.data)
       setHighlightedPosts(response.data)
     }).catch(async (error) => {
       if (await handleAuthException(error) === true) {
@@ -174,7 +174,7 @@ export default function Home() {
 
   return (
     <div>
-   <Navbar className="NavbarHome"/>
+      <Navbar className="NavbarHome" />
       <div className="top-container">
         <div className="top-buttons">
           <div className="form-container">
@@ -205,7 +205,7 @@ export default function Home() {
                     <Modal assistant={assistant} />
                     <div className="card1">
 
-                      <img onClick={() => {Navigate("/assistant", { state: { id: assistant.idAssistant } })}} src={Azul_Home} className="card1-img" />
+                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
                       <h5>{assistant.assistantName}</h5>
                       {
                         isExecuting === false ? (

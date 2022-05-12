@@ -18,9 +18,9 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Procedures from '../../services/process';
 
 // testar colocar uma lista com informações dos cards/bloquinhos
-
 export default function Assistant() {
 
+    const [MyProcedures, setMyProcedures] = useState([])
     const [Assistant, setAssistant] = useState("")
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
@@ -29,10 +29,21 @@ export default function Assistant() {
 
     const location = useLocation();
     var idAssistant = location.state.id;
-    // var assistantName = location.state.name
-    // console.log(location.state.id)
-    // var idAssistant = 7
 
+    function GetProceduresById() {
+        fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + idAssistant, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setMyProcedures(data)
+                //console.log(data)
+            )
+            .catch((error) => console.log(error));
+    };
+    useEffect(GetProceduresById, [])
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
@@ -126,7 +137,7 @@ export default function Assistant() {
                 setIsSaving(false);
             });
     }
-    
+
     function GetAssistantById() {
         var myURL = "http://localhost:5000/api/Assistants/" + location.state.id;
 
@@ -142,7 +153,6 @@ export default function Assistant() {
             )
             .catch((error) => console.log(error));
     }
-
 
     function Execute() {
         setIsExecuting(true);
@@ -242,8 +252,8 @@ export default function Assistant() {
     useEffect(() => {
         configDragnDrop();
         GetAssistantById();
-    })
 
+    })
 
     return (
         <div>
@@ -302,6 +312,18 @@ export default function Assistant() {
                         <div className="boards__board">
                             <h3 className="board_title">Fluxo</h3>
                             <div id="flow" className="dropzone">
+                                {
+                                    MyProcedures.map((p) => {
+                                        return (
+                                            <div className="card-fluxo" key={p.idAprocedure}>
+                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-fluxo" draggable="true" onClick={() => handleShow(p)}>
+                                                    <img className="card__balls" src={bolinhas} alt="bolinhas" />
+                                                    <div className="card__content">{p.procedureName}</div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                             {
                                 isSaving === false ? (
