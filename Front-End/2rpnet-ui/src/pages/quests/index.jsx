@@ -217,20 +217,25 @@ function App() {
       <h2 className="pageTitle h2">Painel Organizacional</h2>
       <div className='taskCalendar'>
         <section className="task">
-            {/* {
-              questsList.map((myQuests) => {
-                if (myQuests.idStatus === 1) {
-                  return ( */}
           <div className="toDo">
             <div className="taskTitle">
               <h5 className="h5">A Fazer</h5>
             </div>
+            {
+              questsList.map((myQuests) => {
+                if (myQuests.idStatus === 1) {
+                  return (
                     <div key={myQuests.idWorkflow} className="taskSpace">
                       <div className="cardTask" draggable="true">
-                        {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                        <div className="p">Lorem Ipsum is simply dummy text.</div>
                         <div className="p">{myQuests.title}</div>
                       </div>
                     </div>
+                  )
+                }
+              }
+              )
+            }
           </div>
           <div className="do">
             <div className="taskTitle">
@@ -252,11 +257,6 @@ function App() {
               </div>
             </div>
           </div>
-      //     )
-      //   }
-      // }
-      // )
-      //     }
         </section>
         <div className="calendarAndBtn">
           <section className="calendar p">
