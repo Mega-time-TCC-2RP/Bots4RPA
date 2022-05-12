@@ -13,21 +13,30 @@ using _2RPNET_API.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.IdentityModel.Tokens.Jwt;
 using System.Diagnostics;
+using _2RPNET_API.ViewModels;
 namespace _2RPNET_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class Assistant1Controller : ControllerBase{
+        private IAssistantRepository _AssistantRepository { get; set; }
+
+        public Assistant1Controller(IAssistantRepository Assistant)
+        {
+            _AssistantRepository = Assistant;
+        }
 /// <summary>
 /// Method responsible for create a Run process
 /// </summary>
-[HttpPost("Post")]
-public IActionResult NewRun()
+[HttpPost("Post/")]
+public IActionResult NewRun(SendEmail assistant)
 {
     try
-    {AssistantProcess1 _program = new AssistantProcess1();
+    {
+AssistantProcess1 _program = new AssistantProcess1();
         _program.Play();
-        return StatusCode(201);
+        _AssistantRepository.EnviaEmail(assistant);
+        return StatusCode(204);
     }
     catch (Exception ex)
     {

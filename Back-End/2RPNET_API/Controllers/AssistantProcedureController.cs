@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using System.IdentityModel.Tokens.Jwt;
+using _2RPNET_API.ViewModels;
 using _2RPNET_API.Utils;
 using System.Diagnostics;
 
@@ -90,9 +93,10 @@ namespace _2RPNET_API.Controllers
         {
             try
             {
-                _repository.ManipulateScript(IdAssistant);
+
+                string foto = _repository.ManipulateScript(IdAssistant);
                 //Process.Start("./run.bat");
-                return StatusCode(201);
+                return Created("arquivo manipulado com sucesso", foto);
             }
             catch (Exception ex)
             {
@@ -133,6 +137,25 @@ namespace _2RPNET_API.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex);
+            }
+        }
+
+        /// <summary>
+        /// Method responsible for get all Assistants
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("ProceduresVerification")]
+        public IActionResult ChangeVerification(ArrayViewModel ArrayViewModel)
+        {
+            try
+            {
+                _repository.ChangeVerification(ArrayViewModel);
+                return Ok();
+
+            }
+            catch (Exception Ex)
+            {
+                return BadRequest(Ex);
             }
         }
     }

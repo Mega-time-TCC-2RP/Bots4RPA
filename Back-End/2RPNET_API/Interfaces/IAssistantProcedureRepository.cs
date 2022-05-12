@@ -1,4 +1,5 @@
 ﻿using _2RPNET_API.Domains;
+using _2RPNET_API.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace _2RPNET_API.Interfaces
 {
     public interface IAssistantProcedureRepository
     {
-        void ManipulateScript(int IdAssistant);
+        string ManipulateScript(int IdAssistant);
         List<AssistantProcedure> SearchByAssistant(int IdAssistant);
         List<AssistantProcedure> ReadAll();
 
@@ -17,5 +18,9 @@ namespace _2RPNET_API.Interfaces
         void Update(int IdAssistantProcedure, AssistantProcedure NewProcess);
 
         void Delete(int IdAssistantProcedure);
+
+        void ChangeVerification(ArrayViewModel ArrayViewModel);
+        //AssistantProcedure UpdateProcess
+        AssistantProcedure SearchByName(string ProcedureName);
     }
 }

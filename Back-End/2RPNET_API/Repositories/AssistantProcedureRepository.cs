@@ -1,6 +1,10 @@
 ﻿using _2RPNET_API.Context;
 using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
+using _2RPNET_API.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using _2RPNET_API.StaticFiles;
 using Microsoft.Playwright;
 using System.Collections.Generic;
@@ -38,7 +42,7 @@ namespace _2RPNET_API.Repositories
             ctx.SaveChanges();
         }
 
-        public void ManipulateScript(int IdAssistant)
+        public string ManipulateScript(int IdAssistant)
         {
 
             List<AssistantProcedure> AssistantProcedures = SearchByAssistant(IdAssistant);
@@ -112,6 +116,7 @@ Console.WriteLine(message.Text);");
                     }
                 }
                 sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + '"' + "./StaticFiles/Images/Assistant" + IdAssistant + ".png" + '"' + " });}}");
+                
             }
             string pathRun = $"./Controllers/Assistant{IdAssistant}Controller.cs";
             // Create a file to write to.
@@ -132,23 +137,32 @@ using _2RPNET_API.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.IdentityModel.Tokens.Jwt;
 using System.Diagnostics;
+using _2RPNET_API.ViewModels;
 namespace _2RPNET_API.Controllers
 {
     [Route(" + '"' + "api/[controller]" + '"' + @$")]
     [ApiController]
     public class Assistant{IdAssistant}Controller : ControllerBase" +
     @"{
+        private IAssistantRepository _AssistantRepository { get; set; }
+
+        public Assistant" + $"{IdAssistant}" + @"Controller(IAssistantRepository Assistant)
+        {
+            _AssistantRepository = Assistant;
+        }
 /// <summary>
 /// Method responsible for create a Run process
 /// </summary>
-[HttpPost(" + '"' + "Post" + '"' + @")]
-public IActionResult NewRun()
+[HttpPost(" + '"' + "Post/" + '"' + @")]
+public IActionResult NewRun(SendEmail assistant)
 {
     try
-    {"
+    {
+"
         + $"AssistantProcess{IdAssistant} _program = new AssistantProcess{IdAssistant}();" + @"
         _program.Play();
-        return StatusCode(201);
+        _AssistantRepository.EnviaEmail("+$"{IdAssistant}"+@"assistant);
+        return StatusCode(204);
     }
     catch (Exception ex)
     {
@@ -159,6 +173,7 @@ public IActionResult NewRun()
 }");
             }
             //Process.Start("./run.bat");
+            return $"C:\\Users\\44037739828.INFOSCS\\Desktop\\Bots-4RPA\\StaticFiles\\Images\\Assistant{IdAssistant}.png";
         }
 
         public List<AssistantProcedure> ReadAll()
@@ -194,6 +209,73 @@ public IActionResult NewRun()
             ctx.SaveChanges();
         }
 
+        public AssistantProcedure SearchByName(string ProcedureName)
+        {
+            return ctx.AssistantProcedures.FirstOrDefault(a => a.ProcedureName == ProcedureName);
+        }
+
+        public void ChangeVerification(ArrayViewModel ArrayViewModel)
+        {
+            // AssistantProcedure UpdateProcess
+            string ProcedureName = ArrayViewModel.ProcedureName;
+
+            AssistantProcedure AssistantSought = SearchByName(ProcedureName);
+            // fazer verficação
+            List<AssistantProcedure> ProceduresList = ctx.AssistantProcedures.ToList();
+
+            if (AssistantSought != null)
+            {
+                foreach (var item in ProceduresList)
+                {
+                    if (item.ProcedureName == AssistantSought.ProcedureName)
+                    {
+                        if (item.IdAssistant == ArrayViewModel.IdAssistant || item.ProcedurePriority == ArrayViewModel.ProcedurePriority || item.ProcedureName == ArrayViewModel.ProcedureName || item.ProcedureDescription == ArrayViewModel.ProcedureDescription || item.ProcedureValue == ArrayViewModel.ProcedureValue)
+                        {
+                            if (item.IdAssistant != AssistantSought.IdAssistant)
+                            {
+                                item.IdAssistant = AssistantSought.IdAssistant;
+                            }
+
+                            if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+                            {
+                                item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                            }
+
+                            if (item.ProcedureName != ArrayViewModel.ProcedureName)
+                            {
+                                item.ProcedureName = ArrayViewModel.ProcedureName;
+                            }
+
+                            if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
+                            {
+                                item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
+                            }
+
+                            if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
+                            {
+                                item.ProcedureValue = ArrayViewModel.ProcedureValue;
+                            }
+
+                            ctx.AssistantProcedures.Update(item);
+                            ctx.SaveChanges();
+
+                        }
+                    }
+                }
+            }
+            else
+            {
+                AssistantProcedure _repository = new AssistantProcedure();
+                _repository.IdAssistant = ArrayViewModel.IdAssistant;
+                _repository.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                _repository.ProcedureName = ArrayViewModel.ProcedureName;
+                _repository.ProcedureDescription = ArrayViewModel.ProcedureDescription;
+                _repository.ProcedureValue = ArrayViewModel.ProcedureValue;
+
+                ctx.AssistantProcedures.Add(_repository);
+                ctx.SaveChanges();
+            }
+        }
 
     }
 }

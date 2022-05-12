@@ -1,5 +1,7 @@
 ﻿using _2RPNET_API.Domains;
+using _2RPNET_API.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace _2RPNET_API.Interfaces
 {
@@ -15,8 +17,6 @@ namespace _2RPNET_API.Interfaces
         void Create(Assistant NewAssistant);
 
         void Delete(int IdAssistant);
-
-
-
+        Task EnviaEmail(SendEmail emailConfig);
     }
 }

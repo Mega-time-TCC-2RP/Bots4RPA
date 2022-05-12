@@ -7,6 +7,9 @@ namespace _2RPNET_API.Interfaces
     {
         Run Create(Run DataRun);
         List<Run> ReadAll();
+        List<Run> ReadById(int Id);
+
+        Run SearchByID(int Id);
         List<Run> ErrorList();
         List<Run> AssistantList(int id);
     }

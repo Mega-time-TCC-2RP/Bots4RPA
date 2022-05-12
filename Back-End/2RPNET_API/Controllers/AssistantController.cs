@@ -1,6 +1,7 @@
 ﻿using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
 using _2RPNET_API.Repositories;
+using _2RPNET_API.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -58,7 +59,7 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for create all Assistants
+        /// Method responsible for analyze all Assistants
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -66,8 +67,15 @@ namespace _2RPNET_API.Controllers
         {
             try
             {
-                _AssistantRepository.Create(NewAssistant);
-                return StatusCode(201);
+                if (NewAssistant.AssistantName != null || NewAssistant.AssistantDescription != null)
+                {
+                    _AssistantRepository.Create(NewAssistant);
+                    return Created("Assitant created successfully", NewAssistant);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
             catch (Exception ex)
             {
@@ -89,7 +97,9 @@ namespace _2RPNET_API.Controllers
                 if (AssistantSought != null)
                 {
                     if (UpdatedAsssistant != null)
+                    {
                         _AssistantRepository.Update(IdAssistant, UpdatedAsssistant);
+                    }
                 }
                 else
                 {
@@ -133,6 +143,23 @@ namespace _2RPNET_API.Controllers
                 return BadRequest(Ex);
             }
         }
-    }
 
+        [HttpPost("EnviarEmail")]
+        public IActionResult EnviaEmail(SendEmail assistant)
+        {
+            try
+            {
+                _AssistantRepository.EnviaEmail(assistant);
+                return Ok(new
+                {
+                    Mensagem = "Código enviado"
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+                throw;
+            }
+        }
+    }
 }
