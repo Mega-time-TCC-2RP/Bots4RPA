@@ -299,7 +299,7 @@ body {
   margin: 0.5rem;
 }
 
-.card-fluxo {
+.card-flow {
   width: 200px;
   height: 56px;
   display: flex;
@@ -315,6 +315,6 @@ body {
   box-sizing: border-box;
 }
 
-.box-card-fluxo{
+.box-card-flow{
   display: flex;
 }
