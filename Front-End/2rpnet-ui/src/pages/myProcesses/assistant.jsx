@@ -15,24 +15,41 @@ import Footer from '../../components/footer/footer'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+import {parseJwt} from "../../services/auth"
+
 import Procedures from '../../services/process';
+import { set } from "react-hook-form";
+
+import { API } from "../../services/api";
 
 // testar colocar uma lista com informações dos cards/bloquinhos
-
 export default function Assistant() {
 
+    const [MyProcedures, setMyProcedures] = useState([])
     const [Assistant, setAssistant] = useState("")
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
     const [isSaving, setIsSaving] = useState(false);
     const [isExecuting, setIsExecuting] = useState(false);
+    const [result, setResult] = useState("oi");
 
     const location = useLocation();
     var idAssistant = location.state.id;
-    // var assistantName = location.state.name
-    // console.log(location.state.id)
-    // var idAssistant = 7
 
+    function GetProceduresById() {
+        fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + idAssistant, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setMyProcedures(data)
+                //console.log(data)
+            )
+            .catch((error) => console.log(error));
+    };
+    useEffect(GetProceduresById, [])
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
@@ -60,24 +77,25 @@ export default function Assistant() {
         let children = parent.childNodes;
         var child = [];
 
-        var myURL = "http://localhost:5000/api/AssistantProcedure/ProceduresVerification";
+        var myURL = API + "/api/AssistantProcedure/ProceduresVerification";
 
         for (let index = 0; index < children.length; index++) {
-            console.log(index);
             setIsSaving(true);
             var child = children[index];
 
             var splited = child.id.split(";");
             child.id = (index + 1) + ";" + splited[1].toString();
-            console.log(child);
+            // console.log(child);
 
             var myBody = JSON.stringify({
-                "idAssistant": location.state.id,
-                "procedurePriority": splited[0],
+                "idAssistant": idAssistant,
+                "procedurePriority": index+1,
                 "procedureName": child.textContent,
                 "procedureDescription": "",
                 "procedureValue": splited[1]
-            });
+              });
+
+            // console.log(myBody)
 
             fetch(myURL, {
                 method: 'POST',
@@ -86,9 +104,9 @@ export default function Assistant() {
             })
                 .then((response) => {
                     // console.log("before if");
-                    if (response.status === 201) {
+                    if (response.status === 200 || response.status === 201) {
                         // console.log("after if");
-                        toast.success('o procedimento ' + child.textContent + 'foi salvo');
+                        toast.success('o procedimento ' + child.textContent + ' foi salvo');
                     } else {
                         toast.error("O salvamento deu errado no " + child.textContent + " :/");
                     }
@@ -102,22 +120,26 @@ export default function Assistant() {
         // console.log("terminou o for");
 
         //save the playwright script for the assistant
-        var myURL2 = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
-        var myBody2 = JSON.stringify({});
+        var myURL2 = API + "/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+        
 
         fetch(myURL2, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: myBody2
+            headers: { 'Content-Type': 'application/json' }
         })
             .then((response) => {
                 // console.log("before if");
                 if (response.status === 201) {
                     // console.log("after if");
-                    toast.success(`o assistente ${idAssistant} foi salvo`)
+                    return response.text()
                 } else {
-                    toast.success(`Houve erros no processo de salvamento do assistente ${idAssistant}`)
+                    toast.error(`Houve erros no processo de salvamento do assistente ${idAssistant}`) 
                 }
+            })
+            .then((data) => {
+                // console.log(data);
+                setResult(data);                
+                toast.success(`o assistente ${idAssistant} foi salvo`)
                 setIsSaving(false);
             })
             .catch((erro) => {
@@ -126,7 +148,7 @@ export default function Assistant() {
                 setIsSaving(false);
             });
     }
-    
+
     function GetAssistantById() {
         var myURL = "http://localhost:5000/api/Assistants/" + location.state.id;
 
@@ -143,19 +165,26 @@ export default function Assistant() {
             .catch((error) => console.log(error));
     }
 
-
     function Execute() {
         setIsExecuting(true);
+        // console.log(parseJwt());
+        // console.log(parseJwt().email);
 
-        var myURL = `/api/Assistant${idAssistant}/Post`;
+        var eURL = API + "/api/Assistant" + idAssistant + "/Post";
+        var eBody = JSON.stringify({
+            "email": parseJwt().email,
+            "emailBody": result
+          });
 
-        fetch(myURL, {
+        fetch(eURL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
+            body: eBody
         })
             .then((response) => {
-                console.log("before if");
-                if (response.status === 201) {
+                // console.log("before if");
+                console.log(response)
+                if (response.status === 204) {
                     console.log("FUNCIONOU");
                     toast.success("O resultado foi enviado para seu email");
                 } else {
@@ -242,15 +271,15 @@ export default function Assistant() {
     useEffect(() => {
         configDragnDrop();
         GetAssistantById();
-    })
 
+    })
 
     return (
         <div>
             <header className="header container">
                 <h1 className="header__text">{Assistant.assistantName}</h1>
             </header>
-            <main>
+            <main className="">
                 <Navbar />
                 <div className="boards container">
                     <div className="boards__board boards__board--pointy">
@@ -302,6 +331,18 @@ export default function Assistant() {
                         <div className="boards__board">
                             <h3 className="board_title">Fluxo</h3>
                             <div id="flow" className="dropzone">
+                                {
+                                    MyProcedures.map((p) => {
+                                        return (
+                                            <div className="card-flow" key={p.idAprocedure}>
+                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-fluxo" draggable="true" onClick={() => handleShow(p)}>
+                                                    <img className="card__balls" src={bolinhas} alt="bolinhas" />
+                                                    <div className="card__content">{p.procedureName}</div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                             {
                                 isSaving === false ? (
@@ -322,7 +363,7 @@ export default function Assistant() {
                 </div>
                 <ToastContainer />
             </main>
-            <Footer className="footerAssistant" />
+            <Footer />
         </div>
     )
 

@@ -411,11 +411,12 @@
 }
 
 .movieRow-left {
-    left: 0;
+    z-index: 0;
+    left: 60px;
 }
 
 .movieRow-right {
-    right: 0;
+    right: 60px;
 }
 
 .img2-home-bottom {

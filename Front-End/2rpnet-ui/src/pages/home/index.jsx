@@ -6,6 +6,7 @@ import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/menu/Navbar'
 import VLibras from '@djpfs/react-vlibras'
+import { API } from "../../services/api";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,6 +38,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 {/* <Navbar/> */ }
 
+
+
 export default function Home() {
 
   const [AssistantsList, setAssistantsList] = useState([]);
@@ -47,29 +50,34 @@ export default function Home() {
   function Execute(idAssistant) {
     setIsExecuting(true);
 
-    var myURL = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+    var eURL = API + "/api/Assistant" + idAssistant + "/Post";
+    var eBody = JSON.stringify({
+        "email": parseJwt().email,
+        "emailBody": "result"
+      });
 
-    fetch(myURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
+    fetch(eURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: eBody
     })
-      .then((response) => {
-        console.log("before if");
-        if (response.status === 201) {
-          console.log("FUNCIONOU");
-          toast.success("O resultado foi enviado para seu email");
-          setIsExecuting(false);
-        } else {
-          toast.error("A execução deu errado :/");
-          setIsExecuting(false);
-        }
-      })
-      .catch((erro) => {
-        console.log(erro)
-        toast.error("A execução deu errado :/");
-        setIsExecuting(false);
-      })
-  }
+        .then((response) => {
+            // console.log("before if");
+            console.log(response)
+            if (response.status === 204) {
+                console.log("FUNCIONOU");
+                toast.success("O resultado foi enviado para seu email");
+            } else {
+                toast.error("A execução deu errado :/");
+            }
+            setIsExecuting(false);
+        })
+        .catch((erro) => {
+            console.log(erro)
+            toast.error("A execução deu errado :/");
+            setIsExecuting(false);
+        })
+}
 
   function GetMyAssistants() {
     fetch('http://localhost:5000/api/Assistants', {
@@ -137,8 +145,8 @@ export default function Home() {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
     }).then((response) => {
-      console.log(response)
-      console.log(response.data)
+      // console.log(response)
+      // console.log(response.data)
       setMyQuests(response.data)
     }).catch(async (error) => {
       if (await handleAuthException(error) === true) {
@@ -155,8 +163,8 @@ export default function Home() {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
     }).then((response) => {
-      console.log(response)
-      console.log(response.data)
+      // console.log(response)
+      // console.log(response.data)
       setHighlightedPosts(response.data)
     }).catch(async (error) => {
       if (await handleAuthException(error) === true) {
@@ -174,7 +182,7 @@ export default function Home() {
 
   return (
     <div>
-
+      <Navbar className="NavbarHome" />
       <div className="top-container">
         <div className="top-buttons">
           <div className="form-container">
@@ -204,7 +212,8 @@ export default function Home() {
                   <div className="containerSmodal">
                     <Modal assistant={assistant} />
                     <div className="card1">
-                      <img src={Azul_Home} className="card1-img" />
+
+                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
                       <h5>{assistant.assistantName}</h5>
                       {
                         isExecuting === false ? (
@@ -212,14 +221,14 @@ export default function Home() {
                             event.preventDefault()
                             Execute(assistant.idAssistant)
                           }}>
-                          <PlayIcon />
+                            <PlayIcon />
                           </button>
                         ) : (
                           <button disabled onClick={(event) => {
                             event.preventDefault()
                             Execute(assistant.idAssistant)
                           }}>
-                          <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                            <FontAwesomeIcon icon={faSpinner} size="lg" spin />
                           </button>
                         )
                       }
