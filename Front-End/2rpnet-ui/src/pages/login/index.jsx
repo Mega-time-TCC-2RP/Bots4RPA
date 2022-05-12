@@ -38,6 +38,7 @@ export default function Login() {
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
 
+
         const diffToast = () => {
                 toast.success('Autenticando...', {
                         position: "top-right",
@@ -86,14 +87,14 @@ export default function Login() {
                                         localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
 
                                         // define a variável base64 que vai receber o payload do token
-                                        let base64 = localStorage.getItem('2rp-chave-autenticacao').split('.')[1];
+                                        // let base64 = localStorage.getItem('2rp-chave-autenticacao').split('.')[1];
                                         //     console.log(base64);
                                         // exibe as propriedades da página
                                         //     console.log(parseJwt());
                                         // verifica se o usuário logado é do tipo administrador
                                         //mudar aqui e no menu principal se o cadastro for liberado para
                                         //todos os usuarios
-                                        if (parseJwt().role === '1' || parseJwt().role === '2' || parseJwt().role === '3') {
+                                        if (parseJwt().Role === '1' || parseJwt().Role === '2' || parseJwt().Role === '3') {
                                                 history('/')
 
                                                 // console.log('logado: ' + usuarioAutenticado())
@@ -115,15 +116,47 @@ export default function Login() {
                 setIsLoading(false);
         };
 
-        const responseGoogle = (response) => {
-                if (response !== null) {
-                        history('/')
-                }
-                else {
-                        history('/notFound')
-                }
+        const loginGoogle = (Email, GoogleId) => {
+                setIsLoading(true);
+                axios.post('https://grupo7.azurewebsites.net/api/Login/Google', {
+                        googleId: GoogleId,
+                        email: Email
+                })
+                .then(resposta => {
+                        console.log(resposta)
+                        if (resposta.status === 200) {
+                                localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
+                                
 
-                console.log(response)
+                                if (parseJwt().Role === '1' || parseJwt().Role === '2' || parseJwt().Role === '3') {
+                                        history('/')
+                                        console.log(parseJwt());
+                                        // console.log('logado: ' + usuarioAutenticado())
+                                }
+
+                                else {
+                                        history('/notFound')
+
+                                }
+                        }
+                        setIsLoading(false);
+                })
+
+                .catch((error) => {
+                        console.log(error)
+                        this.setState({ erroMensagem: 'Falha no login com o Google', isLoading: false })
+                        setIsLoading(false);
+                })
+        setIsLoading(false);
+
+                
+        }
+
+        const responseGoogle = (response) =>{
+                loginGoogle(response.profileObj.email, response.profileObj.googleId)
+                // setGoogleId(response.profileObj.googleId);
+                // setEmail(response.profileObj.email);
+                // console.log(response);
         }
 
         return (
@@ -187,6 +220,7 @@ export default function Login() {
                                                                 )}
                                                                 onSuccess={responseGoogle}
                                                                 onFailure={responseGoogle}
+
 
                                                         />
 
