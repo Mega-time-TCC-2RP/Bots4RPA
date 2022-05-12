@@ -174,7 +174,7 @@ export default function Home() {
 
   return (
     <div>
-
+   <Navbar className="NavbarHome"/>
       <div className="top-container">
         <div className="top-buttons">
           <div className="form-container">
@@ -204,7 +204,8 @@ export default function Home() {
                   <div className="containerSmodal">
                     <Modal assistant={assistant} />
                     <div className="card1">
-                      <img src={Azul_Home} className="card1-img" />
+
+                      <img onClick={() => {Navigate("/assistant", { state: { id: assistant.idAssistant } })}} src={Azul_Home} className="card1-img" />
                       <h5>{assistant.assistantName}</h5>
                       {
                         isExecuting === false ? (
@@ -212,14 +213,14 @@ export default function Home() {
                             event.preventDefault()
                             Execute(assistant.idAssistant)
                           }}>
-                          <PlayIcon />
+                            <PlayIcon />
                           </button>
                         ) : (
                           <button disabled onClick={(event) => {
                             event.preventDefault()
                             Execute(assistant.idAssistant)
                           }}>
-                          <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                            <FontAwesomeIcon icon={faSpinner} size="lg" spin />
                           </button>
                         )
                       }

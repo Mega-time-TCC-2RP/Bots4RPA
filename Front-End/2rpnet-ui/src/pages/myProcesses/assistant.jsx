@@ -250,7 +250,7 @@ export default function Assistant() {
             <header className="header container">
                 <h1 className="header__text">{Assistant.assistantName}</h1>
             </header>
-            <main>
+            <main className="">
                 <Navbar />
                 <div className="boards container">
                     <div className="boards__board boards__board--pointy">
@@ -322,7 +322,7 @@ export default function Assistant() {
                 </div>
                 <ToastContainer />
             </main>
-            <Footer className="footerAssistant" />
+            <Footer />
         </div>
     )
 
