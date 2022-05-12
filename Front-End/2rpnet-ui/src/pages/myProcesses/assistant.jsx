@@ -13,8 +13,10 @@ import Footer from '../../components/footer/footer'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+import {parseJwt} from "../../services/auth"
 
 import Procedures from '../../services/process';
+import { set } from "react-hook-form";
 
 // testar colocar uma lista com informações dos cards/bloquinhos
 
@@ -24,8 +26,10 @@ export default function Assistant() {
     const [pValue, setPValue] = useState();
     const [isSaving, setIsSaving] = useState(false);
     const [isExecuting, setIsExecuting] = useState(false);
+    const [result, setResult] = useState("oi");
 
-    var idAssistant = 7;
+
+    var idAssistant = 8;
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
@@ -66,11 +70,13 @@ export default function Assistant() {
 
             var myBody = JSON.stringify({
                 "idAssistant": idAssistant,
-                "procedurePriority": splited[0],
+                "procedurePriority": index+1,
                 "procedureName": child.textContent,
                 "procedureDescription": "",
                 "procedureValue": splited[1]
-            });
+              });
+
+            console.log(myBody)
 
             fetch(myURL, {
                 method: 'POST',
@@ -78,9 +84,9 @@ export default function Assistant() {
                 body: myBody
             })
                 .then((response) => {
-                    // console.log("before if");
+                    console.log("before if");
                     if (response.status === 201) {
-                        // console.log("after if");
+                        console.log("after if");
                         toast.success('o procedimento ' + child.textContent + 'foi salvo');
                     } else {
                         toast.error("O salvamento deu errado no " + child.textContent + " :/");
@@ -92,22 +98,25 @@ export default function Assistant() {
                 });
         }
 
-        // console.log("terminou o for");
+        console.log("terminou o for");
 
         //save the playwright script for the assistant
         var myURL2 = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
-        var myBody2 = JSON.stringify({});
+        
 
         fetch(myURL2, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: myBody2
+            headers: { 'Content-Type': 'application/json' }
         })
             .then((response) => {
-                // console.log("before if");
+                console.log("before if");
                 if (response.status === 201) {
-                    // console.log("after if");
-                    toast.success(`o assistente ${idAssistant} foi salvo`)
+                    console.log("after if");
+                    return response.toString()
+                    .then((data) => {
+                        console.log(data);
+                        toast.success(`o assistente ${idAssistant} foi salvo`)
+                    })
                 } else {
                     toast.success(`Houve erros no processo de salvamento do assistente ${idAssistant}`) 
                 }
@@ -123,16 +132,24 @@ export default function Assistant() {
 
     function Execute() {
         setIsExecuting(true);
+        // console.log(parseJwt());
+        // console.log(parseJwt().email);
 
-        var myURL = `/api/Assistant${idAssistant}/Post`;
+        var eURL = "http://localhost:5000/api/Assistant" + idAssistant + "/Post";
+        var eBody = JSON.stringify({
+            "email": "sgustavo.borges10@gmail.com",
+            "emailBody": result
+          });
 
-        fetch(myURL, {
+        fetch(eURL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
+            body: eBody
         })
             .then((response) => {
                 console.log("before if");
-                if (response.status === 201) {
+                console.log(response)
+                if (response.status === 204) {
                     console.log("FUNCIONOU");
                     toast.success("O resultado foi enviado para seu email");
                 } else {
