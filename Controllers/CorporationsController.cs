@@ -324,7 +324,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         [Authorize(Roles= "1")]
-        [HttpPatch('Validate/{CorporateId}')]
+        [HttpPatch("Validate/{CorporateId}")]
         public IActionResult ValidateCorp(int CorporateId)
         {
             try
