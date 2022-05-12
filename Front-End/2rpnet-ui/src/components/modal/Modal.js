@@ -16,7 +16,9 @@ export default function Modal({ assistant }) {
     const [Run, setRun] = useState([]);
 
     function RunQuantity() {
-        fetch('http://localhost:5000/api/Run/' + assistant.idAssistant, {
+        var myUrl = "http://localhost:5000/api/Run/" + assistant.idAssistant;
+
+        fetch(myUrl, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
@@ -24,11 +26,11 @@ export default function Modal({ assistant }) {
             .then((response) => response.json())
             .then((data) =>
                 setRun(data)
-                //console.log(data)
+            
             )
             .catch((error) => console.log(error));
     };
-    useEffect(RunQuantity, [])
+    useEffect(RunQuantity)
 
     return (
         <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
