@@ -51,7 +51,7 @@ export default function Marketplace() {
             <img 
                     src={onBoardingBot} 
                     onClick={handleOpenOnBoarding} 
-                    className="img-onbo     arding"
+                    className="img-onboarding"
                 />
                 <Modal
                     isOpen={onBoardingIsOpen}
