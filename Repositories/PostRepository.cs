@@ -46,6 +46,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
             {
                 IdPost = post.IdPost,
                 Title = post.Title,
+                IdPlayer = post.IdPlayer,
                 PostDescription = post.PostDescription,
                 PostImage = post.PostImage,
                 DataPost = post.DataPost,
@@ -119,6 +120,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
             {
                 IdPost = post.IdPost,
                 Title = post.Title,
+                IdPlayer = post.IdPlayer,
                 PostDescription = post.PostDescription,
                 PostImage = post.PostImage,
                 DataPost = post.DataPost,
@@ -192,6 +194,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
             return ctx.Posts.Select(post => new Post()
             {
                 IdPost = post.IdPost,
+                IdPlayer = post.IdPlayer,
                 Title = post.Title,
                 PostDescription = post.PostDescription,
                 PostImage = post.PostImage,
@@ -267,6 +270,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
             {
                 IdPost = post.IdPost,
                 Title = post.Title,
+                IdPlayer = post.IdPlayer,
                 PostDescription = post.PostDescription,
                 PostImage = post.PostImage,
                 DataPost = post.DataPost,
