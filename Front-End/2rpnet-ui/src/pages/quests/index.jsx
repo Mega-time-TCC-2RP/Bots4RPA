@@ -11,6 +11,7 @@ import "../../assets/css/style.css"
 import "../../assets/css/pages/taskCalendar.css"
 import "../../assets/css/components/fonts.css"
 import "../../assets/css/components/button.css"
+import "../../assets/css/components/navbar.css"
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 
@@ -198,6 +199,7 @@ function App() {
     <div className='pageTaskCalendar'>
       <Header />
       <Navbar />
+      <div className='body-pd'>
       <VLibras />
       <img
         src={onBoardingBot}
@@ -448,6 +450,7 @@ function App() {
             </div>
           </Modal>
         </div>
+      </div>
       </div>
     </div>
   );

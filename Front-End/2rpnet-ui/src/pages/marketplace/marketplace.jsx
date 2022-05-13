@@ -5,6 +5,7 @@ import skin from '../../assets/img/Robo.png'
 import Coin from '../../assets/img/coin.png'
 import '../../assets/css/pages/skinShop.css'
 import '../../assets/css/pages/workflow.css'
+import "../../assets/css/components/navbar.css"
 import VLibras from '@djpfs/react-vlibras'
 import { useEffect, useState } from 'react'
 
@@ -47,6 +48,7 @@ export default function Marketplace() {
         <div id='all'>
             <Header/>
             <Navbar/>
+            <div className='body-pd'>
             <VLibras/>
             <img 
                     src={onBoardingBot} 
@@ -198,6 +200,7 @@ export default function Marketplace() {
 
             
             <Footer />
+            </div>
         </div>
     );
 } 

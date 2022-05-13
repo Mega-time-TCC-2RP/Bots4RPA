@@ -228,6 +228,7 @@ function App() {
     <div>
 
       <Navbar />
+      <div className='body-pd'>
         
         <Header />
         <VLibras />
@@ -439,7 +440,7 @@ function App() {
         </div>
 
         <Footer />
-      
+      </div>
     </div >
   );
 }

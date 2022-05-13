@@ -128,15 +128,16 @@ export default function Login() {
                                 localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
                                 
 
-                                if (parseJwt().Role === '1' || parseJwt().Role === '2' || parseJwt().Role === '3') {
+                                if (parseJwt().Role == '1') {
+                                        history('/config')
+                                }
+                                else if (parseJwt().Role === '2' || parseJwt().Role === '3') {
                                         history('/')
-                                        console.log(parseJwt());
+
                                         // console.log('logado: ' + usuarioAutenticado())
                                 }
-
                                 else {
                                         history('/notFound')
-
                                 }
                         }
                         setIsLoading(false);
