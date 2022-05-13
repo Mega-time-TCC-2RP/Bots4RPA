@@ -140,8 +140,16 @@
 }
 
 /* Parte do Modal */
-/* .modalNewTask {
-    height: 90vh;
-    width: 90vw;
-    background-color: var(--PrimaryColor1);
-} */
+.modalNewTask {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 70px;
+    margin: 10rem;
+    width: 80vw;
+    height: 80vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: var(--ComplementaryColor4);
+}
