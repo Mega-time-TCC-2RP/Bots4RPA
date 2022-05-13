@@ -5,6 +5,7 @@ import skin from '../../assets/img/Robo.png'
 import Coin from '../../assets/img/coin.png'
 import '../../assets/css/pages/skinShop.css'
 import '../../assets/css/pages/workflow.css'
+import "../../assets/css/components/navbar.css"
 import VLibras from '@djpfs/react-vlibras'
 import { useEffect, useState } from 'react'
 
@@ -47,6 +48,7 @@ export default function Marketplace() {
         <div id='all'>
             <Header/>
             <Navbar/>
+            <div className='body-pd'>
             <VLibras/>
             <img 
                     src={onBoardingBot} 
@@ -135,9 +137,9 @@ export default function Marketplace() {
                 </div>
 
                 <div className='coinDetails'>
-                <div className ='coin'>
-                    <img src={Coin} alt="img coin"/>
-                    <span>2000</span>
+                <div className ='details3'>
+                    
+                    <span>Adquirir</span>
                 </div>
                 <div className='details2'>
                 <span >ver detalhes</span>
@@ -158,9 +160,8 @@ export default function Marketplace() {
                 </div>
 
                 <div className='coinDetails'>
-                <div className ='coin'>
-                    <img src={Coin} alt="img coin"/>
-                    <span>2000</span>
+                <div className ='details3'>
+                    <span>Adquirir</span>
                 </div>
                 <div className='details2'>
                 <span >ver detalhes</span>
@@ -181,12 +182,11 @@ export default function Marketplace() {
                 </div>
 
                 <div className='coinDetails'>
-                <div className ='coin'>
-                    <img src={Coin} alt="img coin"/>
-                    <span>2000</span>
+                <div className ='details3'>
+                   <span>Adquirir</span>
                 </div>
                 <div className='details2'>
-                <span >ver detalhes</span>
+                    <span >ver detalhes</span>
                 </div>
                 </div>
                 </div>
@@ -200,6 +200,7 @@ export default function Marketplace() {
 
             
             <Footer />
+            </div>
         </div>
     );
 } 
