@@ -269,7 +269,7 @@ function App() {
                   </div>
                   <div key={myQuests.idWorkflow && myQuests.idStatus === 1} className="taskSpace">
                     <div className="cardTask" draggable="true">
-                      {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                      <div className="p">Lorem Ipsum is simply dummy text.</div>
                       <div className="p">{myQuests.title}</div>
                     </div>
                   </div>
@@ -282,7 +282,7 @@ function App() {
                   </div>
                   <div key={myQuests.idWorkflow && myQuests.idStatus === 2} className="taskSpace">
                     <div className="cardTask" draggable="true">
-                      {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                      <div className="p">Lorem Ipsum is simply dummy text.</div>
                       <div className="p">{myQuests.title}</div>
                     </div>
                   </div>
@@ -295,7 +295,7 @@ function App() {
                   </div>
                   <div key={myQuests.idWorkflow && myQuests.idStatus === 3} className="taskSpace">
                     <div className="cardTask" draggable="true">
-                      {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                      <div className="p">Lorem Ipsum is simply dummy text.</div>
                       <div className="p">{myQuests.title}</div>
                     </div>
                   </div>
@@ -439,13 +439,14 @@ function App() {
             type="button"
             value="Nova Tarefa"
             onClick={handleOpenNewTask} />
-          {/* <Modal
+          <Modal
             isOpen={newTaskIsOpen}
             onRequestClose={handleCloseNewTask}
-            style={stylesCustom}
-          >
-            <div className="modalNewTask"></div>
-          </Modal> */}
+            style={stylesCustom} >
+            <div className="modalNewTask">
+              <h2>Teste do Modal '-'</h2>
+            </div>
+          </Modal>
         </div>
       </div>
     </div>
