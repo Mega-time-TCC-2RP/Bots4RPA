@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Nunito&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+  font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+  --mainColor: #3475BB;
+  --secondMain: #3375BA;
+  --secondaryColor: #38538A;
+  --complementColor: #8B919D;
+  --complementLight: #F2F2F2;
+  --complementDark: #17233C;
+}
+
+.container {
+  max-width: 1820px;
+  width: 90%;
+}
+
+body {
+  background-color: #FCFCFC;
+  color: white;
+}
+
+.header {
+  height: 72px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__text {
+  color: var(--complementDark);
+  font-weight: 500;
+}
+
+.boards {
+  display: flex;
+  align-items: center;
+  padding: 0 0 102px;
+  min-height: 530px;
+}
+
+.flow {
+  /* background-color: wheat; */
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.boards__board {
+  background: #fff;
+  border: 2px solid #C4C4C4;
+  border-radius: 32px;
+  /* margin: 0 16px; */
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.boards__board--pointy {
+  /* width: 400px; */
+  border-radius: 0;
+}
+
+.board_title {
+  padding: 16px;
+  margin: 0;
+  color: #3475BB;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+.dropzone {
+  padding: 1rem;
+  min-width: 282px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  background-color: var(--secondaryColor);
+  padding: 1rem;
+  box-shadow: 0 2px 2px -1px var(--complementColor);
+  width: 200px;
+  height: 56px;
+  margin: 1rem 0;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.card__content {
+  margin-left: 0.4rem;
+}
+
+.highlight {
+  background-color: #FD951F08;
+}
+
+.card,
+.dropzone {
+  transition: 400ms;
+  box-sizing: border-box;
+}
+
+.is-dragging {
+  cursor: move;
+  opacity: 0.3;
+}
+
+.over {
+  background-color: #4cd13711;
+}
+
+.boards__button {
+  height: 48px;
+  width: 240px;
+  margin: 0 0 2rem;
+  border-radius: 10px;
+  background-color: var(--secondMain);
+  color: var(--complementLight);
+  border: none;
+  border-radius: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.button__text {
+  margin-left: 0.6rem;
+  font-weight: 550;
+}
+
+.boards__button--small {
+  width: 160px;
+  margin: 0 0 1rem;
+}
+
+.boards__text {
+  color: var(--complementColor);
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.marginAssistant {
+  margin: 0 0 64px;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #f3f3f3;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 40%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  border-radius: 32px;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  }
+
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  }
+
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+  height: 100%;
+  margin-right: 0.5rem;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  /* background-color: var(--mainColor); */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  border-radius: 28px 28px 0 0;
+  margin: 1rem 0;
+}
+
+.modal-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .modal-footer {
+    padding: 2px 16px;
+    background-color: var(--mainColor);
+    color: white;
+  } */
+
+.modal-header--content {
+  width: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  margin: 0.5rem 0.5rem 0 0;
+}
+
+
+.modal__text--heading {
+  font-weight: bold;
+  margin-right: 0.5rem;
+  font-size: 20px;
+}
+
+.modal__text {
+  color: var(--complementDark);
+  font-size: 18px;
+}
+
+.modal__input {
+  margin: 1.5rem 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--complementColor);
+  border-radius: 16px;
+}
+
+.close {
+  color: var(--complementDark);
+  margin: 0.5rem;
+}
+
+.card-fluxo {
+  width: 200px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--secondaryColor);
+  box-shadow: 0 2px 2px -1px var(--complementColor);
+  margin: 1rem 0;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.box-card-fluxo{
+  display: flex;
+}

@@ -214,7 +214,9 @@ export const TelaTimeline = (person, idx) => {
     const PublicarComentario = (e) => {
         e.preventDefault();
         setIsLoading(true);
-
+        console.log(idPostComentarios)
+        console.log(tituloCadastroComentario)
+        console.log(descricaoCadastroComentario)
         axios.post("http://grupo7.azurewebsites.net/api/Comments", {
             "idPost": idPostComentarios,
             "title": tituloCadastroComentario,
@@ -230,6 +232,8 @@ export const TelaTimeline = (person, idx) => {
             setComentariosModal(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments)
             setIsLoading(false);
         }).catch((error) => {
+            console.log(error.response.status)
+            console.log(error)
             if (handleAuthException(error) === true) {
                 localStorage.removeItem('2rp-chave-autenticacao')
                 Navigate('/login')
@@ -245,230 +249,395 @@ export const TelaTimeline = (person, idx) => {
             Navigate('/login')
         }
     }, [])
-    return (
-        <div>
 
-            <Navbar />
-            <div className="body-pd">
-                <Header />
-                <VLibras />
-                {/* onboarding */}
-                <img 
-                    src={onBoardingBot} 
-                    onClick={handleOpenOnBoarding} 
-                    className="img-onboarding"
-                />
-                <Modal
-                    isOpen={onBoardingIsOpen}
-                    onRequestClose={handleCloseOnBoarding}
-                    style={stylesCustom}
-                >
-                    <div className="top-container" >
-                        <div className="background-body" >
-                            <div className="boarding-image">
-                                <img className="bot-img" src={Blue_Head} />
-                            </div>
-                            <div className="body-content">
-                                <h2>Assistente</h2>
-                                <Swiper
-                                    pagination={{
-                                        type: "fraction",
-                                      }}
-                                      navigation={true}
-                                      modules={[Pagination, Navigation]}
-                                      
-                                    className="swiperHomeTasks-social"
-                                >
-                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                        <div className="boardingContainer">
-                                        <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
-                                        </div>
-                                    </SwiperSlide>
-                                </Swiper>
-                            </div>
-
-                        </div>
-                    </div>
-                </Modal>
-                {/*  */}
-                <main id="Main">
-                    <div className="ContainerGrid ContainerPosts">
-                        <div className="BotoesModais">
-                            <button onClick={openModalCadastro}><img src={ImagemModalCadastro}></img></button>
-                        </div>
-                        <Modal
-                            isOpen={ModalCadastroIsOpen}
-                            onAfterOpen={afterOpenModal}
-                            onRequestClose={closeModalCadastro}
-                            style={customStyles}
-                            contentLabel="Example Modal"
-                            class="ReactModal"
-                            closeTimeoutMS={2000}
-                        >
-                            <form className="CadastroModalContainer" onSubmit={(e) => PublicarPost(e)}>
-                                <div className="HeaderModal">
-                                    <h2>Adicionar publicação</h2>
-                                    <button onClick={(e) => closeModalCadastro(e)}>X</button>
+    if (parseJwt().Role == "3") {
+        return (
+            <div>
+    
+                <Navbar />
+                <div className="body-pd">
+                    <Header />
+                    <VLibras />
+                    {/* onboarding */}
+                    <img 
+                        src={onBoardingBot} 
+                        onClick={handleOpenOnBoarding} 
+                        className="img-onboarding"
+                    />
+                    <Modal
+                        isOpen={onBoardingIsOpen}
+                        onRequestClose={handleCloseOnBoarding}
+                        style={stylesCustom}
+                    >
+                        <div className="top-container" >
+                            <div className="background-body" >
+                                <div className="boarding-image">
+                                    <img className="bot-img" src={Blue_Head} />
                                 </div>
-                                <div>
-                                    <div className="CamposCadastro">
-                                        <div className="LinhaCampoCadastro">
-                                            <div className="CampoCadastro">
-                                                <label className="LabelCampoCadastro">Título</label>
-                                                <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
+                                <div className="body-content">
+                                    <h2>Assistente</h2>
+                                    <Swiper
+                                        pagination={{
+                                            type: "fraction",
+                                          }}
+                                          navigation={true}
+                                          modules={[Pagination, Navigation]}
+                                          
+                                        className="swiperHomeTasks-social"
+                                    >
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                            <div className="boardingContainer">
+                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
+                                            </div>
+                                        </SwiperSlide>
+                                    </Swiper>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </Modal>
+                    {/*  */}
+                    <main id="Main">
+                        <div className="ContainerGrid ContainerPosts">
+                            <div className="BotoesModais">
+                                <button onClick={openModalCadastro}><img src={ImagemModalCadastro}></img></button>
+                            </div>
+                            <Modal
+                                isOpen={ModalCadastroIsOpen}
+                                onAfterOpen={afterOpenModal}
+                                onRequestClose={closeModalCadastro}
+                                style={customStyles}
+                                contentLabel="Example Modal"
+                                class="ReactModal"
+                                closeTimeoutMS={2000}
+                            >
+                                <form className="CadastroModalContainer" onSubmit={(e) => PublicarPost(e)}>
+                                    <div className="HeaderModal">
+                                        <h2>Adicionar publicação</h2>
+                                        <button onClick={(e) => closeModalCadastro(e)}>X</button>
+                                    </div>
+                                    <div>
+                                        <div className="CamposCadastro">
+                                            <div className="LinhaCampoCadastro">
+                                                <div className="CampoCadastro">
+                                                    <label className="LabelCampoCadastro">Título</label>
+                                                    <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
+                                                </div>
+                                                <div className="CampoCadastro">
+                                                    <label className="LabelCampoCadastro">Descrição</label>
+                                                    <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
+                                                </div>
                                             </div>
                                             <div className="CampoCadastro">
-                                                <label className="LabelCampoCadastro">Descrição</label>
-                                                <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
+                                                <label className="LabelCampoCadastro">Imagem</label>
+                                                <label className="ImagemInputExibição" for="InputImagemCadastroPost">{
+                                                    labelImgCadastroPost
+                                                }</label>
+                                                <input className="ImagemInputReal" id="InputImagemCadastroPost" placeholder="Selecione a imagem..." type="file" accept="image/*" onChange={() => {
+                                                    document.getElementById('InputImagemCadastroPost') != null ?
+                                                        setLabelImgCadastroPost("O arquivo " + document.getElementById('InputImagemCadastroPost').files[0].name + " foi selecionado") : setLabelImgCadastroPost("Selecione o arquivo de imagem...")
+                                                }
+                                                }></input>
                                             </div>
-                                        </div>
-                                        <div className="CampoCadastro">
-                                            <label className="LabelCampoCadastro">Imagem</label>
-                                            <label className="ImagemInputExibição" for="InputImagemCadastroPost">{
-                                                labelImgCadastroPost
-                                            }</label>
-                                            <input className="ImagemInputReal" id="InputImagemCadastroPost" placeholder="Selecione a imagem..." type="file" accept="image/*" onChange={() => {
-                                                document.getElementById('InputImagemCadastroPost') != null ?
-                                                    setLabelImgCadastroPost("O arquivo " + document.getElementById('InputImagemCadastroPost').files[0].name + " foi selecionado") : setLabelImgCadastroPost("Selecione o arquivo de imagem...")
-                                            }
-                                            }></input>
                                         </div>
                                     </div>
-                                </div>
-                                {
-                                    IsLoading == true ?
-                                        <button className="BtnSubmitForm" type="submit" disabled>Carregando</button> : <button className="BtnSubmitForm" type="submit">Publicar</button>
-                                }
-                            </form>
-                        </Modal>
-                        {
-                            ListaPosts != undefined &&
-                            ListaPosts.map((post) => {
-                                return (
-                                    < div className="BoxPost" key={post.idPost} >
-                                        <div className="UsuarioCampo">
-                                            <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                            <div className="UsuarioDados">
-                                                <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                                <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                    {
+                                        IsLoading == true ?
+                                            <button className="BtnSubmitForm" type="submit" disabled>Carregando</button> : <button className="BtnSubmitForm" type="submit">Publicar</button>
+                                    }
+                                </form>
+                            </Modal>
+                            {
+                                ListaPosts != undefined &&
+                                ListaPosts.map((post) => {
+                                    return (
+                                        < div className="BoxPost" key={post.idPost} >
+                                            <div className="UsuarioCampo">
+                                                <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                                <div className="UsuarioDados">
+                                                    <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                    <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        {
-                                            post.postImage != undefined ?
-                                                <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                                                <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
-                                        }
-                                        <div className="ContainerBotoesPost">
-                                            <button onClick={() => {
-                                                openModalComentarios(post.comments)
-                                                setIdPostComentarios(post.idPost)
-                                            }} className="BotaoComentar BotaoPost">
-                                                <img src={botaoComentarImg}></img>
-                                            </button>
                                             {
-                                                IsLoading == true ?
-                                                    post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
-
-                                                        <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
-                                                            <img src={botaoCurtidoImg}></img>
-                                                            <span>{post.likes.length}</span>
-                                                        </button>
-                                                        :
-                                                        <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
-                                                            <img src={botaoCurtirImg}></img>
-                                                            <span>{post.likes.length}</span>
-                                                        </button>
-                                                    :
-                                                    post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
-
-                                                        <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
-                                                            <img src={botaoCurtidoImg}></img>
-                                                            <span>{post.likes.length}</span>
-                                                        </button>
-                                                        :
-                                                        <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)}>
-                                                            <img src={botaoCurtirImg}></img>
-                                                            <span>{post.likes.length}</span>
-                                                        </button>
-
+                                                post.postImage != undefined ?
+                                                    <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
+                                                    <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
                                             }
-                                        </div>
-                                        <h2 className="TituloPost">{post.title}</h2>
-                                        <p className="DescricaoPost">{post.postDescription}</p>
-                                        <Modal
-                                            isOpen={ModalComentariosIsOpen}
-                                            onAfterOpen={afterOpenModal}
-                                            onRequestClose={closeModalComentarios}
-                                            style={customStyles}
-                                            contentLabel="Example Modal"
-                                            class="ReactModal"
-                                            closeTimeoutMS={2000}
-                                        >
-                                            <div className='ContainerModalComentarios'>
-                                                <div className="HeaderModal">
-                                                    <form onSubmit={(e) => PublicarComentario(e)} className='CadastroComentarioContainer'>
-                                                        <div className='LinhaCampoCadastroComentarios'>
-                                                            <div className="CampoCadastro">
-                                                                <label className="LabelCampoCadastro">Título</label>
-                                                                <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloCadastroComentario(e.target.value)} value={tituloCadastroComentario}></input>
-                                                            </div>
-                                                            <div className="CampoCadastro">
-                                                                <label className="LabelCampoCadastro">Descrição</label>
-                                                                <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
-                                                            </div>
-                                                        </div>
-                                                        {
-                                                            IsLoading == true ?
-                                                                <button type="submit" className="BtnSubmitForm" disabled>Carregando...</button> : <button type="submit" className="BtnSubmitForm">Publicar</button>
-                                                        }
-                                                    </form>
-                                                    <button onClick={(e) => closeModalComentarios(e)}>X</button>
-                                                </div>
-                                                <div className='ContainerComentarios'>
-                                                    {
-                                                        ComentariosModal != undefined &&
-                                                        ComentariosModal.map((comentario) => {
-                                                            return (
-                                                                <div className="Comentario" key={comentario.idComentario}>
-                                                                    <div className='ComentarioUsuario'>
-                                                                        <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                                                        <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                                                    </div>
-                                                                    <h2 className='TituloComentario'>{comentario.title}</h2>
-                                                                    <p className='TextoComentario'>{comentario.commentDescription}
-                                                                    </p>
+                                            <div className="ContainerBotoesPost">
+                                                <button onClick={() => {
+                                                    openModalComentarios(post.comments)
+                                                    setIdPostComentarios(post.idPost)
+                                                }} className="BotaoComentar BotaoPost">
+                                                    <img src={botaoComentarImg}></img>
+                                                </button>
+                                                {
+                                                    IsLoading == true ?
+                                                        post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+    
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
+                                                                <img src={botaoCurtidoImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+                                                            :
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
+                                                                <img src={botaoCurtirImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+                                                        :
+                                                        post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+    
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
+                                                                <img src={botaoCurtidoImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+                                                            :
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)}>
+                                                                <img src={botaoCurtirImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+    
+                                                }
+                                            </div>
+                                            <h2 className="TituloPost">{post.title}</h2>
+                                            <p className="DescricaoPost">{post.postDescription}</p>
+                                            <Modal
+                                                isOpen={ModalComentariosIsOpen}
+                                                onAfterOpen={afterOpenModal}
+                                                onRequestClose={closeModalComentarios}
+                                                style={customStyles}
+                                                contentLabel="Example Modal"
+                                                class="ReactModal"
+                                                closeTimeoutMS={2000}
+                                            >
+                                                <div className='ContainerModalComentarios'>
+                                                    <div className="HeaderModal">
+                                                        <form onSubmit={(e) => PublicarComentario(e)} className='CadastroComentarioContainer'>
+                                                            <div className='LinhaCampoCadastroComentarios'>
+                                                                <div className="CampoCadastro">
+                                                                    <label className="LabelCampoCadastro">Título</label>
+                                                                    <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloCadastroComentario(e.target.value)} value={tituloCadastroComentario}></input>
                                                                 </div>
-                                                            )
-                                                        })
-                                                    }
+                                                                <div className="CampoCadastro">
+                                                                    <label className="LabelCampoCadastro">Descrição</label>
+                                                                    <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
+                                                                </div>
+                                                            </div>
+                                                            {
+                                                                IsLoading == true ?
+                                                                    <button type="submit" className="BtnSubmitForm" disabled>Carregando...</button> : <button type="submit" className="BtnSubmitForm">Publicar</button>
+                                                            }
+                                                        </form>
+                                                        <button onClick={(e) => closeModalComentarios(e)}>X</button>
+                                                    </div>
+                                                    <div className='ContainerComentarios'>
+                                                        {
+                                                            ComentariosModal != undefined &&
+                                                            ComentariosModal.map((comentario) => {
+                                                                return (
+                                                                    <div className="Comentario" key={comentario.idComentario}>
+                                                                        <div className='ComentarioUsuario'>
+                                                                            <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                                                            <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                        </div>
+                                                                        <h2 className='TituloComentario'>{comentario.title}</h2>
+                                                                        <p className='TextoComentario'>{comentario.commentDescription}
+                                                                        </p>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </Modal>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
+            </div>
+        );
+    }
+    else{
+        return (
+            <div>
+    
+                <Navbar />
+                <div className="body-pd">
+                    <Header />
+                    <VLibras />
+                    {/* onboarding */}
+                    <img 
+                        src={onBoardingBot} 
+                        onClick={handleOpenOnBoarding} 
+                        className="img-onboarding"
+                    />
+                    <Modal
+                        isOpen={onBoardingIsOpen}
+                        onRequestClose={handleCloseOnBoarding}
+                        style={stylesCustom}
+                    >
+                        <div className="top-container" >
+                            <div className="background-body" >
+                                <div className="boarding-image">
+                                    <img className="bot-img" src={Blue_Head} />
+                                </div>
+                                <div className="body-content">
+                                    <h2>Assistente</h2>
+                                    <Swiper
+                                        pagination={{
+                                            type: "fraction",
+                                          }}
+                                          navigation={true}
+                                          modules={[Pagination, Navigation]}
+                                          
+                                        className="swiperHomeTasks-social"
+                                    >
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                            <div className="boardingContainer">
+                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
+                                            </div>
+                                        </SwiperSlide>
+                                    </Swiper>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </Modal>
+                    {/*  */}
+                    <main id="Main">
+                        <div className="ContainerGrid ContainerPosts">
+                            {
+                                ListaPosts != undefined &&
+                                ListaPosts.map((post) => {
+                                    return (
+                                        < div className="BoxPost" key={post.idPost} >
+                                            <div className="UsuarioCampo">
+                                                <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                                <div className="UsuarioDados">
+                                                    <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                    <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
                                                 </div>
                                             </div>
-                                        </Modal>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                </main>
-                <Footer />
+                                            {
+                                                post.postImage != undefined ?
+                                                    <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
+                                                    <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
+                                            }
+                                            <div className="ContainerBotoesPost">
+                                                <button onClick={() => {
+                                                    openModalComentarios(post.comments)
+                                                    setIdPostComentarios(post.idPost)
+                                                }} className="BotaoComentar BotaoPost">
+                                                    <img src={botaoComentarImg}></img>
+                                                </button>
+                                                {
+                                                    IsLoading == true ?
+                                                        post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+    
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
+                                                                <img src={botaoCurtidoImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+                                                            :
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
+                                                                <img src={botaoCurtirImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+                                                        :
+                                                        post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+    
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
+                                                                <img src={botaoCurtidoImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+                                                            :
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
+                                                                <img src={botaoCurtirImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+    
+                                                }
+                                            </div>
+                                            <h2 className="TituloPost">{post.title}</h2>
+                                            <p className="DescricaoPost">{post.postDescription}</p>
+                                            <Modal
+                                                isOpen={ModalComentariosIsOpen}
+                                                onAfterOpen={afterOpenModal}
+                                                onRequestClose={closeModalComentarios}
+                                                style={customStyles}
+                                                contentLabel="Example Modal"
+                                                class="ReactModal"
+                                                closeTimeoutMS={2000}
+                                            >
+                                                <div className='ContainerModalComentarios'>
+                                                    <div className="HeaderModal">
+                                                        <button onClick={(e) => closeModalComentarios(e)}>X</button>
+                                                    </div>
+                                                    <div className='ContainerComentarios'>
+                                                        {
+                                                            ComentariosModal != undefined &&
+                                                            ComentariosModal.map((comentario) => {
+                                                                return (
+                                                                    <div className="Comentario" key={comentario.idComentario}>
+                                                                        <div className='ComentarioUsuario'>
+                                                                            <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                                                            <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                        </div>
+                                                                        <h2 className='TituloComentario'>{comentario.title}</h2>
+                                                                        <p className='TextoComentario'>{comentario.commentDescription}
+                                                                        </p>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </Modal>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default TelaTimeline;

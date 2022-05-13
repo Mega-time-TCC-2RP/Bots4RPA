@@ -32,11 +32,11 @@ import GoogleLogin from 'react-google-login';
 
 
 
-
 export default function Login() {
         const [IsLoading, setIsLoading] = useState(false);
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
+
 
         const diffToast = () => {
                 toast.success('Autenticando...', {
@@ -86,7 +86,7 @@ export default function Login() {
                                         localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
 
                                         // define a variável base64 que vai receber o payload do token
-                                        let base64 = localStorage.getItem('2rp-chave-autenticacao').split('.')[1];
+                                        // let base64 = localStorage.getItem('2rp-chave-autenticacao').split('.')[1];
                                         //     console.log(base64);
                                         // exibe as propriedades da página
                                         //     console.log(parseJwt());
@@ -116,21 +116,53 @@ export default function Login() {
                 setIsLoading(false);
         };
 
-        const responseGoogle = (response) => {
-                if (response !== null) {
-                        history('/')
-                }
-                else {
-                        history('/notFound')
-                }
+        const loginGoogle = (Email, GoogleId) => {
+                setIsLoading(true);
+                axios.post('https://grupo7.azurewebsites.net/api/Login/Google', {
+                        googleId: GoogleId,
+                        email: Email
+                })
+                .then(resposta => {
+                        console.log(resposta)
+                        if (resposta.status === 200) {
+                                localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
+                                
 
-                console.log(response)
+                                if (parseJwt().Role === '1' || parseJwt().Role === '2' || parseJwt().Role === '3') {
+                                        history('/')
+                                        console.log(parseJwt());
+                                        // console.log('logado: ' + usuarioAutenticado())
+                                }
+
+                                else {
+                                        history('/notFound')
+
+                                }
+                        }
+                        setIsLoading(false);
+                })
+
+                .catch((error) => {
+                        console.log(error)
+                        this.setState({ erroMensagem: 'Falha no login com o Google', isLoading: false })
+                        setIsLoading(false);
+                })
+        setIsLoading(false);
+
+                
+        }
+
+        const responseGoogle = (response) =>{
+                loginGoogle(response.profileObj.email, response.profileObj.googleId)
+                // setGoogleId(response.profileObj.googleId);
+                // setEmail(response.profileObj.email);
+                // console.log(response);
         }
 
         return (
                 <div>
                         <div className='login'>
-                                <ToastContainer />
+                                <ToastContainer role="alert" />
                                 <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
                                 <VLibras />
                                 <div className='registerArea'>
@@ -187,6 +219,7 @@ export default function Login() {
                                                                 )}
                                                                 onSuccess={responseGoogle}
                                                                 onFailure={responseGoogle}
+
 
                                                         />
 
