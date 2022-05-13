@@ -214,7 +214,9 @@ export const TelaTimeline = (person, idx) => {
     const PublicarComentario = (e) => {
         e.preventDefault();
         setIsLoading(true);
-
+        console.log(idPostComentarios)
+        console.log(tituloCadastroComentario)
+        console.log(descricaoCadastroComentario)
         axios.post("http://grupo7.azurewebsites.net/api/Comments", {
             "idPost": idPostComentarios,
             "title": tituloCadastroComentario,
@@ -230,6 +232,8 @@ export const TelaTimeline = (person, idx) => {
             setComentariosModal(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments)
             setIsLoading(false);
         }).catch((error) => {
+            console.log(error.response.status)
+            console.log(error)
             if (handleAuthException(error) === true) {
                 localStorage.removeItem('2rp-chave-autenticacao')
                 Navigate('/login')

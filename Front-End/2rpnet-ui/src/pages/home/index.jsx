@@ -117,7 +117,7 @@ function App() {
       .catch((error) => console.log(error));
   };
 
-  // useEffect(GetMyAssistants, [])
+  useEffect(GetMyAssistants, [])
 
 
   // Open Modal to create assistant
@@ -293,7 +293,7 @@ function App() {
             </div>
           </div>
         </Modal>
-        {/* <div className="top-container">
+        <div className="top-container">
           <div className="top-buttons">
             <div className="form-container">
               <form className="form-home">
@@ -359,7 +359,7 @@ function App() {
               </div>
             </form>
           </div>
-        </div > */}
+        </div >
         <div className="body-container">
           <h2 className="body-title-task">Minhas Tarefas</h2>
           <Swiper
