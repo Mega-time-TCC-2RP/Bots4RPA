@@ -109,7 +109,7 @@ function App() {
       .catch((error) => console.log(error));
   };
 
-  useEffect(GetMyAssistants, [])
+  // useEffect(GetMyAssistants, [])
 
 
   // Open Modal to create assistant
@@ -157,21 +157,40 @@ function App() {
   //onboarding
 
   const GetMyQuests = () => {
-    axios.get('http://grupo7.azurewebsites.net/api/Quests/ListarMinhas', {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-      }
-    }).then((response) => {
-      console.log(response)
-      console.log(response.data)
-      setMyQuests(response.data)
-    }).catch(async (error) => {
-      if (await handleAuthException(error) === true) {
-        localStorage.removeItem('2rp-chave-autenticacao')
-        Navigate('/login')
-        console.log(error.status);
-      }
-    })
+    if(parseJwt().Role != "1"){
+      axios.get('http://grupo7.azurewebsites.net/api/Workflows/GetMine', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+        }
+      }).then((response) => {
+        console.log(response)
+        console.log(response.data)
+        setMyQuests(response.data)
+      }).catch(async (error) => {
+        if (await handleAuthException(error) === true) {
+          localStorage.removeItem('2rp-chave-autenticacao')
+          Navigate('/login')
+          console.log(error.status);
+        }
+      })
+    }
+    else{
+      axios.get('http://grupo7.azurewebsites.net/api/Workflows', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+        }
+      }).then((response) => {
+        console.log(response)
+        console.log(response.data)
+        setMyQuests(response.data)
+      }).catch(async (error) => {
+        if (await handleAuthException(error) === true) {
+          localStorage.removeItem('2rp-chave-autenticacao')
+          Navigate('/login')
+          console.log(error.status);
+        }
+      })
+    }
   }
 
   const GetHighlightedPosts = () => {
@@ -267,7 +286,7 @@ function App() {
             </div>
           </div>
         </Modal>
-        <div className="top-container">
+        {/* <div className="top-container">
           <div className="top-buttons">
             <div className="form-container">
               <form className="form-home">
@@ -333,7 +352,7 @@ function App() {
               </div>
             </form>
           </div>
-        </div >
+        </div > */}
         <div className="body-container">
           <h2 className="body-title-task">Minhas Tarefas</h2>
           <Swiper
@@ -351,13 +370,13 @@ function App() {
           >
             {
               myQuests != undefined && myQuests != null && myQuests[0] != undefined && myQuests[0] != null ?
-                myQuests.map((Quest) => {
+                myQuests.map((Workflow) => {
                   return (
                     <SwiperSlide className="swiper-slide-HomeTasks">
                       <div className="card-body-content">
-                        <h3 className="title-card-content">Título</h3>
-                        <p className="text-body1">{Quest.descriptionQuest}</p>
-                        <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Quest.dateHour))}</p>
+                        <h3 className="title-card-content">{Workflow.title}</h3>
+                        <p className="text-body1">{Workflow.workflowDescription}</p>
+                        <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Workflow.endDate))}</p>
                       </div>
                     </SwiperSlide>
                   )

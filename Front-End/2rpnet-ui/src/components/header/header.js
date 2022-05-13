@@ -130,7 +130,7 @@ export const Header = () => {
             </div>
         );
     }
-    else {
+    else if(parseJwt().Role == "2"){
         return (
             <div>
                 <div className='header2'>
@@ -163,6 +163,58 @@ export const Header = () => {
                                             myUser.employees === nullUndefinedParams.employees ?
                                                 <div className='job'>Cargo indefinido</div> :
                                                 <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
+                                        }
+                                    </div>
+                                </div> :
+                                <div className='profile_details'>
+                                    <img alt="imagem de perfil" />
+                                    <div className='name_job'>
+                                        <div className='name'>Carregando...</div>
+                                        <div className='job'>Carregando...</div>
+                                    </div>
+                                </div>
+                        }
+                    </div>
+                    <div className='logout' onClick={() => Logout()}>
+                        <span alt="botão sair" style={{marginTop: 25, marginBottom: 25}}>Sair</span>
+                        <HiIcons.HiOutlineLogout id='log_out' />
+                    </div>
+
+                </div>
+            </div>
+        );
+    }
+    else{
+        return (
+            <div>
+                <div className='header2'>
+                    <div className='container'>
+                        <div className='headerInside2'>
+                            <div className='coins'>
+                            </div>
+                            <div className='profile2'>
+                                <div className='profile_details'>
+                                    {
+                                        myUser != nullUndefinedParams ?
+                                            <img src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} className='imgProfile' alt="imagem de perfil" onClick={click} /> :
+                                            <img className='imgProfile' alt="imagem de perfil" onClick={click} />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div className='details'>
+                    <div className='profile2'>
+                        {
+                            myUser != nullUndefinedParams ?
+                                <div className='profile_details'>
+                                    <img src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
+                                    <div className='name_job'>
+                                        <div className='name'>{myUser.userName1}</div>
+                                        {
+                                                <div className='job'>Cargo indefinido</div>
                                         }
                                     </div>
                                 </div> :
