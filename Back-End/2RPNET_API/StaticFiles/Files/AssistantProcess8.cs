@@ -18,5 +18,5 @@ var page = await context.NewPageAsync();
 await page.GotoAsync("https://www.google.com/?gws_rd=ssl%22");
 await page.FillAsync("input[title = 'Pesquisar']","bitcoin");
 await page.PressAsync("input[title = 'Pesquisar']","Enter");
-await page.ClickAsync("div.mCBkyc.y355M.JQe2Ld.nDgy9d");
+//await page.ClickAsync("div.mCBkyc.y355M.JQe2Ld.nDgy9d");
 await page.ScreenshotAsync(new PageScreenshotOptions { Path ="./StaticFiles/Images/Assistant8.png" });}}

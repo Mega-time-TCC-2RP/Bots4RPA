@@ -53,11 +53,19 @@ namespace _2RPNET_API.Repositories
                 message.From.Add(new MailboxAddress("Grupo 2RP", "bots4rpa@gmail.com"));
                 message.To.Add(MailboxAddress.Parse(userEmail));
                 message.Subject = $"Email do retorno do assistente {assistantSought.AssistantName}";
-                message.Body = new TextPart("plain")
-                {
-                    Text = @$"Codigo do email: {code},
-O retorno do seu assistente {assistantSought.AssistantName} foi... {emailConfig.emailBody}"
-                };
+                var builder = new BodyBuilder();
+
+                // Set the plain-text version of the message text
+                builder.TextBody = @$"Codigo do email: { code},
+O retorno do seu assistente { assistantSought.AssistantName}
+                foi... { emailConfig.emailBody}
+                ";
+
+                // We may also want to attach a calendar event for Monica's party...
+                builder.Attachments.Add(@".\StaticFiles\Images\Assistant"+$"{idAssistant}"+".png");
+
+                // Now we just need to set the message body and we're done
+                message.Body = builder.ToMessageBody();
 
                 SmtpClient client = new SmtpClient();
 

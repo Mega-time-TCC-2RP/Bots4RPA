@@ -69,8 +69,8 @@ namespace _2RPNET_API.Controllers
             try
             {
                 //_repository.Create(NewRun);
-                Programa _program = new Programa();
-                _program.Play();
+                //Programa _program = new Programa();
+                //_program.Play();
                 return StatusCode(201);
             }
             catch (Exception ex)

@@ -110,12 +110,12 @@ namespace _2RPNET_API
                 c.RoutePrefix = string.Empty;
             });
 
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(
-            //            Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
-            //    RequestPath = "/StaticFiles"
-            //});
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
+                RequestPath = "/StaticFiles"
+            });
 
             app.UseRouting();
 

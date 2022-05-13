@@ -14,6 +14,11 @@
             Method responsible for create a Run process
             </summary>
         </member>
+        <member name="M:_2RPNET_API.Controllers.Assistant30Controller.NewRun(_2RPNET_API.ViewModels.SendEmail)">
+            <summary>
+            Method responsible for create a Run process
+            </summary>
+        </member>
         <member name="M:_2RPNET_API.Controllers.Assistant8Controller.NewRun(_2RPNET_API.ViewModels.SendEmail)">
             <summary>
             Method responsible for create a Run process
