@@ -135,9 +135,9 @@ export default function Marketplace() {
                 </div>
 
                 <div className='coinDetails'>
-                <div className ='coin'>
-                    <img src={Coin} alt="img coin"/>
-                    <span>2000</span>
+                <div className ='details3'>
+                    
+                    <span>Adquirir</span>
                 </div>
                 <div className='details2'>
                 <span >ver detalhes</span>
@@ -158,9 +158,8 @@ export default function Marketplace() {
                 </div>
 
                 <div className='coinDetails'>
-                <div className ='coin'>
-                    <img src={Coin} alt="img coin"/>
-                    <span>2000</span>
+                <div className ='details3'>
+                    <span>Adquirir</span>
                 </div>
                 <div className='details2'>
                 <span >ver detalhes</span>
@@ -181,12 +180,11 @@ export default function Marketplace() {
                 </div>
 
                 <div className='coinDetails'>
-                <div className ='coin'>
-                    <img src={Coin} alt="img coin"/>
-                    <span>2000</span>
+                <div className ='details3'>
+                   <span>Adquirir</span>
                 </div>
                 <div className='details2'>
-                <span >ver detalhes</span>
+                    <span >ver detalhes</span>
                 </div>
                 </div>
                 </div>
