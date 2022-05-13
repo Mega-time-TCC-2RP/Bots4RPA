@@ -269,7 +269,7 @@ export const TelaTimeline = (person, idx) => {
                         onRequestClose={handleCloseOnBoarding}
                         style={stylesCustom}
                     >
-                        <div className="top-container" >
+                        <div className="top-container-onboarding" >
                             <div className="background-body" >
                                 <div className="boarding-image">
                                     <img className="bot-img" src={Blue_Head} />
@@ -495,7 +495,7 @@ export const TelaTimeline = (person, idx) => {
                         onRequestClose={handleCloseOnBoarding}
                         style={stylesCustom}
                     >
-                        <div className="top-container" >
+                        <div className="top-container-onboarding" >
                             <div className="background-body" >
                                 <div className="boarding-image">
                                     <img className="bot-img" src={Blue_Head} />
