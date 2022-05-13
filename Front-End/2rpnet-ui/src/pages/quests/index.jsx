@@ -439,13 +439,13 @@ function App() {
             type="button"
             value="Nova Tarefa"
             onClick={handleOpenNewTask} />
-          <Modal
+          {/* <Modal
             isOpen={newTaskIsOpen}
             onRequestClose={handleCloseNewTask}
             style={stylesCustom}
           >
             <div className="modalNewTask"></div>
-          </Modal>
+          </Modal> */}
         </div>
       </div>
     </div>
