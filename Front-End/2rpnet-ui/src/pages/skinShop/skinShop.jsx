@@ -7,6 +7,7 @@ import Navbar from '../../components/menu/Navbar'
 import skin from '../../assets/img/Robo.png'
 import Coin from '../../assets/img/coin.png'
 import '../../assets/css/pages/skinShop.css'
+import "../../assets/css/components/navbar.css"
 import VLibras from '@djpfs/react-vlibras'
 import React from "react"
 
@@ -16,6 +17,7 @@ export default function skinShop() {
         <div id='all'>
             <Header/>
             <Navbar/>
+            <div className='body-pd'>
             <VLibras/>
             <div className='container2'>
             <div className='Titulo_inputs'>
@@ -77,7 +79,7 @@ export default function skinShop() {
 
 
             
-            <Footer />
+            <Footer /></div>
         </div>
     );
 } 
