@@ -8607,19 +8607,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sgust\\.nuget\\packages\\": {}
+    "C:\\Users\\gustr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sgust\\OneDrive\\Área de Trabalho\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+      "projectUniqueName": "C:\\Users\\gustr\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
       "projectName": "2RPNET_API",
-      "projectPath": "C:\\Users\\sgust\\OneDrive\\Área de Trabalho\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
-      "packagesPath": "C:\\Users\\sgust\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sgust\\OneDrive\\Área de Trabalho\\Bots-4RPA\\Back-End\\2RPNET_API\\obj\\",
+      "projectPath": "C:\\Users\\gustr\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+      "packagesPath": "C:\\Users\\gustr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gustr\\Desktop\\Bots-4RPA\\Back-End\\2RPNET_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sgust\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gustr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8710,7 +8710,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -335,7 +335,7 @@ export default function Assistant() {
                                     MyProcedures.map((p) => {
                                         return (
                                             <div className="card-flow" key={p.idAprocedure}>
-                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-fluxo" draggable="true" onClick={() => handleShow(p)}>
+                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-flow" draggable="true" onClick={() => handleShow(p)}>
                                                     <img className="card__balls" src={bolinhas} alt="bolinhas" />
                                                     <div className="card__content">{p.procedureName}</div>
                                                 </div>
