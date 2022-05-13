@@ -15,7 +15,7 @@ import Footer from '../../components/footer/footer'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import {parseJwt} from "../../services/auth"
+import { parseJwt } from "../../services/auth"
 
 import Procedures from '../../services/process';
 import { set } from "react-hook-form";
@@ -89,11 +89,11 @@ export default function Assistant() {
 
             var myBody = JSON.stringify({
                 "idAssistant": idAssistant,
-                "procedurePriority": index+1,
+                "procedurePriority": index + 1,
                 "procedureName": child.textContent,
                 "procedureDescription": "",
                 "procedureValue": splited[1]
-              });
+            });
 
             // console.log(myBody)
 
@@ -121,7 +121,7 @@ export default function Assistant() {
 
         //save the playwright script for the assistant
         var myURL2 = API + "/api/AssistantProcedure/ManipulateScript/" + idAssistant;
-        
+
 
         fetch(myURL2, {
             method: 'POST',
@@ -133,12 +133,12 @@ export default function Assistant() {
                     // console.log("after if");
                     return response.text()
                 } else {
-                    toast.error(`Houve erros no processo de salvamento do assistente ${idAssistant}`) 
+                    toast.error(`Houve erros no processo de salvamento do assistente ${idAssistant}`)
                 }
             })
             .then((data) => {
                 // console.log(data);
-                setResult(data);                
+                setResult(data);
                 toast.success(`o assistente ${idAssistant} foi salvo`)
                 setIsSaving(false);
             })
@@ -174,7 +174,7 @@ export default function Assistant() {
         var eBody = JSON.stringify({
             "email": parseJwt().email,
             "emailBody": result
-          });
+        });
 
         fetch(eURL, {
             method: 'POST',
@@ -335,7 +335,7 @@ export default function Assistant() {
                                     MyProcedures.map((p) => {
                                         return (
                                             <div className="card-flow" key={p.idAprocedure}>
-                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-fluxo" draggable="true" onClick={() => handleShow(p)}>
+                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-flow" draggable="true" onClick={() => handleShow(p)}>
                                                     <img className="card__balls" src={bolinhas} alt="bolinhas" />
                                                     <div className="card__content">{p.procedureName}</div>
                                                 </div>

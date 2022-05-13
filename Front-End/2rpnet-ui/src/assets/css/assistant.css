@@ -91,7 +91,7 @@ body {
   background-color: var(--secondaryColor);
   padding: 1rem;
   box-shadow: 0 2px 2px -1px var(--complementColor);
-  width: 200px;
+  width: 204px;
   height: 56px;
   margin: 1rem 0;
   border-radius: 4px;
@@ -300,7 +300,7 @@ body {
 }
 
 .card-flow {
-  width: 200px;
+  width: 204px;
   height: 56px;
   display: flex;
   align-items: center;
@@ -317,4 +317,5 @@ body {
 
 .box-card-flow{
   display: flex;
+  width: 204px;
 }

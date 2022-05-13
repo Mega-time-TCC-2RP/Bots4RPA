@@ -59,7 +59,7 @@ class AssistantProcess{IdAssistant}" + @"
 public  async Task Play()
 {
 using var playwright = await Playwright.CreateAsync();
-await using var browser = await playwright.Webkit.LaunchAsync(new BrowserTypeLaunchOptions
+await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 {
     Headless = true,
     SlowMo = 2000
