@@ -21,6 +21,8 @@ import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/menu/Navbar'
 import VLibras from '@djpfs/react-vlibras'
+import { API } from "../../services/api";
+
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -63,6 +65,7 @@ const stylesCustom = {
 Modal.setAppElement('#root');
 
 function App() {
+
   const [AssistantsList, setAssistantsList] = useState([]);
   const [ExecutionsList, setExecutionsList] = useState([]);
 
@@ -71,29 +74,34 @@ function App() {
   function Execute(idAssistant) {
     setIsExecuting(true);
 
-    var myURL = "http://localhost:5000/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+    var eURL = API + "/api/Assistant" + idAssistant + "/Post";
+    var eBody = JSON.stringify({
+        "email": parseJwt().email,
+        "emailBody": "result"
+      });
 
-    fetch(myURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
+    fetch(eURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: eBody
     })
-      .then((response) => {
-        console.log("before if");
-        if (response.status === 201) {
-          console.log("FUNCIONOU");
-          toast.success("O resultado foi enviado para seu email");
-          setIsExecuting(false);
-        } else {
-          toast.error("A execução deu errado :/");
-          setIsExecuting(false);
-        }
-      })
-      .catch((erro) => {
-        console.log(erro)
-        toast.error("A execução deu errado :/");
-        setIsExecuting(false);
-      })
-  }
+        .then((response) => {
+            // console.log("before if");
+            console.log(response)
+            if (response.status === 204) {
+                console.log("FUNCIONOU");
+                toast.success("O resultado foi enviado para seu email");
+            } else {
+                toast.error("A execução deu errado :/");
+            }
+            setIsExecuting(false);
+        })
+        .catch((erro) => {
+            console.log(erro)
+            toast.error("A execução deu errado :/");
+            setIsExecuting(false);
+        })
+}
 
   function GetMyAssistants() {
     fetch('http://localhost:5000/api/Assistants', {
@@ -220,7 +228,6 @@ function App() {
     <div>
 
       <Navbar />
-      <div className='body-pd'>
         
         <Header />
         <VLibras />
@@ -234,7 +241,7 @@ function App() {
           onRequestClose={handleCloseOnBoarding}
           style={stylesCustom}
         >
-          <div className="top-container" >
+          <div className="top-container-onboarding" >
             <div className="background-body" >
               <div className="boarding-image">
                 <img className="bot-img" src={Blue_Head} />
@@ -432,7 +439,7 @@ function App() {
         </div>
 
         <Footer />
-      </div>
+      
     </div >
   );
 }
