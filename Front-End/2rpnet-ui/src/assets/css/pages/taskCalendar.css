@@ -140,7 +140,7 @@
 }
 
 /* Parte do Modal */
-.modalNewTask {
+/*.modalNewTask {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -152,4 +152,66 @@
     align-content: center;
     align-items: center;
     background-color: var(--ComplementaryColor4);
+}*/
+
+.modalQuests {
+    height: 100%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.headerModal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.exit {
+    color: var(--ComplementaryColor2);
+    cursor: pointer;
+}
+
+.exit:hover {
+    font-weight: 900;
+}
+
+.bodyModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inputsQuests {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.inputQuests {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.inputQuests label {
+    color: var(--PrimaryColor2);
+    margin-left: 5%;
+}
+
+.btnCalendarModal {
+    cursor: pointer;
+}
+
+.btnCalendarModal:hover {
+    background-color: var(--PrimaryColor1);
+    color: var(--ComplementaryColor1);
+}
+
+.btnCalendarModal:focus {
+    background-color: var(--PrimaryColor1);
+    color: var(--ComplementaryColor1);
 }
