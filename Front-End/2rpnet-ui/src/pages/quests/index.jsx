@@ -54,9 +54,15 @@ function App() {
     setOnBoardingIsOpen(false)
   }
   function handleOpenNewTask() {
+    // for (let index = 0; index < 32; index++) {
+    //   document.getElementById("calend" + index).style.cursor = "pointer";      
+    // }
     setNewTaskIsOpen(true)
   }
   function handleCloseNewTask() {
+    // for (let index = 0; index < 32; index++) {
+    //   document.getElementById("calend" + index).style.cursor = "pointer";      
+    // }
     setNewTaskIsOpen(false)
   }
 
@@ -193,6 +199,140 @@ function App() {
     dragNDrop()
   });
 
+  // const Calendar = () => {
+  //   return (
+  //   <section className="calendar p">
+  //             <div className="calendarTitle">
+  //               <h5 className="h5">Calendário</h5>
+  //               {/* <h5 className="h5">{titulo}</h5> */}
+  //             </div>
+  //             <input id="calend1"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="1" />
+  //             <input id="calend2"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="2" />
+  //             <input id="calend3"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="3" />
+  //             <input id="calend4"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="4" />
+  //             <input id="calend5"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="5" />
+  //             <input id="calend6"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="6" />
+  //             <input id="calend7"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="7" />
+  //             <input id="calend8"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="8" />
+  //             <input id="calend9"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="9" />
+  //             <input id="calend10"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="10" />
+  //             <input id="calend11"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="11" />
+  //             <input id="calend12"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="12" />
+  //             <input id="calend13"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="13" />
+  //             <input id="calend14"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="14" />
+  //             <input id="calend15"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="15" />
+  //             <input id="calend16"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="16" />
+  //             <input id="calend17"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="17" />
+  //             <input id="calend18"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="18" />
+  //             <input id="calend19"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="19" />
+  //             <input id="calend20"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="20" />
+  //             <input id="calend21"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="21" />
+  //             <input id="calend22"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="22" />
+  //             <input id="calend23"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="23" />
+  //             <input id="calend24"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="24" />
+  //             <input id="calend25"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="25" />
+  //             <input id="calend26"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="26" />
+  //             <input id="calend27"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="27" />
+  //             <input id="calend28"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="28" />
+  //             <input id="calend29"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="29" />
+  //             <input id="calend30"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="30" />
+  //             <div className="lastCalend"><input id="calend31"
+  //               className="btnCalendar p"
+  //               type="button"
+  //               value="31" /></div>
+  //           </section>
+  //   )
+  // }
 
   return (
 
@@ -200,257 +340,311 @@ function App() {
       <Header />
       <Navbar />
       <div className='body-pd'>
-      <VLibras />
-      <img
-        src={onBoardingBot}
-        onClick={handleOpenOnBoarding}
-        className="img-onboarding"
-      />
-      <Modal
-        isOpen={onBoardingIsOpen}
-        onRequestClose={handleCloseOnBoarding}
-        style={stylesCustom}
-      >
-        <div className="top-container-onboarding" >
-          <div className="background-body" >
-            <div className="boarding-image">
-              <img className="bot-img" src={Blue_Head} />
-            </div>
-            <div className="body-content">
-              <h2>Assistente</h2>
-              <Swiper
-                pagination={{
-                  type: "fraction",
-                }}
-                navigation={true}
-                modules={[Pagination, Navigation]}
+        <VLibras />
+        <img
+          src={onBoardingBot}
+          onClick={handleOpenOnBoarding}
+          className="img-onboarding"
+        />
+        <Modal
+          isOpen={onBoardingIsOpen}
+          onRequestClose={handleCloseOnBoarding}
+          style={stylesCustom}
+        >
+          <div className="top-container-onboarding" >
+            <div className="background-body" >
+              <div className="boarding-image">
+                <img className="bot-img" src={Blue_Head} />
+              </div>
+              <div className="body-content">
+                <h2>Assistente</h2>
+                <Swiper
+                  pagination={{
+                    type: "fraction",
+                  }}
+                  navigation={true}
+                  modules={[Pagination, Navigation]}
 
-                className="swiperHomeTasks-social"
-              >
-                <SwiperSlide className="swiper-slide-OnBoarding-social">
-                  <div className="boardingContainer">
-                    <span className='bayer'>Sinta-se a vontade a tela de Tarefas!</span>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="swiper-slide-OnBoarding">
-                  <div className="boardingContainer">
-                    <span className='bayer'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="swiper-slide-OnBoarding">
-                  <div className="boardingContainer">
-                    <span className='bayer'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="swiper-slide-OnBoarding">
-                  <div className="boardingContainer">
-                    <span className='bayer'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="swiper-slide-OnBoarding">
-                  <div className="boardingContainer">
-                    <span className='bayer'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
-                  </div>
-                </SwiperSlide>
-              </Swiper>
-            </div>
+                  className="swiperHomeTasks-social"
+                >
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Sinta-se a vontade a tela de Tarefas!</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
+                    </div>
+                  </SwiperSlide>
+                </Swiper>
+              </div>
 
+            </div>
           </div>
-        </div>
-      </Modal>
-      <h2 className="pageTitle h2">Painel Organizacional</h2>
-      <div className='taskCalendar'>
-        {
-          questsList.map((myQuests) => {
-            return (
-              <section className="task">
-                <div id="testtodo"
-                  className="toDo">
-                  <div className="taskTitle">
-                    <h5 className="h5">A Fazer</h5>
-                  </div>
-                  <div key={myQuests.idWorkflow && myQuests.idStatus === 1} className="taskSpace">
-                    <div className="cardTask" draggable="true">
-                      <div className="p">Lorem Ipsum is simply dummy text.</div>
-                      <div className="p">{myQuests.title}</div>
+        </Modal>
+        <h2 className="pageTitle h2">Painel Organizacional</h2>
+        <div className='taskCalendar'>
+          {
+            questsList.map((myQuests) => {
+              return (
+                <section className="task">
+                  <div id="testtodo"
+                    className="toDo">
+                    <div className="taskTitle">
+                      <h5 className="h5">A Fazer</h5>
+                    </div>
+                    <div key={myQuests.idWorkflow && myQuests.idStatus === 1} className="taskSpace">
+                      <div className="cardTask" draggable="true">
+                        <div className="p">Lorem Ipsum is simply dummy text.</div>
+                        <div className="p">{myQuests.title}</div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div id="testdo"
-                  className="do">
-                  <div className="taskTitle">
-                    <h5 className="h5">Fazendo</h5>
-                  </div>
-                  <div key={myQuests.idWorkflow && myQuests.idStatus === 2} className="taskSpace">
-                    <div className="cardTask" draggable="true">
-                      <div className="p">Lorem Ipsum is simply dummy text.</div>
-                      <div className="p">{myQuests.title}</div>
+                  <div id="testdo"
+                    className="do">
+                    <div className="taskTitle">
+                      <h5 className="h5">Fazendo</h5>
+                    </div>
+                    <div key={myQuests.idWorkflow && myQuests.idStatus === 2} className="taskSpace">
+                      <div className="cardTask" draggable="true">
+                        <div className="p">Lorem Ipsum is simply dummy text.</div>
+                        <div className="p">{myQuests.title}</div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div id="testdone"
-                  className="done">
-                  <div className="taskTitle">
-                    <h5 className="h5">Feito</h5>
-                  </div>
-                  <div key={myQuests.idWorkflow && myQuests.idStatus === 3} className="taskSpace">
-                    <div className="cardTask" draggable="true">
-                      <div className="p">Lorem Ipsum is simply dummy text.</div>
-                      <div className="p">{myQuests.title}</div>
+                  <div id="testdone"
+                    className="done">
+                    <div className="taskTitle">
+                      <h5 className="h5">Feito</h5>
+                    </div>
+                    <div key={myQuests.idWorkflow && myQuests.idStatus === 3} className="taskSpace">
+                      <div className="cardTask" draggable="true">
+                        <div className="p">Lorem Ipsum is simply dummy text.</div>
+                        <div className="p">{myQuests.title}</div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-              </section>
+                </section>
+              )
+            }
             )
           }
-          )
-        }
-        <div className="calendarAndBtn">
-          <section className="calendar p">
-            <div className="calendarTitle"><h5 className="h5">Calendário</h5></div>
-            <input id="calend1"
-              className="btnCalendar p"
+          <div className="calendarAndBtn">
+            <section className="calendar p">
+              <div className="calendarTitle"><h5 className="h5">Calendário</h5></div>
+              <input id="calend1"
+                className="btnCalendar p"
+                type="button"
+                value="1" />
+              <input id="calend2"
+                className="btnCalendar p"
+                type="button"
+                value="2" />
+              <input id="calend3"
+                className="btnCalendar p"
+                type="button"
+                value="3" />
+              <input id="calend4"
+                className="btnCalendar p"
+                type="button"
+                value="4" />
+              <input id="calend5"
+                className="btnCalendar p"
+                type="button"
+                value="5" />
+              <input id="calend6"
+                className="btnCalendar p"
+                type="button"
+                value="6" />
+              <input id="calend7"
+                className="btnCalendar p"
+                type="button"
+                value="7" />
+              <input id="calend8"
+                className="btnCalendar p"
+                type="button"
+                value="8" />
+              <input id="calend9"
+                className="btnCalendar p"
+                type="button"
+                value="9" />
+              <input id="calend10"
+                className="btnCalendar p"
+                type="button"
+                value="10" />
+              <input id="calend11"
+                className="btnCalendar p"
+                type="button"
+                value="11" />
+              <input id="calend12"
+                className="btnCalendar p"
+                type="button"
+                value="12" />
+              <input id="calend13"
+                className="btnCalendar p"
+                type="button"
+                value="13" />
+              <input id="calend14"
+                className="btnCalendar p"
+                type="button"
+                value="14" />
+              <input id="calend15"
+                className="btnCalendar p"
+                type="button"
+                value="15" />
+              <input id="calend16"
+                className="btnCalendar p"
+                type="button"
+                value="16" />
+              <input id="calend17"
+                className="btnCalendar p"
+                type="button"
+                value="17" />
+              <input id="calend18"
+                className="btnCalendar p"
+                type="button"
+                value="18" />
+              <input id="calend19"
+                className="btnCalendar p"
+                type="button"
+                value="19" />
+              <input id="calend20"
+                className="btnCalendar p"
+                type="button"
+                value="20" />
+              <input id="calend21"
+                className="btnCalendar p"
+                type="button"
+                value="21" />
+              <input id="calend22"
+                className="btnCalendar p"
+                type="button"
+                value="22" />
+              <input id="calend23"
+                className="btnCalendar p"
+                type="button"
+                value="23" />
+              <input id="calend24"
+                className="btnCalendar p"
+                type="button"
+                value="24" />
+              <input id="calend25"
+                className="btnCalendar p"
+                type="button"
+                value="25" />
+              <input id="calend26"
+                className="btnCalendar p"
+                type="button"
+                value="26" />
+              <input id="calend27"
+                className="btnCalendar p"
+                type="button"
+                value="27" />
+              <input id="calend28"
+                className="btnCalendar p"
+                type="button"
+                value="28" />
+              <input id="calend29"
+                className="btnCalendar p"
+                type="button"
+                value="29" />
+              <input id="calend30"
+                className="btnCalendar p"
+                type="button"
+                value="30" />
+              <div className="lastCalend"><input id="calend31"
+                className="btnCalendar p"
+                type="button"
+                value="31" /></div>
+            </section>
+            {/* <Calendar /> */}
+            <input
+              className="btnNewTask button"
               type="button"
-              value="1" />
-            <input id="calend2"
-              className="btnCalendar p"
-              type="button"
-              value="2" />
-            <input id="calend3"
-              className="btnCalendar p"
-              type="button"
-              value="3" />
-            <input id="calend4"
-              className="btnCalendar p"
-              type="button"
-              value="4" />
-            <input id="calend5"
-              className="btnCalendar p"
-              type="button"
-              value="5" />
-            <input id="calend6"
-              className="btnCalendar p"
-              type="button"
-              value="6" />
-            <input id="calend7"
-              className="btnCalendar p"
-              type="button"
-              value="7" />
-            <input id="calend8"
-              className="btnCalendar p"
-              type="button"
-              value="8" />
-            <input id="calend9"
-              className="btnCalendar p"
-              type="button"
-              value="9" />
-            <input id="calend10"
-              className="btnCalendar p"
-              type="button"
-              value="10" />
-            <input id="calend11"
-              className="btnCalendar p"
-              type="button"
-              value="11" />
-            <input id="calend12"
-              className="btnCalendar p"
-              type="button"
-              value="12" />
-            <input id="calend13"
-              className="btnCalendar p"
-              type="button"
-              value="13" />
-            <input id="calend14"
-              className="btnCalendar p"
-              type="button"
-              value="14" />
-            <input id="calend15"
-              className="btnCalendar p"
-              type="button"
-              value="15" />
-            <input id="calend16"
-              className="btnCalendar p"
-              type="button"
-              value="16" />
-            <input id="calend17"
-              className="btnCalendar p"
-              type="button"
-              value="17" />
-            <input id="calend18"
-              className="btnCalendar p"
-              type="button"
-              value="18" />
-            <input id="calend19"
-              className="btnCalendar p"
-              type="button"
-              value="19" />
-            <input id="calend20"
-              className="btnCalendar p"
-              type="button"
-              value="20" />
-            <input id="calend21"
-              className="btnCalendar p"
-              type="button"
-              value="21" />
-            <input id="calend22"
-              className="btnCalendar p"
-              type="button"
-              value="22" />
-            <input id="calend23"
-              className="btnCalendar p"
-              type="button"
-              value="23" />
-            <input id="calend24"
-              className="btnCalendar p"
-              type="button"
-              value="24" />
-            <input id="calend25"
-              className="btnCalendar p"
-              type="button"
-              value="25" />
-            <input id="calend26"
-              className="btnCalendar p"
-              type="button"
-              value="26" />
-            <input id="calend27"
-              className="btnCalendar p"
-              type="button"
-              value="27" />
-            <input id="calend28"
-              className="btnCalendar p"
-              type="button"
-              value="28" />
-            <input id="calend29"
-              className="btnCalendar p"
-              type="button"
-              value="29" />
-            <input id="calend30"
-              className="btnCalendar p"
-              type="button"
-              value="30" />
-            <div className="lastCalend"><input id="calend31"
-              className="btnCalendar p"
-              type="button"
-              value="31" /></div>
-          </section>
-          <input
-            className="btnNewTask button"
-            type="button"
-            value="Nova Tarefa"
-            onClick={handleOpenNewTask} />
-          <Modal
-            isOpen={newTaskIsOpen}
-            onRequestClose={handleCloseNewTask}
-            style={stylesCustom} >
-            <div className="modalNewTask">
-              <h2>Teste do Modal '-'</h2>
-            </div>
-          </Modal>
+              value="Nova Tarefa"
+              onClick={handleOpenNewTask} />
+            <Modal
+              isOpen={newTaskIsOpen}
+              onRequestClose={handleCloseNewTask}
+              style={stylesCustom} >
+              <div className="modalQuests">
+                <div className="headerModal">
+                  <div className="title h3">Nova Tarefa</div>
+                  <div className="exit h5">X</div>
+                </div>
+                <div className="bodyModal">
+                  <div className="inputsQuests">
+                    <div className="inputQuests">
+                      <label for="titleInput" className="h5">Título</label>
+                      <input id="titleInput" className="input" type="text" placeholder="Insira o Título da tarefa..." />
+                    </div>
+                    <div className="inputQuests">
+                      <label for="descriptionInput" className="h5">Descrição</label>
+                      <input id="descriptionInput" className="input" type="text"
+                        placeholder="Insira pontos importantes para a resolução da tarefa..." />
+                    </div>
+                  </div>
+                  <section className="calendar p">
+                    <div className="calendarTitle">
+                      <h5 className="h5">Selecione a Data</h5>
+                    </div>
+                    <input id="calend1" className="btnCalendar p" type="button" value="1" />
+                    <input id="calend2" className="btnCalendar p" type="button" value="2" />
+                    <input id="calend3" className="btnCalendar p" type="button" value="3" />
+                    <input id="calend4" className="btnCalendar p" type="button" value="4" />
+                    <input id="calend5" className="btnCalendar p" type="button" value="5" />
+                    <input id="calend6" className="btnCalendar p" type="button" value="6" />
+                    <input id="calend7" className="btnCalendar p" type="button" value="7" />
+                    <input id="calend8" className="btnCalendar p" type="button" value="8" />
+                    <input id="calend9" className="btnCalendar p" type="button" value="9" />
+                    <input id="calend10" className="btnCalendar p" type="button" value="10" />
+                    <input id="calend11" className="btnCalendar p" type="button" value="11" />
+                    <input id="calend12" className="btnCalendar p" type="button" value="12" />
+                    <input id="calend13" className="btnCalendar p" type="button" value="13" />
+                    <input id="calend14" className="btnCalendar p" type="button" value="14" />
+                    <input id="calend15" className="btnCalendar p" type="button" value="15" />
+                    <input id="calend16" className="btnCalendar p" type="button" value="16" />
+                    <input id="calend17" className="btnCalendar p" type="button" value="17" />
+                    <input id="calend18" className="btnCalendar p" type="button" value="18" />
+                    <input id="calend19" className="btnCalendar p" type="button" value="19" />
+                    <input id="calend20" className="btnCalendar p" type="button" value="20" />
+                    <input id="calend21" className="btnCalendar p" type="button" value="21" />
+                    <input id="calend22" className="btnCalendar p" type="button" value="22" />
+                    <input id="calend23" className="btnCalendar p" type="button" value="23" />
+                    <input id="calend24" className="btnCalendar p" type="button" value="24" />
+                    <input id="calend25" className="btnCalendar p" type="button" value="25" />
+                    <input id="calend26" className="btnCalendar p" type="button" value="26" />
+                    <input id="calend27" className="btnCalendar p" type="button" value="27" />
+                    <input id="calend28" className="btnCalendar p" type="button" value="28" />
+                    <input id="calend29" className="btnCalendar p" type="button" value="29" />
+                    <input id="calend30" className="btnCalendar p" type="button" value="30" />
+                    <div className="lastCalend"><input id="calend31" className="btnCalendar p" type="button" value="31" /></div>
+                  </section>
+                  <input className="btnNewTask button" type="button" value="Adicionar Tarefa" />
+                </div>
+              </div>
+            </Modal>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
