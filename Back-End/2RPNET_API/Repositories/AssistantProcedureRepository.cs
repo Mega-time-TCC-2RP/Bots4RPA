@@ -196,16 +196,16 @@ public IActionResult NewRun(SendEmail assistant)
         {
             AssistantProcedure SearchAssistant = SearchByID(IdAssistantProcedure);
 
-            if (NewProcess.ProcedureName != null && NewProcess.ProcedureDescription != null)
+            if (NewProcess.IdAssistant > 0 && NewProcess.ProcedurePriority > 0 && NewProcess.ProcedureName != null && NewProcess.ProcedureDescription != null && NewProcess.ProcedureValue != null)
             {
+                SearchAssistant.IdAssistant = NewProcess.IdAssistant;
                 SearchAssistant.ProcedurePriority = NewProcess.ProcedurePriority;
                 SearchAssistant.ProcedureName = NewProcess.ProcedureName;
                 SearchAssistant.ProcedureDescription = NewProcess.ProcedureDescription;
-                SearchAssistant.IdAssistant = NewProcess.IdAssistant;
+                SearchAssistant.ProcedureValue = NewProcess.ProcedureValue;
             }
 
             ctx.AssistantProcedures.Update(SearchAssistant);
-
             ctx.SaveChanges();
         }
 
