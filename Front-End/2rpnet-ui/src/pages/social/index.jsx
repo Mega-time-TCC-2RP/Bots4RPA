@@ -250,7 +250,7 @@ export const TelaTimeline = (person, idx) => {
         }
     }, [])
 
-    if (parseJwt().Role == "3") {
+    if (parseJwt().Role == "3" || parseJwt().Role == "2") {
         return (
             <div>
     

@@ -33,16 +33,7 @@ function Navbar() {
 
   // const delay = ms => new Promise(res => setTimeout(res, ms))
   const signout = () => {
-    // delay(1000);
-    // toast.warning('Saindo...', {
-    //   position: "top-right",
-    //   autoClose: 1000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    // });
+
     localStorage.removeItem('2rp-chave-autenticacao')
     history('/login')
     window.location.reload()
@@ -132,10 +123,10 @@ function Navbar() {
         <div className='profile'>
           <div className='profile_details'>
             <div className='name_job'>
-              <div className='name' onClick={signout}>Logout</div>
+              <span className='name' onClick={signout}>Logout</span>
             </div>
           </div>
-          <HiIcons.HiOutlineLogout id='log_out' onClick={signout} />
+          <HiIcons.HiOutlineLogout id='log_out' className='logout-navbar' onClick={signout} />
         </div>
       </div>
     </div>
