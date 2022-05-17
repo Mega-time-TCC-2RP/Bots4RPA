@@ -27,6 +27,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public Workflow Create(Workflow workflow)
         {
             ctx.Workflows.Add(workflow);
+            ctx.SaveChanges();
             return workflow;
         }
 
@@ -55,7 +56,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
             }
             workflow.IdEmployee = queryWorkflow.IdEmployee;
             ctx.Entry(workflow).State = EntityState.Modified;
-            ctx.SaveChangesAsync();
+            ctx.    SaveChanges();
 
             return SearchByID(workflow.IdWorkflow);
         }
