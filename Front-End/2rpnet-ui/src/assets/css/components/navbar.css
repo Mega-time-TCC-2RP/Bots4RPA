@@ -207,14 +207,7 @@ body{
     width: calc(100vw - 240px);
     left: 269px
 }
-.name{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 27px;
-    font-style: normal;
-    color: var(--WHITE);
-}
+
 .logout-navbar:hover{
     background: rgb(230, 65, 65);
 }

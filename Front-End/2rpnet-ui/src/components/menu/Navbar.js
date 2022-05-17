@@ -69,7 +69,7 @@ function Navbar() {
             <span className='Links_name' alt="botão guias">Guias</span>
           </Link>
         </li>
-        {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+        {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
           <li>
             <Link to="/skinShop" className='Link'>
               <FaIcons.FaTshirt className='icon2' alt="botão loja" />
@@ -77,7 +77,7 @@ function Navbar() {
             </Link>
           </li>
           : null
-        }
+        } */}
         {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
           <li>
             <Link to="/marketplace" className='Link'>
@@ -126,7 +126,7 @@ function Navbar() {
               <span className='name' onClick={signout}>Logout</span>
             </div>
           </div>
-          <HiIcons.HiOutlineLogout id='log_out' className='logout-navbar' onClick={signout} />
+              <HiIcons.HiOutlineLogout id='log_out' onClick={signout} />
         </div>
       </div>
     </div>
