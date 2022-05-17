@@ -44,9 +44,7 @@ import { LayersClear } from '@material-ui/icons';
 // Sem cadastro
 
 
-  
 
-  
 
 const routing = (
   <Router>
@@ -66,7 +64,7 @@ const routing = (
         <Route path="/social" element={<TelaTimeline />} /> {/* Social */}
         <Route path="/quests" element={<Quest />} /> {/* Task Calendar */}
         <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />
-        
+
         {/*<Route path="/config" element={<Config/>} /> {/* Configuration */}
 
         <Route path="/notFound" element={<NotFound />} /> {/* Not Found */}

@@ -139,3 +139,6 @@
     width: 100%;
 }
 
+.displayblock {
+    display: none;
+}
