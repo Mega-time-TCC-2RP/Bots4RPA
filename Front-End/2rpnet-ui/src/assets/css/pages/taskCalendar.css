@@ -155,17 +155,19 @@
 }*/
 
 .modalQuests {
-    height: 100%;
+    position: fixed;
+    /* height: 100%; */
     padding: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: var(--ComplementaryColor1);
 }
 
 .headerModal {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
 }
 
 .exit {
@@ -177,7 +179,7 @@
     font-weight: 900;
 }
 
-.bodyModal {
+.bodyModalQuest {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

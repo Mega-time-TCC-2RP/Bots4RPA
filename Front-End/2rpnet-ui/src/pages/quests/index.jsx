@@ -39,7 +39,7 @@ const stylesCustom = {
 Modal.setAppElement('#root');
 
 function App() {
-  const [questsList, setQuestList] = useState([]);
+  const [workflowList, setWorkflowList] = useState([]);
   const [titleTask, setTitleTask] = useState('');
   const [descriptionTask, setDescriptionTask] = useState('');
   const [statusTask, setStatusTask] = useState();
@@ -66,9 +66,12 @@ function App() {
     setNewTaskIsOpen(false)
   }
 
+  // Const da API = http://grupo7.azurewebsites.net/api
+  const apiPlatform = 'http://grupo7.azurewebsites.net/api'
+
   // Consumo da API - GET
-  const getQuestList = () => {
-    axios('http://grupo7.azurewebsites.net/api/Workflows/GetMine', {
+  const getWorkflowList = () => {
+    axios(apiPlatform + '/Workflows/GetMine', {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
@@ -76,7 +79,7 @@ function App() {
       .then(response => {
         if (response.status === 200) {
           // console.log(response.data);
-          setQuestList(response.data);
+          setWorkflowList(response.data);
         }
       })
       .catch(erro => console.log(erro));
@@ -153,36 +156,10 @@ function App() {
       this.appendChild(cardBeingDragged);
     }
 
-    // const toDoTask = document.querySelector('.todo')
-    // const doTask = document.querySelector('.do')
-    // const doneTask = document.querySelector('.done')
-    // const toDoTask = document.getElementById("testtodo")
-    // const doTask = document.getElementById("testdo")
-    // const doneTask = document.getElementById("testdone")
 
     function dragleave() {
       // console.log('Leaving Card');
       this.classList.remove('over')
-      // if (toDoTask) {
-      // setStatusTask(1)
-      //   console.log("Alterado para o tipo 'A Fazer'");
-      // }
-      // if (doTask) {
-      //   console.log("Alterado para o tipo 'Fazendo'");
-      // }
-      // if (doneTask) {
-      //   console.log("Alerado para o tipo 'Feito'");
-      // } else console.log("Ocorreu um Erro ao alterar a Task! Inserindo tarefa em modo a Fazer.");
-      // switch (cardTask) {
-      //   case toDoTask: /*setStatusTask(1)*/ console.log("Alterado para o tipo 'A Fazer'");
-      //     break;
-      //   case doTask: /*setStatusTask(2)*/ console.log("Alterado para o tipo 'Fazendo'");
-      //   break;
-      //   case doneTask: /*setStatusTask(3)*/ console.log("Alerado para o tipo 'Feito'");
-      //   break;
-      //   default: /*setStatusTask(1) &&*/ console.log("Ocorreu um Erro ao alterar a Task! Inserindo tarefa em modo a Fazer.");
-      //     break;
-      // }
     }
 
     function drop() {
@@ -193,146 +170,12 @@ function App() {
 
 
   useEffect(() => {
-    getQuestList()
+    getWorkflowList()
+    // getQuestList()
     // getQuestList, []
     day()
     dragNDrop()
   });
-
-  // const Calendar = () => {
-  //   return (
-  //   <section className="calendar p">
-  //             <div className="calendarTitle">
-  //               <h5 className="h5">Calendário</h5>
-  //               {/* <h5 className="h5">{titulo}</h5> */}
-  //             </div>
-  //             <input id="calend1"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="1" />
-  //             <input id="calend2"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="2" />
-  //             <input id="calend3"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="3" />
-  //             <input id="calend4"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="4" />
-  //             <input id="calend5"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="5" />
-  //             <input id="calend6"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="6" />
-  //             <input id="calend7"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="7" />
-  //             <input id="calend8"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="8" />
-  //             <input id="calend9"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="9" />
-  //             <input id="calend10"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="10" />
-  //             <input id="calend11"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="11" />
-  //             <input id="calend12"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="12" />
-  //             <input id="calend13"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="13" />
-  //             <input id="calend14"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="14" />
-  //             <input id="calend15"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="15" />
-  //             <input id="calend16"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="16" />
-  //             <input id="calend17"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="17" />
-  //             <input id="calend18"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="18" />
-  //             <input id="calend19"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="19" />
-  //             <input id="calend20"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="20" />
-  //             <input id="calend21"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="21" />
-  //             <input id="calend22"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="22" />
-  //             <input id="calend23"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="23" />
-  //             <input id="calend24"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="24" />
-  //             <input id="calend25"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="25" />
-  //             <input id="calend26"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="26" />
-  //             <input id="calend27"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="27" />
-  //             <input id="calend28"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="28" />
-  //             <input id="calend29"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="29" />
-  //             <input id="calend30"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="30" />
-  //             <div className="lastCalend"><input id="calend31"
-  //               className="btnCalendar p"
-  //               type="button"
-  //               value="31" /></div>
-  //           </section>
-  //   )
-  // }
 
   return (
 
@@ -400,54 +243,72 @@ function App() {
         </Modal>
         <h2 className="pageTitle h2">Painel Organizacional</h2>
         <div className='taskCalendar'>
-          {
-            questsList.map((myQuests) => {
-              return (
-                <section className="task">
-                  <div id="testtodo"
-                    className="toDo">
-                    <div className="taskTitle">
-                      <h5 className="h5">A Fazer</h5>
-                    </div>
-                    <div key={myQuests.idWorkflow && myQuests.idStatus === 1} className="taskSpace">
-                      <div className="cardTask" draggable="true">
-                        <div className="p">Lorem Ipsum is simply dummy text.</div>
+          <section className="task">
+            <div id="testtodo"
+              className="toDo">
+              <div className="taskTitle">
+                <h5 className="h5">A Fazer</h5>
+              </div>
+              {
+                workflowList.map((myQuests) => {
+                  return (
+                    <div 
+                    // key={myQuests.idWorkflow 
+                    // && myQuests.idStatus === 1
+                  // } 
+                    className="taskSpace">
+                      <div
+                      key={myQuests.idWorflow}
+                      className="cardTask" draggable="true">
+                        {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
                         <div className="p">{myQuests.title}</div>
                       </div>
                     </div>
-                  </div>
+                  )
+                }
+                )
+              }
+            </div>
 
-                  <div id="testdo"
-                    className="do">
-                    <div className="taskTitle">
-                      <h5 className="h5">Fazendo</h5>
-                    </div>
-                    <div key={myQuests.idWorkflow && myQuests.idStatus === 2} className="taskSpace">
-                      <div className="cardTask" draggable="true">
-                        <div className="p">Lorem Ipsum is simply dummy text.</div>
-                        <div className="p">{myQuests.title}</div>
-                      </div>
-                    </div>
+            <div id="testdo"
+              className="do">
+              <div className="taskTitle">
+                <h5 className="h5">Fazendo</h5>
+              </div>
+              <div
+                // key={myQuests.idWorkflow && myQuests.idStatus === 2} 
+                className="taskSpace">
+                <div className="cardTask" draggable="true">
+                  {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                  <div className="p">
+                    {/* {myQuests.title} */}
                   </div>
+                </div>
+              </div>
+            </div>
 
-                  <div id="testdone"
-                    className="done">
-                    <div className="taskTitle">
-                      <h5 className="h5">Feito</h5>
-                    </div>
-                    <div key={myQuests.idWorkflow && myQuests.idStatus === 3} className="taskSpace">
-                      <div className="cardTask" draggable="true">
-                        <div className="p">Lorem Ipsum is simply dummy text.</div>
-                        <div className="p">{myQuests.title}</div>
-                      </div>
-                    </div>
+            <div id="testdone"
+              className="done">
+              <div className="taskTitle">
+                <h5 className="h5">Feito</h5>
+              </div>
+              <div
+                // key={myQuests.idWorkflow && myQuests.idStatus === 3} 
+                className="taskSpace">
+                <div className="cardTask" draggable="true">
+                  {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                  <div className="p">
+                    {/* {myQuests.title} */}
                   </div>
+                </div>
+              </div>
+            </div>
 
-                </section>
-              )
-            }
-            )
-          }
+          </section>
+               {/* )
+             }
+             )
+           } */}
           <div className="calendarAndBtn">
             <section className="calendar p">
               <div className="calendarTitle"><h5 className="h5">Calendário</h5></div>
@@ -591,7 +452,7 @@ function App() {
                   <div className="title h3">Nova Tarefa</div>
                   <div className="exit h5">X</div>
                 </div>
-                <div className="bodyModal">
+                <div className="bodyModalQuest">
                   <div className="inputsQuests">
                     <div className="inputQuests">
                       <label for="titleInput" className="h5">Título</label>
