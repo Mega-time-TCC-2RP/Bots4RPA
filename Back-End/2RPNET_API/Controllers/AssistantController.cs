@@ -145,11 +145,29 @@ namespace _2RPNET_API.Controllers
         }
 
         [HttpPost("EnviarEmail")]
-        public IActionResult EnviaEmail(int idAssistant,SendEmail assistant)
+        public IActionResult EnviaEmail(int idAssistant,SendEmailViewModel assistant)
         {
             try
             {
                 _AssistantRepository.EnviaEmail(idAssistant,assistant);
+                return Ok(new
+                {
+                    Mensagem = "Código enviado"
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+                throw;
+            }
+        }
+
+        [HttpPost("EnviarEmailUsuario")]
+        public IActionResult EnviaEmail( SendEmailViewModel assistant)
+        {
+            try
+            {
+                _AssistantRepository.EnviaEmail(assistant);
                 return Ok(new
                 {
                     Mensagem = "Código enviado"

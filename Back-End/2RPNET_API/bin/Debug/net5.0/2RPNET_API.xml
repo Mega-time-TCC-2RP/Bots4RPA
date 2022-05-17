@@ -4,37 +4,37 @@
         <name>2RPNET_API</name>
     </assembly>
     <members>
-        <member name="M:_2RPNET_API.Controllers.Assistant1Controller.NewRun(_2RPNET_API.ViewModels.SendEmail)">
+        <member name="M:_2RPNET_API.Controllers.Assistant1Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
             <summary>
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant28Controller.NewRun(_2RPNET_API.ViewModels.SendEmail)">
+        <member name="M:_2RPNET_API.Controllers.Assistant28Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
             <summary>
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant30Controller.NewRun(_2RPNET_API.ViewModels.SendEmail)">
+        <member name="M:_2RPNET_API.Controllers.Assistant30Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
             <summary>
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant33Controller.NewRun(_2RPNET_API.ViewModels.SendEmail)">
+        <member name="M:_2RPNET_API.Controllers.Assistant33Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
             <summary>
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant34Controller.NewRun(_2RPNET_API.ViewModels.SendEmail)">
+        <member name="M:_2RPNET_API.Controllers.Assistant34Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
             <summary>
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant35Controller.NewRun(_2RPNET_API.ViewModels.SendEmail)">
+        <member name="M:_2RPNET_API.Controllers.Assistant35Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
             <summary>
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant8Controller.NewRun(_2RPNET_API.ViewModels.SendEmail)">
+        <member name="M:_2RPNET_API.Controllers.Assistant8Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
             <summary>
             Method responsible for create a Run process
             </summary>

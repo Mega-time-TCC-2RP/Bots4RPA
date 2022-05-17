@@ -110,6 +110,10 @@ var page = await context.NewPageAsync(); ");
                             sw.WriteLine(@"var message = await waitForMessageTask;
 Console.WriteLine(message.Text);");
                             break;
+                        case "Enviar email":
+                            //AssistantRepository assistantRepository = new AssistantRepository();
+                            //assistantRepository.EnviaEmail((int idAssistant, SendEmailViewModel emailConfig);
+                            break;
 
                         default:
                             break;

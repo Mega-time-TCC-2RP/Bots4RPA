@@ -17,6 +17,8 @@ namespace _2RPNET_API.Interfaces
         void Create(Assistant NewAssistant);
 
         void Delete(int IdAssistant);
-        Task EnviaEmail(int idAssistant,SendEmail emailConfig);
+        Task EnviaEmail(int idAssistant,SendEmailViewModel emailConfig);
+
+        Task EnviaEmail( SendEmailViewModel emailConfig);
     }
 }
