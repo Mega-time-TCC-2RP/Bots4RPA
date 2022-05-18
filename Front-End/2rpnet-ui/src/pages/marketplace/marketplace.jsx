@@ -5,7 +5,8 @@ import Navbar from '../../components/menu/Navbar'
 
 //img
 import skin from '../../assets/img/Robo.png'
-import Coin from '../../assets/img/coin.png'
+import skin1 from '../../assets/img/Batbô.jpeg'
+
 
 //react
 import Modal from 'react-modal';
@@ -38,21 +39,6 @@ const stylesCustom = {
   },
 };
 
-const detailsCustomStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        width: '1000px',
-        height: '90vh',
-        background: 'var(--WHITE)',
-        boxShadow: 'var(--darkShadow)',
-        borderRadius: '30px'
-    },
-};
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
@@ -70,15 +56,7 @@ export default function Marketplace() {
     function handleCloseOnBoarding() {
         setOnBoardingIsOpen(false)
     }
-    function openModalDetails() {
-        setDetailsIsOpen(true);
-    }
-
-    function closeModalDetails() {
-        setDetailsIsOpen(false);
-        
-    }
-
+   
     return (
         <div id='all'>
             <Header/>
@@ -173,20 +151,7 @@ export default function Marketplace() {
 
                 <div className='coinDetails'>
                 <div className ='details3'>
-                    
                     <span>Adquirir</span>
-                </div>
-                <div className='details2'>
-                <span onClick={openModalDetails} >ver detalhes</span>
-                <Modal
-                    isOpen={detailsIsOpen}
-                    onRequestClose={closeModalDetails}
-                    style={detailsCustomStyles}
-
-                >
-                    <AiIcons.AiOutlineClose className='closeModal iconConfig2' onClick={() => closeModalDetails()} />
-
-                </Modal>
                 </div>
                 </div>
                 </div>
@@ -207,17 +172,14 @@ export default function Marketplace() {
                 <div className ='details3'>
                     <span>Adquirir</span>
                 </div>
-                <div className='details2'>
-                <span >ver detalhes</span>
-                </div>
                 </div>
                 </div>
 
             </div>
             <div className='workflow'>
                 <div className='assistent'>
-                <img src={skin} alt="img robot"/>
-                <span className='nameRobot'>Bôbotron Limão</span>
+                <img src={skin1} id='batbo' alt="img robot"/>
+                <span className='nameRobot'>Batbô</span>
                 </div>
                 <div className='descriptionDtails'>
                 <div className='description'>
@@ -228,9 +190,6 @@ export default function Marketplace() {
                 <div className='coinDetails'>
                 <div className ='details3'>
                    <span>Adquirir</span>
-                </div>
-                <div className='details2'>
-                    <span >ver detalhes</span>
                 </div>
                 </div>
                 </div>

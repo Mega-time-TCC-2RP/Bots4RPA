@@ -8,17 +8,16 @@
     flex: 1 1 550px;
 } */
 
-.workflow{
-    background: #fff;
+.workflow {
     background: var(--WHITE);
-    /* border: 4px solid var(--ComplementaryColor1); */
+    border: 4px solid var(--ComplementaryColor1);
     height: 350px;
     width: 570px;
     display: flex;
     padding: 15px;
     align-items: center;
     margin: 30px;
-    font-family: 'Montserrat';
+    /* font-family: 'Montserrat'; */
     border-radius: 50px;
     box-shadow: 0px 4px 4px var(--darkShadow);
 }
@@ -38,6 +37,11 @@
 .assistent img{
     width: 200px;
     height: 176.92px;
+    margin-bottom: 16px;
+}
+#batbo {
+    width: 220px;
+    height: 213.92px;
     margin-bottom: 16px;
 }
 .workflow .details2{
@@ -88,23 +92,22 @@
     font-weight: 600;
     font-family:'Montserrat';
 }
-.description{
+.description {
     display: flex;
     flex-direction: column;
-    width: 350px;
-    height: 200px;
+    width: 100%;
+    height: 290px;
 }
-.description text{
+.description text {
+    margin-left: 5px;
     text-align: justify;
-    padding: 0px 10px;
     font-size: 16px;
-    width: 350px;
+    width: 100%;
 }
-
-.coinDetails{
-    width: 230px;
+.coinDetails {
+    width: 130px;
     display: flex;
     position: relative;
-    left: 30%;
-    top: 40px;
+    left: 60%;
+    top: 8px;
 }

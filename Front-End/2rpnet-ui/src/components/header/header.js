@@ -58,15 +58,7 @@ export const Header = () => {
                 <div className='header2'>
                     <div className='container'>
                         <div className='headerInside2'>
-                            <div className='coins'>
-                                <img src={Coin} alt="moedas" />
-                                {
-                                    myUser.employees != nullUndefinedParams.employees ?
-                                        <div className='cash'>{myUser.employees[0].players[0].score}</div> :
-                                        <div className='cash'>Carregando...</div>
-
-                                }
-                            </div>
+                            
                             <div className='profile2'>
                                 <div className='profile_details'>
                                     {
@@ -136,8 +128,6 @@ export const Header = () => {
                 <div className='header2'>
                     <div className='container'>
                         <div className='headerInside2'>
-                            <div className='coins'>
-                            </div>
                             <div className='profile2'>
                                 <div className='profile_details'>
                                     {
@@ -190,8 +180,6 @@ export const Header = () => {
                 <div className='header2'>
                     <div className='container'>
                         <div className='headerInside2'>
-                            <div className='coins'>
-                            </div>
                             <div className='profile2'>
                                 <div className='profile_details'>
                                     {
