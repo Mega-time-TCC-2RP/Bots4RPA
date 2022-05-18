@@ -157,6 +157,9 @@
 .modalQuests {
     position: fixed;
     /* height: 100%; */
+    /* margin-left: 3rem; */
+    margin: auto;
+    width: 80vw;
     padding: 3rem;
     display: flex;
     flex-direction: column;
@@ -173,6 +176,8 @@
 .exit {
     color: var(--ComplementaryColor2);
     cursor: pointer;
+    background: transparent;
+    border: none;
 }
 
 .exit:hover {
