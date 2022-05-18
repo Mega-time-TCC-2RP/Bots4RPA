@@ -50,19 +50,19 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         // Metodo GET por ID - Procurar pela ID
-        [HttpGet("{id}")]
-        [Authorize(Roles = "1,2,3")]
-        public IActionResult SearchByID(int id)
-        {
-            var userName = ctx.SearchByID(id);
+        //[HttpGet("{id}")]
+        //[Authorize(Roles = "1,2,3")]
+        //public IActionResult SearchByID(int id)
+        //{
+        //    var userName = ctx.SearchByID(id);
 
-            if (userName == null)
-            {
-                return NotFound();
-            }
+        //    if (userName == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(userName);
-        }
+        //    return Ok(userName);
+        //}
 
         // Metodo PUT - Atualizacao
         [HttpPut]
@@ -225,6 +225,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 else
                 {
                     UploadResult = null;
+                }
+                if (user.Passwd == null)
+                {
+                    if (File != null)
+                    {
+                        Upload.RemoveFile(UploadResult);
+                    }
+                    return BadRequest("Senhas nulas só são aceitas no primeiro acesso com o google");
                 }
                 if(user.IdUserType == 1)
                 {
