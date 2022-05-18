@@ -93,10 +93,10 @@ export default function Login() {
                                         // verifica se o usuário logado é do tipo administrador
                                         //mudar aqui e no menu principal se o cadastro for liberado para
                                         //todos os usuarios
-                                        if (parseJwt().Role == '1') {
+                                        if (parseJwt().Role == '1' || parseJwt().Role == '2') {
                                                 history('/config')
                                         }
-                                        else if (parseJwt().Role === '2' || parseJwt().Role === '3') {
+                                        else if (parseJwt().Role === '3') {
                                                 history('/')
 
                                                 // console.log('logado: ' + usuarioAutenticado())

@@ -63,7 +63,7 @@ Modal.setAppElement('#root');
 export default function Config() {
     const [currentStep, setCurrentStep] = useState(0);
     const [modalConfig, setModalConfig] = useState(false);
-    //const [modalPassword, setModalPassword] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState(false);
     const [userLogado, setUserLogado] = useState({});
     const [invalidUsers, setInvalidUsers] = useState([]);
     const [invalidCorporations, setInvalidCorporations] = useState([]);
@@ -90,22 +90,24 @@ export default function Config() {
     useEffect(listUser, []);
 
     const autorizeUser = (idUser) => {
-        axios.patch("http://grupo7.azurewebsites.net/api/UserNames/Validate/" + idUser, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-            }
-        })
-            .then((resposta) => {
-                if (resposta.status === 200) {
-                    console.log("Corporação e usuário dela autorizados")
-                    listInvalidUsers()
+        if (parseJwt().Role == '2') {
+            axios.patch("http://grupo7.azurewebsites.net/api/UserNames/Validate/" + idUser, {}, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
                 }
             })
-            .catch((erro) => console.log(erro))
+                .then((resposta) => {
+                    if (resposta.status === 204) {
+                        console.log("Funcionou")
+                        listInvalidUsers()
+                    }
+                })
+                .catch((erro) => console.log(erro))
+        }
     }
 
-    const deleteUser = (idCorporation) => {
-        axios.delete("http://grupo7.azurewebsites.net/api/Username/" + idCorporation, {
+    const deleteUser = (idUser) => {
+        axios.delete("http://grupo7.azurewebsites.net/api/Usernames/" + idUser, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
@@ -120,7 +122,7 @@ export default function Config() {
     }
 
     const autorizeCorporation = (idUser) => {
-        axios.patch("http://grupo7.azurewebsites.net/api/UserNames/Validate/" + idUser, {
+        axios.patch("http://grupo7.azurewebsites.net/api/UserNames/Validate/" + idUser, {}, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
@@ -170,7 +172,7 @@ export default function Config() {
             headers: { "Content-type": "multipart/form-data", 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
         })
             .then((resposta) => {
-                if (resposta.status === 200) {
+                if (resposta.status === 204) {
                     closeModalConfig();
                     console.log("alterado com sucesso")
                 }
@@ -550,8 +552,7 @@ export default function Config() {
                                                 <input id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' value={userAlterado.phone} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
                                             </div>
                                         </div>
-                                        <button className='button'
-                                            onClick={alterUserData}>Salvar Alterações</button>
+                                        <button className='button' onClick={setConfirmPassword(true)}>Salvar Alterações</button>
                                     </form>
                                 </Modal>
                             </div>
@@ -617,7 +618,7 @@ export default function Config() {
                                 {
                                     invalidUsers.map((user) => {
                                         return (
-                                            <div  key={user.idUser} className='mainContentArea contentValidUser'>
+                                            <div key={user.idUser} className='mainContentArea contentValidUser'>
                                                 <div className='contentConfig'>
                                                     <h3>Email <p className='p'>{user.idUserNavigation.email}</p></h3>
                                                     <h3>CPF <p className='p'>{user.idUserNavigation.cpf}</p></h3>
@@ -628,7 +629,7 @@ export default function Config() {
                                                 </div>
                                                 <div>
                                                     <SiIcons.SiVerizon onClick={() => autorizeUser(user.idUser)} className='iconConfig' />
-                                                    <AiIcons.AiOutlineClose className='iconConfig2' />
+                                                    <AiIcons.AiOutlineClose onClick={() => deleteUser(user.idUser)} className='iconConfig2' />
                                                 </div>
                                             </div>
                                         )
