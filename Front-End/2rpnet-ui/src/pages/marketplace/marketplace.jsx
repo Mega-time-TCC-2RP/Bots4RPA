@@ -1,17 +1,26 @@
+//components
 import Footer from '../../components/footer/footer'
 import Header from '../../components/header/header'
 import Navbar from '../../components/menu/Navbar'
+
+//img
 import skin from '../../assets/img/Robo.png'
 import Coin from '../../assets/img/coin.png'
-import '../../assets/css/pages/skinShop.css'
-import '../../assets/css/pages/workflow.css'
-import "../../assets/css/components/navbar.css"
+
+//react
+import Modal from 'react-modal';
+import * as AiIcons from 'react-icons/ai'
 import VLibras from '@djpfs/react-vlibras'
 import { useEffect, useState } from 'react'
 
+//css
+import '../../assets/css/pages/skinShop.css'
+import '../../assets/css/pages/workflow.css'
+import "../../assets/css/components/navbar.css"
+
+
 //onboarding
 import '../../assets/css/pages/onBoarding.css'
-import Modal from 'react-modal';
 import Blue_Head from '../../assets/img/Blue_Head.png'
 import onBoardingBot from '../../assets/img/onBoardingBot.png'
 import { Pagination, Navigation } from "swiper";
@@ -29,19 +38,45 @@ const stylesCustom = {
   },
 };
 
+const detailsCustomStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: '1000px',
+        height: '90vh',
+        background: 'var(--WHITE)',
+        boxShadow: 'var(--darkShadow)',
+        borderRadius: '30px'
+    },
+};
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
+
+
 
 
 export default function Marketplace() {
 
     const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
+    const [detailsIsOpen, setDetailsIsOpen] = useState(false)
 
     function handleOpenOnBoarding() {
         setOnBoardingIsOpen(true)
     }
     function handleCloseOnBoarding() {
         setOnBoardingIsOpen(false)
+    }
+    function openModalDetails() {
+        setDetailsIsOpen(true);
+    }
+
+    function closeModalDetails() {
+        setDetailsIsOpen(false);
+        
     }
 
     return (
@@ -116,9 +151,9 @@ export default function Marketplace() {
                         placeholder="Buscar Skins.."
                     />
                 <select className='input' name="select">
-                    <option value="valor1">Mais caras</option>
-                    <option value="valor2" selected>Mais baratas</option>
-                    <option value="valor3">Personalizadas</option>
+                    <option value="valor1">Meus Assistentes</option>
+                    <option value="valor2" selected>Assistentes da Empresa</option>
+                    <option value="valor3">Assistentes Globais</option>
                 </select>  
             </div>
             </div>
@@ -142,7 +177,16 @@ export default function Marketplace() {
                     <span>Adquirir</span>
                 </div>
                 <div className='details2'>
-                <span >ver detalhes</span>
+                <span onClick={openModalDetails} >ver detalhes</span>
+                <Modal
+                    isOpen={detailsIsOpen}
+                    onRequestClose={closeModalDetails}
+                    style={detailsCustomStyles}
+
+                >
+                    <AiIcons.AiOutlineClose className='closeModal iconConfig2' onClick={() => closeModalDetails()} />
+
+                </Modal>
                 </div>
                 </div>
                 </div>
