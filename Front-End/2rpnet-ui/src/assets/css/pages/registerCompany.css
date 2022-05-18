@@ -71,7 +71,7 @@ input[type="file"] {
     font: message-box;
 }
 
-.imageProfileInput {
+.imageProfileInput {    
     display: none;
 }
 
@@ -161,4 +161,21 @@ input#file-upload-button {
 
 .block {
     cursor: no-drop;
+}
+
+
+@media only screen and (max-width: 600px){
+.backgroudRegister{
+    width: 50px;
+}
+.robotBlue, .robotRed, .access-button{
+    visibility: hidden;
+    }
+.registerArea{
+    width: 50px;
+    /* padding: 4rem; */
+    height: 150vh;
+    margin-top: 460px;
+}
+
 }
