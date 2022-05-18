@@ -4,7 +4,6 @@ import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import VLibras from '@djpfs/react-vlibras'
 
-
 //img:
 import Logo from '../../assets/img/logo2RP.png'
 import Robo from '../../assets/img/roboLandingPage.png'

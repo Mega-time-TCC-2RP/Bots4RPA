@@ -1,5 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import "../../assets/css/assistant.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
@@ -13,7 +15,7 @@ import Footer from '../../components/footer/footer'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import {parseJwt} from "../../services/auth"
+import { parseJwt } from "../../services/auth"
 
 import Procedures from '../../services/process';
 import { set } from "react-hook-form";
@@ -21,28 +23,101 @@ import { set } from "react-hook-form";
 import { API } from "../../services/api";
 
 // testar colocar uma lista com informações dos cards/bloquinhos
-
 export default function Assistant() {
 
+    const [MyProcedures, setMyProcedures] = useState([])
+    const [Assistant, setAssistant] = useState("")
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
+    const [eRValue, setERValue] = useState();
+    const [eSValue, setESValue] = useState();
+    const [eBValue, setEBValue] = useState();
+    const [Teste, setTeste] = useState();
     const [isSaving, setIsSaving] = useState(false);
     const [isExecuting, setIsExecuting] = useState(false);
     const [result, setResult] = useState("oi");
+    const [isThereEmail, setIsThereEmail] = useState(false);
 
+    const location = useLocation();
+    var idAssistant = location.state.id;
 
-    var idAssistant = 8;
+    function GetProceduresById() {
+        fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + idAssistant, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setMyProcedures(data)
+                //console.log(data)
+            )
+            .catch((error) => console.log(error));
+    };
+    useEffect(GetProceduresById, [])
+
+    function returnModalEmail(procedure) {
+        if (procedure.ProcedureName != "Enviar email para alguem") {
+            return (
+                <input className="modal__input" type="text" placeholder={"Digite o valor para " + procedure.ProcedureName} value={pValue} onChange={(campo) => {
+                    setPValue(campo.target.value, procedure.ProcedureValue = campo.target.value);
+                    //   console.log(procedure.ProcedureValue)
+                }} />
+            )
+        } else {
+            // "ProcedureValue": "",
+            // "EmailReceiver": "",
+            // "EmailSubject": "",
+            // "EmailBody": "",
+            
+            return (
+                <form>
+                    <input className="modal__input" type="text" placeholder={"Digite o destinatário"} value={eRValue} onChange={(campo) => {
+                        setERValue(campo.target.value, procedure.EmailReceiver = campo.target.value);
+                        setTeste(eRValue+ eSValue+ eBValue) 
+                    }} />
+                    <input className="modal__input" type="text" placeholder={"Digite o assunto do email"} value={eSValue} onChange={(campo) => {
+                        setESValue(campo.target.value, procedure.EmailSubject = campo.target.value);
+                        setTeste(eRValue+ eSValue+ eBValue)
+                    }} />
+                    <input className="modal__input" type="text" placeholder={"Digite o corpo do email"} value={eBValue} onChange={(campo) => {
+                        setEBValue(campo.target.value, procedure.EmailBody = campo.target.value);
+                        setTeste(eRValue+ eSValue+ eBValue)
+                    } } />
+                </form>
+            )
+        }
+    }
 
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
         // console.log(modal)
         modal.style.display = "block";
-        if (pValue != p.ProcedureValue) {
-            if (p.ProcedureValue != 0 || p.ProcedureValue != "") {
-                setPValue(p.ProcedureValue);
+        if (p.procedureName != "Enviar email para alguem") {
+            if (pValue != p.ProcedureValue) {
+                if (p.ProcedureValue != 0 || p.ProcedureValue != "") {
+                    setPValue(p.ProcedureValue);
+                }
+                else {
+                    setPValue("");
+                }
             }
-            else {
-                setPValue("");
+
+        } else {
+            if (eRValue != p.EmailReceiver) {
+                setERValue(p.EmailReceiver);
+            } else {
+                setERValue("");
+            }
+            if (eSValue != p.EmailSubject) {
+                setESValue(p.EmailSubject);
+            } else {
+                setESValue("");
+            }
+            if (eBValue != p.EmailBody) {
+                setEBValue(p.emailBody);
+            } else {
+                setEBValue("");
             }
         }
     };
@@ -53,7 +128,7 @@ export default function Assistant() {
         modal.style.display = "none";
     };
 
-    function Save(){
+    function Save() {
         //Get the cards inside the dropzone and number them by order.
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
@@ -71,11 +146,11 @@ export default function Assistant() {
 
             var myBody = JSON.stringify({
                 "idAssistant": idAssistant,
-                "procedurePriority": index+1,
+                "procedurePriority": index + 1,
                 "procedureName": child.textContent,
                 "procedureDescription": "",
                 "procedureValue": splited[1]
-              });
+            });
 
             // console.log(myBody)
 
@@ -103,7 +178,7 @@ export default function Assistant() {
 
         //save the playwright script for the assistant
         var myURL2 = API + "/api/AssistantProcedure/ManipulateScript/" + idAssistant;
-        
+
 
         fetch(myURL2, {
             method: 'POST',
@@ -115,21 +190,36 @@ export default function Assistant() {
                     // console.log("after if");
                     return response.text()
                 } else {
-                    toast.error(`Houve erros no processo de salvamento do assistente ${idAssistant}`) 
+                    toast.error(`Houve erros no processo de salvamento do assistente ${idAssistant}`)
                 }
             })
             .then((data) => {
                 // console.log(data);
-                setResult(data);                
+                setResult(data);
                 toast.success(`o assistente ${idAssistant} foi salvo`)
                 setIsSaving(false);
             })
-            .catch((erro) =>{
+            .catch((erro) => {
                 console.log(erro);
                 toast.error("O script de salvamento não foi salvo :/");
                 setIsSaving(false);
             });
+    }
 
+    function GetAssistantById() {
+        var myURL = "http://localhost:5000/api/Assistants/" + location.state.id;
+
+        fetch(myURL, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setAssistant(data)
+                // console.log(data)
+            )
+            .catch((error) => console.log(error));
     }
 
     function Execute() {
@@ -138,11 +228,10 @@ export default function Assistant() {
         // console.log(parseJwt().email);
 
         var eURL = API + "/api/Assistant" + idAssistant + "/Post";
-        // "email": "parseJwt().email",
         var eBody = JSON.stringify({
-            "email": "sgustavo.borges10@gmail.com",
+            "email": parseJwt().email,
             "emailBody": result
-          });
+        });
 
         fetch(eURL, {
             method: 'POST',
@@ -165,7 +254,13 @@ export default function Assistant() {
                 toast.error("A execução deu errado :/");
                 setIsExecuting(false);
             })
+
+        if(isThereEmail == true){
+
+        }
     }
+
+
 
     function configDragnDrop() {
         const cards = document.querySelectorAll('.card')
@@ -238,15 +333,16 @@ export default function Assistant() {
 
     useEffect(() => {
         configDragnDrop();
+        GetAssistantById();
     })
 
 
     return (
         <div>
             <header className="header container">
-                <h1 className="header__text">Assistant {idAssistant}</h1>
+                <h1 className="header__text">{Assistant.assistantName}</h1>
             </header>
-            <main>
+            <main className="">
                 <Navbar />
                 <div className="boards container">
                     <div className="boards__board boards__board--pointy">
@@ -265,7 +361,7 @@ export default function Assistant() {
                                                 {/* Modal content */}
                                                 <div className="modal-content">
                                                     <span onClick={() => handleClose(procedure.IdProcedure)} className="close">&times;</span>
-                                                    <div className="modal-header">
+                                                    <div className="modal-headerA">
                                                         <div className="modal-header--content">
                                                             <p className="modal__text--heading modal__text">Nome:</p>
                                                             <p className="modal__text--heading2 modal__text">{procedure.ProcedureName}</p>
@@ -277,11 +373,15 @@ export default function Assistant() {
                                                     </div>
                                                     <div className="modal-body">
                                                         <label className="modal__text" htmlFor="">Digite aqui o valor necessário:</label>
-
-                                                        <input className="modal__input" type="text" placeholder={"Digite o valor para " + procedure.ProcedureName} value={pValue} onChange={(campo) => {
+                                                        <span className="modal__text">{Teste}</span>
+                                                        {
+                                                            returnModalEmail(procedure)
+                                                            
+                                                        }
+                                                        {/* <input className="modal__input" type="text" placeholder={"Digite o valor para " + procedure.ProcedureName} value={pValue} onChange={(campo) => {
                                                             setPValue(campo.target.value, procedure.ProcedureValue = campo.target.value);
                                                             //   console.log(procedure.ProcedureValue)
-                                                        }} />
+                                                        }} /> */}
                                                     </div>
 
                                                 </div>
@@ -298,6 +398,18 @@ export default function Assistant() {
                         <div className="boards__board">
                             <h3 className="board_title">Fluxo</h3>
                             <div id="flow" className="dropzone">
+                                {
+                                    MyProcedures.map((p) => {
+                                        return (
+                                            <div className="card-flow" key={p.idAprocedure}>
+                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-flow" draggable="true" onClick={() => handleShow(p)}>
+                                                    <img className="card__balls" src={bolinhas} alt="bolinhas" />
+                                                    <div className="card__content">{p.procedureName}</div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                             {
                                 isSaving === false ? (
@@ -318,7 +430,8 @@ export default function Assistant() {
                 </div>
                 <ToastContainer />
             </main>
-            <Footer className="footer" />
+            <Footer />
         </div>
     )
+
 }
