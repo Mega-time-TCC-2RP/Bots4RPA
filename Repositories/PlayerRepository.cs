@@ -27,12 +27,13 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(Player player)
         {
             ctx.Players.Remove(player);
+            ctx.Entry(player).State = EntityState.Detached;
             ctx.SaveChanges();
         }
 
         public IEnumerable<Player> ReadAll()
         {
-            return ctx.Players.ToList();
+            return ctx.Players.AsNoTracking().ToList();
         }
 
         public Player SearchByID(int id)
@@ -43,7 +44,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public Player Update(Player player)
         {
             ctx.Entry(player).State = EntityState.Modified;
-            ctx.SaveChangesAsync();
+            ctx.SaveChanges();
 
             return player;
         }

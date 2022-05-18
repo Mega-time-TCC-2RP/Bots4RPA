@@ -32,13 +32,14 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public void Delete(UserName datauser)
         {
-            ctx.UserNames.Remove(datauser);
+            var dataUser = datauser;
+            ctx.Remove(dataUser);
             ctx.SaveChanges();
         }
 
         public IEnumerable<UserName> ReadAll()
         {
-            return ctx.UserNames.Select(user => new UserName()
+            return ctx.UserNames.AsNoTracking().Select(user => new UserName()
             {
                 IdUser = user.IdUser,
                 UserName1 = user.UserName1,
@@ -69,7 +70,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public UserName SearchByID(int id)
         {
-            return ctx.UserNames.Select(user => new UserName()
+            return ctx.UserNames.AsNoTracking().Select(user => new UserName()
             {
                 IdUser = user.IdUser,
                 IdUserType = user.IdUserType,
@@ -149,7 +150,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public UserName GetSkinsAndTrophiesByUser(int idUser)
         {
-            return ctx.UserNames.Select(user => new UserName
+            return ctx.UserNames.AsNoTracking().Select(user => new UserName
             {
                 IdUser = user.IdUser,
                 Employees = user.Employees.Select(employee => new Employee()

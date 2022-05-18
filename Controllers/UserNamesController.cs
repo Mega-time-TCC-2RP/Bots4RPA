@@ -285,7 +285,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
                         Player PostedPlayer = Pctx.Create(PostPlayer);
 
-                        return Ok(new
+                        return Created("UsuarioCriado", new
                         {
                             User = new UserName()
                             {
@@ -311,7 +311,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                             }
                         });
                     }
-                    return Ok(new {
+                    return Created("UsuarioCriado", new {
                         User = new UserName()
                         {
                             UserName1 = user.UserName1,
@@ -352,6 +352,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
 
                 var user = ctx.SearchByID(id);
+                if (user == null)
+                {
+                    return NotFound();
+                }
                 if (ctx.SearchByID(UserId).Employees.First().IdCorporation != user.Employees.First().IdCorporation && UserRole == 2)
                 {
                     return Forbid("O usuário administrador só pode deletar usuários da sua empresa");
@@ -361,27 +365,22 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return NotFound();
                 }
                 if(user.PhotoUser != "padrao.png")
+                {
                     Upload.RemoveFile(user.PhotoUser);
-                if (user.Employees.First().Players.Count > 1)
+                }
+                List<Employee> UserEmployee = Ectx.ReadAll().Where(E => E.IdEmployee == user.Employees.First().IdEmployee).ToList();
+                UserEmployee.First().Players = Pctx.ReadAll().Where(P => P.IdEmployee == UserEmployee.First().IdEmployee).ToList();
+
+                if (user.Employees.First().Players.Count == 1)
                 {
                     List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
                     List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
                     List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
-                    foreach (var item in UserPosts)
-                    {
-                        PostCtx.Delete(item);
-                    }
-                    foreach (var item in UserSkins)
-                    {
-                        LSctx.Delete(item);
-                    }
-                    foreach (var item in UserTrophies)
-                    {
-                        LTctx.Delete(item);
-                    }
-                    Pctx.Delete(Pctx.SearchByID(Ectx.ReadAll().FirstOrDefault(e => e.IdUser == id).Players.First().IdPlayer));
+                    UserEmployee.First().Players.First().Posts = UserPosts;
+                    UserEmployee.First().Players.First().LibrarySkins = UserSkins;
+                    UserEmployee.First().Players.First().LibraryTrophies = UserTrophies;
+
                 }
-                Ectx.Delete(Ectx.SearchByID(user.Employees.First().IdEmployee));
                 ctx.Delete(user);
                 return NoContent();
             }

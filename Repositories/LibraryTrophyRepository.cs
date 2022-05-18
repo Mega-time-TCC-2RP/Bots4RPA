@@ -32,7 +32,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public IEnumerable<LibraryTrophy> ReadAll()
         {
-            return ctx.LibraryTrophies.ToList();
+            return ctx.LibraryTrophies.AsNoTracking().ToList();
         }
 
         public LibraryTrophy SearchByID(int id)

@@ -32,7 +32,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public IEnumerable<LibrarySkin> ReadAll()
         {
-            return ctx.LibrarySkins.ToList();
+            return ctx.LibrarySkins.AsNoTracking().ToList();
         }
 
         public LibrarySkin SearchByID(int id)

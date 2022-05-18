@@ -27,17 +27,18 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(Employee employee)
         {
             ctx.Employees.Remove(employee);
+            ctx.Entry(employee).State = EntityState.Detached;
             ctx.SaveChanges();
         }
 
         public IEnumerable<Employee> ReadAll()
         {
-            return ctx.Employees.Include(E => E.Players).ToList();
+            return ctx.Employees.AsNoTracking().Include(E => E.Players).ToList();
         }
 
         public Employee SearchByID(int id)
         {
-            return ctx.Employees.Include(E => E.Players).AsNoTracking().ToList().FirstOrDefault(e => e.IdEmployee == id);
+            return ctx.Employees.AsNoTracking().Include(E => E.Players).AsNoTracking().ToList().FirstOrDefault(e => e.IdEmployee == id);
         }
 
         public Employee Update(Employee employee)
