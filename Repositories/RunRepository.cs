@@ -1,6 +1,7 @@
 ﻿using _2RPNET_API.Context;
 using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,6 +27,7 @@ namespace _2RPNET_API.Repositories
 
         public Run Create(Run DataRun)
         {
+            DataRun.RunDate = DateTime.Now;
             ctx.Runs.Add(DataRun);
             ctx.SaveChanges();
             return DataRun;
@@ -89,11 +91,22 @@ namespace _2RPNET_API.Repositories
 
         public void SuccessesOrFailures(int IdAssistant)
         {
-            Run = SearchAssistantByID(IdAssistant);
+            List<Run> ListRuns = ReadAll();
+            //List<Run> ListRuns = ctx.Runs.ToList();
 
-            Assistant.RunQuantity = Assistant.RunQuantity + 1;
+            foreach (var item in ListRuns)
+            {
+                if (item.IdAssistant == IdAssistant)
+                {
+                    item.RunQuantity = item.RunQuantity + 1;
+                    item.RunDate = DateTime.Now;
+                    item.RunStatus = item.RunStatus;
+                    item.RunDescription = item.RunDescription;
 
-            ctx.SaveChanges();
+                    ctx.Runs.Update(item);
+                    ctx.SaveChanges();
+                }
+            }
         }
     }
 }

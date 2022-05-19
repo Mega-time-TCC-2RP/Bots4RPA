@@ -5,13 +5,7 @@ using _2RPNET_API.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using _2RPNET_API.StaticFiles;
-using Microsoft.Playwright;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _2RPNET_API.Repositories
 {

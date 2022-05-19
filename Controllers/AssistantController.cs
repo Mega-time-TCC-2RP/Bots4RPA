@@ -151,8 +151,8 @@ namespace _2RPNET_API.Controllers
             {
                 _AssistantRepository.EnviaEmail(idAssistant,assistant);
 
-                //RunRepository run = new RunRepository();
-                //run.SuccessesOrFailures(idAssistant);
+                RunRepository run = new RunRepository();
+                run.SuccessesOrFailures(idAssistant);
 
                 return Ok(new
                 {
