@@ -33,13 +33,67 @@ namespace _2RPNET_API.Repositories
 
         public List<Run> ErrorList()
         {
+            for (int i = 0; i <= 0; i++)
+            {
+
+            }
             return ctx.Runs.Where(r => r.RunStatus == false).ToList();
         }
 
 
-        public IEnumerable<Run> ReadAll()
+        public List<Run> ReadAll()
         {
             return ctx.Runs.ToList();
+        }
+
+        public List<Run> ReadById(int Id)
+        {
+            return ctx.Runs
+                .Where(a => a.IdRun == Id)
+                 .ToList();
+        }
+
+
+        public Run SearchByID(int Id)
+        {
+            return ctx.Runs
+                 .FirstOrDefault(a => a.IdRun == Id);
+        }
+
+        //public List<Run> SearchByID(int IdAssistant)
+        //{
+        //    //return ctx.Runs
+        //    //     .FirstOrDefault(a => a.IdRun == IdAssistant);
+
+        //    return ctx.Runs.Where(c => c.IdAssistant == IdAssistant).ToList();
+        //} 
+
+
+        //public void SuccessesOrFailures(int IdAssistant)
+        //{
+        //    var Assistant = SearchByID(IdAssistant);
+
+        //    foreach (var item in Assistant)
+        //    {
+        //        item.RunQuantity;
+        //    }
+        //}
+
+        public Run SearchAssistantByID(int IdAssistant)
+        {
+            //return ctx.Runs
+            //     .FirstOrDefault(a => a.IdRun == IdAssistant);
+
+            return ctx.Runs.FirstOrDefault(c => c.IdAssistant == IdAssistant);
+        }
+
+        public void SuccessesOrFailures(int IdAssistant)
+        {
+            Run = SearchAssistantByID(IdAssistant);
+
+            Assistant.RunQuantity = Assistant.RunQuantity + 1;
+
+            ctx.SaveChanges();
         }
     }
 }
