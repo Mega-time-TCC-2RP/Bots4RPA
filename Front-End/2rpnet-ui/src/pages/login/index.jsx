@@ -161,7 +161,6 @@ export default function Login() {
         }
 
         return (
-                <div>
                         <div className='login'>
                                 <ToastContainer role="alert" />
                                 <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
@@ -236,7 +235,6 @@ export default function Login() {
                                 <img src={Vermelho} className='img-red' alt="imagem de um robô vermelho" />
 
                         </div>
-                </div>
 
         )
 }

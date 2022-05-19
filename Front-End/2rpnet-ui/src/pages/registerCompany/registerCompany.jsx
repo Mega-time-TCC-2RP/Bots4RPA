@@ -228,7 +228,7 @@ export default function RegisterCompany() {
     }
 
     return (
-        <div>
+        <div >
             <VLibras />
             <div className='backgroudRegister'>
                 <div className='robotBlue'>

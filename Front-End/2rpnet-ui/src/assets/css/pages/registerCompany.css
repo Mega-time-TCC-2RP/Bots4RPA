@@ -165,17 +165,24 @@ input#file-upload-button {
 
 
 @media only screen and (max-width: 600px){
-.backgroudRegister{
-    width: 50px;
-}
-.robotBlue, .robotRed, .access-button{
-    visibility: hidden;
+    *{
+        margin: 0;
+        padding: 0;
     }
-.registerArea{
-    width: 50px;
-    /* padding: 4rem; */
-    height: 150vh;
-    margin-top: 460px;
-}
+    .backgroudRegister{
+        overflow-x: hidden;
+    }
 
+    .robotBlue, .robotRed, .access-button{
+        visibility: hidden;
+        }
+    .registerArea{
+        width: 600px;
+        padding: 4rem;
+        height: 140vh;
+        margin-top: 280px;
+        position: absolute;
+    }
+
+    
 }
