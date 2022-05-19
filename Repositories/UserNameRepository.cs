@@ -33,7 +33,39 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void Delete(UserName datauser)
         {
             var dataUser = datauser;
-            ctx.Remove(dataUser);
+            if (dataUser.IdUserType == 3)
+            {
+                foreach (var item in dataUser.Employees.First().Players.First().LibrarySkins)
+                {
+                    ctx.Entry(item).State = EntityState.Deleted;
+                    ctx.SaveChanges();
+                }
+                foreach (var item in dataUser.Employees.First().Players.First().LibraryTrophies)
+                {
+                    ctx.Entry(item).State = EntityState.Deleted;
+                    ctx.SaveChanges();
+                }
+                foreach (var item in dataUser.Employees.First().Players.First().Posts)
+                {
+                    foreach (var item2 in item.Comments)
+                    {
+                        ctx.Entry(item2).State = EntityState.Deleted;
+                        ctx.SaveChanges();
+                    }
+                    foreach (var item2 in item.Likes)
+                    {
+                        ctx.Entry(item2).State = EntityState.Deleted;
+                        ctx.SaveChanges();
+                    }
+                    ctx.Entry(item).State = EntityState.Deleted;
+                    ctx.SaveChanges();
+                }
+                ctx.Entry(dataUser.Employees.First().Players.First()).State = EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+            ctx.Entry(dataUser.Employees.First()).State = EntityState.Deleted;
+            ctx.SaveChanges();
+            ctx.Entry(dataUser).State = EntityState.Deleted;
             ctx.SaveChanges();
         }
 
