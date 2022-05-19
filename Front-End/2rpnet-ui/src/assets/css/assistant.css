@@ -300,7 +300,7 @@ body {
 }
 
 .card-flow {
-  width: 200px;
+  width: 204px;
   height: 56px;
   display: flex;
   align-items: center;
@@ -316,10 +316,7 @@ body {
 }
 
 .box-card-flow {
-  width: 204px;
   display: flex;
+  width: 204px;
 }
 
-.footerAssistant {
-  padding: 0 0 7%;
-}

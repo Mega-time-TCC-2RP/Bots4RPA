@@ -3,6 +3,7 @@ import "../../components/modal/Modal.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
+import EditIcon from '../icones/edit'
 // import { run } from 'cypress';
 
 function CloseModal(idAssistant) {
@@ -13,12 +14,12 @@ function CloseModal(idAssistant) {
 
 export default function Modal({ assistant }) {
 
+    const [AssistantsList, setAssistantsList] = useState([]);
     const [Run, setRun] = useState([]);
+    const [Description, setDescription] = useState("");
 
     function RunQuantity() {
-        var myUrl = "http://localhost:5000/api/Run/" + assistant.idAssistant;
-
-        fetch(myUrl, {
+        fetch('http://localhost:5000/api/Run/' + assistant.idAssistant, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
@@ -26,11 +27,71 @@ export default function Modal({ assistant }) {
             .then((response) => response.json())
             .then((data) =>
                 setRun(data)
-            
+                // console.log(data)
             )
             .catch((error) => console.log(error));
     };
-    useEffect(RunQuantity)
+
+    useEffect(RunQuantity, [])
+
+    function DeleteAssistant(idAssistant) {
+        fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    // console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
+                    CloseModal(assistant.idAssistant)
+                }
+            })
+            .catch((erro) => console.log(erro))
+    };
+
+
+    function UpdateDescription(idAssistant) {
+        console.log(assistant.assistantDescription + idAssistant)
+        fetch("http://localhost:5000/api/Assistants/" + assistant.idAssistant, { assistantDescription: Description }, {
+            method: 'PUT',
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            }
+        })
+            .then(resposta => {
+                if (resposta.status === 204) {
+                    console.log("descricao do assistent" + idAssistant + "atualizada");
+                    // document.getElementById(idConsulta).setAttribute("readOnly");
+                    var btn = document.getElementById("btn" + idAssistant)
+                    btn.style.display = "none";
+                    setDescription("")
+                }
+            }).catch(erro => console.log(erro))
+    }
+
+    function permitirTextArea(idAssistant, assistantDescription) {
+        // console.log("Você está editando a descrição do assistente" + idAssistant)
+        setDescription(assistant.assistantDescription);
+        var textoDescricao = document.getElementById("texto_desc" + idAssistant)
+        textoDescricao.removeAttribute("readOnly");
+
+        if (textoDescricao.style.display === "none") {
+            textoDescricao.style.display = "";
+        } else {
+            textoDescricao.style.display = "none";
+        }
+
+        var btn = document.getElementById("btn" + idAssistant);
+
+        if (btn.style.display === "none") {
+            btn.style.display = "";
+        } else {
+            setDescription("")
+            btn.style.display = "none";
+        }
+
+    }
 
     return (
         <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
@@ -48,8 +109,15 @@ export default function Modal({ assistant }) {
                 <div className='Sbody-modal'>
                     <div className='Sbox-modal-assistant'>
                         <div className='assistant-id'>
-                            <img src={Azul_Home} className="assistant-modal" />
-                            <h3>{assistant.assistantName}</h3>
+                            <div className='box-img-modal'>
+                                <img src={Azul_Home} className="assistant-modal" />
+                                <button className='button-edit' onClick={() => permitirTextArea(assistant.idAssistant, assistant.assistantDescription)} type="button">
+                                    <EditIcon />
+                                </button>
+                            </div>
+                            <div className='Sbox-assistantName'>
+                                <h3>{assistant.assistantName}</h3>
+                            </div>
                         </div>
 
                         <div className='assistant-info'>
@@ -57,16 +125,29 @@ export default function Modal({ assistant }) {
                                 <h4>Descrição:</h4>
                             </div>
                             <div className='box-paragraph'>
-                                <p>
+                                <textarea name="texto_desc" style={{ resize: "none", display: "none" }} readOnly value={Description} onChange={(campo) => setDescription(campo.target.value)}>
+                                    {/* <textarea> */}
                                     {assistant.assistantDescription}
-                                </p>
+                                </textarea>
+                                <button
+                                    className='btn-save-modal'
+                                    onClick={() => UpdateDescription(assistant.idAssistant)}
+                                    id={"btn" + assistant.idAssistant}
+                                    style={{ display: "none" }}>
+                                    Salvar
+                                </button>
                             </div>
                             <div className='assistant-date'>
-                                <span className='span1'> Última alteração: </span>
+                                <span className='span1'> Data da última alteração: </span>
                                 <span className='span2'> {Intl.DateTimeFormat("pt-BR", {
                                     year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"
                                 }).format(new Date(assistant.alterationDate))} </span>
                             </div>
+                            <button onClick={(event) => {
+                                event.preventDefault()
+                                DeleteAssistant(assistant.idAssistant)
+                            }}
+                                className='button-delete'>Excluir</button>
                         </div>
                     </div>
                     <div className='assistant-graphics'>
@@ -123,3 +204,5 @@ export default function Modal({ assistant }) {
         </div>
     )
 }
+
+

@@ -21,6 +21,7 @@
 }
 
 .Sexit-button {
+    /* width: 1.938em; */
     align-items: center;
     font-size: 32px;
     border: none;
@@ -63,25 +64,35 @@
 
 .assistant-id {
     width: 100%;
-    height: 47%;
-    margin-top: 1.25rem;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* margin-top: 1.25rem; */
 
     /* background-color: rgb(0, 134, 60); */
 }
 
-.assistant-modal img {
-    width: 270.69px;
-    height: 240.18px;
-
-    cursor: pointer;
+/* 
+.Sassistant-modal{
+display: flex;
+} */
+.box-img-modal {
+    width: 74%;
     display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+
+    /* background-color: #b1d7ff; */
+}
+
+.Sbox-assistantName {
+    width: 100%;
+
+    /* background-color: #fcff98; */
 }
 
 .assistant-id h3 {
-    margin-top: 1.3rem;
+    margin-top: 1.6rem;
     display: flex;
     font-family: 'Montserrat';
     font-style: normal;
@@ -94,7 +105,7 @@
 
 .assistant-info {
     width: 100%;
-    height: 50%;
+    height: 53%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -104,7 +115,7 @@
 
 .box-description {
     width: 100%;
-    height: 2.25em;
+    height: 1.7em;
 
     /* background-color: rgb(255, 234, 117); */
 }
@@ -123,13 +134,16 @@
 
 .box-paragraph {
     width: 25.188em;
-    height: 12.688em;
+    height: 8.5em;
+    /* height: 12.688em; */
+    /* margin-top: 1.3rem; */
     display: flex;
+    flex-direction: column;
 
     /* background-color: darkcyan; */
 }
 
-.box-paragraph p {
+.box-paragraph textarea {
     display: flex;
     font-family: 'Montserrat';
     font-style: normal;
@@ -143,8 +157,11 @@
 }
 
 .assistant-date {
-    height: 4.813em;
-    margin-bottom: 1.3rem;
+    height: 2.8em;
+    /* margin-top: 1.25rem; */
+    /* margin-bottom: 1.3rem; */
+    margin-top: 16px;
+    margin-bottom: 16px;
     display: flex;
     line-height: 27px;
     flex-direction: column;
@@ -200,7 +217,7 @@
 .container-left {
     width: 264px;
     height: 210px;
-    margin-top: 1.375rem;
+    margin-top: 22px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -376,4 +393,52 @@
     align-items: center;
 
     color: #022041;
+}
+
+.button-delete {
+    width: 10em;
+    height: 2.6em;
+    border-radius: 64px;
+    border: none;
+    font-family: 'Exo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    background: #E41500;
+
+    color: #FFFFFF;
+}
+
+.button-delete:hover {
+    background-color: #b81200;
+}
+
+.icon-edit {
+    height: 100%;
+    cursor: pointer;
+    color: #3475BB;
+
+}
+
+.button-edit {
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    background-color: unset;
+}
+
+.btn-save-modal {
+    margin-top: 0.7rem;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: unset;
+    color: #3475BB;
 }

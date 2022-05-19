@@ -1,11 +1,10 @@
-// css:
 import "../../assets/css/style.css";
 import "../../assets/css/components/navbar.css"
-
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/menu/Navbar'
 import VLibras from '@djpfs/react-vlibras'
 import { API } from "../../services/api";
 
@@ -29,7 +28,7 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import PlayIcon from '../../components/icones/play'
 
 //Components:
-import Navbar from '../../components/menu/Navbar'
+// import Navbar from '../../components/menu/Navbar'
 import Modal from '../../components/modal/Modal'
 import ModalA from '../../components/modal/ModalAssistant'
 import Footer from '../../components/footer/footer'
@@ -37,6 +36,7 @@ import { render } from "@testing-library/react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+{/* <Navbar/> */ }
 
 export default function Home() {
 
@@ -50,32 +50,32 @@ export default function Home() {
 
     var eURL = API + "/api/Assistant" + idAssistant + "/Post";
     var eBody = JSON.stringify({
-        "email": parseJwt().email,
-        "emailBody": "result"
-      });
+      "email": parseJwt().email,
+      "emailBody": "result"
+    });
 
     fetch(eURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: eBody
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: eBody
     })
-        .then((response) => {
-            // console.log("before if");
-            console.log(response)
-            if (response.status === 204) {
-                console.log("FUNCIONOU");
-                toast.success("O resultado foi enviado para seu email");
-            } else {
-                toast.error("A execução deu errado :/");
-            }
-            setIsExecuting(false);
-        })
-        .catch((erro) => {
-            console.log(erro)
-            toast.error("A execução deu errado :/");
-            setIsExecuting(false);
-        })
-}
+      .then((response) => {
+        // console.log("before if");
+        console.log(response)
+        if (response.status === 204) {
+          console.log("FUNCIONOU");
+          toast.success("O resultado foi enviado para seu email");
+        } else {
+          toast.error("A execução deu errado :/");
+        }
+        setIsExecuting(false);
+      })
+      .catch((erro) => {
+        console.log(erro)
+        toast.error("A execução deu errado :/");
+        setIsExecuting(false);
+      })
+  }
 
   function GetMyAssistants() {
     fetch('http://localhost:5000/api/Assistants', {
@@ -90,9 +90,9 @@ export default function Home() {
       )
       .catch((error) => console.log(error));
   };
-
-  useEffect(GetMyAssistants, [])
-
+  useEffect(() => {
+    GetMyAssistants();
+  }, [CloseModal])
 
   // Open Modal to create assistant
   function OpenModalAssistant() {
@@ -176,6 +176,7 @@ export default function Home() {
   useEffect(() => {
     GetMyQuests();
     GetHighlightedPosts();
+    GetMyAssistants();
   }, [])
 
   return (

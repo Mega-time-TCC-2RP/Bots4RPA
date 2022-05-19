@@ -7,6 +7,19 @@
     overflow-y: auto; */
 }
 
+.test {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 72px;
+}
+.fundotest{
+    position: absolute;
+    background-color: var(--ScreenBackground);
+    height: 100%;
+    width: 100%;
+}
+
 .top-container {
     height: 73vh;
     display: flex;
@@ -44,7 +57,7 @@
     /* background-color: #77b9ff; */
 }
 
-.Input-Home {
+.Input-Home{
     width: 11.4em;
     height: 2.6em;
     margin-left: 20px;
