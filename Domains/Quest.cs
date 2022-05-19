@@ -8,12 +8,11 @@ namespace _2RPNET_API.Domains
     public partial class Quest
     {
         public int IdQuest { get; set; }
-        public DateTime? DateHour { get; set; }
-        public string DescriptionQuest { get; set; }
-        public int IdEmployee { get; set; }
-        public int IdStatus { get; set; }
+        public int IdWorkflow { get; set; }
+        public bool? Completed { get; set; }
+        public string Title { get; set; }
+        public string QuestDescription { get; set; }
 
-        public virtual Employee IdEmployeeNavigation { get; set; }
-        public virtual StatusQuest IdStatusNavigation { get; set; }
+        public virtual Workflow IdWorkflowNavigation { get; set; }
     }
 }

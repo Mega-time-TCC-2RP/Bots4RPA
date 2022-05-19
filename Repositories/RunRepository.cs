@@ -91,13 +91,14 @@ namespace _2RPNET_API.Repositories
 
         public void SuccessesOrFailures(int IdAssistant)
         {
-            List<Run> ListRuns = ReadAll();
-            //List<Run> ListRuns = ctx.Runs.ToList();
+            //List<Run> ListRuns = ReadAll();
+            List<Run> ListRuns = ctx.Runs.ToList();
 
             foreach (var item in ListRuns)
             {
                 if (item.IdAssistant == IdAssistant)
                 {
+                    item.IdWorkflow = item.IdWorkflow;
                     item.RunQuantity = item.RunQuantity + 1;
                     item.RunDate = DateTime.Now;
                     item.RunStatus = item.RunStatus;

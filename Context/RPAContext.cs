@@ -17,13 +17,13 @@ namespace _2RPNET_API.Context
             : base(options)
         {
         }
-
         public virtual DbSet<Assistant> Assistants { get; set; }
         public virtual DbSet<AssistantProcedure> AssistantProcedures { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Corporation> Corporations { get; set; }
         public virtual DbSet<EmailVerification> EmailVerifications { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<LibraryAssistant> LibraryAssistants { get; set; }
         public virtual DbSet<LibrarySkin> LibrarySkins { get; set; }
         public virtual DbSet<LibraryTrophy> LibraryTrophies { get; set; }
         public virtual DbSet<Like> Likes { get; set; }
@@ -33,10 +33,11 @@ namespace _2RPNET_API.Context
         public virtual DbSet<Quest> Quests { get; set; }
         public virtual DbSet<Run> Runs { get; set; }
         public virtual DbSet<Skin> Skins { get; set; }
-        public virtual DbSet<StatusQuest> StatusQuests { get; set; }
+        public virtual DbSet<StatusWorkflow> StatusWorkflows { get; set; }
         public virtual DbSet<Trophy> Trophies { get; set; }
         public virtual DbSet<UserName> UserNames { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
+        public virtual DbSet<Workflow> Workflows { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -53,7 +54,7 @@ namespace _2RPNET_API.Context
             modelBuilder.Entity<Assistant>(entity =>
             {
                 entity.HasKey(e => e.IdAssistant)
-                    .HasName("PK__Assistan__72DCFF80C01DCA62");
+                    .HasName("PK__Assistan__72DCFF8096B1055E");
 
                 entity.ToTable("Assistant");
 
@@ -74,13 +75,13 @@ namespace _2RPNET_API.Context
                 entity.HasOne(d => d.IdEmployeeNavigation)
                     .WithMany(p => p.Assistants)
                     .HasForeignKey(d => d.IdEmployee)
-                    .HasConstraintName("FK__Assistant__IdEmp__1A34DF26");
+                    .HasConstraintName("FK__Assistant__IdEmp__7FC0E00C");
             });
 
             modelBuilder.Entity<AssistantProcedure>(entity =>
             {
                 entity.HasKey(e => e.IdAprocedure)
-                    .HasName("PK__Assistan__2A41E0FA1144431D");
+                    .HasName("PK__Assistan__2A41E0FA68094FC5");
 
                 entity.ToTable("AssistantProcedure");
 
@@ -95,19 +96,19 @@ namespace _2RPNET_API.Context
                     .IsUnicode(false);
 
                 entity.Property(e => e.ProcedureValue)
-                    .HasMaxLength(255)
+                    .HasMaxLength(256)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.IdAssistantNavigation)
                     .WithMany(p => p.AssistantProcedures)
                     .HasForeignKey(d => d.IdAssistant)
-                    .HasConstraintName("FK__Assistant__IdAss__1D114BD1");
+                    .HasConstraintName("FK__Assistant__IdAss__029D4CB7");
             });
 
             modelBuilder.Entity<Comment>(entity =>
             {
                 entity.HasKey(e => e.IdComment)
-                    .HasName("PK__Comment__57C9AD587CC65530");
+                    .HasName("PK__Comment__57C9AD5850706D8B");
 
                 entity.ToTable("Comment");
 
@@ -126,26 +127,26 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Comment__IdPlaye__0FB750B3");
+                    .HasConstraintName("FK__Comment__IdPlaye__75435199");
 
                 entity.HasOne(d => d.IdPostNavigation)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.IdPost)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Comment__IdPost__0EC32C7A");
+                    .HasConstraintName("FK__Comment__IdPost__744F2D60");
             });
 
             modelBuilder.Entity<Corporation>(entity =>
             {
                 entity.HasKey(e => e.IdCorporation)
-                    .HasName("PK__Corporat__2BAEF03D99FF0305");
+                    .HasName("PK__Corporat__2BAEF03DF6C6B29D");
 
                 entity.ToTable("Corporation");
 
-                entity.HasIndex(e => e.Phone, "UQ__Corporat__5C7E359EE6B65A0F")
+                entity.HasIndex(e => e.Phone, "UQ__Corporat__5C7E359EC82C8C1B")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Cnpj, "UQ__Corporat__AA57D6B410758B0D")
+                entity.HasIndex(e => e.Cnpj, "UQ__Corporat__AA57D6B482BA80E6")
                     .IsUnique();
 
                 entity.Property(e => e.AddressName)
@@ -181,11 +182,11 @@ namespace _2RPNET_API.Context
             modelBuilder.Entity<EmailVerification>(entity =>
             {
                 entity.HasKey(e => e.IdEmailVerification)
-                    .HasName("PK__EmailVer__E64B1416DBAF315F");
+                    .HasName("PK__EmailVer__E64B141648D2ACAE");
 
                 entity.ToTable("EmailVerification");
 
-                entity.HasIndex(e => e.Username, "UQ__EmailVer__536C85E48C3E4794")
+                entity.HasIndex(e => e.Username, "UQ__EmailVer__536C85E4F524F2EF")
                     .IsUnique();
 
                 entity.Property(e => e.Cryptography)
@@ -216,13 +217,13 @@ namespace _2RPNET_API.Context
                 entity.HasOne(d => d.IdAssistantNavigation)
                     .WithMany(p => p.EmailVerifications)
                     .HasForeignKey(d => d.IdAssistant)
-                    .HasConstraintName("FK__EmailVeri__IdAss__23BE4960");
+                    .HasConstraintName("FK__EmailVeri__IdAss__0A3E6E7F");
             });
 
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.IdEmployee)
-                    .HasName("PK__Employee__51C8DD7A02540B4A");
+                    .HasName("PK__Employee__51C8DD7A048A3026");
 
                 entity.ToTable("Employee");
 
@@ -230,24 +231,55 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.IdCorporation)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Employee__IdCorp__7226EDCC");
+                    .HasConstraintName("FK__Employee__IdCorp__52EE3995");
 
                 entity.HasOne(d => d.IdOfficeNavigation)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.IdOffice)
-                    .HasConstraintName("FK__Employee__IdOffi__731B1205");
+                    .HasConstraintName("FK__Employee__IdOffi__53E25DCE");
 
                 entity.HasOne(d => d.IdUserNavigation)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.IdUser)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Employee__IdUser__7132C993");
+                    .HasConstraintName("FK__Employee__IdUser__51FA155C");
+            });
+
+            modelBuilder.Entity<LibraryAssistant>(entity =>
+            {
+                entity.HasKey(e => e.IdLiraryAssistant)
+                    .HasName("PK__LibraryA__76E33D6B85895919");
+
+                entity.ToTable("LibraryAssistant");
+
+                entity.Property(e => e.Nickname)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UnlockDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.IdAssistantNavigation)
+                    .WithMany(p => p.LibraryAssistants)
+                    .HasForeignKey(d => d.IdAssistant)
+                    .HasConstraintName("FK__LibraryAs__IdAss__0E0EFF63");
+
+                entity.HasOne(d => d.IdEmployeeNavigation)
+                    .WithMany(p => p.LibraryAssistants)
+                    .HasForeignKey(d => d.IdEmployee)
+                    .HasConstraintName("FK__LibraryAs__IdEmp__0D1ADB2A");
+
+                entity.HasOne(d => d.IdLibrarySkinNavigation)
+                    .WithMany(p => p.LibraryAssistants)
+                    .HasForeignKey(d => d.IdLibrarySkin)
+                    .HasConstraintName("FK__LibraryAs__IdLib__0F03239C");
             });
 
             modelBuilder.Entity<LibrarySkin>(entity =>
             {
                 entity.HasKey(e => e.IdLibrarySkins)
-                    .HasName("PK__LibraryS__AEA1FBE612636611");
+                    .HasName("PK__LibraryS__AEA1FBE63F92D0A0");
 
                 entity.Property(e => e.UnlockData)
                     .HasColumnType("datetime")
@@ -257,19 +289,19 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.LibrarySkins)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LibrarySk__IdPla__025D5595");
+                    .HasConstraintName("FK__LibrarySk__IdPla__67E9567B");
 
                 entity.HasOne(d => d.IdSkinNavigation)
                     .WithMany(p => p.LibrarySkins)
                     .HasForeignKey(d => d.IdSkin)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LibrarySk__IdSki__035179CE");
+                    .HasConstraintName("FK__LibrarySk__IdSki__68DD7AB4");
             });
 
             modelBuilder.Entity<LibraryTrophy>(entity =>
             {
                 entity.HasKey(e => e.IdLibraryTrophy)
-                    .HasName("PK__LibraryT__06B3A134DFEAD71E");
+                    .HasName("PK__LibraryT__06B3A134015EAF2A");
 
                 entity.ToTable("LibraryTrophy");
 
@@ -281,37 +313,37 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.LibraryTrophies)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LibraryTr__IdPla__16644E42");
+                    .HasConstraintName("FK__LibraryTr__IdPla__7BF04F28");
 
                 entity.HasOne(d => d.IdTrophyNavigation)
                     .WithMany(p => p.LibraryTrophies)
                     .HasForeignKey(d => d.IdTrophy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LibraryTr__IdTro__1758727B");
+                    .HasConstraintName("FK__LibraryTr__IdTro__7CE47361");
             });
 
             modelBuilder.Entity<Like>(entity =>
             {
                 entity.HasKey(e => e.IdLikes)
-                    .HasName("PK__Likes__3FDC4886B38F60B7");
+                    .HasName("PK__Likes__3FDC48868E79B1B1");
 
                 entity.HasOne(d => d.IdPlayerNavigation)
                     .WithMany(p => p.Likes)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Likes__IdPlayer__0AF29B96");
+                    .HasConstraintName("FK__Likes__IdPlayer__707E9C7C");
 
                 entity.HasOne(d => d.IdPostNavigation)
                     .WithMany(p => p.Likes)
                     .HasForeignKey(d => d.IdPost)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Likes__IdPost__09FE775D");
+                    .HasConstraintName("FK__Likes__IdPost__6F8A7843");
             });
 
             modelBuilder.Entity<Office>(entity =>
             {
                 entity.HasKey(e => e.IdOffice)
-                    .HasName("PK__Office__57A12F4F60813359");
+                    .HasName("PK__Office__57A12F4FCC468352");
 
                 entity.ToTable("Office");
 
@@ -324,7 +356,7 @@ namespace _2RPNET_API.Context
             modelBuilder.Entity<Player>(entity =>
             {
                 entity.HasKey(e => e.IdPlayer)
-                    .HasName("PK__Player__0A2C3D92D86E3FC1");
+                    .HasName("PK__Player__0A2C3D92DDFA94E7");
 
                 entity.ToTable("Player");
 
@@ -332,13 +364,13 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.Players)
                     .HasForeignKey(d => d.IdEmployee)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Player__IdEmploy__75F77EB0");
+                    .HasConstraintName("FK__Player__IdEmploy__56BECA79");
             });
 
             modelBuilder.Entity<Post>(entity =>
             {
                 entity.HasKey(e => e.IdPost)
-                    .HasName("PK__Post__F8DCBD4DA48B7BD1");
+                    .HasName("PK__Post__F8DCBD4D14EE723A");
 
                 entity.ToTable("Post");
 
@@ -359,39 +391,35 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.Posts)
                     .HasForeignKey(d => d.IdPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Post__IdPlayer__07220AB2");
+                    .HasConstraintName("FK__Post__IdPlayer__6CAE0B98");
             });
 
             modelBuilder.Entity<Quest>(entity =>
             {
                 entity.HasKey(e => e.IdQuest)
-                    .HasName("PK__Quest__CDB9F57B94DCE3D6");
+                    .HasName("PK__Quest__CDB9F57B927BBB51");
 
                 entity.ToTable("Quest");
 
-                entity.Property(e => e.DateHour).HasColumnType("datetime");
+                entity.Property(e => e.Completed).HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.DescriptionQuest)
+                entity.Property(e => e.QuestDescription).IsUnicode(false);
+
+                entity.Property(e => e.Title)
                     .IsRequired()
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdEmployeeNavigation)
+                entity.HasOne(d => d.IdWorkflowNavigation)
                     .WithMany(p => p.Quests)
-                    .HasForeignKey(d => d.IdEmployee)
+                    .HasForeignKey(d => d.IdWorkflow)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Quest__IdEmploye__7ABC33CD");
-
-                entity.HasOne(d => d.IdStatusNavigation)
-                    .WithMany(p => p.Quests)
-                    .HasForeignKey(d => d.IdStatus)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Quest__IdStatus__7BB05806");
+                    .HasConstraintName("FK__Quest__IdWorkflo__604834B3");
             });
 
             modelBuilder.Entity<Run>(entity =>
             {
                 entity.HasKey(e => e.IdRun)
-                    .HasName("PK__Run__2A49CE1F58B9BB5F");
+                    .HasName("PK__Run__2A49CE1FCB9FD452");
 
                 entity.ToTable("Run");
 
@@ -404,13 +432,18 @@ namespace _2RPNET_API.Context
                 entity.HasOne(d => d.IdAssistantNavigation)
                     .WithMany(p => p.Runs)
                     .HasForeignKey(d => d.IdAssistant)
-                    .HasConstraintName("FK__Run__IdAssistant__1FEDB87C");
+                    .HasConstraintName("FK__Run__IdAssistant__0579B962");
+
+                entity.HasOne(d => d.IdWorkflowNavigation)
+                    .WithMany(p => p.Runs)
+                    .HasForeignKey(d => d.IdWorkflow)
+                    .HasConstraintName("FK__Run__IdWorkflow__066DDD9B");
             });
 
             modelBuilder.Entity<Skin>(entity =>
             {
                 entity.HasKey(e => e.IdSkin)
-                    .HasName("PK__Skin__A6FFA88B947A5213");
+                    .HasName("PK__Skin__A6FFA88BEF9D4AA4");
 
                 entity.ToTable("Skin");
 
@@ -428,23 +461,22 @@ namespace _2RPNET_API.Context
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<StatusQuest>(entity =>
+            modelBuilder.Entity<StatusWorkflow>(entity =>
             {
                 entity.HasKey(e => e.IdStatus)
-                    .HasName("PK__StatusQu__B450643A22B4AB54");
+                    .HasName("PK__StatusWo__B450643A0FAD2D96");
 
-                entity.ToTable("StatusQuest");
+                entity.ToTable("StatusWorkflow");
 
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasMaxLength(100)
+                entity.Property(e => e.StatusTitle)
+                    .HasMaxLength(10)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<Trophy>(entity =>
             {
                 entity.HasKey(e => e.IdTrophy)
-                    .HasName("PK__Trophy__E3A7B71B40FBA678");
+                    .HasName("PK__Trophy__E3A7B71B6228F172");
 
                 entity.ToTable("Trophy");
 
@@ -465,18 +497,26 @@ namespace _2RPNET_API.Context
             modelBuilder.Entity<UserName>(entity =>
             {
                 entity.HasKey(e => e.IdUser)
-                    .HasName("PK__UserName__B7C92638AC3052FF");
+                    .HasName("PK__UserName__B7C92638CF505A66");
 
                 entity.ToTable("UserName");
 
-                entity.HasIndex(e => e.Phone, "UQ__UserName__5C7E359E4369E8AB")
+                entity.HasIndex(e => e.Phone, "UQ__UserName__5C7E359E1D56EF5F")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Email, "UQ__UserName__A9D1053480351576")
+                entity.HasIndex(e => e.Email, "UQ__UserName__A9D10534E6B5CED8")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Cpf, "UQ__UserName__C1F89731DA0CBDD2")
+                entity.HasIndex(e => e.Cpf, "UQ__UserName__C1F8973140C785FC")
                     .IsUnique();
+
+                entity.HasIndex(e => e.GoogleId, "idx_googleid_notnull")
+                    .IsUnique()
+                    .HasFilter("([googleId] IS NOT NULL)");
+
+                entity.HasIndex(e => e.Phone, "idx_userphone_notnull")
+                    .IsUnique()
+                    .HasFilter("([Phone] IS NOT NULL)");
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
 
@@ -491,6 +531,11 @@ namespace _2RPNET_API.Context
                     .IsRequired()
                     .HasMaxLength(256)
                     .IsUnicode(false);
+
+                entity.Property(e => e.GoogleId)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("googleId");
 
                 entity.Property(e => e.Passwd)
                     .HasMaxLength(100)
@@ -523,13 +568,13 @@ namespace _2RPNET_API.Context
                     .WithMany(p => p.UserNames)
                     .HasForeignKey(d => d.IdUserType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserName__IdUser__66B53B20");
+                    .HasConstraintName("FK__UserName__IdUser__477C86E9");
             });
 
             modelBuilder.Entity<UserType>(entity =>
             {
                 entity.HasKey(e => e.IdUserType)
-                    .HasName("PK__UserType__047ED66DCB368C6C");
+                    .HasName("PK__UserType__047ED66D834CD94C");
 
                 entity.ToTable("UserType");
 
@@ -537,6 +582,36 @@ namespace _2RPNET_API.Context
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Workflow>(entity =>
+            {
+                entity.HasKey(e => e.IdWorkflow)
+                    .HasName("PK__Workflow__AFBA43F51BF4DA22");
+
+                entity.ToTable("Workflow");
+
+                entity.Property(e => e.EndDate).HasColumnType("datetime");
+
+                entity.Property(e => e.IdStatus).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.WorkflowDescription).IsUnicode(false);
+
+                entity.HasOne(d => d.IdEmployeeNavigation)
+                    .WithMany(p => p.Workflows)
+                    .HasForeignKey(d => d.IdEmployee)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Workflow__IdEmpl__5B837F96");
+
+                entity.HasOne(d => d.IdStatusNavigation)
+                    .WithMany(p => p.Workflows)
+                    .HasForeignKey(d => d.IdStatus)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Workflow__IdStat__5C77A3CF");
             });
 
             OnModelCreatingPartial(modelBuilder);
