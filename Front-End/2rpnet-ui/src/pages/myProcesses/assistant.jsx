@@ -15,7 +15,7 @@ import Footer from '../../components/footer/footer'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import {parseJwt} from "../../services/auth"
+import { parseJwt } from "../../services/auth"
 
 import Procedures from '../../services/process';
 import { set } from "react-hook-form";
@@ -38,6 +38,7 @@ export default function Assistant() {
 
     function GetProceduresById() {
         fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + idAssistant, {
+            // fetch(API + '/api/AssistantProcedure' + idAssistant, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
@@ -89,11 +90,11 @@ export default function Assistant() {
 
             var myBody = JSON.stringify({
                 "idAssistant": idAssistant,
-                "procedurePriority": index+1,
+                "procedurePriority": index + 1,
                 "procedureName": child.textContent,
                 "procedureDescription": "",
                 "procedureValue": splited[1]
-              });
+            });
 
             // console.log(myBody)
 
@@ -121,7 +122,7 @@ export default function Assistant() {
 
         //save the playwright script for the assistant
         var myURL2 = API + "/api/AssistantProcedure/ManipulateScript/" + idAssistant;
-        
+
 
         fetch(myURL2, {
             method: 'POST',
@@ -133,12 +134,12 @@ export default function Assistant() {
                     // console.log("after if");
                     return response.text()
                 } else {
-                    toast.error(`Houve erros no processo de salvamento do assistente ${idAssistant}`) 
+                    toast.error(`Houve erros no processo de salvamento do assistente ${idAssistant}`)
                 }
             })
             .then((data) => {
                 // console.log(data);
-                setResult(data);                
+                setResult(data);
                 toast.success(`o assistente ${idAssistant} foi salvo`)
                 setIsSaving(false);
             })
@@ -174,7 +175,7 @@ export default function Assistant() {
         var eBody = JSON.stringify({
             "email": parseJwt().email,
             "emailBody": result
-          });
+        });
 
         fetch(eURL, {
             method: 'POST',
@@ -186,6 +187,7 @@ export default function Assistant() {
                 console.log(response)
                 if (response.status === 204) {
                     console.log("FUNCIONOU");
+                    
                     toast.success("O resultado foi enviado para seu email");
                 } else {
                     toast.error("A execução deu errado :/");
@@ -279,7 +281,7 @@ export default function Assistant() {
             <header className="header container">
                 <h1 className="header__text">{Assistant.assistantName}</h1>
             </header>
-            <main className="footerAssistant">
+            <main className="">
                 <Navbar />
                 <div className="boards container">
                     <div className="boards__board boards__board--pointy">
