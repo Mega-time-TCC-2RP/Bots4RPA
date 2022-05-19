@@ -37,7 +37,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
             int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
             if (UserRole == 2)
             {
-                return Ok(ctx.ReadAll().Where(P => P.IdEmployeeNavigation.IdCorporation == Ectx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation));
+                List<Player> Players = ctx.ReadAll().Where(P => P.IdEmployeeNavigation.IdCorporation == Ectx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).IdCorporation).ToList();
+                return Ok(Players);
             }
             return Ok(ctx.ReadAll());
         }

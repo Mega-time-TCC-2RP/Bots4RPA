@@ -33,12 +33,12 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public IEnumerable<Player> ReadAll()
         {
-            return ctx.Players.AsNoTracking().ToList();
+            return ctx.Players.Include(P => P.IdEmployeeNavigation).AsNoTracking().ToList();
         }
 
         public Player SearchByID(int id)
         {
-            return ctx.Players.AsNoTracking().ToList().FirstOrDefault(p => p.IdPlayer == id);
+            return ctx.Players.Include(P => P.IdEmployeeNavigation).AsNoTracking().ToList().FirstOrDefault(p => p.IdPlayer == id);
         }
 
         public Player Update(Player player)
