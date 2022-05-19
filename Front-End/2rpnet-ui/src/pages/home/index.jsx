@@ -27,6 +27,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import PlayIcon from '../../components/icones/play'
 
+
 //Components:
 // import Navbar from '../../components/menu/Navbar'
 import Modal from '../../components/modal/Modal'
@@ -36,14 +37,17 @@ import { render } from "@testing-library/react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import GetMyAssistants from "../../components/GetAssistants/getAssistants";
 {/* <Navbar/> */ }
 
 export default function Home() {
 
-  const [AssistantsList, setAssistantsList] = useState([]);
+  // const [AssistantsList, setAssistantsList] = useState([]);
   const [ExecutionsList, setExecutionsList] = useState([]);
 
   const [isExecuting, setIsExecuting] = useState(false);
+
+  const [AssistantsList, setAssistantsList] = useState([]);
 
   function Execute(idAssistant) {
     setIsExecuting(true);
@@ -77,7 +81,10 @@ export default function Home() {
       })
   }
 
+
   function GetMyAssistants() {
+    console.log('Função GetAssistants')
+
     fetch('http://localhost:5000/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -90,9 +97,6 @@ export default function Home() {
       )
       .catch((error) => console.log(error));
   };
-  useEffect(() => {
-    GetMyAssistants();
-  }, [CloseModal])
 
   // Open Modal to create assistant
   function OpenModalAssistant() {
@@ -113,6 +117,8 @@ export default function Home() {
     var modal = document.getElementById("modal" + idAssistant);
     // console.log(id)
     modal.style.display = "none";
+ 
+    // GetMyAssistants()
   };
 
   // Close Modal to create assistant

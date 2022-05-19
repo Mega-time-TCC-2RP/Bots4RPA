@@ -4,15 +4,17 @@ import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
 import EditIcon from '../icones/edit'
+
+import axios from "axios";
 // import { run } from 'cypress';
 
-function CloseModal(idAssistant) {
-    var modal = document.getElementById("modal" + idAssistant);
-    // console.log(id)
-    modal.style.display = "none";
-};
-
 export default function Modal({ assistant }) {
+
+    function CloseModal(idAssistant) {
+        var modal = document.getElementById("modal" + idAssistant);
+        // console.log(id)
+        modal.style.display = "none";
+    };
 
     const [AssistantsList, setAssistantsList] = useState([]);
     const [Run, setRun] = useState([]);
@@ -31,7 +33,6 @@ export default function Modal({ assistant }) {
             )
             .catch((error) => console.log(error));
     };
-
     useEffect(RunQuantity, [])
 
     function DeleteAssistant(idAssistant) {
@@ -51,47 +52,57 @@ export default function Modal({ assistant }) {
     };
 
 
-    function UpdateDescription(idAssistant) {
-        console.log(assistant.assistantDescription + idAssistant)
-        fetch("http://localhost:5000/api/Assistants/" + assistant.idAssistant, { assistantDescription: Description }, {
+    function UpdateDescription() {
+        console.log('entrou')
+
+        const requestOptions = {
             method: 'PUT',
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-            }
-        })
+            headers: {  'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+            body: JSON.stringify({"assistantDescription": Description }) 
+        };
+
+        fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, requestOptions)
             .then(resposta => {
-                if (resposta.status === 204) {
-                    console.log("descricao do assistent" + idAssistant + "atualizada");
+                console.log(resposta)
+                if (resposta.status === 200) {
+                    console.log("descricao do assistente atualizada");
                     // document.getElementById(idConsulta).setAttribute("readOnly");
-                    var btn = document.getElementById("btn" + idAssistant)
-                    btn.style.display = "none";
-                    setDescription("")
+                    // var btn = document.getElementById("btn" + assistant.idAssistant)
+                    // btn.style.display = "none";
+                    //  setDescription("")
                 }
             }).catch(erro => console.log(erro))
-    }
+        // console.log('entrou na função Update')
+    };
+
+
 
     function permitirTextArea(idAssistant, assistantDescription) {
-        // console.log("Você está editando a descrição do assistente" + idAssistant)
+        console.log("Você está editando a descrição do assistente " + idAssistant)
+
         setDescription(assistant.assistantDescription);
         var textoDescricao = document.getElementById("texto_desc" + idAssistant)
         textoDescricao.removeAttribute("readOnly");
 
-        if (textoDescricao.style.display === "none") {
-            textoDescricao.style.display = "";
-        } else {
-            textoDescricao.style.display = "none";
-        }
+        // if (textoDescricao.style.display === "flex") {
+        //     textoDescricao.style.display = "";
+        // } else {
+        //     textoDescricao.style.display = "flex";
+        // }
 
         var btn = document.getElementById("btn" + idAssistant);
 
         if (btn.style.display === "none") {
             btn.style.display = "";
-        } else {
-            setDescription("")
+        }
+        else {
             btn.style.display = "none";
         }
 
     }
+    useEffect(() => {
+        setDescription(assistant.assistantDescription);
+      }, [])
 
     return (
         <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
@@ -111,7 +122,10 @@ export default function Modal({ assistant }) {
                         <div className='assistant-id'>
                             <div className='box-img-modal'>
                                 <img src={Azul_Home} className="assistant-modal" />
-                                <button className='button-edit' onClick={() => permitirTextArea(assistant.idAssistant, assistant.assistantDescription)} type="button">
+                                <button
+                                    className='button-edit'
+                                    onClick={() => permitirTextArea(assistant.idAssistant, assistant.assistantDescription)}
+                                    type="button">
                                     <EditIcon />
                                 </button>
                             </div>
@@ -125,13 +139,20 @@ export default function Modal({ assistant }) {
                                 <h4>Descrição:</h4>
                             </div>
                             <div className='box-paragraph'>
-                                <textarea name="texto_desc" style={{ resize: "none", display: "none" }} readOnly value={Description} onChange={(campo) => setDescription(campo.target.value)}>
-                                    {/* <textarea> */}
+                                {/* <textarea>{assistant.assistantDescription}</textarea> */}
+                                <textarea
+                                    name="texto_desc"
+                                    style={{ resize: "none"}}
+                                    id={"texto_desc" + assistant.idAssistant}
+                                    readOnly value={Description} onChange={(campo) => setDescription(campo.target.value)}>
                                     {assistant.assistantDescription}
                                 </textarea>
                                 <button
                                     className='btn-save-modal'
-                                    onClick={() => UpdateDescription(assistant.idAssistant)}
+                                    onClick={(event) => {
+                                        event.preventDefault()
+                                        UpdateDescription()
+                                    }}
                                     id={"btn" + assistant.idAssistant}
                                     style={{ display: "none" }}>
                                     Salvar
