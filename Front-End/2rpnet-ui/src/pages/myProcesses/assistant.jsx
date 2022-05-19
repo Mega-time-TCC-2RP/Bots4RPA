@@ -42,7 +42,7 @@ export default function Assistant() {
     var idAssistant = location.state.id;
 
     function GetProceduresById() {
-        fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + idAssistant, {
+        fetch(API + '/api/AssistantProcedure/Assistant/' + idAssistant, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
@@ -65,24 +65,17 @@ export default function Assistant() {
                 }} />
             )
         } else {
-            // "ProcedureValue": "",
-            // "EmailReceiver": "",
-            // "EmailSubject": "",
-            // "EmailBody": "",
             
             return (
                 <form>
                     <input className="modal__input" type="text" placeholder={"Digite o destinatário"} value={eRValue} onChange={(campo) => {
                         setERValue(campo.target.value, procedure.EmailReceiver = campo.target.value);
-                        setTeste(eRValue+ eSValue+ eBValue) 
                     }} />
                     <input className="modal__input" type="text" placeholder={"Digite o assunto do email"} value={eSValue} onChange={(campo) => {
                         setESValue(campo.target.value, procedure.EmailSubject = campo.target.value);
-                        setTeste(eRValue+ eSValue+ eBValue)
                     }} />
                     <input className="modal__input" type="text" placeholder={"Digite o corpo do email"} value={eBValue} onChange={(campo) => {
                         setEBValue(campo.target.value, procedure.EmailBody = campo.target.value);
-                        setTeste(eRValue+ eSValue+ eBValue)
                     } } />
                 </form>
             )
@@ -122,9 +115,11 @@ export default function Assistant() {
         }
     };
 
-    function handleClose(id) {
-        var modal = document.getElementById("modal" + id);
-        // console.log(id)
+    function handleClose(p) {
+        var modal = document.getElementById("modal" + p.IdProcedure);
+        console.log(p);
+        p.ProcedureValue = `${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`;
+        console.log(p);
         modal.style.display = "none";
     };
 
@@ -132,13 +127,17 @@ export default function Assistant() {
         //Get the cards inside the dropzone and number them by order.
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
-        var child = [];
+        var child = [];        
 
         var myURL = API + "/api/AssistantProcedure/ProceduresVerification";
 
         for (let index = 0; index < children.length; index++) {
             setIsSaving(true);
             var child = children[index];
+
+            if (child.textContent == "Enviar email para alguem") {
+                setIsThereEmail(true);
+            }
 
             var splited = child.id.split(";");
             child.id = (index + 1) + ";" + splited[1].toString();
@@ -207,7 +206,7 @@ export default function Assistant() {
     }
 
     function GetAssistantById() {
-        var myURL = "http://localhost:5000/api/Assistants/" + location.state.id;
+        var myURL = API + "/api/Assistants/" + location.state.id;
 
         fetch(myURL, {
             headers: {
@@ -256,7 +255,7 @@ export default function Assistant() {
             })
 
         if(isThereEmail == true){
-
+         
         }
     }
 
@@ -360,7 +359,7 @@ export default function Assistant() {
                                             <div id={"modal" + procedure.IdProcedure} className="modal">
                                                 {/* Modal content */}
                                                 <div className="modal-content">
-                                                    <span onClick={() => handleClose(procedure.IdProcedure)} className="close">&times;</span>
+                                                    <span onClick={() => handleClose(procedure)} className="close">&times;</span>
                                                     <div className="modal-headerA">
                                                         <div className="modal-header--content">
                                                             <p className="modal__text--heading modal__text">Nome:</p>
