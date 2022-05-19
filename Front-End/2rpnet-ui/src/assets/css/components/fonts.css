@@ -97,6 +97,29 @@
     width: 50%;
 }
 
+.foreachInputModal {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: var(--WHITE);
+    border-radius: 32px;
+    margin-right: 3%;
+    width: 20%;
+}
+
+.foreachInputModal .sendPhoto {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding-left: 0%;
+    margin-left: 5%;
+    color: var(--WHITE);
+    border-radius: 32px;
+    width: 100%
+}
+
 .foreachInput .sendPhoto:hover {
     background: var(--PrimaryColor2);
 }

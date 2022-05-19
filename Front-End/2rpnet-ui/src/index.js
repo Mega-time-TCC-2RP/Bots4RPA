@@ -65,8 +65,6 @@ const routing = (
         <Route path="/quests" element={<Quest />} /> {/* Task Calendar */}
         <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />
 
-        {/*<Route path="/config" element={<Config/>} /> {/* Configuration */}
-
         <Route path="/notFound" element={<NotFound />} /> {/* Not Found */}
         <Route path="*" element={<Navigate to="notFound" />} /> {/*Redireciona para Not Found caso não encontre nenhuma rota*/}
       </Routes>

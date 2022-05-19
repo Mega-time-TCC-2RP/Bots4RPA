@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import Navbar from '../../components/menu/Navbar'
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
+import { useNavigate } from 'react-router-dom';
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -26,6 +27,7 @@ import * as SiIcons from 'react-icons/si'
 
 //components:
 import Header from '../../components/header/header'
+import { Message } from '@material-ui/icons';
 
 const steps = [
     {
@@ -68,7 +70,9 @@ export default function Config() {
     const [invalidUsers, setInvalidUsers] = useState([]);
     const [invalidCorporations, setInvalidCorporations] = useState([]);
     const [userAlterado, setUserAlterado] = useState({})
+    const [pass, setPass] = useState('')
 
+    let history = useNavigate();
 
     function listUser() {
         document.querySelector('.myData').classList.toggle('selected')
@@ -153,28 +157,39 @@ export default function Config() {
 
     const alterUserData = (event) => {
         event.preventDefault()
-        var formData = new FormData()
-        formData.append('userName1', userAlterado.userName1)
-        formData.append('cpf', userAlterado.cpf)
-        formData.append('BirthDate', userAlterado.birthDate)
-        formData.append('Email', userAlterado.email)
-        formData.append('Phone', userAlterado.phone)
-        formData.append('Rg', userAlterado.rg)
-        formData.append('IdCorporation', userLogado.employees[0].idCorporation)
-        formData.append('IdUserType', userLogado.idUserType)
-        formData.append('Passwd', userLogado.passwd)
-        formData.append('IdOffice', userLogado.employees[0].idOffice)
-        formData.append('File', userLogado.photoUser)
-        axios({
-            method: "PUT",
-            url: "http://grupo7.azurewebsites.net/api/UserNames",
-            data: formData,
-            headers: { "Content-type": "multipart/form-data", 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+        axios.post('https://grupo7.azurewebsites.net/api/Login', {
+            email: userLogado.email,
+            password: pass
         })
             .then((resposta) => {
-                if (resposta.status === 204) {
-                    closeModalConfig();
-                    console.log("alterado com sucesso")
+                if (resposta.status === 200) {
+                    var formData = new FormData()
+                    formData.append('userName1', userAlterado.userName1)
+                    formData.append('cpf', userAlterado.cpf)
+                    formData.append('BirthDate', userAlterado.birthDate)
+                    formData.append('Email', userAlterado.email)
+                    formData.append('Phone', userAlterado.phone)
+                    formData.append('Rg', userAlterado.rg)
+                    formData.append('IdCorporation', userLogado.employees[0].idCorporation)
+                    formData.append('IdUserType', userLogado.idUserType)
+                    formData.append('Passwd', pass)
+                    formData.append('IdOffice', userLogado.employees[0].idOffice)
+                    formData.append('File', "http://grupo7.azurewebsites.net/img/" + userLogado.photoUser)
+                    axios({
+                        method: "PUT",
+                        url: "http://grupo7.azurewebsites.net/api/UserNames",
+                        data: formData,
+                        headers: { "Content-type": "multipart/form-data", 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+                    })
+                        .then((resposta) => {
+                            if (resposta.status === 204) {
+                                closeModalConfig();
+                                console.log("alterado com sucesso")
+                                setPass('')
+                                setConfirmPassword(false)
+                            }
+                        })
+                        .catch((erro) => console.log(erro))
                 }
             })
             .catch((erro) => console.log(erro))
@@ -225,6 +240,7 @@ export default function Config() {
 
     function closeModalConfig() {
         setModalConfig(false);
+        setConfirmPassword(false);
         setUserAlterado(userLogado)
         document.querySelector('.myData').classList.toggle('selected')
         listUser();
@@ -531,8 +547,13 @@ export default function Config() {
                                         <div className='profileImageArea'>
                                             <div className='maskProfile'><img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} alt="Imagem de Perfil"
                                                 className='profileImage editProfileImage'
-                                            /></div>
+                                            />
+                                            </div>
                                             <AiIcons.AiOutlineClose className='closeModal iconConfig2' onClick={() => closeModalConfig()} />
+                                        </div>
+                                        <div className='foreachInputModal'>
+                                            <label className='sendPhoto h6' for='imageCompany'>Editar foto</label>
+                                            <input id='imageCompany' className='imageCompanyInput' type="file" accept="image/png, image/jpeg" name="imageCompany" />
                                         </div>
                                         <div className='inputsModalArea'>
                                             <div className='inputsModal'>
@@ -552,7 +573,15 @@ export default function Config() {
                                                 <input id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' value={userAlterado.phone} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
                                             </div>
                                         </div>
-                                        <button className='button' onClick={setConfirmPassword(true)}>Salvar Alterações</button>
+                                        {
+                                            confirmPassword === true ?
+                                                <div>
+                                                    <input value={pass} onChange={(event) => setPass(event.target.value)} type="password" className='input' id='passConfirm' placeholder='Confirme sua Senha...' />
+                                                    <button className='button' onClick={alterUserData}>Confirmar</button>
+                                                </div>
+                                                : <button className='button' onClick={() => setConfirmPassword(true)}>Salvar Alterações</button>
+                                        }
+
                                     </form>
                                 </Modal>
                             </div>
