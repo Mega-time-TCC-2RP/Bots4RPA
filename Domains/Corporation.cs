@@ -17,6 +17,8 @@ namespace _2RPNET_API.Domains
         public string CorporateName { get; set; }
         public string AddressName { get; set; }
         public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Passwd { get; set; }
         public string Cnpj { get; set; }
         public string CorporatePhoto { get; set; }
 

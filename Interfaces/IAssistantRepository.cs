@@ -1,5 +1,4 @@
 ﻿using _2RPNET_API.Domains;
-using _2RPNET_API.ViewModels;
 using System.Collections.Generic;
 
 namespace _2RPNET_API.Interfaces
@@ -7,7 +6,7 @@ namespace _2RPNET_API.Interfaces
     public interface IAssistantRepository
     {
         List<Assistant> ReadAll();
-        List<Assistant> ReadMyProcess(int IdUser);
+        List<Assistant> ReadMy(int IdUser);
 
         Assistant SearchByID(int IdAssistant);
 
@@ -16,5 +15,8 @@ namespace _2RPNET_API.Interfaces
         void Create(Assistant NewAssistant);
 
         void Delete(int IdAssistant);
+
+
+
     }
 }

@@ -58,7 +58,7 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for analyze all Assistants
+        /// Method responsible for create all Assistants
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -66,15 +66,8 @@ namespace _2RPNET_API.Controllers
         {
             try
             {
-                if (NewAssistant.AssistantName != null || NewAssistant.AssistantDescription != null)
-                {
-                    _AssistantRepository.Create(NewAssistant);
-                    return Created("Assitant created successfully", NewAssistant);
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                _AssistantRepository.Create(NewAssistant);
+                return StatusCode(201);
             }
             catch (Exception ex)
             {
@@ -96,9 +89,7 @@ namespace _2RPNET_API.Controllers
                 if (AssistantSought != null)
                 {
                     if (UpdatedAsssistant != null)
-                    {
                         _AssistantRepository.Update(IdAssistant, UpdatedAsssistant);
-                    }
                 }
                 else
                 {
@@ -143,4 +134,5 @@ namespace _2RPNET_API.Controllers
             }
         }
     }
+
 }

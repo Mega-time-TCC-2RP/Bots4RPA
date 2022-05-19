@@ -4,16 +4,6 @@
         <name>2RPNET_API</name>
     </assembly>
     <members>
-        <member name="M:_2RPNET_API.Controllers.Assistant1Controller.NewRun">
-            <summary>
-            Method responsible for create a Run process
-            </summary>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant2Controller.NewRun">
-            <summary>
-            Method responsible for create a Run process
-            </summary>
-        </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.ReadAll">
             <summary>
             Method responsible for list all Assistants
@@ -28,7 +18,7 @@
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.Create(_2RPNET_API.Domains.Assistant)">
             <summary>
-            Method responsible for analyze all Assistants
+            Method responsible for create all Assistants
             </summary>
             <returns></returns>
         </member>
@@ -74,12 +64,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ChangeVerification(_2RPNET_API.ViewModels.ArrayViewModel)">
-            <summary>
-            Method responsible for get all Assistants
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.ReadAll">
             <summary>
             Method responsible for list all Emails Verifications 
@@ -122,80 +106,45 @@
             Method responsible for list all failed process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.RunController.NewRun">
+        <member name="M:_2RPNET_API.Controllers.RunController.NewRun(_2RPNET_API.Domains.Run)">
             <summary>
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.RunController.ReadMy(System.Int32)">
-            <summary>
-            Method responsible for list Run by unique id
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.ReadAll">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.GetUserNames">
             <summary>
             Method responsible for list all Users
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.ReadMy(System.Int32)">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.GetUserName(System.Int32)">
             <summary>
             Method responsible for list User by unique id
             </summary>
-            <param name="Id"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.Update(System.Int32,_2RPNET_API.Domains.UserName)">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.PutUserName(System.Int32,_2RPNET_API.Domains.UserName)">
             <summary>
             Method responsible for update user by unique id 
             </summary>
-            <param name="IdUserName"></param>
-            <param name="UpdatedUser"></param>
+            <param name="id"></param>
+            <param name="userName"></param>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.Create(_2RPNET_API.Domains.UserName)">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.PostUserName(_2RPNET_API.Domains.UserName)">
             <summary>
             Method responsible for create all users
             </summary>
-            <param name="NewUser"></param>
+            <param name="userName"></param>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.Delete(System.Int32)">
+        <member name="M:_2RPNET_API.Controllers.UserNameController.DeleteUserName(System.Int32)">
             <summary>
             Method responsible for delete user by unique id
             </summary>
-            <param name="IdUserName"></param>
+            <param name="id"></param>
             <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Utils.UploadImage.UploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String[])">
-            <summary>
-            Faz o upload do arquivo para o servidor
-            </summary>
-            <param name="arquivo">Arquivo vindo de um formulário</param>
-            <param name="extensoesPermitidas">Array com extensões permitidas apenas</param>
-            <returns>Nome do arquivo salvo</returns>
-        </member>
-        <member name="M:_2RPNET_API.Utils.UploadImage.ValidarExtensao(System.String[],System.String)">
-            <summary>
-            Valida o uso de enxtensões permitidas apenas
-            </summary>
-            <param name="extensoes">Array de extensões permitidas</param>
-            <param name="nomeDoArquivo">Nome do arquivo</param>
-            <returns>Verdadeiro/Falso</returns>
-        </member>
-        <member name="M:_2RPNET_API.Utils.UploadImage.RemoveFile(System.String)">
-            <summary>
-            Remove um arquivo do servidor
-            </summary>
-            <param name="nomeDoArquivo">Nome do Arquivo</param>
-        </member>
-        <member name="M:_2RPNET_API.Utils.UploadImage.RetornarExtensao(System.String)">
-            <summary>
-            Retorna a extensão de um arquivo
-            </summary>
-            <param name="nomeDoArquivo">Nome do Arquivo</param>
-            <returns>Retorna a extensão de um arquivo</returns>
         </member>
     </members>
 </doc>

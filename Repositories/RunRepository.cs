@@ -33,30 +33,13 @@ namespace _2RPNET_API.Repositories
 
         public List<Run> ErrorList()
         {
-            for (int i = 0; i <= 0; i++)
-            {
-
-            }
             return ctx.Runs.Where(r => r.RunStatus == false).ToList();
         }
 
 
-        public List<Run> ReadAll()
+        public IEnumerable<Run> ReadAll()
         {
             return ctx.Runs.ToList();
-        }
-
-        public List<Run> ReadById(int Id)
-        {
-            return ctx.Runs
-                .Where(a => a.IdRun == Id)
-                 .ToList();
-        }
-
-        public Run SearchByID(int Id)
-        {
-            return ctx.Runs
-                 .FirstOrDefault(a => a.IdRun == Id);
         }
     }
 }

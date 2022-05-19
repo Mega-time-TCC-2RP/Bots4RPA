@@ -16,7 +16,7 @@ namespace _2RPNET_API.Domains
         public string Title { get; set; }
         public string SkinImages { get; set; }
         public string SkinDescription { get; set; }
-        public int SkinPrice { get; set; }
+        public int? PrecoSkin { get; set; }
 
         public virtual ICollection<LibrarySkin> LibrarySkins { get; set; }
     }

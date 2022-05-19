@@ -1,7 +1,6 @@
 ﻿using _2RPNET_API.Context;
 using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
-using _2RPNET_API.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,13 +16,10 @@ namespace _2RPNET_API.Repositories
         {
             Ctx = appContext;
         }
-
         public void Create(Assistant NewAssistant)
         {
-                NewAssistant.CreationDate = DateTime.Now;
-                NewAssistant.AlterationDate = DateTime.Now;
-                Ctx.Assistants.Add(NewAssistant);
-                Ctx.SaveChanges();
+            Ctx.Assistants.Add(NewAssistant);
+            Ctx.SaveChanges();
         }
 
         public void Delete(int IdAssistant)
@@ -39,7 +35,7 @@ namespace _2RPNET_API.Repositories
             //return Ctx.Assistants.Include(a => a.IdEmployeeNavigation).ToList();
         }
 
-        public List<Assistant> ReadMyProcess(int IdUser)
+        public List<Assistant> ReadMy(int IdUser)
         {
             return Ctx.Assistants
                 .Where(a => a.IdAssistant == IdUser)
@@ -56,26 +52,18 @@ namespace _2RPNET_API.Repositories
         {
             Assistant AssistantSought = SearchByID(IdAssistant);
 
-            if (AssistantSought != null)
+            if (UpdatedAsssistant.IdEmployee > 0 && UpdatedAsssistant.CreationDate >= DateTime.Now && UpdatedAsssistant.AlterationDate >= DateTime.Now && UpdatedAsssistant.AssistantName != null && UpdatedAsssistant.AssistantDescription != null)
             {
-                AssistantSought.AlterationDate = DateTime.Now;
+                AssistantSought.IdEmployee = UpdatedAsssistant.IdEmployee;
+                AssistantSought.CreationDate = UpdatedAsssistant.CreationDate;
+                AssistantSought.AlterationDate = UpdatedAsssistant.AlterationDate;
+                AssistantSought.AssistantName = UpdatedAsssistant.AssistantName;
+                AssistantSought.AssistantDescription = UpdatedAsssistant.AssistantDescription;
 
-                if (UpdatedAsssistant.IdEmployee > 0)
-                {
-                    AssistantSought.IdEmployee = UpdatedAsssistant.IdEmployee;
-                }
-                if (UpdatedAsssistant.AssistantName != null)
-                {
-                    AssistantSought.AssistantName = UpdatedAsssistant.AssistantName;
-                }
-                if (UpdatedAsssistant.AssistantDescription != null)
-                {
-                    AssistantSought.AssistantDescription = UpdatedAsssistant.AssistantDescription;
-                }
-                
                 Ctx.Assistants.Update(AssistantSought);
                 Ctx.SaveChanges();
             }
+
         }
     }
 }

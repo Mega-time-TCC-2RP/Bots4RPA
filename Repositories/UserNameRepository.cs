@@ -17,10 +17,36 @@ namespace _2RPNET_API.Repositories
             ctx = appContext;
         }
 
+        public UserName Create(UserName datauser)
+        {
+            ctx.UserNames.Add(datauser);
+            ctx.SaveChangesAsync();
+
+            return datauser;
+        }
+
+        public void Delete(UserName datauser)
+        {
+            ctx.UserNames.Remove(datauser);
+            ctx.SaveChangesAsync();
+        }
+
+        public IEnumerable<UserName> ReadAll()
+        {
+            return ctx.UserNames.ToList();
+        }
 
         public UserName SearchByID(int id)
         {
             return ctx.UserNames.Find(id);
+        }
+
+        public UserName Update(UserName datauser)
+        {
+            ctx.Entry(datauser).State = EntityState.Modified;
+            ctx.SaveChangesAsync();
+
+            return datauser;
         }
 
         public UserName Login(string email, string password)
@@ -57,47 +83,6 @@ namespace _2RPNET_API.Repositories
             _user.Passwd = Crypt.GenerateHash(_user.Passwd);
             ctx.UserNames.Update(_user);
             await ctx.SaveChangesAsync();
-        }
-
-        public List<UserName> ReadAll()
-        {
-            return ctx.UserNames.Select(
-                u => new UserName
-                {
-                    IdUser = u.IdUser,
-                    UserName1 = u.UserName1,
-                    Email = u.Email,
-                    Cpf = u.Cpf,
-                    PhotoUser = u.PhotoUser,
-                    Phone = u.Phone,
-                    BirthDate=u.BirthDate,
-                    Rg = u.Rg,
-                    UserValidation=u.UserValidation
-                }
-                    ).ToList();
-        }
-
-        public UserName Create(UserName NewUser)
-        {
-            ctx.UserNames.Add(NewUser);
-            ctx.SaveChangesAsync();
-
-            return NewUser;
-        }
-
-        public UserName Update(int IdAssistant, UserName UpdatedUser)
-        {
-            ctx.Entry(UpdatedUser).State = EntityState.Modified;
-            ctx.SaveChangesAsync();
-
-            return UpdatedUser;
-        }
-
-        public void Delete(int IdUserName)
-        {
-            UserName UserNameSought = SearchByID(IdUserName);
-            ctx.UserNames.Remove(UserNameSought);
-            ctx.SaveChanges();
         }
     }
 }

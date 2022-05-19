@@ -66,10 +66,6 @@
               "target": "Package",
               "version": "[5.0.15, )"
             },
-            "Microsoft.Playwright": {
-              "target": "Package",
-              "version": "[1.21.0, )"
-            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"

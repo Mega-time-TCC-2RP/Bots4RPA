@@ -22,7 +22,7 @@ namespace _2RPNET_API.Domains
         public DateTime BirthDate { get; set; }
         public string Rg { get; set; }
         public bool? UserValidation { get; set; }
-        public int IdUserType { get; set; }
+        public int? IdUserType { get; set; }
 
         public virtual UserType IdUserTypeNavigation { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }

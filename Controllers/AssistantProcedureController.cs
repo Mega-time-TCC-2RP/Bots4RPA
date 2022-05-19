@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using _2RPNET_API.Context;
 using _2RPNET_API.Domains;
+using _2RPNET_API.Repositories;
 using _2RPNET_API.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.IdentityModel.Tokens.Jwt;
-using _2RPNET_API.ViewModels;
-using _2RPNET_API.Utils;
-using System.Diagnostics;
 
 namespace _2RPNET_API.Controllers
 {
@@ -20,8 +24,6 @@ namespace _2RPNET_API.Controllers
         {
             _repository = assistant;
         }
-
-        
 
         /// <summary>
         /// Method responsible for list all Assistants Process
@@ -57,19 +59,6 @@ namespace _2RPNET_API.Controllers
             }
         }
 
-        [HttpGet("Assistant/{id}")]
-        public IActionResult ListProcessByAssistant(int id)
-        {
-            try
-            {
-                return Ok(_repository.SearchByAssistant(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-
         /// <summary>
         /// Method responsible for create all Assistants Process
         /// </summary>
@@ -88,20 +77,6 @@ namespace _2RPNET_API.Controllers
             }
         }
 
-        [HttpPost("ManipulateScript/{IdAssistant}")]
-        public IActionResult ManipulateScript(int IdAssistant)
-        {
-            try
-            {
-                _repository.ManipulateScript(IdAssistant);
-                //Process.Start("./run.bat");
-                return StatusCode(201);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
         
         /// <summary>
         /// Method responsible for update all Assistants Process
@@ -136,25 +111,6 @@ namespace _2RPNET_API.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex);
-            }
-        }
-
-        /// <summary>
-        /// Method responsible for get all Assistants
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost("ProceduresVerification")]
-        public IActionResult ChangeVerification(ArrayViewModel ArrayViewModel)
-        {
-            try
-            {
-                _repository.ChangeVerification(ArrayViewModel);
-                return Ok();
-
-            }
-            catch (Exception Ex)
-            {
-                return BadRequest(Ex);
             }
         }
     }
