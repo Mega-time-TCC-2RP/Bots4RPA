@@ -50,7 +50,7 @@ namespace _2RPNET_API.Repositories
             Assistant assistantSought = SearchByID(idAssistant);
             //string userEmail = assistantSought.IdEmployeeNavigation.IdUserNavigation.Email;
             string userEmail = emailConfig.email;
-            string FilePath = "C:\\Users\\50928811867.INFOSCS\\Desktop\\develop_manha\\Bots-4RPA\\Back-End\\2RPNET_API\\Templates\\Template.html";
+            string FilePath = "./Templates/Template.html";
 
             StreamReader streamreader = new StreamReader(FilePath);
 
@@ -58,7 +58,7 @@ namespace _2RPNET_API.Repositories
             streamreader.Close();
 
             MailText = MailText.Replace("[assistant]", assistantSought.AssistantName);
-            string caminhoImagem = @$"http://localhost:5000/StaticFiles/Images/Assistant{idAssistant}.png";
+            string caminhoImagem = @$"http://vmbots4rpa.brazilsouth.cloudapp.azure.com:5000/StaticFiles/Images/Assistant{idAssistant}.png";
             MailText = MailText.Replace("[link]", "href=" + '"' + caminhoImagem + '"');
 
             if (userEmail != null)
@@ -78,7 +78,7 @@ namespace _2RPNET_API.Repositories
 
 
                 // We may also want to attach a calendar event for Monica's party...
-                builder.Attachments.Add(@".\StaticFiles\Images\Assistant"+$"{idAssistant}"+".png");
+                //builder.Attachments.Add(@".\StaticFiles\Images\Assistant"+$"{idAssistant}"+".png");
 
                 // Now we just need to set the message body and we're done
                 message.Body = builder.ToMessageBody();

@@ -24,6 +24,13 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
   </ItemGroup>
 
+  
+
+  <ItemGroup>
+    <Folder Include="StaticFiles\Files\" />
+    <Folder Include="StaticFiles\Images\" />
+  </ItemGroup>
+
 	<PropertyGroup>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<NoWarn>$(NoWarn);1591</NoWarn>
