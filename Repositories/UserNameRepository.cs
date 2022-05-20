@@ -93,7 +93,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                     Players = E.Players.Select(P => new Player()
                     {
                         IdPlayer = P.IdPlayer,
-                        Score = P.Score,
+                        
                         IdEmployee = P.IdEmployee
                     }).ToList()
                 }).ToList()
@@ -125,7 +125,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                     Players = E.Players.Select(P => new Player()
                     {
                         IdPlayer = P.IdPlayer,
-                        Score = P.Score,
+                        
                         IdEmployee = P.IdEmployee
                     }).ToList()
                 }).ToList()

@@ -442,7 +442,18 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
-
+                if (ctx.SearchByID(IdUser) == null)
+                {
+                    return NotFound();
+                }
+                if (ctx.SearchByID(IdUser).UserValidation == true)
+                {
+                    return Ok(true);
+                }
+                else
+                {
+                    return Ok(false);
+                }
             }
             catch (Exception error)
             {

@@ -17,7 +17,6 @@ namespace _2rpnet.rpa.webAPI.Domains
         }
 
         public int IdPlayer { get; set; }
-        public int? Score { get; set; }
         public int IdEmployee { get; set; }
 
         public virtual Employee IdEmployeeNavigation { get; set; }

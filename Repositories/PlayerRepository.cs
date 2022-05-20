@@ -48,19 +48,19 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
             return player;
         }
-        public Player DecreaseScore(Player player, int DecreaseValue)
-        {
-            player.Score = player.Score - DecreaseValue;
-            ctx.Entry(player).State = EntityState.Modified;
-            ctx.SaveChangesAsync();
-            return player;
-        }
-        public Player IncreaseScore(Player player, int IncreaseValue)
-        {
-            player.Score = player.Score + IncreaseValue;
-            ctx.Entry(player).State = EntityState.Modified;
-            ctx.SaveChangesAsync();
-            return player;
-        }
+        //public Player DecreaseScore(Player player, int DecreaseValue)
+        //{
+        //    player.Score = player.Score - DecreaseValue;
+        //    ctx.Entry(player).State = EntityState.Modified;
+        //    ctx.SaveChangesAsync();
+        //    return player;
+        //}
+        //public Player IncreaseScore(Player player, int IncreaseValue)
+        //{
+        //    player.Score = player.Score + IncreaseValue;
+        //    ctx.Entry(player).State = EntityState.Modified;
+        //    ctx.SaveChangesAsync();
+        //    return player;
+        //}
     }
 }

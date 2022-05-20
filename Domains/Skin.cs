@@ -16,7 +16,6 @@ namespace _2rpnet.rpa.webAPI.Domains
         public string Title { get; set; }
         public string SkinImages { get; set; }
         public string SkinDescription { get; set; }
-        public int SkinPrice { get; set; }
 
         public virtual ICollection<LibrarySkin> LibrarySkins { get; set; }
     }
