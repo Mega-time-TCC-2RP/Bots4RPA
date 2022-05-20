@@ -147,7 +147,7 @@
             Method responsible for list all failed process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.RunController.NewRun(_2RPNET_API.Domains.Run)">
+        <member name="M:_2RPNET_API.Controllers.RunController.NewRun(System.Int32,_2RPNET_API.Domains.Run)">
             <summary>
             Method responsible for create a Run process
             </summary>

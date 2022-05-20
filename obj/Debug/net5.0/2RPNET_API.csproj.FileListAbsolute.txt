@@ -4509,3 +4509,4 @@ C:\Users\livia\OneDrive\Desktop\Bots-4RPA\obj\Debug\net5.0\scopedcss\bundle\2RPN
 C:\Users\livia\OneDrive\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.RazorTargetAssemblyInfo.cache
 C:\Users\livia\OneDrive\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.csproj.CopyComplete
 C:\Users\livia\OneDrive\Desktop\Bots-4RPA\obj\Debug\net5.0\2RPNET_API.genruntimeconfig.cache
+C:\Users\46755453862.INFOSCS\Desktop\Bots-4RPA\bin\Debug\net5.0\2RPNET_API.StaticWebAssets.xml

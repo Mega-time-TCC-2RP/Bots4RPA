@@ -62,14 +62,12 @@ namespace _2RPNET_API.Controllers
         /// <summary>
         /// Method responsible for create a Run process
         /// </summary>
-        [HttpPost("Post")]
-        public IActionResult NewRun(Run DataRun)
+        [HttpPost("{Id}")]
+        public IActionResult NewRun(int Id,Run DataRun)
         {
             try
             {
-                _repository.Create(DataRun);
-                //Programa _program = new Programa();
-                //_program.Play();
+                _repository.Create(Id,DataRun);
                 return StatusCode(201);
             }
             catch (Exception ex)

@@ -145,14 +145,12 @@ namespace _2RPNET_API.Controllers
         }
 
         [HttpPost("EnviarEmail")]
-        public IActionResult EnviaEmail(int idAssistant,SendEmailViewModel assistant)
+        public IActionResult EnviaEmail(int idAssistant, SendEmailViewModel assistant)
         {
             try
             {
                 _AssistantRepository.EnviaEmail(idAssistant,assistant);
-
-                RunRepository run = new RunRepository();
-                run.UpdateQuantity(idAssistant, UpdatedRun);
+                RunRepository Run = new RunRepository();
 
                 return Ok(new
                 {
