@@ -145,6 +145,7 @@ export default function Login() {
 
                 .catch((error) => {
                         console.log(error)
+                        history('/registerUser')
                         this.setState({ erroMensagem: 'Falha no login com o Google', isLoading: false })
                         setIsLoading(false);
                 })
@@ -154,7 +155,9 @@ export default function Login() {
         }
 
         const responseGoogle = (response) =>{
-                loginGoogle(response.profileObj.email, response.profileObj.googleId)
+                console.log(response)
+                localStorage.setItem('firstAccess', response);
+                loginGoogle(response.profileObj.email, response.profileObj.googleId);
                 // setGoogleId(response.profileObj.googleId);
                 // setEmail(response.profileObj.email);
                 // console.log(response);

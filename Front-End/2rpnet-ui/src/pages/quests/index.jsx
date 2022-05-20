@@ -43,6 +43,7 @@ function App() {
   const [titleTask, setTitleTask] = useState('');
   const [descriptionTask, setDescriptionTask] = useState('');
   const [statusTask, setStatusTask] = useState();
+  const [endDate, setEndDate] = useState();
 
   const [newTaskIsOpen, setNewTaskIsOpen] = useState(false);
   const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
@@ -53,16 +54,6 @@ function App() {
   function handleCloseOnBoarding() {
     setOnBoardingIsOpen(false)
   }
-  // let btnStyle = document.querySelectorAll('.btnCalendar');
-
-  const btnStyle = () => {
-    for (let i = 0; i < 32; i++) {
-      let g = i;
-      document.getElementById("calendM" + g).classList.add(".btnCalendarModal");
-    }
-  }
-  // const setBtnStyle = () => {
-  // }
   function handleOpenNewTask() {
     // for (let index = 0; index < 32; index++) {
     //   document.getElementById("calend" + index).style.cursor = "pointer";      
@@ -70,9 +61,10 @@ function App() {
     // for (let i = 0; i < 32; i++) {
 
     // }
-    setNewTaskIsOpen(true).then(btnStyle())
+    setStatusTask(1)
+    setNewTaskIsOpen(true)
     // setBtnStyle()
-    
+
     // .classList.add('.btnCalendarModal');
   }
   function handleCloseNewTask() {
@@ -95,6 +87,7 @@ function App() {
       .then(response => {
         if (response.status === 200) {
           // console.log(response.data);
+
           setWorkflowList(response.data);
         }
       })
@@ -113,29 +106,41 @@ function App() {
 
   // Form Nova Tare
   const formNewTask = (submit_newtask) => {
-      submit_newtask.preventDefault()
-      // console.log(`O título da Tarefa é: ${titleTask} e a descrição dela é ${descriptionTask}`);
+    submit_newtask.preventDefault()
+    // console.log(`O título da Tarefa é: ${titleTask} e a descrição dela é ${descriptionTask}`);
 
-      let createNewTask = {
-        title: titleTask,
-        workflowDescription: descriptionTask
-      }
+    let createNewTask = {
+      idStatus: statusTask,
+      endDate: endDate,
+      title: titleTask,
+      workflowDescription: descriptionTask
+    }
 
+    if (endDate === "" || endDate === null || titleTask === "" || titleTask === null || descriptionTask === "" || descriptionTask === null) {
+      console.log("Task cannot be empty!");
+      alert("Por favor, preencha todos os campos!")
+      return
+    } else {
       axios.post(apiPlatform + '/Workflows', createNewTask, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
       })
-      .then((response) => {
-        if (response.status === 201 || response.status === 200) {
-          console.log("New Task Created!");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .then(handleCloseNewTask())
-      .then(getWorkflowList())
+        .then((response) => {
+          if (response.status === 201 || response.status === 200) {
+            console.log("New Task Created!");
+            setEndDate();
+            setTitleTask("");
+            setDescriptionTask("");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(handleCloseNewTask())
+        .then(getWorkflowList())
+    }
+
   }
 
   // Funcionalidade da Data
@@ -211,12 +216,25 @@ function App() {
     }
   }
 
+  const month = () => {
+    const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+
+    let indexMonth = new Date().getMonth()
+
+    let setMonth = months[indexMonth]
+
+    // console.log(months[indexMonth]);
+
+    document.getElementById("monthCalendar").innerHTML = setMonth
+  }
+
 
   useEffect(() => {
     getWorkflowList()
     // getQuestList()
     // getQuestList, []
     day()
+    month()
     dragNDrop()
   });
 
@@ -292,26 +310,26 @@ function App() {
               <div className="taskTitle">
                 <h5 className="h5">A Fazer</h5>
               </div>
-              {
-                workflowList.map((myQuests) => {
-                  return (
-                    <div
-                      // key={myQuests.idWorkflow 
-                      // && myQuests.idStatus === 1
-                      // } 
-                      className="taskSpace">
+              <div
+                // key={myQuests.idWorkflow 
+                // && myQuests.idStatus === 1
+                // } 
+                className="taskSpace">
+                {
+                  workflowList.map((myQuests) => {
+                    return (
                       <div
+                        key={(myQuests.idWorflow) > (new Date().getDate() - 1)}
                         className="cardTask" draggable="true">
                         {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
                         <div
-                          key={myQuests.idWorflow}
                           className="p">{myQuests.title}</div>
                       </div>
-                    </div>
+                    )
+                  }
                   )
                 }
-                )
-              }
+              </div>
             </div>
 
             <div id="testdo"
@@ -322,12 +340,12 @@ function App() {
               <div
                 // key={myQuests.idWorkflow && myQuests.idStatus === 2} 
                 className="taskSpace">
-                <div className="cardTask" draggable="true">
-                  {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                {/* <div className="cardTask" draggable="true">
+                  <div className="p">Lorem Ipsum is simply dummy text.</div>
                   <div className="p">
-                    {/* {myQuests.title} */}
+                    {myQuests.title}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -339,12 +357,12 @@ function App() {
               <div
                 // key={myQuests.idWorkflow && myQuests.idStatus === 3} 
                 className="taskSpace">
-                <div className="cardTask" draggable="true">
-                  {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+                {/* <div className="cardTask" draggable="true">
+                  <div className="p">Lorem Ipsum is simply dummy text.</div>
                   <div className="p">
-                    {/* {myQuests.title} */}
+                    {myQuests.title}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -355,7 +373,7 @@ function App() {
            } */}
           <div className="calendarAndBtn">
             <section className="calendar p">
-              <div className="calendarTitle"><h5 className="h5">Calendário</h5></div>
+              <div className="calendarTitle"><h5 id="monthCalendar" className="h5">Calendário</h5></div>
               <input id="calend1"
                 className="btnCalendar p"
                 type="button"
@@ -497,68 +515,38 @@ function App() {
                   <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
                 </div>
                 <form onSubmit={formNewTask}>
-                <div className="bodyModalQuest">
-                  <div className="inputsQuests">
-                    <div className="inputQuests">
-                      <label for="titleInput" className="h5">Título</label>
-                      <input 
-                      id="titleInput" 
-                      className="input" 
-                      type="text" 
-                      placeholder="Insira o Título da tarefa..."
-                      onChange={(event) => setTitleTask(event.target.value)} />
+                  <div className="bodyModalQuest">
+                    <div className="inputsQuests">
+                      <div className="inputQuests">
+                        <label for="titleInput" className="h5">Título</label>
+                        <input
+                          id="titleInput"
+                          className="input"
+                          type="text"
+                          placeholder="Insira o Título da tarefa..."
+                          onChange={(event) => setTitleTask(event.target.value)} />
+                      </div>
+                      <div className="inputQuests">
+                        <label for="descriptionInput" className="h5">Descrição</label>
+                        <input
+                          id="descriptionInput"
+                          className="input"
+                          type="text"
+                          placeholder="Insira pontos importantes para a resolução da tarefa..."
+                          onChange={(event) => setDescriptionTask(event.target.value)} />
+                      </div>
                     </div>
-                    <div className="inputQuests">
-                      <label for="descriptionInput" className="h5">Descrição</label>
-                      <input 
-                      id="descriptionInput" 
-                      className="input" 
-                      type="text"
-                      placeholder="Insira pontos importantes para a resolução da tarefa..." 
-                      onChange={(event) => setDescriptionTask(event.target.value)}/>
-                    </div>
+                    <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
+                    <input
+                      id="dayAndMonthWorkflow"
+                      className="input inputQuestsDate"
+                      type="date"
+                      onChange={(event) => setEndDate(event.target.value)} />
+                    <input
+                      className="btnNewTask button"
+                      type="submit"
+                      value="Adicionar Tarefa" />
                   </div>
-                  <section className="calendar p">
-                    <div className="calendarTitle">
-                      <h5 className="h5">Selecione a Data</h5>
-                    </div>
-                    <input id="calendM1" className="btnCalendar p btnCalendarModal" type="button" value="1" />
-                    <input id="calendM2" className="btnCalendar p btnCalendarModal" type="button" value="2" />
-                    <input id="calendM3" className="btnCalendar p btnCalendarModal" type="button" value="3" />
-                    <input id="calendM4" className="btnCalendar p btnCalendarModal" type="button" value="4" />
-                    <input id="calendM5" className="btnCalendar p btnCalendarModal" type="button" value="5" />
-                    <input id="calendM6" className="btnCalendar p btnCalendarModal" type="button" value="6" />
-                    <input id="calendM7" className="btnCalendar p btnCalendarModal" type="button" value="7" />
-                    <input id="calendM8" className="btnCalendar p btnCalendarModal" type="button" value="8" />
-                    <input id="calendM9" className="btnCalendar p btnCalendarModal" type="button" value="9" />
-                    <input id="calendM10" className="btnCalendar p btnCalendarModal" type="button" value="10" />
-                    <input id="calendM11" className="btnCalendar p btnCalendarModal" type="button" value="11" />
-                    <input id="calendM12" className="btnCalendar p btnCalendarModal" type="button" value="12" />
-                    <input id="calendM13" className="btnCalendar p btnCalendarModal" type="button" value="13" />
-                    <input id="calendM14" className="btnCalendar p btnCalendarModal" type="button" value="14" />
-                    <input id="calendM15" className="btnCalendar p btnCalendarModal" type="button" value="15" />
-                    <input id="calendM16" className="btnCalendar p btnCalendarModal" type="button" value="16" />
-                    <input id="calendM17" className="btnCalendar p btnCalendarModal" type="button" value="17" />
-                    <input id="calendM18" className="btnCalendar p btnCalendarModal" type="button" value="18" />
-                    <input id="calendM19" className="btnCalendar p btnCalendarModal" type="button" value="19" />
-                    <input id="calendM20" className="btnCalendar p btnCalendarModal" type="button" value="20" />
-                    <input id="calendM21" className="btnCalendar p btnCalendarModal" type="button" value="21" />
-                    <input id="calendM22" className="btnCalendar p btnCalendarModal" type="button" value="22" />
-                    <input id="calendM23" className="btnCalendar p btnCalendarModal" type="button" value="23" />
-                    <input id="calendM24" className="btnCalendar p btnCalendarModal" type="button" value="24" />
-                    <input id="calendM25" className="btnCalendar p btnCalendarModal" type="button" value="25" />
-                    <input id="calendM26" className="btnCalendar p btnCalendarModal" type="button" value="26" />
-                    <input id="calendM27" className="btnCalendar p btnCalendarModal" type="button" value="27" />
-                    <input id="calendM28" className="btnCalendar p btnCalendarModal" type="button" value="28" />
-                    <input id="calendM29" className="btnCalendar p btnCalendarModal" type="button" value="29" />
-                    <input id="calendM30" className="btnCalendar p btnCalendarModal" type="button" value="30" />
-                    <div className="lastCalend"><input id="calendM31" className="btnCalendar p btnCalendarModal" type="button" value="31" /></div>
-                  </section>
-                  <input 
-                  className="btnNewTask button" 
-                  type="submit" 
-                  value="Adicionar Tarefa" />
-                </div>
                 </form>
               </div>
             </Modal>

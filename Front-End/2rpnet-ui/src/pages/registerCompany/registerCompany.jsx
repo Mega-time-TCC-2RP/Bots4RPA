@@ -317,11 +317,11 @@ export default function RegisterCompany() {
                                             </div>
                                             <div className='foreachInput'>
                                                 <label className='h5'>CPF</label>
-                                                <MaskedInputCPF value={cpf} onChange={(event) => setCpf(event.target.value)} />
+                                                <MaskedInputCPF value={cpf} onChange={(event) => setCpf(event.target.value)} required/>
                                             </div>
                                             <div className='foreachInput'>
                                                 <label className='h5'>Telefone</label>
-                                                <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} />
+                                                <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} required/>
                                             </div>
                                             <div className='foreachInput areaPhoto'>
                                                 <label className='h5'>Foto da Empresa</label>
