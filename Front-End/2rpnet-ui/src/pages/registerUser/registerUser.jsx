@@ -4,6 +4,8 @@ import axios, { Axios } from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import VLibras from '@djpfs/react-vlibras'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 //img:
@@ -98,6 +100,29 @@ export default function RegisterUser() {
     const [show, setShow] = useState(false);
     const [imageLoad, setImageLoad] = useState(false);
 
+    const diffToast = () => {
+        toast.success('Cadastro realizado com êxito. Por favor, aguarde a validação.', {
+                position: "top-right",
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+        });
+}
+const errorToast = () => {
+    toast.error('Ops! Ocorreu um erro', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+    });
+}
+
     let history = useNavigate();
 
     var inputImage = document.getElementById('imageProfile');
@@ -182,8 +207,16 @@ export default function RegisterUser() {
             data: formData,
             headers: { "Content-type": "multipart/form-data" },
         })
+            .then(diffToast(),
+            bazinga => {
+                    if (bazinga.status !== 200) {
+                            toast.dismiss(diffToast());
+                            errorToast()
+                    }
+            })
             .then((response) => {
                 if (response.status === 200) {
+                    diffToast();
                     console.log('cadastrado com sucesso')
                     history('/login')
                 }
