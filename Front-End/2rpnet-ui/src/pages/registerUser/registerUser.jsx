@@ -183,7 +183,7 @@ export default function RegisterUser() {
             headers: { "Content-type": "multipart/form-data" },
         })
             .then((response) => {
-                if (response.status === 200) {
+                if (response.status === 201) {
                     console.log('cadastrado com sucesso')
                     history('/login')
                 }

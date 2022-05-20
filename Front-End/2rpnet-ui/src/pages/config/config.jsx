@@ -29,6 +29,22 @@ import * as SiIcons from 'react-icons/si'
 import Header from '../../components/header/header'
 import { Message } from '@material-ui/icons';
 
+// module.exports = {
+//     async headers() {
+//         return [
+//             {
+//                 source : '/:path*',
+//                 headers: [
+//                     {key: 'Access-Control-Allow-Credentials', value: 'true'},
+//                     {key: 'Access-Control-Allow-Origin', value: '*'},
+//                     {key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT'},
+//                     {key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization'}
+//                 ]
+//             }
+//         ]
+//     }
+// }
+
 const steps = [
     {
         id: 'Step1'
@@ -118,7 +134,7 @@ export default function Config() {
         })
             .then((resposta) => {
                 if (resposta.status === 204) {
-                    console.log("empresa deletada")
+                    console.log("usuário deletado")
                     listInvalidUsers()
                 }
             })
@@ -164,6 +180,15 @@ export default function Config() {
             .then((resposta) => {
                 if (resposta.status === 200) {
                     var formData = new FormData()
+                    const photoProfile = document.getElementById('imageProfile')
+                    const fileProfile = photoProfile.files[0]
+
+                    if (photoProfile.files[0] == undefined) {
+                        formData.append('File', userLogado.photoUser)
+                    } else {
+                        formData.append('File', fileProfile, fileProfile.name)
+                    }
+
                     formData.append('userName1', userAlterado.userName1)
                     formData.append('cpf', userAlterado.cpf)
                     formData.append('BirthDate', userAlterado.birthDate)
@@ -552,8 +577,8 @@ export default function Config() {
                                             <AiIcons.AiOutlineClose className='closeModal iconConfig2' onClick={() => closeModalConfig()} />
                                         </div>
                                         <div className='foreachInputModal'>
-                                            <label className='sendPhoto h6' for='imageCompany'>Editar foto</label>
-                                            <input id='imageCompany' className='imageCompanyInput' type="file" accept="image/png, image/jpeg" name="imageCompany" />
+                                            <label className='sendPhoto h6' for='imageProfile'>Editar foto</label>
+                                            <input id='imageProfile' className='imageCompanyInput' type="file" accept="image/png, image/jpeg" name="imageProfile" />
                                         </div>
                                         <div className='inputsModalArea'>
                                             <div className='inputsModal'>
@@ -590,8 +615,8 @@ export default function Config() {
                     {
                         steps[currentStep].id === 'Step2' && (
                             <div>
-                                <h2 alt="Acessibilidade">Selecionar tema</h2>
-                                <select onChange={(e) => MudarTema(e.target.value)}>
+                                <h2 className='h3' alt="Acessibilidade">Selecionar tema</h2>
+                                <select className='input' onChange={(e) => MudarTema(e.target.value)}>
                                     <optgroup>
                                         {
                                             localStorage.getItem('temaApp') === "normal" ?

@@ -85,7 +85,7 @@ export default function Profile() {
     }
 
     const GetTrohpiesAndSkins = async () => {
-        if (parseInt(parseJwt().role) == 3) {
+        if (parseInt(parseJwt().Role) == 3) {
             await axios.get('http://grupo7.azurewebsites.net/api/UserNames/MyTrophiesAndSkins', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
