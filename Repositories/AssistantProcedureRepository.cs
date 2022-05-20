@@ -177,7 +177,7 @@ public IActionResult NewRun(SendEmail assistant)
         public List<AssistantProcedure> ReadAll()
         {
             return ctx.AssistantProcedures.ToList();
-        }
+        }                                                                                                       
 
         public List<AssistantProcedure> SearchByAssistant(int IdAssistant)
         {

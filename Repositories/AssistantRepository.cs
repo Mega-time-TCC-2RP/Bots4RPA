@@ -11,7 +11,6 @@ using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using MailKit.Security;
-using _2RPNET_API.ViewModels;
 using System.IO;
 
 namespace _2RPNET_API.Repositories
@@ -39,17 +38,18 @@ namespace _2RPNET_API.Repositories
 
         public void Delete(int IdAssistant)
         {
-            Assistant AssistantSought = SearchByID(IdAssistant);
-            AssistantProcedureRepository Procedure = new AssistantProcedureRepository();
-            Procedure.SearchByID(IdAssistant);
+            //AssistantProcedureRepository Procedure = new AssistantProcedureRepository();
+            //List<AssistantProcedure> ListProcedures = Procedure.SearchByAssistant(IdAssistant);
+            //ListProcedures.RemoveAll(r => true);
+            //Assistant AssistantSought = SearchByID(IdAssistant);
+            //Ctx.Assistants.Remove(AssistantSought);
+            //Ctx.SaveChanges();
 
-            //if (IdAssistant = IdAssistant)
-            //{                
-            //    Procedure.Delete();
-            //    Ctx.Assistants.Remove(AssistantSought);
-            //    Ctx.SaveChanges();
-            //}
-           
+            Assistant SearchAssistant = SearchByID(IdAssistant);
+
+            Ctx.Assistants.Remove(SearchAssistant);
+
+            Ctx.SaveChanges();
         }
 
         public async Task EnviaEmail(int idAssistant, SendEmailViewModel emailConfig)
