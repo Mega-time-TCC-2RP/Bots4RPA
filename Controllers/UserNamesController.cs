@@ -436,5 +436,20 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 throw;
             }
         }
+
+        [HttpGet("CheckValidation/{IdUser}")]
+        public IActionResult CheckValidation(int IdUser)
+        {
+            try
+            {
+
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error);
+                throw;
+            }
+        }
+
     }
 }
