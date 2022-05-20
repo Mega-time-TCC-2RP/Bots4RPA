@@ -43,6 +43,7 @@ function App() {
   const [titleTask, setTitleTask] = useState('');
   const [descriptionTask, setDescriptionTask] = useState('');
   const [statusTask, setStatusTask] = useState();
+  const [endDate, setEndDate] = useState();
 
   const [newTaskIsOpen, setNewTaskIsOpen] = useState(false);
   const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
@@ -117,6 +118,8 @@ function App() {
       // console.log(`O título da Tarefa é: ${titleTask} e a descrição dela é ${descriptionTask}`);
 
       let createNewTask = {
+        idStatus: 1,
+        endDate: 12/31/2001,
         title: titleTask,
         workflowDescription: descriptionTask
       }
@@ -292,26 +295,26 @@ function App() {
               <div className="taskTitle">
                 <h5 className="h5">A Fazer</h5>
               </div>
-              {
-                workflowList.map((myQuests) => {
-                  return (
                     <div
                       // key={myQuests.idWorkflow 
                       // && myQuests.idStatus === 1
                       // } 
                       className="taskSpace">
+                      {
+                        workflowList.map((myQuests) => {
+                          return (
                       <div
+                        key={myQuests.idWorflow}
                         className="cardTask" draggable="true">
                         {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
                         <div
-                          key={myQuests.idWorflow}
                           className="p">{myQuests.title}</div>
                       </div>
-                    </div>
                   )
                 }
                 )
               }
+                    </div>
             </div>
 
             <div id="testdo"
