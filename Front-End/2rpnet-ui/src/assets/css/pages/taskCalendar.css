@@ -204,9 +204,14 @@
     width: 48%;
 }
 
-.inputQuests label {
+.labelDateTask {
     color: var(--PrimaryColor2);
     margin-left: 5%;
+}
+
+.inputQuestsDate {
+    width: 50%;
+    justify-self: center;
 }
 
 .btnCalendarModal {

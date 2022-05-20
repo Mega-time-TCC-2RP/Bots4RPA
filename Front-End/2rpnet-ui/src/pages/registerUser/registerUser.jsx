@@ -85,6 +85,7 @@ export default function RegisterUser() {
     const [currentStep, setCurrentStep] = useState(0);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [googleId, setGoogleId] = useState('');
     const [birthDate, setBirthDate] = useState('');
     const [imageProfile, setImageProfile] = useState();
     const [name, setName] = useState('');
