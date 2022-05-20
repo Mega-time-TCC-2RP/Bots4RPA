@@ -209,6 +209,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         public void ValidateUser(UserName queryUser)
         {
             queryUser.UserValidation = true;
+            queryUser.Passwd = SearchByID(queryUser.IdUser).Passwd;
             ctx.UserNames.Update(queryUser);
             ctx.SaveChanges();
         }
