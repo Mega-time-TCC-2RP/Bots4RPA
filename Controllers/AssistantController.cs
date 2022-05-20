@@ -145,7 +145,7 @@ namespace _2RPNET_API.Controllers
         }
 
         [HttpPost("EnviarEmail")]
-        public IActionResult EnviaEmail(int idAssistant,SendEmailViewModel assistant)
+        public IActionResult EnviaEmail(int idAssistant, SendEmailViewModel assistant)
         {
             try
             {

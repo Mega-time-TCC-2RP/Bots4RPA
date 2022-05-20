@@ -43,12 +43,12 @@ namespace _2RPNET_API.Repositories
             AssistantProcedureRepository Procedure = new AssistantProcedureRepository();
             Procedure.SearchByID(IdAssistant);
 
-            if (IdAssistant = IdAssistant)
-            {                
-                Procedure.Delete();
-                Ctx.Assistants.Remove(AssistantSought);
-                Ctx.SaveChanges();
-            }
+            //if (IdAssistant = IdAssistant)
+            //{                
+            //    Procedure.Delete();
+            //    Ctx.Assistants.Remove(AssistantSought);
+            //    Ctx.SaveChanges();
+            //}
            
         }
 

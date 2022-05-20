@@ -5,7 +5,7 @@ namespace _2RPNET_API.Interfaces
 {
     public interface IRunRepository
     {
-        Run Create(Run DataRun);
+        Run Create(int Id,Run DataRun);
         List<Run> ReadAll();
         List<Run> ReadById(int Id);
 
@@ -16,7 +16,5 @@ namespace _2RPNET_API.Interfaces
 
         List<Run> ErrorList();
         List<Run> AssistantList(int id);
-
-        void UpdateQuantity(int IdAssistant, Run UpdatedRun);
     }
 }
