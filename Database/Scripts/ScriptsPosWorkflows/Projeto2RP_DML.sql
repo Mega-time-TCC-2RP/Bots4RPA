@@ -134,12 +134,17 @@ values(1,1,'Solução erro 404','achei muito legal a sua postagem');
 GO
 
 insert into Trophy(Title, TrophyDescription)
-values('Criar 5 assistentes', 'Esse troféu é concedido ao usuário que criar 5 assistentes');
+values('Que comecem os jogos!', 'Seja cadastrado e validado no sistema'), ('Ao trabalho!', 'Crie um assistente'), ('Mestre da automação', 'Crie cinco assistentes'), ('Exército a postos', 'Crie dez assistentes'), 
+('Primeiro de muitos', 'Tenha um assistente inserido a sua biblioteca'), ('Expandindo a coleção', 'Tenha cinco assistentes inseridos a sua biblioteca'), 
+('Praticidade é vida!', 'Tenha dez assistentes inseridos em sua biblioteca'), ('Roupa nova!', 'Aplique uma skin a um assistente'), ('Movam-se!', 'Execute um ou mais assistentes dez vezes'),
+('Sem Parar!', 'Execute um ou mais assistentes cinquenta vezes'), ('Turbinas a toda velocidade...','Execute um ou mais assistentes cem vezes'), ('Decolando!', 'Execute um ou mais assistentes mil vezes'), 
+('Centrado e organizado!', 'Mude o status de uma tarefa no painel organizacional para "feito"'), ('Tirando onda!', 'Faça uma postagem na aba social'), ('Interativo', 'Faça um comentário na aba social'), 
+('Corações','Curta uma postagem na aba social');
 GO
 
-insert into LibraryTrophy( IdTrophy, IdPlayer)
-values(1, 1);
-GO
+--insert into LibraryTrophy( IdTrophy, IdPlayer)
+--values(1, 1);
+--GO
 
 ----------------------------------
 --PARTE DA MANHA

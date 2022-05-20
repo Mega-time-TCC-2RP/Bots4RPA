@@ -21,7 +21,7 @@ create table UserName(
         BirthDate DateTime not null,
         RG varchar(15) not null,
 		UserValidation BIT default(0),
-		googleId INT,
+		googleId varchar(100),
         
         --add the foreign key
         IdUserType INT FOREIGN KEY REFERENCES UserType(IdUserType) not null
@@ -69,7 +69,6 @@ GO
 --create Player table
 create table Player(
         IdPlayer INT PRIMARY KEY Identity,
-        Score int,
 
         --fk
         IdEmployee INT FOREIGN KEY REFERENCES Employee(IdEmployee) not null
@@ -128,7 +127,6 @@ create table Skin(
         Title varchar(100) not null,
         SkinImages varchar(max) not null,
         SkinDescription varchar(max) default('Não há uma descrição para este visual de assistente :('),
-		SkinPrice INT not null
 );
 GO
 
@@ -301,6 +299,7 @@ Drop table Corporation
 Drop table Office
 Drop table Employee
 Drop table Player
+Drop table StatusWorkflow
 Drop table Workflow
 Drop table Quest
 Drop table Skin
