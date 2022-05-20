@@ -37,16 +37,12 @@ import { render } from "@testing-library/react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import GetMyAssistants from "../../components/GetAssistants/getAssistants";
 {/* <Navbar/> */ }
 
 export default function Home() {
 
-  // const [AssistantsList, setAssistantsList] = useState([]);
   const [ExecutionsList, setExecutionsList] = useState([]);
-
   const [isExecuting, setIsExecuting] = useState(false);
-
   const [AssistantsList, setAssistantsList] = useState([]);
 
   function Execute(idAssistant) {
@@ -82,7 +78,7 @@ export default function Home() {
   }
 
   function GetMyAssistants() {
-    console.log('Função GetAssistants foi chamada')
+    console.log('Função GetAssistants da Home')
 
     fetch('http://localhost:5000/api/Assistants', {
       headers: {
@@ -96,6 +92,9 @@ export default function Home() {
       )
       .catch((error) => console.log(error));
   };
+  useEffect(() => {
+    GetMyAssistants();
+  },Modal)
 
   // Open Modal to create assistant
   function OpenModalAssistant() {
@@ -114,18 +113,9 @@ export default function Home() {
   // Close Assistant details modal
   function CloseModal(idAssistant) {
     var modal = document.getElementById("modal" + idAssistant);
-    // console.log(id)
     modal.style.display = "none";
-
-    // GetMyAssistants()
+    GetMyAssistants()
   };
-
-  // Close Modal to create assistant
-  function CloseModalAssistant() {
-    var modalA = document.getElementById("modalAssistant");
-    // console.log(id)
-    modalA.style.display = "none";
-  }
 
   const [myQuests, setMyQuests] = useState([]);
   const [highlightedPosts, setHighlightedPosts] = useState([]);

@@ -29,10 +29,10 @@ export default function Modal() {
         fetch(myUrl, requestOptions)
             .then(response => {
                 if (response.status === 201) {
-                    console.log(response)
+                    // console.log(response)
                     return response.json()
                         .then(data => {
-                            console.log(data)
+                            // console.log(data)
                             navigate("/assistant", { state: { id: data.idAssistant, name: data.assistantName } });
                         })
                 }

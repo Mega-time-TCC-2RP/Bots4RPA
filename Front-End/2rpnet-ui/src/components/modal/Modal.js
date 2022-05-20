@@ -4,20 +4,34 @@ import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
 import EditIcon from '../icones/edit'
-import axios from "axios";
 // import { run } from 'cypress';
 
 export default function Modal({ assistant }) {
 
+    const [AssistantsList, setAssistantsList] = useState([]);
+    const [Run, setRun] = useState([]);
+    const [Description, setDescription] = useState("");
+
     function CloseModal(idAssistant) {
         var modal = document.getElementById("modal" + idAssistant);
         modal.style.display = "none";
-        // GetAssistant()
+        GetMyAssistants();
     };
 
-    const [Run, setRun] = useState([]);
-    const [Description, setDescription] = useState("");
-    // const [Assistant, setAssistant] = useState([]);
+    function GetMyAssistants() {
+        console.log('Função GetAssistants do Modal')
+        fetch('http://localhost:5000/api/Assistants', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setAssistantsList(data),
+                // console.log(data)   
+            )
+            .catch((error) => console.log(error));
+    };
 
     function RunQuantity() {
         fetch('http://localhost:5000/api/Run/' + assistant.idAssistant, {
@@ -33,22 +47,6 @@ export default function Modal({ assistant }) {
             .catch((error) => console.log(error));
     };
     useEffect(RunQuantity, [])
-
-    // function GetAssistant() {
-    //     console.log('Função GetAssistants foi chamada')
-
-    //     fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
-    //         headers: {
-    //             Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-    //         },
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) =>
-    //             setAssistant(data),
-    //             //  console.log(data)
-    //         )
-    //         .catch((error) => console.log(error));
-    // };
 
     function DeleteAssistant(idAssistant) {
         fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
@@ -76,11 +74,8 @@ export default function Modal({ assistant }) {
 
         fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, requestOptions)
             .then(resposta => {
-                // console.log(resposta)
                 if (resposta.status === 200) {
                     console.log("Descrição do assistente atualizada");
-                    console.log('Nova Descrição: ' + assistant.assistantDescription)
-
                     var btn = document.getElementById("btn" + assistant.idAssistant);
                     btn.style.display = "none";
 
@@ -92,8 +87,8 @@ export default function Modal({ assistant }) {
 
     function permitirTextArea(idAssistant, assistantDescription) {
         console.log("Você está editando a descrição do assistente " + idAssistant)
-        
-        setDescription(assistant.assistantDescription);
+
+        // setDescription(assistant.assistantDescription);
         var textoDescricao = document.getElementById("texto_desc" + idAssistant)
         textoDescricao.removeAttribute("readOnly");
 
@@ -102,7 +97,7 @@ export default function Modal({ assistant }) {
 
         if (btn.style.display === "none") {
             btn.style.display = "";
-            textoDescricao.style.backgroundColor = "#ffff"   
+            textoDescricao.style.backgroundColor = "#ffff"
         }
 
         else {
@@ -150,7 +145,7 @@ export default function Modal({ assistant }) {
                             <div className='box-paragraph'>
                                 <textarea
                                     name="texto_desc"
-                                    style={{ resize: "none", backgroundColor : "unset" }}
+                                    style={{ resize: "none", backgroundColor: "unset" }}
                                     id={"texto_desc" + assistant.idAssistant}
                                     readOnly value={Description} onChange={(campo) => setDescription(campo.target.value)}>
                                     {assistant.assistantDescription}
