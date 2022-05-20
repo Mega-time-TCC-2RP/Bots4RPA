@@ -151,9 +151,6 @@ namespace _2RPNET_API.Controllers
             {
                 _AssistantRepository.EnviaEmail(idAssistant,assistant);
 
-                RunRepository run = new RunRepository();
-                run.UpdateQuantity(idAssistant, UpdatedRun);
-
                 return Ok(new
                 {
                     Mensagem = "Código enviado"

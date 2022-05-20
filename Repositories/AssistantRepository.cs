@@ -40,8 +40,16 @@ namespace _2RPNET_API.Repositories
         public void Delete(int IdAssistant)
         {
             Assistant AssistantSought = SearchByID(IdAssistant);
-            Ctx.Assistants.Remove(AssistantSought);
-            Ctx.SaveChanges();
+            AssistantProcedureRepository Procedure = new AssistantProcedureRepository();
+            Procedure.SearchByID(IdAssistant);
+
+            if (IdAssistant = IdAssistant)
+            {                
+                Procedure.Delete();
+                Ctx.Assistants.Remove(AssistantSought);
+                Ctx.SaveChanges();
+            }
+           
         }
 
         public async Task EnviaEmail(int idAssistant, SendEmailViewModel emailConfig)
