@@ -81,9 +81,8 @@ export default function Home() {
       })
   }
 
-
   function GetMyAssistants() {
-    console.log('Função GetAssistants')
+    console.log('Função GetAssistants foi chamada')
 
     fetch('http://localhost:5000/api/Assistants', {
       headers: {
@@ -117,7 +116,7 @@ export default function Home() {
     var modal = document.getElementById("modal" + idAssistant);
     // console.log(id)
     modal.style.display = "none";
- 
+
     // GetMyAssistants()
   };
 

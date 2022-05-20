@@ -222,7 +222,7 @@ export default function Assistant() {
         }
 
         function drag() {
-            // log('CARD: Is dragging ')
+            // log('CARD: Is dragging ') 
         }
 
         function dragend() {

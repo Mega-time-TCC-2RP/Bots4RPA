@@ -4,7 +4,6 @@ import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
 import EditIcon from '../icones/edit'
-
 import axios from "axios";
 // import { run } from 'cypress';
 
@@ -12,13 +11,13 @@ export default function Modal({ assistant }) {
 
     function CloseModal(idAssistant) {
         var modal = document.getElementById("modal" + idAssistant);
-        // console.log(id)
         modal.style.display = "none";
+        // GetAssistant()
     };
 
-    const [AssistantsList, setAssistantsList] = useState([]);
     const [Run, setRun] = useState([]);
     const [Description, setDescription] = useState("");
+    // const [Assistant, setAssistant] = useState([]);
 
     function RunQuantity() {
         fetch('http://localhost:5000/api/Run/' + assistant.idAssistant, {
@@ -34,6 +33,22 @@ export default function Modal({ assistant }) {
             .catch((error) => console.log(error));
     };
     useEffect(RunQuantity, [])
+
+    // function GetAssistant() {
+    //     console.log('Função GetAssistants foi chamada')
+
+    //     fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
+    //         headers: {
+    //             Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+    //         },
+    //     })
+    //         .then((response) => response.json())
+    //         .then((data) =>
+    //             setAssistant(data),
+    //             //  console.log(data)
+    //         )
+    //         .catch((error) => console.log(error));
+    // };
 
     function DeleteAssistant(idAssistant) {
         fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
@@ -51,58 +66,52 @@ export default function Modal({ assistant }) {
             .catch((erro) => console.log(erro))
     };
 
-
     function UpdateDescription() {
-        console.log('entrou')
-
+        console.log('Entrou no método Update')
         const requestOptions = {
             method: 'PUT',
-            headers: {  'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
-            body: JSON.stringify({"assistantDescription": Description }) 
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+            body: JSON.stringify({ "assistantDescription": Description })
         };
 
         fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, requestOptions)
             .then(resposta => {
-                console.log(resposta)
+                // console.log(resposta)
                 if (resposta.status === 200) {
-                    console.log("descricao do assistente atualizada");
-                    // document.getElementById(idConsulta).setAttribute("readOnly");
-                    // var btn = document.getElementById("btn" + assistant.idAssistant)
-                    // btn.style.display = "none";
-                    //  setDescription("")
+                    console.log("Descrição do assistente atualizada");
+                    console.log('Nova Descrição: ' + assistant.assistantDescription)
+
+                    var btn = document.getElementById("btn" + assistant.idAssistant);
+                    btn.style.display = "none";
+
+                    var textoDescricao = document.getElementById("texto_desc" + assistant.idAssistant)
+                    textoDescricao.style.backgroundColor = "unset"
                 }
             }).catch(erro => console.log(erro))
-        // console.log('entrou na função Update')
     };
-
-
 
     function permitirTextArea(idAssistant, assistantDescription) {
         console.log("Você está editando a descrição do assistente " + idAssistant)
-
+        
         setDescription(assistant.assistantDescription);
         var textoDescricao = document.getElementById("texto_desc" + idAssistant)
         textoDescricao.removeAttribute("readOnly");
 
-        // if (textoDescricao.style.display === "flex") {
-        //     textoDescricao.style.display = "";
-        // } else {
-        //     textoDescricao.style.display = "flex";
-        // }
-
+        textoDescricao.style.backgroundColor = "unset"
         var btn = document.getElementById("btn" + idAssistant);
 
         if (btn.style.display === "none") {
             btn.style.display = "";
+            textoDescricao.style.backgroundColor = "#ffff"   
         }
+
         else {
             btn.style.display = "none";
         }
-
     }
     useEffect(() => {
         setDescription(assistant.assistantDescription);
-      }, [])
+    }, [])
 
     return (
         <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
@@ -139,10 +148,9 @@ export default function Modal({ assistant }) {
                                 <h4>Descrição:</h4>
                             </div>
                             <div className='box-paragraph'>
-                                {/* <textarea>{assistant.assistantDescription}</textarea> */}
                                 <textarea
                                     name="texto_desc"
-                                    style={{ resize: "none"}}
+                                    style={{ resize: "none", backgroundColor : "unset" }}
                                     id={"texto_desc" + assistant.idAssistant}
                                     readOnly value={Description} onChange={(campo) => setDescription(campo.target.value)}>
                                     {assistant.assistantDescription}
