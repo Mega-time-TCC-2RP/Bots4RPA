@@ -89,24 +89,58 @@ namespace _2RPNET_API.Repositories
             return ctx.Runs.FirstOrDefault(c => c.IdAssistant == IdAssistant);
         }
 
-        public void SuccessesOrFailures(int IdAssistant)
+        public void UpdateQuantity(int IdAssistant, Run UpdatedRun)
         {
             //List<Run> ListRuns = ReadAll();
-            List<Run> ListRuns = ctx.Runs.ToList();
+            //foreach (var item in ListRuns)
+            //{
+            //    if (item.IdAssistant == IdAssistant)
+            //    {
+            //        item.IdWorkflow = item.IdWorkflow;
+            //        item.RunQuantity = item.RunQuantity + 1;
+            //        item.RunDate = DateTime.Now;
+            //        item.RunStatus = item.RunStatus;
+            //        item.RunDescription = item.RunDescription;
 
-            foreach (var item in ListRuns)
+            //        ctx.Runs.Update(item);
+            //        ctx.SaveChanges();
+            //    }
+            //}
+
+
+            //List<Run> ListRuns = ctx.Runs.ToList();
+            //Run RunSought = SearchByID(IdAssistant);
+
+            //foreach (var item in ListRuns)
+            //{
+            //    if (item.IdAssistant == RunSought.IdAssistant)
+            //    {
+            //        item.IdWorkflow = item.IdWorkflow;
+            //        item.RunQuantity = item.RunQuantity + 1;
+            //        item.RunDate = DateTime.Now;
+            //        item.RunStatus = item.RunStatus;
+            //        item.RunDescription = item.RunDescription;
+
+            //        ctx.Runs.Update(item);
+            //        ctx.SaveChanges();
+            //    }
+            //}
+
+
+            // tenho q pegar o run de assistente
+            Run RunOfAssistantSought = SearchAssistantByID(IdAssistant);
+
+            if(RunOfAssistantSought != null)
             {
-                if (item.IdAssistant == IdAssistant)
-                {
-                    item.IdWorkflow = item.IdWorkflow;
-                    item.RunQuantity = item.RunQuantity + 1;
-                    item.RunDate = DateTime.Now;
-                    item.RunStatus = item.RunStatus;
-                    item.RunDescription = item.RunDescription;
+                RunOfAssistantSought.IdWorkflow = UpdatedRun.IdWorkflow;
+                RunOfAssistantSought.RunQuantity = RunOfAssistantSought.RunQuantity + 1;
+                // n sei se é o procurado ou atualizado
+                RunOfAssistantSought.RunDate = DateTime.Now;
+                RunOfAssistantSought.RunStatus = UpdatedRun.RunStatus;
+                RunOfAssistantSought.RunDescription = UpdatedRun.RunDescription;
 
-                    ctx.Runs.Update(item);
-                    ctx.SaveChanges();
-                }
+                ctx.Runs.Update(RunOfAssistantSought);
+                ctx.SaveChanges();
             }
         }
     }

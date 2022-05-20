@@ -17,6 +17,6 @@ namespace _2RPNET_API.Interfaces
         List<Run> ErrorList();
         List<Run> AssistantList(int id);
 
-        void SuccessesOrFailures(int IdAssistant);
+        void UpdateQuantity(int IdAssistant, Run UpdatedRun);
     }
 }
