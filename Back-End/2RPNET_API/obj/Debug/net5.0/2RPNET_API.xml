@@ -79,9 +79,9 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ChangeVerification(_2RPNET_API.ViewModels.ArrayViewModel)">
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ChangeVerification(System.Int32,_2RPNET_API.ViewModels.ArrayViewModel)">
             <summary>
-            Method responsible for get all Assistants
+            Method responsible for get analyze Assistants
             </summary>
             <returns></returns>
         </member>

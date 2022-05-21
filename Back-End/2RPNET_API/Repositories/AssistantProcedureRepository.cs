@@ -114,7 +114,7 @@ Console.WriteLine(message.Text);");
                     }
                 }
                 sw.WriteLine(@"await page.ScreenshotAsync(new PageScreenshotOptions { Path =" + '"' + "./StaticFiles/Images/Assistant" + IdAssistant + ".png" + '"' + " });}}");
-                
+
             }
             string pathRun = $"./Controllers/Assistant{IdAssistant}Controller.cs";
             // Create a file to write to.
@@ -159,7 +159,7 @@ public IActionResult NewRun(SendEmail assistant)
 "
         + $"AssistantProcess{IdAssistant} _program = new AssistantProcess{IdAssistant}();" + @"
         _program.Play();
-        _AssistantRepository.EnviaEmail("+$"{IdAssistant},"+@"assistant);
+        _AssistantRepository.EnviaEmail(" + $"{IdAssistant}," + @"assistant);
         return StatusCode(204);
     }
     catch (Exception ex)
@@ -177,7 +177,7 @@ public IActionResult NewRun(SendEmail assistant)
         public List<AssistantProcedure> ReadAll()
         {
             return ctx.AssistantProcedures.ToList();
-        }                                                                                                       
+        }
 
         public List<AssistantProcedure> SearchByAssistant(int IdAssistant)
         {
@@ -212,59 +212,77 @@ public IActionResult NewRun(SendEmail assistant)
             return ctx.AssistantProcedures.FirstOrDefault(a => a.ProcedureName == ProcedureName);
         }
 
-        public void ChangeVerification(ArrayViewModel ArrayViewModel)
+        public void ChangeVerification(int IdAssistant, ArrayViewModel ArrayViewModel)
         {
             // AssistantProcedure UpdateProcess
-            string ProcedureName = ArrayViewModel.ProcedureName;
+            //string ProcedureName = ArrayViewModel.ProcedureName;
+            //AssistantRepository Assistant = SearchByID(IdAssistant);
 
-            AssistantProcedure AssistantSought = SearchByName(ProcedureName);
+            //List<AssistantProcedure> AssistantSoughtList = SearchByAssistant(IdAssistant);
             // fazer verficação
-            List<AssistantProcedure> ProceduresList = ctx.AssistantProcedures.ToList();
+            //List<AssistantProcedure> ProceduresList = ctx.AssistantProcedures.ToList();
 
-            if (AssistantSought != null)
+            List<AssistantProcedure> ProceduresList = SearchByAssistant(IdAssistant);
+            bool UpdatedVerification = true;
+
+            if (ProceduresList.Count() > 0)
             {
                 foreach (var item in ProceduresList)
                 {
-                    if (item.ProcedureName == AssistantSought.ProcedureName)
+                    if (item.ProcedurePriority == ArrayViewModel.ProcedurePriority || item.ProcedureName == ArrayViewModel.ProcedureName || item.ProcedureDescription == ArrayViewModel.ProcedureDescription || item.ProcedureValue == ArrayViewModel.ProcedureValue)
                     {
-                        if (item.IdAssistant == ArrayViewModel.IdAssistant || item.ProcedurePriority == ArrayViewModel.ProcedurePriority || item.ProcedureName == ArrayViewModel.ProcedureName || item.ProcedureDescription == ArrayViewModel.ProcedureDescription || item.ProcedureValue == ArrayViewModel.ProcedureValue)
+                        if (item.IdAssistant != IdAssistant)
                         {
-                            if (item.IdAssistant != AssistantSought.IdAssistant)
-                            {
-                                item.IdAssistant = AssistantSought.IdAssistant;
-                            }
-
-                            if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
-                            {
-                                item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
-                            }
-
-                            if (item.ProcedureName != ArrayViewModel.ProcedureName)
-                            {
-                                item.ProcedureName = ArrayViewModel.ProcedureName;
-                            }
-
-                            if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
-                            {
-                                item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
-                            }
-
-                            if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
-                            {
-                                item.ProcedureValue = ArrayViewModel.ProcedureValue;
-                            }
-
-                            ctx.AssistantProcedures.Update(item);
-                            ctx.SaveChanges();
-
+                            item.IdAssistant = IdAssistant;
                         }
+
+                        if (item.ProcedurePriority != ArrayViewModel.ProcedurePriority)
+                        {
+                            item.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                        }
+
+                        if (item.ProcedureName != ArrayViewModel.ProcedureName)
+                        {
+                            item.ProcedureName = ArrayViewModel.ProcedureName;
+                        }
+
+                        if (item.ProcedureDescription != ArrayViewModel.ProcedureDescription)
+                        {
+                            item.ProcedureDescription = ArrayViewModel.ProcedureDescription;
+                        }
+
+                        if (item.ProcedureValue != ArrayViewModel.ProcedureValue)
+                        {
+                            item.ProcedureValue = ArrayViewModel.ProcedureValue;
+                        }
+
+                        ctx.AssistantProcedures.Update(item);
+                        ctx.SaveChanges();
+                        UpdatedVerification = true;
                     }
+                    else
+                    {
+                        UpdatedVerification = false;
+                    }
+
+                }
+                if (UpdatedVerification == false)
+                {
+                    AssistantProcedure _repository = new AssistantProcedure();
+                    _repository.IdAssistant = IdAssistant;
+                    _repository.ProcedurePriority = ArrayViewModel.ProcedurePriority;
+                    _repository.ProcedureName = ArrayViewModel.ProcedureName;
+                    _repository.ProcedureDescription = ArrayViewModel.ProcedureDescription;
+                    _repository.ProcedureValue = ArrayViewModel.ProcedureValue;
+
+                    ctx.AssistantProcedures.Add(_repository);
+                    ctx.SaveChanges();
                 }
             }
             else
             {
                 AssistantProcedure _repository = new AssistantProcedure();
-                _repository.IdAssistant = ArrayViewModel.IdAssistant;
+                _repository.IdAssistant = IdAssistant;
                 _repository.ProcedurePriority = ArrayViewModel.ProcedurePriority;
                 _repository.ProcedureName = ArrayViewModel.ProcedureName;
                 _repository.ProcedureDescription = ArrayViewModel.ProcedureDescription;

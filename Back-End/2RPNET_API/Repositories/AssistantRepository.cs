@@ -62,8 +62,6 @@ namespace _2RPNET_API.Repositories
             //}
 
             //Ctx.SaveChanges();
-
-
         }
 
         public async Task EnviaEmail(int idAssistant, SendEmailViewModel emailConfig)

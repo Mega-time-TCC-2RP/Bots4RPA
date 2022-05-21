@@ -19,7 +19,7 @@ namespace _2RPNET_API.Interfaces
 
         void Delete(int IdAssistant);
 
-        void ChangeVerification(ArrayViewModel ArrayViewModel);
+        void ChangeVerification(int IdAssistant, ArrayViewModel ArrayViewModel);
         //AssistantProcedure UpdateProcess
         AssistantProcedure SearchByName(string ProcedureName);
     }
