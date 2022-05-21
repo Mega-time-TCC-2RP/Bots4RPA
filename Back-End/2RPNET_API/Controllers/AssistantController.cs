@@ -131,7 +131,6 @@ namespace _2RPNET_API.Controllers
                     //AssistantProcedureRepository assistantProcedureRepository = new AssistantProcedureRepository();
                     //assistantProcedureRepository.Delete(IdAssistant);
                     _AssistantRepository.Delete(IdAssistant);
-
                 }
                 else
                 {
