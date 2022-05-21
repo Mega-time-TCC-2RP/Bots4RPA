@@ -8,29 +8,13 @@ import EditIcon from '../icones/edit'
 
 export default function Modal({ assistant }) {
 
-    const [AssistantsList, setAssistantsList] = useState([]);
     const [Run, setRun] = useState([]);
+    const [AProcedure, setAProcedures] = useState([]);
     const [Description, setDescription] = useState("");
 
     function CloseModal(idAssistant) {
         var modal = document.getElementById("modal" + idAssistant);
         modal.style.display = "none";
-        GetMyAssistants();
-    };
-
-    function GetMyAssistants() {
-        console.log('Função GetAssistants do Modal')
-        fetch('http://localhost:5000/api/Assistants', {
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-            },
-        })
-            .then((response) => response.json())
-            .then((data) =>
-                setAssistantsList(data),
-                // console.log(data)   
-            )
-            .catch((error) => console.log(error));
     };
 
     function RunQuantity() {
@@ -48,7 +32,41 @@ export default function Modal({ assistant }) {
     };
     useEffect(RunQuantity, [])
 
+    function GetAssistantProcedure() {
+        console.log('GetAssistantProcedure')
+        fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + assistant.idAssistant, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setAProcedures(data)
+                //  console.log(data)   
+            )
+            .catch((error) => console.log(error));
+    };
+
+    function DeleteProcedures() {
+        AProcedure.map((a) => {
+            // console.log(a.idAprocedure)
+            fetch('http://localhost:5000/api/AssistantProcedure/' + a.idAprocedure, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+                },
+            })
+                .then((resposta) => {
+                    if (resposta.status === 204) {
+                        console.log('Procedures Apagadas');
+                    }
+                })
+                .catch((erro) => console.log(erro))
+        })
+    };
+
     function DeleteAssistant(idAssistant) {
+        DeleteProcedures()
         fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
             method: 'DELETE',
             headers: {
@@ -57,12 +75,13 @@ export default function Modal({ assistant }) {
         })
             .then((resposta) => {
                 if (resposta.status === 200) {
-                    // console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
+                    console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
                     CloseModal(assistant.idAssistant)
                 }
             })
             .catch((erro) => console.log(erro))
     };
+
 
     function UpdateDescription() {
         console.log('Entrou no método Update')
@@ -87,8 +106,7 @@ export default function Modal({ assistant }) {
 
     function permitirTextArea(idAssistant, assistantDescription) {
         console.log("Você está editando a descrição do assistente " + idAssistant)
-
-        // setDescription(assistant.assistantDescription);
+     
         var textoDescricao = document.getElementById("texto_desc" + idAssistant)
         textoDescricao.removeAttribute("readOnly");
 
@@ -106,6 +124,7 @@ export default function Modal({ assistant }) {
     }
     useEffect(() => {
         setDescription(assistant.assistantDescription);
+        GetAssistantProcedure();
     }, [])
 
     return (

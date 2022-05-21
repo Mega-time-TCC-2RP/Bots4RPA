@@ -94,7 +94,7 @@ export default function Home() {
   };
   useEffect(() => {
     GetMyAssistants();
-  },Modal)
+  }, Modal)
 
   // Open Modal to create assistant
   function OpenModalAssistant() {
@@ -208,7 +208,9 @@ export default function Home() {
                     <div className="card1">
 
                       <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
-                      <h5>{assistant.assistantName}</h5>
+                      <div className="container-AssistantName">
+                        <h5>{assistant.assistantName}</h5>
+                      </div>
                       {
                         isExecuting === false ? (
                           <button onClick={(event) => {
