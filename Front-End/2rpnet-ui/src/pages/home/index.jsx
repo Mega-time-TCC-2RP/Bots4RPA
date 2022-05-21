@@ -2,6 +2,7 @@ import "../../assets/css/style.css";
 import "../../assets/css/components/navbar.css"
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
 
 
 // import Swiper, { Navigation, Pagination } from 'swiper';
@@ -23,6 +24,9 @@ import Navbar from '../../components/menu/Navbar'
 import VLibras from '@djpfs/react-vlibras'
 import { API } from "../../services/api";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -34,76 +38,64 @@ import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/header/header'
 
-//items
+//items:
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 
 //Components:
+// import Navbar from '../../components/menu/Navbar'
+import ModalM from '../../components/modal/Modal'
 import Footer from '../../components/footer/footer'
+import { render } from "@testing-library/react";
 
 //onboarding
 import '../../assets/css/pages/onBoarding.css'
-import Modal from 'react-modal';
 import Blue_Head from '../../assets/img/Blue_Head.png'
 import onBoardingBot from '../../assets/img/onBoardingBot.png'
 
+{/* <Navbar/> */ }
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
+export default function Home() {
 
-const stylesCustom = {
-  content: {
-    width: 1,
-    height: 1,
-    // backgroundcolor: rgba(0, 255, 255, 0.75),
-    boxShadow: ''
-  },
-};
-
-Modal.setAppElement('#root');
-
-function App() {
-
-  const [AssistantsList, setAssistantsList] = useState([]);
   const [ExecutionsList, setExecutionsList] = useState([]);
-
   const [isExecuting, setIsExecuting] = useState(false);
+  const [AssistantsList, setAssistantsList] = useState([]);
 
   function Execute(idAssistant) {
     setIsExecuting(true);
 
     var eURL = API + "/api/Assistant" + idAssistant + "/Post";
     var eBody = JSON.stringify({
-        "email": parseJwt().email,
-        "emailBody": "result"
-      });
+      "email": parseJwt().email,
+      "emailBody": "result"
+    });
 
     fetch(eURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: eBody
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: eBody
     })
-        .then((response) => {
-            // console.log("before if");
-            console.log(response)
-            if (response.status === 204) {
-                console.log("FUNCIONOU");
-                toast.success("O resultado foi enviado para seu email");
-            } else {
-                toast.error("A execução deu errado :/");
-            }
-            setIsExecuting(false);
-        })
-        .catch((erro) => {
-            console.log(erro)
-            toast.error("A execução deu errado :/");
-            setIsExecuting(false);
-        })
-}
+      .then((response) => {
+        // console.log("before if");
+        console.log(response)
+        if (response.status === 204) {
+          console.log("FUNCIONOU");
+          toast.success("O resultado foi enviado para seu email");
+        } else {
+          toast.error("A execução deu errado :/");
+        }
+        setIsExecuting(false);
+      })
+      .catch((erro) => {
+        console.log(erro)
+        toast.error("A execução deu errado :/");
+        setIsExecuting(false);
+      })
+  }
 
   function GetMyAssistants() {
+    console.log('Função GetAssistants da Home')
     fetch('http://localhost:5000/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -116,9 +108,6 @@ function App() {
       )
       .catch((error) => console.log(error));
   };
-
-  useEffect(GetMyAssistants, [])
-
 
   // Open Modal to create assistant
   function OpenModalAssistant() {
@@ -137,18 +126,10 @@ function App() {
   // Close Assistant details modal
   function CloseModal(idAssistant) {
     var modal = document.getElementById("modal" + idAssistant);
-    // console.log(id)
     modal.style.display = "none";
+    GetMyAssistants()
   };
 
-  // Close Modal to create assistant
-  function CloseModalAssistant() {
-    var modalA = document.getElementById("modalAssistant");
-    // console.log(id)
-    modalA.style.display = "none";
-  }
-
-  //----------------------------------------------------------------------
   const [myQuests, setMyQuests] = useState([]);
   const [highlightedPosts, setHighlightedPosts] = useState([]);
   const Navigate = useNavigate();
@@ -165,7 +146,7 @@ function App() {
   //onboarding
 
   const GetMyQuests = () => {
-    if(parseJwt().Role != "1"){
+    if (parseJwt().Role != "1") {
       axios.get('http://grupo7.azurewebsites.net/api/Workflows/GetMine', {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
@@ -182,7 +163,7 @@ function App() {
         }
       })
     }
-    else{
+    else {
       axios.get('http://grupo7.azurewebsites.net/api/Workflows', {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
@@ -202,13 +183,13 @@ function App() {
   }
 
   const GetHighlightedPosts = () => {
-    axios.get('http://grupo7.azurewebsites.net/api/Posts/Highlights', {
+    axios.get('https://grupo7.azurewebsites.net/api/Posts/Highlights', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
     }).then((response) => {
-      console.log(response)
-      console.log(response.data)
+      // console.log(response)
+      // console.log(response.data)
       setHighlightedPosts(response.data)
     }).catch(async (error) => {
       if (await handleAuthException(error) === true) {
@@ -223,13 +204,15 @@ function App() {
     console.log(parseJwt())
     GetMyQuests();
     GetHighlightedPosts();
+    GetMyAssistants();
   }, [])
+
   return (
     <div>
 
       <Navbar />
       <div className='body-pd'>
-        
+
         <Header />
         <VLibras />
         <img
@@ -240,7 +223,7 @@ function App() {
         <Modal
           isOpen={onBoardingIsOpen}
           onRequestClose={handleCloseOnBoarding}
-          style={stylesCustom}
+          // style={stylesCustom}
         >
           <div className="top-container-onboarding" >
             <div className="background-body" >
@@ -297,68 +280,70 @@ function App() {
         <div className="top-container">
           <div className="top-buttons">
             <div className="form-container">
-              <form className="form-home">
-                <ModalA />
-                <button className="button-assistant"
-                  onClick={(event) => {
-                    event.preventDefault()
-                    OpenModalAssistant()
-                  }}
-                >Criar Assistente
-                </button>
-                <input className="Input-Home" type='search' placeholder="Buscar assistente" id="Assistente"></input>
-              </form>
+            <form className="form-home">
+              <ModalA />
+              <button className="button-assistant"
+                onClick={(event) => {
+                  event.preventDefault()
+                  OpenModalAssistant()
+                }}
+              >Criar Assistente
+              </button>
+              <input className="Input-Home" type='search' placeholder="Buscar assistente" id="Assistente"></input>
+            </form>
             </div>
             <form className="nao">
-              <div className="movieRow-left">
-                <NavigateBeforeIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
-              </div>
-              <div className="movieRow-right">
-                <NavigateNextIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
-              </div>
+            <div className="movieRow-left">
+              <NavigateBeforeIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
+            </div>
+            <div className="movieRow-right">
+              <NavigateNextIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
+            </div>
 
-              <div className="cards-container">
-                {AssistantsList.map((assistant) => {
-                  return (
-                    <div className="containerSmodal">
-                      <Modal assistant={assistant} />
-                      <div className="card1">
+            <div className="cards-container">
+              {AssistantsList.map((assistant) => {
+                return (
+                  <div className="containerSmodal">
+                    <Modal assistant={assistant} />
+                    <div className="card1">
 
-                        <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
+                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
+                      <div className="container-AssistantName">
                         <h5>{assistant.assistantName}</h5>
-                        {
-                          isExecuting === false ? (
-                            <button onClick={(event) => {
-                              event.preventDefault()
-                              Execute(assistant.idAssistant)
-                            }}>
-                              <PlayIcon />
-                            </button>
-                          ) : (
-                            <button disabled onClick={(event) => {
-                              event.preventDefault()
-                              Execute(assistant.idAssistant)
-                            }}>
-                              <FontAwesomeIcon icon={faSpinner} size="lg" spin />
-                            </button>
-                          )
-                        }
-                        <div className="box-details">
-                          <button
-                            onClick={(event) => {
-                              event.preventDefault()
-                              OpenModal(assistant.idAssistant)
-                            }}
-                          >Ver detalhes
+                      </div>
+                      {
+                        isExecuting === false ? (
+                          <button onClick={(event) => {
+                            event.preventDefault()
+                            Execute(assistant.idAssistant)
+                          }}>
+                            <PlayIcon />
                           </button>
-                        </div>
+                        ) : (
+                          <button disabled onClick={(event) => {
+                            event.preventDefault()
+                            Execute(assistant.idAssistant)
+                          }}>
+                            <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                          </button>
+                        )
+                      }
+                      <div className="box-details">
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault()
+                            OpenModal(assistant.idAssistant)
+                          }}
+                        >Ver detalhes
+                        </button>
                       </div>
                     </div>
-                  )
-                })}
+                  </div>
+                )
+              })}
 
-              </div>
-            </form>
+            </div>
+          </form>
           </div>
         </div >
         <div className="body-container">
@@ -437,12 +422,9 @@ function App() {
                 <span>Não há posts em destaque</span>
             }
           </Swiper>
-        </div>
 
-        <Footer />
+        </div >
       </div>
-    </div >
+    </div>
   );
 }
-
-export default App;

@@ -3,17 +3,19 @@ import "../../components/modal/Modal.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
+import EditIcon from '../icones/edit'
 // import { run } from 'cypress';
 
-function CloseModal(idAssistant) {
-    var modal = document.getElementById("modal" + idAssistant);
-    // console.log(id)
-    modal.style.display = "none";
-};
-
-export default function Modal({ assistant }) {
+export default function ModalM({ assistant }) {
 
     const [Run, setRun] = useState([]);
+    const [AProcedure, setAProcedures] = useState([]);
+    const [Description, setDescription] = useState("");
+
+    function CloseModal(idAssistant) {
+        var modal = document.getElementById("modal" + idAssistant);
+        modal.style.display = "none";
+    };
 
     function RunQuantity() {
         fetch('http://localhost:5000/api/Run/' + assistant.idAssistant, {
@@ -24,11 +26,106 @@ export default function Modal({ assistant }) {
             .then((response) => response.json())
             .then((data) =>
                 setRun(data)
-                //console.log(data)
+                // console.log(data)
             )
             .catch((error) => console.log(error));
     };
     useEffect(RunQuantity, [])
+
+    function GetAssistantProcedure() {
+        console.log('GetAssistantProcedure')
+        fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + assistant.idAssistant, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setAProcedures(data)
+                //  console.log(data)   
+            )
+            .catch((error) => console.log(error));
+    };
+
+    function DeleteProcedures() {
+        AProcedure.map((a) => {
+            // console.log(a.idAprocedure)
+            fetch('http://localhost:5000/api/AssistantProcedure/' + a.idAprocedure, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+                },
+            })
+                .then((resposta) => {
+                    if (resposta.status === 204) {
+                        console.log('Procedures Apagadas');
+                    }
+                })
+                .catch((erro) => console.log(erro))
+        })
+    };
+
+    function DeleteAssistant(idAssistant) {
+        DeleteProcedures()
+        fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
+                    CloseModal(assistant.idAssistant)
+                }
+            })
+            .catch((erro) => console.log(erro))
+    };
+
+
+    function UpdateDescription() {
+        console.log('Entrou no método Update')
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+            body: JSON.stringify({ "assistantDescription": Description })
+        };
+
+        fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, requestOptions)
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    console.log("Descrição do assistente atualizada");
+                    var btn = document.getElementById("btn" + assistant.idAssistant);
+                    btn.style.display = "none";
+
+                    var textoDescricao = document.getElementById("texto_desc" + assistant.idAssistant)
+                    textoDescricao.style.backgroundColor = "unset"
+                }
+            }).catch(erro => console.log(erro))
+    };
+
+    function permitirTextArea(idAssistant, assistantDescription) {
+        console.log("Você está editando a descrição do assistente " + idAssistant)
+     
+        var textoDescricao = document.getElementById("texto_desc" + idAssistant)
+        textoDescricao.removeAttribute("readOnly");
+
+        textoDescricao.style.backgroundColor = "unset"
+        var btn = document.getElementById("btn" + idAssistant);
+
+        if (btn.style.display === "none") {
+            btn.style.display = "";
+            textoDescricao.style.backgroundColor = "#ffff"
+        }
+
+        else {
+            btn.style.display = "none";
+        }
+    }
+    useEffect(() => {
+        setDescription(assistant.assistantDescription);
+        GetAssistantProcedure();
+    }, [])
 
     return (
         <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
@@ -46,8 +143,18 @@ export default function Modal({ assistant }) {
                 <div className='Sbody-modal'>
                     <div className='Sbox-modal-assistant'>
                         <div className='assistant-id'>
-                            <img src={Azul_Home} className="assistant-modal" />
-                            <h3>{assistant.assistantName}</h3>
+                            <div className='box-img-modal'>
+                                <img src={Azul_Home} className="assistant-modal" />
+                                <button
+                                    className='button-edit'
+                                    onClick={() => permitirTextArea(assistant.idAssistant, assistant.assistantDescription)}
+                                    type="button">
+                                    <EditIcon />
+                                </button>
+                            </div>
+                            <div className='Sbox-assistantName'>
+                                <h3>{assistant.assistantName}</h3>
+                            </div>
                         </div>
 
                         <div className='assistant-info'>
@@ -55,16 +162,35 @@ export default function Modal({ assistant }) {
                                 <h4>Descrição:</h4>
                             </div>
                             <div className='box-paragraph'>
-                                <p>
+                                <textarea
+                                    name="texto_desc"
+                                    style={{ resize: "none", backgroundColor: "unset" }}
+                                    id={"texto_desc" + assistant.idAssistant}
+                                    readOnly value={Description} onChange={(campo) => setDescription(campo.target.value)}>
                                     {assistant.assistantDescription}
-                                </p>
+                                </textarea>
+                                <button
+                                    className='btn-save-modal'
+                                    onClick={(event) => {
+                                        event.preventDefault()
+                                        UpdateDescription()
+                                    }}
+                                    id={"btn" + assistant.idAssistant}
+                                    style={{ display: "none" }}>
+                                    Salvar
+                                </button>
                             </div>
                             <div className='assistant-date'>
-                                <span className='span1'> Última alteração: </span>
+                                <span className='span1'> Data da última alteração: </span>
                                 <span className='span2'> {Intl.DateTimeFormat("pt-BR", {
                                     year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"
                                 }).format(new Date(assistant.alterationDate))} </span>
                             </div>
+                            <button onClick={(event) => {
+                                event.preventDefault()
+                                DeleteAssistant(assistant.idAssistant)
+                            }}
+                                className='button-delete'>Excluir</button>
                         </div>
                     </div>
                     <div className='assistant-graphics'>
@@ -121,3 +247,5 @@ export default function Modal({ assistant }) {
         </div>
     )
 }
+
+

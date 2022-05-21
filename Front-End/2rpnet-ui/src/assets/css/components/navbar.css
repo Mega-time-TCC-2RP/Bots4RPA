@@ -9,7 +9,8 @@ body{
 .sidebar .nav_list{
     padding: 0;
 }
-.sidebar{
+
+.sidebar{  
     position: fixed;
     top: 0;
     left: 0;

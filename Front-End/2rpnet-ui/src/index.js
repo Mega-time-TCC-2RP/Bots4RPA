@@ -22,7 +22,7 @@ import Login from './pages/login/';
 import Guide from './pages/guide/';
 import SkinShop from './pages/skinShop/skinShop';
 import Marketplace from './pages/marketplace/marketplace';
-import MyProcesses from './pages/myProcesses/';
+import Assistant from './pages/myProcesses/assistant';
 import { TelaTimeline } from './pages/social/index';
 import Quest from './pages/quests';
 import TesteDaltonicMode from './pages/DaltonicModeTest';
@@ -33,8 +33,6 @@ import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
 import RegisterCompany from './pages/registerCompany/registerCompany';
 import RegisterUser from './pages/registerUser/registerUser';
-
-
 import { history } from './history';
 import VLibras from '@djpfs/react-vlibras'
 import { usuarioAutenticado, parseJwt } from '../src/services/auth';
@@ -60,7 +58,7 @@ const routing = (
         <Route path="/guide" element={<Guide />} /> {/* Guide */}
         <Route path="/skinShop" element={<SkinShop />} /> {/* Marketplace */}
         <Route path="/marketplace" element={<Marketplace />} /> {/* Marketplace */}
-        <Route path="/myprocesses" element={<MyProcesses />} /> {/* MyProcesses */}
+        <Route path="/assistant" element={<Assistant/>} />
         <Route path="/social" element={<TelaTimeline />} /> {/* Social */}
         <Route path="/quests" element={<Quest />} /> {/* Task Calendar */}
         <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />
