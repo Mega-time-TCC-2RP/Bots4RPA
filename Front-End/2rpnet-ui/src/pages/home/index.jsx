@@ -56,6 +56,17 @@ import onBoardingBot from '../../assets/img/onBoardingBot.png'
 
 {/* <Navbar/> */ }
 
+const stylesCustom = {
+  content: {
+    width: 1,
+    height: 1,
+    // backgroundcolor: rgba(0, 255, 255, 0.75),
+    boxShadow: ''
+  },
+};
+
+Modal.setAppElement('#root');
+
 export default function Home() {
 
   const [ExecutionsList, setExecutionsList] = useState([]);
@@ -204,7 +215,7 @@ export default function Home() {
     console.log(parseJwt())
     GetMyQuests();
     GetHighlightedPosts();
-    GetMyAssistants();
+    // GetMyAssistants();
   }, [])
 
   return (
@@ -223,7 +234,7 @@ export default function Home() {
         <Modal
           isOpen={onBoardingIsOpen}
           onRequestClose={handleCloseOnBoarding}
-          // style={stylesCustom}
+          style={stylesCustom}
         >
           <div className="top-container-onboarding" >
             <div className="background-body" >
@@ -278,8 +289,8 @@ export default function Home() {
           </div>
         </Modal>
         <div className="top-container">
-          <div className="top-buttons">
-            <div className="form-container">
+        <div className="top-buttons">
+          <div className="form-container">
             <form className="form-home">
               <ModalA />
               <button className="button-assistant"
@@ -291,8 +302,8 @@ export default function Home() {
               </button>
               <input className="Input-Home" type='search' placeholder="Buscar assistente" id="Assistente"></input>
             </form>
-            </div>
-            <form className="nao">
+          </div>
+          <form className="nao">
             <div className="movieRow-left">
               <NavigateBeforeIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
             </div>
@@ -344,8 +355,9 @@ export default function Home() {
 
             </div>
           </form>
-          </div>
-        </div >
+        </div>
+      </div >
+
         <div className="body-container">
           <h2 className="body-title-task">Minhas Tarefas</h2>
           <Swiper
@@ -369,7 +381,7 @@ export default function Home() {
                       <div className="card-body-content">
                         <h3 className="title-card-content">{Workflow.title}</h3>
                         <p className="text-body1">{Workflow.workflowDescription}</p>
-                        <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Workflow.endDate))}</p>
+                        {/* <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Workflow.endDate))}</p> */}
                       </div>
                     </SwiperSlide>
                   )

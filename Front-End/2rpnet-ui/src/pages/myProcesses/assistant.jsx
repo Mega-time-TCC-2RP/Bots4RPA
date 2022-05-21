@@ -34,7 +34,8 @@ export default function Assistant() {
     const [result, setResult] = useState("oi");
 
     const location = useLocation();
-    var idAssistant = location.state.id;
+    // var idAssistant = location.state.id;
+    var idAssistant = 1;
 
     function GetProceduresById() {
         fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + idAssistant, {

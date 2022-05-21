@@ -98,7 +98,7 @@ function Navbar() {
         }
         {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
           <li>
-            <Link to="/myprocesses" className='Link'>
+            <Link to="/assistant" className='Link'>
               <FaIcons.FaRobot className='icon2' alt="botão assistentes" />
               <span className='Links_name' alt="botão assistentes">Assistentes</span>
             </Link>
