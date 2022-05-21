@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
 
+<<<<<<< HEAD
 * {
+=======
+*{
+>>>>>>> manha-front-assistant
     margin: 0;
     padding: 0;
     /* box-sizing: border-box;
@@ -190,6 +194,11 @@
     font-weight: 500;
     font-size: 23px;
     line-height: 33px;
+<<<<<<< HEAD
+=======
+    display: flex;
+    align-items: center;
+>>>>>>> manha-front-assistant
     color: var(--ComplementaryColor3);
     
     word-wrap: unset;

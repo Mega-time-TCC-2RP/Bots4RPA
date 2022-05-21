@@ -29,16 +29,21 @@ export default function Assistant() {
     const [Assistant, setAssistant] = useState("")
     const [proceduresList, setProceduresList] = useState(Procedures);
     const [pValue, setPValue] = useState();
+    const [eRValue, setERValue] = useState();
+    const [eSValue, setESValue] = useState();
+    const [eBValue, setEBValue] = useState();
+    const [Teste, setTeste] = useState();
     const [isSaving, setIsSaving] = useState(false);
     const [isExecuting, setIsExecuting] = useState(false);
     const [result, setResult] = useState("oi");
+    const [resultEmail, setResultEmail] = useState("");
+    const [isThereEmail, setIsThereEmail] = useState(false);
 
     const location = useLocation();
     var idAssistant = location.state.id;
 
     function GetProceduresById() {
-        fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + idAssistant, {
-            // fetch(API + '/api/AssistantProcedure' + idAssistant, {
+        fetch(API + '/api/AssistantProcedure/Assistant/' + idAssistant, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
@@ -52,23 +57,71 @@ export default function Assistant() {
     };
     useEffect(GetProceduresById, [])
 
+    function returnModalEmail(procedure) {
+        if (procedure.ProcedureName != "Enviar email para alguem") {
+            return (
+                <input className="modal__input" type="text" placeholder={"Digite o valor para " + procedure.ProcedureName} value={pValue} onChange={(campo) => {
+                    setPValue(campo.target.value, procedure.ProcedureValue = campo.target.value);
+                    //   console.log(procedure.ProcedureValue)
+                }} />
+            )
+        } else {
+
+            return (
+                <form>
+                    <input className="modal__input" type="text" placeholder={"Digite o destinatário"} value={eRValue} onChange={(campo) => {
+                        setERValue(campo.target.value, procedure.EmailReceiver = campo.target.value);
+                    }} />
+                    <input className="modal__input" type="text" placeholder={"Digite o assunto do email"} value={eSValue} onChange={(campo) => {
+                        setESValue(campo.target.value, procedure.EmailSubject = campo.target.value);
+                    }} />
+                    <input className="modal__input" type="text" placeholder={"Digite o corpo do email"} value={eBValue} onChange={(campo) => {
+                        setEBValue(campo.target.value, procedure.EmailBody = campo.target.value);
+                    }} />
+                </form>
+            )
+        }
+    }
+
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
         // console.log(modal)
         modal.style.display = "block";
-        if (pValue != p.ProcedureValue) {
-            if (p.ProcedureValue != 0 || p.ProcedureValue != "") {
-                setPValue(p.ProcedureValue);
+        if (p.procedureName != "Enviar email para alguem") {
+            if (pValue != p.ProcedureValue) {
+                if (p.ProcedureValue != 0 || p.ProcedureValue != "") {
+                    setPValue(p.ProcedureValue);
+                }
+                else {
+                    setPValue("");
+                }
             }
-            else {
-                setPValue("");
+
+        } else {
+            if (eRValue != p.EmailReceiver) {
+                setERValue(p.EmailReceiver);
+            } else {
+                setERValue("");
+            }
+            if (eSValue != p.EmailSubject) {
+                setESValue(p.EmailSubject);
+            } else {
+                setESValue("");
+            }
+            if (eBValue != p.EmailBody) {
+                setEBValue(p.emailBody);
+            } else {
+                setEBValue("");
             }
         }
     };
 
-    function handleClose(id) {
-        var modal = document.getElementById("modal" + id);
-        // console.log(id)
+    function handleClose(p) {
+        var modal = document.getElementById("modal" + p.IdProcedure);
+        // console.log(p);
+        p.ProcedureValue = `${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`;
+        setResultEmail(`${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`);
+        // console.log(p);
         modal.style.display = "none";
     };
 
@@ -83,6 +136,10 @@ export default function Assistant() {
         for (let index = 0; index < children.length; index++) {
             setIsSaving(true);
             var child = children[index];
+
+            if (child.textContent == "Enviar email para alguem") {
+                setIsThereEmail(true);
+            }
 
             var splited = child.id.split(";");
             child.id = (index + 1) + ";" + splited[1].toString();
@@ -151,7 +208,7 @@ export default function Assistant() {
     }
 
     function GetAssistantById() {
-        var myURL = "http://localhost:5000/api/Assistants/" + location.state.id;
+        var myURL = API + "/api/Assistants/" + location.state.id;
 
         fetch(myURL, {
             headers: {
@@ -168,11 +225,64 @@ export default function Assistant() {
 
     function Execute() {
         setIsExecuting(true);
+
+        var getURL = API + "/api/AssistantProcedure/Assistant/" + idAssistant;
+        fetch(getURL, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then((response) => {
+                return response.json()
+                    .then((data) => {
+                        console.log(data);
+                        data.map((procedure) => {
+                            console.log(procedure);
+                            console.log(procedure.procedureName);
+
+                            if (procedure.procedureName == "Enviar email para alguem") {
+                                var splitEmail = procedure.procedureValue.split("/");
+                                console.log(splitEmail);
+
+                                var epURL = API + "/api/Assistants/EnviarEmailUsuario";
+                                var epBody = JSON.stringify({
+                                    "emailTitle": splitEmail[1],
+                                    "email": splitEmail[0],
+                                    "emailBody": splitEmail[2]
+                                });
+
+                                fetch(epURL, {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: epBody
+                                })
+                                    .then((response) => {
+                                        // console.log("before if");
+                                        console.log(response)
+                                        if (response.status === 200) {
+                                            console.log("FUNCIONOU");
+                                            toast.success("O email que você escreveu foi enviado");
+                                        } else {
+                                            toast.error("Houve um problema no enviuo de seu email :/");
+                                        }
+                                        setIsExecuting(false);
+                                    })
+                                    .catch((erro) => {
+                                        console.log(erro)
+                                        toast.error("Houve um problema no enviuo de seu email :/");
+                                        setIsExecuting(false);
+                                    })
+                            }
+                        })
+                    })
+            });
+
+        console.log(isThereEmail);
         // console.log(parseJwt());
         // console.log(parseJwt().email);
 
         var eURL = API + "/api/Assistant" + idAssistant + "/Post";
         var eBody = JSON.stringify({
+            "emailTitle": "",
             "email": parseJwt().email,
             "emailBody": result
         });
@@ -199,7 +309,11 @@ export default function Assistant() {
                 toast.error("A execução deu errado :/");
                 setIsExecuting(false);
             })
+
+
     }
+
+
 
     function configDragnDrop() {
         const cards = document.querySelectorAll('.card')
@@ -299,8 +413,8 @@ export default function Assistant() {
                                             <div id={"modal" + procedure.IdProcedure} className="modal">
                                                 {/* Modal content */}
                                                 <div className="modal-content">
-                                                    <span onClick={() => handleClose(procedure.IdProcedure)} className="close">&times;</span>
-                                                    <div className="modal-header">
+                                                    <span onClick={() => handleClose(procedure)} className="close">&times;</span>
+                                                    <div className="modal-headerA">
                                                         <div className="modal-header--content">
                                                             <p className="modal__text--heading modal__text">Nome:</p>
                                                             <p className="modal__text--heading2 modal__text">{procedure.ProcedureName}</p>
@@ -312,11 +426,9 @@ export default function Assistant() {
                                                     </div>
                                                     <div className="modal-body">
                                                         <label className="modal__text" htmlFor="">Digite aqui o valor necessário:</label>
-
-                                                        <input className="modal__input" type="text" placeholder={"Digite o valor para " + procedure.ProcedureName} value={pValue} onChange={(campo) => {
-                                                            setPValue(campo.target.value, procedure.ProcedureValue = campo.target.value);
-                                                            //   console.log(procedure.ProcedureValue)
-                                                        }} />
+                                                        {
+                                                            returnModalEmail(procedure)
+                                                        }
                                                     </div>
 
                                                 </div>
