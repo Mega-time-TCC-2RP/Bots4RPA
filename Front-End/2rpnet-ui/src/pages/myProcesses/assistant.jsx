@@ -118,10 +118,10 @@ export default function Assistant() {
 
     function handleClose(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
-        console.log(p);
+        // console.log(p);
         p.ProcedureValue = `${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`;
         setResultEmail(`${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`);
-        console.log(p);
+        // console.log(p);
         modal.style.display = "none";
     };
 
@@ -243,7 +243,7 @@ export default function Assistant() {
                                 var splitEmail = procedure.procedureValue.split("/");
                                 console.log(splitEmail);
 
-                                var epURL = API + `/api/Assistant${idAssistant}/EnviarEmailUsuario`;
+                                var epURL = API + "/api/Assistants/EnviarEmailUsuario";
                                 var epBody = JSON.stringify({
                                     "emailTitle": splitEmail[1],
                                     "email": splitEmail[0],
