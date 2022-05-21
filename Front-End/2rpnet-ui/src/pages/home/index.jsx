@@ -79,7 +79,6 @@ export default function Home() {
 
   function GetMyAssistants() {
     console.log('Função GetAssistants da Home')
-
     fetch('http://localhost:5000/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -92,9 +91,6 @@ export default function Home() {
       )
       .catch((error) => console.log(error));
   };
-  useEffect(() => {
-    GetMyAssistants();
-  }, Modal)
 
   // Open Modal to create assistant
   function OpenModalAssistant() {
