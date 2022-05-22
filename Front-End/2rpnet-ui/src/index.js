@@ -48,8 +48,8 @@ const routing = (
   <Router>
     <div>
       <Routes history={history}>
-        <Route exact path="/" element={<Home />} /> {/* Home */}
-        <Route path="/landingPage" element={<LandingPage />} />
+        <Route exact path="/" element={<LandingPage />} /> {/* Home */}
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} /> {/* Login */}
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />

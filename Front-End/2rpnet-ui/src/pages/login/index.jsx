@@ -97,7 +97,7 @@ export default function Login() {
                         history('/config')
                     }
                     else if (parseJwt().Role === '3') {
-                        history('/')
+                        history('/home')
 
                         // console.log('logado: ' + usuarioAutenticado())
                     }

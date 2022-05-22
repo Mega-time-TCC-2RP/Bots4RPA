@@ -66,7 +66,6 @@ export default function ModalM({ assistant }) {
     // };
 
     function DeleteAssistant(idAssistant) {
-  
         console.log(assistant.idAssistant)
         fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
             method: 'DELETE',

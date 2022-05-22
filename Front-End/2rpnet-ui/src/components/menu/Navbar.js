@@ -58,7 +58,7 @@ function Navbar() {
       </div>
       <ul className='nav_list'>
         <li>
-          <Link to="/" className='Link'>
+          <Link to="/home" className='Link'>
             <ImIcons.ImHome3 className='icon2' alt="botão página inicial" />
             <span className='Links_name' alt="botão página inicial">Home</span>
           </Link>

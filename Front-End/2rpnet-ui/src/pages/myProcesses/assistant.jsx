@@ -133,7 +133,7 @@ export default function Assistant() {
         let children = parent.childNodes;
         var child = [];
 
-        var myURL = API + "/api/AssistantProcedure/ProceduresVerification";
+        var myURL = API + "/api/AssistantProcedure/"+ idAssistant;
 
         for (let index = 0; index < children.length; index++) {
             setIsSaving(true);
