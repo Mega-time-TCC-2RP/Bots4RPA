@@ -29,17 +29,10 @@ export default function Modal() {
         fetch(myUrl, requestOptions)
             .then(response => {
                 if (response.status === 201) {
-<<<<<<< HEAD
                     // console.log(response)
                     return response.json()
                         .then(data => {
                             // console.log(data)
-=======
-                    console.log(response)
-                    return response.json()
-                        .then(data => {
-                            console.log(data)
->>>>>>> manha-front-assistant
                             navigate("/assistant", { state: { id: data.idAssistant, name: data.assistantName } });
                         })
                 }
