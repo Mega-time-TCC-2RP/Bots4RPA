@@ -3,7 +3,10 @@ import "../../components/modal/Modal.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
+<<<<<<< HEAD
 import EditIcon from '../icones/edit'
+=======
+>>>>>>> manha-front-assistant
 // import { run } from 'cypress';
 
 export default function ModalM({ assistant }) {
@@ -127,6 +130,28 @@ export default function ModalM({ assistant }) {
         GetAssistantProcedure();
     }, [])
 
+<<<<<<< HEAD
+=======
+export default function Modal({ assistant }) {
+
+    const [Run, setRun] = useState([]);
+
+    function RunQuantity() {
+        fetch('http://localhost:5000/api/Run/' + assistant.idAssistant, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) =>
+                setRun(data)
+                //console.log(data)
+            )
+            .catch((error) => console.log(error));
+    };
+    useEffect(RunQuantity, [])
+
+>>>>>>> manha-front-assistant
     return (
         <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
             <div className='SmodalContainer'>
