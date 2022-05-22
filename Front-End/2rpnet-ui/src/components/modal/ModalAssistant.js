@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
-import "../../components/modal/ModalAssistant.css";
+import "../../assets/css/components/ModalAssistant.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Link, SettingsApplications } from '@material-ui/icons';
 

@@ -315,7 +315,7 @@ export default function Home() {
               {AssistantsList.map((assistant) => {
                 return (
                   <div className="containerSmodal">
-                    <Modal assistant={assistant} />
+                    <ModalM assistant={assistant} />
                     <div className="card1">
 
                       <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />

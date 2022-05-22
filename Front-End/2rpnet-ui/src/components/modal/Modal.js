@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../../components/modal/Modal.css";
+import "../../assets/css/components/Modal.css";
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
@@ -47,26 +47,27 @@ export default function ModalM({ assistant }) {
             .catch((error) => console.log(error));
     };
 
-    function DeleteProcedures() {
-        AProcedure.map((a) => {
-            // console.log(a.idAprocedure)
-            fetch('http://localhost:5000/api/AssistantProcedure/' + a.idAprocedure, {
-                method: 'DELETE',
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-                },
-            })
-                .then((resposta) => {
-                    if (resposta.status === 204) {
-                        console.log('Procedures Apagadas');
-                    }
-                })
-                .catch((erro) => console.log(erro))
-        })
-    };
+    // function DeleteProcedures() {
+    //     AProcedure.map((a) => {
+    //         // console.log(a.idAprocedure)
+    //         fetch('http://localhost:5000/api/AssistantProcedure/' + a.idAprocedure, {
+    //             method: 'DELETE',
+    //             headers: {
+    //                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+    //             },
+    //         })
+    //             .then((resposta) => {
+    //                 if (resposta.status === 204) {
+    //                     console.log('Procedures Apagadas');
+    //                 }
+    //             })
+    //             .catch((erro) => console.log(erro))
+    //     })
+    // };
 
     function DeleteAssistant(idAssistant) {
-        DeleteProcedures()
+
+        console.log(assistant.idAssistant)
         fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
             method: 'DELETE',
             headers: {
