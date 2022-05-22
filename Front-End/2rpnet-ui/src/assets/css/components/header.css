@@ -113,8 +113,6 @@
 .logout:hover{
     background: var(--ComplementaryColor4);
     border-radius: 10px;
-    
-
 }
 .logout #log_out{
     margin-left: 35px;

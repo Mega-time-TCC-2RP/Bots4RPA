@@ -186,6 +186,9 @@ body{
 .sidebar.active .profile #log_out{
     left: 88%;
 }
+#log_out:hover{
+    background: #e41500;
+}
 .sidebar span{
     font-family:'Montserrat', sans-serif;
     margin-left: 30px;

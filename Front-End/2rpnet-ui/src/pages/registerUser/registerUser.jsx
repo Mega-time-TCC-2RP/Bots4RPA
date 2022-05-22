@@ -65,6 +65,28 @@ const MaskedInputTelephone = ({ value, onChange }) => {
         onChange={handleChange}
     />
 }
+const diffToast = () => {
+    toast.success('Cadastro realizado com êxito. Por favor, aguarde a validação.', {
+            position: "top-right",
+            autoClose: 10000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+    });
+}
+const errorToast = () => {
+    toast.error('Ops! Ocorreu um erro.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+});
+}
 
 const validateRG = (v) => {
     if (v.length < 11) {
@@ -101,28 +123,7 @@ export default function RegisterUser() {
     const [show, setShow] = useState(false);
     const [imageLoad, setImageLoad] = useState(false);
 
-    const diffToast = () => {
-        toast.success('Cadastro realizado com êxito. Por favor, aguarde a validação.', {
-                position: "top-right",
-                autoClose: 10000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-        });
-}
-const errorToast = () => {
-    toast.error('Ops! Ocorreu um erro', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-    });
-}
+
 
     let history = useNavigate();
 
@@ -209,11 +210,13 @@ const errorToast = () => {
             headers: { "Content-type": "multipart/form-data" },
         })
             .then(diffToast(),
-            bazinga => {
-                    if (bazinga.status !== 200) {
+            response => {
+                    if (response.status === 200) {
                             toast.dismiss(diffToast());
-                            errorToast()
-                    }
+                        }
+                        else{
+                            toast.dismiss(errorToast());   
+                        }
             })
             .then((response) => {
                 if (response.status === 201) {
