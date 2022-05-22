@@ -58,6 +58,11 @@ namespace _2RPNET_API.Repositories
             return ctx.Runs.Where(r => r.RunStatus == true && r.IdAssistant == IdAssistant).Count();
         }
 
+        public int RunQuantity(int IdAssistant)
+        {
+            return ctx.Runs.Where(r => r.IdAssistant == IdAssistant).Count();
+        }
+
         public List<Run> ReadAll()
         {
             return ctx.Runs.ToList();

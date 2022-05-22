@@ -44,7 +44,7 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for list all failed process
+        /// Method responsible for list a quantityfailed process
         /// </summary>
         [HttpGet("ErrorQuantity")]
         public IActionResult ErrorQuantity(int IdAssistant)
@@ -59,7 +59,7 @@ namespace _2RPNET_API.Controllers
             }
         }
         /// <summary>
-        /// Method responsible for list all failed process
+        /// Method responsible for list a quantity of sucess process
         /// </summary>
         [HttpGet("SucessQuantity")]
         public IActionResult SucessQuantity(int IdAssistant)
@@ -75,14 +75,33 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for create a Run process
+        /// Method responsible for list a quantity process was started
         /// </summary>
-        [HttpPost("{Id}")]
-        public IActionResult NewRun(int Id,Run DataRun)
+        /// <param name="IdAssistant"></param>
+        /// <returns></returns>
+
+        [HttpGet("RunQuantity")]
+        public IActionResult RunQuantity(int IdAssistant)
         {
             try
             {
-                _repository.Create(Id,DataRun);
+                return Ok(_repository.RunQuantity(IdAssistant));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        /// <summary>
+        /// Method responsible for create a Run process
+        /// </summary>
+        [HttpPost("{IdAssistant}")]
+        public IActionResult NewRun(int IdAssistant, Run DataRun)
+        {
+            try
+            {
+                _repository.Create(IdAssistant, DataRun);
                 return StatusCode(201);
             }
             catch (Exception ex)

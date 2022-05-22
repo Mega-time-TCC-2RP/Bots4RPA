@@ -9,6 +9,16 @@
             Method responsible for create a Run process
             </summary>
         </member>
+        <member name="M:_2RPNET_API.Controllers.Assistant3Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
+            <summary>
+            Method responsible for create a Run process
+            </summary>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.Assistant4Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
+            <summary>
+            Method responsible for create a Run process
+            </summary>
+        </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.ReadAll">
             <summary>
             Method responsible for list all Assistants
@@ -90,13 +100,20 @@
         </member>
         <member name="M:_2RPNET_API.Controllers.RunController.ErrorQuantity(System.Int32)">
             <summary>
-            Method responsible for list all failed process
+            Method responsible for list a quantityfailed process
             </summary>
         </member>
         <member name="M:_2RPNET_API.Controllers.RunController.SucessQuantity(System.Int32)">
             <summary>
-            Method responsible for list all failed process
+            Method responsible for list a quantity of sucess process
             </summary>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.RunController.RunQuantity(System.Int32)">
+            <summary>
+            Method responsible for list a quantity process was started
+            </summary>
+            <param name="IdAssistant"></param>
+            <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Controllers.RunController.NewRun(System.Int32,_2RPNET_API.Domains.Run)">
             <summary>
