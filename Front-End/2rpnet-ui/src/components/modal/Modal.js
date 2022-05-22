@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../../components/modal/Modal.css";
+import "../../assets/css/components/Modal.css"
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
