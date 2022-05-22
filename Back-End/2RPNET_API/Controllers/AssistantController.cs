@@ -128,6 +128,8 @@ namespace _2RPNET_API.Controllers
 
                 if (IdAssistant > 0)
                 {
+                    //AssistantProcedureRepository assistantProcedureRepository = new AssistantProcedureRepository();
+                    //assistantProcedureRepository.Delete(IdAssistant);
                     _AssistantRepository.Delete(IdAssistant);
                 }
                 else
@@ -145,7 +147,7 @@ namespace _2RPNET_API.Controllers
         }
 
         [HttpPost("EnviarEmail")]
-        public IActionResult EnviaEmail(int idAssistant,SendEmailViewModel assistant)
+        public IActionResult EnviaEmail(int idAssistant, SendEmailViewModel assistant)
         {
             try
             {

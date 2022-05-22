@@ -11,7 +11,6 @@ using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using MailKit.Security;
-using _2RPNET_API.ViewModels;
 using System.IO;
 
 namespace _2RPNET_API.Repositories
@@ -31,22 +30,41 @@ namespace _2RPNET_API.Repositories
 
         public void Create(Assistant NewAssistant)
         {
-                NewAssistant.CreationDate = DateTime.Now;
-                NewAssistant.AlterationDate = DateTime.Now;
-                Ctx.Assistants.Add(NewAssistant);
-                Ctx.SaveChanges();
+            NewAssistant.CreationDate = DateTime.Now;
+            NewAssistant.AlterationDate = DateTime.Now;
+            Ctx.Assistants.Add(NewAssistant);
+            Ctx.SaveChanges();
         }
 
         public void Delete(int IdAssistant)
         {
-            Assistant AssistantSought = SearchByID(IdAssistant);
-            Ctx.Assistants.Remove(AssistantSought);
+            Assistant SearchAssistant = SearchByID(IdAssistant);
+
+            Ctx.Assistants.Remove(SearchAssistant);
+
             Ctx.SaveChanges();
+
+            //Assistant assistant = new Assistant();
+            //ListProcedures = Procedure.SearchByAssistant(IdAssistant);
+            //if (assistant != 0)
+            //{
+            //    Ctx.AssistantProcedures.RemoveRange(assistant.AssistantProcedures);
+            //    Assistant AssistantSought = SearchByID(IdAssistant);
+            //    Ctx.Assistants.Remove(AssistantSought);
+            //}
+            //else
+            //{
+            //    Assistant AssistantSought = SearchByID(IdAssistant);
+            //    List<AssistantProcedure> list = AssistantSought.AssistantProcedures.ToList();
+            //    Ctx.AssistantProcedures.RemoveRange(list);
+            //    Ctx.Assistants.Remove(AssistantSought);
+            //}
+
+            //Ctx.SaveChanges();
         }
 
         public async Task EnviaEmail(int idAssistant, SendEmailViewModel emailConfig)
         {
-            
             Assistant assistantSought = SearchByID(idAssistant);
             //string userEmail = assistantSought.IdEmployeeNavigation.IdUserNavigation.Email;
             string userEmail = emailConfig.email;

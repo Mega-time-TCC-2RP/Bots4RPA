@@ -18,10 +18,10 @@ namespace _2RPNET_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Assistant8Controller : ControllerBase{
+    public class Assistant1Controller : ControllerBase{
         private IAssistantRepository _AssistantRepository { get; set; }
 
-        public Assistant8Controller(IAssistantRepository Assistant)
+        public Assistant1Controller(IAssistantRepository Assistant)
         {
             _AssistantRepository = Assistant;
         }
@@ -33,9 +33,9 @@ public IActionResult NewRun(SendEmailViewModel assistant)
 {
     try
     {
-AssistantProcess8 _program = new AssistantProcess8();
+AssistantProcess1 _program = new AssistantProcess1();
         _program.Play();
-        _AssistantRepository.EnviaEmail(8,assistant);
+        _AssistantRepository.EnviaEmail(1,assistant);
         return StatusCode(204);
     }
     catch (Exception ex)

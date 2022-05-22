@@ -4,7 +4,7 @@
         <name>2RPNET_API</name>
     </assembly>
     <members>
-        <member name="M:_2RPNET_API.Controllers.Assistant8Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
+        <member name="M:_2RPNET_API.Controllers.Assistant1Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
             <summary>
             Method responsible for create a Run process
             </summary>
@@ -69,33 +69,9 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ChangeVerification(_2RPNET_API.ViewModels.ArrayViewModel)">
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ChangeVerification(System.Int32,_2RPNET_API.ViewModels.ArrayViewModel)">
             <summary>
-            Method responsible for get all Assistants
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.ReadAll">
-            <summary>
-            Method responsible for list all Emails Verifications 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.Create(_2RPNET_API.Domains.EmailVerification)">
-            <summary>
-            Method responsible for create all Emails Verifications 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.Update(System.Int32,_2RPNET_API.Domains.EmailVerification)">
-            <summary>
-            Method responsible for update all Emails Verifications
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.Delete(System.Int32)">
-            <summary>
-            Method responsible for delete all Emails Verifications
+            Method responsible for get analyze Assistants
             </summary>
             <returns></returns>
         </member>
@@ -112,12 +88,17 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.RunController.ErrorList">
+        <member name="M:_2RPNET_API.Controllers.RunController.ErrorQuantity(System.Int32)">
             <summary>
             Method responsible for list all failed process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.RunController.NewRun">
+        <member name="M:_2RPNET_API.Controllers.RunController.SucessQuantity(System.Int32)">
+            <summary>
+            Method responsible for list all failed process
+            </summary>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.RunController.NewRun(System.Int32,_2RPNET_API.Domains.Run)">
             <summary>
             Method responsible for create a Run process
             </summary>

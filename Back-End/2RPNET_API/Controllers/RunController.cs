@@ -46,12 +46,27 @@ namespace _2RPNET_API.Controllers
         /// <summary>
         /// Method responsible for list all failed process
         /// </summary>
-        [HttpGet("ErrorList")]
-        public IActionResult ErrorList()
+        [HttpGet("ErrorQuantity")]
+        public IActionResult ErrorQuantity(int IdAssistant)
         {
             try
             {
-                return Ok(_repository.ErrorList());
+                return Ok(_repository.ErrorQuantity(IdAssistant));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        /// <summary>
+        /// Method responsible for list all failed process
+        /// </summary>
+        [HttpGet("SucessQuantity")]
+        public IActionResult SucessQuantity(int IdAssistant)
+        {
+            try
+            {
+                return Ok(_repository.SucessQuantity(IdAssistant));
             }
             catch (Exception ex)
             {
@@ -59,18 +74,15 @@ namespace _2RPNET_API.Controllers
             }
         }
 
-
         /// <summary>
         /// Method responsible for create a Run process
         /// </summary>
-        [HttpPost("Post")]
-        public IActionResult NewRun()
+        [HttpPost("{Id}")]
+        public IActionResult NewRun(int Id,Run DataRun)
         {
             try
             {
-                //_repository.Create(NewRun);
-                //Programa _program = new Programa();
-                //_program.Play();
+                _repository.Create(Id,DataRun);
                 return StatusCode(201);
             }
             catch (Exception ex)

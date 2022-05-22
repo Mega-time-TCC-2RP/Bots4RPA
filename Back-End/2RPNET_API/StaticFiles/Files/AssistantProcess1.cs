@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
 using System;
 using System.Threading.Tasks;
-class AssistantProcess8
+class AssistantProcess1
 {
 public  async Task Play()
 {
@@ -16,7 +16,7 @@ var context = await browser.NewContextAsync();
 // Open new page
 var page = await context.NewPageAsync(); 
 await page.GotoAsync("https://www.google.com/?gws_rd=ssl%22");
-await page.FillAsync("input[title = 'Pesquisar']","Bitcoin");
+await page.FillAsync("input[title = 'Pesquisar']","valor bitcoin");
 await page.PressAsync("input[title = 'Pesquisar']","Enter");
-//await page.ClickAsync("div.mCBkyc.y355M.JQe2Ld.nDgy9d");
-await page.ScreenshotAsync(new PageScreenshotOptions { Path ="./StaticFiles/Images/Assistant8.png" });}}
+await page.ClickAsync("h3.LC20lb.MBeuO.DKV0Md");
+await page.ScreenshotAsync(new PageScreenshotOptions { Path ="./StaticFiles/Images/Assistant1.png" });}}

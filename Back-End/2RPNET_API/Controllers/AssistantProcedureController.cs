@@ -141,15 +141,15 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for get all Assistants
+        /// Method responsible for get analyze Assistants
         /// </summary>
         /// <returns></returns>
-        [HttpPost("ProceduresVerification")]
-        public IActionResult ChangeVerification(ArrayViewModel ArrayViewModel)
+        [HttpPost("{IdAssistant}")]
+        public IActionResult ChangeVerification(int IdAssistant, ArrayViewModel ArrayViewModel)
         {
             try
             {
-                _repository.ChangeVerification(ArrayViewModel);
+                _repository.ChangeVerification(IdAssistant, ArrayViewModel);
                 return Ok();
 
             }
