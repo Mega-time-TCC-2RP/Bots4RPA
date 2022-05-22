@@ -21,7 +21,6 @@ namespace _2RPNET_API.Context
         public virtual DbSet<AssistantProcedure> AssistantProcedures { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Corporation> Corporations { get; set; }
-        public virtual DbSet<EmailVerification> EmailVerifications { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<LibraryAssistant> LibraryAssistants { get; set; }
         public virtual DbSet<LibrarySkin> LibrarySkins { get; set; }
@@ -33,11 +32,9 @@ namespace _2RPNET_API.Context
         public virtual DbSet<Quest> Quests { get; set; }
         public virtual DbSet<Run> Runs { get; set; }
         public virtual DbSet<Skin> Skins { get; set; }
-        public virtual DbSet<StatusWorkflow> StatusWorkflows { get; set; }
         public virtual DbSet<Trophy> Trophies { get; set; }
         public virtual DbSet<UserName> UserNames { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
-        public virtual DbSet<Workflow> Workflows { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -177,47 +174,6 @@ namespace _2RPNET_API.Context
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .IsFixedLength(true);
-            });
-
-            modelBuilder.Entity<EmailVerification>(entity =>
-            {
-                entity.HasKey(e => e.IdEmailVerification)
-                    .HasName("PK__EmailVer__E64B141648D2ACAE");
-
-                entity.ToTable("EmailVerification");
-
-                entity.HasIndex(e => e.Username, "UQ__EmailVer__536C85E4F524F2EF")
-                    .IsUnique();
-
-                entity.Property(e => e.Cryptography)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Gateway)
-                    .IsRequired()
-                    .HasMaxLength(4)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Host)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UserPassword)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.IdAssistantNavigation)
-                    .WithMany(p => p.EmailVerifications)
-                    .HasForeignKey(d => d.IdAssistant)
-                    .HasConstraintName("FK__EmailVeri__IdAss__0A3E6E7F");
             });
 
             modelBuilder.Entity<Employee>(entity =>
@@ -408,12 +364,6 @@ namespace _2RPNET_API.Context
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.IdWorkflowNavigation)
-                    .WithMany(p => p.Quests)
-                    .HasForeignKey(d => d.IdWorkflow)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Quest__IdWorkflo__604834B3");
             });
 
             modelBuilder.Entity<Run>(entity =>
@@ -425,19 +375,10 @@ namespace _2RPNET_API.Context
 
                 entity.Property(e => e.RunDate).HasColumnType("datetime");
 
-                entity.Property(e => e.RunDescription)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
-
                 entity.HasOne(d => d.IdAssistantNavigation)
                     .WithMany(p => p.Runs)
                     .HasForeignKey(d => d.IdAssistant)
                     .HasConstraintName("FK__Run__IdAssistant__0579B962");
-
-                entity.HasOne(d => d.IdWorkflowNavigation)
-                    .WithMany(p => p.Runs)
-                    .HasForeignKey(d => d.IdWorkflow)
-                    .HasConstraintName("FK__Run__IdWorkflow__066DDD9B");
             });
 
             modelBuilder.Entity<Skin>(entity =>
@@ -458,18 +399,6 @@ namespace _2RPNET_API.Context
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(100)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<StatusWorkflow>(entity =>
-            {
-                entity.HasKey(e => e.IdStatus)
-                    .HasName("PK__StatusWo__B450643A0FAD2D96");
-
-                entity.ToTable("StatusWorkflow");
-
-                entity.Property(e => e.StatusTitle)
-                    .HasMaxLength(10)
                     .IsUnicode(false);
             });
 
@@ -584,35 +513,6 @@ namespace _2RPNET_API.Context
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Workflow>(entity =>
-            {
-                entity.HasKey(e => e.IdWorkflow)
-                    .HasName("PK__Workflow__AFBA43F51BF4DA22");
-
-                entity.ToTable("Workflow");
-
-                entity.Property(e => e.EndDate).HasColumnType("datetime");
-
-                entity.Property(e => e.IdStatus).HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.WorkflowDescription).IsUnicode(false);
-
-                entity.HasOne(d => d.IdEmployeeNavigation)
-                    .WithMany(p => p.Workflows)
-                    .HasForeignKey(d => d.IdEmployee)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Workflow__IdEmpl__5B837F96");
-
-                entity.HasOne(d => d.IdStatusNavigation)
-                    .WithMany(p => p.Workflows)
-                    .HasForeignKey(d => d.IdStatus)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Workflow__IdStat__5C77A3CF");
-            });
 
             OnModelCreatingPartial(modelBuilder);
         }

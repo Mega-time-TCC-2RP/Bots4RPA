@@ -152,7 +152,7 @@ namespace _2RPNET_API.Controllers
 /// Method responsible for create a Run process
 /// </summary>
 [HttpPost(" + '"' + "Post/" + '"' + @")]
-public IActionResult NewRun(SendEmail assistant)
+public IActionResult NewRun(SendEmailViewlModel assistant)
 {
     try
     {

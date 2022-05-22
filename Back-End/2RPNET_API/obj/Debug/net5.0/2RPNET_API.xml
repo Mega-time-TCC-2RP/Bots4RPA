@@ -9,16 +9,6 @@
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant8Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
-            <summary>
-            Method responsible for create a Run process
-            </summary>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant92Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
-            <summary>
-            Method responsible for create a Run process
-            </summary>
-        </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.ReadAll">
             <summary>
             Method responsible for list all Assistants
@@ -85,30 +75,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.ReadAll">
-            <summary>
-            Method responsible for list all Emails Verifications 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.Create(_2RPNET_API.Domains.EmailVerification)">
-            <summary>
-            Method responsible for create all Emails Verifications 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.Update(System.Int32,_2RPNET_API.Domains.EmailVerification)">
-            <summary>
-            Method responsible for update all Emails Verifications
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.EmailsVerificationsController.Delete(System.Int32)">
-            <summary>
-            Method responsible for delete all Emails Verifications
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:_2RPNET_API.Controllers.LoginController.Login(_2RPNET_API.ViewModels.LoginViewModel)">
             <summary>
             Method responsible for logging into the application
@@ -122,7 +88,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.RunController.ErrorList">
+        <member name="M:_2RPNET_API.Controllers.RunController.ErrorQuantity(System.Int32)">
+            <summary>
+            Method responsible for list all failed process
+            </summary>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.RunController.SucessQuantity(System.Int32)">
             <summary>
             Method responsible for list all failed process
             </summary>

@@ -15,5 +15,8 @@ var context = await browser.NewContextAsync();
 
 // Open new page
 var page = await context.NewPageAsync(); 
+await page.GotoAsync("https://www.google.com/?gws_rd=ssl%22");
+await page.FillAsync("input[title = 'Pesquisar']","valor bitcoin");
+await page.PressAsync("input[title = 'Pesquisar']","Enter");
 await page.ClickAsync("h3.LC20lb.MBeuO.DKV0Md");
 await page.ScreenshotAsync(new PageScreenshotOptions { Path ="./StaticFiles/Images/Assistant1.png" });}}

@@ -48,15 +48,15 @@ namespace _2RPNET_API.Repositories
             return DataRun;
         }
 
-        public List<Run> ErrorList()
+        public int ErrorQuantity(int IdAssistant)
         {
-            for (int i = 0; i <= 0; i++)
-            {
-
-            }
-            return ctx.Runs.Where(r => r.RunStatus == false).ToList();
+            return ctx.Runs.Where(r => r.RunStatus == false &&  r.IdAssistant == IdAssistant).Count();
         }
 
+        public int SucessQuantity(int IdAssistant)
+        {
+            return ctx.Runs.Where(r => r.RunStatus == true && r.IdAssistant == IdAssistant).Count();
+        }
 
         public List<Run> ReadAll()
         {

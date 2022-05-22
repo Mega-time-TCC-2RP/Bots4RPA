@@ -12,7 +12,6 @@ namespace _2RPNET_API.Domains
             Assistants = new HashSet<Assistant>();
             LibraryAssistants = new HashSet<LibraryAssistant>();
             Players = new HashSet<Player>();
-            Workflows = new HashSet<Workflow>();
         }
 
         public int IdEmployee { get; set; }
@@ -27,6 +26,5 @@ namespace _2RPNET_API.Domains
         public virtual ICollection<Assistant> Assistants { get; set; }
         public virtual ICollection<LibraryAssistant> LibraryAssistants { get; set; }
         public virtual ICollection<Player> Players { get; set; }
-        public virtual ICollection<Workflow> Workflows { get; set; }
     }
 }

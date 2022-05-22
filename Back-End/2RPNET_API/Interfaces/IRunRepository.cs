@@ -14,7 +14,8 @@ namespace _2RPNET_API.Interfaces
 
         Run SearchAssistantByID(int IdAssistant);
 
-        List<Run> ErrorList();
+        int ErrorQuantity(int IdAssistant);
+        int SucessQuantity(int IdAssistant);
         List<Run> AssistantList(int id);
     }
 }
