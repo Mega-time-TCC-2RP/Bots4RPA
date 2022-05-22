@@ -215,7 +215,7 @@ export default function Home() {
     console.log(parseJwt())
     GetMyQuests();
     GetHighlightedPosts();
-    // GetMyAssistants();
+    GetMyAssistants();
   }, [])
 
   return (
