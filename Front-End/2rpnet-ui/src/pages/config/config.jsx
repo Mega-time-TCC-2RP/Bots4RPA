@@ -2,6 +2,7 @@ import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 import Modal from 'react-modal';
 import Navbar from '../../components/menu/Navbar'
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
@@ -27,7 +28,6 @@ import * as SiIcons from 'react-icons/si'
 
 //components:
 import Header from '../../components/header/header'
-import { Message } from '@material-ui/icons';
 
 // module.exports = {
 //     async headers() {
@@ -44,6 +44,53 @@ import { Message } from '@material-ui/icons';
 //         ]
 //     }
 // }
+
+const onlyNumbers = (string) => string.replace(/[^0-9]/g, '')
+
+const MaskedInputCPF = ({ value, onChange }) => {
+    function handleChange(event) {
+        onChange({
+            ...event,
+            target: {
+                ...event.target, value: onlyNumbers(event.target.value)
+            }
+        })
+    }
+
+    return <InputMask id='cpf' className='input placeholder-text' type="text" name="name" placeholder='Insira seu CPF...' mask="999.999.999-99" value={value} required
+        onChange={handleChange}
+    />
+}
+
+const MaskedInputTelephone = ({ value, onChange }) => {
+    function handleChange(event) {
+        onChange({
+            ...event,
+            target: {
+                ...event.target, value: onlyNumbers(event.target.value)
+            }
+        })
+    }
+
+    return <InputMask id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...'  mask="(99)99999-9999" value={value}
+        onChange={handleChange}
+    />
+}
+
+const validateRG = (v) => {
+    if (v?.length < 11) {
+        v = v?.replace(/[^0-9]/g, "");
+    } else {
+        v = v?.replace(/[^x-xX-X0-9]/g, "");
+    }
+
+    v = v?.replace(/(.{2})(\d)/, "$1.$2");
+    v = v?.replace(/(.{6})(\d)/, "$1.$2");
+    v = v?.replace(/(.{10})(\w)/g, "$1-$2");
+    v = v?.replace(/(.{12})(\w)/g, "$1");
+
+    return v;
+};
 
 const steps = [
     {
@@ -182,24 +229,24 @@ export default function Config() {
                     var formData = new FormData()
                     const photoProfile = document.getElementById('imageProfile')
                     const fileProfile = photoProfile.files[0]
-
                     if (photoProfile.files[0] == undefined) {
                         formData.append('File', userLogado.photoUser)
                     } else {
                         formData.append('File', fileProfile, fileProfile.name)
                     }
-
                     formData.append('userName1', userAlterado.userName1)
                     formData.append('cpf', userAlterado.cpf)
                     formData.append('BirthDate', userAlterado.birthDate)
                     formData.append('Email', userAlterado.email)
                     formData.append('Phone', userAlterado.phone)
                     formData.append('Rg', userAlterado.rg)
-                    formData.append('IdCorporation', userLogado.employees[0].idCorporation)
+                    if (parseJwt().Role != 1) {
+                        formData.append('IdCorporation', userLogado.employees[0].idCorporation)
+                        formData.append('IdOffice', userLogado.employees[0].idOffice)
+                    }
                     formData.append('IdUserType', userLogado.idUserType)
                     formData.append('Passwd', pass)
-                    formData.append('IdOffice', userLogado.employees[0].idOffice)
-                    formData.append('File', "http://grupo7.azurewebsites.net/img/" + userLogado.photoUser)
+                    //formData.append('File', "http://grupo7.azurewebsites.net/img/" + userLogado.photoUser)
                     axios({
                         method: "PUT",
                         url: "http://grupo7.azurewebsites.net/api/UserNames",
@@ -511,6 +558,20 @@ export default function Config() {
         }
     }
 
+    function previewImagem() {
+        var imagem = document.getElementById('imageProfile').files[0]
+        var preview = document.getElementById('imgPreview')
+        var reader = new FileReader();
+        reader.onloadend = function() {
+          preview.src = reader.result
+        }
+        if (imagem) {
+          reader.readAsDataURL(imagem)
+        } else {
+          preview.src = ""
+        }
+      }
+
     return (
         <div>
             {parseJwt().Role == 3 ? <Header /> : null}
@@ -570,7 +631,7 @@ export default function Config() {
                                 >
                                     <form encType='multipart/form-data' className='modalConfig areaStep'>
                                         <div className='profileImageArea'>
-                                            <div className='maskProfile'><img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} alt="Imagem de Perfil"
+                                            <div className='maskProfile'><img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} id='imgPreview' alt="Imagem de Perfil"
                                                 className='profileImage editProfileImage'
                                             />
                                             </div>
@@ -578,14 +639,14 @@ export default function Config() {
                                         </div>
                                         <div className='foreachInputModal'>
                                             <label className='sendPhoto h6' for='imageProfile'>Editar foto</label>
-                                            <input id='imageProfile' className='imageCompanyInput' type="file" accept="image/png, image/jpeg" name="imageProfile" />
+                                            <input id='imageProfile' className='imageCompanyInput' type="file" accept="image/png, image/jpeg" name="imageProfile" onChange={previewImagem} />
                                         </div>
                                         <div className='inputsModalArea'>
                                             <div className='inputsModal'>
                                                 <label className='h5' htmlFor='emailModals'>Nome</label>
                                                 <input id='emailModals' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={userAlterado.userName1} onChange={(event) => setUserAlterado({ userName1: event.target.value, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='cpf'>CPF</label>
-                                                <input id='cpf' className='input placeholder-text' type="text" name="name" placeholder='Insira seu CPF...' value={userAlterado.cpf} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: event.target.value, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
+                                                <MaskedInputCPF value={userAlterado.cpf} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: event.target.value, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='dataNascimento'>Data de Nascimento</label>
                                                 <input id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userAlterado.birthDate} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: event.target.value, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                             </div>
@@ -593,9 +654,9 @@ export default function Config() {
                                                 <label className='h5' htmlFor='email'>Email</label>
                                                 <input id='email' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Email...' value={userAlterado.email} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: event.target.value, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='rg'>RG</label>
-                                                <input id='rg' className='input placeholder-text' type="text" name="name" placeholder='Insira seu RG...' value={userAlterado.rg} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: event.target.value, phone: userAlterado.phone })} />
+                                                <input id='rg' className='input placeholder-text' type="text" name="name" placeholder='Insira seu RG...' value={validateRG(userAlterado.rg)} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: event.target.value, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='telefone'>Telefone</label>
-                                                <input id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' value={userAlterado.phone} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
+                                                <MaskedInputTelephone value={userAlterado.phone} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
                                             </div>
                                         </div>
                                         {

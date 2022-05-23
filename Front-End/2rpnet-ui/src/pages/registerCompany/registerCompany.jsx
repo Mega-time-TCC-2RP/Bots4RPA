@@ -5,7 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import VLibras from '@djpfs/react-vlibras'
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //img:
 import Logo from '../../assets/img/logo2RPcadastro.png'
@@ -35,6 +36,29 @@ const steps = [
         id: 'Step3'
     }
 ];
+
+const diffToast = () => {
+    toast.success('Cadastro realizado com êxito. Por favor, aguarde a validação.', {
+        position: "top-right",
+        autoClose: 20000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+}
+const errorToast = () => {
+    toast.error('Ops! Ocorreu um erro.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+}
 
 const onlyNumbers = (string) => string.replace(/[^0-9]/g, '')
 
@@ -139,6 +163,7 @@ export default function RegisterCompany() {
     const [officeList, setOfficeList] = useState([]);
     const [show, setShow] = useState(false);
 
+
     let history = useNavigate();
 
     var formData = new FormData();
@@ -215,16 +240,56 @@ export default function RegisterCompany() {
             data: formData,
             headers: { "Content-type": "multipart/form-data" },
         })
+            .then(diffToast(),
+            resposta => {
+                if(resposta.status === 200){
+                    console.log("ta pegando no toast")
+                    toast.dismiss(diffToast());
+                }
+                else{
+                    console("nao pegou no toast")
+                    toast.dismiss(errorToast());
+                }
+            })
             .then((resposta) => {
                 if (resposta.status === 200) {
                     console.log("CADASTROU")
                     setLoading(false)
+                    history('/login')
                 }
             })
             .catch((erro) => {
                 console.log(erro)
                 setLoading(false)
             })
+    }
+
+    function previewImagemCompany() {
+        var imagem = document.getElementById('imageCompany').files[0]
+        var preview = document.getElementById('imgCompany')
+        var reader = new FileReader();
+        reader.onloadend = function() {
+          preview.src = reader.result
+        }
+        if (imagem) {
+          reader.readAsDataURL(imagem)
+        } else {
+          preview.src = ""
+        }
+    }
+
+    function previewImagem() {
+        var imagem = document.getElementById('imageProfile').files[0]
+        var preview = document.getElementById('imgPreview')
+        var reader = new FileReader();
+        reader.onloadend = function() {
+          preview.src = reader.result
+        }
+        if (imagem) {
+          reader.readAsDataURL(imagem)
+        } else {
+          preview.src = ""
+        }
     }
 
     return (
@@ -317,37 +382,24 @@ export default function RegisterCompany() {
                                             </div>
                                             <div className='foreachInput'>
                                                 <label className='h5'>CPF</label>
-                                                <MaskedInputCPF value={cpf} onChange={(event) => setCpf(event.target.value)} required/>
+                                                <MaskedInputCPF value={cpf} onChange={(event) => setCpf(event.target.value)} required />
                                             </div>
                                             <div className='foreachInput'>
                                                 <label className='h5'>Telefone</label>
-                                                <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} required/>
+                                                <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} required />
                                             </div>
                                             <div className='foreachInput areaPhoto'>
                                                 <label className='h5'>Foto da Empresa</label>
                                                 <label className='sendPhoto h6' for='imageCompany'>Enviar foto</label>
-                                                <input id='imageCompany' className='imageCompanyInput' type="file" accept="image/png, image/jpeg" name="imageCompany" onChange={inputImageVerifyCompany} />
-                                                {
-                                                    imageLoad == true && (
-                                                        <div>
-                                                            <p className='p '>Imagem Carregada</p>
-                                                        </div>
-                                                    )
-                                                }
+                                                <input id='imageCompany' className='imageCompanyInput' type="file" accept="image/png, image/jpeg" name="imageCompany" onChange={previewImagemCompany} />
+                                                <img id='imgCompany' className='previewImage'/>
                                             </div>
                                             <div className='foreachInput' id='areaPhoto'>
                                                 <label className='h5' >Imagem de Perfil</label>
                                                 <label className='sendPhoto h6' for='imageProfile'>Enviar foto</label>
-                                                <input id='imageProfile' className='imageProfileInput' type="file" accept="image/png, image/jpeg" name="imageProfile" placeholder='Insira sua foto de Perfil...' onChange={inpuptImageVerify}
+                                                <input id='imageProfile' className='imageProfileInput' type="file" accept="image/png, image/jpeg" name="imageProfile" placeholder='Insira sua foto de Perfil...' onChange={previewImagem}
                                                 />
-                                                {
-                                                    imageLoadProfile == true && (
-                                                        <div>
-                                                            <p>Imagem Carregada</p>
-                                                            <img className='previewImage' src={inputImage.files[0]} />
-                                                        </div>
-                                                    )
-                                                }
+                                                <img id='imgPreview' className='previewImage'/>
                                             </div>
                                         </div>
                                         {
