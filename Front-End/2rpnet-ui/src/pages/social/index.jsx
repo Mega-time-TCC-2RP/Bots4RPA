@@ -256,7 +256,7 @@ export const TelaTimeline = (person, idx) => {
     
                 <Navbar />
                 <div className="body-pd">
-                    <Header />
+                    {/* <Header /> */}
                     <VLibras />
                     {/* onboarding */}
                     <img 
@@ -482,7 +482,7 @@ export const TelaTimeline = (person, idx) => {
     
                 <Navbar />
                 <div className="body-pd">
-                    <Header />
+                    {/* <Header /> */}
                     <VLibras />
                     {/* onboarding */}
                     <img 

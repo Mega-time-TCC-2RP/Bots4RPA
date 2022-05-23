@@ -149,7 +149,7 @@ export default function Profile() {
         <div className='ProfileContainer'>
             <Navbar />
             <div className='configPage body-pd profile'>
-                <Header />
+                {/* <Header /> */}
                 <h1 className='container h1' alt="configurações">Perfil</h1>
                 <nav className='navAreaConfig container'>
                     <span className='h3 meusTrofeus' id='meusTrofeus' onClick={() => select(0)}>Meus troféus</span>
