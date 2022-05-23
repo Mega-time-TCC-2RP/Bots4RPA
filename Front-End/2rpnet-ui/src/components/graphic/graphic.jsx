@@ -5,7 +5,9 @@ import { DataGraphic } from './dataGraphic'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function Graphic() {
+export default function Graphic( {ObjAssistant} ) {
+
+    console.log(ObjAssistant)
 
     const [dataGraphic, setDataGraphic] = useState({
         labels: [],

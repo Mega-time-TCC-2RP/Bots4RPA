@@ -75,7 +75,6 @@ export default function Home() {
 
   function Execute(idAssistant) {
     setIsExecuting(true);
-
     var eURL = API + "/api/Assistant" + idAssistant + "/Post";
     var eBody = JSON.stringify({
       "email": parseJwt().email,
@@ -89,12 +88,49 @@ export default function Home() {
     })
       .then((response) => {
         // console.log("before if");
-        console.log(response)
+        // console.log(response)
         if (response.status === 204) {
+
+          var myUrl = "http://localhost:5000/api/Run/" + idAssistant
+          const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "runStatus": true })
+          };
+
+          fetch(myUrl, requestOptions)
+            .then(response => {
+              if (response.status === 201) {
+                // console.log(response)
+                return response.json()
+                  .then(data => {
+                    console.log(data)
+                  })
+              }
+            }).catch(error => console.log(error))
+
           console.log("FUNCIONOU");
           toast.success("O resultado foi enviado para seu email");
+
         } else {
           toast.error("A execução deu errado :/");
+          var myUrl = "http://localhost:5000/api/Run/" + idAssistant
+          const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "runStatus": false })
+          };
+
+          fetch(myUrl, requestOptions)
+            .then(response => {
+              if (response.status === 201) {
+                // console.log(response)
+                return response.json()
+                  .then(data => {
+                    console.log(data)
+                  })
+              }
+            }).catch(error => console.log(error))
         }
         setIsExecuting(false);
       })
@@ -104,6 +140,9 @@ export default function Home() {
         setIsExecuting(false);
       })
   }
+  // useEffect(() => {
+  //   GetMyAssistants()
+  // }, [Execute])
 
   function GetMyAssistants() {
     console.log('Função GetAssistants da Home')
@@ -289,74 +328,74 @@ export default function Home() {
           </div>
         </Modal>
         <div className="top-container">
-        <div className="top-buttons">
-          <div className="form-container">
-            <form className="form-home">
-              <ModalA />
-              <button className="button-assistant"
-                onClick={(event) => {
-                  event.preventDefault()
-                  OpenModalAssistant()
-                }}
-              >Criar Assistente
-              </button>
-              <input className="Input-Home" type='search' placeholder="Buscar assistente" id="Assistente"></input>
-            </form>
-          </div>
-          <form className="nao">
-            <div className="movieRow-left">
-              <NavigateBeforeIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
+          <div className="top-buttons">
+            <div className="form-container">
+              <form className="form-home">
+                <ModalA />
+                <button className="button-assistant"
+                  onClick={(event) => {
+                    event.preventDefault()
+                    OpenModalAssistant()
+                  }}
+                >Criar Assistente
+                </button>
+                <input className="Input-Home" type='search' placeholder="Buscar assistente" id="Assistente"></input>
+              </form>
             </div>
-            <div className="movieRow-right">
-              <NavigateNextIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
-            </div>
+            <form className="nao">
+              <div className="movieRow-left">
+                <NavigateBeforeIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
+              </div>
+              <div className="movieRow-right">
+                <NavigateNextIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
+              </div>
 
-            <div className="cards-container">
-              {AssistantsList.map((assistant) => {
-                return (
-                  <div className="containerSmodal">
-                    <ModalM assistant={assistant} />
-                    <div className="card1">
+              <div className="cards-container">
+                {AssistantsList.map((assistant) => {
+                  return (
+                    <div className="containerSmodal">
+                      <ModalM assistant={assistant} />
+                      <div className="card1">
 
-                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
-                      <div className="container-AssistantName">
-                        <h5>{assistant.assistantName}</h5>
-                      </div>
-                      {
-                        isExecuting === false ? (
-                          <button onClick={(event) => {
-                            event.preventDefault()
-                            Execute(assistant.idAssistant)
-                          }}>
-                            <PlayIcon />
+                        <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
+                        <div className="container-AssistantName">
+                          <h5>{assistant.assistantName}</h5>
+                        </div>
+                        {
+                          isExecuting === false ? (
+                            <button onClick={(event) => {
+                              event.preventDefault()
+                              Execute(assistant.idAssistant)
+                            }}>
+                              <PlayIcon />
+                            </button>
+                          ) : (
+                            <button disabled onClick={(event) => {
+                              event.preventDefault()
+                              Execute(assistant.idAssistant)
+                            }}>
+                              <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                            </button>
+                          )
+                        }
+                        <div className="box-details">
+                          <button
+                            onClick={(event) => {
+                              event.preventDefault()
+                              OpenModal(assistant.idAssistant)
+                            }}
+                          >Ver detalhes
                           </button>
-                        ) : (
-                          <button disabled onClick={(event) => {
-                            event.preventDefault()
-                            Execute(assistant.idAssistant)
-                          }}>
-                            <FontAwesomeIcon icon={faSpinner} size="lg" spin />
-                          </button>
-                        )
-                      }
-                      <div className="box-details">
-                        <button
-                          onClick={(event) => {
-                            event.preventDefault()
-                            OpenModal(assistant.idAssistant)
-                          }}
-                        >Ver detalhes
-                        </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              })}
+                  )
+                })}
 
-            </div>
-          </form>
-        </div>
-      </div >
+              </div>
+            </form>
+          </div>
+        </div >
 
         <div className="body-container">
           <h2 className="body-title-task">Minhas Tarefas</h2>

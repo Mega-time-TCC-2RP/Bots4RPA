@@ -4,82 +4,121 @@ import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
 import EditIcon from '../icones/edit'
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+import { DataGraphic } from '../graphic/dataGraphic'
 // import { run } from 'cypress';
 
 export default function ModalM({ assistant }) {
 
     const [Run, setRun] = useState([]);
-    const [AProcedure, setAProcedures] = useState([]);
     const [Description, setDescription] = useState("");
+    const [PropsAssistants, setPropsAssistants] = useState([]);
+
+    const [chart, setChart] = useState([])
+
+    var baseUrl = "http://localhost:5000/api/Run/ListQuantity/" + assistant.idAssistant
+    var header = {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+        },
+    }
+    useEffect(() => {
+        const fetchRun = async () => {
+            fetch(baseUrl, header
+            ).then((response) => {
+                response.json().then((json) => {
+                    // console.log(json)
+                    setChart(json)
+                })
+            }).catch(error => {
+                console.log(error);
+            })
+        }
+
+        fetchRun()
+    }, [])
+
+    const data = {
+        labels: [],
+        datasets: [
+            {
+                //  data: [DataGraphic.map((data) => data.exitos), DataGraphic.map((data) => data.falhas)],
+                data: [chart.map((data) => data.sucess), chart.map((data) => data.error)],
+                backgroundColor: [
+                    '#3FDA9F',
+                    '#E41500'
+                ],
+
+                borderWidth: 1,
+            },
+        ],
+    }
+
+
+    // function PropsAssistant() {
+    //     var baseUrl = "http://localhost:5000/api/Run/ListQuantity/" + assistant.idAssistant
+    //     var header = {
+    //         headers: {
+    //             Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+    //         },
+    //     }
+    //     fetch(baseUrl, header
+    //     ).then((response) => {
+    //         response.json().then((json) => {
+    //             console.log(json)
+    //             setPropsAssistants(json.data)
+    //         })
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    // }
+    // useEffect(PropsAssistant, [])
+
 
     function CloseModal(idAssistant) {
         var modal = document.getElementById("modal" + idAssistant);
         modal.style.display = "none";
     };
 
-    function RunQuantity() {
-        fetch('http://localhost:5000/api/Run/' + assistant.idAssistant, {
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-            },
-        })
-            .then((response) => response.json())
-            .then((data) =>
-                setRun(data)
-                // console.log(data)
-            )
-            .catch((error) => console.log(error));
-    };
-    useEffect(RunQuantity, [])
-
-    function GetAssistantProcedure() {
-        console.log('GetAssistantProcedure')
-        fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + assistant.idAssistant, {
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-            },
-        })
-            .then((response) => response.json())
-            .then((data) =>
-                setAProcedures(data)
-                //  console.log(data)   
-            )
-            .catch((error) => console.log(error));
-    };
-
-    // function DeleteProcedures() {
-    //     AProcedure.map((a) => {
-    //         // console.log(a.idAprocedure)
-    //         fetch('http://localhost:5000/api/AssistantProcedure/' + a.idAprocedure, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-    //             },
-    //         })
-    //             .then((resposta) => {
-    //                 if (resposta.status === 204) {
-    //                     console.log('Procedures Apagadas');
-    //                 }
-    //             })
-    //             .catch((erro) => console.log(erro))
-    //     })
-    // };
-
-    function DeleteAssistant(idAssistant) {
-        console.log(assistant.idAssistant)
-        fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
+    function DeleteProcedures() {
+        // AProcedure.map((a) => {
+        // console.log(a.idAprocedure)
+        fetch('http://localhost:5000/api/AssistantProcedure/' + assistant.idAssistant, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
         })
             .then((resposta) => {
-                if (resposta.status === 200) {
-                    console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
-                    CloseModal(assistant.idAssistant)
+                if (resposta.status === 204) {
+                    console.log('Procedures Apagadas');
                 }
             })
             .catch((erro) => console.log(erro))
+        // }
+
+    };
+
+    function DeleteAssistant(idAssistant) {
+        DeleteProcedures()
+            .then(
+                fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
+                    method: 'DELETE',
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+                    },
+                })
+                    .then((resposta) => {
+                        if (resposta.status === 200) {
+                            console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
+                            CloseModal(assistant.idAssistant)
+                        }
+                    })
+                    .catch((erro) => console.log(erro))
+            )
+
     };
 
 
@@ -106,7 +145,7 @@ export default function ModalM({ assistant }) {
 
     function permitirTextArea(idAssistant, assistantDescription) {
         console.log("Você está editando a descrição do assistente " + idAssistant)
-     
+
         var textoDescricao = document.getElementById("texto_desc" + idAssistant)
         textoDescricao.removeAttribute("readOnly");
 
@@ -124,7 +163,6 @@ export default function ModalM({ assistant }) {
     }
     useEffect(() => {
         setDescription(assistant.assistantDescription);
-        GetAssistantProcedure();
     }, [])
 
     return (
@@ -200,22 +238,26 @@ export default function ModalM({ assistant }) {
                             <div className='graphic-left-side'>
                                 <div className='container-left'>
                                     <h1>Detalhes execução:</h1>
-                                    <div>
-                                        <div className='box-label1-health'>
-                                            <div className='square-green'></div>
-                                            <span>Êxitos na execução</span>
-                                        </div>
+                                    {chart.map((m) => {
+                                        return (
+                                            <div>
+                                                <div className='box-label1-health'>
+                                                    <div className='square-green'></div>
+                                                    <span>Êxitos na execução: {m.sucess}</span>
+                                                </div>
 
-                                        <div className='box-label2-health'>
-                                            <div className='square-red'></div>
-                                            <span>Falhas na execução</span>
-                                        </div>
-                                    </div>
+                                                <div className='box-label2-health'>
+                                                    <div className='square-red'></div>
+                                                    <span>Falhas na execução: {m.error}</span>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
 
                             <div className='graphic-right-side'>
-                                <Graphic />
+                                <Doughnut data={data} className="GraphicHealth" />
                             </div>
                         </div>
 
@@ -231,9 +273,10 @@ export default function ModalM({ assistant }) {
                                 </div>
                                 <div className='graphic2-right-side'>
                                     <div className='box-graphic-quantity'>
-                                        {
-                                            Run.runQuantity != undefined && Run.runQuantity != null && Run.runQuantity ?
-                                                <span>{Run.runQuantity}</span> : <span> 0 </span>
+                                        {chart.map((c) =>
+                                            c.total != undefined && c.total != null && c.total ?
+                                                <span>{c.total}</span> : <span> 0 </span>
+                                        )
                                         }
                                     </div>
 
@@ -244,7 +287,7 @@ export default function ModalM({ assistant }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

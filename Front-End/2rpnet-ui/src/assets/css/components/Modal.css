@@ -226,13 +226,13 @@ display: flex;
 }
 
 .box-label1-health {
-    width: 260px;
+    width: 282px;
     display: flex;
     align-items: center;
 }
 
 .box-label2-health {
-    width: 260px;
+    width: 282px;
     margin-top: 28px;
     display: flex;
     align-items: center;
