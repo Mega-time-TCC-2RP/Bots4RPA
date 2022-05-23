@@ -5,6 +5,7 @@ import { Assistant } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
 import EditIcon from '../icones/edit'
 // import { run } from 'cypress';
+import {API} from '../../../src/services/api'
 
 export default function ModalM({ assistant }) {
 
@@ -18,7 +19,7 @@ export default function ModalM({ assistant }) {
     };
 
     function RunQuantity() {
-        fetch('http://localhost:5000/api/Run/' + assistant.idAssistant, {
+        fetch(API + '/api/Run/' + assistant.idAssistant, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
@@ -34,7 +35,7 @@ export default function ModalM({ assistant }) {
 
     function GetAssistantProcedure() {
         console.log('GetAssistantProcedure')
-        fetch('http://localhost:5000/api/AssistantProcedure/Assistant/' + assistant.idAssistant, {
+        fetch(API + '/api/AssistantProcedure/Assistant/' + assistant.idAssistant, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
@@ -67,7 +68,7 @@ export default function ModalM({ assistant }) {
 
     function DeleteAssistant(idAssistant) {
         console.log(assistant.idAssistant)
-        fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
+        fetch(API + '/api/Assistants/' + assistant.idAssistant, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -91,7 +92,7 @@ export default function ModalM({ assistant }) {
             body: JSON.stringify({ "assistantDescription": Description })
         };
 
-        fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, requestOptions)
+        fetch(API + '/api/Assistants/' + assistant.idAssistant, requestOptions)
             .then(resposta => {
                 if (resposta.status === 200) {
                     console.log("Descrição do assistente atualizada");
