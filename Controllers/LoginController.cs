@@ -29,6 +29,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         public LoginController(IUserNameRepository ctx, IOfficeRepository officeRepository, IEmployeeRepository employeeRepository, IPlayerRepository playerRepository, ICorporationRepository corporationRepository)
         {
+            
             _userRepository = ctx;
             Octx = officeRepository;
             Ectx = employeeRepository;
@@ -140,19 +141,17 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 throw;
             }
         }
-
         [HttpPost("Google/FirstAccess")]
-        public IActionResult GooglePost(GoogleFirstAccesViewModel user, IFormFile File)
-        {
+        public IActionResult GooglePost([FromForm]GoogleFirstAccesViewModel user, IFormFile File)
+        {   
+            UserName queryUser = _userRepository.GoogleLogin(user.GoogleId, user.Email);
             try
-            {
-                UserName queryUser = _userRepository.GoogleLogin(user.GoogleId, user.Email);
+            { 
 
                 string[] FileTypes = { "jpg", "png", "jpeg", "gif" };
-                string UploadResult ;
+                string UploadResult = Upload.UploadFile(File, FileTypes);
                 if (File != null)
                 {
-                    UploadResult = Upload.UploadFile(File, FileTypes);
                     if (UploadResult == "")
                     {
                         return BadRequest("Arquivo não encontrado");
@@ -166,6 +165,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 else
                 {
                     UploadResult = null;
+                }
+                if (user.GoogleId == null)
+                {
+                    if (File != null)
+                    {
+                        Upload.RemoveFile(UploadResult);
+                    }
+                    return BadRequest("Senhas nulas só são aceitas no primeiro acesso com o google");
                 }
                 if (user.IdUserType == 1)
                 {
@@ -189,7 +196,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     UserName PostUser = new UserName()
                     {
                         UserName1 = user.UserName1,
-                        GoogleId = user.GoogleId.ToString(),
+                        GoogleId = user.GoogleId,
                         Email = user.Email,
                         Cpf = user.Cpf,
                         PhotoUser = UploadResult,
@@ -218,7 +225,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
                         Player PostedPlayer = Pctx.Create(PostPlayer);
 
-                        return Ok(new
+                        return Created("UsuarioCriado", new
                         {
                             User = new UserName()
                             {
@@ -244,7 +251,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                             }
                         });
                     }
-                    return Ok(new
+                    return Created("UsuarioCriado", new
                     {
                         User = new UserName()
                         {
