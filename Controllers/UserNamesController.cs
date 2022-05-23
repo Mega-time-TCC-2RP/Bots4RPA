@@ -333,11 +333,11 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     });
                 }
                 else return NotFound("Id da empresa inválido");
-            }
-            catch (Exception error)
-            {
-                return BadRequest(error);
-                throw;
+                }
+                catch (Exception error)
+                {
+                    return BadRequest(error);
+                    throw;
             }
         }
 
