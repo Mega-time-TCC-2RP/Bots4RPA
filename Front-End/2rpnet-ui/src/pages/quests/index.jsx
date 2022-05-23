@@ -44,7 +44,10 @@ function App() {
   const [descriptionTask, setDescriptionTask] = useState('');
   const [statusTask, setStatusTask] = useState();
   const [endDate, setEndDate] = useState();
+  const [idTask, setIdTask] = useState();
+  const [oneTask, setOneTask] = useState([]);
 
+  const [taskIsOpen, setTaskIsOpen] = useState(false);
   const [newTaskIsOpen, setNewTaskIsOpen] = useState(false);
   const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
 
@@ -74,6 +77,14 @@ function App() {
     setNewTaskIsOpen(false)
   }
 
+  function handleOpenTask() {
+    setTaskIsOpen(true)
+  }
+
+  function handleCloseTask() {
+    setTaskIsOpen(false)
+  }
+
   // Const da API = http://grupo7.azurewebsites.net/api
   const apiPlatform = 'http://grupo7.azurewebsites.net/api'
 
@@ -92,6 +103,21 @@ function App() {
         }
       })
       .catch(erro => console.log(erro));
+  }
+
+  // Listar informações de uma única tarefa
+  const searchOneTask = () => {
+    axios(apiPlatform + '/Workflows/' + idTask, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+    }
+  })
+  .then(response => {
+    if (response.status === 200 || response.status === 201) {
+      setIdTask(response)
+    }
+  })
+  .catch((error) => console.log(error))
   }
 
   // Consumo da API - Patch Status
@@ -228,6 +254,11 @@ function App() {
     document.getElementById("monthCalendar").innerHTML = setMonth
   }
 
+  // function modalTask() {
+  //   return (
+
+  //   )
+  // }
 
   useEffect(() => {
     getWorkflowList()
@@ -323,7 +354,53 @@ function App() {
                         className="cardTask" draggable="true">
                         {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
                         <div
-                          className="p">{myQuests.title}</div>
+                          className="p"
+                          onClick={handleOpenTask}>{myQuests.title}</div>
+                        <Modal
+                          isOpen={taskIsOpen}
+                          onRequestClose={handleCloseTask}
+                          style={stylesCustom} >
+                          <div className="modalQuests">
+                            <div className="headerModal">
+                              <div className="title h3">Nova Tarefa</div>
+                              <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
+                            </div>
+                            <form onSubmit={formNewTask}>
+                              <div className="bodyModalQuest">
+                                <div className="inputsQuests">
+                                  <div className="inputQuests">
+                                    <label for="titleInput" className="h5">Título</label>
+                                    <input
+                                      id="titleInput"
+                                      className="input"
+                                      type="text"
+                                      placeholder="Insira o Título da tarefa..."
+                                      onChange={(event) => setTitleTask(event.target.value)} />
+                                  </div>
+                                  <div className="inputQuests">
+                                    <label for="descriptionInput" className="h5">Descrição</label>
+                                    <input
+                                      id="descriptionInput"
+                                      className="input"
+                                      type="text"
+                                      placeholder="Insira pontos importantes para a resolução da tarefa..."
+                                      onChange={(event) => setDescriptionTask(event.target.value)} />
+                                  </div>
+                                </div>
+                                <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
+                                <input
+                                  id="dayAndMonthWorkflow"
+                                  className="input inputQuestsDate"
+                                  type="date"
+                                  onChange={(event) => setEndDate(event.target.value)} />
+                                <input
+                                  className="btnNewTask button"
+                                  type="submit"
+                                  value="Adicionar Tarefa" />
+                              </div>
+                            </form>
+                          </div>
+                        </Modal>
                       </div>
                     )
                   }
