@@ -51,13 +51,6 @@ const MaskedInputCPF = ({ value, onChange }) => {
     />
 }
 
-const parseGoogle = () => {
-    // define a variavel objGoogle q recebe as informações do usuario logado
-    let objGoogle = localStorage.getItem('firstAccess');
-     // converte o valor de objGoogle para JSON
-    return JSON.parse( objGoogle );
-};
-
 const MaskedInputTelephone = ({ value, onChange }) => {
     function handleChange(event) {
         onChange({
@@ -147,14 +140,6 @@ const errorToast = () => {
     var inputImage = document.getElementById('imageProfile');
 
     
-    // if (parseGoogle !== null) {
-    //     const {profileObj: {name, email, imageUrl, googleId}} = parseGoogle;
-    //     setName(name);
-    //     setEmail(email);
-    //     setGoogleId(googleId);
-    //     // console.log()
-        
-    // }
 
     function handleNext() {
         setCurrentStep((prevState) => prevState + 1);
@@ -163,17 +148,6 @@ const errorToast = () => {
     function handleBack() {
         setCurrentStep((prevState) => prevState - 1);
     }
-
-    // function showPassword() {
-    //     var password = document.getElementById("password");
-    //     if (password.type == "password") {
-    //         password.type = "text";
-    //         setShow(true);
-    //     } else {
-    //         password.type = "password"
-    //         setShow(false);
-    //     }
-    // }
 
     function inputImageVerify() {
         setImageLoad(true);
@@ -244,7 +218,7 @@ const errorToast = () => {
                     }
             })
             .then((response) => {
-                if (response.status === 201) {
+                if (response.status === 200) {
                     console.log('cadastrado com sucesso')
                     history('/login')
                 }
@@ -295,35 +269,12 @@ const errorToast = () => {
                                                 <label className='h5'>CPF</label>
                                                 <MaskedInputCPF value={cpf} onChange={(event) => setCpf(event.target.value)} />
                                             </div>
-                                            {/* <div className='foreachInput'>
-                                                <label className='h5'>Email</label>
-                                                <input id='placeholder-text' type="email" name="email" placeholder='Insira o seu email...' value={email} onChange={(event) => setEmail(event.target.value)} autoFocus required />                                
-                                            </div> */}
-                                            {/* <div className='foreachInput'>
-                                                <label className='h5'>Senha</label>
-                                                <div className='passwordArea'>
-                                                    <input id='password' type="password" name="password" className='placeholder-text' placeholder='Insira sua senha...' value={password} onChange={(event) => setPassword(event.target.value)} />
-                                                    {
-                                                        show === false && (
-                                                            <AiIcons.AiFillEyeInvisible className='eyePass' onClick={showPassword} />
-                                                        )
-                                                    }
-                                                    {
-                                                        show === true && (
-                                                            <AiIcons.AiFillEye className='eyePass' onClick={showPassword} />
-                                                        )
-                                                    }
-
-                                                </div>
-                                            </div> */}
+                                            
                                             <div className='foreachInput'>
                                                 <label className='h5'>Data de Nascimento</label>
                                                 <input id='placeholder-text birthDate' type="date" name="birthDate" placeholder='Insira sua Data de nascimento...' value={birthDate} onChange={(event) => setBirthDate(event.target.value)} />
                                             </div>
-                                            {/* <div className='foreachInput'>
-                                                <label className='h5'>Nome</label>
-                                                <input id='placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={name} onChange={(event) => setName(event.target.value)} required />
-                                            </div> */}
+                                            
                                             <div className='foreachInput'>
                                                 <label className='h5'>Tipo de Usuário</label>
                                                 <select value={idUserType} onChange={(event) => setIdUserType(event.target.value)}>
