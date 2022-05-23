@@ -4,6 +4,8 @@ import axios, { Axios } from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import VLibras from '@djpfs/react-vlibras'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 //img:
@@ -63,6 +65,28 @@ const MaskedInputTelephone = ({ value, onChange }) => {
         onChange={handleChange}
     />
 }
+const diffToast = () => {
+    toast.success('Cadastro realizado com êxito. Por favor, aguarde a validação.', {
+            position: "top-right",
+            autoClose: 10000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+    });
+}
+const errorToast = () => {
+    toast.error('Ops! Ocorreu um erro.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+});
+}
 
 const validateRG = (v) => {
     if (v.length < 11) {
@@ -81,14 +105,15 @@ const validateRG = (v) => {
 
 export default function RegisterUser() {
     const [currentStep, setCurrentStep] = useState(0);
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [birthDate, setBirthDate] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [googleId, setGoogleId] = useState('');
+    const [birthDate, setBirthDate] = useState('');
     const [imageProfile, setImageProfile] = useState();
-    const [name, setName] = useState();
-    const [rg, setRg] = useState();
-    const [cpf, setCpf] = useState();
-    const [telephone, setTelephone] = useState();
+    const [name, setName] = useState('');
+    const [rg, setRg] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [telephone, setTelephone] = useState('');
     const [idUserType, setIdUserType] = useState(3);
     const [idCorporation, setIdCorporation] = useState(1);
     const [idOffice, setIdOficce] = useState(1);
@@ -97,6 +122,8 @@ export default function RegisterUser() {
     const [loading, setLoading] = useState(false);
     const [show, setShow] = useState(false);
     const [imageLoad, setImageLoad] = useState(false);
+
+
 
     let history = useNavigate();
 
@@ -182,8 +209,17 @@ export default function RegisterUser() {
             data: formData,
             headers: { "Content-type": "multipart/form-data" },
         })
+            .then(diffToast(),
+            response => {
+                    if (response.status === 200) {
+                            toast.dismiss(diffToast());
+                        }
+                        else{
+                            toast.dismiss(errorToast());   
+                        }
+            })
             .then((response) => {
-                if (response.status === 200) {
+                if (response.status === 201) {
                     console.log('cadastrado com sucesso')
                     history('/login')
                 }
@@ -192,6 +228,8 @@ export default function RegisterUser() {
                 console.log(erro)
             })
     }
+
+
 
     return (
         <div>
@@ -203,15 +241,14 @@ export default function RegisterUser() {
                 <div className='registerArea'>
                     <div className='registerContent'>
                         <img className='logoRegister' src={Logo} alt="Logo 2RPnet" />
-                        <form className='formRegister' encType='multipart/form-data'>
+                        <form className='formRegister' autoComplete="off" encType='multipart/form-data'>
                             {
                                 steps[currentStep].id === "Step1" && (
                                     <div className='contentRender'>
                                         <div className='inputsArea'>
                                             <div className='foreachInput'>
                                                 <label className='h5'>Email</label>
-                                                <input id='placeholder-text' type="email" name="email" placeholder='Insira o seu email...' value={email} onChange={(event) => setEmail(event.target.value)} autoFocus required />
-                                            </div>
+                                                <input id='placeholder-text' type="email" name="email" placeholder='Insira o seu email...' value={email} onChange={(event) => setEmail(event.target.value)} autoFocus required />                                            </div>
                                             <div className='foreachInput'>
                                                 <label className='h5'>Senha</label>
                                                 <div className='passwordArea'>
@@ -239,7 +276,7 @@ export default function RegisterUser() {
                                             </div>
                                             <div className='foreachInput'>
                                                 <label className='h5'>Tipo de Usuário</label>
-                                                <select onChange={(event) => setIdUserType(event.target.value)}>
+                                                <select value={idUserType} onChange={(event) => setIdUserType(event.target.value)}>
                                                     <option value={3}>Usuario normal</option>
                                                     <option value={2}>Administrador de Empresa</option>
                                                 </select>
@@ -280,6 +317,7 @@ export default function RegisterUser() {
                                                 <label className='h5'>Telefone</label>
                                                 <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} />
                                             </div>
+                                            
                                             <div className='foreachInput'>
                                                 <label className='h5'>Empresa relacionada</label>
                                                 <select onChange={(event) => setIdCorporation(event.target.value)}>
@@ -305,11 +343,12 @@ export default function RegisterUser() {
                                                 </select>
                                             </div>
                                         </div>
-                                        <button className='button' onClick={RegisterUser}>Finalizar Cadastro</button>
+                                        {
+                                            email === '' || password === '' || birthDate === '' || name === '' || rg === '' || cpf === '' || telephone === '' ? <button className='button block' >Finalizar Cadastro</button> : <button className='button' onClick={RegisterUser}>Finalizar Cadastro</button>
+                                        }
                                     </div>
                                 )
                             }
-
                         </form>
                     </div>
                 </div>

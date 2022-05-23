@@ -2,6 +2,22 @@ import "../../assets/css/style.css";
 import "../../assets/css/components/navbar.css"
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+
+
+// import Swiper, { Navigation, Pagination } from 'swiper';
+import { Pagination, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+//imports da manhã
+import ModalA from '../../components/modal/ModalAssistant'
+import PlayIcon from '../../components/icones/play'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/menu/Navbar'
@@ -25,61 +41,72 @@ import Header from '../../components/header/header'
 //items:
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import PlayIcon from '../../components/icones/play'
+
 
 //Components:
 // import Navbar from '../../components/menu/Navbar'
-import Modal from '../../components/modal/Modal'
-import ModalA from '../../components/modal/ModalAssistant'
+import ModalM from '../../components/modal/Modal'
 import Footer from '../../components/footer/footer'
 import { render } from "@testing-library/react";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+//onboarding
+import '../../assets/css/pages/onBoarding.css'
+import Blue_Head from '../../assets/img/Blue_Head.png'
+import onBoardingBot from '../../assets/img/onBoardingBot.png'
+
 {/* <Navbar/> */ }
 
+const stylesCustom = {
+  content: {
+    width: 1,
+    height: 1,
+    // backgroundcolor: rgba(0, 255, 255, 0.75),
+    boxShadow: ''
+  },
+};
 
+Modal.setAppElement('#root');
 
 export default function Home() {
 
-  const [AssistantsList, setAssistantsList] = useState([]);
   const [ExecutionsList, setExecutionsList] = useState([]);
-
   const [isExecuting, setIsExecuting] = useState(false);
+  const [AssistantsList, setAssistantsList] = useState([]);
 
   function Execute(idAssistant) {
     setIsExecuting(true);
 
     var eURL = API + "/api/Assistant" + idAssistant + "/Post";
     var eBody = JSON.stringify({
-        "email": parseJwt().email,
-        "emailBody": "result"
-      });
+      "email": parseJwt().email,
+      "emailBody": "result"
+    });
 
     fetch(eURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: eBody
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: eBody
     })
-        .then((response) => {
-            // console.log("before if");
-            console.log(response)
-            if (response.status === 204) {
-                console.log("FUNCIONOU");
-                toast.success("O resultado foi enviado para seu email");
-            } else {
-                toast.error("A execução deu errado :/");
-            }
-            setIsExecuting(false);
-        })
-        .catch((erro) => {
-            console.log(erro)
-            toast.error("A execução deu errado :/");
-            setIsExecuting(false);
-        })
-}
+      .then((response) => {
+        // console.log("before if");
+        console.log(response)
+        if (response.status === 204) {
+          console.log("FUNCIONOU");
+          toast.success("O resultado foi enviado para seu email");
+        } else {
+          toast.error("A execução deu errado :/");
+        }
+        setIsExecuting(false);
+      })
+      .catch((erro) => {
+        console.log(erro)
+        toast.error("A execução deu errado :/");
+        setIsExecuting(false);
+      })
+  }
 
   function GetMyAssistants() {
+    console.log('Função GetAssistants da Home')
     fetch('http://localhost:5000/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -92,9 +119,6 @@ export default function Home() {
       )
       .catch((error) => console.log(error));
   };
-
-  useEffect(GetMyAssistants, [])
-
 
   // Open Modal to create assistant
   function OpenModalAssistant() {
@@ -113,48 +137,60 @@ export default function Home() {
   // Close Assistant details modal
   function CloseModal(idAssistant) {
     var modal = document.getElementById("modal" + idAssistant);
-    // console.log(id)
     modal.style.display = "none";
+    GetMyAssistants()
   };
-
-  // Close Modal to create assistant
-  function CloseModalAssistant() {
-    var modalA = document.getElementById("modalAssistant");
-    // console.log(id)
-    modalA.style.display = "none";
-  }
 
   const [myQuests, setMyQuests] = useState([]);
   const [highlightedPosts, setHighlightedPosts] = useState([]);
   const Navigate = useNavigate();
 
-  function App() {
-    const handleLeftArrow = () => {
-    }
-    const handleRightArrow = () => {
-    }
-    const HideArrow = () => {
-    }
-  }
+  //onboarding
+  const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
 
-  useEffect(App, [])
+  function handleOpenOnBoarding() {
+    setOnBoardingIsOpen(true)
+  }
+  function handleCloseOnBoarding() {
+    setOnBoardingIsOpen(false)
+  }
+  //onboarding
 
   const GetMyQuests = () => {
-    axios.get('https://grupo7.azurewebsites.net/api/Quests/ListarMinhas', {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-      }
-    }).then((response) => {
-      // console.log(response)
-      // console.log(response.data)
-      setMyQuests(response.data)
-    }).catch(async (error) => {
-      if (await handleAuthException(error) === true) {
-        localStorage.removeItem('2rp-chave-autenticacao')
-        Navigate('/login')
-        console.log(error.status);
-      }
-    })
+    if (parseJwt().Role != "1") {
+      axios.get('http://grupo7.azurewebsites.net/api/Workflows/GetMine', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+        }
+      }).then((response) => {
+        console.log(response)
+        console.log(response.data)
+        setMyQuests(response.data)
+      }).catch(async (error) => {
+        if (await handleAuthException(error) === true) {
+          localStorage.removeItem('2rp-chave-autenticacao')
+          Navigate('/login')
+          console.log(error.status);
+        }
+      })
+    }
+    else {
+      axios.get('http://grupo7.azurewebsites.net/api/Workflows', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+        }
+      }).then((response) => {
+        console.log(response)
+        console.log(response.data)
+        setMyQuests(response.data)
+      }).catch(async (error) => {
+        if (await handleAuthException(error) === true) {
+          localStorage.removeItem('2rp-chave-autenticacao')
+          Navigate('/login')
+          console.log(error.status);
+        }
+      })
+    }
   }
 
   const GetHighlightedPosts = () => {
@@ -176,14 +212,83 @@ export default function Home() {
   }
 
   useEffect(() => {
+    console.log(parseJwt())
     GetMyQuests();
     GetHighlightedPosts();
+    GetMyAssistants();
   }, [])
 
   return (
     <div>
-      <Navbar className="NavbarHome" />
-      <div className="top-container">
+
+      <Navbar />
+      <div className='body-pd'>
+
+        <Header />
+        <VLibras />
+        <img
+          src={onBoardingBot}
+          onClick={handleOpenOnBoarding}
+          className="img-onboarding"
+        />
+        <Modal
+          isOpen={onBoardingIsOpen}
+          onRequestClose={handleCloseOnBoarding}
+          style={stylesCustom}
+        >
+          <div className="top-container-onboarding" >
+            <div className="background-body" >
+              <div className="boarding-image">
+                <img className="bot-img" src={Blue_Head} />
+              </div>
+              <div className="body-content">
+                <h2>Assistente</h2>
+                <Swiper
+                  pagination={{
+                    type: "fraction",
+                  }}
+                  navigation={true}
+                  modules={[Pagination, Navigation]}
+
+                  className="swiperHomeTasks-social"
+                >
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Seja bem-vindo(a) à sua tela inicial!</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Gostaria de executar um assistente? Ver suas Tarefas? Ou ver as questões mais em alta na área Social?</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='bayer'>Entre e se divirta!</span>
+                    </div>
+                  </SwiperSlide>
+                </Swiper>
+              </div>
+
+            </div>
+          </div>
+        </Modal>
+        <div className="top-container">
         <div className="top-buttons">
           <div className="form-container">
             <form className="form-home">
@@ -210,11 +315,13 @@ export default function Home() {
               {AssistantsList.map((assistant) => {
                 return (
                   <div className="containerSmodal">
-                    <Modal assistant={assistant} />
+                    <ModalM assistant={assistant} />
                     <div className="card1">
 
                       <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
-                      <h5>{assistant.assistantName}</h5>
+                      <div className="container-AssistantName">
+                        <h5>{assistant.assistantName}</h5>
+                      </div>
                       {
                         isExecuting === false ? (
                           <button onClick={(event) => {
@@ -251,94 +358,85 @@ export default function Home() {
         </div>
       </div >
 
-      <div className="body-container">
-        <form>
+        <div className="body-container">
           <h2 className="body-title-task">Minhas Tarefas</h2>
-          <div className="card-body-content">
-            <h3 className="title-card-content">Título</h3>
-            <p className="text-body1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p className="data-body">Data de entrega : xx/xx/xxxx</p>
-          </div>
-          <div className="card-body-content">
-            <h3 className="title-card-content">Título</h3>
-            <p className="text-body1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p className="data-body">Data de entrega : xx/xx/xxxx</p>
-          </div>
-          <div className="card-body-content">
-            <h3 className="title-card-content">Título</h3>
-            <p className="text-body1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p className="data-body">Data de entrega : xx/xx/xxxx</p>
-          </div>
-        </form>
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={0}
+            slidesPerGroup={2}
+            loop={false}
+            loopFillGroupWithBlank={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="swiperHomeTasks"
+          >
+            {
+              myQuests != undefined && myQuests != null && myQuests[0] != undefined && myQuests[0] != null ?
+                myQuests.map((Workflow) => {
+                  return (
+                    <SwiperSlide className="swiper-slide-HomeTasks">
+                      <div className="card-body-content">
+                        <h3 className="title-card-content">{Workflow.title}</h3>
+                        <p className="text-body1">{Workflow.workflowDescription}</p>
+                        {/* <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Workflow.endDate))}</p> */}
+                      </div>
+                    </SwiperSlide>
+                  )
+                }) :
+                <SwiperSlide className="swiper-slide-HomeTasks">
+                  <span>Não há tarefas...</span>
+                </SwiperSlide>
+            }
+          </Swiper>
+        </div>
+        <div className="bottom-container">
+          <h2 className="body-title-task">Posts em destaque</h2>
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={0}
+            slidesPerGroup={2}
+            loop={false}
+            loopFillGroupWithBlank={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="swiperHomeTasks"
+          >
+            {
+              highlightedPosts != undefined && highlightedPosts != null && highlightedPosts[0] != undefined && highlightedPosts[0] != null ?
+                highlightedPosts.map((post) => {
+                  return (
+                    <SwiperSlide className="swiper-slide-HomeTasks">
+                      <div className="bottom-posts-content">
+                        <div className="chatListItem--lines">
+                          <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                          <div className="chatItemList-line">
+                            <div className="PostItem-name">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
+                            <p className="PostItem-role">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+                          </div>
+                        </div>
+                        {
+                          post.postImage != undefined ?
+                            <img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
+                            <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
+                        }
+                        <h2 className="TituloPostDestaque">{post.title}</h2>
+                        <p className="post-text-bottom-home">{post.postDescription}</p>
+                      </div>
+                    </SwiperSlide>
+                  )
+                }) :
+                <span>Não há posts em destaque</span>
+            }
+          </Swiper>
+
+        </div >
       </div>
-      <div className="bottom-container">
-        <form>
-          <div className="forms-items">
-            <h2 className="bottom-title">Posts em destaque</h2>
-            <div className="bottom-posts-content">
-
-              <div className="chatListItem--lines">
-                <img src={Post_Perfil_Photo} className="ItemPost-avatar" />
-                <div className="chatItemList-line">
-                  <div className="PostItem-name">Marcos</div>
-                  <p className="PostItem-role">DevOps</p>
-                </div>
-              </div>
-              <img src={Img_Home_Post} className="img2-home-bottom" />
-              <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-              </p>
-            </div>
-            <div className="bottom-posts-content">
-
-              <div className="chatListItem--lines">
-                <img src={Post_Perfil_Photo} className="ItemPost-avatar" />
-                <div className="chatItemList-line">
-                  <div className="PostItem-name">Marcos</div>
-                  <p className="PostItem-role">DevOps</p>
-                </div>
-              </div>
-              <img src={Img_Home_Post} className="img2-home-bottom" />
-              <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-              </p>
-            </div>
-            <div className="bottom-posts-content">
-
-              <div className="chatListItem--lines">
-                <img src={Post_Perfil_Photo} className="ItemPost-avatar" />
-                <div className="chatItemList-line">
-                  <div className="PostItem-name">Marcos</div>
-                  <p className="PostItem-role">DevOps</p>
-                </div>
-              </div>
-              <img src={Img_Home_Post} className="img2-home-bottom" />
-              <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-              </p>
-            </div>
-            <div className="bottom-posts-content">
-
-              <div className="chatListItem--lines">
-                <img src={Post_Perfil_Photo} className="ItemPost-avatar" />
-                <div className="chatItemList-line">
-                  <div className="PostItem-name">Marcos</div>
-                  <p className="PostItem-role">DevOps</p>
-                </div>
-              </div>
-              <img src={Img_Home_Post} className="img2-home-bottom" />
-              <p className="post-text-bottom-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque ultricies tortor quis viverra. Phasellus fermentum metus libero, et laoreet est faucibus.
-              </p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <Footer />
-    </div >
+    </div>
   );
 }

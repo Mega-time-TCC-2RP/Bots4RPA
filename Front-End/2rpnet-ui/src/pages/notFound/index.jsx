@@ -4,6 +4,7 @@ import '../../assets/css/pages/notFound.css'
 import { Link } from 'react-router-dom'
 
 
+
 //components
 import Footer from '../../components/footer/footer'
 import Navbar from '../../components/menu/Navbar'
@@ -25,7 +26,7 @@ const NotFound = () => {
       <p className="texto-aaa">Parece que essa página não existe ou há algum erro de conexão.</p>
       <p className="texto-aaa">Por favor, volte e tente novamente.</p>
       <Link to="/">
-      <button id='buttonBackStep' to="/" className='buttonNotFound'>Voltar</button>
+      <button className='buttonNotFound'>Voltar</button>
       </Link>
       </div>
       <div>

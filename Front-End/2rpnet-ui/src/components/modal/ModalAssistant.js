@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
-import "../../components/modal/ModalAssistant.css";
+import "../../assets/css/components/ModalAssistant.css"
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Link, SettingsApplications } from '@material-ui/icons';
 
@@ -29,10 +29,10 @@ export default function Modal() {
         fetch(myUrl, requestOptions)
             .then(response => {
                 if (response.status === 201) {
-                    console.log(response)
+                    // console.log(response)
                     return response.json()
                         .then(data => {
-                            console.log(data)
+                            // console.log(data)
                             navigate("/assistant", { state: { id: data.idAssistant, name: data.assistantName } });
                         })
                 }

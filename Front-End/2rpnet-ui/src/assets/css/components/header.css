@@ -57,6 +57,8 @@
 .details.active {
     opacity: 1;
     pointer-events: auto;
+    z-index: 100;
+    box-shadow: 0px 4px 4px var(--darkShadow);;
 }
 .details ul{
     margin-top: 16px;
@@ -71,13 +73,16 @@
     /* line-height: 50px; */
     
 }
+.details ul li .Link:hover{
+    background: rgb(240, 240, 240);
+}
 .details ul li .Link{
     color: var(--ComplementaryColor2);
     font-size: 18px;
     /* pointer-events: none; */
 }
 #log_out{
-    margin-top: 16px;
+    margin-top: 0;
     cursor: pointer;
 }
 
@@ -103,7 +108,11 @@
     display: flex;
     align-items: center;
     width: 100%;
-    /* cursor: pointer; */
+    cursor: pointer;
+}
+.logout:hover{
+    background: var(--ComplementaryColor4);
+    border-radius: 10px;
 }
 .logout #log_out{
     margin-left: 35px;
@@ -115,6 +124,15 @@
     font-weight: 600;
     cursor: pointer
 }
+/* .logout #log_out:hover{
+    background: var(--ComplementaryColor4);
+    border-radius: 50px;
+    box-shadow: 0px 50px 80px var(--ComplementaryColor4);
+}
+.logout span:hover{
+    background: var(--ComplementaryColor4);
+    border-radius: 50px;
+} */
 .coins img{
     width: 30px;
     height: 30px;

@@ -15,16 +15,16 @@ import {
 import './assets/css/components/button.css'
 import './index.css';
 
+
 // import Navbar from './components/menu/Navbar'
 import Home from './pages/home/';
 import Login from './pages/login/';
 import Guide from './pages/guide/';
-import Marketplace from './pages/marketplace/skinShop';
+import SkinShop from './pages/skinShop/skinShop';
+import Marketplace from './pages/marketplace/marketplace';
 import Assistant from './pages/myProcesses/assistant';
-import Social from './pages/social/';
 import { TelaTimeline } from './pages/social/index';
-import TaskCalendar from './pages/taskCalendar';
-import TaskKanban from './pages/taskKanban';
+import Quest from './pages/quests';
 import TesteDaltonicMode from './pages/DaltonicModeTest';
 import Profile from './pages/profile/index';
 import Config from './pages/config/config';
@@ -41,25 +41,27 @@ import { LayersClear } from '@material-ui/icons';
 
 // Sem cadastro
 
+
+
+
 const routing = (
   <Router>
     <div>
       <Routes history={history}>
-        <Route exact path="/" element={<Home />} /> {/* Home */}
-        <Route path="/landingPage" element={<LandingPage />} />
+        <Route exact path="/" element={<LandingPage />} /> {/* Home */}
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} /> {/* Login */}
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/Config" element={<Config />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/guide" element={<Guide />} /> {/* Guide */}
+        <Route path="/skinShop" element={<SkinShop />} /> {/* Marketplace */}
         <Route path="/marketplace" element={<Marketplace />} /> {/* Marketplace */}
         <Route path="/assistant" element={<Assistant/>} />
         <Route path="/social" element={<TelaTimeline />} /> {/* Social */}
-        <Route path="/taskcalendar" element={<TaskCalendar />} /> {/* Task Calendar */}
-        <Route path="/taskkanban" element={<TaskKanban />} /> {/* Task Kanban */}
+        <Route path="/quests" element={<Quest />} /> {/* Task Calendar */}
         <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />
-        {/*<Route path="/config" element={<Config/>} /> {/* Configuration */}
 
         <Route path="/notFound" element={<NotFound />} /> {/* Not Found */}
         <Route path="*" element={<Navigate to="notFound" />} /> {/*Redireciona para Not Found caso não encontre nenhuma rota*/}
@@ -67,6 +69,7 @@ const routing = (
     </div>
   </Router>
 );
+
 
 const SetTema = () => {
   let mode = localStorage.getItem('temaApp');

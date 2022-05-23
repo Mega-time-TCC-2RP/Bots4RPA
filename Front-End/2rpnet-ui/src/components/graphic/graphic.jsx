@@ -24,10 +24,3 @@ export default function Graphic() {
 
     return <Doughnut data={dataGraphic} className="GraphicHealth" />;
 }
-
-
-
-
-
-
-

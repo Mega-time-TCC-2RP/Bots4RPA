@@ -71,13 +71,29 @@ input[type="file"] {
     font: message-box;
 }
 
-.imageProfileInput {
+.imageProfileInput {    
     display: none;
 }
 
 input#file-upload-button {
     background-color: var(--PrimaryColor2);
 }
+
+.areaPhoto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.step2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 75%;
+}
+
 /* RegisterUser */
 
 .passwordArea {
@@ -102,7 +118,8 @@ input#file-upload-button {
     height: 45px;
     font-size: 1.2em;
     position: absolute;
-    top: 10px;
+    top: 35px;
+    left: 35px;
     color: var(--PrimaryColor2);
 }
 
@@ -135,5 +152,37 @@ input#file-upload-button {
 }
 
 .previewImage {
+    
+}
+
+.hidden {
+    display: none;
+}
+
+.block {
+    cursor: no-drop;
+}
+
+
+@media only screen and (max-width: 600px){
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .backgroudRegister{
+        overflow-x: hidden;
+    }
+
+    .robotBlue, .robotRed, .access-button{
+        visibility: hidden;
+        }
+    .registerArea{
+        width: 600px;
+        padding: 4rem;
+        height: 140vh;
+        margin-top: 280px;
+        position: absolute;
+    }
+
     
 }

@@ -23,11 +23,11 @@
 
 body {
   background-color: #FCFCFC;
-  color: white;
+  /* color: white; */
 }
 
 .header {
-  height: 72px;
+  height: 85px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -315,7 +315,15 @@ body {
   box-sizing: border-box;
 }
 
-.box-card-flow{
+.box-card-flow {
   display: flex;
   width: 204px;
+}
+
+/* Propriedade para não bugar o footer */
+
+.main-Assistant {
+  margin-top: 2rem;
+  height: 881px;
+  /* background-color: coral; */
 }

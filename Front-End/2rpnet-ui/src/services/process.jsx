@@ -50,6 +50,16 @@ export default
             "ProcedureDescription": "Entra na primeira notícia",
             "ProcedureValue": "",
         },
+        {
+            "IdProcedure": 8,
+            "ProcedurePriority": null,
+            "ProcedureName": "Enviar email para alguem",
+            "ProcedureDescription": "Envia email para quem você quiser, com titulo e corpo",
+            "ProcedureValue": "",
+            "EmailReceiver": "",
+            "EmailSubject": "",
+            "EmailBody": "",
+        },
     ]
 
 

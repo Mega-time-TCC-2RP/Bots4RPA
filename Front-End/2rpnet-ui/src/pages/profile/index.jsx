@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
-import { handleAuthException } from '../../services/auth';
+import { handleAuthException, parseJwt } from '../../services/auth';
 import axios, { Axios } from 'axios';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
@@ -8,6 +8,7 @@ import Navbar from '../../components/menu/Navbar'
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import { useNavigate } from 'react-router-dom';
+import Coin from '../../assets/img/coin.png'
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -84,18 +85,22 @@ export default function Profile() {
     }
 
     const GetTrohpiesAndSkins = async () => {
-        await axios.get('http://grupo7.azurewebsites.net/api/UserNames/MyTrophiesAndSkins', {
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-            }
-        }).then((resposta) => {
-            console.log(resposta.data.employees[0].players[0]);
-        }).catch(async (error) => {
-            if (await handleAuthException(error) === true) {
-                localStorage.removeItem('2rp-chave-autenticacao')
-                Navigate('/login')
-            }
-        })
+        if (parseInt(parseJwt().Role) == 3) {
+            await axios.get('http://grupo7.azurewebsites.net/api/UserNames/MyTrophiesAndSkins', {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+                }
+            }).then((resposta) => {
+                setTrophiesList(resposta.data.employees[0].players[0].libraryTrophies)
+                setSkinsList(resposta.data.employees[0].players[0].librarySkins)
+                console.log(resposta.data.employees[0].players[0]);
+            }).catch(async (error) => {
+                if (await handleAuthException(error) === true) {
+                    localStorage.removeItem('2rp-chave-autenticacao')
+                    Navigate('/login')
+                }
+            })
+        }
 
         await axios.get('http://grupo7.azurewebsites.net/api/Trophies', {
             headers: {
@@ -144,7 +149,7 @@ export default function Profile() {
         <div className='ProfileContainer'>
             <Navbar />
             <div className='configPage body-pd profile'>
-                <Header />
+                {/* <Header /> */}
                 <h1 className='container h1' alt="configurações">Perfil</h1>
                 <nav className='navAreaConfig container'>
                     <span className='h3 meusTrofeus' id='meusTrofeus' onClick={() => select(0)}>Meus troféus</span>
@@ -205,9 +210,9 @@ export default function Profile() {
                                                             <span>Não adquirido</span>
                                                             :
                                                             trophiesList.find((T) => T.idTrophyNavigation.idTrophy === trophyModal.idTrophy) !== undefined ?
-                                                            <span>{trophiesList.find((T) => T.idTrophyNavigation.idTrophy === trophyModal.idTrophy).unlockData}</span> :
-                                                            <span>Carregando...</span>
-                                                            
+                                                                <span>{new Date(trophiesList.find((T) => T.idTrophyNavigation.idTrophy === trophyModal.idTrophy).unlockData).toLocaleDateString('pt-BR')}</span> :
+                                                                <span>Carregando...</span>
+
                                                     }
                                                 </div>
                                                 <div className='TrophyDataField'>
@@ -234,12 +239,28 @@ export default function Profile() {
                         steps[currentStep].id === 'Step3' && (
                             <div cAcessibilidadelassName='areaStep'>
                                 <h2 alt="MinhasSkins">Minhas skins</h2>
+                                <div className="TrophiesContainer">
+                                    {
+                                        skinsList.map((Skin) => {
+                                            return (
+                                                <div className='skin'>
+                                                    <img src={"http://grupo7.azurewebsites.net/img/" + Skin.idSkinNavigation.skinImages} alt="img robot" />
+                                                    <span className='nameRobot'>{Skin.idSkinNavigation.title}</span>
+                                                    <div className='coin'>
+                                                        <img src={Coin} alt="img coin" />
+                                                        <span>{Skin.idSkinNavigation.skinPrice}</span>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
                         )
                     }
                 </section>
                 <Footer />
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
