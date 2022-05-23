@@ -44,55 +44,6 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for list a quantityfailed process
-        /// </summary>
-        [HttpGet("ErrorQuantity/{IdAssistant}")]
-        public IActionResult ErrorQuantity(int IdAssistant)
-        {
-            try
-            {
-                return Ok(_repository.ErrorQuantity(IdAssistant));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-        /// <summary>
-        /// Method responsible for list a quantity of sucess process
-        /// </summary>
-        [HttpGet("SucessQuantity/{IdAssistant}")]
-        public IActionResult SucessQuantity(int IdAssistant)
-        {
-            try
-            {
-                return Ok(_repository.SucessQuantity(IdAssistant));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-
-        /// <summary>
-        /// Method responsible for list a quantity process was started
-        /// </summary>
-        /// <param name="IdAssistant"></param>
-        /// <returns></returns>
-
-        [HttpGet("RunQuantity/{IdAssistant}")]
-        public IActionResult RunQuantity(int IdAssistant)
-        {
-            try
-            {
-                return Ok(_repository.RunQuantity(IdAssistant));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-        /// <summary>
         /// Method responsible for list the quantity of sucess, failed and total runs of process
         /// </summary>
         /// <param name="IdAssistant"></param>
