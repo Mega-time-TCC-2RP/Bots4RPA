@@ -34,12 +34,6 @@ const steps = [
     {
         id: 'Step2'
     },
-    {
-        id: 'Step3'
-    },
-    {
-        id: 'Step4'
-    }
 ];
 
 const profileCustomStyles = {
@@ -121,19 +115,12 @@ export default function Profile() {
         setCurrentStep(nextStep)
         switch (nextStep) {
             case 0:
-                document.querySelector('.meusTrofeus').classList.toggle('selected')
-                document.querySelector('.progresso').classList.remove('selected')
+                document.querySelector('.meusTrofeus').classList.add('selected')
                 document.querySelector('.minhasSkins').classList.remove('selected')
                 break;
             case 1:
                 document.querySelector('.meusTrofeus').classList.remove('selected')
-                document.querySelector('.progresso').classList.toggle('selected')
-                document.querySelector('.minhasSkins').classList.remove('selected')
-                break;
-            case 2:
-                document.querySelector('.meusTrofeus').classList.remove('selected')
-                document.querySelector('.progresso').classList.remove('selected')
-                document.querySelector('.minhasSkins').classList.toggle('selected')
+                document.querySelector('.minhasSkins').classList.add('selected')
                 break;
             default:
                 break;
@@ -150,17 +137,16 @@ export default function Profile() {
             <Navbar />
             <div className='configPage body-pd profile'>
                 {/* <Header /> */}
-                <h1 className='container h1' alt="configurações">Perfil</h1>
+                <h1 className='container h4 semi-bold' alt="configurações">Perfil</h1>
                 <nav className='navAreaConfig container'>
-                    <span className='h3 meusTrofeus' id='meusTrofeus' onClick={() => select(0)}>Meus troféus</span>
-                    <span className='h3 progresso' id='progresso' onClick={() => select(1)}>Progresso</span>
-                    <span className='h3 minhasSkins' id='minhasSkins' onClick={() => select(2)}>Minhas skins</span>
+                    <span className='h5 meusTrofeus' id='meusTrofeus' onClick={() => select(0)}>Meus troféus</span>
+                    <span className='h5 minhasSkins' id='minhasSkins' onClick={() => select(1)}>Minhas skins</span>
                 </nav>
                 <section className='configContent validUser container'>
                     {
                         steps[currentStep].id === 'Step1' && (
                             <div cAcessibilidadelassName='areaStep'>
-                                <h2 alt="MeusTrofeus">Meus troféus</h2>
+                                <h5 alt="MeusTrofeus" className="h5 semi-bold">Meus troféus</h5>
                                 <div className='TrophiesContainer'>
                                     {
                                         allTrophiesList.map((Trophy) => {
@@ -231,25 +217,15 @@ export default function Profile() {
                     {
                         steps[currentStep].id === 'Step2' && (
                             <div cAcessibilidadelassName='areaStep'>
-                                <h2 alt="Progresso">Progresso</h2>
-                            </div>
-                        )
-                    }
-                    {
-                        steps[currentStep].id === 'Step3' && (
-                            <div cAcessibilidadelassName='areaStep'>
-                                <h2 alt="MinhasSkins">Minhas skins</h2>
+                                <h5 alt="MinhasSkins" className="h5 semi-bold">Minhas skins</h5>
                                 <div className="TrophiesContainer">
                                     {
                                         skinsList.map((Skin) => {
                                             return (
-                                                <div className='skin'>
+                                                <div className='skin-profile-card card'>
                                                     <img src={"http://grupo7.azurewebsites.net/img/" + Skin.idSkinNavigation.skinImages} alt="img robot" />
-                                                    <span className='nameRobot'>{Skin.idSkinNavigation.title}</span>
-                                                    <div className='coin'>
-                                                        <img src={Coin} alt="img coin" />
-                                                        <span>{Skin.idSkinNavigation.skinPrice}</span>
-                                                    </div>
+                                                    <span className='h6 semi-bold'>{Skin.idSkinNavigation.title}</span>
+                                                    <span className='p'>{Skin.idSkinNavigation.skinDescription}</span>
                                                 </div>
                                             )
                                         })

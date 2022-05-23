@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../src/assets/css/colorVariables.css';
 import '../src/assets/css/colorBlind.css';
-import '../src/assets/css/darkMode.css'
+import '../src/assets/css/darkMode.css';
+import '../src/assets/css/components/card.css';
 
 import {
   Route,

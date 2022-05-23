@@ -43,7 +43,11 @@
 }
 
 .bold {
-    font-weight: bold;
+    font-weight: 700;
+}
+
+.semi-bold {
+    font-weight: 600;
 }
 
 .box-shadow {
