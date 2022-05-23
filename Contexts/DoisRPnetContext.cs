@@ -22,7 +22,6 @@ namespace _2rpnet.rpa.webAPI.Contexts
         public virtual DbSet<AssistantProcedure> AssistantProcedures { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Corporation> Corporations { get; set; }
-        public virtual DbSet<EmailVerification> EmailVerifications { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<LibraryAssistant> LibraryAssistants { get; set; }
         public virtual DbSet<LibrarySkin> LibrarySkins { get; set; }
@@ -179,47 +178,6 @@ namespace _2rpnet.rpa.webAPI.Contexts
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .IsFixedLength(true);
-            });
-
-            modelBuilder.Entity<EmailVerification>(entity =>
-            {
-                entity.HasKey(e => e.IdEmailVerification)
-                    .HasName("PK__EmailVer__E64B141648D2ACAE");
-
-                entity.ToTable("EmailVerification");
-
-                entity.HasIndex(e => e.Username, "UQ__EmailVer__536C85E4F524F2EF")
-                    .IsUnique();
-
-                entity.Property(e => e.Cryptography)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Gateway)
-                    .IsRequired()
-                    .HasMaxLength(4)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Host)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UserPassword)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.IdAssistantNavigation)
-                    .WithMany(p => p.EmailVerifications)
-                    .HasForeignKey(d => d.IdAssistant)
-                    .HasConstraintName("FK__EmailVeri__IdAss__0A3E6E7F");
             });
 
             modelBuilder.Entity<Employee>(entity =>
@@ -427,19 +385,10 @@ namespace _2rpnet.rpa.webAPI.Contexts
 
                 entity.Property(e => e.RunDate).HasColumnType("datetime");
 
-                entity.Property(e => e.RunDescription)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
-
                 entity.HasOne(d => d.IdAssistantNavigation)
                     .WithMany(p => p.Runs)
                     .HasForeignKey(d => d.IdAssistant)
                     .HasConstraintName("FK__Run__IdAssistant__0579B962");
-
-                entity.HasOne(d => d.IdWorkflowNavigation)
-                    .WithMany(p => p.Runs)
-                    .HasForeignKey(d => d.IdWorkflow)
-                    .HasConstraintName("FK__Run__IdWorkflow__066DDD9B");
             });
 
             modelBuilder.Entity<Skin>(entity =>
