@@ -149,9 +149,10 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 UserName queryUser = _userRepository.GoogleLogin(user.GoogleId, user.Email);
 
                 string[] FileTypes = { "jpg", "png", "jpeg", "gif" };
-                string UploadResult = Upload.UploadFile(File, FileTypes);
+                string UploadResult ;
                 if (File != null)
                 {
+                    UploadResult = Upload.UploadFile(File, FileTypes);
                     if (UploadResult == "")
                     {
                         return BadRequest("Arquivo não encontrado");
