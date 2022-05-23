@@ -67,13 +67,13 @@ const MaskedInputTelephone = ({ value, onChange }) => {
 }
 const diffToast = () => {
     toast.success('Cadastro realizado com êxito. Por favor, aguarde a validação.', {
-            position: "top-right",
-            autoClose: 10000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
+        position: "top-right",
+        autoClose: 20000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
     });
 }
 const errorToast = () => {
@@ -85,7 +85,7 @@ const errorToast = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-});
+    });
 }
 
 const validateRG = (v) => {
@@ -210,14 +210,14 @@ export default function RegisterUser() {
             headers: { "Content-type": "multipart/form-data" },
         })
             .then(diffToast(),
-            response => {
+                response => {
                     if (response.status === 200) {
-                            toast.dismiss(diffToast());
-                        }
-                        else{
-                            toast.dismiss(errorToast());   
-                        }
-            })
+                        toast.dismiss(diffToast());
+                    }
+                    else {
+                        toast.dismiss(errorToast());
+                    }
+                })
             .then((response) => {
                 if (response.status === 201) {
                     console.log('cadastrado com sucesso')
@@ -322,13 +322,13 @@ export default function RegisterUser() {
                                                 <label className='h5'>Telefone</label>
                                                 <MaskedInputTelephone value={telephone} onChange={(event) => setTelephone(event.target.value)} />
                                             </div>
-                                            
+
                                             <div className='foreachInput'>
                                                 <label className='h5'>Empresa relacionada</label>
                                                 <select onChange={(event) => setIdCorporation(event.target.value)}>
                                                     {
                                                         companyList.map((company) => {
-                                                            return(
+                                                            return (
                                                                 <option value={company.idCorporation}>{company.nameFantasy}</option>
                                                             )
                                                         })
@@ -340,7 +340,7 @@ export default function RegisterUser() {
                                                 <select onChange={(event) => setIdOficce(event.target.value)}>
                                                     {
                                                         officeList.map((office) => {
-                                                            return(
+                                                            return (
                                                                 <option value={office.idOffice}>{office.titleOffice}</option>
                                                             )
                                                         })
