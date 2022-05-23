@@ -1,4 +1,5 @@
 ﻿using _2RPNET_API.Domains;
+using _2RPNET_API.ViewModels;
 using System.Collections.Generic;
 
 namespace _2RPNET_API.Interfaces
@@ -14,6 +15,7 @@ namespace _2RPNET_API.Interfaces
 
         Run SearchAssistantByID(int IdAssistant);
 
+        List<RunsQuantityViewModel> RunsQuantity(int IdAssistant);
         int ErrorQuantity(int IdAssistant);
         int SucessQuantity(int IdAssistant);
         int RunQuantity(int IdAssistant);

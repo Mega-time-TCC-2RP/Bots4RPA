@@ -115,6 +115,13 @@
             <param name="IdAssistant"></param>
             <returns></returns>
         </member>
+        <member name="M:_2RPNET_API.Controllers.RunController.RunsQuantity(System.Int32)">
+            <summary>
+            Method responsible for list the quantity of sucess, failed and total runs of process
+            </summary>
+            <param name="IdAssistant"></param>
+            <returns></returns>
+        </member>
         <member name="M:_2RPNET_API.Controllers.RunController.NewRun(System.Int32,_2RPNET_API.Domains.Run)">
             <summary>
             Method responsible for create a Run process

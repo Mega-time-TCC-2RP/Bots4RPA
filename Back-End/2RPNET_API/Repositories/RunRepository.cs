@@ -1,6 +1,7 @@
 ﻿using _2RPNET_API.Context;
 using _2RPNET_API.Domains;
 using _2RPNET_API.Interfaces;
+using _2RPNET_API.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +26,10 @@ namespace _2RPNET_API.Repositories
             return ctx.Runs.Where(r => r.IdAssistantNavigation.IdAssistant == id).ToList();
         }
 
-        public Run Create(int Id,Run DataRun)
+        public Run Create(int IdAssistant,Run DataRun)
         {
             DataRun.RunDate = DateTime.Now;
-            DataRun.IdAssistant = Id;
+            DataRun.IdAssistant = IdAssistant;
             List<Run> listRun = ctx.Runs.Where(c => c.IdAssistant == DataRun.IdAssistant).ToList();
             if (listRun.Count() != 0)
             {
@@ -61,6 +62,16 @@ namespace _2RPNET_API.Repositories
         public int RunQuantity(int IdAssistant)
         {
             return ctx.Runs.Where(r => r.IdAssistant == IdAssistant).Count();
+        }
+        public List<RunsQuantityViewModel> RunsQuantity(int IdAssistant)
+        {
+            List<RunsQuantityViewModel> ListRuns = new List<RunsQuantityViewModel>();
+            RunsQuantityViewModel runVW = new RunsQuantityViewModel();
+            runVW.Error = ErrorQuantity(IdAssistant);
+            runVW.Sucess = SucessQuantity(IdAssistant);
+            runVW.Total= RunQuantity(IdAssistant);
+            ListRuns.Add(runVW);
+            return ListRuns;
         }
 
         public List<Run> ReadAll()
