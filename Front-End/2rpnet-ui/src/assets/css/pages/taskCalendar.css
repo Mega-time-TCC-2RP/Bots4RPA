@@ -117,8 +117,8 @@
 
 /* .cardTask,
 .taskSpace { */
-    /* transition-property: width; */
-    /* transition: 200ms; */
+/* transition-property: width; */
+/* transition: 200ms; */
 /*} */
 
 .isDragging {
@@ -158,13 +158,17 @@
     position: fixed;
     /* height: 100%; */
     /* margin-left: 3rem; */
+    right: 0;
+    left: 0;
     margin: auto;
     width: 80vw;
     padding: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: var(--ComplementaryColor1);
+    background-color: var(--WHITE);
+    border: var(--ComplementaryColor4) 1px solid;
+    border-radius: 30px 30px 30px 29px;
 }
 
 .headerModal {
@@ -204,8 +208,13 @@
     width: 48%;
 }
 
+.inputQuests > label {
+    color: var(--PrimaryColor1);
+    margin-left: 5%;
+}
+
 .labelDateTask {
-    color: var(--PrimaryColor2);
+    color: var(--PrimaryColor1);
     margin-left: 5%;
 }
 
@@ -226,4 +235,19 @@
 .btnCalendarModal:focus {
     background-color: var(--PrimaryColor1);
     color: var(--ComplementaryColor1);
+}
+
+/* Modal da Tarefa Única */
+.headerModalOne {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.descriptionTask {
+    margin-bottom: 2rem;
+}
+
+.descTextModal {
+    color: var(--PrimaryColor1);
 }

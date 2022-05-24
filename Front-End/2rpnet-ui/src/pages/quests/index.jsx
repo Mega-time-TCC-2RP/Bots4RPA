@@ -44,8 +44,8 @@ function App() {
   const [descriptionTask, setDescriptionTask] = useState('');
   const [statusTask, setStatusTask] = useState();
   const [endDate, setEndDate] = useState();
-  const [idTask, setIdTask] = useState();
-  const [oneTask, setOneTask] = useState([]);
+  const [idTaskToUpdate, setIdTaskToUpdate] = useState(0);
+  const [taskToUpdate, setTaskToUpdate] = useState([]);
 
   const [taskIsOpen, setTaskIsOpen] = useState(false);
   const [newTaskIsOpen, setNewTaskIsOpen] = useState(false);
@@ -106,15 +106,17 @@ function App() {
   }
 
   // Listar informações de uma única tarefa
-  const searchOneTask = () => {
-    axios(apiPlatform + '/Workflows/' + idTask, {
+  const getOneTask = async (event) => {
+
+    await event
+    axios(apiPlatform + '/Workflows/' + idTaskToUpdate, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
     }
   })
   .then(response => {
     if (response.status === 200 || response.status === 201) {
-      setIdTask(response)
+      setIdTaskToUpdate(response)
     }
   })
   .catch((error) => console.log(error))
@@ -353,54 +355,35 @@ function App() {
                         key={(myQuests.idWorflow) > (new Date().getDate() - 1)}
                         className="cardTask" draggable="true">
                         {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
-                        <div
-                          className="p"
-                          onClick={handleOpenTask}>{myQuests.title}</div>
                         <Modal
                           isOpen={taskIsOpen}
                           onRequestClose={handleCloseTask}
                           style={stylesCustom} >
                           <div className="modalQuests">
-                            <div className="headerModal">
-                              <div className="title h3">Nova Tarefa</div>
+                            <div className="headerModalOne">
+                              <div className="title h2">{myQuests.title}</div>
                               <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
                             </div>
-                            <form onSubmit={formNewTask}>
                               <div className="bodyModalQuest">
-                                <div className="inputsQuests">
-                                  <div className="inputQuests">
-                                    <label for="titleInput" className="h5">Título</label>
-                                    <input
-                                      id="titleInput"
-                                      className="input"
-                                      type="text"
-                                      placeholder="Insira o Título da tarefa..."
-                                      onChange={(event) => setTitleTask(event.target.value)} />
+                              <div className="descriptionTask">
+                                    <label for="descTask" className="descTextModal h5">Descrição da Tarefa:</label>
+                                    {/* <div id="descriptionTask">{myQuests.descriptionTask}</div> */}
+                                    <div id="descText" className='p'>Teste Teste Teste</div>
                                   </div>
-                                  <div className="inputQuests">
-                                    <label for="descriptionInput" className="h5">Descrição</label>
-                                    <input
-                                      id="descriptionInput"
-                                      className="input"
-                                      type="text"
-                                      placeholder="Insira pontos importantes para a resolução da tarefa..."
-                                      onChange={(event) => setDescriptionTask(event.target.value)} />
-                                  </div>
+                                <div id="dateTask">
+                                  <label for="dateTaskModal" className="h5 labelDateTask">Data de Entrega:</label>
+                                  <div id="dateTaskModal"className='p'>08/10/2001</div>
                                 </div>
-                                <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
-                                <input
-                                  id="dayAndMonthWorkflow"
-                                  className="input inputQuestsDate"
-                                  type="date"
-                                  onChange={(event) => setEndDate(event.target.value)} />
                                 <input
                                   className="btnNewTask button"
-                                  type="submit"
-                                  value="Adicionar Tarefa" />
+                                  onClick={handleCloseTask}
+                                  value="Fechar Tarefa" />
                               </div>
-                            </form>
                           </div>
                         </Modal>
+                        <div
+                          className="p"
+                          onClick={handleOpenTask}>{myQuests.title}</div>
                       </div>
                     )
                   }
@@ -588,7 +571,7 @@ function App() {
               style={stylesCustom} >
               <div className="modalQuests">
                 <div className="headerModal">
-                  <div className="title h3">Nova Tarefa</div>
+                  <div className="title h2">Nova Tarefa</div>
                   <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
                 </div>
                 <form onSubmit={formNewTask}>
