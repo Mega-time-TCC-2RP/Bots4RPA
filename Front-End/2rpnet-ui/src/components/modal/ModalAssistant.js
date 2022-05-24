@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import "../../assets/css/components/ModalAssistant.css"
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Link, SettingsApplications } from '@material-ui/icons';
+import {API} from '../../../src/services/api'
+
 
 function CloseModalAssistant() {
     var modal = document.getElementById("modalAssistant");
@@ -19,7 +21,7 @@ export default function Modal() {
 
     function createAssistant(event) {
         event.preventDefault();
-        var myUrl = "http://localhost:5000/api/Assistants"
+        var myUrl = API+ "/api/Assistants"
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

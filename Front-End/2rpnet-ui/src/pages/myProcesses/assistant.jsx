@@ -39,8 +39,11 @@ export default function Assistant() {
     const [resultEmail, setResultEmail] = useState("");
     const [isThereEmail, setIsThereEmail] = useState(false);
 
+    
+
     const location = useLocation();
     var idAssistant = location.state.id;
+
 
     function GetProceduresById() {
         fetch(API + '/api/AssistantProcedure/Assistant/' + idAssistant, {
@@ -119,9 +122,10 @@ export default function Assistant() {
     function handleClose(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
         // console.log(p);
-        if (p.procedureName == "Enviar email para alguem" ) {
+        if (p.ProcedureName == "Enviar email para alguem" ) {
             p.ProcedureValue = `${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`;
             setResultEmail(`${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`);
+            // console.log(p.ProcedureValue);
         }
         // console.log(p);
         modal.style.display = "none";
@@ -145,11 +149,11 @@ export default function Assistant() {
 
             var splited = child.id.split(";");
             child.id = (index + 1) + ";" + splited[1].toString();
-            // console.log(child);
+            console.log(splited[0]);
 
             var myBody = JSON.stringify({
                 "idAssistant": idAssistant,
-                "procedurePriority": index + 1,
+                "procedurePriority": splited[0],
                 "procedureName": child.textContent,
                 "procedureDescription": "",
                 "procedureValue": splited[1]
@@ -166,7 +170,9 @@ export default function Assistant() {
                     // console.log("before if");
                     if (response.status === 200 || response.status === 201) {
                         // console.log("after if");
-                        toast.success('o procedimento ' + child.textContent + ' foi salvo');
+                        setTimeout(() => {
+                            toast.success('o procedimento ' + child.textContent + ' foi salvo');
+                        }, 200);
                     } else {
                         toast.error("O salvamento deu errado no " + child.textContent + " :/");
                     }
@@ -242,6 +248,7 @@ export default function Assistant() {
                             console.log(procedure.procedureName);
 
                             if (procedure.procedureName == "Enviar email para alguem") {
+                                console.log(procedure.procedureValue);
                                 var splitEmail = procedure.procedureValue.split("/");
                                 console.log(splitEmail);
 
@@ -264,13 +271,13 @@ export default function Assistant() {
                                             console.log("FUNCIONOU");
                                             toast.success("O email que você escreveu foi enviado");
                                         } else {
-                                            toast.error("Houve um problema no enviuo de seu email :/");
+                                            toast.error("Houve um problema no envio de seu email :/");
                                         }
                                         setIsExecuting(false);
                                     })
                                     .catch((erro) => {
                                         console.log(erro)
-                                        toast.error("Houve um problema no enviuo de seu email :/");
+                                        toast.error("Houve um problema no envio de seu email :/");
                                         setIsExecuting(false);
                                     })
                             }
@@ -278,7 +285,7 @@ export default function Assistant() {
                     })
             });
 
-        console.log(isThereEmail);
+        // console.log(isThereEmail);
         // console.log(parseJwt());
         // console.log(parseJwt().email);
 
