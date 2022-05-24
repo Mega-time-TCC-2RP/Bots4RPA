@@ -72,7 +72,7 @@ const MaskedInputTelephone = ({ value, onChange }) => {
         })
     }
 
-    return <InputMask id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...'  mask="(99)99999-9999" value={value}
+    return <InputMask id='telefone' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Telefone...' mask="(99)99999-9999" value={value}
         onChange={handleChange}
     />
 }
@@ -134,6 +134,7 @@ export default function Config() {
     const [invalidCorporations, setInvalidCorporations] = useState([]);
     const [userAlterado, setUserAlterado] = useState({})
     const [pass, setPass] = useState('')
+    const [NovaSenha, setNovaSenha] = useState('')
 
     let history = useNavigate();
 
@@ -245,7 +246,7 @@ export default function Config() {
                         formData.append('IdOffice', userLogado.employees[0].idOffice)
                     }
                     formData.append('IdUserType', userLogado.idUserType)
-                    formData.append('Passwd', pass)
+                    formData.append('Passwd', NovaSenha)
                     //formData.append('File', "http://grupo7.azurewebsites.net/img/" + userLogado.photoUser)
                     axios({
                         method: "PUT",
@@ -396,22 +397,22 @@ export default function Config() {
 
             localStorage.setItem('temaApp', mode);
         }
-        else if (mode === "darkMode") {
-            document.documentElement.classList.toggle("Dark")
-            document.documentElement.classList.remove("Acromatopsia")
-            document.documentElement.classList.remove("Protanopia")
-            document.documentElement.classList.remove("Deuteranopia")
-            document.documentElement.classList.remove("Tritanopia")
+        // else if (mode === "darkMode") {
+        //     document.documentElement.classList.toggle("Dark")
+        //     document.documentElement.classList.remove("Acromatopsia")
+        //     document.documentElement.classList.remove("Protanopia")
+        //     document.documentElement.classList.remove("Deuteranopia")
+        //     document.documentElement.classList.remove("Tritanopia")
 
-            document.documentElement.classList.remove("Acromatomalia")
-            document.documentElement.classList.remove("Tritanomalia")
-            document.documentElement.classList.remove("Deuteranomalia")
-            document.documentElement.classList.remove("Protanomalia")
+        //     document.documentElement.classList.remove("Acromatomalia")
+        //     document.documentElement.classList.remove("Tritanomalia")
+        //     document.documentElement.classList.remove("Deuteranomalia")
+        //     document.documentElement.classList.remove("Protanomalia")
 
-            document.documentElement.classList.remove("normal");
+        //     document.documentElement.classList.remove("normal");
 
-            localStorage.setItem('temaApp', mode);
-        }
+        //     localStorage.setItem('temaApp', mode);
+        // }
         else if (mode === "achromatopsia") {
             document.documentElement.classList.toggle("Acromatopsia")
             document.documentElement.classList.remove("normal")
@@ -562,27 +563,27 @@ export default function Config() {
         var imagem = document.getElementById('imageProfile').files[0]
         var preview = document.getElementById('imgPreview')
         var reader = new FileReader();
-        reader.onloadend = function() {
-          preview.src = reader.result
+        reader.onloadend = function () {
+            preview.src = reader.result
         }
         if (imagem) {
-          reader.readAsDataURL(imagem)
+            reader.readAsDataURL(imagem)
         } else {
-          preview.src = ""
+            preview.src = ""
         }
-      }
+    }
 
     return (
         <div>
             {parseJwt().Role == 3 ? <Header /> : null}
             <Navbar />
             <div className='configPage'>
-                <h1 className='container h1' alt="configurações">Configurações</h1>
+                <h1 className='container h3' alt="configurações">Configurações</h1>
                 <nav className='navAreaConfig container'>
-                    <span className='h3 myData' id='myData' onClick={() => select(0)}>Meus Dados</span>
-                    <span className='h3 Acessibilidade' id='Acessibilidade' onClick={() => select(1)}>Acessibilidade</span>
-                    {parseJwt().Role == 2 ? <span className='h3 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span> : null}
-                    {parseJwt().Role == 1 ? <span className='h3 validarEmpresas' id='validarEmpresas' onClick={() => select(3)}>Validar Empresas</span> : null}
+                    <span className='h4 myData' id='myData' onClick={() => select(0)}>Meus Dados</span>
+                    <span className='h4 Acessibilidade' id='Acessibilidade' onClick={() => select(1)}>Acessibilidade</span>
+                    {parseJwt().Role == 2 ? <span className='h4 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span> : null}
+                    {parseJwt().Role == 1 ? <span className='h4 validarEmpresas' id='validarEmpresas' onClick={() => select(3)}>Validar Empresas</span> : null}
                 </nav>
                 <section className='configContent validUser container'>
                     {
@@ -592,30 +593,30 @@ export default function Config() {
                                     <div className='mainContentArea'>
                                         <div className='contentConfig'>
                                             <div className='dataUser'>
-                                                <label className='h5' htmlFor="emailUser">Email:</label>
-                                                <p id='emailUser'>{userLogado.email}</p>
+                                                <label className='h6 semi-bold' htmlFor="emailUser">Email:</label>
+                                                <p id='emailUser' className="p">{userLogado.email}</p>
                                             </div>
                                             <div className='dataUser'>
-                                                <label className='h5' htmlFor="nameUser">Nome:</label>
-                                                <p id='nameUser'>{userLogado.userName1}</p>
+                                                <label className='h6 semi-bold' htmlFor="nameUser">Nome:</label>
+                                                <p id='nameUser' className="p">{userLogado.userName1}</p>
                                             </div>
                                             <div className='dataUser'>
-                                                <label className='h5' htmlFor="birthDateUser">Nascimento:</label>
-                                                <p id='birthDateUser'>{userLogado.birthDate}</p>
+                                                <label className='h6 semi-bold' htmlFor="birthDateUser">Nascimento:</label>
+                                                <p id='birthDateUser' className="p">{userLogado.birthDate}</p>
                                             </div>
                                         </div>
                                         <div className='contentConfig'>
                                             <div className='dataUser'>
-                                                <label className='h5' htmlFor="cpfUser">CPF:</label>
-                                                <p id='cpfUser' >{userLogado.cpf}</p>
+                                                <label className='h6 semi-bold' htmlFor="cpfUser">CPF:</label>
+                                                <p id='cpfUser' className="p">{userLogado.cpf}</p>
                                             </div>
                                             <div className='dataUser'>
-                                                <label className='h5' htmlFor="rgUser">RG:</label>
-                                                <p id='rgUser'>{userLogado.rg}</p>
+                                                <label className='h6 semi-bold' htmlFor="rgUser">RG:</label>
+                                                <p id='rgUser' className="p">{userLogado.rg}</p>
                                             </div>
                                             <div className='dataUser'>
-                                                <label className='h5' htmlFor="phoneUser">Telefone:</label>
-                                                <p id='phoneUser'>{userLogado.phone}</p>
+                                                <label className='h6 semi-bold' htmlFor="phoneUser">Telefone:</label>
+                                                <p id='phoneUser' className="p">{userLogado.phone}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -659,6 +660,10 @@ export default function Config() {
                                                 <MaskedInputTelephone value={userAlterado.phone} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
                                             </div>
                                         </div>
+                                        <div>
+                                            <label className='h5' htmlFor='NovaSenha'>Nova senha</label>
+                                            <input required id='NovaSenha' className='input' type="text" name="name" placeholder='Insira sua nova senha...' value={NovaSenha} onChange={(event) => setNovaSenha(event.target.value)} />
+                                        </div>
                                         {
                                             confirmPassword === true ?
                                                 <div>
@@ -676,8 +681,8 @@ export default function Config() {
                     {
                         steps[currentStep].id === 'Step2' && (
                             <div>
-                                <h2 className='h3' alt="Acessibilidade">Selecionar tema</h2>
-                                <select className='input' onChange={(e) => MudarTema(e.target.value)}>
+                                <h2 className='h6 semi-bold' alt="Acessibilidade">Selecionar tema</h2>
+                                <select className='select' onChange={(e) => MudarTema(e.target.value)}>
                                     <optgroup>
                                         {
                                             localStorage.getItem('temaApp') === "normal" ?
@@ -718,10 +723,10 @@ export default function Config() {
                                             localStorage.getItem('temaApp') === "deuteranomaly" ?
                                                 <option value="deuteranomaly" selected>Deuteranomalia</option> : <option value="deuteranomaly">Deuteranomalia</option>
                                         }
-                                        {
+                                        {/* {
                                             localStorage.getItem('temaApp') === "darkMode" ?
                                                 <option value="darkMode" selected>Tema escuro</option> : <option value="darkMode">Tema escuro</option>
-                                        }
+                                        } */}
                                     </optgroup>
                                 </select>
                             </div>

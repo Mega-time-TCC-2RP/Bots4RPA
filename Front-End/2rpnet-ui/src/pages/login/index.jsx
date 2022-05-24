@@ -199,7 +199,7 @@ export default function Login() {
                         </div>
                         {
                             IsLoading === true ?
-                                <button className='botaoLogin' type='submit' disabled>Carregando...</button> : <button className='botaoLogin' type='submit'>Entrar</button>
+                                <button className='button' type='submit' disabled>Carregando...</button> : <button className='button' type='submit'>Entrar</button>
                         }
 
                         {/* <div className='EsqueceuSenha'>

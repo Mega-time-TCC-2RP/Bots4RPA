@@ -92,9 +92,9 @@
 } 
 
 .dataUser p {
-    font-size: 1.2em;
+    /* font-size: 1.2em;
     font-family: 'Montserrat', sans-serif;
-    color: #6C757D;
+    color: #6C757D; */
     margin-left: 3%;
 }
 
@@ -102,6 +102,7 @@
     width: 320px;
     height: 320px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .iconConfig {
@@ -183,7 +184,7 @@
 
 .inputsModal label {
     padding-left: 5%;
-    color: var(--PrimaryColor2);
+    color: var(--PrimaryColor1);
     font-weight: 500;
 }
 
@@ -211,7 +212,7 @@
 }
 
 .profile h2 {
-    font-size: 40px;
+    /* font-size: 40px; */
     margin-bottom: 52px;
 }
 
