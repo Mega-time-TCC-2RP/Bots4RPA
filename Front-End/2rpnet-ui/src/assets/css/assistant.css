@@ -183,6 +183,7 @@ body {
   /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
   /* Black w/ opacity */
+  box-shadow: 0px 4px 4px var(--darkShadow);
 }
 
 /* Modal Content */
@@ -199,6 +200,7 @@ body {
   animation-name: animatetop;
   animation-duration: 0.4s;
   border-radius: 32px;
+  padding: 1rem;
 }
 
 /* Add Animation */
@@ -243,19 +245,17 @@ body {
   cursor: pointer;
 }
 
-.modal-header {
-  padding: 2px 16px;
+.modal-headerA {
   /* background-color: var(--mainColor); */
   color: white;
   display: flex;
   flex-direction: column;
   align-items: left;
   border-radius: 28px 28px 0 0;
-  margin: 1rem 0;
 }
 
 .modal-body {
-  padding: 16px;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
 }
@@ -266,32 +266,41 @@ body {
     color: white;
   } */
 
-.modal-header--content {
+.modalA-header--content {
   width: auto;
   display: flex;
   align-items: center;
   flex-direction: row;
   height: 100%;
-  margin: 0.5rem 0.5rem 0 0;
+  margin: 1rem 0.5rem 0 0;
 }
 
 
 .modal__text--heading {
-  font-weight: bold;
+  font-weight: 500 !important;
   margin-right: 0.5rem;
   font-size: 20px;
+  color: var(--mainColor) !important;
 }
 
 .modal__text {
-  color: var(--complementDark);
+  color: #636363;
   font-size: 18px;
+  font-weight: 400;
 }
 
 .modal__input {
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 0;
   padding: 0.5rem 1rem;
-  border: 1px solid var(--complementColor);
+  border: 1px solid var(--secondMain);
   border-radius: 16px;
+  color: var(--complementDark);
+}
+
+.form__input{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
 }
 
 .close {

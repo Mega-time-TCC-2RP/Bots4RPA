@@ -39,7 +39,7 @@ export default function Assistant() {
     const [resultEmail, setResultEmail] = useState("");
     const [isThereEmail, setIsThereEmail] = useState(false);
 
-    
+
 
     const location = useLocation();
     var idAssistant = location.state.id;
@@ -71,7 +71,7 @@ export default function Assistant() {
         } else {
 
             return (
-                <form>
+                <form className="form__input">
                     <input className="modal__input" type="text" placeholder={"Digite o destinatário"} value={eRValue} onChange={(campo) => {
                         setERValue(campo.target.value, procedure.EmailReceiver = campo.target.value);
                     }} />
@@ -122,7 +122,7 @@ export default function Assistant() {
     function handleClose(p) {
         var modal = document.getElementById("modal" + p.IdProcedure);
         // console.log(p);
-        if (p.ProcedureName == "Enviar email para alguem" ) {
+        if (p.ProcedureName == "Enviar email para alguem") {
             p.ProcedureValue = `${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`;
             setResultEmail(`${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`);
             // console.log(p.ProcedureValue);
@@ -137,7 +137,7 @@ export default function Assistant() {
         let children = parent.childNodes;
         var child = [];
 
-        var myURL = API + "/api/AssistantProcedure/"+ idAssistant;
+        var myURL = API + "/api/AssistantProcedure/" + idAssistant;
 
         for (let index = 0; index < children.length; index++) {
             setIsSaving(true);
@@ -306,7 +306,7 @@ export default function Assistant() {
                 console.log(response)
                 if (response.status === 204) {
                     console.log("FUNCIONOU");
-                    
+
                     toast.success("O resultado foi enviado para seu email");
                 } else {
                     toast.error("A execução deu errado :/");
@@ -413,7 +413,7 @@ export default function Assistant() {
                                 proceduresList.map((procedure) => {
                                     return (
                                         <div key={procedure.IdProcedure}>
-                                            <div id={procedure.IdProcedure + ";" + procedure.ProcedureValue} className={"card-" + procedure.ProcedureType + " card"} draggable="true" onClick={() => handleShow(procedure)}>
+                                            <div id={procedure.IdProcedure + ";" + procedure.ProcedureValue} className={"card-flow"} draggable="true" onClick={() => handleShow(procedure)}>
                                                 <img className="card__balls" src={bolinhas} alt="bolinhas" />
                                                 <div className="card__content">{procedure.ProcedureName}</div>
                                             </div>
@@ -423,17 +423,17 @@ export default function Assistant() {
                                                 <div className="modal-content">
                                                     <span onClick={() => handleClose(procedure)} className="close">&times;</span>
                                                     <div className="modal-headerA">
-                                                        <div className="modal-header--content">
+                                                        <div className="modalA-header--content">
                                                             <p className="modal__text--heading modal__text">Nome:</p>
-                                                            <p className="modal__text--heading2 modal__text">{procedure.ProcedureName}</p>
+                                                            <p className="modal__text">{procedure.ProcedureName}</p>
                                                         </div>
-                                                        <div className="modal-header--content">
+                                                        <div className="modalA-header--content">
                                                             <p className="modal__text--heading modal__text">Descrição:</p>
-                                                            <p className="modal__text--heading2 modal__text">{procedure.ProcedureDescription}</p>
+                                                            <p className="modal__text">{procedure.ProcedureDescription}</p>
                                                         </div>
                                                     </div>
                                                     <div className="modal-body">
-                                                        <label className="modal__text" htmlFor="">Digite aqui o valor necessário:</label>
+                                                        <label className="modal__text modal__text--heading" htmlFor="">Digite aqui o valor necessário:</label>
                                                         {
                                                             returnModalEmail(procedure)
                                                         }
@@ -455,11 +455,38 @@ export default function Assistant() {
                             <div id="flow" className="dropzone">
                                 {
                                     MyProcedures.map((p) => {
+                                        // console.log(p);
                                         return (
-                                            <div className="card-flow" key={p.idAprocedure}>
-                                                <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-flow" draggable="true" onClick={() => handleShow(p)}>
-                                                    <img className="card__balls" src={bolinhas} alt="bolinhas" />
-                                                    <div className="card__content">{p.procedureName}</div>
+                                            <div key={p.idprocedure}>
+                                                <div className="card-flow">
+                                                    <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-flow" draggable="true" onClick={() => handleShow(p)}>
+                                                        <img className="card__balls" src={bolinhas} alt="bolinhas" />
+                                                        <div className="card__content">{p.procedureName}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div id={"modal" + p.idProcedure} className="modal">
+                                                    {/* Modal content */}
+                                                    <div className="modal-content">
+                                                        <span onClick={() => handleClose(p)} className="close">&times;</span>
+                                                        <div className="modal-headerA">
+                                                            <div className="modalA-header--content">
+                                                                <p className="modal__text--heading modal__text">Nome:</p>
+                                                                <p className="modal__text">{p.procedureName}</p>
+                                                            </div>
+                                                            <div className="modalA-header--content">
+                                                                <p className="modal__text--heading modal__text">Descrição:</p>
+                                                                <p className="modal__text">{p.procedureDescription}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="modal-body">
+                                                            <label className="modal__text modal__text--heading" htmlFor="">Digite aqui o valor necessário:</label>
+                                                            {
+                                                                returnModalEmail(p)
+                                                            }
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         )
