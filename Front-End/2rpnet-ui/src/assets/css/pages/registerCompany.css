@@ -34,8 +34,7 @@
 }
 
 .logoRegister {
-    width: 312px;
-    height: 108px;
+    width: 200px;
     margin-bottom: 15px;
     /* position: absolute; */
 }
@@ -163,6 +162,12 @@ input#file-upload-button {
     cursor: no-drop;
 }
 
+/* Pequenas alterações */
+/* .forms-select{
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5em;
+} */
 
 @media only screen and (max-width: 600px){
     *{
