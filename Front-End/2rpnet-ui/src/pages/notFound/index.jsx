@@ -23,10 +23,10 @@ const NotFound = () => {
       <div className="notfoundimg">
       <img className="notfoundimg" src={notFound} alt="imagem de error 404"/>
       <h1 className="test">Página não encontrada :(</h1>
-      <p className="texto-aaa">Parece que essa página não existe ou há algum erro de conexão.</p>
-      <p className="texto-aaa">Por favor, volte e tente novamente.</p>
+      <p className="p">Parece que essa página não existe ou há algum erro de conexão.</p>
+      <p className="p">Por favor, volte e tente novamente.</p>
       <Link to="/">
-      <button className='buttonNotFound'>Voltar</button>
+      <button className='button'>Voltar</button>
       </Link>
       </div>
       <div>

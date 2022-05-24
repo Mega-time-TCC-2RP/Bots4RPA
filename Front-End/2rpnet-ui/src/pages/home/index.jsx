@@ -345,32 +345,37 @@ export default function Home() {
                 >
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='bayer'>Seja bem-vindo(a) à sua tela inicial!</span>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide-OnBoarding">
-                    <div className="boardingContainer">
-                      <span className='bayer'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide-OnBoarding">
-                    <div className="boardingContainer">
-                      <span className='bayer'>Gostaria de executar um assistente? Ver suas Tarefas? Ou ver as questões mais em alta na área Social?</span>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide-OnBoarding">
-                    <div className="boardingContainer">
-                      <span className='bayer'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
+                      <span className='p'>Seja bem-vindo(a) à sua tela inicial!</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='bayer'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
+                      <span className='p'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='bayer'>Entre e se divirta!</span>
+                      <span className='p'>Gostaria de executar um assistente? Ver suas Tarefas?</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='p'>Ou ver as questões mais em alta na área Social?</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='p'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='p'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="swiper-slide-OnBoarding-social">
+                    <div className="boardingContainer">
+                      <span className='p'>Entre e se divirta!</span>
                     </div>
                   </SwiperSlide>
                 </Swiper>
@@ -395,12 +400,7 @@ export default function Home() {
               </form>
             </div>
             <form className="nao">
-              <div className="movieRow-left">
-                <NavigateBeforeIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
-              </div>
-              <div className="movieRow-right">
-                <NavigateNextIcon style={{ fontSize: 150, color: '#8D8D8D', }} />
-              </div>
+
 
               <div className="cards-container">
                 {AssistantsList.map((assistant) => {
