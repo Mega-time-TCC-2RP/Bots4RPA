@@ -137,10 +137,10 @@ export default function Profile() {
             <Navbar />
             <div className='configPage body-pd profile'>
                 {/* <Header /> */}
-                <h1 className='container h4 semi-bold' alt="configurações">Perfil</h1>
+                <h1 className='container h3 semi-bold' alt="configurações">Perfil</h1>
                 <nav className='navAreaConfig container'>
-                    <span className='h5 meusTrofeus' id='meusTrofeus' onClick={() => select(0)}>Meus troféus</span>
-                    <span className='h5 minhasSkins' id='minhasSkins' onClick={() => select(1)}>Minhas skins</span>
+                    <span className='h4 meusTrofeus' id='meusTrofeus' onClick={() => select(0)}>Meus troféus</span>
+                    <span className='h4 minhasSkins' id='minhasSkins' onClick={() => select(1)}>Minhas skins</span>
                 </nav>
                 <section className='configContent validUser container'>
                     {
@@ -188,22 +188,22 @@ export default function Profile() {
                                             }
 
                                             <div className='TrophyData'>
-                                                <h3>{trophyModal.title}</h3>
+                                                <h3 className="h4">{trophyModal.title}</h3>
                                                 <div className='TrophyDataField'>
-                                                    <h4>Data de obtenção</h4>
+                                                    <h4 className="h5 semi-bold">Data de obtenção</h4>
                                                     {
                                                         trophyModalNotEarned === true ?
-                                                            <span>Não adquirido</span>
+                                                            <span className="p">Não adquirido</span>
                                                             :
                                                             trophiesList.find((T) => T.idTrophyNavigation.idTrophy === trophyModal.idTrophy) !== undefined ?
-                                                                <span>{new Date(trophiesList.find((T) => T.idTrophyNavigation.idTrophy === trophyModal.idTrophy).unlockData).toLocaleDateString('pt-BR')}</span> :
-                                                                <span>Carregando...</span>
+                                                                <span className="p">{new Date(trophiesList.find((T) => T.idTrophyNavigation.idTrophy === trophyModal.idTrophy).unlockData).toLocaleDateString('pt-BR')}</span> :
+                                                                <span className="p">Carregando...</span>
 
                                                     }
                                                 </div>
                                                 <div className='TrophyDataField'>
-                                                    <h4>Descrição</h4>
-                                                    <span>{trophyModal.trophyDescription}</span>
+                                                    <h4 className="h5 semi-bold">Descrição</h4>
+                                                    <span className="p">{trophyModal.trophyDescription}</span>
                                                 </div>
                                             </div>
 

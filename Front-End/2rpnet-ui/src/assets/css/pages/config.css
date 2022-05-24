@@ -288,20 +288,6 @@
     justify-content: space-between;
 }
 
-.TrophyData h3{
-    font-size: 56px;
-    font-weight: 400;
-}
-
-.TrophyDataField h4{
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.TrophyDataField span{
-    font-size: 24px;
-}
-
 .profile .container{
     width: 90%;
 }
@@ -309,10 +295,6 @@
 .profile section{
     margin-bottom: 72px;
     margin-top: 36px;
-}
-
-.profile h1{
-    margin-top: 72px;
 }
 
 .ProfileContainer .body-pd{
