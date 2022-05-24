@@ -75,16 +75,68 @@ export default function Home() {
 
   function Execute(idAssistant) {
     setIsExecuting(true);
+
+    var getURL = API + "/api/AssistantProcedure/Assistant/" + idAssistant;
+    fetch(getURL, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    })
+        .then((response) => {
+            return response.json()
+                .then((data) => {
+                    console.log(data);
+                    data.map((procedure) => {
+                        console.log(procedure);
+                        console.log(procedure.procedureName);
+
+                        if (procedure.procedureName == "Enviar email para alguem") {
+                            var splitEmail = procedure.procedureValue.split("/");
+                            console.log(splitEmail);
+
+                            var epURL = API + "/api/Assistants/EnviarEmailUsuario";
+                            var epBody = JSON.stringify({
+                                "emailTitle": splitEmail[1],
+                                "email": splitEmail[0],
+                                "emailBody": splitEmail[2]
+                            });
+
+                            fetch(epURL, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: epBody
+                            })
+                                .then((response) => {
+                                    // console.log("before if");
+                                    console.log(response)
+                                    if (response.status === 200) {
+                                        console.log("FUNCIONOU");
+                                        toast.success("O email que você escreveu foi enviado");
+                                    } else {
+                                        toast.error("Houve um problema no enviuo de seu email :/");
+                                    }
+                                    setIsExecuting(false);
+                                })
+                                .catch((erro) => {
+                                    console.log(erro)
+                                    toast.error("Houve um problema no enviuo de seu email :/");
+                                    setIsExecuting(false);
+                                })
+                        }
+                    })
+                })
+        });
+
     var eURL = API + "/api/Assistant" + idAssistant + "/Post";
     var eBody = JSON.stringify({
-      "email": parseJwt().email,
-      "emailBody": "result"
+        "emailTitle": "",
+        "email": parseJwt().email,
+        "emailBody": `http://vmbots4rpa.brazilsouth.cloudapp.azure.com:5000/StaticFiles/Images/Assistant${idAssistant}.png`
     });
 
     fetch(eURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: eBody
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: eBody
     })
       .then((response) => {
         // console.log("before if");
@@ -146,7 +198,7 @@ export default function Home() {
 
   function GetMyAssistants() {
     console.log('Função GetAssistants da Home')
-    fetch('http://localhost:5000/api/Assistants', {
+    fetch(API + '/api/Assistants', {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },

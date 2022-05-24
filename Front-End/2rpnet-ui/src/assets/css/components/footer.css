@@ -13,7 +13,7 @@
 
 footer {
     background: var(--PrimaryColor1);
-    height: 300px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -36,8 +36,7 @@ footer span {
 }
 
 .footer2RP {
-    height: 130px;
-    width: 374px;
+    width: 200px !important
 }
 
 .socialNetworkArea{
@@ -53,6 +52,8 @@ footer span {
     justify-content: space-between;
     align-items: center;
     width: 100px;
+    margin-left: 78px;
+    margin-bottom: 20px;
 }
 
 .instagramIcon {
@@ -72,6 +73,6 @@ footer span {
     height: 48px;
 }
 
-.rightsReserved {
+.p {
     margin: 0 auto;
 }

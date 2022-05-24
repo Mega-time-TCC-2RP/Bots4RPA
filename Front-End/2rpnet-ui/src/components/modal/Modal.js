@@ -9,6 +9,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { DataGraphic } from '../graphic/dataGraphic'
 // import { run } from 'cypress';
+import {API} from '../../../src/services/api'
 
 export default function ModalM({ assistant }) {
 
@@ -130,7 +131,7 @@ export default function ModalM({ assistant }) {
             body: JSON.stringify({ "assistantDescription": Description })
         };
 
-        fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, requestOptions)
+        fetch(API + '/api/Assistants/' + assistant.idAssistant, requestOptions)
             .then(resposta => {
                 if (resposta.status === 200) {
                     console.log("Descrição do assistente atualizada");

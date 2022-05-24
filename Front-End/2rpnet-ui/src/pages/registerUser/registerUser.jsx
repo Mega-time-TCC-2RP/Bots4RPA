@@ -289,8 +289,8 @@ export default function RegisterUser() {
                                             <div className='foreachInput'>
                                                 <label className='h5'>Tipo de Usuário</label>
                                                 <select value={idUserType} onChange={(event) => setIdUserType(event.target.value)}>
-                                                    <option value={3}>Usuario normal</option>
-                                                    <option value={2}>Administrador de Empresa</option>
+                                                    <option className='forms-select' value={3} >Usuario normal</option>
+                                                    <option className='forms-select' value={2}>Administrador de Empresa</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -329,7 +329,7 @@ export default function RegisterUser() {
                                                     {
                                                         companyList.map((company) => {
                                                             return (
-                                                                <option value={company.idCorporation}>{company.nameFantasy}</option>
+                                                                <option className='forms-select' value={company.idCorporation}>{company.nameFantasy}</option>
                                                             )
                                                         })
                                                     }
@@ -341,7 +341,7 @@ export default function RegisterUser() {
                                                     {
                                                         officeList.map((office) => {
                                                             return (
-                                                                <option value={office.idOffice}>{office.titleOffice}</option>
+                                                                <option className='forms-select' value={office.idOffice}>{office.titleOffice}</option>
                                                             )
                                                         })
                                                     }

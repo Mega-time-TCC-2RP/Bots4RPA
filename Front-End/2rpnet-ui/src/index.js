@@ -20,7 +20,6 @@ import './index.css';
 // import Navbar from './components/menu/Navbar'
 import Home from './pages/home/';
 import Login from './pages/login/';
-import Guide from './pages/guide/';
 import SkinShop from './pages/skinShop/skinShop';
 import Marketplace from './pages/marketplace/marketplace';
 import Assistant from './pages/myProcesses/assistant';
@@ -56,7 +55,6 @@ const routing = (
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/Config" element={<Config />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/guide" element={<Guide />} /> {/* Guide */}
         <Route path="/skinShop" element={<SkinShop />} /> {/* Marketplace */}
         <Route path="/marketplace" element={<Marketplace />} /> {/* Marketplace */}
         <Route path="/assistant" element={<Assistant/>} />
