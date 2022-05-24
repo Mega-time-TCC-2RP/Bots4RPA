@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Threading;
 
 namespace _2RPNET_API.Repositories
 {
@@ -44,6 +45,8 @@ namespace _2RPNET_API.Repositories
             string path = $"./StaticFiles/Files/AssistantProcess" + $"{IdAssistant}" + ".cs";
             // Create a file to write to.
             string pathRun = $"./Controllers/Assistant{IdAssistant}Controller.cs";
+
+            Thread.Sleep(5000);
 
             using (StreamWriter sw = File.CreateText(path))
             {
