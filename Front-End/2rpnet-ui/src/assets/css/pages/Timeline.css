@@ -1,0 +1,297 @@
+*{
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+    word-wrap: normal;
+    /* overflow-y: auto; */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.containerPag{
+    margin-left: 60px;
+}
+
+main{
+    background-color: var(--ScreenBackground);
+}
+
+.ContainerGrid{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.ContainerPosts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 170px;
+    padding-bottom: 170px;
+}
+
+.BotoesModais{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 80px;
+}
+
+.BotoesModais button{
+    border: none;
+    background-color: var(--ScreenBackground);
+}
+
+.BotoesModais button img{
+    width: 35px;
+    height: 40px;
+}
+
+.BoxPost{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 30px;
+    background-color: var(--WHITE);
+    width: 1060px;
+    margin-bottom: 80px;
+}
+
+.UsuarioCampo{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    margin-left: 72px;
+}
+
+.Nome{
+    font-weight: 700;
+}
+
+.UsuarioDados{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.UsuarioCampo img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.ImgPost{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.TextoNaoHaImagemPost{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ContainerBotoesPost{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 120px;
+    margin-left: 70px;
+}
+
+.BotaoPost{
+    border: none;
+    background-color: var(--WHITE);
+}
+
+.BotaoPost img{
+    width: 35px;
+    height: 35px;
+}
+
+.TituloPost{
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top: 20px;
+}
+
+.DescricaoPost{
+    margin-top: 8px;
+    margin-left: 70px;
+    margin-right: 70px;
+    text-align: justify;
+}
+
+ .ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+} 
+
+.CadastroModalContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 40px 70px;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--WHITE);
+}
+
+.HeaderModal{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.HeaderModal h2{
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--BLACK);
+}
+
+.HeaderModal button{
+    border: none;
+    background-color: var(--WHITE);
+    color: var(--ComplementaryColor4);
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.CampoCadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.LabelCampoCadastro{
+    color: var(--PrimaryColor2);
+    font-size: 24px;
+    margin-bottom: 10px;
+    padding-left: 32px;
+}
+
+.CampoCadastro input{
+    padding-left: 32px;
+    font-size: 24px;
+    font-weight: 400;
+    width: 400px;
+    height: 64px;
+    border-radius: 32px;
+    border: var(--ComplementaryColor4) 1px solid;
+    background-color: var(--WHITE);
+    color: var(--BLACK);
+    margin-bottom: 0px;
+    margin-bottom: 36px;
+}
+
+.ImagemInputReal{
+    display: none;
+}
+
+.ImagemInputExibição{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 32px;
+    font-size: 24px;
+    color: var(--ComplementaryColor4);
+    font-weight: 400;
+    width: 400px;
+    height: 64px;
+    border-radius: 32px;
+    border: var(--ComplementaryColor4) 1px solid;
+    margin-bottom: 36px;
+    background-color: var(--WHITE);
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--ComplementaryColor4);
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: var(--ComplementaryColor4);
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: var(--ComplementaryColor4);
+  }
+
+  .BtnSubmitForm{
+      background-color: var(--PrimaryColor2) !important;
+      width: 400px;
+      height: 50px;
+      color: var(--WHITE) !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      box-shadow: 0px 6px 6px var(--darkShadow);
+      border-radius: 64px;
+      font-size: 22px;
+  }
+
+  .LinhaCampoCadastroComentarios{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+  }
+
+  .CadastroComentarioContainer{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 20px;
+      width: 98%;
+      padding-right: 20px;
+      overflow-x: hidden;
+  }
+
+  .Comentario{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 30px;
+  }
+
+  .ComentarioUsuario{
+      display: flex;
+      align-items: center;
+  }
+
+  .ComentarioUsuario img{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 20px;
+  }
+
+  .ComentarioUsuario span{
+      color: var(--BLACK);
+      font-size: 24px;
+      font-weight: 600;
+  }
+
+  .TituloComentario{
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: var(--ComplementaryColor2);
+  }
+
+  .TextoComentario{
+    color: var(--ComplementaryColor2);
+    text-align: justify;
+  }

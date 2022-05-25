@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+footer {
+    background: var(--PrimaryColor1);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+}
+
+footer span {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--WHITE);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+}
+
+.footerMainContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1250px;
+}
+
+.footer2RP {
+    width: 200px !important
+}
+
+.socialNetworkArea{
+    width: 325px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.socialNetworkIcons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+    margin-left: 78px;
+    margin-bottom: 20px;
+}
+
+.instagramIcon {
+    width: 60px;
+    height: 55px;
+}
+.twitterIcon {
+    width: 68px;
+    height: 52px;
+}
+.facebookIcon {
+    width: 66px;
+    height: 61px;
+}
+.youtubeIcon {
+    width: 73px;
+    height: 48px;
+}
+
+footer .p {
+    margin: 0 auto;
+}

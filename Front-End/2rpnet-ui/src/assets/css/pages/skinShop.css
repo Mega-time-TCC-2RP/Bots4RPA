@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.container2{
+    width: 1440px;
+    margin: 0 auto;
+}
+.lista{
+    display: flex;
+}
+.Titulo_inputs{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat';
+    
+}
+#all{
+    background: #FCFCFC
+
+}
+
+.Titulo_inputs h1{
+    font-size: 50px;
+    color: var(--PrimaryColor1);
+    margin: 30px;
+}
+
+.filtragem_Busca .input{
+    border: 1px solid var(--ComplementaryColor2);
+    box-sizing: border-box;
+    border-radius: 32px;
+    height: 45px;
+    width: 25vw;
+    padding-left: 10px;
+    font-family: 'Montserrat';
+}
+.filtragem_Busca{
+    display: flex;
+    justify-content: space-between;
+    width: 55vw;
+}
+.container2 .Titulo_inputs{
+    margin-bottom: 50px;
+} 
+.skin{
+    background: var(--WHITE);
+    border: 4px solid var(--ComplementaryColor1);
+    height: 310px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    margin-right: 80px;
+    margin-bottom: 80px;
+    font-family: 'Montserrat';
+    border-radius: 50px;
+    box-shadow: var(--PrimaryColor2) 0px 10px 11px 0px;
+}
+.skin img{
+    width: 200px;
+    height: 170.12px;
+    margin-bottom: 16px;
+}
+.skin .nameRobot{
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 8px;
+    color: var(--BLACK);
+}
+.coin{
+    padding: 5px;
+    width: 80px;
+    background: var(--PrimaryColor2);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    color:var(--WHITE);
+    margin-bottom: 16px;
+}
+.coin:hover{
+    cursor: pointer;
+    background: var(--ComplementaryColor1);
+    color: var(--PrimaryColor2);
+}
+.coin img{
+    margin: 0;
+    margin-right: 5px;
+    width: 25px;
+    height: 25px;
+
+}
+.skin .details2{
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--PrimaryColor2);
+}

@@ -1,0 +1,259 @@
+.logo-Header {
+        width: 200px !important;
+        align-items: center;
+        justify-content: center;
+}
+
+.login {
+        background-color: var(--ScreenBackground);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+}
+
+.login-container {
+        background-color: var(--WHITE);
+        /* height: 90vh; */
+        width: 60%;
+        margin: 0 auto;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        filter: drop-shadow(0px 4px 4px var(--darkShadow));
+        padding-top: 50px;
+        padding-bottom: 50px;
+        margin-top: 100px;
+}
+
+.inputsAreaLogin {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        height: 35%;
+}
+
+.topo-input-email {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 23px;
+        line-height: 28px;
+        text-indent: 32px;
+        color: var(--PrimaryColor2);
+        display: flex;
+        text-align: start;
+}
+
+.topo-input-senha {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 23px;
+        line-height: 28px;
+        text-indent: 32px;
+        color: var(--PrimaryColor2);
+        display: flex;
+        margin-top: 90px;
+}
+
+.formsLogin-Email {
+        width: 370px;
+}
+
+.formsLogin-Email input {
+        border-radius: 50px;
+        width: 370px;
+        height: 70px;
+        position: absolute;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 23px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-indent: 32px;
+        opacity: 0.5;
+        background: var(--WHITE);
+        /* Cinza */
+        border: 1px solid var(--ComplementaryColor2);
+        box-sizing: border-box;
+        border-radius: 32px;
+}
+
+.Login input {
+        border-radius: 50px;
+        width: 370px;
+        height: 70px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 23px;
+        line-height: 28px;
+        text-indent: 32px;
+        margin-right: 0 auto;
+        margin-left: 0 auto;
+        opacity: 0.6;
+        background: var(--WHITE);
+        /* Cinza */
+        border: 1px solid var(--ComplementaryColor2);
+        box-sizing: border-box;
+        border-radius: 32px;
+}
+
+.botaoLogin {
+        background: var(--PrimaryColor2);
+        width: 200px;
+        height: 45px;
+        color: var(--WHITE);
+        border-radius: 64px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 28px;
+        border: none;
+        cursor: pointer;
+        /* box-shadow: 0px 6px 6px var(--darkShadow); */
+        box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+}
+
+.botaoLogin:hover {
+        background: var(--PrimaryColor2);
+}
+
+.EsqueceuSenha a,
+.NotSigned-login {
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight: 250;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: var(--PrimaryColor2);
+        margin-top: 20px;
+        cursor: pointer;
+        opacity: 0.8;
+        text-decoration: none;
+}
+
+.divider {
+        width: 200px;
+        font-weight: 250;
+        line-height: 28px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+        color: var(--ComplementaryColor2);
+        /* margin-left: 90px; */
+        opacity: 0.3;
+}
+
+.divider hr {
+        width: 75px;
+        border: 1px solid;
+}
+
+button {
+        border-radius: 32px;
+}
+
+.google-button {
+        position: relative;
+        /* border: solid 2px ;
+        border-image-slice: 30;
+        border-radius: 20px;
+        background-image: linear-gradient(white, white), radial-gradient(circle at top left, red, blue);
+        background-origin: border-box;
+        background-clip: content-box, border-box; */
+
+        border: double 3px transparent;
+        background-image: linear-gradient(white, white), radial-gradient(circle at top left, #4885ED, #DB3236, #F4C20D, #3CBA54);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        cursor: pointer;
+        width: 400px;
+        height: 55px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        /* margin-left: 35px; */
+        box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+        background-color: rgb(255, 255, 255);
+        display: inline-flex;
+        align-items: center;
+        padding: 0px;
+        font-size: 20px;
+        font-weight: 400;
+        color: darkgray;
+
+        font-size: 14px;
+        font-weight: 500;
+
+}
+
+.img-red {
+        position: fixed;
+        top: 0;
+        right: 0;
+}
+
+.img-blue {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+}
+
+.loginForm {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+}
+
+#googleLogin {
+        /* color: rgba(0, 0, 0, 0.54); */
+        padding-right: 5px;
+        font-size: 18px;
+        font-weight: 500;
+        font-family: 'Montserrat', sans-serif;
+}
+
+.icon3 {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        background: rgb(255, 255, 255);
+        padding: 5px;
+        border-radius: 2px
+}
+
+
+@media only screen and (max-width: 600px){
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .img-red, .img-blue{
+        visibility: hidden;
+    }
+    .login{
+        overflow-x: hidden;
+    }
+    .registerArea{
+        width: 600px;
+        padding: 4rem;
+        height: 130vh;
+        margin-top: 260px;
+        position: absolute;
+    }
+
+}

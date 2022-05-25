@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+}
+.header2 {
+    background-color: var(--WHITE);
+    align-items: center;
+    display: flex;
+    height: 70px;
+    justify-content: right;
+}
+
+.header2 .container{
+    justify-content: end;
+}
+.coins {
+    align-items: center;
+    display: flex;
+}
+.cash{
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 10px;
+    color: var(--BLACK);
+}
+.headerInside2{
+    display: flex;
+    width: 230px;
+    justify-content: space-between;
+}
+.profile2 .profile_details img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.details{
+    pointer-events: none;
+    opacity: 0;
+    right: 65px;
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    height: 250px;
+    width: 220px;
+    background: var(--WHITE);
+    padding: 10px 20px;
+    transition: all 0.5s ease;
+    font-family: 'Montserrat', sans-serif;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+    
+    
+}
+.details.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 100;
+    box-shadow: 0px 4px 4px var(--darkShadow);;
+}
+.details ul{
+    margin-top: 16px;
+     padding: 0px;
+}
+.details ul li{
+    position: relative;
+    height: 40px;
+    width: 200px;
+    margin: 0 5px;
+    list-style: none;
+    /* line-height: 50px; */
+    
+}
+.details ul li .Link:hover{
+    background: rgb(240, 240, 240);
+}
+.details ul li .Link{
+    color: var(--ComplementaryColor2);
+    font-size: 18px;
+    /* pointer-events: none; */
+}
+#log_out{
+    margin-top: 0;
+    cursor: pointer;
+}
+
+.profile_details{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.profile2 .profile_details .name_job{
+    color: var(--ComplementaryColor2);
+    margin-left: 10px;
+}
+.profile2 .profile_details .name{
+    font-size: 20px;
+    font-weight: 600;
+}
+.profile2 .profile_details .job{
+    font-size: 14px;
+    font-weight: 400;
+}
+.logout{
+    color: var(--CTA2);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+.logout:hover{
+    background: var(--ComplementaryColor4);
+    border-radius: 10px;
+}
+.logout #log_out{
+    margin-left: 35px;
+    font-size: 30px;
+    left: 100%;
+}
+.logout span{
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer
+}
+/* .logout #log_out:hover{
+    background: var(--ComplementaryColor4);
+    border-radius: 50px;
+    box-shadow: 0px 50px 80px var(--ComplementaryColor4);
+}
+.logout span:hover{
+    background: var(--ComplementaryColor4);
+    border-radius: 50px;
+} */
+.coins img{
+    width: 30px;
+    height: 30px;
+}
