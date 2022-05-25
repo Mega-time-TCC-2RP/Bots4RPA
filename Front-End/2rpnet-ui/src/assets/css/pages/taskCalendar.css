@@ -1,0 +1,253 @@
+:root {
+    --box-shadow-var: 1px 4px 4px var(--ComplementaryColor4);
+}
+
+.pageTitle {
+    margin-top: 82px;
+    margin-left: 20vh;
+}
+
+.taskCalendar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.task {
+    padding-left: 80px;
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.toDo,
+.do,
+.done {
+    width: 16vw;
+    height: 70vh;
+    /* justify-content: center; */
+    align-items: center;
+    box-shadow: 0px 4px 4px var(--darkShadow);
+    border-radius: 30px;
+    background-color: var(--ComplementaryColor1);
+}
+
+.cardTask {
+    margin: 0 1.625rem 0.5rem 1.625rem;
+    background-color: var(--PrimaryColor1);
+    border-radius: 30px;
+    color: var(--WHITE);
+    padding: 55px 16px 55px 16px;
+    box-shadow: var(--box-shadow-var);
+    border: 2px solid var(--PrimaryColor2);
+    font-weight: 600;
+}
+
+.taskTitle,
+.pageTitle {
+    color: var(--BLACK);
+}
+
+.pageTitle {
+    margin-bottom: 3.5rem;
+}
+
+.taskTitle {
+    margin: 2rem 0 3rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.taskSpace {
+    overflow: auto;
+    zoom: 80%;
+    /* background-color: aqua; */
+    height: 100%;
+    cursor: pointer;
+}
+
+.calendarAndBtn {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.calendar {
+    border-radius: 30px;
+    margin: auto;
+    padding: 1rem;
+    box-shadow: 0px 4px 4px var(--ComplementaryColor4);
+    display: grid;
+    grid-template: repeat(7, 3rem) / repeat(5, 3rem);
+    grid-gap: 1rem;
+    background-color: #fff;
+}
+
+.calendarTitle {
+    grid-column: span 5;
+    display: flex;
+    justify-content: center;
+}
+
+.lastCalend {
+    grid-column: span 5;
+    display: flex;
+    justify-content: center;
+}
+
+.btnCalendar {
+    width: 3rem;
+    height: 3rem;
+    color: var(--BLACK);
+    font-weight: bold;
+    background-color: var(--ComplementaryColor1);
+    border: none;
+    border-radius: 30px;
+}
+
+.btnNewTask {
+    margin: 2rem auto;
+    cursor: pointer;
+}
+
+/* Drag n' Drop CSS */
+/* .highlights {
+    background-color: var(--ComplementaryColor2);
+} */
+
+/* .cardTask,
+.taskSpace { */
+/* transition-property: width; */
+/* transition: 200ms; */
+/*} */
+
+.isDragging {
+    cursor: move;
+    opacity: 0.3;
+    /* width: 90%; */
+}
+
+.over {
+    height: 70vh;
+    background-color: var(--ComplementaryColor4);
+    opacity: 0.4;
+}
+
+.lineSpaceTask {
+    height: 1px;
+    width: 100%;
+    background-color: black;
+}
+
+/* Parte do Modal */
+/*.modalNewTask {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 70px;
+    margin: 10rem;
+    width: 80vw;
+    height: 80vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: var(--ComplementaryColor4);
+}*/
+
+.modalQuests {
+    position: fixed;
+    /* height: 100%; */
+    /* margin-left: 3rem; */
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 80vw;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--WHITE);
+    border: var(--ComplementaryColor4) 1px solid;
+    border-radius: 30px 30px 30px 29px;
+}
+
+.headerModal {
+    display: flex;
+    justify-content: space-between;
+    /* margin-bottom: 2rem; */
+}
+
+.exit {
+    color: var(--ComplementaryColor2);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.exit:hover {
+    font-weight: 900;
+}
+
+.bodyModalQuest {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inputsQuests {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.inputQuests {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.inputQuests > label {
+    color: var(--PrimaryColor1);
+    margin-left: 5%;
+}
+
+.labelDateTask {
+    color: var(--PrimaryColor1);
+    margin-left: 5%;
+}
+
+.inputQuestsDate {
+    width: 50%;
+    justify-self: center;
+}
+
+.btnCalendarModal {
+    cursor: pointer;
+}
+
+.btnCalendarModal:hover {
+    background-color: var(--PrimaryColor1);
+    color: var(--ComplementaryColor1);
+}
+
+.btnCalendarModal:focus {
+    background-color: var(--PrimaryColor1);
+    color: var(--ComplementaryColor1);
+}
+
+/* Modal da Tarefa Única */
+.headerModalOne {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.descriptionTask {
+    margin-bottom: 2rem;
+}
+
+.descTextModal {
+    color: var(--PrimaryColor1);
+}
