@@ -155,25 +155,19 @@
 }*/
 
 .modalQuests {
-    position: fixed;
-    /* height: 100%; */
-    /* margin-left: 3rem; */
-    right: 0;
-    left: 0;
-    margin: auto;
-    width: 80vw;
-    padding: 3rem;
     display: flex;
     flex-direction: column;
+    padding: 40px 70px;
+    height: 80%;
     justify-content: space-between;
+    align-items: center;
     background-color: var(--WHITE);
-    border: var(--ComplementaryColor4) 1px solid;
-    border-radius: 30px 30px 30px 29px;
 }
 
 .headerModal {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     /* margin-bottom: 2rem; */
 }
 
@@ -200,17 +194,24 @@
     justify-content: space-between;
     width: 100%;
     margin-bottom: 4rem;
+    justify-content: center;
 }
 
 .inputQuests {
     display: flex;
     flex-direction: column;
-    width: 48%;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    /* justify-content: center; */
 }
 
 .inputQuests > label {
     color: var(--PrimaryColor1);
     margin-left: 5%;
+    align-self: flex-start;
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
 }
 
 .labelDateTask {
@@ -219,11 +220,14 @@
 }
 
 .inputQuestsDate {
-    width: 50%;
+    /* width: 50%; */
     justify-self: center;
 }
 
-.btnCalendarModal {
+.btnSpaceNewTask {
+    margin-top: 4rem;
+}
+/* .btnCalendarModal {
     cursor: pointer;
 }
 
@@ -235,13 +239,34 @@
 .btnCalendarModal:focus {
     background-color: var(--PrimaryColor1);
     color: var(--ComplementaryColor1);
-}
+} */
 
 /* Modal da Tarefa Única */
+.modalQuestsOneTask {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 70px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--WHITE);
+}
+
 .headerModalOne {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2rem;
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.contentQuestArea {
+    left: 0;
+    right: 0;
+}
+
+.bodyModalQuest {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .descriptionTask {

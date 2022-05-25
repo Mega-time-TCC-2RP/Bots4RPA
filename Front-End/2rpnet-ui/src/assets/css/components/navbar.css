@@ -153,7 +153,7 @@ body{
     height: 50px;
     transition: all 0.5s ease;
 }
-.profile .profile_details .name_job{
+/* .profile .profile_details .name_job{
     color: var(--WHITE);
     margin-left: 30px;
 }
@@ -161,8 +161,14 @@ body{
     font-family:'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 600;
+} */
+.profile .profile_details img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
 }
-/* .profile .profile_details .name_job{
+.profile .profile_details .name_job{
     margin-left: 10px;
 }
 .profile .profile_details .name{
@@ -171,7 +177,7 @@ body{
 }
 .profile .profile_details .job{
     font-size: 12px;
-} */
+}
 .profile #log_out{
     cursor: pointer;
     position: absolute;
