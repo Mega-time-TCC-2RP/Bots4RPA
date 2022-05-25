@@ -112,7 +112,7 @@ function App() {
     })
       .then(response => {
         if (response.status === 200) {
-          // console.log(response.data);
+          console.log(response.data);
 
           setWorkflowList(response.data);
         }
@@ -380,19 +380,18 @@ function App() {
                               <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
                             </div>
                             <div className="bodyModalQuest">
-                              <div className="descriptionTask contentQuestArea">
-                                <label for="descTask" className="descTextModal h5">Descrição da Tarefa:</label>
-                                {/* <div id="descriptionTask">{myQuests.descriptionTask}</div> */}
-                                <div id="descText" className='p descriptionTaskText'>Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste</div>
+                              <div className="descriptionArea">
+                                <label for="descTask" className="h5">Descrição da Tarefa:</label>
+                                <div id="descTask" className="p">{myQuests.workflowDescription}</div>
                               </div>
-                              <div id="dateTask">
-                                <label for="dateTaskModal" className="h5 labelDateTask">Data de Entrega:</label>
-                                <div id="dateTaskModal" className='p'>08/10/2001</div>
+                              <div className="dateArea">
+                                <div for="dateTaskModal" className="h5">Data de Entrega:</div>
+                                <div id="dateTaskModal" className="p">{myQuests.endDate}</div>
                               </div>
-                              <input
-                                className="btnNewTask button"
-                                onClick={handleCloseTask}
-                                value="Fechar Tarefa" />
+                              <input  className="button btnNewTask"
+                              type="button"
+                              onClick={handleCloseTask}
+                              value="Fechar Tarefa" />
                             </div>
                           </div>
                         </Modal>

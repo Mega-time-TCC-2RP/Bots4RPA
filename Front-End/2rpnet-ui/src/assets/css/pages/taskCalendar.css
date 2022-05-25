@@ -210,7 +210,7 @@
     color: var(--PrimaryColor1);
     margin-left: 5%;
     align-self: flex-start;
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 0.25rem;
 }
 
@@ -225,7 +225,7 @@
 }
 
 .btnSpaceNewTask {
-    margin-top: 4rem;
+    margin-top: 6rem;
 }
 /* .btnCalendarModal {
     cursor: pointer;
@@ -258,21 +258,6 @@
     margin-bottom: 4rem;
 }
 
-.contentQuestArea {
-    left: 0;
-    right: 0;
-}
-
-.bodyModalQuest {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.descriptionTask {
-    margin-bottom: 2rem;
-}
-
-.descTextModal {
-    color: var(--PrimaryColor1);
+.dateArea {
+    justify-content: space-between;
 }
