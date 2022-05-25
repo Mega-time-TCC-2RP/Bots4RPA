@@ -209,9 +209,13 @@ body{
 }
 .sidebar.active ~ .body-pd{
     width: calc(100vw - 240px);
-    left: 269px
+    left: 269px;
 }
 
 .logout-navbar:hover{
     background: rgb(230, 65, 65);
+}
+
+html {
+    overflow-x: hidden;
 }
