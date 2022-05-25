@@ -91,27 +91,27 @@ export default function Marketplace() {
                                 >
                                     <SwiperSlide className="swiper-slide-OnBoarding-social">
                                         <div className="boardingContainer">
-                                        <span className='bayer'>Sinta-se a vontade a tela de Tarefas!</span>
+                                        <span className='p textoBonito'>Sinta-se a vontade a tela de Tarefas!</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
                                         <div className="boardingContainer">
-                                            <span className='bayer'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
+                                            <span className='p textoBonito'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
                                         <div className="boardingContainer">
-                                            <span className='bayer'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
+                                            <span className='p textoBonito'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
                                         <div className="boardingContainer">
-                                            <span className='bayer'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
+                                            <span className='p textoBonito'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide className="swiper-slide-OnBoarding">
                                         <div className="boardingContainer">
-                                            <span className='bayer'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
+                                            <span className='p textoBonito'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
                                         </div>
                                     </SwiperSlide>
                                 </Swiper>
