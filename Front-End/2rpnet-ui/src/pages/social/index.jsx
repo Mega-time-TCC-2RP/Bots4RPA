@@ -40,7 +40,7 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         width: '1000px',
-        height: '90vh',
+        height: '60vh',
         background: 'var(--WHITE)',
         boxShadow: 'var(--darkShadow)',
         borderRadius: '30px'
@@ -288,27 +288,22 @@ export const TelaTimeline = (person, idx) => {
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                            <span className='p'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='p'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                                <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='p'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
+                                                <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='p'>E não esqueça, quanto mais você ajuda, mais você SE ajuda.</span>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                            <div className="boardingContainer">
-                                                <span className='p'>Seja gentil e se envolva com a comunidade! :)</span>
+                                                <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>
@@ -334,24 +329,22 @@ export const TelaTimeline = (person, idx) => {
                             >
                                 <form className="CadastroModalContainer" onSubmit={(e) => PublicarPost(e)}>
                                     <div className="HeaderModal">
-                                        <h2>Adicionar publicação</h2>
+                                        <h2 className="h4">Adicionar publicação</h2>
                                         <button onClick={(e) => closeModalCadastro(e)}>X</button>
                                     </div>
-                                    <div>
-                                        <div className="CamposCadastro">
-                                            <div className="LinhaCampoCadastro">
+                                    <div className="CamposCadastroContainer">
+                                        <div className="CamposCadastro inputsModal ">
                                                 <div className="CampoCadastro">
-                                                    <label className="LabelCampoCadastro">Título</label>
-                                                    <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
+                                                    <label>Título</label>
+                                                    <input className="input" placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
                                                 </div>
                                                 <div className="CampoCadastro">
-                                                    <label className="LabelCampoCadastro">Descrição</label>
-                                                    <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
+                                                    <label >Descrição</label>
+                                                    <input className="input" placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
                                                 </div>
-                                            </div>
                                             <div className="CampoCadastro">
-                                                <label className="LabelCampoCadastro">Imagem</label>
-                                                <label className="ImagemInputExibição" for="InputImagemCadastroPost">{
+                                                <label>Imagem</label>
+                                                <label className="input ImagemInputExibição" for="InputImagemCadastroPost">{
                                                     labelImgCadastroPost
                                                 }</label>
                                                 <input className="ImagemInputReal" id="InputImagemCadastroPost" placeholder="Selecione a imagem..." type="file" accept="image/*" onChange={() => {
@@ -364,7 +357,7 @@ export const TelaTimeline = (person, idx) => {
                                     </div>
                                     {
                                         IsLoading == true ?
-                                            <button className="BtnSubmitForm" type="submit" disabled>Carregando</button> : <button className="BtnSubmitForm" type="submit">Publicar</button>
+                                            <button className="button" type="submit" disabled>Carregando</button> : <button className="button" type="submit">Publicar</button>
                                     }
                                 </form>
                             </Modal>
@@ -376,8 +369,8 @@ export const TelaTimeline = (person, idx) => {
                                             <div className="UsuarioCampo">
                                                 <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
                                                 <div className="UsuarioDados">
-                                                    <span className="h3 semi-bold">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                                    <span className="h4">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                                    <span className="h5 semi-bold">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                    <span className="p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
                                                 </div>
                                             </div>
                                             {
@@ -420,7 +413,7 @@ export const TelaTimeline = (person, idx) => {
     
                                                 }
                                             </div>
-                                            <h2 className="TituloPost h3 semi-bold">{post.title}</h2>
+                                            <h2 className="TituloPost h5 semi-bold">{post.title}</h2>
                                             <p className="DescricaoPost p">{post.postDescription}</p>
                                             <Modal
                                                 isOpen={ModalComentariosIsOpen}
@@ -433,7 +426,7 @@ export const TelaTimeline = (person, idx) => {
                                             >
                                                 <div className='ContainerModalComentarios'>
                                                     <div className="HeaderModal">
-                                                        <form onSubmit={(e) => PublicarComentario(e)} className='CadastroComentarioContainer'>
+                                                        <form onSubmit={(e) => PublicarComentario(e)} className='CadastroComentarioContainer inputsModal'>
                                                             <div className='LinhaCampoCadastroComentarios'>
                                                                 <div className="CampoCadastro">
                                                                     <label className="LabelCampoCadastro">Título</label>
@@ -519,27 +512,22 @@ export const TelaTimeline = (person, idx) => {
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                            <span className='p'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='p'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                                <span className='bayer'>Aqui será onde você poderá ver as postagens dos usuários dentro de sua empresa!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='p'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
+                                                <span className='bayer'>Verifiquei e você é um administrador. Administradores não podem postar, curtir e comentar. Mas possuem um importante papel moderador!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='p'>E não esqueça, quanto mais você ajuda, mais você SE ajuda.</span>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
-                                            <div className="boardingContainer">
-                                                <span className='p'>Seja gentil e se envolva com a comunidade! :)</span>
+                                                <span className='bayer'>Tenha controle sobre o que seus funcionários publicam na plataforma e sempre se mantenha atualizado!</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>
@@ -559,8 +547,8 @@ export const TelaTimeline = (person, idx) => {
                                             <div className="UsuarioCampo">
                                                 <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
                                                 <div className="UsuarioDados">
-                                                    <span className="h3 semi-bold">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                                    <span className="h4">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                                    <span className="h5 semi-bold">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                    <span className="p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
                                                 </div>
                                             </div>
                                             {
@@ -603,7 +591,7 @@ export const TelaTimeline = (person, idx) => {
     
                                                 }
                                             </div>
-                                            <h2 className="TituloPost h3 semi-bold">{post.title}</h2>
+                                            <h2 className="TituloPost h5 semi-bold">{post.title}</h2>
                                             <p className="DescricaoPost p">{post.postDescription}</p>
                                             <Modal
                                                 isOpen={ModalComentariosIsOpen}
