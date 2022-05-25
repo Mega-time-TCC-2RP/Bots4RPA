@@ -11,6 +11,7 @@ import Navbar from '../../components/menu/Navbar'
 import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
+import noPhoto from '../../assets/img/no-image.png'
 
 //onboarding
 import '../../assets/css/pages/onBoarding.css'
@@ -366,18 +367,18 @@ export const TelaTimeline = (person, idx) => {
                                 ListaPosts != undefined &&
                                 ListaPosts.map((post) => {
                                     return (
-                                        < div className="BoxPost" key={post.idPost} >
+                                        < div className="BoxPost cardPattern" key={post.idPost} >
                                             <div className="UsuarioCampo">
                                                 <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
                                                 <div className="UsuarioDados">
-                                                    <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                                    <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                                    <span className="h3 semi-bold">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                    <span className="h4">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
                                                 </div>
                                             </div>
                                             {
                                                 post.postImage != undefined ?
                                                     <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                                                    <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
+                                                    <img className="ImgPost" src={noPhoto}></img>
                                             }
                                             <div className="ContainerBotoesPost">
                                                 <button onClick={() => {
@@ -414,8 +415,8 @@ export const TelaTimeline = (person, idx) => {
     
                                                 }
                                             </div>
-                                            <h2 className="TituloPost">{post.title}</h2>
-                                            <p className="DescricaoPost">{post.postDescription}</p>
+                                            <h2 className="TituloPost h3 semi-bold">{post.title}</h2>
+                                            <p className="DescricaoPost p">{post.postDescription}</p>
                                             <Modal
                                                 isOpen={ModalComentariosIsOpen}
                                                 onAfterOpen={afterOpenModal}
@@ -544,18 +545,18 @@ export const TelaTimeline = (person, idx) => {
                                 ListaPosts != undefined &&
                                 ListaPosts.map((post) => {
                                     return (
-                                        < div className="BoxPost" key={post.idPost} >
+                                        < div className="BoxPost cardPattern" key={post.idPost} >
                                             <div className="UsuarioCampo">
                                                 <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
                                                 <div className="UsuarioDados">
-                                                    <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                                    <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                                    <span className="h3 semi-bold">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                    <span className="h4">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
                                                 </div>
                                             </div>
                                             {
                                                 post.postImage != undefined ?
                                                     <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                                                    <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
+                                                    <img className="ImgPost" src={noPhoto}></img>
                                             }
                                             <div className="ContainerBotoesPost">
                                                 <button onClick={() => {
@@ -580,20 +581,20 @@ export const TelaTimeline = (person, idx) => {
                                                         :
                                                         post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
     
-                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
                                                                 <img src={botaoCurtidoImg}></img>
                                                                 <span>{post.likes.length}</span>
                                                             </button>
                                                             :
-                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)}>
                                                                 <img src={botaoCurtirImg}></img>
                                                                 <span>{post.likes.length}</span>
                                                             </button>
     
                                                 }
                                             </div>
-                                            <h2 className="TituloPost">{post.title}</h2>
-                                            <p className="DescricaoPost">{post.postDescription}</p>
+                                            <h2 className="TituloPost h3 semi-bold">{post.title}</h2>
+                                            <p className="DescricaoPost p">{post.postDescription}</p>
                                             <Modal
                                                 isOpen={ModalComentariosIsOpen}
                                                 onAfterOpen={afterOpenModal}
