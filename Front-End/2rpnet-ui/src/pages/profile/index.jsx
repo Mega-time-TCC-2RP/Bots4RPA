@@ -44,8 +44,6 @@ const profileCustomStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        width: '80%',
-        height: '90vh',
         background: 'var(--WHITE)',
         boxShadow: 'var(--darkShadow)',
         borderRadius: '30px',

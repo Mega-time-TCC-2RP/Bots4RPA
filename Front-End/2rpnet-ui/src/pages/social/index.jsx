@@ -288,22 +288,27 @@ export const TelaTimeline = (person, idx) => {
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                            <span className='p'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                                <span className='p'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
+                                                <span className='p'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
+                                                <span className='p'>E não esqueça, quanto mais você ajuda, mais você SE ajuda.</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                            <div className="boardingContainer">
+                                                <span className='p'>Seja gentil e se envolva com a comunidade! :)</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>
@@ -514,22 +519,27 @@ export const TelaTimeline = (person, idx) => {
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                            <span className='p'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                                <span className='p'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
+                                                <span className='p'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
+                                                <span className='p'>E não esqueça, quanto mais você ajuda, mais você SE ajuda.</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='p'>Seja gentil e se envolva com a comunidade! :)</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>
