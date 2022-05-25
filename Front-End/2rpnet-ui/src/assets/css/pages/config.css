@@ -84,7 +84,7 @@
 
 .dataUser {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 
 .dataUser label {

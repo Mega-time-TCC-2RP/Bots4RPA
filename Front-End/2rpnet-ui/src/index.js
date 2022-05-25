@@ -33,6 +33,9 @@ import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
 import RegisterCompany from './pages/registerCompany/registerCompany';
 import RegisterUser from './pages/registerUser/registerUser';
+import RegisterUserGoogle from './pages/registerUser/registerUserGoogle';
+
+
 import { history } from './history';
 import VLibras from '@djpfs/react-vlibras'
 import { usuarioAutenticado, parseJwt } from '../src/services/auth';
@@ -53,6 +56,7 @@ const routing = (
         <Route path="/login" element={<Login />} /> {/* Login */}
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
+        <Route path="/registerUserGoogle" element={<RegisterUserGoogle />} />
         <Route path="/Config" element={<Config />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/skinShop" element={<SkinShop />} /> {/* Marketplace */}

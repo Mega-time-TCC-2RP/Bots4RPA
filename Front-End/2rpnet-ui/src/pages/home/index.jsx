@@ -53,6 +53,7 @@ import { render } from "@testing-library/react";
 import '../../assets/css/pages/onBoarding.css'
 import Blue_Head from '../../assets/img/Blue_Head.png'
 import onBoardingBot from '../../assets/img/onBoardingBot.png'
+import noPhoto from '../../assets/img/no-image.png'
 
 {/* <Navbar/> */ }
 
@@ -450,7 +451,7 @@ export default function Home() {
         </div >
 
         <div className="body-container">
-          <h2 className="body-title-task">Minhas Tarefas</h2>
+          <h2 className="body-title-task h2">Minhas Tarefas</h2>
           <Swiper
             slidesPerView={2}
             spaceBetween={0}
@@ -469,9 +470,9 @@ export default function Home() {
                 myQuests.map((Workflow) => {
                   return (
                     <SwiperSlide className="swiper-slide-HomeTasks">
-                      <div className="card-body-content">
-                        <h3 className="title-card-content">{Workflow.title}</h3>
-                        <p className="text-body1">{Workflow.workflowDescription}</p>
+                      <div className="card-body-content cardPattern">
+                        <h3 className="title-card-content h4">{Workflow.title}</h3>
+                        <p className="text-body1 p">{Workflow.workflowDescription}</p>
                         {/* <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Workflow.endDate))}</p> */}
                       </div>
                     </SwiperSlide>
@@ -484,7 +485,7 @@ export default function Home() {
           </Swiper>
         </div>
         <div className="bottom-container">
-          <h2 className="body-title-task">Posts em destaque</h2>
+          <h2 className="body-title-task h2">Posts em destaque</h2>
           <Swiper
             slidesPerView={2}
             spaceBetween={0}
@@ -503,21 +504,21 @@ export default function Home() {
                 highlightedPosts.map((post) => {
                   return (
                     <SwiperSlide className="swiper-slide-HomeTasks">
-                      <div className="bottom-posts-content">
+                      <div className="bottom-posts-content cardPattern">
                         <div className="chatListItem--lines">
                           <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
                           <div className="chatItemList-line">
-                            <div className="PostItem-name">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
-                            <p className="PostItem-role">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+                            <div className="PostItem-name h5">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
+                            <p className="PostItem-role p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
                           </div>
                         </div>
                         {
                           post.postImage != undefined ?
                             <img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                            <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
+                            <img className="img2-home-bottom" src={noPhoto}></img>
                         }
-                        <h2 className="TituloPostDestaque">{post.title}</h2>
-                        <p className="post-text-bottom-home">{post.postDescription}</p>
+                        <h2 className="TituloPostDestaque h5">{post.title}</h2>
+                        <p className="post-text-bottom-home p">{post.postDescription}</p>
                       </div>
                     </SwiperSlide>
                   )
