@@ -19,7 +19,7 @@ export default function ModalM({ assistant }) {
 
     const [chart, setChart] = useState([])
 
-    var baseUrl = "http://localhost:5000/api/Run/ListQuantity/" + assistant.idAssistant
+    var baseUrl = API + "/api/Run/ListQuantity/" + assistant.idAssistant
     var header = {
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -86,7 +86,7 @@ export default function ModalM({ assistant }) {
     function DeleteProcedures() {
         // AProcedure.map((a) => {
         // console.log(a.idAprocedure)
-        fetch('http://localhost:5000/api/AssistantProcedure/' + assistant.idAssistant, {
+        fetch(API + '/api/AssistantProcedure/' + assistant.idAssistant, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -105,7 +105,7 @@ export default function ModalM({ assistant }) {
     function DeleteAssistant(idAssistant) {
         DeleteProcedures()
             .then(
-                fetch('http://localhost:5000/api/Assistants/' + assistant.idAssistant, {
+                fetch(API + '/api/Assistants/' + assistant.idAssistant, {
                     method: 'DELETE',
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),

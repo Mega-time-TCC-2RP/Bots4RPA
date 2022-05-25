@@ -27,7 +27,7 @@ export default function Assistant() {
 
     const [MyProcedures, setMyProcedures] = useState([])
     const [Assistant, setAssistant] = useState("")
-    const [proceduresList, setProceduresList] = useState(Procedures);
+    const [proceduresList, setProceduresList] = useState([]);
     const [pValue, setPValue] = useState();
     const [eRValue, setERValue] = useState();
     const [eSValue, setESValue] = useState();
@@ -54,18 +54,18 @@ export default function Assistant() {
             .then((response) => response.json())
             .then((data) =>
                 setMyProcedures(data)
-                //console.log(data)
+                // console.log(data)
             )
             .catch((error) => console.log(error));
     };
     useEffect(GetProceduresById, [])
 
     function returnModalEmail(procedure) {
-        if (procedure.ProcedureName != "Enviar email para alguem") {
+        if (procedure.procedureName != "Enviar email para alguem") {
             return (
-                <input className="modal__input" type="text" placeholder={"Digite o valor para " + procedure.ProcedureName} value={pValue} onChange={(campo) => {
-                    setPValue(campo.target.value, procedure.ProcedureValue = campo.target.value);
-                    //   console.log(procedure.ProcedureValue)
+                <input className="modal__input" type="text" placeholder={"Digite o valor para " + procedure.procedureName} value={pValue} onChange={(campo) => {
+                    setPValue(campo.target.value, procedure.procedureValue = campo.target.value);
+                    //   console.log(procedure.procedureValue)
                 }} />
             )
         } else {
@@ -73,13 +73,13 @@ export default function Assistant() {
             return (
                 <form className="form__input">
                     <input className="modal__input" type="text" placeholder={"Digite o destinatário"} value={eRValue} onChange={(campo) => {
-                        setERValue(campo.target.value, procedure.EmailReceiver = campo.target.value);
+                        setERValue(campo.target.value, procedure.emailReceiver = campo.target.value);
                     }} />
                     <input className="modal__input" type="text" placeholder={"Digite o assunto do email"} value={eSValue} onChange={(campo) => {
-                        setESValue(campo.target.value, procedure.EmailSubject = campo.target.value);
+                        setESValue(campo.target.value, procedure.emailSubject = campo.target.value);
                     }} />
                     <input className="modal__input" type="text" placeholder={"Digite o corpo do email"} value={eBValue} onChange={(campo) => {
-                        setEBValue(campo.target.value, procedure.EmailBody = campo.target.value);
+                        setEBValue(campo.target.value, procedure.emailBody = campo.target.value);
                     }} />
                 </form>
             )
@@ -87,13 +87,15 @@ export default function Assistant() {
     }
 
     function handleShow(p) {
-        var modal = document.getElementById("modal" + p.IdProcedure);
+        var modal = document.getElementById("modal" + p.idAprocedure);
         // console.log(modal)
+        console.log(p)
         modal.style.display = "block";
+
         if (p.procedureName != "Enviar email para alguem") {
-            if (pValue != p.ProcedureValue) {
-                if (p.ProcedureValue != 0 || p.ProcedureValue != "") {
-                    setPValue(p.ProcedureValue);
+            if (pValue != p.procedureValue) {
+                if (p.procedureValue != 0 || p.procedureValue != "") {
+                    setPValue(p.procedureValue);
                 }
                 else {
                     setPValue("");
@@ -101,32 +103,35 @@ export default function Assistant() {
             }
 
         } else {
-            if (eRValue != p.EmailReceiver) {
-                setERValue(p.EmailReceiver);
-            } else {
-                setERValue("");
+            if (eRValue != p.emailReceiver) {
+                if (p.emailReceiver != "") {
+                    setERValue(p.emailReceiver);    
+                } else{
+                    setERValue("")
+                }
+            } 
+            if (eSValue != p.emailSubject) {
+                if (p.emailSubject != "") {
+                    setESValue(p.emailSubject);
+                } else{
+                    setESValue("")
+                }
             }
-            if (eSValue != p.EmailSubject) {
-                setESValue(p.EmailSubject);
-            } else {
-                setESValue("");
+            if (eBValue != p.emailBody) {
+                if (p.emailBody != "") {
+                    setEBValue(p.emailBody);
+                } else{
+                    setEBValue("")
+                }
             }
-            if (eBValue != p.EmailBody) {
-                setEBValue(p.emailBody);
-            } else {
-                setEBValue("");
-            }
+            console.log(p);
+            p.procedureValue = `${p.emailReceiver}/${p.emailSubject}/${p.emailBody}`;
+            setResultEmail(`${p.emailReceiver}/${p.emailSubject}/${p.emailBody}`);
         }
     };
 
     function handleClose(p) {
-        var modal = document.getElementById("modal" + p.IdProcedure);
-        // console.log(p);
-        if (p.ProcedureName == "Enviar email para alguem") {
-            p.ProcedureValue = `${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`;
-            setResultEmail(`${p.EmailReceiver}/${p.EmailSubject}/${p.EmailBody}`);
-            // console.log(p.ProcedureValue);
-        }
+        var modal = document.getElementById("modal" + p.idAprocedure);
         // console.log(p);
         modal.style.display = "none";
     };
@@ -396,6 +401,7 @@ export default function Assistant() {
     useEffect(() => {
         configDragnDrop();
         GetAssistantById();
+        setProceduresList(Procedures);
     })
 
     return (
@@ -411,25 +417,26 @@ export default function Assistant() {
                         <div className="dropzone">
                             {
                                 proceduresList.map((procedure) => {
+                                    // console.log(procedure);
                                     return (
-                                        <div key={procedure.IdProcedure}>
-                                            <div id={procedure.IdProcedure + ";" + procedure.ProcedureValue} className={"card-flow"} draggable="true" onClick={() => handleShow(procedure)}>
+                                        <div key={procedure.idAprocedure}>
+                                            <div id={procedure.idAprocedure + ";" + procedure.procedureValue} className={"card-flow"} draggable="true" onClick={() => handleShow(procedure)}>
                                                 <img className="card__balls" src={bolinhas} alt="bolinhas" />
-                                                <div className="card__content">{procedure.ProcedureName}</div>
+                                                <div className="card__content">{procedure.procedureName}</div>
                                             </div>
 
-                                            <div id={"modal" + procedure.IdProcedure} className="modal">
+                                            <div id={"modal" + procedure.idAprocedure} className="modal">
                                                 {/* Modal content */}
                                                 <div className="modal-content">
                                                     <span onClick={() => handleClose(procedure)} className="close">&times;</span>
                                                     <div className="modal-headerA">
                                                         <div className="modalA-header--content">
                                                             <p className="modal__text--heading modal__text">Nome:</p>
-                                                            <p className="modal__text">{procedure.ProcedureName}</p>
+                                                            <p className="modal__text">{procedure.procedureName}</p>
                                                         </div>
                                                         <div className="modalA-header--content">
                                                             <p className="modal__text--heading modal__text">Descrição:</p>
-                                                            <p className="modal__text">{procedure.ProcedureDescription}</p>
+                                                            <p className="modal__text">{procedure.procedureDescription}</p>
                                                         </div>
                                                     </div>
                                                     <div className="modal-body">
@@ -457,7 +464,7 @@ export default function Assistant() {
                                     MyProcedures.map((p) => {
                                         // console.log(p);
                                         return (
-                                            <div key={p.idprocedure}>
+                                            <div key={p.idAprocedure}>
                                                 <div className="card-flow">
                                                     <div id={p.idAprocedure + ";" + p.procedureValue} className="box-card-flow" draggable="true" onClick={() => handleShow(p)}>
                                                         <img className="card__balls" src={bolinhas} alt="bolinhas" />
@@ -465,7 +472,7 @@ export default function Assistant() {
                                                     </div>
                                                 </div>
 
-                                                <div id={"modal" + p.idProcedure} className="modal">
+                                                <div id={"modal" + p.idAprocedure} className="modal">
                                                     {/* Modal content */}
                                                     <div className="modal-content">
                                                         <span onClick={() => handleClose(p)} className="close">&times;</span>
