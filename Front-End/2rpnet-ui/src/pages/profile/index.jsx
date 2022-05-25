@@ -220,7 +220,7 @@ export default function Profile() {
                                     {
                                         skinsList.map((Skin) => {
                                             return (
-                                                <div className='skin-profile-card card'>
+                                                <div className='skin-profile-card cardPattern'>
                                                     <img src={"http://grupo7.azurewebsites.net/img/" + Skin.idSkinNavigation.skinImages} alt="img robot" />
                                                     <span className='h6 semi-bold'>{Skin.idSkinNavigation.title}</span>
                                                     <span className='p'>{Skin.idSkinNavigation.skinDescription}</span>

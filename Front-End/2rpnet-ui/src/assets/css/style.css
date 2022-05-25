@@ -434,7 +434,9 @@
 }
 
 .img2-home-bottom {
+    height: 60%;
     width: 100%;
+    object-fit: contain;
 }
 
 .TituloPostDestaque{
