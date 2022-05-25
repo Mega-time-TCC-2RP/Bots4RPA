@@ -116,7 +116,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public List<Post> GetHighlightedPosts()
         {
-            return ctx.Posts.OrderBy(post => post.DataPost).Take(12).OrderBy(post => post.Likes.Count).Take(4).Select(post => new Post()
+            return ctx.Posts.OrderByDescending(post => post.DataPost).Take(12).OrderBy(post => post.Likes.Count).Take(4).Select(post => new Post()
             {
                 IdPost = post.IdPost,
                 Title = post.Title,
