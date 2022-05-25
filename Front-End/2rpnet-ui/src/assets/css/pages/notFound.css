@@ -19,15 +19,15 @@
         margin-top: 30px;
         margin-bottom: 50px;
 }
-.p{
+.pNotfound{
         display: flex;
         justify-content: center;
         text-align: center;
         align-items: center;
         margin-top: 20px;
 }
-.button{
+.buttonNotfound{
         margin: 0 auto;
-        margin-top: 30px;
-        margin-bottom: 300px;
+        margin-top: 50px;
+        margin-bottom: 200px;
 }
