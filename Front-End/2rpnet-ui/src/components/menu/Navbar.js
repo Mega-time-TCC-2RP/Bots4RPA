@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component, useState, useEffect } from 'react'
+
 import { Link } from 'react-router-dom'
 import '../../assets/css/components/navbar.css'
 
@@ -12,6 +13,8 @@ import * as BsIcons from 'react-icons/bs'
 import * as HiIcons from 'react-icons/hi'
 
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { handleAuthException, parseJwt } from '../../services/auth'
 
 
 
@@ -22,10 +25,35 @@ import Profile from '../../assets/img/profile.jpg'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { parseJwt } from '../../services/auth'
 
 function Navbar() {
+    const [myUser, setMyUser] = useState({});
+    const [nullUndefinedParams, setNullUndefinedParams] = useState({});
 
+    
+    let history = useNavigate();
+
+    const GetMe = async () => {
+      await axios.get('http://grupo7.azurewebsites.net/api/UserNames/GetMe', {
+          headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+          }
+      }).then((resposta) => {
+          setMyUser(resposta.data);
+          console.log(resposta.data);
+      }).catch(async (error) => {
+          if (await handleAuthException(error) === true) {
+              localStorage.removeItem('2rp-chave-autenticacao')
+              history('/login')
+          }
+      })
+  }
+
+
+    function GoToProfile() {
+      history("/profile");
+  }
+  
   function click() {
     let sidebar = document.querySelector('.sidebar')
     sidebar.classList.toggle('active')
@@ -42,7 +70,14 @@ function Navbar() {
 
 
 
-  let history = useNavigate();
+
+  useEffect(() => {
+    const effect = async () => {
+        console.log(parseJwt());
+        await GetMe();
+    }
+    effect();
+}, []);
   // btn.onclick = function(){
   //   sidebar.classList.toggle('active')
   // }
@@ -121,11 +156,27 @@ function Navbar() {
       </ul>
       <div className='profile_content'>
         <div className='profile'>
-          <div className='profile_details'>
-            <div className='name_job'>
-              <span className='name' onClick={signout}>Logout</span>
-            </div>
-          </div>
+        {
+                             myUser != nullUndefinedParams ?
+                                <div  onClick={(e) => GoToProfile()} className='profile_details'>
+                                    <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
+                                    <div className='name_job'>
+                                        <div className='name'>{myUser.userName1}</div>
+                                        {
+                                            myUser.employees === nullUndefinedParams.employees ?
+                                                <div className='job'>Cargo indefinido</div> : 
+                                                <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
+                                        }
+                                    </div>
+                                </div> :
+                                <div className='profile_details'>
+                                    <img alt="imagem de perfil" />
+                                    <div className='name_job'>
+                                        <div className='name'>Carregando...</div>
+                                        <div className='job'>Carregando...</div>
+                                    </div>
+                                </div>
+                        }
               <HiIcons.HiOutlineLogout id='log_out' onClick={signout} />
         </div>
       </div>
