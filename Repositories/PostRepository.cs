@@ -261,7 +261,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                     },
 
                 }).ToList(),
-            }).ToList();
+            }).OrderBy(post => post.DataPost).ToList();
         }
 
         public Post SearchByID(int id)
