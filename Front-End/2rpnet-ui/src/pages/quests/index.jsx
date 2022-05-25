@@ -28,10 +28,25 @@ import 'swiper/css/pagination';
 
 const stylesCustom = {
   content: {
-    width: 1,
-    height: 1,
+    // width: 1,
+    // height: 1,
     // backgroundcolor: rgba(0, 255, 255, 0.75),
-    boxShadow: ''
+    // boxShadow: '',
+    // marginTop: '1rem',
+    // marginBottom: 'auto',
+    // right: '0',
+    // left: '0',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '1000px',
+    height: '90vh',
+    background: 'var(--WHITE)',
+    boxShadow: 'var(--darkShadow)',
+    borderRadius: '30px'
   },
 };
 
@@ -112,14 +127,14 @@ function App() {
     axios(apiPlatform + '/Workflows/' + idTaskToUpdate, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-    }
-  })
-  .then(response => {
-    if (response.status === 200 || response.status === 201) {
-      setIdTaskToUpdate(response)
-    }
-  })
-  .catch((error) => console.log(error))
+      }
+    })
+      .then(response => {
+        if (response.status === 200 || response.status === 201) {
+          setIdTaskToUpdate(response)
+        }
+      })
+      .catch((error) => console.log(error))
   }
 
   // Consumo da API - Patch Status
@@ -359,26 +374,26 @@ function App() {
                           isOpen={taskIsOpen}
                           onRequestClose={handleCloseTask}
                           style={stylesCustom} >
-                          <div className="modalQuests">
+                          <div className="modalQuestsOneTask">
                             <div className="headerModalOne">
                               <div className="title h2">{myQuests.title}</div>
                               <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
                             </div>
-                              <div className="bodyModalQuest">
-                              <div className="descriptionTask">
-                                    <label for="descTask" className="descTextModal h5">Descrição da Tarefa:</label>
-                                    {/* <div id="descriptionTask">{myQuests.descriptionTask}</div> */}
-                                    <div id="descText" className='p'>Teste Teste Teste</div>
-                                  </div>
-                                <div id="dateTask">
-                                  <label for="dateTaskModal" className="h5 labelDateTask">Data de Entrega:</label>
-                                  <div id="dateTaskModal"className='p'>08/10/2001</div>
-                                </div>
-                                <input
-                                  className="btnNewTask button"
-                                  onClick={handleCloseTask}
-                                  value="Fechar Tarefa" />
+                            <div className="bodyModalQuest">
+                              <div className="descriptionTask contentQuestArea">
+                                <label for="descTask" className="descTextModal h5">Descrição da Tarefa:</label>
+                                {/* <div id="descriptionTask">{myQuests.descriptionTask}</div> */}
+                                <div id="descText" className='p descriptionTaskText'>Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste</div>
                               </div>
+                              <div id="dateTask">
+                                <label for="dateTaskModal" className="h5 labelDateTask">Data de Entrega:</label>
+                                <div id="dateTaskModal" className='p'>08/10/2001</div>
+                              </div>
+                              <input
+                                className="btnNewTask button"
+                                onClick={handleCloseTask}
+                                value="Fechar Tarefa" />
+                            </div>
                           </div>
                         </Modal>
                         <div
@@ -585,8 +600,6 @@ function App() {
                           type="text"
                           placeholder="Insira o Título da tarefa..."
                           onChange={(event) => setTitleTask(event.target.value)} />
-                      </div>
-                      <div className="inputQuests">
                         <label for="descriptionInput" className="h5">Descrição</label>
                         <input
                           id="descriptionInput"
@@ -594,18 +607,20 @@ function App() {
                           type="text"
                           placeholder="Insira pontos importantes para a resolução da tarefa..."
                           onChange={(event) => setDescriptionTask(event.target.value)} />
+                        <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
+                        <input
+                          id="dayAndMonthWorkflow"
+                          className="input inputQuestsDate"
+                          type="date"
+                          onChange={(event) => setEndDate(event.target.value)} />
+                        <input
+                          className="btnNewTask button btnSpaceNewTask"
+                          type="submit"
+                          value="Adicionar Tarefa" />
                       </div>
+                      {/* <div className="inputQuests">
+                      </div> */}
                     </div>
-                    <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
-                    <input
-                      id="dayAndMonthWorkflow"
-                      className="input inputQuestsDate"
-                      type="date"
-                      onChange={(event) => setEndDate(event.target.value)} />
-                    <input
-                      className="btnNewTask button"
-                      type="submit"
-                      value="Adicionar Tarefa" />
                   </div>
                 </form>
               </div>
