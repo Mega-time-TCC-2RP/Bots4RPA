@@ -246,7 +246,11 @@ export default function Config() {
                         formData.append('IdOffice', userLogado.employees[0].idOffice)
                     }
                     formData.append('IdUserType', userLogado.idUserType)
-                    formData.append('Passwd', NovaSenha)
+                    if (NovaSenha === '') {
+                        formData.append('Passwd',pass);
+                    } else {
+                        formData.append('Passwd', NovaSenha);
+                    }
                     //formData.append('File', "http://grupo7.azurewebsites.net/img/" + userLogado.photoUser)
                     axios({
                         method: "PUT",
@@ -259,6 +263,7 @@ export default function Config() {
                                 closeModalConfig();
                                 console.log("alterado com sucesso")
                                 setPass('')
+                                setNovaSenha('')
                                 setConfirmPassword(false)
                             }
                         })
@@ -577,7 +582,7 @@ export default function Config() {
         <div>
             {parseJwt().Role == 3 ? <Header /> : null}
             <Navbar />
-            <div className='configPage'>
+            <div className='configPage body-pd'>
                 <h1 className='container h3' alt="configurações">Configurações</h1>
                 <nav className='navAreaConfig container'>
                     <span className='h4 myData' id='myData' onClick={() => select(0)}>Meus Dados</span>
@@ -680,7 +685,7 @@ export default function Config() {
                     }
                     {
                         steps[currentStep].id === 'Step2' && (
-                            <div>
+                            <div className='center'>
                                 <h2 className='h6 semi-bold' alt="Acessibilidade">Selecionar tema</h2>
                                 <select className='select' onChange={(e) => MudarTema(e.target.value)}>
                                     <optgroup>
@@ -740,12 +745,12 @@ export default function Config() {
                                         return (
                                             <div key={user.idUser} className='mainContentArea contentValidUser'>
                                                 <div className='contentConfig'>
-                                                    <h3>Email <p className='p'>{user.idUserNavigation.email}</p></h3>
-                                                    <h3>CPF <p className='p'>{user.idUserNavigation.cpf}</p></h3>
-                                                    <h3>Nome <p className='p'>{user.idUserNavigation.userName1}</p></h3>
-                                                    <h3>RG <p className='p'>{user.idUserNavigation.rg}</p></h3>
-                                                    <h3>Telefone <p className='p'>{user.idUserNavigation.phone}</p></h3>
-                                                    <h3>Data de Nascimento <p className='p'>{user.idUserNavigation.birthDate}</p></h3>
+                                                    <h5 className='semi-bold'>Email <p className='p'>{user.idUserNavigation.email}</p></h5>
+                                                    <h5>CPF <p className='p'>{user.idUserNavigation.cpf}</p></h5>
+                                                    <h5>Nome <p className='p'>{user.idUserNavigation.userName1}</p></h5>
+                                                    <h5>RG <p className='p'>{user.idUserNavigation.rg}</p></h5>
+                                                    <h5>Telefone <p className='p'>{user.idUserNavigation.phone}</p></h5>
+                                                    <h5>Data de Nascimento <p className='p'>{user.idUserNavigation.birthDate}</p></h5>
                                                 </div>
                                                 <div>
                                                     <SiIcons.SiVerizon onClick={() => autorizeUser(user.idUser)} className='iconConfig' />

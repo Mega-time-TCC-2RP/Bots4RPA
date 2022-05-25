@@ -67,11 +67,12 @@
     padding-bottom: 2%;
 }
 
-.mainContentArea h3 {
+.mainContentArea h5 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: auto;
+    line-height: 1.7em !important;
 }
 
 .contentConfig {
