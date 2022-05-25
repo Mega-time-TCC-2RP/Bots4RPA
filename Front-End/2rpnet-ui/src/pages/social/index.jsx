@@ -292,22 +292,22 @@ export const TelaTimeline = (person, idx) => {
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='p'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                                <span className='p textoBonito'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='p'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
+                                                <span className='p textoBonito'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='p'>E não esqueça, quanto mais você ajuda, mais você SE ajuda.</span>
+                                                <span className='p textoBonito'>E não esqueça, quanto mais você ajuda, mais você SE ajuda.</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='p'>Seja gentil e se envolva com a comunidade! :)</span>
+                                                <span className='p textoBonito'>Seja gentil e se envolva com a comunidade! :)</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>

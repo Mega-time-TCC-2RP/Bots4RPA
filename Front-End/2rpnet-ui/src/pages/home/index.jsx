@@ -345,37 +345,37 @@ export default function Home() {
                 >
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Seja bem-vindo(a) à sua tela inicial!</span>
+                      <span className='p textoBonito'>Seja bem-vindo(a) à sua tela inicial!</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
+                      <span className='p textoBonito'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Gostaria de executar um assistente? Ver suas Tarefas?</span>
+                      <span className='p textoBonito'>Gostaria de executar um assistente? Ver suas Tarefas?</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Ou ver as questões mais em alta na área Social?</span>
+                      <span className='p textoBonito'>Ou ver as questões mais em alta na área Social?</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
+                      <span className='p textoBonito'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
+                      <span className='p textoBonito'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Entre e se divirta!</span>
+                      <span className='p textoBonito'>Entre e se divirta!</span>
                     </div>
                   </SwiperSlide>
                 </Swiper>

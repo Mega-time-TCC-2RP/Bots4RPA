@@ -23,8 +23,8 @@
 }
 
 .bot-img {
-        width: 180px;
-        margin-top: 40px;
+        width: 170px;
+        margin-top: 55px;
         margin-left: 30px;
 }
 
@@ -106,14 +106,9 @@
         justify-content: center !important;
 }
 
-.p {
-        align-items: center;
-        text-align: center;
-        
-}
-
 .boardingContainer {
         width: 280px;
+        margin-bottom: 30px;
 }
 
 .img-onboarding {
@@ -128,4 +123,9 @@
 .img-onboarding:hover {
         background-color: rgb(245, 245, 245);
         border-radius: 20px;
+}
+.textoBonito{
+        margin-bottom: 20px;
+        align-items: center;
+        text-align: center;
 }
