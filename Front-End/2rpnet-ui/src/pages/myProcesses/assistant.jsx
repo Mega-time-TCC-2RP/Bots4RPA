@@ -451,10 +451,10 @@ export default function Assistant() {
                                         </div>
                                     )
                                 })
-
+                                
                             }
-
                         </div>
+                              
                     </div>
                     <div className="flow">
                         <div className="boards__board">

@@ -235,7 +235,7 @@ export default function ModalM({ assistant }) {
 
                             <div className='graphic-left-side'>
                                 <div className='container-left'>
-                                    <h1>Detalhes execução:</h1>
+                                    <h1>Detalhes da execução:</h1>
                                     {chart.map((m) => {
                                         return (
                                             <div>
