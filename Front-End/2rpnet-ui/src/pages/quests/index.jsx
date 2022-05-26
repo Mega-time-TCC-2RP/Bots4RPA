@@ -28,6 +28,15 @@ import 'swiper/css/pagination';
 
 const stylesCustom = {
   content: {
+    width: 1,
+    height: 1,
+    // backgroundcolor: rgba(0, 255, 255, 0.75),
+    boxShadow: ''
+  },
+};
+
+const taskCustom = {
+  content: {
     // width: 1,
     // height: 1,
     // backgroundcolor: rgba(0, 255, 255, 0.75),
@@ -118,23 +127,6 @@ function App() {
         }
       })
       .catch(erro => console.log(erro));
-  }
-
-  // Listar informações de uma única tarefa
-  const getOneTask = async (event) => {
-
-    await event
-    axios(apiPlatform + '/Workflows/' + idTaskToUpdate, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-      }
-    })
-      .then(response => {
-        if (response.status === 200 || response.status === 201) {
-          setIdTaskToUpdate(response)
-        }
-      })
-      .catch((error) => console.log(error))
   }
 
   // Consumo da API - Patch Status
@@ -271,16 +263,8 @@ function App() {
     document.getElementById("monthCalendar").innerHTML = setMonth
   }
 
-  // function modalTask() {
-  //   return (
-
-  //   )
-  // }
-
   useEffect(() => {
     getWorkflowList()
-    // getQuestList()
-    // getQuestList, []
     day()
     month()
     dragNDrop()
@@ -353,7 +337,7 @@ function App() {
         <h2 className="pageTitle h2">Painel Organizacional</h2>
         <div className='taskCalendar'>
           <section className="task">
-            <div id="testtodo"
+            <div id="todoID"
               className="toDo">
               <div className="taskTitle">
                 <h5 className="h5">A Fazer</h5>
@@ -373,7 +357,7 @@ function App() {
                         <Modal
                           isOpen={taskIsOpen}
                           onRequestClose={handleCloseTask}
-                          style={stylesCustom} >
+                          style={taskCustom} >
                           <div className="modalQuestsOneTask">
                             <div className="headerModalOne">
                               <div className="title h2">{myQuests.title}</div>
@@ -385,10 +369,10 @@ function App() {
                                 <div id="descTask" className="p">{myQuests.workflowDescription}</div>
                               </div>
                               <div className="dateArea">
-                                <div for="dateTaskModal" className="h5">Data de Entrega:</div>
-                                <div id="dateTaskModal" className="p">{myQuests.endDate}</div>
+                                <div className="h5">Data de Entrega:</div>
+                                <div className="p dateOneTask">{myQuests.endDate}</div>
                               </div>
-                              <input  className="button btnNewTask"
+                              <input className="button btnNewTask marginBtnModalTask"
                               type="button"
                               onClick={handleCloseTask}
                               value="Fechar Tarefa" />
@@ -406,7 +390,7 @@ function App() {
               </div>
             </div>
 
-            <div id="testdo"
+            <div id="doID"
               className="do">
               <div className="taskTitle">
                 <h5 className="h5">Fazendo</h5>
@@ -423,7 +407,7 @@ function App() {
               </div>
             </div>
 
-            <div id="testdone"
+            <div id="doneID"
               className="done">
               <div className="taskTitle">
                 <h5 className="h5">Feito</h5>
@@ -573,7 +557,6 @@ function App() {
                 type="button"
                 value="31" /></div>
             </section>
-            {/* <Calendar /> */}
             <input
               className="btnNewTask button"
               type="button"
@@ -582,7 +565,7 @@ function App() {
             <Modal
               isOpen={newTaskIsOpen}
               onRequestClose={handleCloseNewTask}
-              style={stylesCustom} >
+              style={taskCustom} >
               <div className="modalQuests">
                 <div className="headerModal">
                   <div className="title h2">Nova Tarefa</div>
@@ -617,8 +600,6 @@ function App() {
                           type="submit"
                           value="Adicionar Tarefa" />
                       </div>
-                      {/* <div className="inputQuests">
-                      </div> */}
                     </div>
                   </div>
                 </form>

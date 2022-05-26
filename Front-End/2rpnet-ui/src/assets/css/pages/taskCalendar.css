@@ -29,6 +29,7 @@
     box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
     background-color: var(--ComplementaryColor1);
+    overflow: hidden;
 }
 
 .cardTask {
@@ -259,5 +260,17 @@
 }
 
 .dateArea {
-    justify-content: space-between;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
+.dateOneTask {
+    margin-left: 0.5rem;
+}
+
+.marginBtnModalTask {
+    margin-top: 8rem;
 }
