@@ -29,9 +29,6 @@ import { usuarioAutenticado, parseJwt, handleAuthException } from '../../service
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
-import Vermelho_Home from '../../assets/img/Vermelho_Home.png'
-import Amarelo_Home from '../../assets/img/Amarelo_Home.png'
-import Verde_Home from '../../assets/img/Verde_Home.png'
 import Post_Perfil_Photo from '../../assets/img/Post_Perfil_Photo.png'
 import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
 import { useNavigate } from 'react-router-dom'
@@ -40,7 +37,6 @@ import Header from '../../components/header/header'
 //items:
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-
 
 //Components:
 // import Navbar from '../../components/menu/Navbar'

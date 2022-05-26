@@ -23,7 +23,7 @@
 .Sexit-button {
     /* width: 1.938em; */
     align-items: center;
-    font-size: 32px;
+    font-size: 2em;
     border: none;
     cursor: pointer;
     color: #8B919D;
@@ -520,8 +520,8 @@ display: flex;
 }
 
 .box-graphic-quantity {
-    width: 250px;
-    height: 250px;
+    width: 230px;
+    height: 230px;
     display: flex;
     border: 14px solid #3375BA;
     border-radius: 74px;
@@ -533,7 +533,7 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 108px;
+    font-size: 90px;
     line-height: 132px;
     display: flex;
     align-items: center;

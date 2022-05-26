@@ -43,7 +43,7 @@
     width: 84%;
     height: 50%;
     display: flex;
-    margin-left: 10px;
+    margin-left: 0.625rem;
     align-items: center;
 
     /* background-color: #83ffaa; */
@@ -61,11 +61,11 @@
 .Input-Home {
     width: 11.4em;
     height: 2.6em;
-    margin-left: 20px;
+    margin-left: 1.25rem;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 19px;
+    font-size: 1.188em;
     line-height: 24px;
     box-sizing: border-box;
     border-radius: 64px;
@@ -86,7 +86,7 @@
     cursor: pointer;
     border-radius: 64px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 19px;
+    font-size: 1.188em;
     font-weight: 400;
     line-height: 28px;
     border: none;
@@ -104,13 +104,13 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 33px;
+    font-size: 2.063em;
     line-height: 40px;
     display: flex;
     align-items: center;
     color: var(--BLACK);
-    margin-top: 50px;
-    margin-left: 170px;
+    margin-top: 3.125rem;
+    margin-left: 10.625rem;
 }
 
 .nao {
@@ -143,14 +143,14 @@
 }
 
 .card1 {
-    width: 273px;
-    height: 375px;
+    width: 17.063em;
+    height: 23.438em;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    margin-left: 10px;
-    margin-right: 80px;
+    margin-left: 0.625rem;
+    margin-right: 5rem;
 
     background: #FFFFFF;
     border: 5px solid #F2F2F2;
@@ -188,7 +188,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 23px;
+    font-size: 1.438em;
     line-height: 33px;
     color: var(--ComplementaryColor3);
     
@@ -203,7 +203,7 @@
 .container-AssistantName {
     /* margin-top: 0.3rem;  */
     width: 97%;
-    height: 70px;
+    height: 4.375em;
     display: flex;
     justify-content: center;
     white-space: normal;
@@ -219,7 +219,7 @@
     font-family: 'Exo', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125em;
     line-height: 24px;
     align-items: center;
     border-style: none;
@@ -231,10 +231,10 @@
 .icon-play {
     width: 1.875em;
     height: 2.113em;
-    /* margin-left: 8.188rem; */
     margin-top: 0.063rem;
     cursor: pointer;
     color: #3375BA;
+    /* margin-left: 8.188rem; */
 }
 
 .body-container {
