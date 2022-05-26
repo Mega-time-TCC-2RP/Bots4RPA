@@ -83,6 +83,7 @@ function Navbar() {
   // }
   // onClick={sidebar.classList.toggle('active')}
 
+  if (parseJwt().Role == "3") {
   return (
 
     <div className='sidebar'>
@@ -156,7 +157,7 @@ function Navbar() {
       </ul>
       <div className='profile_content'>
         <div className='profile'>
-        {
+        {/* {
                              myUser != nullUndefinedParams ?
                                 <div  onClick={(e) => GoToProfile()} className='profile_details'>
                                     <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
@@ -176,14 +177,221 @@ function Navbar() {
                                         <div className='job'>Carregando...</div>
                                     </div>
                                 </div>
-                        }
-              <HiIcons.HiOutlineLogout id='log_out' onClick={signout} />
+                        } */}
+              {/* <HiIcons.HiOutlineLogout id='log_out' onClick={signout} /> */}
         </div>
       </div>
     </div>
 
 
   );
+  }
+   else if(parseJwt().Role == "2"){
+    return (
+
+      <div className='sidebar'>
+        <ToastContainer />
+        <div className='logo_content'>
+          <img className='logo' src={Logo} alt="Logo 2RPnet" />
+          <FaIcons.FaBars className='btn' onClick={click} />
+        </div>
+        <ul className='nav_list'>
+          <li>
+            <Link to="/home" className='Link'>
+              <ImIcons.ImHome3 className='icon2' alt="botão página inicial" />
+              <span className='Links_name' alt="botão página inicial">Home</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/guide" className='Link'>
+              <RiIcons.RiGuideFill className='icon2' alt="botão guias" />
+              <span className='Links_name' alt="botão guias">Guias</span>
+            </Link>
+          </li>
+          {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/skinShop" className='Link'>
+                <FaIcons.FaTshirt className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão loja de skins">Skins</span>
+              </Link>
+            </li>
+            : null
+          } */}
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/marketplace" className='Link'>
+                <RiIcons.RiShoppingBagFill className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão loja">Loja</span>
+              </Link>
+            </li>
+            : null
+          }
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/quests" className='Link'>
+                <FaIcons.FaTasks className='icon2' alt="botão tarefas" />
+                <span className='Links_name' alt="botão tarefas">Tarefas</span>
+              </Link>
+            </li>
+            : null
+          }
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/assistant" className='Link'>
+                <FaIcons.FaRobot className='icon2' alt="botão assistentes" />
+                <span className='Links_name' alt="botão assistentes">Assistentes</span>
+              </Link>
+            </li>
+            : null
+          }
+          <li>
+            <Link to="/social" className='Link'>
+              <AiIcons.AiFillMessage className='icon2' alt="botão fórum social" />
+              <span className='Links_name' alt="botão fórum social">Social</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/config" className='Link'>
+              <BsIcons.BsFillGearFill className='icon2' alt="botão configurações" />
+              <span className='Links_name' alt="botão configurações">Configurações</span>
+            </Link>
+          </li>
+  
+        </ul>
+        <div className='profile_content'>
+          <div className='profile'>
+          {
+                               myUser != nullUndefinedParams ?
+                                  <div  onClick={(e) => GoToProfile()} className='profile_details'>
+                                      <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
+                                      <div className='name_job'>
+                                          <div className='name'>{myUser.userName1}</div>
+                                          {
+                                              myUser.employees === nullUndefinedParams.employees ?
+                                                  <div className='job'>Cargo indefinido</div> : 
+                                                  <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
+                                          }
+                                      </div>
+                                  </div> :
+                                  <div className='profile_details'>
+                                      <img alt="imagem de perfil" />
+                                      <div className='name_job'>
+                                          <div className='name'>Carregando...</div>
+                                          <div className='job'>Carregando...</div>
+                                      </div>
+                                  </div>
+                          }
+                {/* <HiIcons.HiOutlineLogout id='log_out' onClick={signout} /> */}
+          </div>
+        </div>
+      </div>
+  
+  
+    );
+   }
+   else{
+    return (
+
+      <div className='sidebar'>
+        <ToastContainer />
+        <div className='logo_content'>
+          <img className='logo' src={Logo} alt="Logo 2RPnet" />
+          <FaIcons.FaBars className='btn' onClick={click} />
+        </div>
+        <ul className='nav_list'>
+          <li>
+            <Link to="/home" className='Link'>
+              <ImIcons.ImHome3 className='icon2' alt="botão página inicial" />
+              <span className='Links_name' alt="botão página inicial">Home</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/guide" className='Link'>
+              <RiIcons.RiGuideFill className='icon2' alt="botão guias" />
+              <span className='Links_name' alt="botão guias">Guias</span>
+            </Link>
+          </li>
+          {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/skinShop" className='Link'>
+                <FaIcons.FaTshirt className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão loja de skins">Skins</span>
+              </Link>
+            </li>
+            : null
+          } */}
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/marketplace" className='Link'>
+                <RiIcons.RiShoppingBagFill className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão loja">Loja</span>
+              </Link>
+            </li>
+            : null
+          }
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/quests" className='Link'>
+                <FaIcons.FaTasks className='icon2' alt="botão tarefas" />
+                <span className='Links_name' alt="botão tarefas">Tarefas</span>
+              </Link>
+            </li>
+            : null
+          }
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/assistant" className='Link'>
+                <FaIcons.FaRobot className='icon2' alt="botão assistentes" />
+                <span className='Links_name' alt="botão assistentes">Assistentes</span>
+              </Link>
+            </li>
+            : null
+          }
+          <li>
+            <Link to="/social" className='Link'>
+              <AiIcons.AiFillMessage className='icon2' alt="botão fórum social" />
+              <span className='Links_name' alt="botão fórum social">Social</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/config" className='Link'>
+              <BsIcons.BsFillGearFill className='icon2' alt="botão configurações" />
+              <span className='Links_name' alt="botão configurações">Configurações</span>
+            </Link>
+          </li>
+  
+        </ul>
+        <div className='profile_content'>
+          <div className='profile'>
+          {/* {
+                               myUser != nullUndefinedParams ?
+                                  <div  onClick={(e) => GoToProfile()} className='profile_details'>
+                                      <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
+                                      <div className='name_job'>
+                                          <div className='name'>{myUser.userName1}</div>
+                                          {
+                                              myUser.employees === nullUndefinedParams.employees ?
+                                                  <div className='job'>Cargo indefinido</div> : 
+                                                  <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
+                                          }
+                                      </div>
+                                  </div> :
+                                  <div className='profile_details'>
+                                      <img alt="imagem de perfil" />
+                                      <div className='name_job'>
+                                          <div className='name'>Carregando...</div>
+                                          <div className='job'>Carregando...</div>
+                                      </div>
+                                  </div>
+                          } */}
+                {/* <HiIcons.HiOutlineLogout id='log_out' onClick={signout} /> */}
+          </div>
+        </div>
+      </div>
+  
+  
+    );
+   }
 
 
 }

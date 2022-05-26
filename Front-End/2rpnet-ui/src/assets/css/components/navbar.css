@@ -142,16 +142,21 @@ body{
 .profile_content .profile .profile_details{
     display: flex;
     align-items: center;
-    opacity: 0;
-    pointer-events: none;
     white-space: nowrap;
-}
-.sidebar.active .profile .profile_details{
-    opacity: 1;
-    pointer-events: auto;
-    width: 130px;
+    margin: 0px 10px;
     height: 50px;
     transition: all 0.5s ease;
+}
+.sidebar.active .profile .profile_details{
+    pointer-events: auto;
+    /* width: 130px; */
+    transition: all 0.5s ease;
+    margin-left: 5px;
+}
+.sidebar.active .profile .profile_details .name_job{
+    margin-left: 10px;
+    transition: all 0.5s ease;
+    opacity: 1;
 }
 /* .profile .profile_details .name_job{
     color: var(--WHITE);
@@ -163,17 +168,20 @@ body{
     font-weight: 600;
 } */
 .profile .profile_details img{
-    height: 45px;
-    width: 45px;
+    opacity: 1;
+    width: 50px;
     object-fit: cover;
     border-radius: 12px;
 }
 .profile .profile_details .name_job{
-    margin-left: 10px;
+    pointer-events: none;
+    opacity: 0;
+    width: 100%;
+    margin: 0;
 }
 .profile .profile_details .name{
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 600;
 }
 .profile .profile_details .job{
     font-size: 12px;
