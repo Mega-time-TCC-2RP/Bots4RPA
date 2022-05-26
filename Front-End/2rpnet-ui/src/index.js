@@ -28,7 +28,7 @@ import Quest from './pages/quests';
 import TesteDaltonicMode from './pages/DaltonicModeTest';
 import Profile from './pages/profile/index';
 import Config from './pages/config/config';
-
+import Guide from './pages/guide/guide';
 import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
 import RegisterCompany from './pages/registerCompany/registerCompany';
@@ -57,11 +57,12 @@ const routing = (
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/registerUserGoogle" element={<RegisterUserGoogle />} />
-        <Route path="/Config" element={<Config />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/Config" element={<Config />} /> {/* Config */}
+        <Route path="/profile" element={<Profile />} /> {/* Profile */}
+        <Route path="/guide" element={<Guide />} /> {/* Guide */}
         <Route path="/skinShop" element={<SkinShop />} /> {/* Marketplace */}
         <Route path="/marketplace" element={<Marketplace />} /> {/* Marketplace */}
-        <Route path="/assistant" element={<Assistant/>} />
+        <Route path="/assistant" element={<Assistant/>} /> {/* Assistant */}
         <Route path="/social" element={<TelaTimeline />} /> {/* Social */}
         <Route path="/quests" element={<Quest />} /> {/* Task Calendar */}
         <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />
