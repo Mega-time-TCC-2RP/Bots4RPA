@@ -32,21 +32,21 @@ export default function LandingPage() {
                         <img src={Logo} alt="Logo 2RP" />
                         <div className='headerNav'>
                             <Link to="/login"><span className='loginLanding h6' alt="Login">Login</span></Link>
-                            <Link to="/registerUser"><button className='button-landingPage button h6' id='buttonSignUp' alt="Inscreva-se">Inscreva-se</button></Link>
+                            <Link to="/registerUser"><button className='button-landingPage button h6 text-topo-landingpage' id='buttonSignUp' alt="Inscreva-se">Inscreva-se</button></Link>
                         </div>
                     </div>
                 </div>
                 <section className='container section'>
                     <div className='content content-landing'>
-                        <h2 className='h2' alt="A melhor solução de automatização para qualquer empresa">A melhor solução de automatização para qualquer empresa</h2>
+                        <h2 className='h2 topo-lading' alt="A melhor solução de automatização para qualquer empresa">A melhor solução de automatização para qualquer empresa</h2>
                         <h6 className='h6' alt="Não perca tempo, automatize os processos dentro da sua empresa com qualidade e confiança">Não perca tempo, automatize os processos dentro da sua empresa com qualidade e confiança</h6>
-                        <Link to="/registerUser"><button className='button h5' alt="Teste agora">Teste Agora</button></Link>
+                        <Link to="/registerUser"><button className='button h5 landbutton-test' alt="Teste agora">Teste Agora</button></Link>
                     </div>
-                    <img src={Robo} alt="Imagem robô" />
+                    <img src={Robo} className="cool-robot-landingpage" alt="Imagem robô" />
                 </section>
                 <section className='section section2'>
                     <div className='container section2Content'>
-                        <h3 className='h3' alt="Áreas de atendimento">Áreas de atendimento</h3>
+                        <h3 className='h3 aga3-area' alt="Áreas de atendimento">Áreas de atendimento</h3>
                         <div className='articleArea'>
                             <article>
                                 <img src={Financas} alt="Imagem Finanças" />
