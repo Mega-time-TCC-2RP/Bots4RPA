@@ -21,7 +21,7 @@ export const Header = () => {
             }
         }).then((resposta) => {
             setMyUser(resposta.data);
-            console.log(resposta.data);
+            // console.log(resposta.data);
         }).catch(async (error) => {
             if (await handleAuthException(error) === true) {
                 localStorage.removeItem('2rp-chave-autenticacao')
@@ -46,7 +46,7 @@ export const Header = () => {
 
     useEffect(() => {
         const effect = async () => {
-            console.log(parseJwt());
+            // console.log(parseJwt());
             await GetMe();
         }
         effect();

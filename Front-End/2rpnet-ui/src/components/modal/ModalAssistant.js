@@ -14,7 +14,7 @@ function CloseModalAssistant() {
 export default function Modal() {
 
     const navigate = useNavigate();
-    const [IdAssistant, setIdAssistant] = useState(0)
+    // const [IdAssistant, setIdAssistant] = useState(0)
     const [assistantName, setAssistantName] = useState();
     const [assistantDescription, setAssistantDescription] = useState();
 

@@ -40,7 +40,7 @@ function Navbar() {
           }
       }).then((resposta) => {
           setMyUser(resposta.data);
-          console.log(resposta.data);
+          // console.log(resposta.data);
       }).catch(async (error) => {
           if (await handleAuthException(error) === true) {
               localStorage.removeItem('2rp-chave-autenticacao')
@@ -73,7 +73,7 @@ function Navbar() {
 
   useEffect(() => {
     const effect = async () => {
-        console.log(parseJwt());
+        // console.log(parseJwt());
         await GetMe();
     }
     effect();

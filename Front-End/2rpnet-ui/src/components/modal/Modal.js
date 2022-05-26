@@ -13,8 +13,9 @@ import {API} from '../../../src/services/api'
 
 export default function ModalM({ assistant }) {
 
-    const [Run, setRun] = useState([]);
     const [Description, setDescription] = useState("");
+    // Não está sendo usado no momento:
+    const [Run, setRun] = useState([]);
     const [PropsAssistants, setPropsAssistants] = useState([]);
 
     const [chart, setChart] = useState([])
@@ -45,18 +46,15 @@ export default function ModalM({ assistant }) {
         labels: [],
         datasets: [
             {
-                //  data: [DataGraphic.map((data) => data.exitos), DataGraphic.map((data) => data.falhas)],
                 data: [chart.map((data) => data.sucess), chart.map((data) => data.error)],
                 backgroundColor: [
                     '#3FDA9F',
                     '#E41500'
                 ],
-
                 borderWidth: 1,
             },
         ],
     }
-
 
     // function PropsAssistant() {
     //     var baseUrl = "http://localhost:5000/api/Run/ListQuantity/" + assistant.idAssistant
@@ -104,7 +102,7 @@ export default function ModalM({ assistant }) {
 
     function DeleteAssistant(idAssistant) {
         DeleteProcedures()
-            .then(
+            // .then(
                 fetch(API + '/api/Assistants/' + assistant.idAssistant, {
                     method: 'DELETE',
                     headers: {
@@ -118,10 +116,9 @@ export default function ModalM({ assistant }) {
                         }
                     })
                     .catch((erro) => console.log(erro))
-            )
+            // )
 
     };
-
 
     function UpdateDescription() {
         console.log('Entrou no método Update')
