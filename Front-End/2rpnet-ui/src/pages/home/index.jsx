@@ -155,7 +155,9 @@ export default function Home() {
         // console.log(response)
         if (response.status === 204) {
 
-          var myUrl = "http://localhost:5000/api/Run/" + idAssistant
+          console.log("FUNCIONOU");
+          toast.success("O resultado foi enviado para seu email");
+          var myUrl = API + "/api/Run/" + idAssistant
           const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -173,8 +175,6 @@ export default function Home() {
               }
             }).catch(error => console.log(error))
 
-          console.log("FUNCIONOU");
-          toast.success("O resultado foi enviado para seu email");
 
         } else {
           toast.error("A execução deu errado :/");
