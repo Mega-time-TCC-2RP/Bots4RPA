@@ -278,7 +278,7 @@ function Navbar() {
           <div className='profile'>
           {
               myUser != nullUndefinedParams ?
-                <div  onClick={(e) => GoToProfile()} className='profile_details'>
+                <div  onClick={click2} className='profile_details'>
                     <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
                     <div className='name_job'>
                         <div className='name'>{myUser.userName1}</div>
@@ -297,9 +297,19 @@ function Navbar() {
                     </div>
                 </div>
             }
-                {/* <HiIcons.HiOutlineLogout id='log_out' onClick={signout} /> */}
           </div>
         </div>
+        <div className='options'>
+            <div  onClick={GoToProfile} className='myProfile'>
+              <FaIcons.FaRegUser className='btn_log_perfil'/>
+              <span>Perfil</span>
+            </div>
+            <div  onClick={signout} className='logout'>
+              <HiIcons.HiOutlineLogout className='btn_log_perfil' />
+              <span>Logout</span>
+            </div>
+
+          </div>
       </div>
   
   

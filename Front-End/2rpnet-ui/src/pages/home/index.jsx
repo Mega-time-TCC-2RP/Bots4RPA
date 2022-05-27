@@ -338,9 +338,9 @@ export default function Home() {
 
   return (
     <div>
-      <div className='body-pd'>
-      <Navbar />
       
+      <Navbar />
+      <div className='body-pd'>
 
         {/* <Header /> */}
         <VLibras />
