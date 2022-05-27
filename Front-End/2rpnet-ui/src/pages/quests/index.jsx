@@ -5,6 +5,9 @@ import Header from '../../components/header/header.js'
 //libras
 import VLibras from '@djpfs/react-vlibras'
 
+// Servicos
+import { parseJwt } from '../../services/auth';
+
 
 // CSS
 import "../../assets/css/style.css"
@@ -68,8 +71,7 @@ function App() {
   const [descriptionTask, setDescriptionTask] = useState('');
   const [statusTask, setStatusTask] = useState();
   const [endDate, setEndDate] = useState();
-  const [idTaskToUpdate, setIdTaskToUpdate] = useState(0);
-  const [taskToUpdate, setTaskToUpdate] = useState([]);
+  const [idQuest, setIdQuest] = useState();
 
   const [taskIsOpen, setTaskIsOpen] = useState(false);
   const [newTaskIsOpen, setNewTaskIsOpen] = useState(false);
@@ -83,7 +85,7 @@ function App() {
   }
   function handleOpenNewTask() {
     // for (let index = 0; index < 32; index++) {
-    //   document.getElementById("calend" + index).style.cursor = "pointer";      
+    //   document.getElementById("calend" + index).style.cursor = "pointer";
     // }
     // for (let i = 0; i < 32; i++) {
 
@@ -96,16 +98,18 @@ function App() {
   }
   function handleCloseNewTask() {
     // for (let index = 0; index < 32; index++) {
-    //   document.getElementById("calend" + index).style.cursor = "pointer";      
+    //   document.getElementById("calend" + index).style.cursor = "pointer";
     // }
     setNewTaskIsOpen(false)
   }
 
-  function handleOpenTask() {
+  function handleOpenTask(e) {
+    e.preventDefault();
     setTaskIsOpen(true)
   }
 
-  function handleCloseTask() {
+  function handleCloseTask(e) {
+    e.preventDefault();
     setTaskIsOpen(false)
   }
 
@@ -121,7 +125,7 @@ function App() {
     })
       .then(response => {
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
 
           setWorkflowList(response.data);
         }
@@ -129,15 +133,21 @@ function App() {
       .catch(erro => console.log(erro));
   }
 
-  // Consumo da API - Patch Status
-  // const patchStatusTask = () => {
-  //   axios
-  //   .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + statusTask, {
-  //     headers: {
-  //       'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
-  //     }
-  //   })
-  // }
+  // Consumo da API - Patch Status - Atualizacao de estado do card
+  const patchStatusTask = (event) => {
+    event.preventDefault()
+
+    let updateTask = {
+      idStatus: statusTask
+    }
+
+    axios
+      .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + statusTask, updateTask, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+        }
+      })
+  }
 
   // Form Nova Tare
   const formNewTask = (submit_newtask) => {
@@ -209,6 +219,7 @@ function App() {
 
     function drag() {
       // console.log('Dragging');
+      // console.log(workflowList[this]);
     }
 
     function dragend() {
@@ -243,11 +254,15 @@ function App() {
     function dragleave() {
       // console.log('Leaving Card');
       this.classList.remove('over')
+
+      // Regra de deixar pronto para mudar
     }
 
     function drop() {
       // console.log('Droping Card');
       this.classList.remove('over')
+
+      // Regra da mudança de Status
     }
   }
 
@@ -264,352 +279,365 @@ function App() {
   }
 
   useEffect(() => {
-    getWorkflowList()
+    //getWorkflowList()
     day()
     month()
     dragNDrop()
   });
 
-  return (
+  if (parseJwt().Role == "3" || parseJwt().Role == "2") {
+    return (
 
-    <div className='pageTaskCalendar'>
-      <Header />
-      <Navbar />
-      <div className='body-pd'>
-        <VLibras />
-        <img
-          src={onBoardingBot}
-          onClick={handleOpenOnBoarding}
-          className="img-onboarding"
-        />
-        <Modal
-          isOpen={onBoardingIsOpen}
-          onRequestClose={handleCloseOnBoarding}
-          style={stylesCustom}
-        >
-          <div className="top-container-onboarding" >
-            <div className="background-body" >
-              <div className="boarding-image">
-                <img className="bot-img" src={Blue_Head} />
-              </div>
-              <div className="body-content">
-                <h2>Assistente</h2>
-                <Swiper
-                  pagination={{
-                    type: "fraction",
-                  }}
-                  navigation={true}
-                  modules={[Pagination, Navigation]}
+      <div className='pageTaskCalendar'>
+        {/* <Header /> */}
+        <Navbar />
+        <div className='body-pd'>
+          <VLibras />
+          <img
+            src={onBoardingBot}
+            onClick={handleOpenOnBoarding}
+            className="img-onboarding"
+          />
+          <Modal
+            isOpen={onBoardingIsOpen}
+            onRequestClose={handleCloseOnBoarding}
+            style={stylesCustom}
+          >
+            <div className="top-container-onboarding" >
+              <div className="background-body" >
+                <div className="boarding-image">
+                  <img className="bot-img" src={Blue_Head} />
+                </div>
+                <div className="body-content">
+                  <h2>Assistente</h2>
+                  <Swiper
+                    pagination={{
+                      type: "fraction",
+                    }}
+                    navigation={true}
+                    modules={[Pagination, Navigation]}
 
-                  className="swiperHomeTasks-social"
-                >
-                  <SwiperSlide className="swiper-slide-OnBoarding-social">
-                    <div className="boardingContainer">
-                      <span className='p textoBonito'>Sinta-se a vontade a tela de Tarefas!</span>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide-OnBoarding-social">
-                    <div className="boardingContainer">
-                      <span className='p textoBonito'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide-OnBoarding-social">
-                    <div className="boardingContainer">
-                      <span className='p textoBonito'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide-OnBoarding-social">
-                    <div className="boardingContainer">
-                      <span className='p textoBonito'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide-OnBoarding-social">
-                    <div className="boardingContainer">
-                      <span className='p textoBonito'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
-                    </div>
-                  </SwiperSlide>
-                </Swiper>
-              </div>
-
-            </div>
-          </div>
-        </Modal>
-        <h2 className="pageTitle h2">Painel Organizacional</h2>
-        <div className='taskCalendar'>
-          <section className="task">
-            <div id="todoID"
-              className="toDo">
-              <div className="taskTitle">
-                <h5 className="h5">A Fazer</h5>
-              </div>
-              <div
-                // key={myQuests.idWorkflow 
-                // && myQuests.idStatus === 1
-                // } 
-                className="taskSpace">
-                {
-                  workflowList.map((myQuests) => {
-                    return (
-                      <div
-                        key={(myQuests.idWorflow) > (new Date().getDate() - 1)}
-                        className="cardTask" draggable="true">
-                        {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
-                        <Modal
-                          isOpen={taskIsOpen}
-                          onRequestClose={handleCloseTask}
-                          style={taskCustom} >
-                          <div className="modalQuestsOneTask">
-                            <div className="headerModalOne">
-                              <div className="title h2">{myQuests.title}</div>
-                              <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
-                            </div>
-                            <div className="bodyModalQuest">
-                              <div className="descriptionArea">
-                                <label for="descTask" className="h5">Descrição da Tarefa:</label>
-                                <div id="descTask" className="p">{myQuests.workflowDescription}</div>
-                              </div>
-                              <div className="dateArea">
-                                <div className="h5">Data de Entrega:</div>
-                                <div className="p dateOneTask">{myQuests.endDate}</div>
-                              </div>
-                              <input className="button btnNewTask marginBtnModalTask"
-                              type="button"
-                              onClick={handleCloseTask}
-                              value="Fechar Tarefa" />
-                            </div>
-                          </div>
-                        </Modal>
-                        <div
-                          className="p"
-                          onClick={handleOpenTask}>{myQuests.title}</div>
+                    className="swiperHomeTasks-social"
+                  >
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Sinta-se a vontade a tela de Tarefas!</span>
                       </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
+                      </div>
+                    </SwiperSlide>
+                  </Swiper>
+                </div>
+
+              </div>
+            </div>
+          </Modal>
+          <h2 className="pageTitle h2">Painel Organizacional</h2>
+          <div className='taskCalendar'>
+            <section className="task">
+              <div id="todoID"
+                className="toDo">
+                <div className="taskTitle">
+                  <h5 className="h5">A Fazer</h5>
+                </div>
+                <div
+                  // key={myQuests.idWorkflow
+                  // && myQuests.idStatus === 1
+                  // }
+                  className="taskSpace">
+                  {
+                    workflowList.map((myQuests, idx) => {
+                      return (
+                        <div
+                          key={(myQuests.idWorflow) > (new Date().getDate() - 1)}
+                          onClick={handleOpenTask}
+                          className="cardTask" draggable="true">
+                          {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
+
+                          <div
+                            className="p"
+                          >{myQuests.title}</div>
+                          <Modal
+                            isOpen={taskIsOpen}
+                            onRequestClose={handleCloseTask}
+                            style={taskCustom} >
+                            <div className="modalQuestsOneTask">
+                              <div className="headerModalOne">
+                                <div className="title h2">{myQuests.title}</div>
+                                <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
+                              </div>
+                              <div className="bodyModalQuest">
+                                <div className="descriptionArea">
+                                  <label for="descTask" className="h5">Descrição da Tarefa:</label>
+                                  <div id="descTask" className="p">{myQuests.workflowDescription}</div>
+                                </div>
+                                <div className="dateArea">
+                                  <div className="h5">Data de Entrega:</div>
+                                  <div className="p dateOneTask">{myQuests.endDate}</div>
+                                </div>
+                                <input className="button btnNewTask marginBtnModalTask"
+                                  type="button"
+                                  onClick={handleCloseTask}
+                                  value="Fechar Tarefa" />
+                              </div>
+                            </div>
+                          </Modal>
+                        </div>
+                      )
+                    }
                     )
                   }
-                  )
-                }
+                </div>
               </div>
-            </div>
 
-            <div id="doID"
-              className="do">
-              <div className="taskTitle">
-                <h5 className="h5">Fazendo</h5>
-              </div>
-              <div
-                // key={myQuests.idWorkflow && myQuests.idStatus === 2} 
-                className="taskSpace">
-                {/* <div className="cardTask" draggable="true">
+              <div id="doID"
+                className="do">
+                <div className="taskTitle">
+                  <h5 className="h5">Fazendo</h5>
+                </div>
+                <div
+                  // key={myQuests.idWorkflow && myQuests.idStatus === 2}
+                  className="taskSpace">
+                  {/* <div className="cardTask" draggable="true">
                   <div className="p">Lorem Ipsum is simply dummy text.</div>
                   <div className="p">
                     {myQuests.title}
                   </div>
                 </div> */}
+                </div>
               </div>
-            </div>
 
-            <div id="doneID"
-              className="done">
-              <div className="taskTitle">
-                <h5 className="h5">Feito</h5>
-              </div>
-              <div
-                // key={myQuests.idWorkflow && myQuests.idStatus === 3} 
-                className="taskSpace">
-                {/* <div className="cardTask" draggable="true">
+              <div id="doneID"
+                className="done">
+                <div className="taskTitle">
+                  <h5 className="h5">Feito</h5>
+                </div>
+                <div
+                  // key={myQuests.idWorkflow && myQuests.idStatus === 3}
+                  className="taskSpace">
+                  {/* <div className="cardTask" draggable="true">
                   <div className="p">Lorem Ipsum is simply dummy text.</div>
                   <div className="p">
                     {myQuests.title}
                   </div>
                 </div> */}
+                </div>
               </div>
-            </div>
 
-          </section>
-          {/* )
+            </section>
+            {/* )
              }
              )
            } */}
-          <div className="calendarAndBtn">
-            <section className="calendar p">
-              <div className="calendarTitle"><h5 id="monthCalendar" className="h5">Calendário</h5></div>
-              <input id="calend1"
-                className="btnCalendar p"
+            <div className="calendarAndBtn">
+              <section className="calendar p">
+                <div className="calendarTitle"><h5 id="monthCalendar" className="h5">Calendário</h5></div>
+                <input id="calend1"
+                  className="btnCalendar p"
+                  type="button"
+                  value="1" />
+                <input id="calend2"
+                  className="btnCalendar p"
+                  type="button"
+                  value="2" />
+                <input id="calend3"
+                  className="btnCalendar p"
+                  type="button"
+                  value="3" />
+                <input id="calend4"
+                  className="btnCalendar p"
+                  type="button"
+                  value="4" />
+                <input id="calend5"
+                  className="btnCalendar p"
+                  type="button"
+                  value="5" />
+                <input id="calend6"
+                  className="btnCalendar p"
+                  type="button"
+                  value="6" />
+                <input id="calend7"
+                  className="btnCalendar p"
+                  type="button"
+                  value="7" />
+                <input id="calend8"
+                  className="btnCalendar p"
+                  type="button"
+                  value="8" />
+                <input id="calend9"
+                  className="btnCalendar p"
+                  type="button"
+                  value="9" />
+                <input id="calend10"
+                  className="btnCalendar p"
+                  type="button"
+                  value="10" />
+                <input id="calend11"
+                  className="btnCalendar p"
+                  type="button"
+                  value="11" />
+                <input id="calend12"
+                  className="btnCalendar p"
+                  type="button"
+                  value="12" />
+                <input id="calend13"
+                  className="btnCalendar p"
+                  type="button"
+                  value="13" />
+                <input id="calend14"
+                  className="btnCalendar p"
+                  type="button"
+                  value="14" />
+                <input id="calend15"
+                  className="btnCalendar p"
+                  type="button"
+                  value="15" />
+                <input id="calend16"
+                  className="btnCalendar p"
+                  type="button"
+                  value="16" />
+                <input id="calend17"
+                  className="btnCalendar p"
+                  type="button"
+                  value="17" />
+                <input id="calend18"
+                  className="btnCalendar p"
+                  type="button"
+                  value="18" />
+                <input id="calend19"
+                  className="btnCalendar p"
+                  type="button"
+                  value="19" />
+                <input id="calend20"
+                  className="btnCalendar p"
+                  type="button"
+                  value="20" />
+                <input id="calend21"
+                  className="btnCalendar p"
+                  type="button"
+                  value="21" />
+                <input id="calend22"
+                  className="btnCalendar p"
+                  type="button"
+                  value="22" />
+                <input id="calend23"
+                  className="btnCalendar p"
+                  type="button"
+                  value="23" />
+                <input id="calend24"
+                  className="btnCalendar p"
+                  type="button"
+                  value="24" />
+                <input id="calend25"
+                  className="btnCalendar p"
+                  type="button"
+                  value="25" />
+                <input id="calend26"
+                  className="btnCalendar p"
+                  type="button"
+                  value="26" />
+                <input id="calend27"
+                  className="btnCalendar p"
+                  type="button"
+                  value="27" />
+                <input id="calend28"
+                  className="btnCalendar p"
+                  type="button"
+                  value="28" />
+                <input id="calend29"
+                  className="btnCalendar p"
+                  type="button"
+                  value="29" />
+                <input id="calend30"
+                  className="btnCalendar p"
+                  type="button"
+                  value="30" />
+                <div className="lastCalend"><input id="calend31"
+                  className="btnCalendar p"
+                  type="button"
+                  value="31" /></div>
+              </section>
+              <input
+                className="btnNewTask button"
                 type="button"
-                value="1" />
-              <input id="calend2"
-                className="btnCalendar p"
-                type="button"
-                value="2" />
-              <input id="calend3"
-                className="btnCalendar p"
-                type="button"
-                value="3" />
-              <input id="calend4"
-                className="btnCalendar p"
-                type="button"
-                value="4" />
-              <input id="calend5"
-                className="btnCalendar p"
-                type="button"
-                value="5" />
-              <input id="calend6"
-                className="btnCalendar p"
-                type="button"
-                value="6" />
-              <input id="calend7"
-                className="btnCalendar p"
-                type="button"
-                value="7" />
-              <input id="calend8"
-                className="btnCalendar p"
-                type="button"
-                value="8" />
-              <input id="calend9"
-                className="btnCalendar p"
-                type="button"
-                value="9" />
-              <input id="calend10"
-                className="btnCalendar p"
-                type="button"
-                value="10" />
-              <input id="calend11"
-                className="btnCalendar p"
-                type="button"
-                value="11" />
-              <input id="calend12"
-                className="btnCalendar p"
-                type="button"
-                value="12" />
-              <input id="calend13"
-                className="btnCalendar p"
-                type="button"
-                value="13" />
-              <input id="calend14"
-                className="btnCalendar p"
-                type="button"
-                value="14" />
-              <input id="calend15"
-                className="btnCalendar p"
-                type="button"
-                value="15" />
-              <input id="calend16"
-                className="btnCalendar p"
-                type="button"
-                value="16" />
-              <input id="calend17"
-                className="btnCalendar p"
-                type="button"
-                value="17" />
-              <input id="calend18"
-                className="btnCalendar p"
-                type="button"
-                value="18" />
-              <input id="calend19"
-                className="btnCalendar p"
-                type="button"
-                value="19" />
-              <input id="calend20"
-                className="btnCalendar p"
-                type="button"
-                value="20" />
-              <input id="calend21"
-                className="btnCalendar p"
-                type="button"
-                value="21" />
-              <input id="calend22"
-                className="btnCalendar p"
-                type="button"
-                value="22" />
-              <input id="calend23"
-                className="btnCalendar p"
-                type="button"
-                value="23" />
-              <input id="calend24"
-                className="btnCalendar p"
-                type="button"
-                value="24" />
-              <input id="calend25"
-                className="btnCalendar p"
-                type="button"
-                value="25" />
-              <input id="calend26"
-                className="btnCalendar p"
-                type="button"
-                value="26" />
-              <input id="calend27"
-                className="btnCalendar p"
-                type="button"
-                value="27" />
-              <input id="calend28"
-                className="btnCalendar p"
-                type="button"
-                value="28" />
-              <input id="calend29"
-                className="btnCalendar p"
-                type="button"
-                value="29" />
-              <input id="calend30"
-                className="btnCalendar p"
-                type="button"
-                value="30" />
-              <div className="lastCalend"><input id="calend31"
-                className="btnCalendar p"
-                type="button"
-                value="31" /></div>
-            </section>
-            <input
-              className="btnNewTask button"
-              type="button"
-              value="Nova Tarefa"
-              onClick={handleOpenNewTask} />
-            <Modal
-              isOpen={newTaskIsOpen}
-              onRequestClose={handleCloseNewTask}
-              style={taskCustom} >
-              <div className="modalQuests">
-                <div className="headerModal">
-                  <div className="title h2">Nova Tarefa</div>
-                  <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
-                </div>
-                <form onSubmit={formNewTask}>
-                  <div className="bodyModalQuest">
-                    <div className="inputsQuests">
-                      <div className="inputQuests">
-                        <label for="titleInput" className="h5">Título</label>
-                        <input
-                          id="titleInput"
-                          className="input"
-                          type="text"
-                          placeholder="Insira o Título da tarefa..."
-                          onChange={(event) => setTitleTask(event.target.value)} />
-                        <label for="descriptionInput" className="h5">Descrição</label>
-                        <input
-                          id="descriptionInput"
-                          className="input"
-                          type="text"
-                          placeholder="Insira pontos importantes para a resolução da tarefa..."
-                          onChange={(event) => setDescriptionTask(event.target.value)} />
-                        <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
-                        <input
-                          id="dayAndMonthWorkflow"
-                          className="input inputQuestsDate"
-                          type="date"
-                          onChange={(event) => setEndDate(event.target.value)} />
-                        <input
-                          className="btnNewTask button btnSpaceNewTask"
-                          type="submit"
-                          value="Adicionar Tarefa" />
+                value="Nova Tarefa"
+                onClick={handleOpenNewTask} />
+              <Modal
+                isOpen={newTaskIsOpen}
+                onRequestClose={handleCloseNewTask}
+                style={taskCustom} >
+                <div className="modalQuests">
+                  <div className="headerModal">
+                    <div className="title h2">Nova Tarefa</div>
+                    <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
+                  </div>
+                  <form onSubmit={formNewTask}>
+                    <div className="bodyModalQuest">
+                      <div className="inputsQuests">
+                        <div className="inputQuests">
+                          <label for="titleInput" className="h5">Título</label>
+                          <input
+                            id="titleInput"
+                            className="input"
+                            type="text"
+                            placeholder="Insira o Título da tarefa..."
+                            onChange={(event) => setTitleTask(event.target.value)} />
+                          <label for="descriptionInput" className="h5">Descrição</label>
+                          <input
+                            id="descriptionInput"
+                            className="input"
+                            type="text"
+                            placeholder="Insira pontos importantes para a resolução da tarefa..."
+                            onChange={(event) => setDescriptionTask(event.target.value)} />
+                          <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
+                          <input
+                            id="dayAndMonthWorkflow"
+                            className="input inputQuestsDate"
+                            type="date"
+                            onChange={(event) => setEndDate(event.target.value)} />
+                          <input
+                            className="btnNewTask button btnSpaceNewTask"
+                            type="submit"
+                            value="Adicionar Tarefa" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </form>
-              </div>
-            </Modal>
+                  </form>
+                </div>
+              </Modal>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+// 1. Arrumar bug do loop infinito
+// 2. Conseguir realizar o patch em cada tabelinha
+// 3. Fazer a listagem de cada tabela para seu status
+// 4. Arrumar o calendário para pelo menos mostrar os dias da semana
+// e se der certo, fazer um calendário q transita entre os meses
+
+// 5. Responsividade da tela de tarefas... Como? nao sei, mai vai ter que
+// ser feito de uma forma ou de outra
 
 export default App;
