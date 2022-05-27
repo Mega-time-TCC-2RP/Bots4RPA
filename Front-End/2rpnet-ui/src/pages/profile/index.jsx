@@ -135,16 +135,16 @@ export default function Profile() {
             <Navbar />
             <div className='configPage body-pd profile'>
                 {/* <Header /> */}
-                <h1 className='container h3 semi-bold' alt="configurações">Perfil</h1>
+                <h1 className='container h2 semi-bold' alt="configurações">Perfil</h1>
                 <nav className='navAreaConfig container'>
-                    <span className='h4 meusTrofeus' id='meusTrofeus' onClick={() => select(0)}>Meus troféus</span>
-                    <span className='h4 minhasSkins' id='minhasSkins' onClick={() => select(1)}>Minhas skins</span>
+                    <span className='h3 meusTrofeus' id='meusTrofeus' onClick={() => select(0)}>Meus troféus</span>
+                    <span className='h3 minhasSkins' id='minhasSkins' onClick={() => select(1)}>Minhas skins</span>
                 </nav>
                 <section className='configContent validUser container'>
                     {
                         steps[currentStep].id === 'Step1' && (
                             <div cAcessibilidadelassName='areaStep'>
-                                <h5 alt="MeusTrofeus" className="h5 semi-bold">Meus troféus</h5>
+                                <h5 alt="MeusTrofeus" className="h4 semi-bold margin-ajuste-profile">Meus troféus</h5>
                                 <div className='TrophiesContainer'>
                                     {
                                         allTrophiesList.map((Trophy) => {
@@ -215,7 +215,7 @@ export default function Profile() {
                     {
                         steps[currentStep].id === 'Step2' && (
                             <div cAcessibilidadelassName='areaStep'>
-                                <h5 alt="MinhasSkins" className="h5 semi-bold">Minhas skins</h5>
+                                <h5 alt="MinhasSkins" className="h4 semi-bold margin-ajuste-profile">Minhas skins</h5>
                                 <div className="TrophiesContainer">
                                     {
                                         skinsList.map((Skin) => {

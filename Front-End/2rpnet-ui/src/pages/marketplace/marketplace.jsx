@@ -59,7 +59,7 @@ export default function Marketplace() {
    
     return (
         <div id='all'>
-            <Header/>
+            {/* <Header/> */}
             <Navbar/>
             <div className='body-pd'>
             <VLibras/>
