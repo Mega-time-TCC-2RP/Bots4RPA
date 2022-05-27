@@ -148,6 +148,11 @@ namespace _2RPNET_API.Repositories
 
         }
 
+        public List<Assistant> FindByIdEmployee(int IdEmployee)
+        {
+            return Ctx.Assistants.Where(a => a.IdEmployee == IdEmployee).ToList();
+        }
+
         public List<Assistant> ReadAll()
         {
             return Ctx.Assistants.ToList();

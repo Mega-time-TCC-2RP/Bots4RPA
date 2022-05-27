@@ -14,6 +14,11 @@
             Method responsible for create a Run process
             </summary>
         </member>
+        <member name="M:_2RPNET_API.Controllers.Assistant23Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
+            <summary>
+            Method responsible for create a Run process
+            </summary>
+        </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.ReadAll">
             <summary>
             Method responsible for list all Assistants
@@ -21,6 +26,12 @@
             <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.ReadMy(System.Int32)">
+            <summary>
+            Method responsible for list Assistant by unique id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantsController.FindByIdEmployee(System.Int32)">
             <summary>
             Method responsible for list Assistant by unique id
             </summary>

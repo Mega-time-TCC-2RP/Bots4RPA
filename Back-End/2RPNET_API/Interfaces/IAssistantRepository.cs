@@ -11,6 +11,7 @@ namespace _2RPNET_API.Interfaces
         List<Assistant> ReadMyProcess(int IdUser);
 
         Assistant SearchByID(int IdAssistant);
+        List<Assistant> FindByIdEmployee(int IdEmployee);
 
         void Update(int IdAssistant, Assistant UpdatedAsssistant);
 

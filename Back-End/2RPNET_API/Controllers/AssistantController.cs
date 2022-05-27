@@ -45,12 +45,30 @@ namespace _2RPNET_API.Controllers
         /// Method responsible for list Assistant by unique id
         /// </summary>
         /// <returns></returns>
-        [HttpGet("{Id}")]
-        public IActionResult ReadMy(int Id)
+        [HttpGet("{IdAssistant}")]
+        public IActionResult ReadMy(int IdAssistant)
         {
             try
             {
-                return Ok(_AssistantRepository.SearchByID(Id));
+                return Ok(_AssistantRepository.SearchByID(IdAssistant));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+
+        /// <summary>
+        /// Method responsible for list Assistant by unique id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Employee/{IdEmployee}")]
+        public IActionResult FindByIdEmployee(int IdEmployee)
+        {
+            try
+            {
+                return Ok(_AssistantRepository.FindByIdEmployee(IdEmployee));
             }
             catch (Exception ex)
             {
