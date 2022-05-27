@@ -24,8 +24,8 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 170px;
-    padding-bottom: 170px;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
 }
 
 .BotoesModais{
@@ -234,6 +234,7 @@ main{
       display: flex;
       justify-content: space-between;
       width: 100%;
+      margin-bottom: 2%;
   }
 
   .CadastroComentarioContainer{
@@ -241,7 +242,7 @@ main{
       flex-direction: column;
       align-items: center;
       padding-bottom: 20px;
-      width: 98%;
+      width: 98% !important;
       padding-right: 20px;
       overflow-x: hidden;
   }

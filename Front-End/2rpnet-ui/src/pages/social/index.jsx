@@ -197,7 +197,7 @@ export const TelaTimeline = (person, idx) => {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             },
         })
-            .then(function (response) { 
+            .then(function (response) {
                 console.log(response);
                 ListarPosts();
                 setIsLoading(false);
@@ -254,15 +254,15 @@ export const TelaTimeline = (person, idx) => {
     if (parseJwt().Role == "3" || parseJwt().Role == "2") {
         return (
             <div>
-    
+
                 <Navbar />
                 <div className="body-pd">
                     {/* <Header /> */}
                     <VLibras />
                     {/* onboarding */}
-                    <img 
-                        src={onBoardingBot} 
-                        onClick={handleOpenOnBoarding} 
+                    <img
+                        src={onBoardingBot}
+                        onClick={handleOpenOnBoarding}
                         className="img-onboarding"
                     />
                     <Modal
@@ -280,15 +280,15 @@ export const TelaTimeline = (person, idx) => {
                                     <Swiper
                                         pagination={{
                                             type: "fraction",
-                                          }}
-                                          navigation={true}
-                                          modules={[Pagination, Navigation]}
-                                          
+                                        }}
+                                        navigation={true}
+                                        modules={[Pagination, Navigation]}
+
                                         className="swiperHomeTasks-social"
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                                <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
@@ -308,7 +308,7 @@ export const TelaTimeline = (person, idx) => {
                                         </SwiperSlide>
                                     </Swiper>
                                 </div>
-    
+
                             </div>
                         </div>
                     </Modal>
@@ -334,14 +334,14 @@ export const TelaTimeline = (person, idx) => {
                                     </div>
                                     <div className="CamposCadastroContainer">
                                         <div className="CamposCadastro inputsModal ">
-                                                <div className="CampoCadastro">
-                                                    <label>Título</label>
-                                                    <input className="input" placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
-                                                </div>
-                                                <div className="CampoCadastro">
-                                                    <label >Descrição</label>
-                                                    <input className="input" placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
-                                                </div>
+                                            <div className="CampoCadastro">
+                                                <label>Título</label>
+                                                <input className="input" placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
+                                            </div>
+                                            <div className="CampoCadastro">
+                                                <label >Descrição</label>
+                                                <input className="input" placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
+                                            </div>
                                             <div className="CampoCadastro">
                                                 <label>Imagem</label>
                                                 <label className="input ImagemInputExibição" for="InputImagemCadastroPost">{
@@ -388,7 +388,7 @@ export const TelaTimeline = (person, idx) => {
                                                 {
                                                     IsLoading == true ?
                                                         post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
-    
+
                                                             <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
                                                                 <img src={botaoCurtidoImg}></img>
                                                                 <span>{post.likes.length}</span>
@@ -400,7 +400,7 @@ export const TelaTimeline = (person, idx) => {
                                                             </button>
                                                         :
                                                         post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
-    
+
                                                             <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
                                                                 <img src={botaoCurtidoImg}></img>
                                                                 <span>{post.likes.length}</span>
@@ -410,7 +410,7 @@ export const TelaTimeline = (person, idx) => {
                                                                 <img src={botaoCurtirImg}></img>
                                                                 <span>{post.likes.length}</span>
                                                             </button>
-    
+
                                                 }
                                             </div>
                                             <h2 className="TituloPost h5 semi-bold">{post.title}</h2>
@@ -430,11 +430,11 @@ export const TelaTimeline = (person, idx) => {
                                                             <div className='LinhaCampoCadastroComentarios'>
                                                                 <div className="CampoCadastro">
                                                                     <label className="LabelCampoCadastro">Título</label>
-                                                                    <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloCadastroComentario(e.target.value)} value={tituloCadastroComentario}></input>
+                                                                    <input className="input" placeholder="Digite o título..." type="text" onChange={(e) => setTituloCadastroComentario(e.target.value)} value={tituloCadastroComentario}></input>
                                                                 </div>
                                                                 <div className="CampoCadastro">
                                                                     <label className="LabelCampoCadastro">Descrição</label>
-                                                                    <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
+                                                                    <input className="input" placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
                                                                 </div>
                                                             </div>
                                                             {
@@ -442,6 +442,7 @@ export const TelaTimeline = (person, idx) => {
                                                                     <button type="submit" className="BtnSubmitForm" disabled>Carregando...</button> : <button type="submit" className="BtnSubmitForm">Publicar</button>
                                                             }
                                                         </form>
+
                                                         <button onClick={(e) => closeModalComentarios(e)}>X</button>
                                                     </div>
                                                     <div className='ContainerComentarios'>
@@ -475,18 +476,18 @@ export const TelaTimeline = (person, idx) => {
             </div>
         );
     }
-    else{
+    else {
         return (
             <div>
-    
+
                 <Navbar />
                 <div className="body-pd">
                     {/* <Header /> */}
                     <VLibras />
                     {/* onboarding */}
-                    <img 
-                        src={onBoardingBot} 
-                        onClick={handleOpenOnBoarding} 
+                    <img
+                        src={onBoardingBot}
+                        onClick={handleOpenOnBoarding}
                         className="img-onboarding"
                     />
                     <Modal
@@ -504,15 +505,15 @@ export const TelaTimeline = (person, idx) => {
                                     <Swiper
                                         pagination={{
                                             type: "fraction",
-                                          }}
-                                          navigation={true}
-                                          modules={[Pagination, Navigation]}
-                                          
+                                        }}
+                                        navigation={true}
+                                        modules={[Pagination, Navigation]}
+
                                         className="swiperHomeTasks-social"
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                                <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
@@ -532,7 +533,7 @@ export const TelaTimeline = (person, idx) => {
                                         </SwiperSlide>
                                     </Swiper>
                                 </div>
-    
+
                             </div>
                         </div>
                     </Modal>
@@ -563,7 +564,7 @@ export const TelaTimeline = (person, idx) => {
                                                 }} className="BotaoComentar BotaoPost">
                                                     <img src={botaoComentarImg}></img>
                                                 </button>
-                                                {
+                                                {/* {
                                                     IsLoading == true ?
                                                         post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
     
@@ -589,7 +590,7 @@ export const TelaTimeline = (person, idx) => {
                                                                 <span>{post.likes.length}</span>
                                                             </button>
     
-                                                }
+                                                } */}
                                             </div>
                                             <h2 className="TituloPost h5 semi-bold">{post.title}</h2>
                                             <p className="DescricaoPost p">{post.postDescription}</p>
