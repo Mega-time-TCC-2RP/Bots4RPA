@@ -1,0 +1,24 @@
+.waiting-background{
+        height: 100vh;
+        background-color: #fff;
+        
+}
+.waiting-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+        margin: auto;
+        margin-top: 5%;    
+}
+.img-waiting{
+        width: 600px;
+}
+.waiting-text{
+        margin-top: 30px;
+}
+.waiting-button{
+        margin-top: 30px;
+        margin-bottom: 50px;
+}

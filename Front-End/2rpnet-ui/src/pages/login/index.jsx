@@ -83,6 +83,7 @@ export default function Login() {
                         )
                         .then(resposta => {
                                 if (resposta.status === 200) {
+                                        
                                         localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
 
                                         // define a variável base64 que vai receber o payload do token
@@ -108,8 +109,8 @@ export default function Login() {
                                 setIsLoading(false);
                         })
 
-                        .catch(() => {
-
+                        .catch((error) => {
+                                console.log(error)
                                 this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
                                 setIsLoading(false);
                         })
