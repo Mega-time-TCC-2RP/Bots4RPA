@@ -205,7 +205,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     {
                         IdUser = PostedUser.IdUser,
                         IdCorporation = user.IdCorporation,
-                        Confirmation = false
+                        Confirmation = false,
+                        IdOffice = user.IdOffice
                     };
 
                     Employee PostedEmployee = Ectx.Create(PostEmployee);
@@ -219,7 +220,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
                         Player PostedPlayer = Pctx.Create(PostPlayer);
 
-                        return Ok(new
+                        return Created("UsuarioCriado", new
                         {
                             User = new UserName()
                             {
@@ -237,7 +238,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                             {
                                 IdUser = PostedUser.IdUser,
                                 IdCorporation = user.IdCorporation,
-                                Confirmation = false
+                                Confirmation = false,
+                                IdOffice = user.IdOffice
                             },
                             Player = new Player()
                             {
@@ -245,7 +247,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                             }
                         });
                     }
-                    return Ok(new
+                    return Created("UsuarioCriado", new
                     {
                         User = new UserName()
                         {
@@ -263,7 +265,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         {
                             IdUser = PostedUser.IdUser,
                             IdCorporation = user.IdCorporation,
-                            Confirmation = false
+                            Confirmation = false,
+                            IdOffice = user.IdOffice
                         }
                     });
                 }
