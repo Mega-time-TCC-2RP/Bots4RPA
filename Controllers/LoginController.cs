@@ -55,7 +55,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
                 if (queryUser.UserValidation == false)
                 {
-                    Unauthorized("Apenas usuários validados podem logar");
+                    BadRequest(new { msg = "Apenas usuários validados podem logar" });
                 }
 
                 var tokenClaims = new[]
@@ -103,9 +103,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return NotFound(new { msg = "Primeiro acesso ainda não foi concluído" });
                 }
 
-                if (queryUser.UserValidation == false)
-                {
-                    Unauthorized("Apenas usuários validados podem logar");
+                if (queryUser.UserValidation == false) { 
+                    BadRequest(new { msg = "Apenas usuários validados podem logar" }); 
                 }
 
                 var tokenClaims = new[]
