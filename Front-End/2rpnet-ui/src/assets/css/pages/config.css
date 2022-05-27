@@ -3,7 +3,8 @@
     padding: 0;
     box-sizing: border-box;
     overflow: auto;
-    height: 91vh;
+    height: 100vh;
+    width: 100vw - 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -90,7 +91,7 @@
 
 .dataUser label {
     font-weight: bold;
-} 
+}
 
 .dataUser p {
     /* font-size: 1.2em;
@@ -169,7 +170,7 @@
 }
 
 .closeModal {
-    margin-left: 30%;
+    position: fixed;
 }
 
 .inputsModalArea {
@@ -191,8 +192,9 @@
 
 .maskProfile {
     background-color: #6C757D;
-    height: 320px;
+    height: auto;
     border-radius: 50%;
+    margin: auto;
 }
 
 .editProfileImage {
@@ -246,7 +248,7 @@
     filter: grayscale(1);
 }
 
-.ContainerModalTrophiesAlinhamento{
+.ContainerModalTrophiesAlinhamento {
     display: flex;
     align-items: center;
     height: 100%;
@@ -264,16 +266,16 @@
     overflow-y: hidden;
 }
 
-.ContainerModalTrophies img{
+.ContainerModalTrophies img {
     width: 300px;
     height: 300px;
 }
 
-.ImgTrophyModalNotEarned{
+.ImgTrophyModalNotEarned {
     filter: grayscale(1);
 }
 
-.ContainerModalTrophies button{
+.ContainerModalTrophies button {
     border: none;
     background-color: var(--WHITE);
     color: var(--ComplementaryColor4);
@@ -281,7 +283,7 @@
     font-weight: 600;
 }
 
-.TrophyData{
+.TrophyData {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -291,28 +293,28 @@
     margin-left: 50px;
 }
 
-.profile .container{
+.profile .container {
     width: 90%;
 }
 
-.profile section{
+.profile section {
     margin-bottom: 72px;
     margin-top: 36px;
 }
 
-.ProfileContainer .body-pd{
+.ProfileContainer .body-pd {
     height: auto;
 }
 
-.ProfileContainer .configPage{
+.ProfileContainer .configPage {
     height: auto;
 }
 
-.profile .configContent{
+.profile .configContent {
     height: auto;
 }
 
-.skin-profile-card{
+.skin-profile-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -323,7 +325,231 @@
     height: 500px;
 }
 
-.skin-profile-card img{
+.skin-profile-card img {
     width: 250px;
     height: auto;
+}
+
+.newPassword label {
+    padding-left: 5%;
+}
+
+@media only screen and (max-width: 1550px) {
+    :root {
+        font-size: 0.9em;
+    }
+    .navAreaConfig {
+        width: 85vw;
+        overflow: hidden;
+    }
+
+    #configTitlle {
+        width: 85vw;
+        overflow: hidden;
+        height: 33px;
+    }
+
+    .configContent {
+        width: 80vw;
+    }
+
+    .profileImage {
+        width: 290px;
+        height: 290px;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    :root {
+        font-size: 0.85em;
+    }
+
+    .navAreaConfig {
+        width: 65vw;
+        overflow: hidden;
+    }
+
+    #configTitlle {
+        width: 65vw;
+        overflow: hidden;
+        height: 28px;
+
+    }
+
+    .configContent {
+        width: 65vw;
+        height: 550px;
+        padding: 2vh 2vh;
+    }
+
+    .areaStep {
+        justify-content: space-evenly;
+    }
+
+    .contentAreaConfig {
+        flex-direction: column;
+    }
+
+    .input {
+        height: 40px;
+    }
+    .profileImage {
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    :root {
+        font-size: 0.75rem;
+    }
+
+    .container {
+        width: 750px;
+    }
+
+    .navAreaConfig {
+        width: 65vw;
+        overflow: hidden;
+    }
+
+    #configTitlle {
+        width: 65vw;
+        overflow: hidden;
+    }
+
+    .configContent {
+        width: 65vw;
+        height: 550px;
+        padding: 2vh 2vh;
+    }
+
+    .areaStep {
+        justify-content: space-evenly;
+    }
+
+    .contentAreaConfig {
+        flex-direction: column;
+    }
+
+    .profileImage {
+        width: 200px;
+    }
+
+    .mainContentArea {
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    :root {
+        font-size: 0.83rem;
+    }
+
+    .container {
+        width: auto;
+    }
+
+    .sidebar {
+        visibility: hidden;
+    }
+
+    .body-pd {
+        width: unset;
+        position: unset;
+        justify-content: space-evenly;
+        overflow: hidden;
+    }
+
+    #configTitlle {
+        width: 90vw;
+    }
+
+    .navAreaConfig {
+        width: 90vw;
+        align-items: center;
+    }
+
+    .navAreaConfig span {
+        font-size: 1.4em;
+    }
+
+    .configContent {
+        width: 90vw;
+    }
+
+    .profileImage {
+        width: 155px;
+        height: 155px;
+    }
+
+    .areaStep {
+        justify-content: space-between;
+    }
+
+    .contentAreaConfig {
+        height: 85%;
+    }
+
+    .mainContentArea {
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: auto;
+        align-items: unset;
+    }
+
+    .contentConfig {
+        height: 110px;
+        width: 100%;
+    }
+
+    .button {
+        width: 100% !important;
+    }
+
+    #validarUsuarios {
+        visibility: hidden;
+        display: none;
+    }
+    #modalAtualize {
+        width: 80vw !important;
+    }
+    .maskProfile {
+        height: auto;
+        width: auto;
+        margin: auto;
+    }
+    .closeModal {
+        position: fixed;
+        margin-left: unset;
+    }
+    .sendPhoto {
+        height: 25px;
+    }
+    .foreachInputModal {
+        width: 30%;
+    }
+    .inputsModalArea {
+        width: 100%;
+    }
+    .newPassword {
+        width: 45%;
+    }
+    .newPassword label {
+        padding-left: 5%;
+    }
+    .newPassword input {}
+    .confirmPassword {
+        height: 100px;
+        width: 100%;
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+@media only screen and (max-width: 477px) {
+    #DataNascimento {
+        font-size: 1em;
+    }
 }
