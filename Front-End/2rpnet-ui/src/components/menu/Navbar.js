@@ -58,6 +58,10 @@ function Navbar() {
     let sidebar = document.querySelector('.sidebar')
     sidebar.classList.toggle('active')
   }
+  // function click() {
+  //   let sidebar = document.querySelector('.sidebar2')
+  //   sidebar.classList.toggle('active')
+  // }
   function click2() {
     let sidebar = document.querySelector('.options')
     sidebar.classList.toggle('active')
@@ -85,7 +89,7 @@ function Navbar() {
 
   if (parseJwt().Role == "3") {
   return (
-<div>
+
     <div className='sidebar'>
       <ToastContainer />
       <div className='logo_content'>
@@ -181,8 +185,7 @@ function Navbar() {
         </div>
         
       </div>
-        </div>
-        <div className='options'>
+      <div className='options'>
             <div  onClick={GoToProfile} className='myProfile'>
               <FaIcons.FaRegUser className='btn_log_perfil'/>
               <span>Perfil</span>
@@ -193,7 +196,8 @@ function Navbar() {
             </div>
 
           </div>
-    </div>
+        </div>
+        
 
 
   );
