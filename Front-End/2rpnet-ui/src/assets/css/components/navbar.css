@@ -244,10 +244,10 @@ html {
     z-index: 100;
     pointer-events: none;
     transition: all 0.2s ease;
-    position: absolute;
+    position: fixed;
     height: 70px;
     left: 0;
-    bottom: 8%;
+    bottom: 7.4%;
     width: 268px;
     color: var(--WHITE);
     background: var(--ComplementaryColor3);

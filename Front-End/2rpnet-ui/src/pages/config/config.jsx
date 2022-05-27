@@ -583,7 +583,7 @@ export default function Config() {
             {parseJwt().Role == 3 ? <Header /> : null}
             <Navbar />
             <div className='configPage body-pd'>
-                <h1 className='container h3' alt="configurações">Configurações</h1>
+                <h1 className='container h3' id='configTitlle' alt="configurações">Configurações</h1>
                 <nav className='navAreaConfig container'>
                     <span className='h4 myData' id='myData' onClick={() => select(0)}>Meus Dados</span>
                     <span className='h4 Acessibilidade' id='Acessibilidade' onClick={() => select(1)}>Acessibilidade</span>
@@ -627,13 +627,14 @@ export default function Config() {
                                     </div>
                                     <img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} className='profileImage' alt="Imagem de perfil" />
                                 </div>
-                                <button className='button' onClick={openModalConfig}>Atualizar Dados</button>
+                                <button className='button' id='buttonAtualize' onClick={openModalConfig}>Atualizar Dados</button>
                                 <Modal
                                     isOpen={modalConfig}
                                     onRequestClose={closeModalConfig}
                                     style={configCustomStyles}
                                     class="ReactModal"
                                     closeTimeoutMS={1000}
+                                    id="modalAtualize"
                                 >
                                     <form encType='multipart/form-data' className='modalConfig areaStep'>
                                         <div className='profileImageArea'>
@@ -653,7 +654,7 @@ export default function Config() {
                                                 <input id='emailModals' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={userAlterado.userName1} onChange={(event) => setUserAlterado({ userName1: event.target.value, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='cpf'>CPF</label>
                                                 <MaskedInputCPF value={userAlterado.cpf} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: event.target.value, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
-                                                <label className='h5' htmlFor='dataNascimento'>Data de Nascimento</label>
+                                                <label id='DataNascimento' className='h5' htmlFor='dataNascimento'>Data de Nascimento</label>
                                                 <input id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userAlterado.birthDate} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: event.target.value, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                             </div>
                                             <div className='inputsModal'>
@@ -665,13 +666,13 @@ export default function Config() {
                                                 <MaskedInputTelephone value={userAlterado.phone} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
                                             </div>
                                         </div>
-                                        <div>
+                                        <div className='newPassword'>
                                             <label className='h5' htmlFor='NovaSenha'>Nova senha</label>
                                             <input required id='NovaSenha' className='input' type="text" name="name" placeholder='Insira sua nova senha...' value={NovaSenha} onChange={(event) => setNovaSenha(event.target.value)} />
                                         </div>
                                         {
                                             confirmPassword === true ?
-                                                <div>
+                                                <div className='confirmPassword'>
                                                     <input value={pass} onChange={(event) => setPass(event.target.value)} type="password" className='input' id='passConfirm' placeholder='Confirme sua Senha...' />
                                                     <button className='button' onClick={alterUserData}>Confirmar</button>
                                                 </div>
