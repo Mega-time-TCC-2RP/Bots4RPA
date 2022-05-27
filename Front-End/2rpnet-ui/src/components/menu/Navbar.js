@@ -58,6 +58,10 @@ function Navbar() {
     let sidebar = document.querySelector('.sidebar')
     sidebar.classList.toggle('active')
   }
+  function click2() {
+    let sidebar = document.querySelector('.options')
+    sidebar.classList.toggle('active')
+  }
 
   // const delay = ms => new Promise(res => setTimeout(res, ms))
   const signout = () => {
@@ -78,14 +82,10 @@ function Navbar() {
     }
     effect();
 }, []);
-  // btn.onclick = function(){
-  //   sidebar.classList.toggle('active')
-  // }
-  // onClick={sidebar.classList.toggle('active')}
 
   if (parseJwt().Role == "3") {
   return (
-
+<div>
     <div className='sidebar'>
       <ToastContainer />
       <div className='logo_content'>
@@ -157,30 +157,42 @@ function Navbar() {
       </ul>
       <div className='profile_content'>
         <div className='profile'>
-        {/* {
-                             myUser != nullUndefinedParams ?
-                                <div  onClick={(e) => GoToProfile()} className='profile_details'>
-                                    <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
-                                    <div className='name_job'>
-                                        <div className='name'>{myUser.userName1}</div>
-                                        {
-                                            myUser.employees === nullUndefinedParams.employees ?
-                                                <div className='job'>Cargo indefinido</div> : 
-                                                <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
-                                        }
-                                    </div>
-                                </div> :
-                                <div className='profile_details'>
-                                    <img alt="imagem de perfil" />
-                                    <div className='name_job'>
-                                        <div className='name'>Carregando...</div>
-                                        <div className='job'>Carregando...</div>
-                                    </div>
-                                </div>
-                        } */}
-              {/* <HiIcons.HiOutlineLogout id='log_out' onClick={signout} /> */}
+          {
+            myUser != nullUndefinedParams ?
+              <div onClick={click2} className='profile_details'>
+                  <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
+                  <div className='name_job'>
+                      <div className='name'>{myUser.userName1}</div>
+                      {
+                          myUser.employees === nullUndefinedParams.employees ?
+                              <div className='job'>Cargo indefinido</div> : 
+                              <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
+                      }
+                  </div>
+              </div> :
+              <div className='profile_details'>
+                  <img alt="imagem de perfil" />
+                  <div className='name_job'>
+                      <div className='name'>Carregando...</div>
+                      <div className='job'>Carregando...</div>
+                  </div>
+              </div>
+          }
         </div>
+        
       </div>
+        </div>
+        <div className='options'>
+            <div  onClick={GoToProfile} className='myProfile'>
+              <FaIcons.FaRegUser className='btn_log_perfil'/>
+              <span>Perfil</span>
+            </div>
+            <div  onClick={signout} className='logout'>
+              <HiIcons.HiOutlineLogout className='btn_log_perfil' />
+              <span>Logout</span>
+            </div>
+
+          </div>
     </div>
 
 
@@ -261,26 +273,26 @@ function Navbar() {
         <div className='profile_content'>
           <div className='profile'>
           {
-                               myUser != nullUndefinedParams ?
-                                  <div  onClick={(e) => GoToProfile()} className='profile_details'>
-                                      <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
-                                      <div className='name_job'>
-                                          <div className='name'>{myUser.userName1}</div>
-                                          {
-                                              myUser.employees === nullUndefinedParams.employees ?
-                                                  <div className='job'>Cargo indefinido</div> : 
-                                                  <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
-                                          }
-                                      </div>
-                                  </div> :
-                                  <div className='profile_details'>
-                                      <img alt="imagem de perfil" />
-                                      <div className='name_job'>
-                                          <div className='name'>Carregando...</div>
-                                          <div className='job'>Carregando...</div>
-                                      </div>
-                                  </div>
-                          }
+              myUser != nullUndefinedParams ?
+                <div  onClick={(e) => GoToProfile()} className='profile_details'>
+                    <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
+                    <div className='name_job'>
+                        <div className='name'>{myUser.userName1}</div>
+                        {
+                            myUser.employees === nullUndefinedParams.employees ?
+                                <div className='job'>Cargo indefinido</div> : 
+                                <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
+                        }
+                    </div>
+                </div> :
+                <div className='profile_details'>
+                    <img alt="imagem de perfil" />
+                    <div className='name_job'>
+                        <div className='name'>Carregando...</div>
+                        <div className='job'>Carregando...</div>
+                    </div>
+                </div>
+            }
                 {/* <HiIcons.HiOutlineLogout id='log_out' onClick={signout} /> */}
           </div>
         </div>
@@ -311,15 +323,6 @@ function Navbar() {
               <span className='Links_name' alt="botão guias">Guias</span>
             </Link>
           </li>
-          {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
-            <li>
-              <Link to="/skinShop" className='Link'>
-                <FaIcons.FaTshirt className='icon2' alt="botão loja" />
-                <span className='Links_name' alt="botão loja de skins">Skins</span>
-              </Link>
-            </li>
-            : null
-          } */}
           {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
             <li>
               <Link to="/marketplace" className='Link'>
@@ -363,32 +366,18 @@ function Navbar() {
         </ul>
         <div className='profile_content'>
           <div className='profile'>
-          {/* {
-                               myUser != nullUndefinedParams ?
-                                  <div  onClick={(e) => GoToProfile()} className='profile_details'>
-                                      <img  src={"http://grupo7.azurewebsites.net/img/" + myUser.photoUser} alt="imagem de perfil" />
-                                      <div className='name_job'>
-                                          <div className='name'>{myUser.userName1}</div>
-                                          {
-                                              myUser.employees === nullUndefinedParams.employees ?
-                                                  <div className='job'>Cargo indefinido</div> : 
-                                                  <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
-                                          }
-                                      </div>
-                                  </div> :
-                                  <div className='profile_details'>
-                                      <img alt="imagem de perfil" />
-                                      <div className='name_job'>
-                                          <div className='name'>Carregando...</div>
-                                          <div className='job'>Carregando...</div>
-                                      </div>
-                                  </div>
-                          } */}
-                {/* <HiIcons.HiOutlineLogout id='log_out' onClick={signout} /> */}
-          </div>
+            <div onClick={signout} className='profile_details'>
+              <div className='name_job'>
+                <div className='name2'>Logout</div>
+              </div>
+                
+            </div>
+            <HiIcons.HiOutlineLogout id='log_out' onClick={signout} />
         </div>
       </div>
-  
+    </div>
+      
+          
   
     );
    }
