@@ -4,8 +4,6 @@ import VLibras from '@djpfs/react-vlibras'
 
 //Components:
 import Footer from '../../components/footer/footer'
-import Header from '../../components/header/header'
-import Navbar from '../../components/menu/Navbar'
 
 //css:
 import '../../assets/css/pages/waitingRoom.css'
