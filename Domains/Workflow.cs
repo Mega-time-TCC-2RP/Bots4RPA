@@ -10,7 +10,6 @@ namespace _2rpnet.rpa.webAPI.Domains
         public Workflow()
         {
             Quests = new HashSet<Quest>();
-            Runs = new HashSet<Run>();
         }
 
         public int IdWorkflow { get; set; }
@@ -23,6 +22,5 @@ namespace _2rpnet.rpa.webAPI.Domains
         public virtual Employee IdEmployeeNavigation { get; set; }
         public virtual StatusWorkflow IdStatusNavigation { get; set; }
         public virtual ICollection<Quest> Quests { get; set; }
-        public virtual ICollection<Run> Runs { get; set; }
     }
 }

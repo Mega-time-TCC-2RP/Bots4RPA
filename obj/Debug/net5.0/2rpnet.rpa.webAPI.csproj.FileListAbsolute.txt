@@ -605,3 +605,11 @@ C:\Users\51371754802\Desktop\Projeto-2RP\backEnd\Bots-4RPA\obj\Debug\net5.0\ref\
 C:\Users\51371754802\Desktop\Projeto-2RP\backEnd\Bots-4RPA\obj\Debug\net5.0\2rpnet.rpa.webAPI.xml
 C:\Users\51371754802\Desktop\Projeto-2RP\backEnd\Bots-4RPA\obj\Debug\net5.0\2rpnet.rpa.webAPI.pdb
 C:\Users\51371754802\Desktop\Projeto-2RP\backEnd\Bots-4RPA\obj\Debug\net5.0\2rpnet.rpa.webAPI.genruntimeconfig.cache
+C:\Users\43392993832\Desktop\2RP\branchApi\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\agiobot.png
+C:\Users\43392993832\Desktop\2RP\branchApi\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\batbot.png
+C:\Users\43392993832\Desktop\2RP\branchApi\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Bluebot.png
+C:\Users\43392993832\Desktop\2RP\branchApi\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\botpool.png
+C:\Users\43392993832\Desktop\2RP\branchApi\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Greenbot.png
+C:\Users\43392993832\Desktop\2RP\branchApi\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Orangebot.png
+C:\Users\43392993832\Desktop\2RP\branchApi\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Pinkiebot.png
+C:\Users\43392993832\Desktop\2RP\branchApi\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Redbot.png
