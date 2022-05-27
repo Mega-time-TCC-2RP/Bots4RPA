@@ -9,7 +9,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { DataGraphic } from '../graphic/dataGraphic'
 // import { run } from 'cypress';
-import {API} from '../../../src/services/api'
+import { API } from '../../../src/services/api'
 
 export default function ModalM({ assistant }) {
 
@@ -75,7 +75,6 @@ export default function ModalM({ assistant }) {
     // }
     // useEffect(PropsAssistant, [])
 
-
     function CloseModal(idAssistant) {
         var modal = document.getElementById("modal" + idAssistant);
         modal.style.display = "none";
@@ -102,21 +101,21 @@ export default function ModalM({ assistant }) {
 
     function DeleteAssistant(idAssistant) {
         DeleteProcedures()
-            // .then(
-                fetch(API + '/api/Assistants/' + assistant.idAssistant, {
-                    method: 'DELETE',
-                    headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-                    },
-                })
-                    .then((resposta) => {
-                        if (resposta.status === 200) {
-                            console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
-                            CloseModal(assistant.idAssistant)
-                        }
-                    })
-                    .catch((erro) => console.log(erro))
-            // )
+        // .then(
+        fetch(API + '/api/Assistants/' + assistant.idAssistant, {
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
+                    CloseModal(assistant.idAssistant)
+                }
+            })
+            .catch((erro) => console.log(erro))
+        // )
 
     };
 

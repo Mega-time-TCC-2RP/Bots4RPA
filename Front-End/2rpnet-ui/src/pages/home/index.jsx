@@ -200,9 +200,14 @@ export default function Home() {
         setIsExecuting(false);
       })
   }
-  // useEffect(() => {
-  //   GetMyAssistants()
-  // }, [Execute])
+  useEffect(() => {
+    <ModalM />
+  }, [isExecuting])
+
+  useEffect(() => {
+    GetMyAssistants()
+  }, [isExecuting])
+
   function GetAssistant() {
     console.log('getAssistant')
     fetch(API + '/api/Assistants', {
@@ -337,7 +342,7 @@ export default function Home() {
       <Navbar />
       <div className='body-pd'>
 
-        <Header />
+        {/* <Header /> */}
         <VLibras />
         <img
           src={onBoardingBot}

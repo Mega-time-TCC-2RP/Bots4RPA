@@ -31,14 +31,14 @@
 }
 
 .modalAContainer {
-    width: 963px;
-    height: 856px;
+    width: 60.188em;
+    height: 53.5em;
     display: flex;
     flex-direction: column;
     padding: 1.563rem;
 
-    background: #F3F3F3;
     border-radius: 30px;
+    background: #F3F3F3;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     /* background-color: #fff8b0; */
@@ -91,14 +91,14 @@
 
 .Label-ModalA {
     font-family: 'Montserrat';
-    font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     display: flex;
+    font-style: normal;
     align-items: center;
     text-indent: 16px;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 
     color: #17233C;
 }
@@ -106,7 +106,7 @@
 .Input-ModalA {
     width: 512px;
     height: 50px;
-    margin-bottom: 3px;
+    margin-bottom: 0.188rem;
     border-radius: 32px;
     box-sizing: border-box;
     border: 1px solid #8B919D;
@@ -114,7 +114,7 @@
 
     /* PlaceHolder */
     font-family: 'Montserrat';
-    padding-left: 16px;
+    padding-left: 1rem;
     font-size: 18px;
     line-height: 22px;
     font-style: normal;
@@ -128,7 +128,7 @@
 .Button-ModalA {
     width: 10em;
     height: 2.6em;
-    margin-bottom: 28px;
+    margin-bottom: 1.75rem;
     cursor: pointer;
     border-radius: 64px;
     font-family: 'Montserrat', sans-serif;
@@ -151,7 +151,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .box-ModalA div{
