@@ -100,7 +100,7 @@ export default function ModalM({ assistant }) {
     };
 
     function DeleteAssistant(idAssistant) {
-        DeleteProcedures()
+        // DeleteProcedures()
         // .then(
         fetch(API + '/api/Assistants/' + assistant.idAssistant, {
             method: 'DELETE',
