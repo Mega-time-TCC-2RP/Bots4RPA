@@ -8,6 +8,7 @@ import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import bolinhas from "../../assets/img/Bolinhas.svg"
+import Azul_Home from '../../assets/img/Azul_Home.png'
 
 import Navbar from '../../components/menu/Navbar'
 import Footer from '../../components/footer/footer'
@@ -25,8 +26,8 @@ import { API } from "../../services/api";
 // testar colocar uma lista com informações dos cards/bloquinhos
 export default function Assistant() {
 
-    const [MyProcedures, setMyProcedures] = useState([])
-    const [Assistant, setAssistant] = useState("")
+    const [MyProcedures, setMyProcedures] = useState([]);
+    const [Assistant, setAssistant] = useState("");
     const [proceduresList, setProceduresList] = useState([]);
     const [pValue, setPValue] = useState();
     const [eRValue, setERValue] = useState();
@@ -55,7 +56,7 @@ export default function Assistant() {
             )
             .catch((error) => console.log(error));
     };
-    useEffect(GetProceduresById, [])
+    useEffect(GetProceduresById)
 
     function returnModalEmail(procedure) {
         if (procedure.procedureName != "Enviar email para alguem") {
@@ -86,8 +87,10 @@ export default function Assistant() {
     function handleShow(p) {
         var modal = document.getElementById("modal" + p.idAprocedure);
         // console.log(modal)
-        // console.log(p)
         modal.style.display = "block";
+        // console.log(p)
+        var splitEmail = p.procedureValue.split("/");
+        // console.log(splitEmail);
 
         if (p.procedureName != "Enviar email para alguem") {
             if (pValue != p.procedureValue) {
@@ -106,6 +109,8 @@ export default function Assistant() {
                 } else {
                     setERValue("")
                 }
+            } else if (eRValue != splitEmail[0]) {
+                setERValue(splitEmail[0])
             }
             if (eSValue != p.emailSubject) {
                 if (p.emailSubject != "") {
@@ -113,6 +118,8 @@ export default function Assistant() {
                 } else {
                     setESValue("")
                 }
+            } else if (eSValue != splitEmail[1]) {
+                setESValue(splitEmail[1])
             }
             if (eBValue != p.emailBody) {
                 if (p.emailBody != "") {
@@ -120,6 +127,8 @@ export default function Assistant() {
                 } else {
                     setEBValue("")
                 }
+            } else if (eBValue != splitEmail[2]) {
+                setEBValue(splitEmail[2])
             }
             // console.log(p);
         }
@@ -141,7 +150,7 @@ export default function Assistant() {
         let parent = document.getElementById("flow");
         let children = parent.childNodes;
         var child = [];
-        
+
         var myURL = API + "/api/AssistantProcedure/" + idAssistant;
 
         for (let index = 0; index < children.length; index++) {
@@ -150,11 +159,11 @@ export default function Assistant() {
                 var child = children[index];
 
                 var splited = child.id.split(";");
-                child.id = (index+1) + ";" + splited[1].toString();
+                child.id = (index + 1) + ";" + splited[1].toString();
 
                 var myBody = JSON.stringify({
                     "idAssistant": idAssistant,
-                    "procedurePriority": index+1,
+                    "procedurePriority": index + 1,
                     "procedureName": child.textContent,
                     "procedureDescription": "",
                     "procedureValue": splited[1]
@@ -185,37 +194,37 @@ export default function Assistant() {
     function ManipulateScript() {
         //save the playwright script for the assistant
 
-            var myURL2 = API + "/api/AssistantProcedure/ManipulateScript/" + idAssistant;
+        var myURL2 = API + "/api/AssistantProcedure/ManipulateScript/" + idAssistant;
 
-            fetch(myURL2, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
+        fetch(myURL2, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then((response) => {
+                // console.log("before if");
+                if (response.status === 201) {
+                    // console.log("after if");
+                    return response.text()
+                } else {
+                    toast.error(`Houve erros no processo de salvamento do assistente ${idAssistant}`)
+                }
             })
-                .then((response) => {
-                    // console.log("before if");
-                    if (response.status === 201) {
-                        // console.log("after if");
-                        return response.text()
-                    } else {
-                        toast.error(`Houve erros no processo de salvamento do assistente ${idAssistant}`)
-                    }
-                })
-                .then((data) => {
-                    // console.log(data);
-                    setResult(data);
-                    toast.success(`o assistente ${idAssistant} foi salvo`)
-                    setIsSaving(false);
-                })
-                .catch((erro) => {
-                    console.log(erro);
-                    toast.error("O script de salvamento não foi salvo :/");
-                    setIsSaving(false);
-                });
+            .then((data) => {
+                // console.log(data);
+                setResult(data);
+                toast.success(`o assistente ${idAssistant} foi salvo`)
+                setIsSaving(false);
+            })
+            .catch((erro) => {
+                console.log(erro);
+                toast.error("O script de salvamento não foi salvo :/");
+                setIsSaving(false);
+            });
     }
 
     function Save() {
-       SaveProcedures();
-       ManipulateScript();
+        SaveProcedures();
+        ManipulateScript();
     }
 
     function GetAssistantById() {
@@ -397,9 +406,37 @@ export default function Assistant() {
 
     useEffect(() => {
         configDragnDrop();
-        GetAssistantById();
-        setProceduresList(Procedures);
     })
+
+    function fixProceduresList() {
+        GetAssistantById();
+        GetProceduresById();
+        console.log(MyProcedures.length);
+
+        for (let indexM = 0; indexM < MyProcedures.length; indexM++) {
+
+            const element = MyProcedures[indexM];
+
+            for (let index = 0; index < Procedures.length; index++) {
+
+                const elemento = Procedures[index];
+
+                if (element.procedureName == elemento.procedureName) {
+
+                    Procedures.splice(index, 1);
+                    // console.log("AHA");
+                    // console.log(Procedures);
+
+                }
+            }
+        }
+
+        setProceduresList(Procedures);
+    }
+
+    useEffect(() => {
+        fixProceduresList();
+    }, [MyProcedures])
 
     return (
         <div>
@@ -512,6 +549,9 @@ export default function Assistant() {
                                 )
                             }
                         </div>
+                    </div>
+                    <div className="boards-skinA">
+                        <img className="boards-skinA__skin" src={Azul_Home} alt="" />
                     </div>
                 </div>
                 <ToastContainer />
