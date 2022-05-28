@@ -408,7 +408,7 @@ export default function Assistant() {
             </header>
             <main className="main-Assistant">
                 <Navbar />
-                <div className="boards container">
+                <div className="boards containerAssistant">
                     <div className="boards__board boards__board--pointy">
                         <h3 className="board_title">Métodos</h3>
                         <div className="dropzone">

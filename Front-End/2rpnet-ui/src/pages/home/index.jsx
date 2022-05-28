@@ -231,7 +231,7 @@ export default function Home() {
     })
       .then((response) => response.json())
       .then((data) =>
-           setAssistantsList(data)
+        setAssistantsList(data)
         // console.log(data)
       )
       .catch((error) => console.log(error));
@@ -338,7 +338,7 @@ export default function Home() {
 
   return (
     <div>
-      
+
       <Navbar />
       <div className='body-pd'>
 
@@ -360,7 +360,7 @@ export default function Home() {
                 <img className="bot-img" src={Blue_Head} />
               </div>
               <div className="body-content">
-                <h2>Assistente</h2>
+                <h2 className="h2">Assistente</h2>
                 <Swiper
                   pagination={{
                     type: "fraction",
@@ -478,10 +478,12 @@ export default function Home() {
 
         <div className="body-container">
           <h2 className="body-title-task h2">Minhas Tarefas</h2>
+          {
+            window.screen.width >= 768 ?
           <Swiper
-            slidesPerView={2}
+            slidesPerView={1}
             spaceBetween={0}
-            slidesPerGroup={2}
+            slidesPerGroup={1}
             loop={false}
             loopFillGroupWithBlank={true}
             pagination={{
@@ -508,10 +510,49 @@ export default function Home() {
                   <span>Não há tarefas...</span>
                 </SwiperSlide>
             }
-          </Swiper>
+          </Swiper> : 
+          <Swiper
+          // slidesPerView={1}
+          // spaceBetween={0}
+          // slidesPerGroup={1}
+          // loop={false}
+          // loopFillGroupWithBlank={true}
+          // pagination={{
+          //   clickable: true,
+          // }}
+          // navigation={true}
+          // modules={[Pagination, Navigation]}
+          pagination={{
+            clickable: true
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="swiperHomeTasks"
+        >
+          {
+            myQuests != undefined && myQuests != null && myQuests[0] != undefined && myQuests[0] != null ?
+              myQuests.map((Workflow) => {
+                return (
+                  <SwiperSlide className="swiper-slide-HomeTasks">
+                    <div className="card-body-content cardPattern">
+                      <h3 className="title-card-content h4">{Workflow.title}</h3>
+                      <p className="text-body1 p">{Workflow.workflowDescription}</p>
+                      {/* <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Workflow.endDate))}</p> */}
+                    </div>
+                  </SwiperSlide>
+                )
+              }) :
+              <SwiperSlide className="swiper-slide-HomeTasks">
+                <span>Não há tarefas...</span>
+              </SwiperSlide>
+          }
+        </Swiper>
+          }
         </div>
         <div className="bottom-container">
           <h2 className="body-title-task h2">Posts em destaque</h2>
+          {
+            window.screen.width >= 768 ?
           <Swiper
             slidesPerView={2}
             spaceBetween={0}
@@ -551,11 +592,57 @@ export default function Home() {
                 }) :
                 <span>Não há posts em destaque</span>
             }
-          </Swiper>
+          </Swiper> :
+          <Swiper
+          // slidesPerView={2}
+          // spaceBetween={0}
+          // slidesPerGroup={2}
+          // loop={false}
+          // loopFillGroupWithBlank={true}
+          // pagination={{
+          //   clickable: true,
+          // }}
+          // navigation={true}
+          // modules={[Pagination, Navigation]}
+          pagination={{
+            clickable: true
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="swiperHomeTasks"
+        >
+          {
+            highlightedPosts != undefined && highlightedPosts != null && highlightedPosts[0] != undefined && highlightedPosts[0] != null ?
+              highlightedPosts.map((post) => {
+                return (
+                  <SwiperSlide className="swiper-slide-HomeTasks">
+                    <div className="bottom-posts-content cardPattern">
+                      <div className="chatListItem--lines">
+                        <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                        <div className="chatItemList-line">
+                          <div className="PostItem-name h5">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
+                          <p className="PostItem-role p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+                        </div>
+                      </div>
+                      {
+                        post.postImage != undefined ?
+                          <img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
+                          <img className="img2-home-bottom" src={noPhoto}></img>
+                      }
+                      <h2 className="TituloPostDestaque h5">{post.title}</h2>
+                      <p className="post-text-bottom-home p">{post.postDescription}</p>
+                    </div>
+                  </SwiperSlide>
+                )
+              }) :
+              <span>Não há posts em destaque</span>
+          }
+        </Swiper>
+          }
 
         </div >
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }

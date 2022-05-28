@@ -560,7 +560,7 @@
     .newPassword label {
         padding-left: 5%;
     }
-    .newPassword input {}
+    /* .newPassword input {} */
     .confirmPassword {
         height: 100px;
         width: 100%;
