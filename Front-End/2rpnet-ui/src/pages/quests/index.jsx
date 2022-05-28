@@ -309,7 +309,7 @@ function App() {
                   <img className="bot-img" src={Blue_Head} />
                 </div>
                 <div className="body-content">
-                  <h2>Assistente</h2>
+                  <h2 className='h2'>Assistente</h2>
                   <Swiper
                     pagination={{
                       type: "fraction",

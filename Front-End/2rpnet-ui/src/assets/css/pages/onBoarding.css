@@ -2,20 +2,23 @@
 
 .top-container-onboarding {
         position: fixed;
-        width: 652px;
-        height: 220px;
+        width: 50%;
         right: 100px;
         top: 50px;
         background: var(--PrimaryColor2);
         box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.25);
         border-radius: 30px 30px 30px 29px;
+        z-index: 100;
+        padding: 1%;
 }
 
 .background-body {
-        width: 620px;
-        height: 188px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
         margin: 0 auto;
-        margin-top: 17px;
+        /* margin-top: 17px; */
         display: flex;
         background: #F3F0F0;
         box-shadow: inset 0px 0px 4px #5F91C4;
@@ -23,9 +26,8 @@
 }
 
 .bot-img {
-        width: 170px;
-        margin-top: 55px;
-        margin-left: 30px;
+        width: 100%;
+        padding: 2%;
 }
 
 .body-content {
@@ -37,7 +39,8 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 29px;
-        margin-left: 20px;
+        width: 75%;
+        /* margin-left: 20px; */
 }
 
 .body-content h2 {
@@ -48,7 +51,7 @@
         line-height: 29px;
         align-items: center;
         color: #3475BB;
-        margin-top: 10px;
+        margin-top: 2%;
 }
 
 .barra {
@@ -87,7 +90,7 @@
 }
 
 .swiperHomeTasks-social {
-        width: 370px;
+        width: 100%;
         height: 145px;
 }
 
@@ -107,17 +110,18 @@
 }
 
 .boardingContainer {
-        width: 280px;
-        margin-bottom: 30px;
+        width: 60%;
+        margin-bottom: 10%;
 }
 
 .img-onboarding {
-        width: 150px;
-        height: 120px;
+        width: 8%;
+        height: auto;
         position: fixed;
         right: 70px;
         top: 70px;
         cursor: pointer;
+        z-index: 99;
 }
 
 .img-onboarding:hover {
@@ -125,7 +129,22 @@
         border-radius: 20px;
 }
 .textoBonito{
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
         align-items: center;
         text-align: center;
+}
+
+.ReactModalPortal div{
+        z-index: 100;
+}
+
+@media (max-width: 767px) {
+        .swiper-slide-HomeTasks{
+            width: 100% !important;
+        }
+
+        .img-onboarding{
+                right: 25px;
+                top: 25px;
+        }
 }

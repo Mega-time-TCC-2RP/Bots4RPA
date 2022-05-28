@@ -406,12 +406,12 @@ export default function Assistant() {
 
     return (
         <div>
-            <header className="header container">
+            <header className="header containerAssistant">
                 <h1 className="header__text">{Assistant.assistantName}</h1>
             </header>
             <main className="main-Assistant">
                 <Navbar />
-                <div className="boards container">
+                <div className="boards containerAssistant">
                     <div className="boards__board boards__board--pointy">
                         <h3 className="board_title">Métodos</h3>
                         <div className="dropzone">
