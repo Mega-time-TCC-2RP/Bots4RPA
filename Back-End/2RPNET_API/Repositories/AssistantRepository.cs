@@ -38,29 +38,29 @@ namespace _2RPNET_API.Repositories
 
         public void Delete(int IdAssistant)
         {
-            Assistant SearchAssistant = SearchByID(IdAssistant);
+            //Assistant SearchAssistant = SearchByID(IdAssistant);
 
-            Ctx.Assistants.Remove(SearchAssistant);
-
-            Ctx.SaveChanges();
-
-            //Assistant assistant = new Assistant();
-            //ListProcedures = Procedure.SearchByAssistant(IdAssistant);
-            //if (assistant != 0)
-            //{
-            //    Ctx.AssistantProcedures.RemoveRange(assistant.AssistantProcedures);
-            //    Assistant AssistantSought = SearchByID(IdAssistant);
-            //    Ctx.Assistants.Remove(AssistantSought);
-            //}
-            //else
-            //{
-            //    Assistant AssistantSought = SearchByID(IdAssistant);
-            //    List<AssistantProcedure> list = AssistantSought.AssistantProcedures.ToList();
-            //    Ctx.AssistantProcedures.RemoveRange(list);
-            //    Ctx.Assistants.Remove(AssistantSought);
-            //}
+            //Ctx.Assistants.Remove(SearchAssistant);
 
             //Ctx.SaveChanges();
+
+           
+            Assistant AssistantSought = SearchByID(IdAssistant);
+            Ctx.Assistants.Remove(AssistantSought);
+            //DELETA OS AQUIVOS DO ASSISTANT 
+            string path = $"./StaticFiles/Files/AssistantProcess" + $"{IdAssistant}" + ".cs";
+            // Create a file to write to.
+            string pathRun = $"./Controllers/Assistant{IdAssistant}Controller.cs";
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            if (File.Exists(pathRun))
+            {
+                File.Delete(pathRun);
+            }
+            Ctx.SaveChanges();
         }
 
         public async Task EnviaEmail(int idAssistant, SendEmailViewModel emailConfig)
@@ -103,12 +103,12 @@ namespace _2RPNET_API.Repositories
 
                 SmtpClient client = new SmtpClient();
 
-                
-                    client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                    client.Authenticate("bots4rpa@gmail.com", "Grupo8_manha");
-                    await client.SendAsync(message);
-                    client.Disconnect(true);
-                    client.Dispose();
+
+                client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                client.Authenticate("bots4rpa@gmail.com", "Grupo8_manha");
+                await client.SendAsync(message);
+                client.Disconnect(true);
+                client.Dispose();
 
             }
 
@@ -192,7 +192,7 @@ namespace _2RPNET_API.Repositories
                 {
                     AssistantSought.AssistantDescription = UpdatedAsssistant.AssistantDescription;
                 }
-                
+
                 Ctx.Assistants.Update(AssistantSought);
                 Ctx.SaveChanges();
             }

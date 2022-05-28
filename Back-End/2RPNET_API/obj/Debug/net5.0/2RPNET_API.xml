@@ -19,6 +19,11 @@
             Method responsible for create a Run process
             </summary>
         </member>
+        <member name="M:_2RPNET_API.Controllers.Assistant40Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
+            <summary>
+            Method responsible for create a Run process
+            </summary>
+        </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.ReadAll">
             <summary>
             Method responsible for list all Assistants

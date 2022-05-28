@@ -18,10 +18,14 @@ namespace _2RPNET_API.Controllers
     public class AssistantsController : ControllerBase
     {
         private IAssistantRepository _AssistantRepository { get; set; }
+        private IAssistantProcedureRepository _AssistantProcedureRepository { get; set; }
+        private IRunRepository _RunRepository { get; set; }
 
-        public AssistantsController(IAssistantRepository Assistant)
+        public AssistantsController(IAssistantRepository Assistant, IAssistantProcedureRepository assistantProcedure, IRunRepository run)
         {
             _AssistantRepository = Assistant;
+            _AssistantProcedureRepository = assistantProcedure;
+            _RunRepository = run;
         }
 
         /// <summary>
@@ -143,21 +147,28 @@ namespace _2RPNET_API.Controllers
         {
             try
             {
-
                 if (IdAssistant > 0)
                 {
-                    //AssistantProcedureRepository assistantProcedureRepository = new AssistantProcedureRepository();
-                    //assistantProcedureRepository.Delete(IdAssistant);
+                    List<AssistantProcedure> listProcedures = _AssistantProcedureRepository.SearchByAssistant(IdAssistant);
+                    List<Run> listRuns = _RunRepository.AssistantList(IdAssistant);
+                    if (listProcedures != null)
+                    {
+                        _AssistantProcedureRepository.Delete(IdAssistant);
+                    }
+                    if (listRuns != null)
+                    {
+                        _RunRepository.Delete(IdAssistant);
+
+                    }
                     _AssistantRepository.Delete(IdAssistant);
+                    return Ok();
                 }
                 else
                 {
                     return BadRequest();
                 }
-
-                return Ok();
-
             }
+
             catch (Exception Ex)
             {
                 return BadRequest(Ex);
@@ -169,7 +180,7 @@ namespace _2RPNET_API.Controllers
         {
             try
             {
-                _AssistantRepository.EnviaEmail(idAssistant,assistant);
+                _AssistantRepository.EnviaEmail(idAssistant, assistant);
                 return Ok(new
                 {
                     Mensagem = "Código enviado"
@@ -183,7 +194,7 @@ namespace _2RPNET_API.Controllers
         }
 
         [HttpPost("EnviarEmailUsuario")]
-        public IActionResult EnviaEmail( SendEmailViewModel assistant)
+        public IActionResult EnviaEmail(SendEmailViewModel assistant)
         {
             try
             {

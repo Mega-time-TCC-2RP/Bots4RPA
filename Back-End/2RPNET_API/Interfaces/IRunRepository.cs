@@ -16,9 +16,10 @@ namespace _2RPNET_API.Interfaces
         Run SearchAssistantByID(int IdAssistant);
 
         List<RunsQuantityViewModel> RunsQuantity(int IdAssistant);
+        void Delete(int IdAssistant);
         int ErrorQuantity(int IdAssistant);
         int SucessQuantity(int IdAssistant);
         int RunQuantity(int IdAssistant);
-        List<Run> AssistantList(int id);
+        List<Run> AssistantList(int idAssistant);
     }
 }

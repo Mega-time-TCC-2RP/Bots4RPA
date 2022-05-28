@@ -21,9 +21,9 @@ namespace _2RPNET_API.Repositories
             ctx = appContext;
         }
 
-        public List<Run> AssistantList(int id)
+        public List<Run> AssistantList(int idAssistant)
         {
-            return ctx.Runs.Where(r => r.IdAssistantNavigation.IdAssistant == id).ToList();
+            return ctx.Runs.Where(r => r.IdAssistantNavigation.IdAssistant == idAssistant).ToList();
         }
 
         public Run Create(int IdAssistant,Run DataRun)
@@ -47,6 +47,15 @@ namespace _2RPNET_API.Repositories
             ctx.Runs.Add(DataRun);
             ctx.SaveChanges();
             return DataRun;
+        }
+
+        public void Delete(int IdAssistant)
+        {
+            List<Run> assistantRuns = AssistantList(IdAssistant);
+
+            ctx.Runs.RemoveRange(assistantRuns);
+
+            ctx.SaveChanges();
         }
 
         public int ErrorQuantity(int IdAssistant)
