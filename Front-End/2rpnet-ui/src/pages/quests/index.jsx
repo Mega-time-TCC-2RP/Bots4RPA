@@ -1,6 +1,5 @@
 // Componetizacoes
 import Navbar from '../../components/menu/Navbar'
-import Header from '../../components/header/header.js'
 
 //libras
 import VLibras from '@djpfs/react-vlibras'
@@ -309,7 +308,7 @@ function App() {
                   <img className="bot-img" src={Blue_Head} />
                 </div>
                 <div className="body-content">
-                  <h2>Assistente</h2>
+                  <h2 className='h2'>Assistente</h2>
                   <Swiper
                     pagination={{
                       type: "fraction",
