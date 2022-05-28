@@ -8,6 +8,7 @@ import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import bolinhas from "../../assets/img/Bolinhas.svg"
+import Azul_Home from '../../assets/img/Azul_Home.png'
 
 import Navbar from '../../components/menu/Navbar'
 import Footer from '../../components/footer/footer'
@@ -55,7 +56,7 @@ export default function Assistant() {
             )
             .catch((error) => console.log(error));
     };
-    useEffect(GetProceduresById, [])
+    useEffect(GetProceduresById)
 
     function returnModalEmail(procedure) {
         if (procedure.procedureName != "Enviar email para alguem") {
@@ -403,6 +404,10 @@ export default function Assistant() {
         }
     }
 
+    useEffect(() => {
+        configDragnDrop();
+    })
+
     function fixProceduresList() {
         GetAssistantById();
         GetProceduresById();
@@ -431,7 +436,7 @@ export default function Assistant() {
 
     useEffect(() => {
         fixProceduresList();
-    }, [Procedures])
+    }, [MyProcedures])
 
     return (
         <div>
@@ -544,6 +549,9 @@ export default function Assistant() {
                                 )
                             }
                         </div>
+                    </div>
+                    <div className="boards-skinA">
+                        <img className="boards-skinA__skin" src={Azul_Home} alt="" />
                     </div>
                 </div>
                 <ToastContainer />
