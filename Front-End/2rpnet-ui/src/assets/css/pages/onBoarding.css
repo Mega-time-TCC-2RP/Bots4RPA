@@ -138,6 +138,7 @@
         z-index: 100;
 }
 
+
 @media (max-width: 767px) {
         .swiper-slide-HomeTasks{
             width: 100% !important;
@@ -146,5 +147,11 @@
         .img-onboarding{
                 right: 25px;
                 top: 25px;
+                width: 15%;
+        }
+        .top-container-onboarding{
+                width: 90%;
+                right: 5%;
+                background: none;
         }
 }
