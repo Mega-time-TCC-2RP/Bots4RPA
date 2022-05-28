@@ -276,7 +276,7 @@ export const TelaTimeline = (person, idx) => {
                                     <img className="bot-img" src={Blue_Head} />
                                 </div>
                                 <div className="body-content">
-                                    <h2>Assistente</h2>
+                                    <h2 className='h2'>Assistente</h2>
                                     <Swiper
                                         pagination={{
                                             type: "fraction",
@@ -288,22 +288,22 @@ export const TelaTimeline = (person, idx) => {
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                                <span className='bayer p'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                                <span className='bayer p'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
+                                                <span className='bayer p'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
+                                                <span className='bayer p'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>
@@ -501,7 +501,7 @@ export const TelaTimeline = (person, idx) => {
                                     <img className="bot-img" src={Blue_Head} />
                                 </div>
                                 <div className="body-content">
-                                    <h2>Assistente</h2>
+                                    <h2 className='h2'>Assistente</h2>
                                     <Swiper
                                         pagination={{
                                             type: "fraction",
@@ -513,22 +513,22 @@ export const TelaTimeline = (person, idx) => {
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                                <span className='bayer p'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Aqui será onde você poderá ver as postagens dos usuários dentro de sua empresa!</span>
+                                                <span className='bayer p'>Aqui será onde você poderá ver as postagens dos usuários dentro de sua empresa!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Verifiquei e você é um administrador. Administradores não podem postar, curtir e comentar. Mas possuem um importante papel moderador!</span>
+                                                <span className='bayer p'>Verifiquei e você é um administrador. Administradores não podem postar, curtir e comentar. Mas possuem um importante papel moderador!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Tenha controle sobre o que seus funcionários publicam na plataforma e sempre se mantenha atualizado!</span>
+                                                <span className='bayer p'>Tenha controle sobre o que seus funcionários publicam na plataforma e sempre se mantenha atualizado!</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>
