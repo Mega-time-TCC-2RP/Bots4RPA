@@ -1,6 +1,5 @@
 // Componetizacoes
 import Navbar from '../../components/menu/Navbar'
-import Header from '../../components/header/header.js'
 
 //libras
 import VLibras from '@djpfs/react-vlibras'

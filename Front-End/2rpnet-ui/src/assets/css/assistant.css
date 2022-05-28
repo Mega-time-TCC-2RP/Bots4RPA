@@ -37,22 +37,30 @@ body {
 .header__text {
   color: var(--complementDark);
   font-weight: 500;
-  font-size: 2.2rem;
+  font-size: 1.875rem;
 }
 
 .boards {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 0 102px;
   min-height: 530px;
+  /* background-color: greenyellow; */
 }
 
 .flow {
   /* background-color: wheat; */
+}
+
+.boards-skinA{
+  /* background-color: rebeccapurple; */
+  width: 24%;
+}
+
+.boards-skinA__skin{
+  width: 100%;
   height: 100%;
-  width: 50%;
-  display: flex;
-  justify-content: center;
 }
 
 .boards__board {

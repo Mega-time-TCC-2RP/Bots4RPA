@@ -654,12 +654,46 @@
         width: 80%;
     }
 
-    .card-body-content{
+    .card-body-content {
         width: 90%;
+        height: 60%;
+    }
+
+    .card1 {
+        width: 200px;
+        height: 270px;
+        margin-left: 0.225rem;
+        margin-right: 2rem;
+    }
+
+
+    .card1 img {
+        height: 70%;
+    }
+
+    .text-body1 {
+        margin-top: 10%;
+    }
+
+    .body-container {
+        height: 90vh;
+    }
+
+    .ItemPost-avatar {
+        width: 15%;
+        height: 15%;
     }
 }
 
 @media (max-width: 767px) {
+    .title-card-content {
+        margin-top: 10%;
+    }
+
+    .top-container {
+        height: 59vh;
+    }
+
     .title-card-content {
         margin-top: 10%;
     }
