@@ -185,7 +185,7 @@
 }
 
 .card1 h5 {
-    margin-top: 0.8rem; 
+    margin-top: 0.8rem;
     display: flex;
     font-family: 'Montserrat';
     font-style: normal;
@@ -193,7 +193,7 @@
     font-size: 1.438em;
     line-height: 33px;
     color: var(--ComplementaryColor3);
-    
+
     word-wrap: unset;
     align-items: center;
     text-align: center;
@@ -323,13 +323,14 @@
     align-items: center;
     margin-top: 40px;
 }
-.bottom-container{
+
+.bottom-container {
     background: var(--ComplementaryColor1);
     height: 87vh;
     overflow-y: hidden;
     padding-bottom: 100px;
 
-/* .bottom-container {
+    /* .bottom-container {
     background: #F1F1F1;
     height: 170vh; */
 }
@@ -441,7 +442,7 @@
     object-fit: contain;
 }
 
-.TituloPostDestaque{
+.TituloPostDestaque {
     margin-left: 70px;
     margin-right: 70px;
     margin-top: 20px;
@@ -449,7 +450,7 @@
     text-align: center;
 }
 
-.post-text-bottom-home{
+.post-text-bottom-home {
     color: var(--ComplementaryColor2);
     font-size: 18px;
     width: 100%;
@@ -465,12 +466,13 @@
     height: 100%;
 }
 
-.swiper-slide-HomeTasks{
+.swiper-slide-HomeTasks {
     width: 50% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
 }
+
 /* --------------------------------------- */
 
 
@@ -613,73 +615,91 @@
 
 /* Modal Content */
 
-@media (max-width: 1399px){
-    .bottom-posts-content{
+@media (max-width: 1399px) {
+    .bottom-posts-content {
         width: 90%;
     }
 
 }
 
-@media (max-width: 992px){
-    .bottom-container{
+@media (max-width: 992px) {
+    .bottom-container {
         height: 50vh;
         padding-bottom: 10%;
     }
 
-    .bottom-posts-content{
+    .bottom-posts-content {
         height: 80%;
     }
 
-    .TituloPostDestaque{
+    .TituloPostDestaque {
         margin-left: 10%;
         margin-right: 10%;
         margin-top: 2%;
     }
 
-    .post-text-bottom-home{
+    .post-text-bottom-home {
         margin-top: 5%;
         margin-bottom: 5%;
     }
 }
 
 @media (max-width: 768px) {
-    .title-card-content{
+    .top-container {
+        height: 59vh;
+    }
+
+    .title-card-content {
         margin-top: 10%;
     }
 
-    .card-body-content{
+    .card-body-content {
         width: 90%;
         height: 60%;
     }
 
-    .text-body1{
+    .card1 {
+        width: 200px;
+        height: 270px;
+        margin-left: 0.225rem;
+        margin-right: 2rem;
+    }
+
+
+    .card1 img {
+        height: 70%;
+    }
+
+    .text-body1 {
         margin-top: 10%;
     }
 
-    .body-container{
+    .body-container {
         height: 90vh;
     }
 
-    .ItemPost-avatar{
+    .ItemPost-avatar {
         width: 15%;
         height: 15%;
     }
 }
 
 @media (max-width: 767px) {
-    .swiper-slide-HomeTasks{
+    .swiper-slide-HomeTasks {
         width: 100% !important;
     }
-    .bottom-container{
+
+    .bottom-container {
         padding-bottom: 100px;
     }
-    .bottom-posts-content{
+
+    .bottom-posts-content {
         width: 50%;
     }
 }
 
 @media (max-width: 500px) {
-    .bottom-posts-content{
+    .bottom-posts-content {
         width: 80%;
     }
 }

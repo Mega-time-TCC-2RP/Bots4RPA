@@ -153,6 +153,48 @@
     align-items: center;
 }
 
-.box-ModalA div{
+.box-ModalA div {
     width: 100%;
+}
+
+@media (max-width: 768px) {
+
+    .modalAContainer {
+        width: 45.188em;
+        height: 53.5em;
+        padding: 1.563rem;
+        border-radius: 30px;
+    }
+
+    .Content-modalA {
+        height: 246px;
+    }
+
+    .assistant-modalA {
+        width: 200px;
+        height: 180px;
+    }
+
+    .Label-ModalA {
+        font-size: 16px;
+        text-indent: 37px;
+    }
+
+    .Input-ModalA {
+        width: 90%;
+        height: 45%;
+        margin-bottom: 0.188rem;
+        padding-left: 1rem;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .Button-ModalA {
+        width: 10em;
+        height: 2.6em;
+        margin-bottom: 1.75rem;
+        border-radius: 64px;
+        font-size: 16px;
+    
+    }
 }
