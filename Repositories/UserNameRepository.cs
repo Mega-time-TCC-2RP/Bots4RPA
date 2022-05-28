@@ -146,7 +146,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public UserName Login(string email, string password)
         {
-            var user = ctx.UserNames.FirstOrDefault(u => u.Email == email);
+            var user = ctx.UserNames.Include(U => U.Employees).FirstOrDefault(u => u.Email == email);
 
             if (user.Passwd == null)
             {
@@ -216,7 +216,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
         public UserName GoogleLogin(string googleId, string email)
         {
-            var user = ctx.UserNames.FirstOrDefault(u => u.Email == email);
+            var user = ctx.UserNames.Include(U=> U.Employees).FirstOrDefault(u => u.Email == email);
 
             if (user.Passwd == null)
             {

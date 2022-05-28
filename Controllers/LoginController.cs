@@ -65,6 +65,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
                     new Claim("Role", queryUser.IdUserType.ToString()),
                     new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString()),
+                    new Claim("idEmployee", queryUser.Employees.First().IdEmployee.ToString())
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
@@ -115,6 +116,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
                     new Claim("Role", queryUser.IdUserType.ToString()),
                     new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString()),
+                    new Claim("idEmployee", queryUser.Employees.First().IdEmployee.ToString())
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
