@@ -30,7 +30,7 @@ main{
 
 .BotoesModais{
     display: flex;
-    width: 100%;
+    width: 0%;
     align-items: center;
     justify-content: flex-end;
     margin-bottom: 80px;
@@ -39,6 +39,9 @@ main{
 .BotoesModais button{
     border: none;
     background-color: var(--ScreenBackground);
+    position: fixed;
+    top: 10px;
+    background: none;
 }
 
 .BotoesModais button img{
@@ -164,7 +167,7 @@ main{
     color: var(--BLACK);
 } */
 
-.HeaderModal button{
+.HeaderModalClosBtn{
     border: none;
     background-color: var(--WHITE);
     color: var(--ComplementaryColor4);
@@ -179,8 +182,8 @@ main{
 }
 
 .LabelCampoCadastro{
-    color: var(--PrimaryColor2);
-    font-size: 24px;
+    /* color: var(--PrimaryColor2);
+    font-size: 24px; */
     margin-bottom: 10px;
     padding-left: 32px;
 }
@@ -261,18 +264,18 @@ main{
   }
 
   .ComentarioUsuario img{
-      width: 75px;
-      height: 75px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       margin-right: 20px;
       object-fit: cover;
   }
 
-  .ComentarioUsuario span{
+  /* .ComentarioUsuario span{
       color: var(--BLACK);
       font-size: 24px;
       font-weight: 600;
-  }
+  } */
 
   .TituloComentario{
       margin-top: 20px;
@@ -287,4 +290,8 @@ main{
 
   .CamposCadastroContainer{
       height: 100%;
+  }
+
+  .ConteudoComentario{
+      padding-left: 70px;
   }

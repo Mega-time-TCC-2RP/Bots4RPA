@@ -48,12 +48,12 @@ const customStyles = {
 };
 const stylesCustom = {
     content: {
-        width: 1,
-        height: 1,
-        // backgroundcolor: rgba(0, 255, 255, 0.75),
-        boxShadow: ''
+      width: 1,
+      height: 1,
+      // backgroundcolor: rgba(0, 255, 255, 0.75),
+      boxShadow: ''
     },
-};
+  };
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
@@ -199,20 +199,20 @@ export const TelaTimeline = (person, idx) => {
         })
             .then(function (response) {
                 console.log(response);
-                ListarPosts();
                 setIsLoading(false);
+                ListarPosts();
             })
             .catch(function (error) {
                 //handle error
+                setIsLoading(false);
                 if (handleAuthException(error) === true) {
                     localStorage.removeItem('2rp-chave-autenticacao')
                     Navigate('/login')
                 }
-                setIsLoading(false);
             });
     }
 
-    const PublicarComentario = (e) => {
+    const PublicarComentario = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         console.log(idPostComentarios)
@@ -226,20 +226,18 @@ export const TelaTimeline = (person, idx) => {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
-        }).then((response) => {
-            console.log(response)
-            let ListaPostsPosComentar = ListarPosts();
-            console.log(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments);
-            setComentariosModal(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments)
+        }).then(async (response) => {
             setIsLoading(false);
+            let ListaPostsPosComentar = await ListarPosts();
+            setComentariosModal(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments)
         }).catch((error) => {
             console.log(error.response.status)
             console.log(error)
+            setIsLoading(false);
             if (handleAuthException(error) === true) {
                 localStorage.removeItem('2rp-chave-autenticacao')
                 Navigate('/login')
             }
-            setIsLoading(false);
         })
     }
 
@@ -288,22 +286,17 @@ export const TelaTimeline = (person, idx) => {
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer p'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                                <span className='p textoBonito'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer p'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                                <span className='p textoBonito'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer p'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
-                                            <div className="boardingContainer">
-                                                <span className='bayer p'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
+                                                <span className='p textoBonito'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade!</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>
@@ -330,7 +323,7 @@ export const TelaTimeline = (person, idx) => {
                                 <form className="CadastroModalContainer" onSubmit={(e) => PublicarPost(e)}>
                                     <div className="HeaderModal">
                                         <h2 className="h4">Adicionar publicação</h2>
-                                        <button onClick={(e) => closeModalCadastro(e)}>X</button>
+                                        <button className='HeaderModalClosBtn' onClick={(e) => closeModalCadastro(e)}>X</button>
                                     </div>
                                     <div className="CamposCadastroContainer">
                                         <div className="CamposCadastro inputsModal ">
@@ -439,11 +432,11 @@ export const TelaTimeline = (person, idx) => {
                                                             </div>
                                                             {
                                                                 IsLoading == true ?
-                                                                    <button type="submit" className="BtnSubmitForm" disabled>Carregando...</button> : <button type="submit" className="BtnSubmitForm">Publicar</button>
+                                                                    <button type="submit" className="button" disabled>Carregando...</button> : <button type="submit" className="button">Publicar</button>
                                                             }
                                                         </form>
 
-                                                        <button onClick={(e) => closeModalComentarios(e)}>X</button>
+                                                        <button className='HeaderModalClosBtn' onClick={(e) => closeModalComentarios(e)}>X</button>
                                                     </div>
                                                     <div className='ContainerComentarios'>
                                                         {
@@ -453,11 +446,13 @@ export const TelaTimeline = (person, idx) => {
                                                                     <div className="Comentario" key={comentario.idComentario}>
                                                                         <div className='ComentarioUsuario'>
                                                                             <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                                                            <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                            <span className='h5 semi-bold'>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
                                                                         </div>
-                                                                        <h2 className='TituloComentario'>{comentario.title}</h2>
-                                                                        <p className='TextoComentario'>{comentario.commentDescription}
-                                                                        </p>
+                                                                        <div className='ConteudoComentario'>
+                                                                            <h6 className='h6'>{comentario.title}</h6>
+                                                                            <p className='p'>{comentario.commentDescription}
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
                                                                 )
                                                             })
@@ -513,22 +508,22 @@ export const TelaTimeline = (person, idx) => {
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer p'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                                <span className='p textoBonito'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer p'>Aqui será onde você poderá ver as postagens dos usuários dentro de sua empresa!</span>
+                                                <span className='p textoBonito'>Aqui será onde você poderá ver as postagens dos usuários dentro de sua empresa!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer p'>Verifiquei e você é um administrador. Administradores não podem postar, curtir e comentar. Mas possuem um importante papel moderador!</span>
+                                                <span className='p textoBonito'>Verifiquei e você é um administrador. Administradores não podem postar, curtir e comentar. Mas possuem um importante papel moderador!</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="swiper-slide-OnBoarding">
                                             <div className="boardingContainer">
-                                                <span className='bayer p'>Tenha controle sobre o que seus funcionários publicam na plataforma e sempre se mantenha atualizado!</span>
+                                                <span className='p textoBonito'>Tenha controle sobre o que seus funcionários publicam na plataforma e sempre se mantenha atualizado!</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>
@@ -605,7 +600,7 @@ export const TelaTimeline = (person, idx) => {
                                             >
                                                 <div className='ContainerModalComentarios'>
                                                     <div className="HeaderModal">
-                                                        <button onClick={(e) => closeModalComentarios(e)}>X</button>
+                                                        <button className='HeaderModalClosBtn' onClick={(e) => closeModalComentarios(e)}>X</button>
                                                     </div>
                                                     <div className='ContainerComentarios'>
                                                         {
@@ -615,11 +610,13 @@ export const TelaTimeline = (person, idx) => {
                                                                     <div className="Comentario" key={comentario.idComentario}>
                                                                         <div className='ComentarioUsuario'>
                                                                             <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                                                            <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                            <span className='h5 semi-bold'>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
                                                                         </div>
-                                                                        <h2 className='TituloComentario'>{comentario.title}</h2>
-                                                                        <p className='TextoComentario'>{comentario.commentDescription}
-                                                                        </p>
+                                                                        <div className='ConteudoComentario'>
+                                                                            <h6 className='h6'>{comentario.title}</h6>
+                                                                            <p className='p'>{comentario.commentDescription}
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
                                                                 )
                                                             })

@@ -25,8 +25,8 @@ class Footer extends Component {
                     <div className="socialNetworkArea">
                         <span alt="Nossas redes sociais" className="p">Nossas Redes Sociais:</span>
                         <div className="socialNetworkIcons">
-                            <a href="https://www.linkedin.com/company/2rp-informatica/" to="/"><AiIcons.AiFillLinkedin  color="white" alt="Imagem Logo Linkedin" size='55px'/></a>
-                            <a href="https://www.facebook.com/2rpnetservicos/?modal=admin_todo_tour"  to="/"><AiIcons.AiFillFacebook color="white" alt="Imagem Logo Facebook" size='55px'/></a>
+                            <a href="https://www.linkedin.com/company/2rp-informatica/" to="/"><FaIcons.FaLinkedin  color="white" alt="Imagem Logo Linkedin" size='55px'/></a>
+                            <a href="https://www.facebook.com/2rpnetservicos/?modal=admin_todo_tour"  to="/"><FaIcons.FaFacebookSquare color="white" alt="Imagem Logo Facebook" size='55px'/></a>
                             <a href="https://www.youtube.com/channel/UC9n0XxkktvDXpsVoc1s5FQg" to="/"><FaIcons.FaYoutubeSquare color="white" alt="Imagem Logo Youtube" size='55px' /></a>
                         </div>
                     </div>
