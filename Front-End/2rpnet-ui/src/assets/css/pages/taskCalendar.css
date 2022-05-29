@@ -30,6 +30,7 @@
     border-radius: 30px;
     background-color: var(--ComplementaryColor1);
     overflow: hidden;
+    padding-bottom: 7rem;
 }
 
 .cardTask {
@@ -112,15 +113,6 @@
 }
 
 /* Drag n' Drop CSS */
-/* .highlights {
-    background-color: var(--ComplementaryColor2);
-} */
-
-/* .cardTask,
-.taskSpace { */
-/* transition-property: width; */
-/* transition: 200ms; */
-/*} */
 
 .isDragging {
     cursor: move;
@@ -141,19 +133,6 @@
 }
 
 /* Parte do Modal */
-/*.modalNewTask {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    padding: 40px 70px;
-    margin: 10rem;
-    width: 80vw;
-    height: 80vh;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    background-color: var(--ComplementaryColor4);
-}*/
 
 .modalQuests {
     display: flex;
@@ -228,19 +207,6 @@
 .btnSpaceNewTask {
     margin-top: 6rem;
 }
-/* .btnCalendarModal {
-    cursor: pointer;
-}
-
-.btnCalendarModal:hover {
-    background-color: var(--PrimaryColor1);
-    color: var(--ComplementaryColor1);
-}
-
-.btnCalendarModal:focus {
-    background-color: var(--PrimaryColor1);
-    color: var(--ComplementaryColor1);
-} */
 
 /* Modal da Tarefa Única */
 .modalQuestsOneTask {
