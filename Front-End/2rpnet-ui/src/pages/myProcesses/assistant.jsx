@@ -436,7 +436,7 @@ export default function Assistant() {
 
     useEffect(() => {
         fixProceduresList();
-    }, [MyProcedures])
+    }, [Procedures])
 
     return (
         <div>

@@ -2,7 +2,7 @@
 
 .top-container-onboarding {
         position: fixed;
-        width: 50%;
+        width: 30%;
         right: 100px;
         top: 50px;
         background: var(--PrimaryColor2);

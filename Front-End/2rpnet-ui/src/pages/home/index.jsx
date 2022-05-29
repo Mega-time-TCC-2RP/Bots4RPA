@@ -411,7 +411,6 @@ export default function Home() {
                   </SwiperSlide>
                 </Swiper>
               </div>
-
             </div>
           </div>
         </Modal>
@@ -449,6 +448,7 @@ export default function Home() {
                             <button onClick={(event) => {
                               event.preventDefault()
                               Execute(assistant.idAssistant)
+                           
                             }}>
                               <PlayIcon />
                             </button>
