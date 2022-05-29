@@ -119,8 +119,10 @@ export default function Home() {
                     if (response.status === 200) {
                       console.log("FUNCIONOU");
                       toast.success("O email que você escreveu foi enviado");
+               
                     } else {
                       toast.error("Houve um problema no enviuo de seu email :/");
+                 
                     }
                     setIsExecuting(false);
                   })
@@ -170,7 +172,7 @@ export default function Home() {
                   })
               }
             }).catch(error => console.log(error))
-
+        
 
         } else {
           toast.error("A execução deu errado :/");
@@ -191,6 +193,7 @@ export default function Home() {
                   })
               }
             }).catch(error => console.log(error))
+          
         }
         setIsExecuting(false);
       })
@@ -200,17 +203,18 @@ export default function Home() {
         setIsExecuting(false);
       })
   }
-  useEffect(() => {
-    <ModalM />
-  }, [isExecuting])
+  
+  // useEffect(() => {
+  //   <ModalM />
+  // }, [isExecuting])
 
-  useEffect(() => {
-    GetMyAssistants()
-  }, [isExecuting])
+  // useEffect(() => {
+  //   GetMyAssistants()
+  // }, [isExecuting])
 
   function GetAssistant() {
     console.log('getAssistant')
-    fetch(API + '/api/Assistants', {
+    fetch(API + '/api/Assistants/Employee/' + parseJwt().idEmployee, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
@@ -224,7 +228,7 @@ export default function Home() {
 
   function GetMyAssistants() {
     console.log('Função GetAssistants da Home')
-    fetch(API + '/api/Assistants', {
+    fetch(API + '/api/Assistants/Employee/'+ parseJwt().idEmployee, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },

@@ -70,6 +70,7 @@ export default function Login() {
                 e.preventDefault();
 
                 axios.post('https://grupo7.azurewebsites.net/api/Login', {
+
                         email: email,
                         password: password
                 })
