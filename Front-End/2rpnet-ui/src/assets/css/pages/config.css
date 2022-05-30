@@ -427,7 +427,7 @@
     }
 
     .container {
-        width: 750px;
+        width: 750px !important;
     }
 
     .navAreaConfig {
@@ -469,7 +469,7 @@
     }
 
     .container {
-        width: auto;
+        width: auto !important;
     }
 
     .sidebar {
@@ -560,7 +560,6 @@
     .newPassword label {
         padding-left: 5%;
     }
-    /* .newPassword input {} */
     .confirmPassword {
         height: 100px;
         width: 100%;
