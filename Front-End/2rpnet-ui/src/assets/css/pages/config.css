@@ -146,6 +146,15 @@
     width: 85%;
 }
 
+.confirmPassword {
+    height: 100px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .scrollDiv {
     overflow-y: auto;
     height: 100%;
@@ -456,10 +465,22 @@
 
     .profileImage {
         width: 200px;
+        height: 200px;
     }
 
     .mainContentArea {
         margin-bottom: 20px;
+    }
+    #modalAtualize {
+        width: 80vw !important;
+    }
+    .confirmPassword {
+        height: 100px;
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
     }
 }
 
@@ -488,7 +509,7 @@
     }
 
     .navAreaConfig {
-        width: 90vw;
+        width: 90vw !important;
         align-items: center;
     }
 
@@ -497,7 +518,7 @@
     }
 
     .configContent {
-        width: 90vw;
+        width: 90vw !important;
     }
 
     .profileImage {

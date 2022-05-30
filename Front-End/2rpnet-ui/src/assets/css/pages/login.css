@@ -29,6 +29,10 @@
         margin-top: 100px;
 }
 
+.registerLogin {
+        width: 50vw !important;
+}
+
 .inputsAreaLogin {
         display: flex;
         flex-direction: column;
@@ -265,6 +269,9 @@ button {
         }
         #googleLogin {
                 font-size: unset;
+        }
+        .registerLogin{
+                width: 80vw !important;
         }
 }
 @media screen and (max-width:375px){
