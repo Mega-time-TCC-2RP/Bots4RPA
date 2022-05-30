@@ -1,4 +1,4 @@
-.configPage {
+.perfilpage {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,7 +10,7 @@
     justify-content: space-evenly;
 }
 
-.configPage h1 {
+.perfilpage h1 {
     letter-spacing: 0.035em;
 }
 
@@ -19,7 +19,7 @@
     margin: 0 auto;
 }
 
-.configPage h1 {
+.perfilpage h1 {
     display: flex;
     justify-content: center;
 }
@@ -307,7 +307,7 @@
     height: auto;
 }
 
-.ProfileContainer .configPage {
+.ProfileContainer .perfilpage {
     height: auto;
 }
 
