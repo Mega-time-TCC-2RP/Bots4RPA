@@ -1,4 +1,5 @@
 import "../../assets/css/style.css";
+import '../../assets/css/components/fonts.css'
 import "../../assets/css/components/navbar.css"
 import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
