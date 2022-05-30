@@ -7,39 +7,39 @@
 }
 
 .h1, h1 {
-    font-size: 3em;
+    font-size: 3rem;
     font-family: 'Montserrat', sans-serif;
-    line-height: 2em;
+    line-height: 2rem;
 }
 .h2, h2 {
-    font-size: 2.5em;
+    font-size: 2.5rem;
     font-family: 'Montserrat', sans-serif;
-    line-height: 1.9em;
+    line-height: 1.9rem;
 }
 .h3, h3 {
-    font-size: 2.07em;
+    font-size: 2.07rem;
     font-family: 'Montserrat', sans-serif;
-    line-height: 1.8em;
+    line-height: 1.8rem;
 }
 .h4, h4 {
-    font-size: 1.8em;
+    font-size: 1.8rem;
     font-family: 'Montserrat', sans-serif;
-    line-height: 1.7em;
+    line-height: 1.7rem;
 }
 .h5, h5 {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     font-family: 'Montserrat', sans-serif;
-    line-height: 1.6em;
+    line-height: 1.6rem;
 }
 .h6, h6 {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     font-family: 'Montserrat', sans-serif;
-    line-height: 1.5em;
+    line-height: 1.5rem;
 }
 .p, p {
-    font-size: 1em;
+    font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
-    line-height: 1.4em;
+    line-height: 1.4rem;
 }
 
 .bold {
@@ -83,7 +83,7 @@
     width: 100%;
     padding-left: 5%;
     padding-right: 5%;
-    font-size: 1em;
+    font-size: 1rem;
     font-family: 'Montserrat';
 }
 
@@ -95,7 +95,7 @@
     width: 100%;
     padding-left: 5%;
     padding-right: 5%;
-    font-size: 1em;
+    font-size: 1rem;
     font-family: 'Montserrat';
 }
 
@@ -155,24 +155,24 @@
     border: 1px solid var(--PrimaryColor1);
     box-sizing: border-box;
     border-radius: 32px;
-    font-size: 1em;
+    font-size: 1rem;
     height: 45px;
     width: 100%;
 }
 
 #placeholder-text::placeholder {
     color: var(--darkShadow);
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 .placeholder-text::placeholder {
     color: var(--darkShadow);
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 .input {
     border: 1px solid var(--PrimaryColor1);
-    font-size: 1.2em;
+    font-size: 1.2rem;
     padding-left: 5%;
     padding-right: 5%;
     box-sizing: border-box;
@@ -188,4 +188,24 @@
 .previewImage {
     width: 55px;
     margin-top: 5px;
+}
+.center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 765px){
+    .formRegister input {
+        height: 40px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    :root {
+        font-family: 'Montserrat', sans-serif;
+        --widthLogoPadrao: 275px;
+        --heigthLogoPadrao: 95px;
+        font-size: 0.8em;
+    }
 }

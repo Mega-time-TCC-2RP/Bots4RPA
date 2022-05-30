@@ -23,7 +23,7 @@
 .Sexit-button {
     /* width: 1.938em; */
     align-items: center;
-    font-size: 32px;
+    font-size: 2em;
     border: none;
     cursor: pointer;
     color: #8B919D;
@@ -363,6 +363,7 @@ display: flex;
 .subtitle-quantity {
     display: flex;
     margin-left: 17px;
+    align-items: center;
 
     /* background-color: #fff3a4; */
 }
@@ -442,7 +443,7 @@ display: flex;
 .btn-save-modal {
     width: 10em;
     height: 2.6em;
-    margin-top: 0.8rem;
+    margin-top: 1.2rem;
     border-radius: 64px;
     border: none;
     font-family: 'Exo';
@@ -453,7 +454,7 @@ display: flex;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     color: #FFFFFF;
     background: #3475BB;
 }
@@ -520,8 +521,8 @@ display: flex;
 }
 
 .box-graphic-quantity {
-    width: 250px;
-    height: 250px;
+    width: 230px;
+    height: 230px;
     display: flex;
     border: 14px solid #3375BA;
     border-radius: 74px;
@@ -533,10 +534,190 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 108px;
+    font-size: 90px;
     line-height: 132px;
     display: flex;
     align-items: center;
 
     color: #022041;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+    .graphic-1{
+        width: 100%;
+    }
+
+    .graphic-2{
+        width: 100%;
+    }
+
+    .assistant-graphics {
+        height: 82%;
+        /* background-color: brown; */
+    }
+
+    .graphic-left-side h1 {
+        font-size: 14px;
+        text-indent: 20px;
+    }
+
+    .container-left {
+        width: 100%;
+        height: 75%;
+        margin-top: unset;
+        /* background-color: #022041; */
+    }
+
+    .graphic-left-side span {
+        font-size: 11px;
+        text-indent: 5px;
+    }
+
+    .graphic-right-side {
+        /* background-color: green; */
+        width: 44%;
+    }
+
+    .graphic-left-side {
+        width: 56%;
+        /* background-color: darkslateblue; */
+    }
+
+    .assistant-id h3 {
+        margin-top: 0.6rem;
+        font-size: 17px;
+    }
+
+    .button-edit {
+        width: 20px;
+        height: 20px;
+    }
+
+    .box-img-modal {
+        width: 75%;
+        /* background-color: #b1d7ff; */
+    }
+
+    .box-img-modal img {
+        width: 67%;
+        height: 94%;
+        /* background-color: darkgreen; */
+    }
+
+    .SmodalContainer .Sbody-modal {
+        height: 95%;
+        align-items: unset;
+        /* background-color: rgb(255, 223, 174); */
+    }
+
+    .SmodalContainer {
+        width: 51em;
+        height: 50em;
+    }
+
+    .GraphicHealth {
+        width: 140px !important;
+        height: 140px !important;
+    }
+
+    .square-green {
+        width: 18px;
+        height: 18px;
+    }
+
+    .square-red {
+        width: 18px;
+        height: 18px;
+    }
+
+    .assistant-info h4 {
+        font-size: 15px;
+    }
+
+    .box-paragraph {
+        width: 13.188em;
+        height: 3.5em;
+        /* background-color: indianred; */
+    }
+
+    .box-paragraph textarea {
+
+        font-size: 13px;
+        line-height: 20px;
+        padding: 1em;
+    }
+
+    .span1 {
+        font-size: 13px;
+    }
+
+    .span2 {
+        margin-top: 0.2rem;
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .button-delete {
+        width: 8em;
+        height: 2.5em;
+        font-size: 15px;
+        line-height: 27px;
+    }
+
+    .container-graphic {
+        width: 100%;
+        height: 100%;
+        /* background-color: #8bb0ff; */
+    }
+
+    .box-quantity {
+        width: 56%;
+        height: 56%;
+        /* background-color: olive; */
+    }
+
+    .box-quantity h1 {
+        font-size: 14px;
+        text-indent: 5px;
+        line-height: 20px;
+        white-space: normal;
+        word-wrap: anywhere;
+    }
+
+    .box-quantity span {
+        font-size: 11px;
+        text-indent: 5px;
+    }
+
+    .square-blue {
+        width: 18px;
+        height: 18px;
+    }
+
+    .box-graphic-quantity {
+        width: 75%;
+        height: 56%;
+    }
+
+    .box-graphic-quantity span {
+        font-size: 30px;
+    }
+
+    .graphic2-right-side {
+        width: 44%;
+        /* background-color: #3FDA9F; */
+    }
+
+    .box-label1-health {
+        width: 90%;
+        margin-left: 10px;
+    }
+
+    .box-label2-health {
+        width: 90%;
+        margin-left: 10px;
+    }
+
 }

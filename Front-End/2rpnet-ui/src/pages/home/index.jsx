@@ -4,7 +4,6 @@ import { Component } from 'react';
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
-
 // import Swiper, { Navigation, Pagination } from 'swiper';
 import { Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -30,9 +29,6 @@ import { usuarioAutenticado, parseJwt, handleAuthException } from '../../service
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
-import Vermelho_Home from '../../assets/img/Vermelho_Home.png'
-import Amarelo_Home from '../../assets/img/Amarelo_Home.png'
-import Verde_Home from '../../assets/img/Verde_Home.png'
 import Post_Perfil_Photo from '../../assets/img/Post_Perfil_Photo.png'
 import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
 import { useNavigate } from 'react-router-dom'
@@ -41,7 +37,6 @@ import Header from '../../components/header/header'
 //items:
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-
 
 //Components:
 // import Navbar from '../../components/menu/Navbar'
@@ -53,6 +48,8 @@ import { render } from "@testing-library/react";
 import '../../assets/css/pages/onBoarding.css'
 import Blue_Head from '../../assets/img/Blue_Head.png'
 import onBoardingBot from '../../assets/img/onBoardingBot.png'
+import noPhoto from '../../assets/img/no-image.png'
+import { setRef } from "@material-ui/core";
 
 {/* <Navbar/> */ }
 
@@ -61,7 +58,9 @@ const stylesCustom = {
     width: 1,
     height: 1,
     // backgroundcolor: rgba(0, 255, 255, 0.75),
-    boxShadow: ''
+    boxShadow: '',
+    background: 'none',
+    border: 'none'
   },
 };
 
@@ -69,81 +68,95 @@ Modal.setAppElement('#root');
 
 export default function Home() {
 
-  const [ExecutionsList, setExecutionsList] = useState([]);
   const [isExecuting, setIsExecuting] = useState(false);
+
+  const [ListAssistants, setListAssistants] = useState([])
   const [AssistantsList, setAssistantsList] = useState([]);
+
+  const handleChange = ({ target }) => {
+    if (!target.value) {
+      setAssistantsList(ListAssistants);
+      return;
+    }
+    const filterAssistants = AssistantsList.filter(({ assistantName }) => assistantName.toLowerCase().includes(target.value.toLowerCase()));
+    setAssistantsList(filterAssistants)
+  }
 
   function Execute(idAssistant) {
     setIsExecuting(true);
 
     var getURL = API + "/api/AssistantProcedure/Assistant/" + idAssistant;
     fetch(getURL, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
     })
-        .then((response) => {
-            return response.json()
-                .then((data) => {
-                    console.log(data);
-                    data.map((procedure) => {
-                        console.log(procedure);
-                        console.log(procedure.procedureName);
+      .then((response) => {
+        return response.json()
+          .then((data) => {
+            console.log(data);
+            data.map((procedure) => {
+              console.log(procedure);
+              console.log(procedure.procedureName);
 
-                        if (procedure.procedureName == "Enviar email para alguem") {
-                            var splitEmail = procedure.procedureValue.split("/");
-                            console.log(splitEmail);
+              if (procedure.procedureName == "Enviar email para alguem") {
+                var splitEmail = procedure.procedureValue.split("/");
+                console.log(splitEmail);
 
-                            var epURL = API + "/api/Assistants/EnviarEmailUsuario";
-                            var epBody = JSON.stringify({
-                                "emailTitle": splitEmail[1],
-                                "email": splitEmail[0],
-                                "emailBody": splitEmail[2]
-                            });
+                var epURL = API + "/api/Assistants/EnviarEmailUsuario";
+                var epBody = JSON.stringify({
+                  "emailTitle": splitEmail[1],
+                  "email": splitEmail[0],
+                  "emailBody": splitEmail[2]
+                });
 
-                            fetch(epURL, {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: epBody
-                            })
-                                .then((response) => {
-                                    // console.log("before if");
-                                    console.log(response)
-                                    if (response.status === 200) {
-                                        console.log("FUNCIONOU");
-                                        toast.success("O email que você escreveu foi enviado");
-                                    } else {
-                                        toast.error("Houve um problema no enviuo de seu email :/");
-                                    }
-                                    setIsExecuting(false);
-                                })
-                                .catch((erro) => {
-                                    console.log(erro)
-                                    toast.error("Houve um problema no enviuo de seu email :/");
-                                    setIsExecuting(false);
-                                })
-                        }
-                    })
+                fetch(epURL, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: epBody
                 })
-        });
+                  .then((response) => {
+                    // console.log("before if");
+                    console.log(response)
+                    if (response.status === 200) {
+                      console.log("FUNCIONOU");
+                      toast.success("O email que você escreveu foi enviado");
+               
+                    } else {
+                      toast.error("Houve um problema no enviuo de seu email :/");
+                 
+                    }
+                    setIsExecuting(false);
+                  })
+                  .catch((erro) => {
+                    console.log(erro)
+                    toast.error("Houve um problema no enviuo de seu email :/");
+                    setIsExecuting(false);
+                  })
+              }
+            })
+          })
+      });
 
     var eURL = API + "/api/Assistant" + idAssistant + "/Post";
     var eBody = JSON.stringify({
-        "emailTitle": "",
-        "email": parseJwt().email,
-        "emailBody": `http://vmbots4rpa.brazilsouth.cloudapp.azure.com:5000/StaticFiles/Images/Assistant${idAssistant}.png`
+      "emailTitle": "",
+      "email": parseJwt().email,
+      "emailBody": `http://vmbots4rpa.brazilsouth.cloudapp.azure.com:5000/StaticFiles/Images/Assistant${idAssistant}.png`
     });
 
     fetch(eURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: eBody
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: eBody
     })
       .then((response) => {
         // console.log("before if");
         // console.log(response)
         if (response.status === 204) {
 
-          var myUrl = "http://localhost:5000/api/Run/" + idAssistant
+          console.log("FUNCIONOU");
+          toast.success("O resultado foi enviado para seu email");
+          var myUrl = API + "/api/Run/" + idAssistant
           const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -160,9 +173,7 @@ export default function Home() {
                   })
               }
             }).catch(error => console.log(error))
-
-          console.log("FUNCIONOU");
-          toast.success("O resultado foi enviado para seu email");
+        
 
         } else {
           toast.error("A execução deu errado :/");
@@ -183,6 +194,7 @@ export default function Home() {
                   })
               }
             }).catch(error => console.log(error))
+          
         }
         setIsExecuting(false);
       })
@@ -192,13 +204,32 @@ export default function Home() {
         setIsExecuting(false);
       })
   }
+  
+  // useEffect(() => {
+  //   <ModalM />
+  // }, [isExecuting])
+
   // useEffect(() => {
   //   GetMyAssistants()
-  // }, [Execute])
+  // }, [isExecuting])
+
+  function GetAssistant() {
+    console.log('getAssistant')
+    fetch(API + '/api/Assistants/Employee/' + parseJwt().idEmployee, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) =>
+        setListAssistants(data),
+      )
+      .catch((error) => console.log(error));
+  };
 
   function GetMyAssistants() {
     console.log('Função GetAssistants da Home')
-    fetch(API + '/api/Assistants', {
+    fetch(API + '/api/Assistants/Employee/'+ parseJwt().idEmployee, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
@@ -254,8 +285,8 @@ export default function Home() {
           Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
       }).then((response) => {
-        console.log(response)
-        console.log(response.data)
+        // console.log(response)
+        // console.log(response.data)
         setMyQuests(response.data)
       }).catch(async (error) => {
         if (await handleAuthException(error) === true) {
@@ -303,10 +334,11 @@ export default function Home() {
   }
 
   useEffect(() => {
-    console.log(parseJwt())
+    // console.log(parseJwt())
     GetMyQuests();
     GetHighlightedPosts();
     GetMyAssistants();
+    GetAssistant()
   }, [])
 
   return (
@@ -315,7 +347,7 @@ export default function Home() {
       <Navbar />
       <div className='body-pd'>
 
-        <Header />
+        {/* <Header /> */}
         <VLibras />
         <img
           src={onBoardingBot}
@@ -333,7 +365,7 @@ export default function Home() {
                 <img className="bot-img" src={Blue_Head} />
               </div>
               <div className="body-content">
-                <h2>Assistente</h2>
+                <h2 className="h2">Assistente</h2>
                 <Swiper
                   pagination={{
                     type: "fraction",
@@ -345,42 +377,41 @@ export default function Home() {
                 >
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Seja bem-vindo(a) à sua tela inicial!</span>
+                      <span className='p textoBonito'>Seja bem-vindo(a) à sua tela inicial!</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
+                      <span className='p textoBonito'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Gostaria de executar um assistente? Ver suas Tarefas?</span>
+                      <span className='p textoBonito'>Gostaria de executar um assistente? Ver suas Tarefas?</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Ou ver as questões mais em alta na área Social?</span>
+                      <span className='p textoBonito'>Ou ver as questões mais em alta na área Social?</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
+                      <span className='p textoBonito'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
+                      <span className='p textoBonito'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide-OnBoarding-social">
                     <div className="boardingContainer">
-                      <span className='p'>Entre e se divirta!</span>
+                      <span className='p textoBonito'>Entre e se divirta!</span>
                     </div>
                   </SwiperSlide>
                 </Swiper>
               </div>
-
             </div>
           </div>
         </Modal>
@@ -396,7 +427,7 @@ export default function Home() {
                   }}
                 >Criar Assistente
                 </button>
-                <input className="Input-Home" type='search' placeholder="Buscar assistente" id="Assistente"></input>
+                <input className="Input-Home" type='search' placeholder="Buscar assistente" onChange={handleChange} id="Assistente"></input>
               </form>
             </div>
             <form className="nao">
@@ -418,6 +449,7 @@ export default function Home() {
                             <button onClick={(event) => {
                               event.preventDefault()
                               Execute(assistant.idAssistant)
+                           
                             }}>
                               <PlayIcon />
                             </button>
@@ -450,85 +482,172 @@ export default function Home() {
         </div >
 
         <div className="body-container">
-          <h2 className="body-title-task">Minhas Tarefas</h2>
-          <Swiper
-            slidesPerView={2}
-            spaceBetween={0}
-            slidesPerGroup={2}
-            loop={false}
-            loopFillGroupWithBlank={true}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className="swiperHomeTasks"
-          >
-            {
-              myQuests != undefined && myQuests != null && myQuests[0] != undefined && myQuests[0] != null ?
-                myQuests.map((Workflow) => {
-                  return (
+          <h2 className="body-title-task h2">Minhas Tarefas</h2>
+          {
+            window.screen.width >= 768 ?
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={0}
+                slidesPerGroup={1}
+                loop={false}
+                loopFillGroupWithBlank={true}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
+                className="swiperHomeTasks"
+              >
+                {
+                  myQuests != undefined && myQuests != null && myQuests[0] != undefined && myQuests[0] != null ?
+                    myQuests.map((Workflow) => {
+                      return (
+                        <SwiperSlide className="swiper-slide-HomeTasks">
+                          <div className="card-body-content cardPattern">
+                            <h3 className="title-card-content h4">{Workflow.title}</h3>
+                            <p className="text-body1 p">{Workflow.workflowDescription}</p>
+                            {/* <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Workflow.endDate))}</p> */}
+                          </div>
+                        </SwiperSlide>
+                      )
+                    }) :
                     <SwiperSlide className="swiper-slide-HomeTasks">
-                      <div className="card-body-content">
-                        <h3 className="title-card-content">{Workflow.title}</h3>
-                        <p className="text-body1">{Workflow.workflowDescription}</p>
-                        {/* <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Workflow.endDate))}</p> */}
-                      </div>
+                      <span>Não há tarefas...</span>
                     </SwiperSlide>
-                  )
-                }) :
-                <SwiperSlide className="swiper-slide-HomeTasks">
-                  <span>Não há tarefas...</span>
-                </SwiperSlide>
-            }
-          </Swiper>
+                }
+              </Swiper> :
+              <Swiper
+                // slidesPerView={1}
+                // spaceBetween={0}
+                // slidesPerGroup={1}
+                // loop={false}
+                // loopFillGroupWithBlank={true}
+                // pagination={{
+                //   clickable: true,
+                // }}
+                // navigation={true}
+                // modules={[Pagination, Navigation]}
+                pagination={{
+                  clickable: true
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
+                className="swiperHomeTasks"
+              >
+                {
+                  myQuests != undefined && myQuests != null && myQuests[0] != undefined && myQuests[0] != null ?
+                    myQuests.map((Workflow) => {
+                      return (
+                        <SwiperSlide className="swiper-slide-HomeTasks">
+                          <div className="card-body-content cardPattern">
+                            <h3 className="title-card-content h4">{Workflow.title}</h3>
+                            <p className="text-body1 p">{Workflow.workflowDescription}</p>
+                            {/* <p className="data-body">Data de entrega : {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(Workflow.endDate))}</p> */}
+                          </div>
+                        </SwiperSlide>
+                      )
+                    }) :
+                    <SwiperSlide className="swiper-slide-HomeTasks">
+                      <span>Não há tarefas...</span>
+                    </SwiperSlide>
+                }
+              </Swiper>
+          }
         </div>
         <div className="bottom-container">
-          <h2 className="body-title-task">Posts em destaque</h2>
-          <Swiper
-            slidesPerView={2}
-            spaceBetween={0}
-            slidesPerGroup={2}
-            loop={false}
-            loopFillGroupWithBlank={true}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className="swiperHomeTasks"
-          >
-            {
-              highlightedPosts != undefined && highlightedPosts != null && highlightedPosts[0] != undefined && highlightedPosts[0] != null ?
-                highlightedPosts.map((post) => {
-                  return (
-                    <SwiperSlide className="swiper-slide-HomeTasks">
-                      <div className="bottom-posts-content">
-                        <div className="chatListItem--lines">
-                          <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
-                          <div className="chatItemList-line">
-                            <div className="PostItem-name">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
-                            <p className="PostItem-role">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+          <h2 className="body-title-task h2">Posts em destaque</h2>
+          {
+            window.screen.width >= 768 ?
+              <Swiper
+                slidesPerView={2}
+                spaceBetween={0}
+                slidesPerGroup={2}
+                loop={false}
+                loopFillGroupWithBlank={true}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
+                className="swiperHomeTasks"
+              >
+                {
+                  highlightedPosts != undefined && highlightedPosts != null && highlightedPosts[0] != undefined && highlightedPosts[0] != null ?
+                    highlightedPosts.map((post) => {
+                      return (
+                        <SwiperSlide className="swiper-slide-HomeTasks">
+                          <div className="bottom-posts-content cardPattern">
+                            <div className="chatListItem--lines">
+                              <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                              <div className="chatItemList-line">
+                                <div className="PostItem-name h5">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
+                                <p className="PostItem-role p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+                              </div>
+                            </div>
+                            {
+                              post.postImage != undefined ?
+                                <div className="img2-home-bottom-container" style={{ background: 'linear-gradient(0deg, rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url(http://grupo7.azurewebsites.net/img/' + post.postImage + ')' }}><img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage} /></div> :
+                                <img className="img2-home-bottom" src={noPhoto}></img>
+                            }
+                            <h2 className="TituloPostDestaque h5">{post.title}</h2>
+                            <p className="post-text-bottom-home p">{post.postDescription}</p>
                           </div>
-                        </div>
-                        {
-                          post.postImage != undefined ?
-                            <img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                            <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
-                        }
-                        <h2 className="TituloPostDestaque">{post.title}</h2>
-                        <p className="post-text-bottom-home">{post.postDescription}</p>
-                      </div>
-                    </SwiperSlide>
-                  )
-                }) :
-                <span>Não há posts em destaque</span>
-            }
-          </Swiper>
+                        </SwiperSlide>
+                      )
+                    }) :
+                    <span>Não há posts em destaque</span>
+                }
+              </Swiper> :
+              <Swiper
+                // slidesPerView={2}
+                // spaceBetween={0}
+                // slidesPerGroup={2}
+                // loop={false}
+                // loopFillGroupWithBlank={true}
+                // pagination={{
+                //   clickable: true,
+                // }}
+                // navigation={true}
+                // modules={[Pagination, Navigation]}
+                pagination={{
+                  clickable: true
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
+                className="swiperHomeTasks"
+              >
+                {
+                  highlightedPosts != undefined && highlightedPosts != null && highlightedPosts[0] != undefined && highlightedPosts[0] != null ?
+                    highlightedPosts.map((post) => {
+                      return (
+                        <SwiperSlide className="swiper-slide-HomeTasks">
+                          <div className="bottom-posts-content cardPattern">
+                            <div className="chatListItem--lines">
+                              <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                              <div className="chatItemList-line">
+                                <div className="PostItem-name h5">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
+                                <p className="PostItem-role p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
+                              </div>
+                            </div>
+                            {
+                              post.postImage != undefined ?
+                              <div className="img2-home-bottom-container" style={{ background: 'linear-gradient(0deg, rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url(http://grupo7.azurewebsites.net/img/' + post.postImage + ')' }}><img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage} /></div> :
+                                <img className="img2-home-bottom" src={noPhoto}></img>
+                            }
+                            <h2 className="TituloPostDestaque h5">{post.title}</h2>
+                            <p className="post-text-bottom-home p">{post.postDescription}</p>
+                          </div>
+                        </SwiperSlide>
+                      )
+                    }) :
+                    <span>Não há posts em destaque</span>
+                }
+              </Swiper>
+          }
 
         </div >
+        <Footer />
       </div>
-      <Footer/>
     </div>
   );
 }

@@ -103,27 +103,21 @@
     font-size: 14px;
     font-weight: 400;
 }
-.logout{
-    color: var(--CTA2);
-    display: flex;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
-}
-.logout:hover{
+
+/* .logout:hover{
     background: var(--ComplementaryColor4);
     border-radius: 10px;
-}
-.logout #log_out{
+} */
+/* .logout #log_out{
     margin-left: 35px;
     font-size: 30px;
     left: 100%;
-}
-.logout span{
+} */
+/* .logout span{
     font-size: 18px;
     font-weight: 600;
     cursor: pointer
-}
+} */
 /* .logout #log_out:hover{
     background: var(--ComplementaryColor4);
     border-radius: 50px;

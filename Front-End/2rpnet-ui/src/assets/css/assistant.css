@@ -16,7 +16,7 @@
   --complementDark: #17233C;
 }
 
-.container {
+.containerAssistant {
   max-width: 1820px;
   width: 90%;
 }
@@ -37,21 +37,30 @@ body {
 .header__text {
   color: var(--complementDark);
   font-weight: 500;
+  font-size: 1.875rem;
 }
 
 .boards {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 0 102px;
   min-height: 530px;
+  /* background-color: greenyellow; */
 }
 
-.flow {
+/* .flow { */
   /* background-color: wheat; */
-  height: 100%;
-  width: 50%;
-  display: flex;
-  justify-content: center;
+/* } */
+
+.boards-skinA{
+  /* background-color: rebeccapurple; */
+  width: 24%;
+}
+
+.boards-skinA__skin{
+  width: 80%;
+  height: 90%;
 }
 
 .boards__board {
@@ -309,7 +318,7 @@ body {
 }
 
 .card-flow {
-  width: 204px;
+  width: 206px;
   height: 56px;
   display: flex;
   align-items: center;
@@ -334,5 +343,8 @@ body {
 .main-Assistant {
   margin-top: 2rem;
   height: 881px;
+  display: flex;
+  justify-content: center;
+  
   /* background-color: coral; */
 }

@@ -35,7 +35,9 @@ const stylesCustom = {
       width: 1,
       height: 1,
       // backgroundcolor: rgba(0, 255, 255, 0.75),
-      boxShadow: ''
+      boxShadow: '',
+      background: 'none',
+      border: 'none'
   },
 };
 
@@ -58,68 +60,58 @@ export default function Marketplace() {
     }
    
     return (
-        <div id='all'>
-            <Header/>
+        <div>
+            {/* <Header/> */}
             <Navbar/>
             <div className='body-pd'>
             <VLibras/>
-            <img 
-                    src={onBoardingBot} 
-                    onClick={handleOpenOnBoarding} 
-                    className="img-onboarding"
-                />
-                <Modal
-                    isOpen={onBoardingIsOpen}
-                    onRequestClose={handleCloseOnBoarding}
-                    style={stylesCustom}
-                >
-                    <div className="top-container" >
-                        <div className="background-body" >
-                            <div className="boarding-image">
-                                <img className="bot-img" src={Blue_Head} />
-                            </div>
-                            <div className="body-content">
-                                <h2>Assistente</h2>
-                                <Swiper
-                                    pagination={{
-                                        type: "fraction",
-                                      }}
-                                      navigation={true}
-                                      modules={[Pagination, Navigation]}
-                                      
-                                    className="swiperHomeTasks-social"
-                                >
-                                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                        <div className="boardingContainer">
-                                        <span className='bayer'>Sinta-se a vontade a tela de Tarefas!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide className="swiper-slide-OnBoarding">
-                                        <div className="boardingContainer">
-                                            <span className='bayer'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
-                                        </div>
-                                    </SwiperSlide>
-                                </Swiper>
-                            </div>
+            <img
+                        src={onBoardingBot}
+                        onClick={handleOpenOnBoarding}
+                        className="img-onboarding"
+                    />
+                    <Modal
+                        isOpen={onBoardingIsOpen}
+                        onRequestClose={handleCloseOnBoarding}
+                        style={stylesCustom}
+                    >
+                        <div className="top-container-onboarding" >
+                            <div className="background-body" >
+                                <div className="boarding-image">
+                                    <img className="bot-img" src={Blue_Head} />
+                                </div>
+                                <div className="body-content">
+                                    <h2 className='h2'>Assistente</h2>
+                                    <Swiper
+                                        pagination={{
+                                            type: "fraction",
+                                        }}
+                                        navigation={true}
+                                        modules={[Pagination, Navigation]}
 
+                                        className="swiperHomeTasks-social"
+                                    >
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                            <div className="boardingContainer">
+                                                <span className='p textoBonito'>Bem-vindo ao marketplace de assistentes!</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                            <div className="boardingContainer">
+                                                <span className='p textoBonito'>Aqui será onde você poderá adquirir diferentes assistentes desenvolvidos por outros usuários</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                            <div className="boardingContainer">
+                                                <span className='p textoBonito'>Quer facilitar algo rotineiro? Verifique se suas necessidades já foram atendidas por aqui!</span>
+                                            </div>
+                                        </SwiperSlide>
+                                    </Swiper>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
-                </Modal>
+                    </Modal>
             <div className='container2'>
             <div className='Titulo_inputs'>
                 <h1 id='titulo'>Loja de Assistentes</h1>

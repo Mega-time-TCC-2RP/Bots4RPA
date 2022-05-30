@@ -19,6 +19,7 @@ import './index.css';
 
 // import Navbar from './components/menu/Navbar'
 import Home from './pages/home/';
+import WaitingRoom from './pages/waitingRoom/waitingRoom';
 import Login from './pages/login/';
 import SkinShop from './pages/skinShop/skinShop';
 import Marketplace from './pages/marketplace/marketplace';
@@ -28,11 +29,14 @@ import Quest from './pages/quests';
 import TesteDaltonicMode from './pages/DaltonicModeTest';
 import Profile from './pages/profile/index';
 import Config from './pages/config/config';
-
+import Guide from './pages/guide/guide';
 import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
 import RegisterCompany from './pages/registerCompany/registerCompany';
 import RegisterUser from './pages/registerUser/registerUser';
+import RegisterUserGoogle from './pages/registerUser/registerUserGoogle';
+
+
 import { history } from './history';
 import VLibras from '@djpfs/react-vlibras'
 import { usuarioAutenticado, parseJwt } from '../src/services/auth';
@@ -53,11 +57,14 @@ const routing = (
         <Route path="/login" element={<Login />} /> {/* Login */}
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
-        <Route path="/Config" element={<Config />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/registerUserGoogle" element={<RegisterUserGoogle />} />
+        <Route path="/Config" element={<Config />} /> {/* Config */}
+        <Route path="/waitingRoom" element={<WaitingRoom />} /> {/* WaitingRoom */}
+        <Route path="/profile" element={<Profile />} /> {/* Profile */}
+        <Route path="/guide" element={<Guide />} /> {/* Guide */}
         <Route path="/skinShop" element={<SkinShop />} /> {/* Marketplace */}
         <Route path="/marketplace" element={<Marketplace />} /> {/* Marketplace */}
-        <Route path="/assistant" element={<Assistant/>} />
+        <Route path="/assistant" element={<Assistant/>} /> {/* Assistant */}
         <Route path="/social" element={<TelaTimeline />} /> {/* Social */}
         <Route path="/quests" element={<Quest />} /> {/* Task Calendar */}
         <Route path="/testeDaltonic" element={<TesteDaltonicMode />} />

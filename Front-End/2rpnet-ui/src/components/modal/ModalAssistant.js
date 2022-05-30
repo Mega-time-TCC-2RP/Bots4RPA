@@ -4,7 +4,7 @@ import "../../assets/css/components/ModalAssistant.css"
 import Azul_Home from '../../assets/img/Azul_Home.png'
 import { Link, SettingsApplications } from '@material-ui/icons';
 import {API} from '../../../src/services/api'
-
+import { parseJwt } from "../../services/auth"
 
 function CloseModalAssistant() {
     var modal = document.getElementById("modalAssistant");
@@ -14,10 +14,13 @@ function CloseModalAssistant() {
 export default function Modal() {
 
     const navigate = useNavigate();
-    const [IdAssistant, setIdAssistant] = useState(0)
+    // const [IdAssistant, setIdAssistant] = useState(0)
+    
+    const [IdEmployee, setIdEmployee] = useState(0);
     const [assistantName, setAssistantName] = useState();
     const [assistantDescription, setAssistantDescription] = useState();
 
+ 
 
     function createAssistant(event) {
         event.preventDefault();
@@ -25,7 +28,7 @@ export default function Modal() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "assistantName": assistantName, "assistantDescription": assistantDescription })
+            body: JSON.stringify({ "assistantName": assistantName, "assistantDescription": assistantDescription, "idEmployee": parseJwt().idEmployee})
         };
 
         fetch(myUrl, requestOptions)

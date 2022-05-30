@@ -11,6 +11,7 @@ import Navbar from '../../components/menu/Navbar'
 import { usuarioAutenticado, parseJwt, handleAuthException } from '../../services/auth';
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
+import noPhoto from '../../assets/img/no-image.png'
 
 //onboarding
 import '../../assets/css/pages/onBoarding.css'
@@ -39,7 +40,7 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         width: '1000px',
-        height: '90vh',
+        height: '60vh',
         background: 'var(--WHITE)',
         boxShadow: 'var(--darkShadow)',
         borderRadius: '30px'
@@ -47,12 +48,14 @@ const customStyles = {
 };
 const stylesCustom = {
     content: {
-        width: 1,
-        height: 1,
-        // backgroundcolor: rgba(0, 255, 255, 0.75),
-        boxShadow: ''
+      width: 1,
+      height: 1,
+      // backgroundcolor: rgba(0, 255, 255, 0.75),
+      boxShadow: '',
+      background: 'none',
+      border: 'none'
     },
-};
+  };
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
@@ -196,22 +199,22 @@ export const TelaTimeline = (person, idx) => {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             },
         })
-            .then(function (response) { 
+            .then(function (response) {
                 console.log(response);
-                ListarPosts();
                 setIsLoading(false);
+                ListarPosts();
             })
             .catch(function (error) {
                 //handle error
+                setIsLoading(false);
                 if (handleAuthException(error) === true) {
                     localStorage.removeItem('2rp-chave-autenticacao')
                     Navigate('/login')
                 }
-                setIsLoading(false);
             });
     }
 
-    const PublicarComentario = (e) => {
+    const PublicarComentario = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         console.log(idPostComentarios)
@@ -225,20 +228,18 @@ export const TelaTimeline = (person, idx) => {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
             }
-        }).then((response) => {
-            console.log(response)
-            let ListaPostsPosComentar = ListarPosts();
-            console.log(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments);
-            setComentariosModal(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments)
+        }).then(async (response) => {
             setIsLoading(false);
+            let ListaPostsPosComentar = await ListarPosts();
+            setComentariosModal(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments)
         }).catch((error) => {
             console.log(error.response.status)
             console.log(error)
+            setIsLoading(false);
             if (handleAuthException(error) === true) {
                 localStorage.removeItem('2rp-chave-autenticacao')
                 Navigate('/login')
             }
-            setIsLoading(false);
         })
     }
 
@@ -253,15 +254,15 @@ export const TelaTimeline = (person, idx) => {
     if (parseJwt().Role == "3" || parseJwt().Role == "2") {
         return (
             <div>
-    
+
                 <Navbar />
                 <div className="body-pd">
                     {/* <Header /> */}
                     <VLibras />
                     {/* onboarding */}
-                    <img 
-                        src={onBoardingBot} 
-                        onClick={handleOpenOnBoarding} 
+                    <img
+                        src={onBoardingBot}
+                        onClick={handleOpenOnBoarding}
                         className="img-onboarding"
                     />
                     <Modal
@@ -275,39 +276,34 @@ export const TelaTimeline = (person, idx) => {
                                     <img className="bot-img" src={Blue_Head} />
                                 </div>
                                 <div className="body-content">
-                                    <h2>Assistente</h2>
+                                    <h2 className='h2'>Assistente</h2>
                                     <Swiper
                                         pagination={{
                                             type: "fraction",
-                                          }}
-                                          navigation={true}
-                                          modules={[Pagination, Navigation]}
-                                          
+                                        }}
+                                        navigation={true}
+                                        modules={[Pagination, Navigation]}
+
                                         className="swiperHomeTasks-social"
                                     >
                                         <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                                <span className='p textoBonito'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
+                                                <span className='p textoBonito'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
                                             <div className="boardingContainer">
-                                                <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
-                                            <div className="boardingContainer">
-                                                <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
+                                                <span className='p textoBonito'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade!</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>
                                 </div>
-    
+
                             </div>
                         </div>
                     </Modal>
@@ -328,24 +324,22 @@ export const TelaTimeline = (person, idx) => {
                             >
                                 <form className="CadastroModalContainer" onSubmit={(e) => PublicarPost(e)}>
                                     <div className="HeaderModal">
-                                        <h2>Adicionar publicação</h2>
-                                        <button onClick={(e) => closeModalCadastro(e)}>X</button>
+                                        <h2 className="h4">Adicionar publicação</h2>
+                                        <button className='HeaderModalClosBtn' onClick={(e) => closeModalCadastro(e)}>X</button>
                                     </div>
-                                    <div>
-                                        <div className="CamposCadastro">
-                                            <div className="LinhaCampoCadastro">
-                                                <div className="CampoCadastro">
-                                                    <label className="LabelCampoCadastro">Título</label>
-                                                    <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
-                                                </div>
-                                                <div className="CampoCadastro">
-                                                    <label className="LabelCampoCadastro">Descrição</label>
-                                                    <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
-                                                </div>
+                                    <div className="CamposCadastroContainer">
+                                        <div className="CamposCadastro inputsModal ">
+                                            <div className="CampoCadastro">
+                                                <label>Título</label>
+                                                <input className="input" placeholder="Digite o título..." type="text" onChange={(e) => setTituloPostCadastro(e.target.value)} value={TituloPostCadastro}></input>
                                             </div>
                                             <div className="CampoCadastro">
-                                                <label className="LabelCampoCadastro">Imagem</label>
-                                                <label className="ImagemInputExibição" for="InputImagemCadastroPost">{
+                                                <label >Descrição</label>
+                                                <input className="input" placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoPostCadastro(e.target.value)} value={DescricaoPostCadastro}></input>
+                                            </div>
+                                            <div className="CampoCadastro">
+                                                <label>Imagem</label>
+                                                <label className="input ImagemInputExibição" for="InputImagemCadastroPost">{
                                                     labelImgCadastroPost
                                                 }</label>
                                                 <input className="ImagemInputReal" id="InputImagemCadastroPost" placeholder="Selecione a imagem..." type="file" accept="image/*" onChange={() => {
@@ -358,7 +352,7 @@ export const TelaTimeline = (person, idx) => {
                                     </div>
                                     {
                                         IsLoading == true ?
-                                            <button className="BtnSubmitForm" type="submit" disabled>Carregando</button> : <button className="BtnSubmitForm" type="submit">Publicar</button>
+                                            <button className="button" type="submit" disabled>Carregando</button> : <button className="button" type="submit">Publicar</button>
                                     }
                                 </form>
                             </Modal>
@@ -366,18 +360,18 @@ export const TelaTimeline = (person, idx) => {
                                 ListaPosts != undefined &&
                                 ListaPosts.map((post) => {
                                     return (
-                                        < div className="BoxPost" key={post.idPost} >
+                                        < div className="BoxPost cardPattern" key={post.idPost} >
                                             <div className="UsuarioCampo">
                                                 <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
                                                 <div className="UsuarioDados">
-                                                    <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                                    <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                                    <span className="h5 semi-bold">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                    <span className="p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
                                                 </div>
                                             </div>
                                             {
                                                 post.postImage != undefined ?
                                                     <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                                                    <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
+                                                    <img className="ImgPost" src={noPhoto}></img>
                                             }
                                             <div className="ContainerBotoesPost">
                                                 <button onClick={() => {
@@ -387,6 +381,187 @@ export const TelaTimeline = (person, idx) => {
                                                     <img src={botaoComentarImg}></img>
                                                 </button>
                                                 {
+                                                    IsLoading == true ?
+                                                        post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
+                                                                <img src={botaoCurtidoImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+                                                            :
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
+                                                                <img src={botaoCurtirImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+                                                        :
+                                                        post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
+
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)}>
+                                                                <img src={botaoCurtidoImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+                                                            :
+                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)}>
+                                                                <img src={botaoCurtirImg}></img>
+                                                                <span>{post.likes.length}</span>
+                                                            </button>
+
+                                                }
+                                            </div>
+                                            <h2 className="TituloPost h5 semi-bold">{post.title}</h2>
+                                            <p className="DescricaoPost p">{post.postDescription}</p>
+                                            <Modal
+                                                isOpen={ModalComentariosIsOpen}
+                                                onAfterOpen={afterOpenModal}
+                                                onRequestClose={closeModalComentarios}
+                                                style={customStyles}
+                                                contentLabel="Example Modal"
+                                                class="ReactModal"
+                                                closeTimeoutMS={2000}
+                                            >
+                                                <div className='ContainerModalComentarios'>
+                                                    <div className="HeaderModal">
+                                                        <form onSubmit={(e) => PublicarComentario(e)} className='CadastroComentarioContainer inputsModal'>
+                                                            <div className='LinhaCampoCadastroComentarios'>
+                                                                <div className="CampoCadastro">
+                                                                    <label className="LabelCampoCadastro">Título</label>
+                                                                    <input className="input" placeholder="Digite o título..." type="text" onChange={(e) => setTituloCadastroComentario(e.target.value)} value={tituloCadastroComentario}></input>
+                                                                </div>
+                                                                <div className="CampoCadastro">
+                                                                    <label className="LabelCampoCadastro">Descrição</label>
+                                                                    <input className="input" placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
+                                                                </div>
+                                                            </div>
+                                                            {
+                                                                IsLoading == true ?
+                                                                    <button type="submit" className="button" disabled>Carregando...</button> : <button type="submit" className="button">Publicar</button>
+                                                            }
+                                                        </form>
+
+                                                        <button className='HeaderModalClosBtn' onClick={(e) => closeModalComentarios(e)}>X</button>
+                                                    </div>
+                                                    <div className='ContainerComentarios'>
+                                                        {
+                                                            ComentariosModal != undefined &&
+                                                            ComentariosModal.map((comentario) => {
+                                                                return (
+                                                                    <div className="Comentario" key={comentario.idComentario}>
+                                                                        <div className='ComentarioUsuario'>
+                                                                            <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                                                            <span className='h5 semi-bold'>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                        </div>
+                                                                        <div className='ConteudoComentario'>
+                                                                            <h6 className='h6'>{comentario.title}</h6>
+                                                                            <p className='p'>{comentario.commentDescription}
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </Modal>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
+            </div>
+        );
+    }
+    else {
+        return (
+            <div>
+
+                <Navbar />
+                <div className="body-pd">
+                    {/* <Header /> */}
+                    <VLibras />
+                    {/* onboarding */}
+                    <img
+                        src={onBoardingBot}
+                        onClick={handleOpenOnBoarding}
+                        className="img-onboarding"
+                    />
+                    <Modal
+                        isOpen={onBoardingIsOpen}
+                        onRequestClose={handleCloseOnBoarding}
+                        style={stylesCustom}
+                    >
+                        <div className="top-container-onboarding" >
+                            <div className="background-body" >
+                                <div className="boarding-image">
+                                    <img className="bot-img" src={Blue_Head} />
+                                </div>
+                                <div className="body-content">
+                                    <h2 className='h2'>Assistente</h2>
+                                    <Swiper
+                                        pagination={{
+                                            type: "fraction",
+                                        }}
+                                        navigation={true}
+                                        modules={[Pagination, Navigation]}
+
+                                        className="swiperHomeTasks-social"
+                                    >
+                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
+                                            <div className="boardingContainer">
+                                                <span className='p textoBonito'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='p textoBonito'>Aqui será onde você poderá ver as postagens dos usuários dentro de sua empresa!</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='p textoBonito'>Verifiquei e você é um administrador. Administradores não podem postar, curtir e comentar. Mas possuem um importante papel moderador!</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide className="swiper-slide-OnBoarding">
+                                            <div className="boardingContainer">
+                                                <span className='p textoBonito'>Tenha controle sobre o que seus funcionários publicam na plataforma e sempre se mantenha atualizado!</span>
+                                            </div>
+                                        </SwiperSlide>
+                                    </Swiper>
+                                </div>
+
+                            </div>
+                        </div>
+                    </Modal>
+                    {/*  */}
+                    <main id="Main">
+                        <div className="ContainerGrid ContainerPosts">
+                            {
+                                ListaPosts != undefined &&
+                                ListaPosts.map((post) => {
+                                    return (
+                                        < div className="BoxPost cardPattern" key={post.idPost} >
+                                            <div className="UsuarioCampo">
+                                                <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
+                                                <div className="UsuarioDados">
+                                                    <span className="h5 semi-bold">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                    <span className="p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
+                                                </div>
+                                            </div>
+                                            {
+                                                post.postImage != undefined ?
+                                                    <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
+                                                    <img className="ImgPost" src={noPhoto}></img>
+                                            }
+                                            <div className="ContainerBotoesPost">
+                                                <button onClick={() => {
+                                                    openModalComentarios(post.comments)
+                                                    setIdPostComentarios(post.idPost)
+                                                }} className="BotaoComentar BotaoPost">
+                                                    <img src={botaoComentarImg}></img>
+                                                </button>
+                                                {/* {
                                                     IsLoading == true ?
                                                         post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
     
@@ -412,10 +587,10 @@ export const TelaTimeline = (person, idx) => {
                                                                 <span>{post.likes.length}</span>
                                                             </button>
     
-                                                }
+                                                } */}
                                             </div>
-                                            <h2 className="TituloPost">{post.title}</h2>
-                                            <p className="DescricaoPost">{post.postDescription}</p>
+                                            <h2 className="TituloPost h5 semi-bold">{post.title}</h2>
+                                            <p className="DescricaoPost p">{post.postDescription}</p>
                                             <Modal
                                                 isOpen={ModalComentariosIsOpen}
                                                 onAfterOpen={afterOpenModal}
@@ -427,23 +602,7 @@ export const TelaTimeline = (person, idx) => {
                                             >
                                                 <div className='ContainerModalComentarios'>
                                                     <div className="HeaderModal">
-                                                        <form onSubmit={(e) => PublicarComentario(e)} className='CadastroComentarioContainer'>
-                                                            <div className='LinhaCampoCadastroComentarios'>
-                                                                <div className="CampoCadastro">
-                                                                    <label className="LabelCampoCadastro">Título</label>
-                                                                    <input placeholder="Digite o título..." type="text" onChange={(e) => setTituloCadastroComentario(e.target.value)} value={tituloCadastroComentario}></input>
-                                                                </div>
-                                                                <div className="CampoCadastro">
-                                                                    <label className="LabelCampoCadastro">Descrição</label>
-                                                                    <input placeholder="Digite a descrição..." type="text" onChange={(e) => setDescricaoCadastroComentario(e.target.value)} value={descricaoCadastroComentario}></input>
-                                                                </div>
-                                                            </div>
-                                                            {
-                                                                IsLoading == true ?
-                                                                    <button type="submit" className="BtnSubmitForm" disabled>Carregando...</button> : <button type="submit" className="BtnSubmitForm">Publicar</button>
-                                                            }
-                                                        </form>
-                                                        <button onClick={(e) => closeModalComentarios(e)}>X</button>
+                                                        <button className='HeaderModalClosBtn' onClick={(e) => closeModalComentarios(e)}>X</button>
                                                     </div>
                                                     <div className='ContainerComentarios'>
                                                         {
@@ -453,173 +612,13 @@ export const TelaTimeline = (person, idx) => {
                                                                     <div className="Comentario" key={comentario.idComentario}>
                                                                         <div className='ComentarioUsuario'>
                                                                             <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                                                            <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                            <span className='h5 semi-bold'>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
                                                                         </div>
-                                                                        <h2 className='TituloComentario'>{comentario.title}</h2>
-                                                                        <p className='TextoComentario'>{comentario.commentDescription}
-                                                                        </p>
-                                                                    </div>
-                                                                )
-                                                            })
-                                                        }
-                                                    </div>
-                                                </div>
-                                            </Modal>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    </main>
-                    <Footer />
-                </div>
-            </div>
-        );
-    }
-    else{
-        return (
-            <div>
-    
-                <Navbar />
-                <div className="body-pd">
-                    {/* <Header /> */}
-                    <VLibras />
-                    {/* onboarding */}
-                    <img 
-                        src={onBoardingBot} 
-                        onClick={handleOpenOnBoarding} 
-                        className="img-onboarding"
-                    />
-                    <Modal
-                        isOpen={onBoardingIsOpen}
-                        onRequestClose={handleCloseOnBoarding}
-                        style={stylesCustom}
-                    >
-                        <div className="top-container-onboarding" >
-                            <div className="background-body" >
-                                <div className="boarding-image">
-                                    <img className="bot-img" src={Blue_Head} />
-                                </div>
-                                <div className="body-content">
-                                    <h2>Assistente</h2>
-                                    <Swiper
-                                        pagination={{
-                                            type: "fraction",
-                                          }}
-                                          navigation={true}
-                                          modules={[Pagination, Navigation]}
-                                          
-                                        className="swiperHomeTasks-social"
-                                    >
-                                        <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                            <div className="boardingContainer">
-                                            <span className='bayer'>Sinta-se a vontade a parte Social da nossa plataforma !</span>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
-                                            <div className="boardingContainer">
-                                                <span className='bayer'>Aqui será onde você poderá tirar dúvidas sobre seus Assistentes, os comprados e criados por você e seu time!</span>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
-                                            <div className="boardingContainer">
-                                                <span className='bayer'>Converse com pessoas de todos os locais que consumam da nossa plataforma!</span>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide className="swiper-slide-OnBoarding">
-                                            <div className="boardingContainer">
-                                                <span className='bayer'>E não esqueça, quanto mais você ajuda, mais você SE ajuda. Seja gentil e se envolva com a comunidade! :)</span>
-                                            </div>
-                                        </SwiperSlide>
-                                    </Swiper>
-                                </div>
-    
-                            </div>
-                        </div>
-                    </Modal>
-                    {/*  */}
-                    <main id="Main">
-                        <div className="ContainerGrid ContainerPosts">
-                            {
-                                ListaPosts != undefined &&
-                                ListaPosts.map((post) => {
-                                    return (
-                                        < div className="BoxPost" key={post.idPost} >
-                                            <div className="UsuarioCampo">
-                                                <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                                <div className="UsuarioDados">
-                                                    <span className="Nome">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
-                                                    <span className="Cargo">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</span>
-                                                </div>
-                                            </div>
-                                            {
-                                                post.postImage != undefined ?
-                                                    <img className="ImgPost" src={"http://grupo7.azurewebsites.net/img/" + post.postImage}></img> :
-                                                    <p className="TextoNaoHaImagemPost">Não há uma imagem para ilustrar esse post :(</p>
-                                            }
-                                            <div className="ContainerBotoesPost">
-                                                <button onClick={() => {
-                                                    openModalComentarios(post.comments)
-                                                    setIdPostComentarios(post.idPost)
-                                                }} className="BotaoComentar BotaoPost">
-                                                    <img src={botaoComentarImg}></img>
-                                                </button>
-                                                {
-                                                    IsLoading == true ?
-                                                        post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
-    
-                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
-                                                                <img src={botaoCurtidoImg}></img>
-                                                                <span>{post.likes.length}</span>
-                                                            </button>
-                                                            :
-                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
-                                                                <img src={botaoCurtirImg}></img>
-                                                                <span>{post.likes.length}</span>
-                                                            </button>
-                                                        :
-                                                        post.likes.find((like) => like.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.idUser == parseInt(parseJwt().jti)) != undefined ?
-    
-                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesDescurtir(e, post.idPost)} disabled>
-                                                                <img src={botaoCurtidoImg}></img>
-                                                                <span>{post.likes.length}</span>
-                                                            </button>
-                                                            :
-                                                            <button className="BotaoCurtir BotaoPost" onClick={(e) => LikesCurtir(e, post.idPost)} disabled>
-                                                                <img src={botaoCurtirImg}></img>
-                                                                <span>{post.likes.length}</span>
-                                                            </button>
-    
-                                                }
-                                            </div>
-                                            <h2 className="TituloPost">{post.title}</h2>
-                                            <p className="DescricaoPost">{post.postDescription}</p>
-                                            <Modal
-                                                isOpen={ModalComentariosIsOpen}
-                                                onAfterOpen={afterOpenModal}
-                                                onRequestClose={closeModalComentarios}
-                                                style={customStyles}
-                                                contentLabel="Example Modal"
-                                                class="ReactModal"
-                                                closeTimeoutMS={2000}
-                                            >
-                                                <div className='ContainerModalComentarios'>
-                                                    <div className="HeaderModal">
-                                                        <button onClick={(e) => closeModalComentarios(e)}>X</button>
-                                                    </div>
-                                                    <div className='ContainerComentarios'>
-                                                        {
-                                                            ComentariosModal != undefined &&
-                                                            ComentariosModal.map((comentario) => {
-                                                                return (
-                                                                    <div className="Comentario" key={comentario.idComentario}>
-                                                                        <div className='ComentarioUsuario'>
-                                                                            <img src={"http://grupo7.azurewebsites.net/img/" + comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser}></img>
-                                                                            <span>{comentario.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</span>
+                                                                        <div className='ConteudoComentario'>
+                                                                            <h6 className='h6'>{comentario.title}</h6>
+                                                                            <p className='p'>{comentario.commentDescription}
+                                                                            </p>
                                                                         </div>
-                                                                        <h2 className='TituloComentario'>{comentario.title}</h2>
-                                                                        <p className='TextoComentario'>{comentario.commentDescription}
-                                                                        </p>
                                                                     </div>
                                                                 )
                                                             })

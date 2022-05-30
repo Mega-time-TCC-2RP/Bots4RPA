@@ -150,6 +150,8 @@ export default function Config() {
                 if (resposta.status === 200) {
                     setUserLogado(resposta.data)
                     console.log(resposta.data)
+                    const date = resposta.data.birthDate.substring(0,10)
+                    console.log(date.split('-')[1] + '/' + date.split('-')[2] + '/' + date.split('-')[0])
                 }
             })
             .catch((erro) => console.log(erro))
@@ -246,7 +248,11 @@ export default function Config() {
                         formData.append('IdOffice', userLogado.employees[0].idOffice)
                     }
                     formData.append('IdUserType', userLogado.idUserType)
-                    formData.append('Passwd', NovaSenha)
+                    if (NovaSenha === '') {
+                        formData.append('Passwd',pass);
+                    } else {
+                        formData.append('Passwd', NovaSenha);
+                    }
                     //formData.append('File', "http://grupo7.azurewebsites.net/img/" + userLogado.photoUser)
                     axios({
                         method: "PUT",
@@ -259,6 +265,7 @@ export default function Config() {
                                 closeModalConfig();
                                 console.log("alterado com sucesso")
                                 setPass('')
+                                setNovaSenha('')
                                 setConfirmPassword(false)
                             }
                         })
@@ -577,8 +584,8 @@ export default function Config() {
         <div>
             {parseJwt().Role == 3 ? <Header /> : null}
             <Navbar />
-            <div className='configPage'>
-                <h1 className='container h3' alt="configurações">Configurações</h1>
+            <div className='configPage body-pd'>
+                <h1 className='container h3' id='configTitlle' alt="configurações">Configurações</h1>
                 <nav className='navAreaConfig container'>
                     <span className='h4 myData' id='myData' onClick={() => select(0)}>Meus Dados</span>
                     <span className='h4 Acessibilidade' id='Acessibilidade' onClick={() => select(1)}>Acessibilidade</span>
@@ -602,7 +609,7 @@ export default function Config() {
                                             </div>
                                             <div className='dataUser'>
                                                 <label className='h6 semi-bold' htmlFor="birthDateUser">Nascimento:</label>
-                                                <p id='birthDateUser' className="p">{userLogado.birthDate}</p>
+                                                <p id='birthDateUser' className="p">{userLogado.birthDate.substring(0,10).split('-')[1] + '/' + userLogado.birthDate.substring(0,10).split('-')[2] + '/' + userLogado.birthDate.substring(0,10).split('-')[0]}</p>
                                             </div>
                                         </div>
                                         <div className='contentConfig'>
@@ -622,13 +629,14 @@ export default function Config() {
                                     </div>
                                     <img src={"http://grupo7.azurewebsites.net/img/" + userLogado.photoUser} className='profileImage' alt="Imagem de perfil" />
                                 </div>
-                                <button className='button' onClick={openModalConfig}>Atualizar Dados</button>
+                                <button className='button' id='buttonAtualize' onClick={openModalConfig}>Atualizar Dados</button>
                                 <Modal
                                     isOpen={modalConfig}
                                     onRequestClose={closeModalConfig}
                                     style={configCustomStyles}
                                     class="ReactModal"
                                     closeTimeoutMS={1000}
+                                    id="modalAtualize"
                                 >
                                     <form encType='multipart/form-data' className='modalConfig areaStep'>
                                         <div className='profileImageArea'>
@@ -648,8 +656,8 @@ export default function Config() {
                                                 <input id='emailModals' className='input placeholder-text' type="text" name="name" placeholder='Insira seu Nome...' value={userAlterado.userName1} onChange={(event) => setUserAlterado({ userName1: event.target.value, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label className='h5' htmlFor='cpf'>CPF</label>
                                                 <MaskedInputCPF value={userAlterado.cpf} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: event.target.value, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
-                                                <label className='h5' htmlFor='dataNascimento'>Data de Nascimento</label>
-                                                <input id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userAlterado.birthDate} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: event.target.value, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
+                                                <label id='DataNascimento' className='h5' htmlFor='dataNascimento'>Data de Nascimento</label>
+                                                <input type="date" id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userLogado.birthDate} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: event.target.value, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                             </div>
                                             <div className='inputsModal'>
                                                 <label className='h5' htmlFor='email'>Email</label>
@@ -660,13 +668,13 @@ export default function Config() {
                                                 <MaskedInputTelephone value={userAlterado.phone} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: event.target.value })} />
                                             </div>
                                         </div>
-                                        <div>
+                                        <div className='newPassword'>
                                             <label className='h5' htmlFor='NovaSenha'>Nova senha</label>
                                             <input required id='NovaSenha' className='input' type="text" name="name" placeholder='Insira sua nova senha...' value={NovaSenha} onChange={(event) => setNovaSenha(event.target.value)} />
                                         </div>
                                         {
                                             confirmPassword === true ?
-                                                <div>
+                                                <div className='confirmPassword'>
                                                     <input value={pass} onChange={(event) => setPass(event.target.value)} type="password" className='input' id='passConfirm' placeholder='Confirme sua Senha...' />
                                                     <button className='button' onClick={alterUserData}>Confirmar</button>
                                                 </div>
@@ -680,7 +688,7 @@ export default function Config() {
                     }
                     {
                         steps[currentStep].id === 'Step2' && (
-                            <div>
+                            <div className='center'>
                                 <h2 className='h6 semi-bold' alt="Acessibilidade">Selecionar tema</h2>
                                 <select className='select' onChange={(e) => MudarTema(e.target.value)}>
                                     <optgroup>
@@ -740,12 +748,12 @@ export default function Config() {
                                         return (
                                             <div key={user.idUser} className='mainContentArea contentValidUser'>
                                                 <div className='contentConfig'>
-                                                    <h3>Email <p className='p'>{user.idUserNavigation.email}</p></h3>
-                                                    <h3>CPF <p className='p'>{user.idUserNavigation.cpf}</p></h3>
-                                                    <h3>Nome <p className='p'>{user.idUserNavigation.userName1}</p></h3>
-                                                    <h3>RG <p className='p'>{user.idUserNavigation.rg}</p></h3>
-                                                    <h3>Telefone <p className='p'>{user.idUserNavigation.phone}</p></h3>
-                                                    <h3>Data de Nascimento <p className='p'>{user.idUserNavigation.birthDate}</p></h3>
+                                                    <h5 className='semi-bold'>Email <p className='p'>{user.idUserNavigation.email}</p></h5>
+                                                    <h5>CPF <p className='p'>{user.idUserNavigation.cpf}</p></h5>
+                                                    <h5>Nome <p className='p'>{user.idUserNavigation.userName1}</p></h5>
+                                                    <h5>RG <p className='p'>{user.idUserNavigation.rg}</p></h5>
+                                                    <h5>Telefone <p className='p'>{user.idUserNavigation.phone}</p></h5>
+                                                    <h5>Data de Nascimento <p className='p'>{user.idUserNavigation.birthDate}</p></h5>
                                                 </div>
                                                 <div>
                                                     <SiIcons.SiVerizon onClick={() => autorizeUser(user.idUser)} className='iconConfig' />
