@@ -31,7 +31,8 @@ footer span {
 }
 
 .footer2RP {
-    width: 230px !important
+    width: 230px !important;
+    margin-left: 90px;
 }
 
 .socialNetworkArea{

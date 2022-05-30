@@ -1,0 +1,48 @@
+.dags-header{
+        height: 70px;
+        margin-top: 30px;
+        margin-left: 145px;
+}
+.dags-body{
+        background: #f1f1f1;
+        height: 50vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+}
+.dags-conteiner{
+        min-height: 80%;
+        width: 85%;
+        background: var(--WHITE);
+        border: 2px solid var(--ComplementaryColor1);
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px var(--darkShadow);
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+}
+.tabela-dags{
+        width: 100%;
+        position: absolute;
+        top:0px;
+}
+table{
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+        width: 100%;
+        border-radius: 33px;
+}
+table th{
+        background-color: rgb(214, 214, 214);
+}
+table th, td{
+        padding: 1px;
+        text-align: center;
+}
+.center-dags{
+        text-align: center;
+}

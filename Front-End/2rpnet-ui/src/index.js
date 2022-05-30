@@ -34,6 +34,7 @@ import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
 import RegisterCompany from './pages/registerCompany/registerCompany';
 import RegisterUser from './pages/registerUser/registerUser';
+import Dags from './pages/dags/dags';
 import RegisterUserGoogle from './pages/registerUser/registerUserGoogle';
 
 
@@ -57,6 +58,7 @@ const routing = (
         <Route path="/login" element={<Login />} /> {/* Login */}
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
+        <Route path='/dags' element={<Dags />} />
         <Route path="/registerUserGoogle" element={<RegisterUserGoogle />} />
         <Route path="/Config" element={<Config />} /> {/* Config */}
         <Route path="/waitingRoom" element={<WaitingRoom />} /> {/* WaitingRoom */}
