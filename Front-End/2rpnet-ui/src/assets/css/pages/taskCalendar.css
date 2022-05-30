@@ -2,7 +2,7 @@
     --box-shadow-var: 1px 4px 4px var(--ComplementaryColor4);
 }
 
-.pageTitle {
+.pageTitleD {
     margin-top: 82px;
     margin-left: 20vh;
 }
@@ -239,4 +239,74 @@
 
 .marginBtnModalTask {
     margin-top: 8rem;
+}
+
+/*
+MOBILE
+*/
+
+.titleAndButton {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.pageTitleM {
+    margin: 2rem 2rem 2rem 20vh;
+    /* margin-left: 20vh; */
+}
+
+.taskMobile {
+    border: 5px solid gray;
+    margin-left: 20vh;
+}
+
+.taskTitleM {
+    background-color: var(--ComplementaryColor1);
+    /* width: 90vw; */
+    text-align: start;
+    /* margin: 1rem; */
+    border-radius: 30px;
+}
+
+.taskSpaceMobile {
+    height: 35px;
+    background-color: var(--ComplementaryColor1);
+    display: flex;
+    overflow-x: visible;
+    overflow-y: hidden;
+    /* white-space: nowrap; */
+    height: 100px;
+    width: 80vw;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.cardTaskMobile {
+    height: 25px;
+    width: 100px;
+    background-color: var(--PrimaryColor1);
+    border-radius: 30px;
+    color: var(--WHITE);
+    padding: 55px 16px 55px 16px;
+    box-shadow: var(--box-shadow-var);
+    border: 2px solid var(--PrimaryColor2);
+    font-weight: 600;
+    /* overflow: auto; */
+}
+
+@media only screen and (max-width: 768px) {
+    .pageTitleM {
+        margin: 2rem;
+    }
+
+    .btnNewTask {
+        width: 40% !important;
+    }
+
+    .taskMobile {
+        border: 5px solid gray;
+        margin-left: 2rem;
+        padding: 1rem;
+    }
 }

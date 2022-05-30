@@ -57,6 +57,17 @@ const taskCustom = {
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
+function useWindowSize() {
+  const [size, setSize] = useState([window.innerWidth]);
+  useEffect(() => {
+    const handleResize = () => {
+      setSize([window.innerWidth]);
+    };
+    window.addEventListener("resize", handleResize);
+  }, []);
+  return size;
+}
+
 function App() {
   const [workflowList, setWorkflowList] = useState([]);
   const [titleTask, setTitleTask] = useState('');
@@ -69,6 +80,9 @@ function App() {
   const [taskIsOpen, setTaskIsOpen] = useState(false);
   const [newTaskIsOpen, setNewTaskIsOpen] = useState(false);
   const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
+
+  const [width] = useWindowSize();
+
 
   function handleOpenOnBoarding() {
     setOnBoardingIsOpen(true)
@@ -171,12 +185,14 @@ function App() {
 
   // Funcionalidade da Data
   const day = () => {
+    if (width >= 992) {
     let date = new Date().getDate()
 
     // console.log(`O dia de hoje é: ${date}`);
 
     document.getElementById("calend" + date).style.color = "var(--WHITE)";
     document.getElementById("calend" + date).style.backgroundColor = "var(--PrimaryColor1)";
+    }
   }
 
   // Funcionalidade do Drag n' Drop
@@ -255,6 +271,7 @@ function App() {
   }
 
   const month = () => {
+    if (width >= 992) {
     const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
     let indexMonth = new Date().getMonth()
@@ -264,6 +281,7 @@ function App() {
     // console.log(months[indexMonth]);
 
     document.getElementById("monthCalendar").innerHTML = setMonth
+    }
   }
 
   const searchIDTask = (myQuests) => {
@@ -344,8 +362,8 @@ function App() {
   });
 
   if (parseJwt().Role === "3" || parseJwt().Role === "2") {
+    if (width >= 992) {
     return (
-
       <div className='pageTaskCalendar'>
         {/* <Header /> */}
         <Navbar />
@@ -409,8 +427,10 @@ function App() {
               </div>
             </div>
           </Modal>
-          <h2 className="pageTitle h2">Painel Organizacional</h2>
+          <h2 className="pageTitle pageTitleD h2">{width}</h2>
           <div className='taskCalendar'>
+            
+            
             <section className="task">
               <div id="todoID"
                 className="toDo">
@@ -495,7 +515,8 @@ function App() {
              )
            } */}
             <div className="calendarAndBtn">
-              <section className="calendar p">
+              
+            <section className="calendar p">
                 <div className="calendarTitle"><h5 id="monthCalendar" className="h5">Calendário</h5></div>
                 <input id="calend1"
                   className="btnCalendar p"
@@ -622,6 +643,7 @@ function App() {
                   type="button"
                   value="31" /></div>
               </section>
+              
               <input
                 className="btnNewTask button"
                 type="button"
@@ -675,6 +697,211 @@ function App() {
         </div>
       </div>
     );
+          }
+          else {
+            return (
+              <div className='pageTaskCalendar'>
+        <Navbar />
+        <div className='body-pd'>
+          <VLibras />
+          <img
+            alt='Imagem Clicável Onboarding'
+            src={onBoardingBot}
+            onClick={handleOpenOnBoarding}
+            className="img-onboarding"
+          />
+          <Modal
+            isOpen={onBoardingIsOpen}
+            onRequestClose={handleCloseOnBoarding}
+            style={stylesCustom}
+          >
+            <div className="top-container-onboarding" >
+              <div className="background-body" >
+                <div className="boarding-image">
+                  <img className="bot-img" src={Blue_Head} alt="Imagem Onboarding"/>
+                </div>
+                <div className="body-content">
+                  <h2 className="h2">Assistente</h2>
+                  <Swiper
+                    pagination={{
+                      type: "fraction",
+                    }}
+                    navigation={true}
+                    modules={[Pagination, Navigation]}
+
+                    className="swiperHomeTasks-social"
+                  >
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Sinta-se a vontade a tela de Tarefas!</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
+                      </div>
+                    </SwiperSlide>
+                  </Swiper>
+                </div>
+
+              </div>
+            </div>
+          </Modal>
+          <div className="titleAndButton">
+          <h2 className="pageTitle pageTitleM h2">{width}</h2>
+          <input
+                className="btnNewTask button"
+                type="button"
+                value="Nova Tarefa"
+                onClick={handleOpenNewTask} />
+              <Modal
+                isOpen={newTaskIsOpen}
+                onRequestClose={handleCloseNewTask}
+                style={taskCustom} >
+                <div className="modalQuests">
+                  <div className="headerModal">
+                    <div className="title h2">Nova Tarefa</div>
+                    <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
+                  </div>
+                  <form onSubmit={formNewTask}>
+                    <div className="bodyModalQuest">
+                      <div className="inputsQuests">
+                        <div className="inputQuests">
+                          <label for="titleInput" className="h5">Título</label>
+                          <input
+                            id="titleInput"
+                            className="input"
+                            type="text"
+                            placeholder="Insira o Título da tarefa..."
+                            onChange={(event) => setTitleTask(event.target.value)} />
+                          <label for="descriptionInput" className="h5">Descrição</label>
+                          <input
+                            id="descriptionInput"
+                            className="input"
+                            type="text"
+                            placeholder="Insira pontos importantes para a resolução da tarefa..."
+                            onChange={(event) => setDescriptionTask(event.target.value)} />
+                          <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
+                          <input
+                            id="dayAndMonthWorkflow"
+                            className="input inputQuestsDate"
+                            type="date"
+                            onChange={(event) => setEndDate(event.target.value)} />
+                          <input
+                            className="btnNewTask button btnSpaceNewTask"
+                            type="submit"
+                            value="Adicionar Tarefa" />
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </Modal>
+              </div>
+          <div className='taskCalendar'>
+            <section className="taskMobile">
+              <div id="todoID"
+                className="toDoMobile">
+                <div className="taskTitle taskTitleM">
+                  <h5 className="h5">A Fazer</h5>
+                </div>
+                <div
+                  className="taskSpaceMobile">
+                  {
+                    workflowList.map((myQuests) => {
+                      return (
+                        // <div key={(myQuests.idWorflow)}>
+                        <div
+                          key={(myQuests.idWorkflow && myQuests.idStatus === 2)}
+                          onClick={(e) => {handleOpenTask(e); searchIDTask(myQuests)}}
+                          className="cardTaskMobile">
+                          <div
+                            className="p"
+                          >{myQuests.title}</div>
+                          <Modal
+                          isOpen={taskIsOpen}
+                          onAfterOpen={afterOpenModal}
+                          onRequestClose={handleCloseTask}
+                          style={taskCustom}
+                          contentLabel="Example Modal"
+                          class="ReactModal"
+                          closeTimeoutMS={2000}>
+                             {/* isOpen={taskIsOpen}
+                             onRequestClose={(e) => handleCloseTask(e)}
+                             style={taskCustom} > */}
+                            <TaskOpen />
+                          </Modal>
+                        </div>
+                      // </div>
+                      )
+                    }
+                    )
+                  }
+                </div>
+              </div>
+
+              <div id="doID"
+                className="doMobile">
+                <div className="taskTitle taskTitleM">
+                  <h5 className="h5">Fazendo</h5>
+                </div>
+                <div
+                  // key={myQuests.idWorkflow && myQuests.idStatus === 2}
+                  className="taskSpaceMobile">
+                  {/* <div className="cardTask" draggable="true">
+                  <div className="p">Lorem Ipsum is simply dummy text.</div>
+                  <div className="p">
+                    {myQuests.title}
+                  </div>
+                </div> */}
+                </div>
+              </div>
+
+              <div id="doneID"
+                className="doneMobile">
+                <div className="taskTitle taskTitleM">
+                  <h5 className="h5">Feito</h5>
+                </div>
+                <div
+                  // key={myQuests.idWorkflow && myQuests.idStatus === 3}
+                  className="taskSpaceMobile">
+                  {/* <div className="cardTask" draggable="true">
+                  <div className="p">Lorem Ipsum is simply dummy text.</div>
+                  <div className="p">
+                    {myQuests.title}
+                  </div>
+                </div> */}
+                </div>
+              </div>
+
+            </section>
+            {/* )
+             }
+             )
+           } */}
+            <div className="calendarAndBtn">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+            )
+          }
   }
 }
 
