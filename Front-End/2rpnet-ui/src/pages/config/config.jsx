@@ -584,7 +584,6 @@ export default function Config() {
 
     return (
         <div>
-            {parseJwt().Role == 3 ? <Header /> : null}
             <Navbar />
             <div className='configPage body-pd'>
                 <h1 className='container h3' id='configTitlle' alt="configurações">Configurações</h1>
