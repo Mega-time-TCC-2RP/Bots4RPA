@@ -51,7 +51,9 @@ const stylesCustom = {
       width: 1,
       height: 1,
       // backgroundcolor: rgba(0, 255, 255, 0.75),
-      boxShadow: ''
+      boxShadow: '',
+      background: 'none',
+      border: 'none'
     },
   };
 

@@ -32,7 +32,9 @@ const stylesCustom = {
   content: {
     width: 1,
     height: 1,
-    boxShadow: ''
+    boxShadow: '',
+    background: 'none',
+    border: 'none'
   },
 };
 
