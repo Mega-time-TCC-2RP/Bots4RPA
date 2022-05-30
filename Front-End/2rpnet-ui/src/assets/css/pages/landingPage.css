@@ -34,9 +34,8 @@ a {
     align-items: center;
 }
 
-.logoHeader {
-    width: 160px;
-    height: 55px;
+.logoHeader{
+    width: 186px;
 }
 
 .headerNav {
@@ -111,7 +110,7 @@ a {
 .section h6 {
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 30px;
     color: var(--ComplementaryColor2);
 }
@@ -200,8 +199,10 @@ a {
 }
 
 .pageRepresentation {
-    width: 605px;
-    height: 368px;
+    /* width: 605px;
+    height: 368px; */
+    width: 38%;
+    height: 100%;
 }
 
 .textConteint {
@@ -239,57 +240,65 @@ a {
     .landingPage {
         overflow-x: hidden;
     }
-    .header{
+
+    .header {
         height: 20px;
     }
 
-    .container.section, .container.section2Content{
+    .container.section,
+    .container.section2Content {
         width: 375px;
     }
-    .content-landing, .sectionH5, .textConteint{
+
+    .content-landing,
+    .sectionH5,
+    .textConteint {
         width: 300px;
     }
-    .bold{
-        
+
+    .bold {
+
         width: 280px;
         line-height: 30px;
     }
 
-    .pageRepresentation{
+    .pageRepresentation {
         width: 100%;
         height: 350px;
     }
 
-    .cool-robot-landingpage{
+    .cool-robot-landingpage {
         width: 300px;
         margin-top: 20px;
         margin-bottom: 30px;
     }
-    .landbutton-test{
+
+    .landbutton-test {
         margin-top: 30px;
         margin-left: 35px;
         margin-bottom: 30px;
     }
+
     .header {
         visibility: hidden;
     }
 
     .articleArea article {
-    background: var(--WHITE);
-    box-shadow: 4px 4px 4px var(--lightShadow);
-    border-radius: 30px;
-    width: 225px;
-    height: 205px;
-    display: grid;
-    justify-items: center;
-    padding: 25px 25px 25px 25px;
+        background: var(--WHITE);
+        box-shadow: 4px 4px 4px var(--lightShadow);
+        border-radius: 30px;
+        width: 225px;
+        height: 205px;
+        display: grid;
+        justify-items: center;
+        padding: 25px 25px 25px 25px;
     }
 
     .articleArea {
         flex-direction: column;
         justify-content: space-between;
         margin-left: 105px;
-        
+
     }
 
     .section2 {
@@ -298,20 +307,24 @@ a {
 
     .articleArea article {
         margin-top: 30px;
-        
-    }
-    .section2Content{
-        justify-content:unset
-    }
-    .aga3-area{
-        margin-top: 30px;
+
     }
 
-    .section3Conteint{
+    .section2Content {
+        justify-content: unset
+    }
+
+    .aga3-area {
+        margin-top: 30px;
+        font-weight: normal;
+    }
+
+    .section3Conteint {
         flex-direction: column;
         justify-content: space-between;
     }
-    .container.section3{
+
+    .container.section3 {
         width: 375px;
         height: 900px;
     }

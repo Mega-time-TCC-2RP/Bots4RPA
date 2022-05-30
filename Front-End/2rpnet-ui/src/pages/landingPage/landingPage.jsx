@@ -6,7 +6,8 @@ import VLibras from '@djpfs/react-vlibras'
 
 
 //img:
-import Logo from '../../assets/img/logo2RP.png'
+import Logo from '../../assets/img/LogoConvite.png'
+// import Logo from '../../assets/img/logo2RP.png'
 import Robo from '../../assets/img/roboLandingPage.png'
 import Financas from '../../assets/img/financas.png'
 import Banco from '../../assets/img/banco.png'
@@ -29,7 +30,7 @@ export default function LandingPage() {
             <div className='landingPage'>
                 <div className='header container'>
                     <div className='headerInside container'>
-                        <img src={Logo} alt="Logo 2RP" />
+                        <img src={Logo} className="logoHeader "alt="Logo 2RP" />
                         <div className='headerNav'>
                             <Link to="/login"><span className='loginLanding h6' alt="Login">Login</span></Link>
                             <Link to="/registerUser"><button className='button-landingPage button h6 text-topo-landingpage' id='buttonSignUp' alt="Inscreva-se">Inscreva-se</button></Link>

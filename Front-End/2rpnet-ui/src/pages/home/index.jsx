@@ -68,7 +68,6 @@ Modal.setAppElement('#root');
 
 export default function Home() {
 
-  const [ExecutionsList, setExecutionsList] = useState([]);
   const [isExecuting, setIsExecuting] = useState(false);
 
   const [ListAssistants, setListAssistants] = useState([])
