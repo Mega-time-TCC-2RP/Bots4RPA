@@ -11,7 +11,7 @@
 }
 
 .registerArea {
-    width: 850px;
+    width: 80vw;
     height: 85%;
     background: var(--WHITE);
     border: 2px solid var(--ComplementaryColor1);
@@ -19,14 +19,14 @@
     box-shadow: 0px 4px 4px var(--darkShadow);
     border-radius: 30px;
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    position:relative;
+    position: relative;
 }
 
 .registerContent {
-    height: 82%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -51,6 +51,7 @@
     padding-left: 5%;
     padding-right: 5%;
 }
+
 .inputsArea {
     display: flex;
     flex-direction: column;
@@ -70,7 +71,7 @@ input[type="file"] {
     font: message-box;
 }
 
-.imageProfileInput {    
+.imageProfileInput {
     display: none;
 }
 
@@ -97,7 +98,7 @@ input#file-upload-button {
 
 .passwordArea {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -108,8 +109,9 @@ input#file-upload-button {
 .eyePass {
     align-items: center;
     text-decoration: none;
-    position: absolute;
-    right: 28%;
+    margin-right: 5%;
+    position: fixed;
+    padding-right: 22px;
 }
 
 #buttonBackStep {
@@ -165,25 +167,54 @@ input#file-upload-button {
     line-height: 1.5em;
 } */
 
-@media only screen and (max-width: 600px){
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    .backgroudRegister{
-        overflow-x: hidden;
+@media only screen and (max-width: 768px) {
+    :root {
+        font-size: 0.9em;
     }
 
-    .robotBlue, .robotRed, .access-button{
-        visibility: hidden;
-        }
-    .registerArea{
-        width: 600px;
-        padding: 4rem;
-        height: 140vh;
-        margin-top: 280px;
-        position: absolute;
+    .robotBlue {
+        display: none;
     }
 
-    
+    .robotRed {
+        display: none;
+    }
+
+    .backgroudRegister {
+        justify-content: center;
+    }
+
+    .registerContent {
+        width: 80%;
+    }
+
+    .formRegister {
+        width: 100%;
+    }
+
+    .contentRender {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 365px) {
+    :root {
+        font-size: 0.8em;
+    }
+    #buttonBackStep {
+        width: 35px;
+        height: 35px;
+        left: unset;
+    }
+
+    .logo-Header {
+        width: 145px !important;
+    }
+
+    #logoRegisters {
+        margin-top: 15px;
+    }
+    .eyePass{
+        padding-right: 17.5px;
+    }
 }

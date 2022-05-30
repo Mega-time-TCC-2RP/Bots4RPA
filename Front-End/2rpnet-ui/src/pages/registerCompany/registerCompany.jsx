@@ -301,7 +301,7 @@ export default function RegisterCompany() {
                 </div>
                 <div className='registerArea'>
                     <div className='registerContent'>
-                        <img className='logoRegister' src={Logo} alt="Logo 2RPnet" />
+                        <img className='logo-Header' id='logoRegisters' src={Logo} alt="Logo 2RPnet" />
                         <form encType='multipart/form-data' className='formRegister'>
                             {
                                 steps[currentStep].id === "Step1" && (
