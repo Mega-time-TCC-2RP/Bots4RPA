@@ -29,6 +29,10 @@
         margin-top: 100px;
 }
 
+.registerLogin {
+        width: 50vw !important;
+}
+
 .inputsAreaLogin {
         display: flex;
         flex-direction: column;
@@ -235,25 +239,49 @@ button {
         padding: 5px;
         border-radius: 2px
 }
-
-
-@media only screen and (max-width: 600px){
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    .img-red, .img-blue{
-        visibility: hidden;
-    }
-    .login{
-        overflow-x: hidden;
-    }
-    .registerArea{
-        width: 600px;
-        padding: 4rem;
-        height: 130vh;
-        margin-top: 260px;
-        position: absolute;
-    }
-
+@media screen and (max-width: 768px){
+        .access-button {
+                display: none;
+        }
+        .img-blue {
+                display: none;
+                visibility: hidden;
+        }
+        .img-red {
+                display: none;
+                visibility: hidden;
+        }
+        .logo-Header {
+                width: 160px !important;
+        }
+        .login .inputsAreaLogin input {
+                height: 40px;
+        }
+        .botaoLogin {
+                height: 40px;
+        }
+        .google-button{
+                width: 100%;
+                height: 50px;
+        }
+        .icon3{
+                border-radius: 80px;
+        }
+        #googleLogin {
+                font-size: unset;
+        }
+        .registerLogin{
+                width: 80vw !important;
+        }
+}
+@media screen and (max-width:375px){
+        .icon3 {
+                margin-right: unset;
+        }
+        #googleLogin {
+                line-height: 1;
+        }
+        .botaoLogin {
+                width: 75%;
+        }
 }

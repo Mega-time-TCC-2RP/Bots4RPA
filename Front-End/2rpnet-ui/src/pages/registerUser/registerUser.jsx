@@ -252,7 +252,7 @@ export default function RegisterUser() {
                 </div>
                 <div className='registerArea'>
                     <div className='registerContent'>
-                        <img className='logoRegister' src={Logo} alt="Logo 2RPnet" />
+                        <img className='logo-Header' src={Logo} alt="Logo 2RPnet" />
                         <form className='formRegister' autoComplete="off" encType='multipart/form-data'>
                             {
                                 steps[currentStep].id === "Step1" && (
@@ -303,13 +303,6 @@ export default function RegisterUser() {
                                     <div className='contentRender'>
                                         <IoIcons.IoArrowBackCircle id='buttonBackStep' onClick={handleBack} />
                                         <div className='inputsArea'>
-                                            <div className='foreachInput' id='areaPhoto'>
-                                                <label className='h5' >Imagem de Perfil</label>
-                                                <label className='sendPhoto h6' for='imageProfile'>Enviar foto</label>
-                                                <input id='imageProfile' className='imageProfileInput' type="file" accept="image/png, image/jpeg" name="imageProfile" placeholder='Insira sua foto de Perfil...'  onChange={previewImagem}
-                                                />
-                                                <img id='imgPreview' className='previewImage'/>
-                                            </div>
                                             <div className='foreachInput'>
                                                 <label className='h5'>RG</label>
                                                 <input id='placeholder-text' name="RG" placeholder='Insira o seu RG...' value={rg} onChange={(event) => setRg(validateRG(event.target.value))} autoFocus required />
@@ -346,6 +339,13 @@ export default function RegisterUser() {
                                                         })
                                                     }
                                                 </select>
+                                            </div>
+                                            <div className='foreachInput' id='areaPhoto'>
+                                                <label className='h5' id='labelProfilePhoto' >Imagem de Perfil</label>
+                                                <label className='sendPhoto h6' for='imageProfile'>Enviar foto</label>
+                                                <input id='imageProfile' className='imageProfileInput' type="file" accept="image/png, image/jpeg" name="imageProfile" placeholder='Insira sua foto de Perfil...'  onChange={previewImagem}
+                                                />
+                                                <img id='imgPreview' className='previewImage'/>
                                             </div>
                                         </div>
                                         {

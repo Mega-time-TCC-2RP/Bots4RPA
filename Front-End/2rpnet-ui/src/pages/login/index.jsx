@@ -70,6 +70,7 @@ export default function Login() {
                 e.preventDefault();
 
                 axios.post('https://grupo7.azurewebsites.net/api/Login', {
+
                         email: email,
                         password: password
                 })
@@ -171,8 +172,7 @@ export default function Login() {
                                 <ToastContainer role="alert" />
                                 <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
                                 <VLibras />
-                                <div className='registerArea'>
-
+                                <div className='registerArea registerLogin'>
                                         <div className='registerContent'>
                                                 <img src={logoMaior} className='logo-Header' alt="Logo 2RP" />
                                                 <form className='loginForm formRegister' onSubmit={handleSubmit} >

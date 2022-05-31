@@ -135,6 +135,7 @@ export default function Config() {
     const [userAlterado, setUserAlterado] = useState({})
     const [pass, setPass] = useState('')
     const [NovaSenha, setNovaSenha] = useState('')
+    const [birthDate1 , setBirthDate1] = useState('')
 
     let history = useNavigate();
 
@@ -150,6 +151,9 @@ export default function Config() {
                 if (resposta.status === 200) {
                     setUserLogado(resposta.data)
                     console.log(resposta.data)
+                    setBirthDate1(resposta.data.birthDate)
+                    // const date = resposta.data.birthDate.substring(0,10)
+                    // console.log(date.split('-')[1] + '/' + date.split('-')[2] + '/' + date.split('-')[0])
                 }
             })
             .catch((erro) => console.log(erro))
@@ -580,7 +584,6 @@ export default function Config() {
 
     return (
         <div>
-            {parseJwt().Role == 3 ? <Header /> : null}
             <Navbar />
             <div className='configPage body-pd'>
                 <h1 className='container h3' id='configTitlle' alt="configurações">Configurações</h1>
@@ -607,7 +610,7 @@ export default function Config() {
                                             </div>
                                             <div className='dataUser'>
                                                 <label className='h6 semi-bold' htmlFor="birthDateUser">Nascimento:</label>
-                                                <p id='birthDateUser' className="p">{userLogado.birthDate}</p>
+                                                <p id='birthDateUser' className="p">{birthDate1.substring(0,10).split('-')[1] + '/' + birthDate1.substring(0,10).split('-')[2] + '/' + birthDate1.substring(0,10).split('-')[0]}</p>
                                             </div>
                                         </div>
                                         <div className='contentConfig'>
@@ -655,7 +658,7 @@ export default function Config() {
                                                 <label className='h5' htmlFor='cpf'>CPF</label>
                                                 <MaskedInputCPF value={userAlterado.cpf} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: event.target.value, birthDate: userAlterado.birthDate, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                                 <label id='DataNascimento' className='h5' htmlFor='dataNascimento'>Data de Nascimento</label>
-                                                <input id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userAlterado.birthDate} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: event.target.value, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
+                                                <input type="date" id='dataNascimento' className='input placeholder-text' name="name" placeholder='Insira sua Data de Nascimento...' value={userLogado.birthDate} onChange={(event) => setUserAlterado({ userName1: userAlterado.userName1, cpf: userAlterado.cpf, birthDate: event.target.value, email: userAlterado.email, rg: userAlterado.rg, phone: userAlterado.phone })} />
                                             </div>
                                             <div className='inputsModal'>
                                                 <label className='h5' htmlFor='email'>Email</label>

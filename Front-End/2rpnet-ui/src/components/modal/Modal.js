@@ -8,16 +8,12 @@ import EditIcon from '../icones/edit'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { DataGraphic } from '../graphic/dataGraphic'
-// import { run } from 'cypress';
 import { API } from '../../../src/services/api'
+// import { run } from 'cypress';
 
 export default function ModalM({ assistant }) {
 
     const [Description, setDescription] = useState("");
-    // Não está sendo usado no momento:
-    const [Run, setRun] = useState([]);
-    const [PropsAssistants, setPropsAssistants] = useState([]);
-
     const [chart, setChart] = useState([])
 
     var baseUrl = API + "/api/Run/ListQuantity/" + assistant.idAssistant
@@ -56,52 +52,12 @@ export default function ModalM({ assistant }) {
         ],
     }
 
-    // function PropsAssistant() {
-    //     var baseUrl = "http://localhost:5000/api/Run/ListQuantity/" + assistant.idAssistant
-    //     var header = {
-    //         headers: {
-    //             Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-    //         },
-    //     }
-    //     fetch(baseUrl, header
-    //     ).then((response) => {
-    //         response.json().then((json) => {
-    //             console.log(json)
-    //             setPropsAssistants(json.data)
-    //         })
-    //     }).catch(error => {
-    //         console.log(error);
-    //     })
-    // }
-    // useEffect(PropsAssistant, [])
-
     function CloseModal(idAssistant) {
         var modal = document.getElementById("modal" + idAssistant);
         modal.style.display = "none";
     };
 
-    function DeleteProcedures() {
-        // AProcedure.map((a) => {
-        // console.log(a.idAprocedure)
-        fetch(API + '/api/AssistantProcedure/' + assistant.idAssistant, {
-            method: 'DELETE',
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
-            },
-        })
-            .then((resposta) => {
-                if (resposta.status === 204) {
-                    console.log('Procedures Apagadas');
-                }
-            })
-            .catch((erro) => console.log(erro))
-        // }
-
-    };
-
     function DeleteAssistant(idAssistant) {
-        DeleteProcedures()
-        // .then(
         fetch(API + '/api/Assistants/' + assistant.idAssistant, {
             method: 'DELETE',
             headers: {
@@ -112,15 +68,13 @@ export default function ModalM({ assistant }) {
                 if (resposta.status === 200) {
                     console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
                     CloseModal(assistant.idAssistant)
+                    window.location.href = "http://localhost:3000/home"
                 }
             })
             .catch((erro) => console.log(erro))
-        // )
-
     };
 
     function UpdateDescription() {
-        console.log('Entrou no método Update')
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
@@ -140,9 +94,7 @@ export default function ModalM({ assistant }) {
             }).catch(erro => console.log(erro))
     };
 
-    function permitirTextArea(idAssistant, assistantDescription) {
-        console.log("Você está editando a descrição do assistente " + idAssistant)
-
+    function permitirTextArea(idAssistant, assistantDescription) {  
         var textoDescricao = document.getElementById("texto_desc" + idAssistant)
         textoDescricao.removeAttribute("readOnly");
 
@@ -153,7 +105,6 @@ export default function ModalM({ assistant }) {
             btn.style.display = "";
             textoDescricao.style.backgroundColor = "#ffff"
         }
-
         else {
             btn.style.display = "none";
         }

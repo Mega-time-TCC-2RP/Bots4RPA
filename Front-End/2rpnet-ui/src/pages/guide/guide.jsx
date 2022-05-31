@@ -2,15 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import VLibras from '@djpfs/react-vlibras'
 
-//Components:
+//Components
 import Footer from '../../components/footer/footer'
 import Header from '../../components/header/header'
 import Navbar from '../../components/menu/Navbar'
 
-//css:
+//css
 import '../../assets/css/pages/guide.css'
 import '../../assets/css/components/button.css'
 import '../../assets/css/components/fonts.css'
+//img
+import ImgPost from '../../assets/img/ImgPost.png'
+
 
 export default function Guide() {
     return (
@@ -20,47 +23,49 @@ export default function Guide() {
             <div className='conteiner-guide'>
                 <span className='h2'>Guia Definitivo</span>
             </div>
-            <iframe width="1246" height="701" className='video-youtube' src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div className='body-conteiner'>
-                <div className='conteiner-guide'>
-                    <span className='h2'>Passo a passo</span>
-                    <div className='timeline'>
-                        <ul>
-                            <li>
-                                <div className='timeline-content'>
-                                    <span className='h3 body-title-guide'>What is Lorem Ipsum?</span>
-                                    <span className='p text-guide'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</span>
-                                </div>
-                                <div className='time'>
-                                    <h4>January 2018</h4>
-                                </div>
-                            </li>
-                            <li>
-                                <div className='timeline-content'>
-                                    <span className='h3 body-title-guide'>What is Lorem Ipsum?</span>
-                                    <span className='p text-guide'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</span>
-                                </div>
-                                <div className='time'>
-                                    <h4>January 2018</h4>
-                                </div>
-                            </li>
-                            
-                            <li>
-                                <div className='timeline-content'>
-                                    <span className='h3 body-title-guide'>What is Lorem Ipsum?</span>
-                                    <span className='p text-guide'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</span>
-                                </div>
-                                <div className='time'>
-                                    <h4>January 2018</h4>
-                                </div>
-                            </li>
-                            <div></div>
-                        </ul>
-                    </div>
-                    
+            <div className='video-container-timeline'>
+                <iframe width="1246" height="701" src="https://www.youtube.com/embed/WZIGwN-5Ioo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            <div className='body-conteiner'>
                 </div>
             </div>
-            {/* <Footer /> */}
+            <div className='ninaninanaooo'>
+
+            </div>
+            <div className='conteiner-timeline'>
+                <span className='h2 timeline-title-sec-container'>Passo a passo</span>
+                <div class="container-timeline">
+                    <div class="timeline">
+                        <ul>
+                            <li className='timeline-boxsizing'>
+                                <div class="timeline-content">
+                                    <h1>Passo 1</h1>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora ab laudantium voluptatibus aut eos placeat laborum, quibusdam exercitationem labore.</p>
+                                </div>
+                            </li>
+                            <li className='timeline-boxsizing'>
+                                <div class="timeline-content">
+                                    <h1>Passo 2</h1>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora ab laudantium voluptatibus aut eos placeat laborum, quibusdam exercitationem labore.</p>
+                                </div>
+                            </li>
+                            <li className='timeline-boxsizing'>
+                                <div class="timeline-content">
+                                    <h1 className='h1'>Passo 3</h1>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora ab laudantium voluptatibus aut eos placeat laborum, quibusdam exercitationem labore.</p>
+                                </div>
+                            </li>
+                            <li className='timeline-boxsizing'>
+                                <div class="timeline-content">
+                                    <h1>Passo 4</h1>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora ab laudantium voluptatibus aut eos placeat laborum, quibusdam exercitationem labore.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <Footer  />
         </div>
     )
 }

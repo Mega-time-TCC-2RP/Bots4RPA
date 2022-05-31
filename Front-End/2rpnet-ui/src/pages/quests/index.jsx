@@ -32,21 +32,14 @@ const stylesCustom = {
   content: {
     width: 1,
     height: 1,
-    // backgroundcolor: rgba(0, 255, 255, 0.75),
-    boxShadow: ''
+    boxShadow: '',
+    background: 'none',
+    border: 'none'
   },
 };
 
 const taskCustom = {
   content: {
-    // width: 1,
-    // height: 1,
-    // backgroundcolor: rgba(0, 255, 255, 0.75),
-    // boxShadow: '',
-    // marginTop: '1rem',
-    // marginBottom: 'auto',
-    // right: '0',
-    // left: '0',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -64,6 +57,17 @@ const taskCustom = {
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
+function useWindowSize() {
+  const [size, setSize] = useState([window.innerWidth]);
+  useEffect(() => {
+    const handleResize = () => {
+      setSize([window.innerWidth]);
+    };
+    window.addEventListener("resize", handleResize);
+  }, []);
+  return size;
+}
+
 function App() {
   const [workflowList, setWorkflowList] = useState([]);
   const [titleTask, setTitleTask] = useState('');
@@ -71,10 +75,14 @@ function App() {
   const [statusTask, setStatusTask] = useState();
   const [endDate, setEndDate] = useState();
   const [idQuest, setIdQuest] = useState();
+  const [objWorkflow, setObjWorkflow] = useState({});
 
   const [taskIsOpen, setTaskIsOpen] = useState(false);
   const [newTaskIsOpen, setNewTaskIsOpen] = useState(false);
   const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
+
+  const [width] = useWindowSize();
+
 
   function handleOpenOnBoarding() {
     setOnBoardingIsOpen(true)
@@ -82,23 +90,15 @@ function App() {
   function handleCloseOnBoarding() {
     setOnBoardingIsOpen(false)
   }
-  function handleOpenNewTask() {
-    // for (let index = 0; index < 32; index++) {
-    //   document.getElementById("calend" + index).style.cursor = "pointer";
-    // }
-    // for (let i = 0; i < 32; i++) {
 
-    // }
+  function afterOpenModal() {
+  }
+
+  function handleOpenNewTask() {
     setStatusTask(1)
     setNewTaskIsOpen(true)
-    // setBtnStyle()
-
-    // .classList.add('.btnCalendarModal');
   }
   function handleCloseNewTask() {
-    // for (let index = 0; index < 32; index++) {
-    //   document.getElementById("calend" + index).style.cursor = "pointer";
-    // }
     setNewTaskIsOpen(false)
   }
 
@@ -136,12 +136,8 @@ function App() {
   const patchStatusTask = (event) => {
     event.preventDefault()
 
-    let updateTask = {
-      idStatus: statusTask
-    }
-
     axios
-      .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + statusTask, updateTask, {
+      .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + idQuest + '/' + statusTask, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
@@ -189,12 +185,14 @@ function App() {
 
   // Funcionalidade da Data
   const day = () => {
+    if (width >= 992) {
     let date = new Date().getDate()
 
     // console.log(`O dia de hoje é: ${date}`);
 
     document.getElementById("calend" + date).style.color = "var(--WHITE)";
     document.getElementById("calend" + date).style.backgroundColor = "var(--PrimaryColor1)";
+    }
   }
 
   // Funcionalidade do Drag n' Drop
@@ -212,10 +210,16 @@ function App() {
 
     function dragstart() {
       // console.log('Starting Drag');
-      taskSpace.forEach(taskSpace => taskSpace.classList.add('highlights'))
+      // taskSpace.forEach(taskSpace => taskSpace.classList.add('highlights'))
       this.classList.add('isDragging')
-    }
+      
+      // var aaa = this.target.appendChild(document.getElementById(data));
 
+      // console.log("o baguiu: " + aaa);
+
+      console.log("ID de forma bruta: " + idQuest);
+    }
+    
     function drag() {
       // console.log('Dragging');
       // console.log(workflowList[this]);
@@ -223,7 +227,7 @@ function App() {
 
     function dragend() {
       // console.log('Ending Drag');
-      taskSpace.forEach(taskSpace => taskSpace.classList.remove('highlights'))
+      // taskSpace.forEach(taskSpace => taskSpace.classList.remove('highlights'))
       this.classList.remove('isDragging')
     }
 
@@ -240,7 +244,8 @@ function App() {
       this.classList.add('over')
     }
 
-    function dragover() {
+    function dragover(e) {
+      e.preventDefault()
       // console.log('Overing Card');
       this.classList.add('over')
 
@@ -266,6 +271,7 @@ function App() {
   }
 
   const month = () => {
+    if (width >= 992) {
     const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
     let indexMonth = new Date().getMonth()
@@ -275,24 +281,96 @@ function App() {
     // console.log(months[indexMonth]);
 
     document.getElementById("monthCalendar").innerHTML = setMonth
+    }
+  }
+
+  const searchIDTask = (myQuests) => {
+
+    setObjWorkflow(myQuests)
+
+    setIdQuest(myQuests.idWorkflow)
+    
+    // console.log(myQuests.idWorkflow);
+  };
+  
+  function TaskOpen() {
+    setStatusTask(0)
+
+    let obj = objWorkflow
+
+    console.log(obj);
+    const myQuests = objWorkflow
+
+    setIdQuest(myQuests.idWorkflow)
+    return (
+      <div className="modalQuestsOneTask">
+        <div className="headerModalOne">
+          <div className="title h2">{myQuests.title}</div>
+          <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
+        </div>
+        <div className="bodyModalQuest">
+          <div className="descriptionArea">
+            <label for="descTask" className="h5">Descrição da Tarefa:</label>
+            <div id="descTask" className="p">{myQuests.workflowDescription}</div>
+          </div>
+          <div className="dateArea">
+            <div className="h5">Data de Entrega:</div>
+            <div className="p dateOneTask">{myQuests.endDate}</div>
+          </div>
+          <form>
+          <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
+            <optgroup>
+              {
+                myQuests.idStatus === 1 ?
+                  <option value={1} selected>A Fazer</option> : <option value={1}>A Fazer</option>
+              }
+              {
+                myQuests.idStatus === 2 ?
+                  <option value={2} selected>Fazendo</option> : <option value={2}>Fazendo</option>
+              }
+              {
+                myQuests.idStatus === 3 ?
+                  <option value={3} selected>Feito</option> : <option value={3}>Feito</option>
+              }
+            </optgroup>
+          </select>
+          {
+            statusTask === '' || 
+            statusTask === null || 
+            statusTask === 0  ||
+            statusTask === myQuests.idStatus ?
+          <input className="button btnNewTask marginBtnModalTask"
+            type="button"
+            onClick={(e) => {handleCloseTask(e)}}
+            value="Fechar Tarefa" /> :
+            <input className="button btnNewTask marginBtnModalTask"
+            type="button"
+            onClick={(e) => {handleCloseTask(e); patchStatusTask(e)}}
+            value="Salvar Alterações" />
+          }
+            </form>
+        </div>
+      </div>
+    )
   }
 
   useEffect(() => {
-    //getWorkflowList()
+    getWorkflowList()
     day()
     month()
     dragNDrop()
   });
 
-  if (parseJwt().Role == "3" || parseJwt().Role == "2") {
+  if (parseJwt().Role === "3" || parseJwt().Role === "2") {
+    if (width >= 992) {
     return (
-
       <div className='pageTaskCalendar'>
         {/* <Header /> */}
         <Navbar />
         <div className='body-pd'>
           <VLibras />
           <img
+            alt='Imagem Clicável Onboarding'
             src={onBoardingBot}
             onClick={handleOpenOnBoarding}
             className="img-onboarding"
@@ -305,10 +383,10 @@ function App() {
             <div className="top-container-onboarding" >
               <div className="background-body" >
                 <div className="boarding-image">
-                  <img className="bot-img" src={Blue_Head} />
+                  <img className="bot-img" src={Blue_Head} alt="Imagem Onboarding"/>
                 </div>
                 <div className="body-content">
-                  <h2 className='h2'>Assistente</h2>
+                  <h2 className="h2">Assistente</h2>
                   <Swiper
                     pagination={{
                       type: "fraction",
@@ -349,8 +427,10 @@ function App() {
               </div>
             </div>
           </Modal>
-          <h2 className="pageTitle h2">Painel Organizacional</h2>
+          <h2 className="pageTitle pageTitleD h2">{width}</h2>
           <div className='taskCalendar'>
+            
+            
             <section className="task">
               <div id="todoID"
                 className="toDo">
@@ -363,43 +443,31 @@ function App() {
                   // }
                   className="taskSpace">
                   {
-                    workflowList.map((myQuests, idx) => {
+                    workflowList.map((myQuests) => {
                       return (
+                        // <div key={(myQuests.idWorflow)}>
                         <div
-                          key={(myQuests.idWorflow) > (new Date().getDate() - 1)}
-                          onClick={handleOpenTask}
-                          className="cardTask" draggable="true">
-                          {/* <div className="p">Lorem Ipsum is simply dummy text.</div> */}
-
+                          key={(myQuests.idWorkflow && myQuests.idStatus === 2)}
+                          onClick={(e) => {handleOpenTask(e); searchIDTask(myQuests)}}
+                          className="cardTask" draggable="true" >
                           <div
                             className="p"
                           >{myQuests.title}</div>
                           <Modal
-                            isOpen={taskIsOpen}
-                            onRequestClose={handleCloseTask}
-                            style={taskCustom} >
-                            <div className="modalQuestsOneTask">
-                              <div className="headerModalOne">
-                                <div className="title h2">{myQuests.title}</div>
-                                <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
-                              </div>
-                              <div className="bodyModalQuest">
-                                <div className="descriptionArea">
-                                  <label for="descTask" className="h5">Descrição da Tarefa:</label>
-                                  <div id="descTask" className="p">{myQuests.workflowDescription}</div>
-                                </div>
-                                <div className="dateArea">
-                                  <div className="h5">Data de Entrega:</div>
-                                  <div className="p dateOneTask">{myQuests.endDate}</div>
-                                </div>
-                                <input className="button btnNewTask marginBtnModalTask"
-                                  type="button"
-                                  onClick={handleCloseTask}
-                                  value="Fechar Tarefa" />
-                              </div>
-                            </div>
+                          isOpen={taskIsOpen}
+                          onAfterOpen={afterOpenModal}
+                          onRequestClose={handleCloseTask}
+                          style={taskCustom}
+                          contentLabel="Example Modal"
+                          class="ReactModal"
+                          closeTimeoutMS={2000}>
+                             {/* isOpen={taskIsOpen}
+                             onRequestClose={(e) => handleCloseTask(e)}
+                             style={taskCustom} > */}
+                            <TaskOpen />
                           </Modal>
                         </div>
+                      // </div>
                       )
                     }
                     )
@@ -447,7 +515,8 @@ function App() {
              )
            } */}
             <div className="calendarAndBtn">
-              <section className="calendar p">
+              
+            <section className="calendar p">
                 <div className="calendarTitle"><h5 id="monthCalendar" className="h5">Calendário</h5></div>
                 <input id="calend1"
                   className="btnCalendar p"
@@ -574,6 +643,7 @@ function App() {
                   type="button"
                   value="31" /></div>
               </section>
+              
               <input
                 className="btnNewTask button"
                 type="button"
@@ -627,6 +697,211 @@ function App() {
         </div>
       </div>
     );
+          }
+          else {
+            return (
+              <div className='pageTaskCalendar'>
+        <Navbar />
+        <div className='body-pd'>
+          <VLibras />
+          <img
+            alt='Imagem Clicável Onboarding'
+            src={onBoardingBot}
+            onClick={handleOpenOnBoarding}
+            className="img-onboarding"
+          />
+          <Modal
+            isOpen={onBoardingIsOpen}
+            onRequestClose={handleCloseOnBoarding}
+            style={stylesCustom}
+          >
+            <div className="top-container-onboarding" >
+              <div className="background-body" >
+                <div className="boarding-image">
+                  <img className="bot-img" src={Blue_Head} alt="Imagem Onboarding"/>
+                </div>
+                <div className="body-content">
+                  <h2 className="h2">Assistente</h2>
+                  <Swiper
+                    pagination={{
+                      type: "fraction",
+                    }}
+                    navigation={true}
+                    modules={[Pagination, Navigation]}
+
+                    className="swiperHomeTasks-social"
+                  >
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Sinta-se a vontade a tela de Tarefas!</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="swiper-slide-OnBoarding-social">
+                      <div className="boardingContainer">
+                        <span className='p textoBonito'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
+                      </div>
+                    </SwiperSlide>
+                  </Swiper>
+                </div>
+
+              </div>
+            </div>
+          </Modal>
+          <div className="titleAndButton">
+          <h2 className="pageTitle pageTitleM h2">{width}</h2>
+          <input
+                className="btnNewTask button"
+                type="button"
+                value="Nova Tarefa"
+                onClick={handleOpenNewTask} />
+              <Modal
+                isOpen={newTaskIsOpen}
+                onRequestClose={handleCloseNewTask}
+                style={taskCustom} >
+                <div className="modalQuests">
+                  <div className="headerModal">
+                    <div className="title h2">Nova Tarefa</div>
+                    <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
+                  </div>
+                  <form onSubmit={formNewTask}>
+                    <div className="bodyModalQuest">
+                      <div className="inputsQuests">
+                        <div className="inputQuests">
+                          <label for="titleInput" className="h5">Título</label>
+                          <input
+                            id="titleInput"
+                            className="input"
+                            type="text"
+                            placeholder="Insira o Título da tarefa..."
+                            onChange={(event) => setTitleTask(event.target.value)} />
+                          <label for="descriptionInput" className="h5">Descrição</label>
+                          <input
+                            id="descriptionInput"
+                            className="input"
+                            type="text"
+                            placeholder="Insira pontos importantes para a resolução da tarefa..."
+                            onChange={(event) => setDescriptionTask(event.target.value)} />
+                          <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
+                          <input
+                            id="dayAndMonthWorkflow"
+                            className="input inputQuestsDate"
+                            type="date"
+                            onChange={(event) => setEndDate(event.target.value)} />
+                          <input
+                            className="btnNewTask button btnSpaceNewTask"
+                            type="submit"
+                            value="Adicionar Tarefa" />
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </Modal>
+              </div>
+          <div className='taskCalendar'>
+            <section className="taskMobile">
+              <div id="todoID"
+                className="toDoMobile">
+                <div className="taskTitle taskTitleM">
+                  <h5 className="h5">A Fazer</h5>
+                </div>
+                <div
+                  className="taskSpaceMobile">
+                  {
+                    workflowList.map((myQuests) => {
+                      return (
+                        // <div key={(myQuests.idWorflow)}>
+                        <div
+                          key={(myQuests.idWorkflow && myQuests.idStatus === 2)}
+                          onClick={(e) => {handleOpenTask(e); searchIDTask(myQuests)}}
+                          className="cardTaskMobile">
+                          <div
+                            className="p"
+                          >{myQuests.title}</div>
+                          <Modal
+                          isOpen={taskIsOpen}
+                          onAfterOpen={afterOpenModal}
+                          onRequestClose={handleCloseTask}
+                          style={taskCustom}
+                          contentLabel="Example Modal"
+                          class="ReactModal"
+                          closeTimeoutMS={2000}>
+                             {/* isOpen={taskIsOpen}
+                             onRequestClose={(e) => handleCloseTask(e)}
+                             style={taskCustom} > */}
+                            <TaskOpen />
+                          </Modal>
+                        </div>
+                      // </div>
+                      )
+                    }
+                    )
+                  }
+                </div>
+              </div>
+
+              <div id="doID"
+                className="doMobile">
+                <div className="taskTitle taskTitleM">
+                  <h5 className="h5">Fazendo</h5>
+                </div>
+                <div
+                  // key={myQuests.idWorkflow && myQuests.idStatus === 2}
+                  className="taskSpaceMobile">
+                  {/* <div className="cardTask" draggable="true">
+                  <div className="p">Lorem Ipsum is simply dummy text.</div>
+                  <div className="p">
+                    {myQuests.title}
+                  </div>
+                </div> */}
+                </div>
+              </div>
+
+              <div id="doneID"
+                className="doneMobile">
+                <div className="taskTitle taskTitleM">
+                  <h5 className="h5">Feito</h5>
+                </div>
+                <div
+                  // key={myQuests.idWorkflow && myQuests.idStatus === 3}
+                  className="taskSpaceMobile">
+                  {/* <div className="cardTask" draggable="true">
+                  <div className="p">Lorem Ipsum is simply dummy text.</div>
+                  <div className="p">
+                    {myQuests.title}
+                  </div>
+                </div> */}
+                </div>
+              </div>
+
+            </section>
+            {/* )
+             }
+             )
+           } */}
+            <div className="calendarAndBtn">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+            )
+          }
   }
 }
 

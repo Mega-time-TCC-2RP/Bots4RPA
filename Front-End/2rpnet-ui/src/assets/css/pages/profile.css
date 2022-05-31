@@ -1,4 +1,4 @@
-.configPage {
+.perfilpage {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,7 +10,7 @@
     justify-content: space-evenly;
 }
 
-.configPage h1 {
+.perfilpage h1 {
     letter-spacing: 0.035em;
 }
 
@@ -19,7 +19,7 @@
     margin: 0 auto;
 }
 
-.configPage h1 {
+.perfilpage h1 {
     display: flex;
     justify-content: center;
 }
@@ -144,15 +144,6 @@
     border-color: #6C757D;
     height: 25%;
     width: 85%;
-}
-
-.confirmPassword {
-    height: 100px;
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .scrollDiv {
@@ -316,7 +307,7 @@
     height: auto;
 }
 
-.ProfileContainer .configPage {
+.ProfileContainer .perfilpage {
     height: auto;
 }
 
@@ -465,22 +456,16 @@
 
     .profileImage {
         width: 200px;
-        height: 200px;
     }
 
     .mainContentArea {
         margin-bottom: 20px;
     }
-    #modalAtualize {
-        width: 80vw !important;
-    }
-    .confirmPassword {
-        height: 100px;
-        margin-top: 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
+    .body-pd {
+        width: unset;
+        position: unset;
+        justify-content: space-evenly;
+        overflow: hidden;
     }
 }
 
@@ -493,9 +478,9 @@
         width: 95% !important;
     }
 
-    /* .sidebar {
+    .sidebar {
         visibility: hidden;
-    } */
+    }
 
     .body-pd {
         width: unset;
@@ -509,7 +494,7 @@
     }
 
     .navAreaConfig {
-        width: 90vw !important;
+        width: 90vw;
         align-items: center;
     }
 
@@ -518,7 +503,7 @@
     }
 
     .configContent {
-        width: 90vw !important;
+        width: 90vw;
     }
 
     .profileImage {
