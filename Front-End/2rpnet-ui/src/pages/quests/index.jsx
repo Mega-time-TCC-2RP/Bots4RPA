@@ -70,6 +70,8 @@ function useWindowSize() {
 
 function App() {
   const [workflowList, setWorkflowList] = useState([]);
+  const [workflowListDo, setWorkflowListDo] = useState([]);
+  const [workflowListDone, setWorkflowListDone] = useState([]);
   const [titleTask, setTitleTask] = useState('');
   const [descriptionTask, setDescriptionTask] = useState('');
   const [statusTask, setStatusTask] = useState();
@@ -125,7 +127,8 @@ function App() {
       .then(response => {
         if (response.status === 200) {
           // console.log(response.data);
-
+          var allQuests = response.data
+              setWorkflowList(allQuests)
           setWorkflowList(response.data);
         }
       })
@@ -186,12 +189,12 @@ function App() {
   // Funcionalidade da Data
   const day = () => {
     if (width >= 992) {
-    let date = new Date().getDate()
+      let date = new Date().getDate()
 
-    // console.log(`O dia de hoje é: ${date}`);
+      // console.log(`O dia de hoje é: ${date}`);
 
-    document.getElementById("calend" + date).style.color = "var(--WHITE)";
-    document.getElementById("calend" + date).style.backgroundColor = "var(--PrimaryColor1)";
+      document.getElementById("calend" + date).style.color = "var(--WHITE)";
+      document.getElementById("calend" + date).style.backgroundColor = "var(--PrimaryColor1)";
     }
   }
 
@@ -212,14 +215,14 @@ function App() {
       // console.log('Starting Drag');
       // taskSpace.forEach(taskSpace => taskSpace.classList.add('highlights'))
       this.classList.add('isDragging')
-      
+
       // var aaa = this.target.appendChild(document.getElementById(data));
 
       // console.log("o baguiu: " + aaa);
 
       console.log("ID de forma bruta: " + idQuest);
     }
-    
+
     function drag() {
       // console.log('Dragging');
       // console.log(workflowList[this]);
@@ -272,15 +275,15 @@ function App() {
 
   const month = () => {
     if (width >= 992) {
-    const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+      const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
-    let indexMonth = new Date().getMonth()
+      let indexMonth = new Date().getMonth()
 
-    let setMonth = months[indexMonth]
+      let setMonth = months[indexMonth]
 
-    // console.log(months[indexMonth]);
+      // console.log(months[indexMonth]);
 
-    document.getElementById("monthCalendar").innerHTML = setMonth
+      document.getElementById("monthCalendar").innerHTML = setMonth
     }
   }
 
@@ -289,10 +292,10 @@ function App() {
     setObjWorkflow(myQuests)
 
     setIdQuest(myQuests.idWorkflow)
-    
+
     // console.log(myQuests.idWorkflow);
   };
-  
+
   function TaskOpen() {
     setStatusTask(0)
 
@@ -300,13 +303,14 @@ function App() {
 
     console.log(obj);
     const myQuests = objWorkflow
-
+    
+    let refresh = () => window.location.reload("Refresh")
     setIdQuest(myQuests.idWorkflow)
     return (
       <div className="modalQuestsOneTask">
         <div className="headerModalOne">
           <div className="title h2">{myQuests.title}</div>
-          <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
+          <input type="button" className="exit h5" value='X' onClick={refresh} />
         </div>
         <div className="bodyModalQuest">
           <div className="descriptionArea">
@@ -318,37 +322,37 @@ function App() {
             <div className="p dateOneTask">{myQuests.endDate}</div>
           </div>
           <form>
-          <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
-            <optgroup>
-              {
-                myQuests.idStatus === 1 ?
-                  <option value={1} selected>A Fazer</option> : <option value={1}>A Fazer</option>
-              }
-              {
-                myQuests.idStatus === 2 ?
-                  <option value={2} selected>Fazendo</option> : <option value={2}>Fazendo</option>
-              }
-              {
-                myQuests.idStatus === 3 ?
-                  <option value={3} selected>Feito</option> : <option value={3}>Feito</option>
-              }
-            </optgroup>
-          </select>
-          {
-            statusTask === '' || 
-            statusTask === null || 
-            statusTask === 0  ||
-            statusTask === myQuests.idStatus ?
-          <input className="button btnNewTask marginBtnModalTask"
-            type="button"
-            onClick={(e) => {handleCloseTask(e)}}
-            value="Fechar Tarefa" /> :
-            <input className="button btnNewTask marginBtnModalTask"
-            type="button"
-            onClick={(e) => {handleCloseTask(e); patchStatusTask(e)}}
-            value="Salvar Alterações" />
-          }
-            </form>
+            <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
+              <optgroup>
+                {
+                  myQuests.idStatus === 1 ?
+                    <option value={1} selected>A Fazer</option> : <option value={1}>A Fazer</option>
+                }
+                {
+                  myQuests.idStatus === 2 ?
+                    <option value={2} selected>Fazendo</option> : <option value={2}>Fazendo</option>
+                }
+                {
+                  myQuests.idStatus === 3 ?
+                    <option value={3} selected>Feito</option> : <option value={3}>Feito</option>
+                }
+              </optgroup>
+            </select>
+            {
+              statusTask === '' ||
+                statusTask === null ||
+                statusTask === 0 ||
+                statusTask === myQuests.idStatus ?
+                <input className="button btnNewTask marginBtnModalTask"
+                  type="button"
+                  onClick={(e) => { handleCloseTask(e) }}
+                  value="Fechar Tarefa" /> :
+                <input className="button btnNewTask marginBtnModalTask"
+                  type="button"
+                  onClick={(e) => { handleCloseTask(e); patchStatusTask(e) }}
+                  value="Salvar Alterações" />
+            }
+          </form>
         </div>
       </div>
     )
@@ -363,287 +367,407 @@ function App() {
 
   if (parseJwt().Role === "3" || parseJwt().Role === "2") {
     if (width >= 992) {
-    return (
-      <div className='pageTaskCalendar'>
-        {/* <Header /> */}
-        <Navbar />
-        <div className='body-pd'>
-          <VLibras />
-          <img
-            alt='Imagem Clicável Onboarding'
-            src={onBoardingBot}
-            onClick={handleOpenOnBoarding}
-            className="img-onboarding"
-          />
-          <Modal
-            isOpen={onBoardingIsOpen}
-            onRequestClose={handleCloseOnBoarding}
-            style={stylesCustom}
-          >
-            <div className="top-container-onboarding" >
-              <div className="background-body" >
-                <div className="boarding-image">
-                  <img className="bot-img" src={Blue_Head} alt="Imagem Onboarding"/>
-                </div>
-                <div className="body-content">
-                  <h2 className="h2">Assistente</h2>
-                  <Swiper
-                    pagination={{
-                      type: "fraction",
-                    }}
-                    navigation={true}
-                    modules={[Pagination, Navigation]}
+      return (
+        <div className='pageTaskCalendar'>
+          {/* <Header /> */}
+          <Navbar />
+          <div className='body-pd'>
+            <VLibras />
+            <img
+              alt='Imagem Clicável Onboarding'
+              src={onBoardingBot}
+              onClick={handleOpenOnBoarding}
+              className="img-onboarding"
+            />
+            <Modal
+              isOpen={onBoardingIsOpen}
+              onRequestClose={handleCloseOnBoarding}
+              style={stylesCustom}
+            >
+              <div className="top-container-onboarding" >
+                <div className="background-body" >
+                  <div className="boarding-image">
+                    <img className="bot-img" src={Blue_Head} alt="Imagem Onboarding" />
+                  </div>
+                  <div className="body-content">
+                    <h2 className="h2">Assistente</h2>
+                    <Swiper
+                      pagination={{
+                        type: "fraction",
+                      }}
+                      navigation={true}
+                      modules={[Pagination, Navigation]}
 
-                    className="swiperHomeTasks-social"
-                  >
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Sinta-se a vontade a tela de Tarefas!</span>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
-                      </div>
-                    </SwiperSlide>
-                  </Swiper>
-                </div>
+                      className="swiperHomeTasks-social"
+                    >
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Sinta-se a vontade a tela de Tarefas!</span>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
+                        </div>
+                      </SwiperSlide>
+                    </Swiper>
+                  </div>
 
+                </div>
               </div>
-            </div>
-          </Modal>
-          <h2 className="pageTitle pageTitleD h2">{width}</h2>
-          <div className='taskCalendar'>
-            
-            
-            <section className="task">
-              <div id="todoID"
-                className="toDo">
-                <div className="taskTitle">
-                  <h5 className="h5">A Fazer</h5>
-                </div>
-                <div
-                  // key={myQuests.idWorkflow
-                  // && myQuests.idStatus === 1
-                  // }
-                  className="taskSpace">
-                  {
-                    workflowList.map((myQuests) => {
-                      return (
-                        // <div key={(myQuests.idWorflow)}>
-                        <div
-                          key={(myQuests.idWorkflow && myQuests.idStatus === 2)}
-                          onClick={(e) => {handleOpenTask(e); searchIDTask(myQuests)}}
-                          className="cardTask" draggable="true" >
+            </Modal>
+            <h2 className="pageTitle pageTitleD h2">{width}</h2>
+            <div className='taskCalendar'>
+
+
+              <section className="task">
+                <div id="todoID"
+                  className="toDo">
+                  <div className="taskTitle">
+                    <h5 className="h5">A Fazer</h5>
+                  </div>
+                  <div
+                    // key={myQuests.idWorkflow
+                    // && myQuests.idStatus === 1
+                    // }
+                    className="taskSpace">
+                    {
+                      workflowList.map((myQuests) => {
+                        return (
+                          // <div key={(myQuests.idWorflow)}>
                           <div
-                            className="p"
-                          >{myQuests.title}</div>
-                          <Modal
-                          isOpen={taskIsOpen}
-                          onAfterOpen={afterOpenModal}
-                          onRequestClose={handleCloseTask}
-                          style={taskCustom}
-                          contentLabel="Example Modal"
-                          class="ReactModal"
-                          closeTimeoutMS={2000}>
-                             {/* isOpen={taskIsOpen}
+                            key={(myQuests.idWorkflow && myQuests.idStatus === 2)}
+                            onClick={(e) => { handleOpenTask(e); searchIDTask(myQuests) }}
+                            className="cardTask" draggable="true" >
+                            <div
+                              className="p"
+                            >{myQuests.title}</div>
+                            <Modal
+                              isOpen={taskIsOpen}
+                              onAfterOpen={afterOpenModal}
+                              onRequestClose={handleCloseTask}
+                              style={taskCustom}
+                              contentLabel="Example Modal"
+                              class="ReactModal"
+                              closeTimeoutMS={2000}>
+                              {/* isOpen={taskIsOpen}
                              onRequestClose={(e) => handleCloseTask(e)}
                              style={taskCustom} > */}
-                            <TaskOpen />
-                          </Modal>
-                        </div>
-                      // </div>
+                              <TaskOpen />
+                            </Modal>
+                          </div>
+                          // </div>
+                        )
+                      }
                       )
                     }
-                    )
-                  }
+                  </div>
                 </div>
-              </div>
 
-              <div id="doID"
-                className="do">
-                <div className="taskTitle">
-                  <h5 className="h5">Fazendo</h5>
-                </div>
-                <div
-                  // key={myQuests.idWorkflow && myQuests.idStatus === 2}
-                  className="taskSpace">
-                  {/* <div className="cardTask" draggable="true">
+                <div id="doID"
+                  className="do">
+                  <div className="taskTitle">
+                    <h5 className="h5">Fazendo</h5>
+                  </div>
+                  <div
+                    // key={myQuests.idWorkflow && myQuests.idStatus === 2}
+                    className="taskSpace">
+                    {/* <div className="cardTask" draggable="true">
                   <div className="p">Lorem Ipsum is simply dummy text.</div>
                   <div className="p">
                     {myQuests.title}
                   </div>
                 </div> */}
+                  </div>
                 </div>
-              </div>
 
-              <div id="doneID"
-                className="done">
-                <div className="taskTitle">
-                  <h5 className="h5">Feito</h5>
-                </div>
-                <div
-                  // key={myQuests.idWorkflow && myQuests.idStatus === 3}
-                  className="taskSpace">
-                  {/* <div className="cardTask" draggable="true">
+                <div id="doneID"
+                  className="done">
+                  <div className="taskTitle">
+                    <h5 className="h5">Feito</h5>
+                  </div>
+                  <div
+                    // key={myQuests.idWorkflow && myQuests.idStatus === 3}
+                    className="taskSpace">
+                    {/* <div className="cardTask" draggable="true">
                   <div className="p">Lorem Ipsum is simply dummy text.</div>
                   <div className="p">
                     {myQuests.title}
                   </div>
                 </div> */}
+                  </div>
                 </div>
-              </div>
 
-            </section>
-            {/* )
+              </section>
+              {/* )
              }
              )
            } */}
-            <div className="calendarAndBtn">
-              
-            <section className="calendar p">
-                <div className="calendarTitle"><h5 id="monthCalendar" className="h5">Calendário</h5></div>
-                <input id="calend1"
-                  className="btnCalendar p"
+              <div className="calendarAndBtn">
+
+                <section className="calendar p">
+                  <div className="calendarTitle"><h5 id="monthCalendar" className="h5">Calendário</h5></div>
+                  <input id="calend1"
+                    className="btnCalendar p"
+                    type="button"
+                    value="1" />
+                  <input id="calend2"
+                    className="btnCalendar p"
+                    type="button"
+                    value="2" />
+                  <input id="calend3"
+                    className="btnCalendar p"
+                    type="button"
+                    value="3" />
+                  <input id="calend4"
+                    className="btnCalendar p"
+                    type="button"
+                    value="4" />
+                  <input id="calend5"
+                    className="btnCalendar p"
+                    type="button"
+                    value="5" />
+                  <input id="calend6"
+                    className="btnCalendar p"
+                    type="button"
+                    value="6" />
+                  <input id="calend7"
+                    className="btnCalendar p"
+                    type="button"
+                    value="7" />
+                  <input id="calend8"
+                    className="btnCalendar p"
+                    type="button"
+                    value="8" />
+                  <input id="calend9"
+                    className="btnCalendar p"
+                    type="button"
+                    value="9" />
+                  <input id="calend10"
+                    className="btnCalendar p"
+                    type="button"
+                    value="10" />
+                  <input id="calend11"
+                    className="btnCalendar p"
+                    type="button"
+                    value="11" />
+                  <input id="calend12"
+                    className="btnCalendar p"
+                    type="button"
+                    value="12" />
+                  <input id="calend13"
+                    className="btnCalendar p"
+                    type="button"
+                    value="13" />
+                  <input id="calend14"
+                    className="btnCalendar p"
+                    type="button"
+                    value="14" />
+                  <input id="calend15"
+                    className="btnCalendar p"
+                    type="button"
+                    value="15" />
+                  <input id="calend16"
+                    className="btnCalendar p"
+                    type="button"
+                    value="16" />
+                  <input id="calend17"
+                    className="btnCalendar p"
+                    type="button"
+                    value="17" />
+                  <input id="calend18"
+                    className="btnCalendar p"
+                    type="button"
+                    value="18" />
+                  <input id="calend19"
+                    className="btnCalendar p"
+                    type="button"
+                    value="19" />
+                  <input id="calend20"
+                    className="btnCalendar p"
+                    type="button"
+                    value="20" />
+                  <input id="calend21"
+                    className="btnCalendar p"
+                    type="button"
+                    value="21" />
+                  <input id="calend22"
+                    className="btnCalendar p"
+                    type="button"
+                    value="22" />
+                  <input id="calend23"
+                    className="btnCalendar p"
+                    type="button"
+                    value="23" />
+                  <input id="calend24"
+                    className="btnCalendar p"
+                    type="button"
+                    value="24" />
+                  <input id="calend25"
+                    className="btnCalendar p"
+                    type="button"
+                    value="25" />
+                  <input id="calend26"
+                    className="btnCalendar p"
+                    type="button"
+                    value="26" />
+                  <input id="calend27"
+                    className="btnCalendar p"
+                    type="button"
+                    value="27" />
+                  <input id="calend28"
+                    className="btnCalendar p"
+                    type="button"
+                    value="28" />
+                  <input id="calend29"
+                    className="btnCalendar p"
+                    type="button"
+                    value="29" />
+                  <input id="calend30"
+                    className="btnCalendar p"
+                    type="button"
+                    value="30" />
+                  <div className="lastCalend"><input id="calend31"
+                    className="btnCalendar p"
+                    type="button"
+                    value="31" /></div>
+                </section>
+
+                <input
+                  className="btnNewTask button"
                   type="button"
-                  value="1" />
-                <input id="calend2"
-                  className="btnCalendar p"
-                  type="button"
-                  value="2" />
-                <input id="calend3"
-                  className="btnCalendar p"
-                  type="button"
-                  value="3" />
-                <input id="calend4"
-                  className="btnCalendar p"
-                  type="button"
-                  value="4" />
-                <input id="calend5"
-                  className="btnCalendar p"
-                  type="button"
-                  value="5" />
-                <input id="calend6"
-                  className="btnCalendar p"
-                  type="button"
-                  value="6" />
-                <input id="calend7"
-                  className="btnCalendar p"
-                  type="button"
-                  value="7" />
-                <input id="calend8"
-                  className="btnCalendar p"
-                  type="button"
-                  value="8" />
-                <input id="calend9"
-                  className="btnCalendar p"
-                  type="button"
-                  value="9" />
-                <input id="calend10"
-                  className="btnCalendar p"
-                  type="button"
-                  value="10" />
-                <input id="calend11"
-                  className="btnCalendar p"
-                  type="button"
-                  value="11" />
-                <input id="calend12"
-                  className="btnCalendar p"
-                  type="button"
-                  value="12" />
-                <input id="calend13"
-                  className="btnCalendar p"
-                  type="button"
-                  value="13" />
-                <input id="calend14"
-                  className="btnCalendar p"
-                  type="button"
-                  value="14" />
-                <input id="calend15"
-                  className="btnCalendar p"
-                  type="button"
-                  value="15" />
-                <input id="calend16"
-                  className="btnCalendar p"
-                  type="button"
-                  value="16" />
-                <input id="calend17"
-                  className="btnCalendar p"
-                  type="button"
-                  value="17" />
-                <input id="calend18"
-                  className="btnCalendar p"
-                  type="button"
-                  value="18" />
-                <input id="calend19"
-                  className="btnCalendar p"
-                  type="button"
-                  value="19" />
-                <input id="calend20"
-                  className="btnCalendar p"
-                  type="button"
-                  value="20" />
-                <input id="calend21"
-                  className="btnCalendar p"
-                  type="button"
-                  value="21" />
-                <input id="calend22"
-                  className="btnCalendar p"
-                  type="button"
-                  value="22" />
-                <input id="calend23"
-                  className="btnCalendar p"
-                  type="button"
-                  value="23" />
-                <input id="calend24"
-                  className="btnCalendar p"
-                  type="button"
-                  value="24" />
-                <input id="calend25"
-                  className="btnCalendar p"
-                  type="button"
-                  value="25" />
-                <input id="calend26"
-                  className="btnCalendar p"
-                  type="button"
-                  value="26" />
-                <input id="calend27"
-                  className="btnCalendar p"
-                  type="button"
-                  value="27" />
-                <input id="calend28"
-                  className="btnCalendar p"
-                  type="button"
-                  value="28" />
-                <input id="calend29"
-                  className="btnCalendar p"
-                  type="button"
-                  value="29" />
-                <input id="calend30"
-                  className="btnCalendar p"
-                  type="button"
-                  value="30" />
-                <div className="lastCalend"><input id="calend31"
-                  className="btnCalendar p"
-                  type="button"
-                  value="31" /></div>
-              </section>
-              
+                  value="Nova Tarefa"
+                  onClick={handleOpenNewTask} />
+                <Modal
+                  isOpen={newTaskIsOpen}
+                  onRequestClose={handleCloseNewTask}
+                  style={taskCustom} >
+                  <div className="modalQuests">
+                    <div className="headerModal">
+                      <div className="title h2">Nova Tarefa</div>
+                      <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
+                    </div>
+                    <form onSubmit={formNewTask}>
+                      <div className="bodyModalQuest">
+                        <div className="inputsQuests">
+                          <div className="inputQuests">
+                            <label for="titleInput" className="h5">Título</label>
+                            <input
+                              id="titleInput"
+                              className="input"
+                              type="text"
+                              placeholder="Insira o Título da tarefa..."
+                              onChange={(event) => setTitleTask(event.target.value)} />
+                            <label for="descriptionInput" className="h5">Descrição</label>
+                            <input
+                              id="descriptionInput"
+                              className="input"
+                              type="text"
+                              placeholder="Insira pontos importantes para a resolução da tarefa..."
+                              onChange={(event) => setDescriptionTask(event.target.value)} />
+                            <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
+                            <input
+                              id="dayAndMonthWorkflow"
+                              className="input inputQuestsDate"
+                              type="date"
+                              onChange={(event) => setEndDate(event.target.value)} />
+                            <input
+                              className="btnNewTask button btnSpaceNewTask"
+                              type="submit"
+                              value="Adicionar Tarefa" />
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </Modal>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className='pageTaskCalendar'>
+          <Navbar />
+          <div className='body-pd'>
+            <VLibras />
+            <img
+              alt='Imagem Clicável Onboarding'
+              src={onBoardingBot}
+              onClick={handleOpenOnBoarding}
+              className="img-onboarding"
+            />
+            <Modal
+              isOpen={onBoardingIsOpen}
+              onRequestClose={handleCloseOnBoarding}
+              style={stylesCustom}
+            >
+              <div className="top-container-onboarding" >
+                <div className="background-body" >
+                  <div className="boarding-image">
+                    <img className="bot-img" src={Blue_Head} alt="Imagem Onboarding" />
+                  </div>
+                  <div className="body-content">
+                    <h2 className="h2">Assistente</h2>
+                    <Swiper
+                      pagination={{
+                        type: "fraction",
+                      }}
+                      navigation={true}
+                      modules={[Pagination, Navigation]}
+
+                      className="swiperHomeTasks-social"
+                    >
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Sinta-se a vontade a tela de Tarefas!</span>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide className="swiper-slide-OnBoarding-social">
+                        <div className="boardingContainer">
+                          <span className='p textoBonito'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
+                        </div>
+                      </SwiperSlide>
+                    </Swiper>
+                  </div>
+
+                </div>
+              </div>
+            </Modal>
+            <div className="titleAndButton">
+              <h2 className="pageTitle pageTitleM h2">{width}</h2>
               <input
                 className="btnNewTask button"
                 type="button"
@@ -693,215 +817,95 @@ function App() {
                 </div>
               </Modal>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-          }
-          else {
-            return (
-              <div className='pageTaskCalendar'>
-        <Navbar />
-        <div className='body-pd'>
-          <VLibras />
-          <img
-            alt='Imagem Clicável Onboarding'
-            src={onBoardingBot}
-            onClick={handleOpenOnBoarding}
-            className="img-onboarding"
-          />
-          <Modal
-            isOpen={onBoardingIsOpen}
-            onRequestClose={handleCloseOnBoarding}
-            style={stylesCustom}
-          >
-            <div className="top-container-onboarding" >
-              <div className="background-body" >
-                <div className="boarding-image">
-                  <img className="bot-img" src={Blue_Head} alt="Imagem Onboarding"/>
-                </div>
-                <div className="body-content">
-                  <h2 className="h2">Assistente</h2>
-                  <Swiper
-                    pagination={{
-                      type: "fraction",
-                    }}
-                    navigation={true}
-                    modules={[Pagination, Navigation]}
-
-                    className="swiperHomeTasks-social"
-                  >
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Sinta-se a vontade a tela de Tarefas!</span>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Aqui é onde você poderá ver o desenvolvimento de tarefas, tanto as pessoais, quanto a dos seus assistentes!</span>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Cada tarefa contém um título, descrição, tempo de entrega, dias de execução e, logicamente, a lista de tarefas.</span>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Visualize a sequência de ações que o seu assistente está realizando, e tarefas que você mesmo poderá criar!</span>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper-slide-OnBoarding-social">
-                      <div className="boardingContainer">
-                        <span className='p textoBonito'>Organize seu dia-a-dia com este Painel Organizacional, e você nunca mais ficará perdido.</span>
-                      </div>
-                    </SwiperSlide>
-                  </Swiper>
-                </div>
-
-              </div>
-            </div>
-          </Modal>
-          <div className="titleAndButton">
-          <h2 className="pageTitle pageTitleM h2">{width}</h2>
-          <input
-                className="btnNewTask button"
-                type="button"
-                value="Nova Tarefa"
-                onClick={handleOpenNewTask} />
-              <Modal
-                isOpen={newTaskIsOpen}
-                onRequestClose={handleCloseNewTask}
-                style={taskCustom} >
-                <div className="modalQuests">
-                  <div className="headerModal">
-                    <div className="title h2">Nova Tarefa</div>
-                    <input type="button" className="exit h5" value='X' onClick={handleCloseNewTask} />
+            <div className='taskCalendar'>
+              <section className="taskMobile">
+                <div id="todoID"
+                  className="toDoMobile">
+                  <div className="taskTitle taskTitleM">
+                    <h5 className="h5">A Fazer</h5>
                   </div>
-                  <form onSubmit={formNewTask}>
-                    <div className="bodyModalQuest">
-                      <div className="inputsQuests">
-                        <div className="inputQuests">
-                          <label for="titleInput" className="h5">Título</label>
-                          <input
-                            id="titleInput"
-                            className="input"
-                            type="text"
-                            placeholder="Insira o Título da tarefa..."
-                            onChange={(event) => setTitleTask(event.target.value)} />
-                          <label for="descriptionInput" className="h5">Descrição</label>
-                          <input
-                            id="descriptionInput"
-                            className="input"
-                            type="text"
-                            placeholder="Insira pontos importantes para a resolução da tarefa..."
-                            onChange={(event) => setDescriptionTask(event.target.value)} />
-                          <label for="dayAndMonthWorkflow" className="h5 labelDateTask">Selecione a Data de Entrega da Tarefa</label>
-                          <input
-                            id="dayAndMonthWorkflow"
-                            className="input inputQuestsDate"
-                            type="date"
-                            onChange={(event) => setEndDate(event.target.value)} />
-                          <input
-                            className="btnNewTask button btnSpaceNewTask"
-                            type="submit"
-                            value="Adicionar Tarefa" />
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </Modal>
-              </div>
-          <div className='taskCalendar'>
-            <section className="taskMobile">
-              <div id="todoID"
-                className="toDoMobile">
-                <div className="taskTitle taskTitleM">
-                  <h5 className="h5">A Fazer</h5>
-                </div>
-                <div
-                  className="taskSpaceMobile">
-                  {
-                    workflowList.map((myQuests) => {
-                      return (
-                        // <div key={(myQuests.idWorflow)}>
-                        <div
-                          key={(myQuests.idWorkflow && myQuests.idStatus === 2)}
-                          onClick={(e) => {handleOpenTask(e); searchIDTask(myQuests)}}
-                          className="cardTaskMobile">
+                  <div
+                    className="taskSpaceMobile">
+                    {
+                      workflowList.map((myQuests) => {
+                        return (
+                          // <div key={(myQuests.idWorflow)}>
                           <div
-                            className="p"
-                          >{myQuests.title}</div>
-                          <Modal
-                          isOpen={taskIsOpen}
-                          onAfterOpen={afterOpenModal}
-                          onRequestClose={handleCloseTask}
-                          style={taskCustom}
-                          contentLabel="Example Modal"
-                          class="ReactModal"
-                          closeTimeoutMS={2000}>
-                             {/* isOpen={taskIsOpen}
+                            key={(myQuests.idWorkflow && myQuests.idStatus === 2)}
+                            onClick={(e) => { handleOpenTask(e); searchIDTask(myQuests) }}
+                            className="cardTaskMobile">
+                            <div
+                              className="p"
+                            >{myQuests.title}</div>
+                            <Modal
+                              isOpen={taskIsOpen}
+                              onAfterOpen={afterOpenModal}
+                              onRequestClose={handleCloseTask}
+                              style={taskCustom}
+                              contentLabel="Example Modal"
+                              class="ReactModal"
+                              closeTimeoutMS={2000}>
+                              {/* isOpen={taskIsOpen}
                              onRequestClose={(e) => handleCloseTask(e)}
                              style={taskCustom} > */}
-                            <TaskOpen />
-                          </Modal>
-                        </div>
-                      // </div>
+                              <TaskOpen />
+                            </Modal>
+                          </div>
+                          // </div>
+                        )
+                      }
                       )
                     }
-                    )
-                  }
+                  </div>
                 </div>
-              </div>
 
-              <div id="doID"
-                className="doMobile">
-                <div className="taskTitle taskTitleM">
-                  <h5 className="h5">Fazendo</h5>
+                <div id="doID"
+                  className="doMobile">
+                  <div className="taskTitle taskTitleM">
+                    <h5 className="h5">Fazendo</h5>
+                  </div>
+                  <div
+                    // key={myQuests.idWorkflow && myQuests.idStatus === 2}
+                    className="taskSpaceMobile">
+                    {/* <div className="cardTask" draggable="true"> */}
+                  {/* <div className="cardTask p">Lorem Ipsum is simply dummy text.</div> */}
+                  {/*<div className="p">
+                    {myQuests.title}
+                  </div>
+                </div> */}
+                  </div>
                 </div>
-                <div
-                  // key={myQuests.idWorkflow && myQuests.idStatus === 2}
-                  className="taskSpaceMobile">
-                  {/* <div className="cardTask" draggable="true">
+
+                <div id="doneID"
+                  className="doneMobile">
+                  <div className="taskTitle taskTitleM">
+                    <h5 className="h5">Feito</h5>
+                  </div>
+                  <div
+                    // key={myQuests.idWorkflow && myQuests.idStatus === 3}
+                    className="taskSpaceMobile">
+                    {/* <div className="cardTask" draggable="true">
                   <div className="p">Lorem Ipsum is simply dummy text.</div>
                   <div className="p">
                     {myQuests.title}
                   </div>
                 </div> */}
-                </div>
-              </div>
-
-              <div id="doneID"
-                className="doneMobile">
-                <div className="taskTitle taskTitleM">
-                  <h5 className="h5">Feito</h5>
-                </div>
-                <div
-                  // key={myQuests.idWorkflow && myQuests.idStatus === 3}
-                  className="taskSpaceMobile">
-                  {/* <div className="cardTask" draggable="true">
-                  <div className="p">Lorem Ipsum is simply dummy text.</div>
-                  <div className="p">
-                    {myQuests.title}
                   </div>
-                </div> */}
                 </div>
-              </div>
 
-            </section>
-            {/* )
+              </section>
+              {/* )
              }
              )
            } */}
-            <div className="calendarAndBtn">
-              
+              <div className="calendarAndBtn">
+
+              </div>
             </div>
           </div>
         </div>
-      </div>
-            )
-          }
+      )
+    }
   }
 }
 
