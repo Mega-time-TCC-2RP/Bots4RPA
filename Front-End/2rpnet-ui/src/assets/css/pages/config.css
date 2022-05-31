@@ -472,9 +472,9 @@
         width: auto;
     }
 
-    .sidebar {
+    /* .sidebar {
         visibility: hidden;
-    }
+    } */
 
     .body-pd {
         width: unset;

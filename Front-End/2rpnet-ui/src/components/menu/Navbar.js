@@ -109,15 +109,15 @@ function Navbar() {
             <span className='Links_name' alt="botão guias">Guias</span>
           </Link>
         </li>
-        {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+        {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
           <li>
             <Link to="/skinShop" className='Link'>
-              <FaIcons.FaTshirt className='icon2' alt="botão loja" />
-              <span className='Links_name' alt="botão loja de skins">Skins</span>
+              <FaIcons.FaTable className='icon2' alt="botão loja" />
+              <span className='Links_name' alt="botão loja de skins">Dags</span>
             </Link>
           </li>
           : null
-        } */}
+        }
         {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
           <li>
             <Link to="/marketplace" className='Link'>

@@ -22,8 +22,7 @@ body{
     z-index: 99;
 }
 .sidebar.active{
-    
-    width: 240px;
+   width: 240px;
 }
 .sidebar .logo_content .logo{
     color: var(--WHITE);
@@ -38,6 +37,7 @@ body{
     
 }
 .sidebar.active .logo_content .logo{
+    transition: all 0.5s ease;
     opacity: 1;
 }
 .sidebar .Links_name{
@@ -243,16 +243,17 @@ html {
     opacity: 0;
     z-index: 100;
     pointer-events: none;
-    transition: all 0.2s ease;
+    transition: all 0s ease;
     position: fixed;
     height: 70px;
     left: 0;
-    bottom: 7.4%;
+    bottom: 0%;
     width: 268px;
     color: var(--WHITE);
     background: var(--ComplementaryColor3);
 }
 .options.active{
+    bottom: 7.4%;
     pointer-events: auto;
     opacity: 1;
     transition: all 0.5s ease;
@@ -293,4 +294,78 @@ html {
     padding-left: 20px;
     padding-right: 10px;
     text-align: center;
+}
+.hd{
+    visibility: hidden;
+}
+
+@media (max-width: 767px) {
+    .hd{
+        visibility: visible;
+    }
+
+    .sidebar{
+        visibility: hidden;
+        width: 60px;
+        height: 100%;
+        transition: all 0s ease;
+
+    }
+    .sidebar .nav_list{
+        pointer-events: none;
+        opacity: 0;
+        padding: 0;
+    }
+    .sidebar.active .nav_list{
+        pointer-events: all;
+        opacity: 1;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.active{  
+        visibility: visible;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 240px;
+        background: var(--PrimaryColor2);
+        padding: 6px 14px;
+        transition: all 0.7s ease;
+        z-index: 99;
+    }
+    .sidebar.active .profile_content{
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar .profile_content{
+        transition: all 0.5s ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .body-pd{
+        position: absolute;
+        overflow-x: none;
+        height: 100%;
+        width: 100%;
+        left: auto;
+        transition: none;
+    }
+    .sidebar.active ~ .body-pd{
+        width: calc(100vw - 0px);
+    }
+    .sidebar .btn {
+    visibility: visible;
+    position: absolute;
+    color: var(--WHITE);
+    left: 50%;
+    top: 15px;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    transform: translateX(-50%);
+}
 }

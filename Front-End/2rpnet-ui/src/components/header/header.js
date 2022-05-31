@@ -54,9 +54,9 @@ export const Header = () => {
 
     if (parseJwt().Role == "3") {
         return (
-            <div>
+            <div className='hd'>
                 <div className='header2'>
-                    <div className='container'>
+                    <div className='container7'>
                         <div className='headerInside2'>
                             
                             <div className='profile2'>
@@ -124,9 +124,9 @@ export const Header = () => {
     }
     else if(parseJwt().Role == "2"){
         return (
-            <div>
+            <div className='hd'>
                 <div className='header2'>
-                    <div className='container'>
+                    <div className='container7'>
                         <div className='headerInside2'>
                             <div className='profile2'>
                                 <div className='profile_details'>
@@ -176,9 +176,9 @@ export const Header = () => {
     }
     else{
         return (
-            <div>
+            
                 <div className='header2'>
-                    <div className='container'>
+                    <div className='container7'>
                         <div className='headerInside2'>
                             <div className='profile2'>
                                 <div className='profile_details'>
@@ -192,8 +192,7 @@ export const Header = () => {
                         </div>
 
                     </div>
-                </div>
-                <div className='details'>
+                    <div className='details'>
                     <div className='profile2'>
                         {
                             myUser != nullUndefinedParams ?
@@ -221,7 +220,9 @@ export const Header = () => {
                     </div>
 
                 </div>
-            </div>
+                </div>
+                
+            
         );
     }
 }

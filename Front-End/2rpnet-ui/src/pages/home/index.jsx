@@ -340,9 +340,10 @@ export default function Home() {
     <div>
 
       <Navbar />
+      <Header />
       <div className='body-pd'>
 
-        {/* <Header /> */}
+        
         <VLibras />
         <img
           src={onBoardingBot}
