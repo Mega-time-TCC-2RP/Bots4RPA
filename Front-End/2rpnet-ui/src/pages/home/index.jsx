@@ -58,10 +58,10 @@ const stylesCustom = {
   content: {
     width: 1,
     height: 1,
-    // backgroundcolor: rgba(0, 255, 255, 0.75),
     boxShadow: '',
     background: 'none',
     border: 'none'
+    // backgroundcolor: rgba(0, 255, 255, 0.75),
   },
 };
 
@@ -85,7 +85,6 @@ export default function Home() {
 
   function Execute(idAssistant) {
     setIsExecuting(true);
-
     var getURL = API + "/api/AssistantProcedure/Assistant/" + idAssistant;
     fetch(getURL, {
       method: 'GET',
@@ -94,7 +93,7 @@ export default function Home() {
       .then((response) => {
         return response.json()
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             data.map((procedure) => {
               console.log(procedure);
               console.log(procedure.procedureName);
@@ -121,10 +120,10 @@ export default function Home() {
                     if (response.status === 200) {
                       console.log("FUNCIONOU");
                       toast.success("O email que você escreveu foi enviado");
-               
+
                     } else {
                       toast.error("Houve um problema no enviuo de seu email :/");
-                 
+
                     }
                     setIsExecuting(false);
                   })
@@ -174,8 +173,9 @@ export default function Home() {
                   })
               }
             }).catch(error => console.log(error))
-        
 
+            Refresh()
+    
         } else {
           toast.error("A execução deu errado :/");
           var myUrl = "http://localhost:5000/api/Run/" + idAssistant
@@ -195,7 +195,8 @@ export default function Home() {
                   })
               }
             }).catch(error => console.log(error))
-          
+          // window.location.href = "http://localhost:3000/home"
+          Refresh()
         }
         setIsExecuting(false);
       })
@@ -204,15 +205,15 @@ export default function Home() {
         toast.error("A execução deu errado :/");
         setIsExecuting(false);
       })
-  }
-  
-  // useEffect(() => {
-  //   <ModalM />
-  // }, [isExecuting])
 
-  // useEffect(() => {
-  //   GetMyAssistants()
-  // }, [isExecuting])
+  }
+
+  // Gambiarra para o método atualizar bonitinho
+  function Refresh() {
+    setTimeout(function () {
+      window.location.href = "http://localhost:3000/home";
+    }, 500);
+  }
 
   function GetAssistant() {
     console.log('getAssistant')
@@ -230,7 +231,7 @@ export default function Home() {
 
   function GetMyAssistants() {
     console.log('Função GetAssistants da Home')
-    fetch(API + '/api/Assistants/Employee/'+ parseJwt().idEmployee, {
+    fetch(API + '/api/Assistants/Employee/' + parseJwt().idEmployee, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
@@ -246,7 +247,6 @@ export default function Home() {
   // Open Modal to create assistant
   function OpenModalAssistant() {
     var modalA = document.getElementById("modalAssistant");
-    // console.log(modalA)
     modalA.style.display = "flex";
   };
 
@@ -255,13 +255,6 @@ export default function Home() {
     var modal = document.getElementById("modal" + idAssistant);
     // console.log(modal)
     modal.style.display = "flex";
-  };
-
-  // Close Assistant details modal
-  function CloseModal(idAssistant) {
-    var modal = document.getElementById("modal" + idAssistant);
-    modal.style.display = "none";
-    GetMyAssistants()
   };
 
   const [myQuests, setMyQuests] = useState([]);
@@ -335,7 +328,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    // console.log(parseJwt())
     GetMyQuests();
     GetHighlightedPosts();
     GetMyAssistants();
@@ -450,7 +442,7 @@ export default function Home() {
                             <button onClick={(event) => {
                               event.preventDefault()
                               Execute(assistant.idAssistant)
-                           
+
                             }}>
                               <PlayIcon />
                             </button>
@@ -632,7 +624,7 @@ export default function Home() {
                             </div>
                             {
                               post.postImage != undefined ?
-                              <div className="img2-home-bottom-container" style={{ background: 'linear-gradient(0deg, rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url(http://grupo7.azurewebsites.net/img/' + post.postImage + ')' }}><img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage} /></div> :
+                                <div className="img2-home-bottom-container" style={{ background: 'linear-gradient(0deg, rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url(http://grupo7.azurewebsites.net/img/' + post.postImage + ')' }}><img className="img2-home-bottom" src={"http://grupo7.azurewebsites.net/img/" + post.postImage} /></div> :
                                 <img className="img2-home-bottom" src={noPhoto}></img>
                             }
                             <h2 className="TituloPostDestaque h5">{post.title}</h2>

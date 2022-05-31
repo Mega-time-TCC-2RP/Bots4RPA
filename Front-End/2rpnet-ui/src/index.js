@@ -47,8 +47,6 @@ import { LayersClear } from '@material-ui/icons';
 // Sem cadastro
 
 
-
-
 const routing = (
   <Router>
     <div>

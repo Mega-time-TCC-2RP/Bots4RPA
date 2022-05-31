@@ -68,6 +68,7 @@ export default function ModalM({ assistant }) {
                 if (resposta.status === 200) {
                     console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
                     CloseModal(assistant.idAssistant)
+                    window.location.href = "http://localhost:3000/home"
                 }
             })
             .catch((erro) => console.log(erro))
