@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import VLibras from '@djpfs/react-vlibras'
+import axios, { Axios } from 'axios';
+
 
 //Components
 import Footer from '../../components/footer/footer'
@@ -37,7 +39,7 @@ const stylesCustom = {
 Modal.setAppElement('#root');
 
 export default function Dags() {
-
+    const [dags, setDags] = useState([]);
 
 
 
@@ -52,10 +54,27 @@ export default function Dags() {
     }
 
 
+    const ListarDags = (e) => {
+
+    }
+
+    useEffect(() => {
+        axios.get('https://62966746810c00c1cb75379c.mockapi.io/api/v1/dags')
+            .then((response) => {
+                setDags(response.data)
+            })
+
+            .catch(() => {
+                console.log('deu errado')
+            })
+        // ListarDags();
+    }, [])
+
+
 
 
     return (
-        
+
 
 
         <div>
@@ -128,12 +147,16 @@ export default function Dags() {
                 </div>
             </Modal>
             <div className='dags-header'>
-                <span className='h1'>DAGs</span>
+                <span className='h1'>Registros</span>
             </div>
+            {/* //body-dags */}
             <div className='dags-body'>
                 <div className='dags-conteiner'>
+
                     <div className='tabela-dags'>
-                        <table border='1'>
+                        <table style={{ borderRadius: 30 }}
+                        // border='1'
+                        >
                             <thead>
                                 <th className='center-dags'>Nome</th>
                                 <th>Vezes Lançadas(total)</th>
@@ -144,36 +167,24 @@ export default function Dags() {
                                 <th>Duração</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td className='center-dags'>Pesquisador</td>
-                                    <td>4 vezes</td>
-                                    <td>16:00</td>
-                                    <td>17:00</td>
-                                    <td>29/05/2022</td>
-                                    <td>29/05/2022</td>
-                                    <td>1 hora</td>
-                                </tr>
-                                <tr>
-                                    <td className='center-dags'>Pesquisador</td>
-                                    <td>4 vezes</td>
-                                    <td>16:00</td>
-                                    <td>17:00</td>
-                                    <td>29/05/2022</td>
-                                    <td>29/05/2022</td>
-                                    <td>1 hora</td>
-                                </tr>
-                                <tr>
-                                    <td className='center-dags'>Pesquisador</td>
-                                    <td>4 vezes</td>
-                                    <td>16:00</td>
-                                    <td>17:00</td>
-                                    <td>29/05/2022</td>
-                                    <td>29/05/2022</td>
-                                    <td>1 hora</td>
-                                </tr>
+                                {dags?.map((dag, key) => {
+                                    return (
+                                        <tr key={key}>
+                                            <td className='center-dags'>{dag.Nome}</td>
+                                            <td>{dag.VezesLancadas}</td>
+                                            <td>{dag.HorarioInicio}</td>
+                                            <td>{dag.HorarioFinal}</td>
+                                            <td>{dag.Data}</td>
+                                            <td>{dag.UltimoLancamento}</td>
+                                            <td>{dag.Duracao}</td>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                     </div>
+
+
                 </div>
             </div>
             <Footer />

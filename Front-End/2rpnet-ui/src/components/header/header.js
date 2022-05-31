@@ -7,6 +7,7 @@ import '../../assets/css/components/header.css'
 import * as HiIcons from 'react-icons/hi'
 import axios from 'axios'
 import { handleAuthException, parseJwt } from '../../services/auth'
+import * as FaIcons from 'react-icons/fa'
 
 export const Header = () => {
     const [myUser, setMyUser] = useState({});
@@ -96,26 +97,16 @@ export const Header = () => {
                                 </div>
                         }
                     </div>
-                    <ul>
-                        <li>
-                            <Link to="/profile" className='Link'>
-                                <span className='Links_name' alt="botão acessar conquistas">Acessar Consquistas</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile" className='Link'>
-                                <span className='Links_name' alt="botão acessar skins">Acessar Skins</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile" className='Link'>
-                                <span className='Links_name' alt="botão acessar skins">Acessar Progresso</span>
-                            </Link>
-                        </li>
-                    </ul>
-                    <div className='logout' onClick={() => Logout()}>
-                        <span alt="botão sair">Sair</span>
-                        <HiIcons.HiOutlineLogout id='log_out' />
+                    <div className='options2'>
+                        <div  onClick={GoToProfile} className='myProfile'>
+                            <FaIcons.FaRegUser className='btn_log_perfil'/>
+                            <span>Perfil</span>
+                        </div>
+                        <div  onClick={Logout} className='logout'>
+                                <HiIcons.HiOutlineLogout className='btn_log_perfil' />
+                                <span>Logout</span>
+                        </div>
+
                     </div>
 
                 </div>

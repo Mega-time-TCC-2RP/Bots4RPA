@@ -95,7 +95,7 @@ export default function Login() {
                                         // verifica se o usuário logado é do tipo administrador
                                         //mudar aqui e no menu principal se o cadastro for liberado para
                                         //todos os usuarios
-                                        if (parseJwt().Role == '1' || parseJwt().Role == '2') {
+                                        if (parseJwt().Role === '1' || parseJwt().Role === '2') {
                                                 history('/config')
                                         }
                                         else if (parseJwt().Role === '3') {

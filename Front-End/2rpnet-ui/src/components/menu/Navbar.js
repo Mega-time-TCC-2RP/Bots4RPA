@@ -111,9 +111,9 @@ function Navbar() {
         </li>
         {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
           <li>
-            <Link to="/skinShop" className='Link'>
+            <Link to="/dags" className='Link'>
               <FaIcons.FaTable className='icon2' alt="botão loja" />
-              <span className='Links_name' alt="botão loja de skins">Dags</span>
+              <span className='Links_name' alt="botão dAGS">Registros</span>
             </Link>
           </li>
           : null
