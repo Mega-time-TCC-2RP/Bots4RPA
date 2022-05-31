@@ -120,8 +120,46 @@
     /* width: 90%; */
 }
 
+.isDragging:nth-child(2n) {
+    animation-name: keyframes1;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 10%;
+}
+
+.isDragging:nth-child(2n-1) {
+    animation-name: keyframes2;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transform-origin: 30% 5%;
+}
+
+@keyframes keyframes1 {
+    0% {
+      transform: rotate(-1deg);
+      animation-timing-function: ease-in;
+    }
+
+    50% {
+      transform: rotate(1.5deg);
+      animation-timing-function: ease-out;
+    }
+  }
+
+  @keyframes keyframes2 {
+    0% {
+      transform: rotate(1deg);
+      animation-timing-function: ease-in;
+    }
+
+    50% {
+      transform: rotate(-1.5deg);
+      animation-timing-function: ease-out;
+    }
+  }
+
 .over {
-    height: 70vh;
+    /* height: 70vh; */
+    height: 100%;
     background-color: var(--ComplementaryColor4);
     opacity: 0.4;
 }
@@ -230,7 +268,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* justify-content: space-between; */
 }
 
 .dateOneTask {
@@ -253,26 +290,23 @@ MOBILE
 
 .pageTitleM {
     margin: 2rem 2rem 2rem 20vh;
-    /* margin-left: 20vh; */
 }
 
 .taskMobile {
-    /* border: 5px solid gray; */
     margin-left: 20vh;
-    /* height: 80vh; */
 }
 
 .toDoMobile,
 .doMobile,
 .doneMobile {
-    width: 100%;
+    width: 90%;
     height: 30vh;
     align-items: center;
     box-shadow: 0px 4px 4px var(--darkShadow);
     background-color: var(--ComplementaryColor1);
     overflow: hidden;
     margin-bottom: 1.5rem;
-    overflow-x: visible;
+    border-radius: 30px;
 }
 
 .taskTitleM {
@@ -280,22 +314,17 @@ MOBILE
     color: var(--WHITE);
     display: flex;
     align-items: flex-start;
-    /* width: 90vw; */
     text-align: start;
-    /* margin: 1rem; */
-    border-radius: 0 30px 30px 0;
+    border-radius: 30px;
 }
 
 .taskSpaceMobile {
-    /* height: 100%; */
     width: auto;
-    /* background-color: var(--ComplementaryColor1); */
     display: flex;
     overflow-x: visible;
     overflow-y: hidden;
-    /* white-space: nowrap; */
-    height: 175px;
-    width: 80vw;
+    height: 200px;
+    width: 90vw;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
@@ -316,7 +345,6 @@ MOBILE
     box-shadow: var(--box-shadow-var);
     border: 2px solid var(--PrimaryColor2);
     font-weight: 600;
-    /* overflow: auto; */
 }
 
 @media only screen and (max-width: 768px) {
@@ -329,8 +357,6 @@ MOBILE
     }
 
     .taskMobile {
-        border: 5px solid gray;
         margin-left: 2rem;
-        padding: 1rem;
     }
 }

@@ -1,5 +1,6 @@
 // Componetizacoes
 import Navbar from '../../components/menu/Navbar'
+import Header from '../../components/header/header'
 
 //libras
 import VLibras from '@djpfs/react-vlibras'
@@ -70,8 +71,6 @@ function useWindowSize() {
 
 function App() {
   const [workflowList, setWorkflowList] = useState([]);
-  const [workflowListDo, setWorkflowListDo] = useState([]);
-  const [workflowListDone, setWorkflowListDone] = useState([]);
   const [titleTask, setTitleTask] = useState('');
   const [descriptionTask, setDescriptionTask] = useState('');
   const [statusTask, setStatusTask] = useState();
@@ -127,9 +126,10 @@ function App() {
       .then(response => {
         if (response.status === 200) {
           // console.log(response.data);
-          var allQuests = response.data
-              setWorkflowList(allQuests)
-          setWorkflowList(response.data);
+          console.log(workflowList)
+          if(workflowList[0] === undefined){
+            setWorkflowList(response.data);
+          }
         }
       })
       .catch(erro => console.log(erro));
@@ -369,7 +369,7 @@ function App() {
     if (width >= 992) {
       return (
         <div className='pageTaskCalendar'>
-          {/* <Header /> */}
+          <Header />
           <Navbar />
           <div className='body-pd'>
             <VLibras />
@@ -705,6 +705,7 @@ function App() {
     else {
       return (
         <div className='pageTaskCalendar'>
+          <Header />
           <Navbar />
           <div className='body-pd'>
             <VLibras />
@@ -827,11 +828,12 @@ function App() {
                   <div
                     className="taskSpaceMobile">
                     {
-                      workflowList.map((myQuests) => {
+                      workflowList.map((myQuests, idx) => {
+                        if (myQuests.idStatus === 1) {
                         return (
                           // <div key={(myQuests.idWorflow)}>
                           <div
-                            key={(myQuests.idWorkflow && myQuests.idStatus === 2)}
+                            key={(idx && myQuests.idStatus === 1)}
                             onClick={(e) => { handleOpenTask(e); searchIDTask(myQuests) }}
                             className="cardTaskMobile">
                             <div
@@ -854,6 +856,7 @@ function App() {
                           // </div>
                         )
                       }
+                    }
                       )
                     }
                   </div>
@@ -865,14 +868,37 @@ function App() {
                     <h5 className="h5">Fazendo</h5>
                   </div>
                   <div
-                    // key={myQuests.idWorkflow && myQuests.idStatus === 2}
                     className="taskSpaceMobile">
-                    {/* <div className="cardTask" draggable="true"> */}
-                  {/* <div className="cardTask p">Lorem Ipsum is simply dummy text.</div> */}
-                  {/*<div className="p">
-                    {myQuests.title}
-                  </div>
-                </div> */}
+                    {
+                      workflowList.map((myQuests, idx) => {
+                        if (myQuests.idStatus === 2) {
+                        return (
+                          <div
+                            key={(idx && myQuests.idStatus === 2)}
+                            onClick={(e) => { handleOpenTask(e); searchIDTask(myQuests) }}
+                            className="cardTaskMobile">
+                            <div
+                              className="p"
+                            >{myQuests.title}</div>
+                            <Modal
+                              isOpen={taskIsOpen}
+                              onAfterOpen={afterOpenModal}
+                              onRequestClose={handleCloseTask}
+                              style={taskCustom}
+                              contentLabel="Example Modal"
+                              class="ReactModal"
+                              closeTimeoutMS={2000}>
+                              {/* isOpen={taskIsOpen}
+                             onRequestClose={(e) => handleCloseTask(e)}
+                             style={taskCustom} > */}
+                              <TaskOpen />
+                            </Modal>
+                          </div>
+                        )
+                      }
+                    }
+                      )
+                    }
                   </div>
                 </div>
 
@@ -882,14 +908,39 @@ function App() {
                     <h5 className="h5">Feito</h5>
                   </div>
                   <div
-                    // key={myQuests.idWorkflow && myQuests.idStatus === 3}
                     className="taskSpaceMobile">
-                    {/* <div className="cardTask" draggable="true">
-                  <div className="p">Lorem Ipsum is simply dummy text.</div>
-                  <div className="p">
-                    {myQuests.title}
-                  </div>
-                </div> */}
+                    {
+                      workflowList.map((myQuests, idx) => {
+                        if (myQuests.idStatus === 3) {
+                        return (
+                          // <div key={(myQuests.idWorflow)}>
+                          <div
+                            key={(idx && myQuests.idStatus === 3)}
+                            onClick={(e) => { handleOpenTask(e); searchIDTask(myQuests) }}
+                            className="cardTaskMobile">
+                            <div
+                              className="p"
+                            >{myQuests.title}</div>
+                            <Modal
+                              isOpen={taskIsOpen}
+                              onAfterOpen={afterOpenModal}
+                              onRequestClose={handleCloseTask}
+                              style={taskCustom}
+                              contentLabel="Example Modal"
+                              class="ReactModal"
+                              closeTimeoutMS={2000}>
+                              {/* isOpen={taskIsOpen}
+                             onRequestClose={(e) => handleCloseTask(e)}
+                             style={taskCustom} > */}
+                              <TaskOpen />
+                            </Modal>
+                          </div>
+                          // </div>
+                        )
+                      }
+                    }
+                      )
+                    }
                   </div>
                 </div>
 
