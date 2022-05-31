@@ -175,7 +175,7 @@
 
 /* efeito de zoom */
 .card1 img {
-    width: 22vh;
+    width: 70%;
     margin-top: 0.9rem;
     margin-left: 0.938rem;
     display: flex;
@@ -734,7 +734,39 @@
     .bottom-posts-content {
         width: 80%;
     }
-    .post-text-bottom-home{
+
+    .post-text-bottom-home {
         margin: 0;
     }
+}
+
+@media (max-width: 375px) {
+
+    .img-onboarding {
+        right: 33px;
+        top: 0px;
+    }
+
+    .form-home {
+        width: 100%;
+    }
+
+    .Input-Home {
+        width: 11em;
+        height: 2.6em;
+        margin-left: 1.25rem;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 1rem;
+    }
+
+    .button-assistant {
+        width: 12em;
+        height: 2.6em;
+        margin-top: none;
+        margin-left: unset;
+        font-size: 14px;
+        line-height: 16px;
+    }
+
 }
