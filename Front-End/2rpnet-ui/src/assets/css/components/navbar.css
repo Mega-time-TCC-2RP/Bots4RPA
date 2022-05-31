@@ -31,13 +31,8 @@ body{
     align-items: center;
     opacity: 0;
     pointer-events: none;
-<<<<<<< HEAD
     margin-top: 5px;
     margin-left: 15px;
-=======
-    margin-top: 10px;
-    margin-left: 1rem;
->>>>>>> e7af9e8b42cfc5ce86b548ae7b05a323de541953
     
 }
 .sidebar.active .logo_content .logo{
