@@ -19,7 +19,7 @@ import { handleAuthException, parseJwt } from '../../services/auth'
 
 
 //logo
-import Logo from '../../assets/img/logo2RPbranco.png'
+import Logo from '../../assets/img/LogoBranca.png'
 // import Logo from '../../assets/img/logo2RP.png'
 import Profile from '../../assets/img/profile.jpg'
 

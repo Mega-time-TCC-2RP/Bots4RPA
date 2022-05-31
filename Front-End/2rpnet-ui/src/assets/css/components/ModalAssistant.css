@@ -31,8 +31,8 @@
 }
 
 .modalAContainer {
-    width: 60.188em;
-    height: 53.5em;
+    width:60em;
+    height: 48em;
     display: flex;
     flex-direction: column;
     padding: 1.563rem;
@@ -58,7 +58,7 @@
 
 .Content-modalA {
     width: 457px;
-    height: 346px;
+    height: 296px;
     display: flex;
     align-items: center;
     justify-content: center;

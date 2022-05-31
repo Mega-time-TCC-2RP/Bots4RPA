@@ -128,10 +128,11 @@
         z-index: 99;
 }
 
-.img-onboarding:hover {
+/* .img-onboarding:hover {
         background-color: rgb(245, 245, 245);
         border-radius: 20px;
-}
+} */
+
 .textoBonito{
         /* margin-bottom: 20px; */
         align-items: center;

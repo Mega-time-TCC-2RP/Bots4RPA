@@ -340,7 +340,7 @@ export default function Assistant() {
                             }
                         }).catch(error => console.log(error))
 
-                    RefreshAssistant()
+                    // RefreshAssistant()
 
                 } else {
                     toast.error("A execução deu errado :/");
@@ -362,7 +362,7 @@ export default function Assistant() {
                             }
                         }).catch(error => console.log(error))
 
-                    RefreshAssistant()
+                    // RefreshAssistant()
                 }
                 setIsExecuting(false);
             })
