@@ -360,10 +360,6 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     return Forbid("O usuário administrador só pode deletar usuários da sua empresa");
                 }
-                if (user == null)
-                {
-                    return NotFound();
-                }
                 if(user.PhotoUser != "padrao.png")
                 {
                     Upload.RemoveFile(user.PhotoUser);
@@ -379,7 +375,6 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     UserEmployee.First().Players.First().Posts = UserPosts;
                     UserEmployee.First().Players.First().LibrarySkins = UserSkins;
                     UserEmployee.First().Players.First().LibraryTrophies = UserTrophies;
-
                 }
                 ctx.Delete(user);
                 return NoContent();

@@ -274,7 +274,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpGet("EmpresasInvalidas")]
         public IActionResult GetInvalidCorporations()
         {
@@ -292,7 +292,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     item.Employees = CorpsOwners.Where(E => E.IdCorporation == item.IdCorporation).ToList();
                 }
 
-                return Ok(Corps.Where(C => C.Employees.First().IdUserNavigation.UserValidation == false));
+                List<Corporation> InvalidCorps = Corps.FindAll(C => C.Employees.First().IdUserNavigation.UserValidation == false).ToList();
+                return Ok(InvalidCorps);
             }
             catch (Exception error)
             {
@@ -317,7 +318,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 }
 
                 Corporation Corp = ctx.SearchByID(Ectx.SearchByID(Uctx.SearchByID(UserId).Employees.First().IdEmployee).IdCorporation);
-                return Ok(CorpsEmployees.Where(E => E.IdUserNavigation.UserValidation == false && E.IdCorporation == Corp.IdCorporation));
+                List<Employee> InvalidUsers = CorpsEmployees.FindAll(E => E.IdUserNavigation.UserValidation == false && E.IdCorporation == Corp.IdCorporation).ToList();
+                return Ok(InvalidUsers);
             }
             catch (Exception error)
             {

@@ -58,21 +58,23 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return BadRequest(new { msg = "Apenas usuários validados podem logar" });
                 }
 
-                var tokenClaims = new[]
+                if(queryUser.IdUserType != 1)
                 {
-                    new Claim(JwtRegisteredClaimNames.Email, queryUser.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
-                    new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
-                    new Claim("Role", queryUser.IdUserType.ToString()),
-                    new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString()),
-                    new Claim("idEmployee", queryUser.Employees.First().IdEmployee.ToString())
-                };
+                    var tokenClaims = new[]
+                    {
+                        new Claim(JwtRegisteredClaimNames.Email, queryUser.Email),
+                        new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
+                        new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
+                        new Claim("Role", queryUser.IdUserType.ToString()),
+                        new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString()),
+                        new Claim("idEmployee", queryUser.Employees.First().IdEmployee.ToString())
+                    };
 
-                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
+                    var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
 
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                var myToken = new JwtSecurityToken(
+                    var myToken = new JwtSecurityToken(
                         issuer: "2rp.webAPI",
                         audience: "2rp.webAPI",
                         claims: tokenClaims,
@@ -80,10 +82,39 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         signingCredentials: creds
                     );
 
-                return Ok(new
+                    return Ok(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(myToken)
+                    });
+                }
+                else
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(myToken)
-                });
+                    var tokenClaims = new[]
+                    {
+                        new Claim(JwtRegisteredClaimNames.Email, queryUser.Email),
+                        new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
+                        new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
+                        new Claim("Role", queryUser.IdUserType.ToString()),
+                        new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString())
+                    };
+
+                    var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
+
+                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                    var myToken = new JwtSecurityToken(
+                        issuer: "2rp.webAPI",
+                        audience: "2rp.webAPI",
+                        claims: tokenClaims,
+                        expires: DateTime.Now.AddDays(30),
+                        signingCredentials: creds
+                    );
+
+                    return Ok(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(myToken)
+                    });
+                }
             }
             catch (Exception error)
             {
@@ -109,21 +140,23 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     return BadRequest(new { msg = "Apenas usuários validados podem logar" });
                 }
 
-                var tokenClaims = new[]
+                if (queryUser.IdUserType != 1)
                 {
-                    new Claim(JwtRegisteredClaimNames.Email, queryUser.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
-                    new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
-                    new Claim("Role", queryUser.IdUserType.ToString()),
-                    new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString()),
-                    new Claim("idEmployee", queryUser.Employees.First().IdEmployee.ToString())
-                };
+                    var tokenClaims = new[]
+                    {
+                        new Claim(JwtRegisteredClaimNames.Email, queryUser.Email),
+                        new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
+                        new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
+                        new Claim("Role", queryUser.IdUserType.ToString()),
+                        new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString()),
+                        new Claim("idEmployee", queryUser.Employees.First().IdEmployee.ToString())
+                    };
 
-                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
+                    var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
 
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                var myToken = new JwtSecurityToken(
+                    var myToken = new JwtSecurityToken(
                         issuer: "2rp.webAPI",
                         audience: "2rp.webAPI",
                         claims: tokenClaims,
@@ -131,10 +164,39 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         signingCredentials: creds
                     );
 
-                return Ok(new
+                    return Ok(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(myToken)
+                    });
+                }
+                else
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(myToken)
-                });
+                    var tokenClaims = new[]
+                    {
+                        new Claim(JwtRegisteredClaimNames.Email, queryUser.Email),
+                        new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
+                        new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
+                        new Claim("Role", queryUser.IdUserType.ToString()),
+                        new Claim("dataExpiracao", DateTime.Now.AddDays(30).ToString())
+                    };
+
+                    var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao"));
+
+                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                    var myToken = new JwtSecurityToken(
+                        issuer: "2rp.webAPI",
+                        audience: "2rp.webAPI",
+                        claims: tokenClaims,
+                        expires: DateTime.Now.AddDays(30),
+                        signingCredentials: creds
+                    );
+
+                    return Ok(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(myToken)
+                    });
+                }
             }
             catch (Exception error)
             {

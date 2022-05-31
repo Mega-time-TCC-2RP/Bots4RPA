@@ -35,13 +35,23 @@ namespace _2rpnet.rpa.webAPI.Repositories
             var dataUser = datauser;
             if (dataUser.IdUserType == 3)
             {
-                foreach (var item in dataUser.Employees.First().Players.First().LibrarySkins)
+                foreach (var item in dataUser.Employees.First().Players.First().LibraryTrophies)
                 {
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                foreach (var item in dataUser.Employees.First().Players.First().LibraryTrophies)
+                foreach(var item in dataUser.Employees.First().LibraryAssistants)
                 {
+                    ctx.Entry(item).State = EntityState.Deleted;
+                    ctx.SaveChanges();
+                }
+                foreach(var item in dataUser.Employees.First().Assistants)
+                {
+                    foreach(var item2 in ctx.LibraryAssistants.ToList().FindAll(La => La.IdAssistant == item.IdAssistant))
+                    {
+                        ctx.Entry(item2).State = EntityState.Deleted;
+                        ctx.SaveChanges();
+                    }
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
@@ -57,6 +67,11 @@ namespace _2rpnet.rpa.webAPI.Repositories
                         ctx.Entry(item2).State = EntityState.Deleted;
                         ctx.SaveChanges();
                     }
+                    ctx.Entry(item).State = EntityState.Deleted;
+                    ctx.SaveChanges();
+                }
+                foreach (var item in dataUser.Employees.First().Players.First().LibrarySkins)
+                {
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
@@ -122,9 +137,13 @@ namespace _2rpnet.rpa.webAPI.Repositories
                     IdCorporation = E.IdCorporation,
                     IdOffice = E.IdOffice,
                     IdOfficeNavigation = E.IdOfficeNavigation,
+                    LibraryAssistants = E.LibraryAssistants,
+                    Assistants = E.Assistants,
                     Players = E.Players.Select(P => new Player()
                     {
                         IdPlayer = P.IdPlayer,
+                        LibrarySkins = P.LibrarySkins,
+                        LibraryTrophies = P.LibraryTrophies,
                         
                         IdEmployee = P.IdEmployee
                     }).ToList()
