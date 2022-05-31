@@ -33,7 +33,7 @@ body{
     opacity: 0;
     pointer-events: none;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 1rem;
     
 }
 .sidebar.active .logo_content .logo{
