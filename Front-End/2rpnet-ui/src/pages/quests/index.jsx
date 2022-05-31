@@ -433,8 +433,6 @@ function App() {
             </Modal>
             <h2 className="pageTitle pageTitleD h2">{width}</h2>
             <div className='taskCalendar'>
-
-
               <section className="task">
                 <div id="todoID"
                   className="toDo">
@@ -442,16 +440,14 @@ function App() {
                     <h5 className="h5">A Fazer</h5>
                   </div>
                   <div
-                    // key={myQuests.idWorkflow
-                    // && myQuests.idStatus === 1
-                    // }
                     className="taskSpace">
                     {
-                      workflowList.map((myQuests) => {
+                      workflowList.map((myQuests, idx) => {
+                        if (myQuests.idStatus === 1) {
                         return (
                           // <div key={(myQuests.idWorflow)}>
                           <div
-                            key={(myQuests.idWorkflow && myQuests.idStatus === 2)}
+                            key={(idx && myQuests.idStatus === 1)}
                             onClick={(e) => { handleOpenTask(e); searchIDTask(myQuests) }}
                             className="cardTask" draggable="true" >
                             <div
@@ -471,11 +467,12 @@ function App() {
                               <TaskOpen />
                             </Modal>
                           </div>
-                          // </div>
                         )
                       }
+                    }
                       )
                     }
+                  
                   </div>
                 </div>
 
@@ -485,14 +482,37 @@ function App() {
                     <h5 className="h5">Fazendo</h5>
                   </div>
                   <div
-                    // key={myQuests.idWorkflow && myQuests.idStatus === 2}
                     className="taskSpace">
-                    {/* <div className="cardTask" draggable="true">
-                  <div className="p">Lorem Ipsum is simply dummy text.</div>
-                  <div className="p">
-                    {myQuests.title}
-                  </div>
-                </div> */}
+                    {
+                      workflowList.map((myQuests, idx) => {
+                        if (myQuests.idStatus === 2) {
+                        return (
+                          <div
+                            key={(idx && myQuests.idStatus === 2)}
+                            onClick={(e) => { handleOpenTask(e); searchIDTask(myQuests) }}
+                            className="cardTask" draggable="true" >
+                            <div
+                              className="p"
+                            >{myQuests.title}</div>
+                            <Modal
+                              isOpen={taskIsOpen}
+                              onAfterOpen={afterOpenModal}
+                              onRequestClose={handleCloseTask}
+                              style={taskCustom}
+                              contentLabel="Example Modal"
+                              class="ReactModal"
+                              closeTimeoutMS={2000}>
+                              {/* isOpen={taskIsOpen}
+                             onRequestClose={(e) => handleCloseTask(e)}
+                             style={taskCustom} > */}
+                              <TaskOpen />
+                            </Modal>
+                          </div>
+                        )
+                      }
+                    }
+                      )
+                    }
                   </div>
                 </div>
 
@@ -502,14 +522,37 @@ function App() {
                     <h5 className="h5">Feito</h5>
                   </div>
                   <div
-                    // key={myQuests.idWorkflow && myQuests.idStatus === 3}
                     className="taskSpace">
-                    {/* <div className="cardTask" draggable="true">
-                  <div className="p">Lorem Ipsum is simply dummy text.</div>
-                  <div className="p">
-                    {myQuests.title}
-                  </div>
-                </div> */}
+                    {
+                      workflowList.map((myQuests, idx) => {
+                        if (myQuests.idStatus === 3) {
+                        return (
+                          <div
+                            key={(idx && myQuests.idStatus === 3)}
+                            onClick={(e) => { handleOpenTask(e); searchIDTask(myQuests) }}
+                            className="cardTask" draggable="true" >
+                            <div
+                              className="p"
+                            >{myQuests.title}</div>
+                            <Modal
+                              isOpen={taskIsOpen}
+                              onAfterOpen={afterOpenModal}
+                              onRequestClose={handleCloseTask}
+                              style={taskCustom}
+                              contentLabel="Example Modal"
+                              class="ReactModal"
+                              closeTimeoutMS={2000}>
+                              {/* isOpen={taskIsOpen}
+                             onRequestClose={(e) => handleCloseTask(e)}
+                             style={taskCustom} > */}
+                              <TaskOpen />
+                            </Modal>
+                          </div>
+                        )
+                      }
+                    }
+                      )
+                    }
                   </div>
                 </div>
 
@@ -853,7 +896,6 @@ function App() {
                               <TaskOpen />
                             </Modal>
                           </div>
-                          // </div>
                         )
                       }
                     }
@@ -935,7 +977,6 @@ function App() {
                               <TaskOpen />
                             </Modal>
                           </div>
-                          // </div>
                         )
                       }
                     }
