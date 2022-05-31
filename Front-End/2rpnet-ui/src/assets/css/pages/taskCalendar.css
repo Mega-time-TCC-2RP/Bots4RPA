@@ -257,38 +257,62 @@ MOBILE
 }
 
 .taskMobile {
-    border: 5px solid gray;
+    /* border: 5px solid gray; */
     margin-left: 20vh;
+    /* height: 80vh; */
+}
+
+.toDoMobile,
+.doMobile,
+.doneMobile {
+    width: 100%;
+    height: 30vh;
+    align-items: center;
+    box-shadow: 0px 4px 4px var(--darkShadow);
+    background-color: var(--ComplementaryColor1);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    overflow-x: visible;
 }
 
 .taskTitleM {
-    background-color: var(--ComplementaryColor1);
+    background-color: var(--ComplementaryColor2);
+    color: var(--WHITE);
+    display: flex;
+    align-items: flex-start;
     /* width: 90vw; */
     text-align: start;
     /* margin: 1rem; */
-    border-radius: 30px;
+    border-radius: 0 30px 30px 0;
 }
 
 .taskSpaceMobile {
-    height: 35px;
-    background-color: var(--ComplementaryColor1);
+    /* height: 100%; */
+    width: auto;
+    /* background-color: var(--ComplementaryColor1); */
     display: flex;
     overflow-x: visible;
     overflow-y: hidden;
     /* white-space: nowrap; */
-    height: 100px;
+    height: 175px;
     width: 80vw;
     flex-wrap: wrap;
     flex-direction: column;
+    justify-content: center;
 }
 
 .cardTaskMobile {
-    height: 25px;
+    height: 80%;
+    overflow-y: hidden;
+    text-align: start;
+    text-justify: auto;
+    height: 4rem;
     width: 100px;
+    margin-left: 1.5rem;
     background-color: var(--PrimaryColor1);
     border-radius: 30px;
     color: var(--WHITE);
-    padding: 55px 16px 55px 16px;
+    padding: 20px 12px 40px 12px;
     box-shadow: var(--box-shadow-var);
     border: 2px solid var(--PrimaryColor2);
     font-weight: 600;
