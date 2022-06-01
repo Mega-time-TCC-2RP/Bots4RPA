@@ -2,6 +2,7 @@
 using _2RPNET_API.Interfaces;
 using _2RPNET_API.Repositories;
 using _2RPNET_API.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -32,6 +33,7 @@ namespace _2RPNET_API.Controllers
         /// Method responsible for list all Assistants
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public IActionResult ReadAll()
         {
@@ -49,6 +51,7 @@ namespace _2RPNET_API.Controllers
         /// Method responsible for list Assistant by unique id
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{IdAssistant}")]
         public IActionResult ReadMy(int IdAssistant)
         {
@@ -64,9 +67,10 @@ namespace _2RPNET_API.Controllers
 
 
         /// <summary>
-        /// Method responsible for list Assistant by unique id
+        /// Method responsible for list Assistant by unique Id Employee
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("Employee/{IdEmployee}")]
         public IActionResult FindByIdEmployee(int IdEmployee)
         {
@@ -81,9 +85,10 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for analyze all Assistants
+        /// Method responsible for create Assistants
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public IActionResult Create(Assistant NewAssistant)
         {
@@ -106,9 +111,10 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for update all Assistants
+        /// Method responsible for update Assistant
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpPut("{IdAssistant}")]
         public IActionResult Update(int IdAssistant, Assistant UpdatedAsssistant)
         {
@@ -139,9 +145,10 @@ namespace _2RPNET_API.Controllers
 
 
         /// <summary>
-        /// Method responsible for delete all Assistants 
+        /// Method responsible for delete Assistants 
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete("{IdAssistant}")]
         public IActionResult Delete(int IdAssistant)
         {
@@ -175,6 +182,11 @@ namespace _2RPNET_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Method responsible for send emails
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
         [HttpPost("EnviarEmail")]
         public IActionResult EnviaEmail(int idAssistant, SendEmailViewModel assistant)
         {
@@ -193,6 +205,11 @@ namespace _2RPNET_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Method responsible for send personalized emails
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
         [HttpPost("EnviarEmailUsuario")]
         public IActionResult EnviaEmail(SendEmailViewModel assistant)
         {

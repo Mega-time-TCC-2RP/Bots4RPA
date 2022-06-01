@@ -51,8 +51,6 @@ namespace _2RPNET_API.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, queryUser.IdUser.ToString()),
                     new Claim(ClaimTypes.Role, queryUser.IdUserType.ToString()),
                     new Claim("role", queryUser.IdUserType.ToString()),
-
-
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("RPA-token-autenticacao"));

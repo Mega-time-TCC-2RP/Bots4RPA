@@ -27,6 +27,7 @@ namespace _2RPNET_API.Controllers
         /// Method responsible for list all Users
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("ListAll")]
         public IActionResult ReadAll()
         {
@@ -45,6 +46,7 @@ namespace _2RPNET_API.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{Id}")]
         public IActionResult ReadMy(int Id)
         {
@@ -64,6 +66,7 @@ namespace _2RPNET_API.Controllers
         /// <param name="IdUserName"></param>
         /// <param name="UpdatedUser"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPut("{IdUserName}")]
         public IActionResult Update(int IdUserName, UserName UpdatedUser)
         {
@@ -91,10 +94,11 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for create all users
+        /// Method responsible for create users
         /// </summary>
         /// <param name="NewUser"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public IActionResult Create(UserName NewUser)
         {
@@ -114,6 +118,7 @@ namespace _2RPNET_API.Controllers
         /// </summary>
         /// <param name="IdUserName"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete("{IdUserName}")]
         public IActionResult Delete(int IdUserName)
         {

@@ -12,6 +12,7 @@ using _2RPNET_API.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.IdentityModel.Tokens.Jwt;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace _2RPNET_API.Controllers
 {
@@ -30,6 +31,7 @@ namespace _2RPNET_API.Controllers
         /// Method responsible for list all run process
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("ListAll")]
         public IActionResult ReadAll()
         {
@@ -48,7 +50,7 @@ namespace _2RPNET_API.Controllers
         /// </summary>
         /// <param name="IdAssistant"></param>
         /// <returns></returns>
-
+        [Authorize]
         [HttpGet("ListQuantity/{IdAssistant}")]
         public IActionResult RunsQuantity(int IdAssistant)
         {
@@ -65,6 +67,7 @@ namespace _2RPNET_API.Controllers
         /// <summary>
         /// Method responsible for create a Run process
         /// </summary>
+        [Authorize]
         [HttpPost("{IdAssistant}")]
         public IActionResult NewRun(int IdAssistant, Run DataRun)
         {
@@ -83,6 +86,7 @@ namespace _2RPNET_API.Controllers
         /// Method responsible for list Run by unique id
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{Id}")]
         public IActionResult ReadMy(int Id)
         {

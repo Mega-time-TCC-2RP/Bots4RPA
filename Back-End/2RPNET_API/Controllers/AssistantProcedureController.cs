@@ -7,6 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using _2RPNET_API.ViewModels;
 using _2RPNET_API.Utils;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace _2RPNET_API.Controllers
 {
@@ -21,12 +22,13 @@ namespace _2RPNET_API.Controllers
             _repository = assistant;
         }
 
-        
+
 
         /// <summary>
         /// Method responsible for list all Assistants Process
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public IActionResult ReadAll()
         {
@@ -44,6 +46,7 @@ namespace _2RPNET_API.Controllers
         /// Method responsible for list Assistant Process by unique id
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult SearchByID(int id)
         {
@@ -57,6 +60,11 @@ namespace _2RPNET_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Method responsible for list Process by unique Assistant
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
         [HttpGet("Assistant/{id}")]
         public IActionResult ListProcessByAssistant(int id)
         {
@@ -71,9 +79,10 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for create all Assistants Process
+        /// Method responsible for create Assistants Process
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public IActionResult NewProcedure(AssistantProcedure newProcess)
         {
@@ -88,12 +97,16 @@ namespace _2RPNET_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Method responsible for Manipulate Script by Assistant
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
         [HttpPost("ManipulateScript/{IdAssistant}")]
         public IActionResult ManipulateScript(int IdAssistant)
         {
             try
             {
-
                 string foto = _repository.ManipulateScript(IdAssistant);
                 //Process.Start("./run.bat");
                 return Created("arquivo manipulado com sucesso", foto);
@@ -103,11 +116,12 @@ namespace _2RPNET_API.Controllers
                 return BadRequest(ex);
             }
         }
-        
+
         /// <summary>
-        /// Method responsible for update all Assistants Process
+        /// Method responsible for update Assistants Process
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Update(int id, AssistantProcedure newProcess)
         {
@@ -123,9 +137,10 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for delete all Assistants Process
+        /// Method responsible for delete all Assistants Process by unique Assistant
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
@@ -141,9 +156,10 @@ namespace _2RPNET_API.Controllers
         }
 
         /// <summary>
-        /// Method responsible for get analyze Assistants
+        /// Method responsible for analyze Assistants Procedures
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpPost("{IdAssistant}")]
         public IActionResult ChangeVerification(int IdAssistant, ArrayViewModel ArrayViewModel)
         {
