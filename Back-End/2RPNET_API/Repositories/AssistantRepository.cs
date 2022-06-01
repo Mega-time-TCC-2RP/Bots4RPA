@@ -82,7 +82,7 @@ namespace _2RPNET_API.Repositories
             if (userEmail != null)
             {
                 MimeMessage message = new MimeMessage();
-                message.From.Add(new MailboxAddress("Grupo 2RP", "bots4rpa@gmail.com"));
+                message.From.Add(new MailboxAddress("Bots 4 RPA", "bots4rpa@gmail.com"));
                 message.To.Add(MailboxAddress.Parse(userEmail));
                 message.Subject = $"Email do retorno do assistente {assistantSought.AssistantName}";
                 var builder = new BodyBuilder();
@@ -105,7 +105,7 @@ namespace _2RPNET_API.Repositories
 
 
                 client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                client.Authenticate("bots4rpa@gmail.com", "kiwxgcfzvuczefnp", default);
+                client.Authenticate("bots4rpa@gmail.com", "bllfapmicapcdsbk", default);
                 await client.SendAsync(message);
                 client.Disconnect(true);
                 client.Dispose();
@@ -122,7 +122,7 @@ namespace _2RPNET_API.Repositories
             if (userEmail != null)
             {
                 MimeMessage message = new MimeMessage();
-                message.From.Add(new MailboxAddress("Grupo 2RP", "bots4rpa@gmail.com"));
+                message.From.Add(new MailboxAddress("Bots 4 RPA", "bots4rpa@gmail.com"));
                 message.To.Add(MailboxAddress.Parse(userEmail));
                 message.Subject = $"{emailConfig.emailTitle}";
                 var builder = new BodyBuilder();

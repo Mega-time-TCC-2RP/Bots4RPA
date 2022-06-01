@@ -1661,7 +1661,6 @@ C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\bin\Debug\ne
 C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\bin\Debug\net5.0\2RPNET_API.runtimeconfig.json
 C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\bin\Debug\net5.0\2RPNET_API.runtimeconfig.dev.json
 C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\bin\Debug\net5.0\2RPNET_API.dll
-C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\bin\Debug\net5.0\ref\2RPNET_API.dll
 C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\bin\Debug\net5.0\2RPNET_API.pdb
 C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\bin\Debug\net5.0\2RPNET_API.xml
 C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\bin\Debug\net5.0\BCrypt.Net-Next.dll
@@ -1802,3 +1801,4 @@ C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\obj\Debug\ne
 C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\obj\Debug\net5.0\2RPNET_API.xml
 C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\obj\Debug\net5.0\2RPNET_API.pdb
 C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\obj\Debug\net5.0\2RPNET_API.genruntimeconfig.cache
+C:\Users\44037739828.INFOSCS\Desktop\Bots-4RPAB\Back-End\2RPNET_API\bin\Debug\net5.0\ref\2RPNET_API.dll
