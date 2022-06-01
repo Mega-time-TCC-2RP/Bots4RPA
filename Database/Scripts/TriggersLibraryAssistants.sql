@@ -39,7 +39,7 @@ BEGIN
 			SET @IdUserType = (SELECT IdUserType FROM UserName 
 			LEFT JOIN Employee 
 			ON Employee.IdUser = UserName.IdUser 
-			WHERE Employee.IdCorporation = @IdCorporationEmployee);
+			WHERE Employee.IdEmployee = @IdEmployeeQuery);
 
 			IF @IdUserType = 2 AND @IdCorporationEmployee = @IdCorporation AND @IdEmployeeQuery != @IdEmployee
 			BEGIN
