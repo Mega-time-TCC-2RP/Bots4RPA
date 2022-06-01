@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import VLibras from '@djpfs/react-vlibras'
 
 //img:
-import logoMaior from '../../assets/img/logoMaior.png'
+// import logoMaior from '../../assets/img/logoMaior.png'
+import logoMaior from '../../assets/img/LogoConvite.png'
 import Vermelho from '../../assets/img/Vermelho.png'
 import Azul from '../../assets/img/Azul.png'
 import Robo from '../../assets/img/roboLandingPage.png'
