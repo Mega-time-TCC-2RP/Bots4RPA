@@ -9,6 +9,8 @@ import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import { useNavigate } from 'react-router-dom';
 import Coin from '../../assets/img/coin.png'
+import VLibras from '@djpfs/react-vlibras'
+
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -133,6 +135,7 @@ export default function Profile() {
     return (
         <div className='ProfileContainer'>
             <Navbar />
+            <VLibras/>
             <div className='perfilpage body-pd profile'>
                 {/* <Header /> */}
                 <h1 className='container h2 semi-bold' alt="configurações">Perfil</h1>

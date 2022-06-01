@@ -321,7 +321,7 @@ function Navbar() {
       <div className='sidebar'>
         <ToastContainer />
         <div className='logo_content'>
-          <img className='logo' src={Logo} alt="Logo 2RPnet" />
+        <img className='logo' src={Logo} alt="Logo 2RPnet" />
           <FaIcons.FaBars className='btn' onClick={click} />
         </div>
         <ul className='nav_list'>

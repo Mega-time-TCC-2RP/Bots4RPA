@@ -26,6 +26,7 @@ import Marketplace from './pages/marketplace/marketplace';
 import Assistant from './pages/myProcesses/assistant';
 import { TelaTimeline } from './pages/social/index';
 import Quest from './pages/quests';
+import DashBoard from './pages/dashboard/dashboard';
 import TesteDaltonicMode from './pages/DaltonicModeTest';
 import Profile from './pages/profile/index';
 import Config from './pages/config/config';
@@ -57,6 +58,7 @@ const routing = (
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path='/dags' element={<Dags />} />
+        <Route path='/dashboard' element={<DashBoard />} />
         <Route path="/registerUserGoogle" element={<RegisterUserGoogle />} />
         <Route path="/Config" element={<Config />} /> {/* Config */}
         <Route path="/waitingRoom" element={<WaitingRoom />} /> {/* WaitingRoom */}

@@ -113,6 +113,10 @@ footer {
         height: 100%;
     }
 }
+.footer-waitroom{
+    position: absolute;
+	bottom: 0;
+}
 
 @media (max-width: 375px) {
     .footer2RP {
