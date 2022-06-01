@@ -31,8 +31,8 @@
 }
 
 .SmodalContainer {
-    width: 90em;
-    height: 47em;
+    width: 75em;
+    height: 43em;
     display: flex;
     flex-direction: column;
     padding: 1.563rem;
@@ -97,7 +97,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 22px;
     justify-content: center;
     overflow-y: hidden;
     color: #17233C;
@@ -105,7 +105,7 @@
 
 .assistant-info {
     width: 100%;
-    height: 59%;
+    height: 62%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -124,7 +124,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 19px;
     line-height: 27px;
     display: flex;
     align-items: center;
@@ -133,10 +133,11 @@
 }
 
 .box-paragraph {
-    width: 25em;
-    height: 8.2em;
+    width: 21em;
+    height: 7.9em;
     display: flex;
     flex-direction: column;
+
     /* background-color: darkcyan; */
 }
 
@@ -145,7 +146,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     text-align: left;
     line-height: 31px;
     color: #636363;
@@ -174,7 +175,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 19px;
     line-height: 27px;
 
     color: #3475BB;
@@ -185,7 +186,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
 
     color: #636363;
@@ -216,8 +217,9 @@
 }
 
 .container-left {
-    width: 264px;
-    height: 185px;
+    /* width: 264px; */
+    width: 80%;
+    height: 60%;
     margin-top: 22px;
     display: flex;
     flex-direction: column;
@@ -241,7 +243,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 27px;
     display: flex;
     align-items: center;
@@ -269,11 +271,11 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
     display: flex;
     align-items: center;
-    text-indent: 24px;
+    text-indent: 14px;
 
     color: #636363;
 }
@@ -289,8 +291,8 @@
 }
 
 .GraphicHealth {
-    width: 220.58px !important;
-    height: 220.93px !important;
+    width: 177px !important;
+    height: 170px !important;
 }
 
 .graphic-2 {
@@ -319,7 +321,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 27px;
     display: flex;
     align-items: center;
@@ -333,17 +335,18 @@
     /* width: 316px;
     height: 142px; */
     /* margin-top: 22px; */
-    width: 50%;
+    width: 65%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    align-items: flex-end;
 
     /* background-color: #ffa4a4; */
 }
 
-.container-boxQ{
+.container-boxQ {
     width: 264px;
     height: 50%;
     margin-top: 22px;
@@ -351,7 +354,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    /* background-color: #636363; */
+    /* background-color: #79ffa1; */
 }
 
 .square-blue {
@@ -393,7 +396,7 @@
     font-family: 'Exo';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 27px;
     background: #E41500;
 
@@ -434,7 +437,7 @@
     font-family: 'Exo';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 27px;
     display: flex;
     align-items: center;
@@ -448,7 +451,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
     display: flex;
     align-items: center;
@@ -476,8 +479,8 @@
 }
 
 .box-graphic-quantity {
-    width: 205px;
-    height: 205px;
+    width: 165px;
+    height: 165px;
     display: flex;
     border: 14px solid #3375BA;
     border-radius: 74px;
