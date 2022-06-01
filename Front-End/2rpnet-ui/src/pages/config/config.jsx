@@ -28,6 +28,8 @@ import * as SiIcons from 'react-icons/si'
 
 //components:
 import Header from '../../components/header/header'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // module.exports = {
 //     async headers() {
@@ -44,6 +46,18 @@ import Header from '../../components/header/header'
 //         ]
 //     }
 // }
+
+const errorToast = () => {
+    toast.error('Ops! Ocorreu um erro', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+}
 
 const onlyNumbers = (string) => string.replace(/[^0-9]/g, '')
 
@@ -135,6 +149,7 @@ export default function Config() {
     const [userAlterado, setUserAlterado] = useState({})
     const [pass, setPass] = useState('')
     const [NovaSenha, setNovaSenha] = useState('')
+    const [birthDate1, setBirthDate1] = useState('')
 
     let history = useNavigate();
 
@@ -150,8 +165,9 @@ export default function Config() {
                 if (resposta.status === 200) {
                     setUserLogado(resposta.data)
                     console.log(resposta.data)
-                    const date = resposta.data.birthDate.substring(0,10)
-                    console.log(date.split('-')[1] + '/' + date.split('-')[2] + '/' + date.split('-')[0])
+                    setBirthDate1(resposta.data.birthDate)
+                    // const date = resposta.data.birthDate.substring(0,10)
+                    // console.log(date.split('-')[1] + '/' + date.split('-')[2] + '/' + date.split('-')[0])
                 }
             })
             .catch((erro) => console.log(erro))
@@ -249,7 +265,7 @@ export default function Config() {
                     }
                     formData.append('IdUserType', userLogado.idUserType)
                     if (NovaSenha === '') {
-                        formData.append('Passwd',pass);
+                        formData.append('Passwd', pass);
                     } else {
                         formData.append('Passwd', NovaSenha);
                     }
@@ -272,7 +288,15 @@ export default function Config() {
                         .catch((erro) => console.log(erro))
                 }
             })
-            .catch((erro) => console.log(erro))
+            .catch(errorToast(),
+                bazinga => {
+                    if (bazinga.status === 401) {
+                        closeModalConfig();
+                        errorToast();
+                    }
+                }
+
+            )
     }
 
     function listInvalidUsers() {
@@ -582,7 +606,6 @@ export default function Config() {
 
     return (
         <div>
-            {parseJwt().Role == 3 ? <Header /> : null}
             <Navbar />
             <div className='configPage body-pd'>
                 <h1 className='container h3' id='configTitlle' alt="configurações">Configurações</h1>
@@ -609,7 +632,7 @@ export default function Config() {
                                             </div>
                                             <div className='dataUser'>
                                                 <label className='h6 semi-bold' htmlFor="birthDateUser">Nascimento:</label>
-                                                <p id='birthDateUser' className="p">{userLogado.birthDate.substring(0,10).split('-')[1] + '/' + userLogado.birthDate.substring(0,10).split('-')[2] + '/' + userLogado.birthDate.substring(0,10).split('-')[0]}</p>
+                                                <p id='birthDateUser' className="p">{birthDate1.substring(0, 10).split('-')[1] + '/' + birthDate1.substring(0, 10).split('-')[2] + '/' + birthDate1.substring(0, 10).split('-')[0]}</p>
                                             </div>
                                         </div>
                                         <div className='contentConfig'>

@@ -7,6 +7,7 @@ import '../../assets/css/components/header.css'
 import * as HiIcons from 'react-icons/hi'
 import axios from 'axios'
 import { handleAuthException, parseJwt } from '../../services/auth'
+import * as FaIcons from 'react-icons/fa'
 
 export const Header = () => {
     const [myUser, setMyUser] = useState({});
@@ -54,9 +55,9 @@ export const Header = () => {
 
     if (parseJwt().Role == "3") {
         return (
-            <div>
+            <div className='hd'>
                 <div className='header2'>
-                    <div className='container'>
+                    <div className='container7'>
                         <div className='headerInside2'>
                             
                             <div className='profile2'>
@@ -96,26 +97,16 @@ export const Header = () => {
                                 </div>
                         }
                     </div>
-                    <ul>
-                        <li>
-                            <Link to="/profile" className='Link'>
-                                <span className='Links_name' alt="botão acessar conquistas">Acessar Consquistas</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile" className='Link'>
-                                <span className='Links_name' alt="botão acessar skins">Acessar Skins</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile" className='Link'>
-                                <span className='Links_name' alt="botão acessar skins">Acessar Progresso</span>
-                            </Link>
-                        </li>
-                    </ul>
-                    <div className='logout' onClick={() => Logout()}>
-                        <span alt="botão sair">Sair</span>
-                        <HiIcons.HiOutlineLogout id='log_out' />
+                    <div className='options2'>
+                        <div  onClick={GoToProfile} className='myProfile'>
+                            <FaIcons.FaRegUser className='btn_log_perfil'/>
+                            <span>Perfil</span>
+                        </div>
+                        <div  onClick={Logout} className='logout'>
+                                <HiIcons.HiOutlineLogout className='btn_log_perfil' />
+                                <span>Logout</span>
+                        </div>
+
                     </div>
 
                 </div>
@@ -124,9 +115,9 @@ export const Header = () => {
     }
     else if(parseJwt().Role == "2"){
         return (
-            <div>
+            <div className='hd'>
                 <div className='header2'>
-                    <div className='container'>
+                    <div className='container7'>
                         <div className='headerInside2'>
                             <div className='profile2'>
                                 <div className='profile_details'>
@@ -176,9 +167,9 @@ export const Header = () => {
     }
     else{
         return (
-            <div>
+            
                 <div className='header2'>
-                    <div className='container'>
+                    <div className='container7'>
                         <div className='headerInside2'>
                             <div className='profile2'>
                                 <div className='profile_details'>
@@ -192,8 +183,7 @@ export const Header = () => {
                         </div>
 
                     </div>
-                </div>
-                <div className='details'>
+                    <div className='details'>
                     <div className='profile2'>
                         {
                             myUser != nullUndefinedParams ?
@@ -221,7 +211,9 @@ export const Header = () => {
                     </div>
 
                 </div>
-            </div>
+                </div>
+                
+            
         );
     }
 }

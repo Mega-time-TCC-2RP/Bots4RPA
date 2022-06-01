@@ -212,13 +212,13 @@ const errorToast = () => {
         })
             .then(diffToast(),
             bazinga => {
-                    if (bazinga.status !== 200) {
+                    if (bazinga.status !== 201) {
                             toast.dismiss(diffToast());
                             errorToast()
                     }
             })
             .then((response) => {
-                if (response.status === 200) {
+                if (response.status === 201) {
                     console.log('cadastrado com sucesso')
                     history('/login')
                 }

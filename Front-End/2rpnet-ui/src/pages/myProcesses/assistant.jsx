@@ -42,8 +42,15 @@ export default function Assistant() {
     const location = useLocation();
     var idAssistant = location.state.id;
 
+    // Gambiarra
+    function RefreshAssistant() {
+        setTimeout(function () {
+            window.location.href = "http://localhost:3000/home";
+        }, 500);
+    }
 
     function GetProceduresById() {
+        console.log('.')
         fetch(API + '/api/AssistantProcedure/Assistant/' + idAssistant, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -56,7 +63,10 @@ export default function Assistant() {
             )
             .catch((error) => console.log(error));
     };
-    useEffect(GetProceduresById)
+    
+    useEffect(() => {
+        GetProceduresById()
+    }, [])
 
     function returnModalEmail(procedure) {
         if (procedure.procedureName != "Enviar email para alguem") {
@@ -245,7 +255,6 @@ export default function Assistant() {
 
     function Execute() {
         setIsExecuting(true);
-
         var getURL = API + "/api/AssistantProcedure/Assistant/" + idAssistant;
         fetch(getURL, {
             method: 'GET',
@@ -254,13 +263,12 @@ export default function Assistant() {
             .then((response) => {
                 return response.json()
                     .then((data) => {
-                        console.log(data);
+                        // console.log(data);
                         data.map((procedure) => {
                             console.log(procedure);
                             console.log(procedure.procedureName);
 
                             if (procedure.procedureName == "Enviar email para alguem") {
-                                console.log(procedure.procedureValue);
                                 var splitEmail = procedure.procedureValue.split("/");
                                 console.log(splitEmail);
 
@@ -282,14 +290,16 @@ export default function Assistant() {
                                         if (response.status === 200) {
                                             console.log("FUNCIONOU");
                                             toast.success("O email que você escreveu foi enviado");
+
                                         } else {
-                                            toast.error("Houve um problema no envio de seu email :/");
+                                            toast.error("Houve um problema no enviuo de seu email :/");
+
                                         }
                                         setIsExecuting(false);
                                     })
                                     .catch((erro) => {
                                         console.log(erro)
-                                        toast.error("Houve um problema no envio de seu email :/");
+                                        toast.error("Houve um problema no enviuo de seu email :/");
                                         setIsExecuting(false);
                                     })
                             }
@@ -297,14 +307,11 @@ export default function Assistant() {
                     })
             });
 
-        // console.log(parseJwt());
-        // console.log(parseJwt().email);
-
         var eURL = API + "/api/Assistant" + idAssistant + "/Post";
         var eBody = JSON.stringify({
             "emailTitle": "",
             "email": parseJwt().email,
-            "emailBody": result
+            "emailBody": `http://vmbots4rpa.brazilsouth.cloudapp.azure.com:5000/StaticFiles/Images/Assistant${idAssistant}.png`
         });
 
         fetch(eURL, {
@@ -314,13 +321,52 @@ export default function Assistant() {
         })
             .then((response) => {
                 // console.log("before if");
-                console.log(response)
+                // console.log(response)
                 if (response.status === 204) {
-                    console.log("FUNCIONOU");
 
+                    console.log("FUNCIONOU");
                     toast.success("O resultado foi enviado para seu email");
+                    var myUrl = API + "/api/Run/" + idAssistant
+                    const requestOptions = {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ "runStatus": true })
+                    };
+
+                    fetch(myUrl, requestOptions)
+                        .then(response => {
+                            if (response.status === 201) {
+                                // console.log(response)
+                                return response.json()
+                                    .then(data => {
+                                        console.log(data)
+                                    })
+                            }
+                        }).catch(error => console.log(error))
+
+                    // RefreshAssistant()
+
                 } else {
                     toast.error("A execução deu errado :/");
+                    var myUrl = "http://localhost:5000/api/Run/" + idAssistant
+                    const requestOptions = {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ "runStatus": false })
+                    };
+
+                    fetch(myUrl, requestOptions)
+                        .then(response => {
+                            if (response.status === 201) {
+                                // console.log(response)
+                                return response.json()
+                                    .then(data => {
+                                        console.log(data)
+                                    })
+                            }
+                        }).catch(error => console.log(error))
+
+                    // RefreshAssistant()
                 }
                 setIsExecuting(false);
             })
@@ -329,7 +375,6 @@ export default function Assistant() {
                 toast.error("A execução deu errado :/");
                 setIsExecuting(false);
             })
-
 
     }
 
@@ -430,7 +475,6 @@ export default function Assistant() {
                 }
             }
         }
-
         setProceduresList(Procedures);
     }
 

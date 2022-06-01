@@ -9,6 +9,8 @@ import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import { useNavigate } from 'react-router-dom';
 import Coin from '../../assets/img/coin.png'
+import VLibras from '@djpfs/react-vlibras'
+
 
 //img:
 import Azul_Home from '../../assets/img/Azul_Home.png'
@@ -21,7 +23,7 @@ import Img_Home_Post from '../../assets/img/Img_Home_Post.png'
 //css:
 import '../../assets/css/components/button.css'
 import '../../assets/css/components/fonts.css'
-import '../../assets/css/pages/config.css'
+import '../../assets/css/pages/profile.css'
 
 //icons:
 import * as AiIcons from 'react-icons/ai'
@@ -133,7 +135,8 @@ export default function Profile() {
     return (
         <div className='ProfileContainer'>
             <Navbar />
-            <div className='configPage body-pd profile'>
+            <VLibras/>
+            <div className='perfilpage body-pd profile'>
                 {/* <Header /> */}
                 <h1 className='container h2 semi-bold' alt="configurações">Perfil</h1>
                 <nav className='navAreaConfig container'>

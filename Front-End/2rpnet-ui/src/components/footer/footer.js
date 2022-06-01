@@ -21,7 +21,7 @@ class Footer extends Component {
         return (
             <footer className="footer">
                 <div className="container footerMainContent">
-                    <img className="footer2RP" src={LogoBranca} alt="Logo 2RPnet"/>
+                    <Link to='/home'><img className="footer2RP" src={LogoBranca} alt="Logo 2RPnet"/></Link>
                     <div className="socialNetworkArea">
                         <span alt="Nossas redes sociais" className="p">Nossas Redes Sociais:</span>
                         <div className="socialNetworkIcons">

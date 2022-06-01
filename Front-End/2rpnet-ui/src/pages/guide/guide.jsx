@@ -28,35 +28,32 @@ export default function Guide() {
                 </div>
             </div>
             <div className='ninaninanaooo'>
-            <img src={ImgPost} className='img1-timeline' />
-            <img src={ImgPost} className='img2-timeline' />
-            <img src={ImgPost} className='img3-timeline' />
-            <img src={ImgPost} className='img4-timeline' />
+
             </div>
             <div className='conteiner-timeline'>
                 <span className='h2 timeline-title-sec-container'>Passo a passo</span>
                 <div class="container-timeline">
                     <div class="timeline">
                         <ul>
-                            <li>
+                            <li className='timeline-boxsizing'>
                                 <div class="timeline-content">
                                     <h1>Passo 1</h1>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora ab laudantium voluptatibus aut eos placeat laborum, quibusdam exercitationem labore.</p>
                                 </div>
                             </li>
-                            <li>
+                            <li className='timeline-boxsizing'>
                                 <div class="timeline-content">
                                     <h1>Passo 2</h1>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora ab laudantium voluptatibus aut eos placeat laborum, quibusdam exercitationem labore.</p>
                                 </div>
                             </li>
-                            <li>
+                            <li className='timeline-boxsizing'>
                                 <div class="timeline-content">
                                     <h1 className='h1'>Passo 3</h1>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora ab laudantium voluptatibus aut eos placeat laborum, quibusdam exercitationem labore.</p>
                                 </div>
                             </li>
-                            <li>
+                            <li className='timeline-boxsizing'>
                                 <div class="timeline-content">
                                     <h1>Passo 4</h1>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora ab laudantium voluptatibus aut eos placeat laborum, quibusdam exercitationem labore.</p>

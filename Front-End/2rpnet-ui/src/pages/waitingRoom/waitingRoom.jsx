@@ -21,12 +21,12 @@ export default function WaitingRoom() {
             <VLibras/>
             <div className='waiting-container'>
                 <img src={waiting} className="img-waiting" />
-                <span className='h2 waiting-title'>Oops...Parece que você ainda não validado</span>
+                <span className='h2 waiting-title'>Oops...Parece que você ainda não foi validado 😥😥</span>
                 <span className='p waiting-text'>Por favor, aguarde mais alguns minutos até o seu usuário ser verificado.</span>
                 <span className='p waiting-text'>Enquanto isso, aproveite para tomar um chá e comer um delicioso cookie :)</span>
                 <Link to="/login"><button className='button waiting-button'>Voltar</button></Link>
             </div>
-            <Footer/>
+            <Footer className='footer-waitroom'/>
         </div>
 
     );

@@ -19,7 +19,7 @@ import { handleAuthException, parseJwt } from '../../services/auth'
 
 
 //logo
-import Logo from '../../assets/img/logo2RPbranco.png'
+import Logo from '../../assets/img/LogoBranca.png'
 // import Logo from '../../assets/img/logo2RP.png'
 import Profile from '../../assets/img/profile.jpg'
 
@@ -109,15 +109,15 @@ function Navbar() {
             <span className='Links_name' alt="botão guias">Guias</span>
           </Link>
         </li>
-        {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+        {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
           <li>
-            <Link to="/skinShop" className='Link'>
-              <FaIcons.FaTshirt className='icon2' alt="botão loja" />
-              <span className='Links_name' alt="botão loja de skins">Skins</span>
+            <Link to="/dags" className='Link'>
+              <FaIcons.FaTable className='icon2' alt="botão loja" />
+              <span className='Links_name' alt="botão dAGS">Registros</span>
             </Link>
           </li>
           : null
-        } */}
+        }
         {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
           <li>
             <Link to="/marketplace" className='Link'>
@@ -321,7 +321,7 @@ function Navbar() {
       <div className='sidebar'>
         <ToastContainer />
         <div className='logo_content'>
-          <img className='logo' src={Logo} alt="Logo 2RPnet" />
+        <img className='logo' src={Logo} alt="Logo 2RPnet" />
           <FaIcons.FaBars className='btn' onClick={click} />
         </div>
         <ul className='nav_list'>

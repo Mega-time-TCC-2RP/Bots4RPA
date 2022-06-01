@@ -2,7 +2,7 @@
     --box-shadow-var: 1px 4px 4px var(--ComplementaryColor4);
 }
 
-.pageTitle {
+.pageTitleD {
     margin-top: 82px;
     margin-left: 20vh;
 }
@@ -120,8 +120,46 @@
     /* width: 90%; */
 }
 
+.isDragging:nth-child(2n) {
+    animation-name: keyframes1;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 10%;
+}
+
+.isDragging:nth-child(2n-1) {
+    animation-name: keyframes2;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transform-origin: 30% 5%;
+}
+
+@keyframes keyframes1 {
+    0% {
+      transform: rotate(-1deg);
+      animation-timing-function: ease-in;
+    }
+
+    50% {
+      transform: rotate(1.5deg);
+      animation-timing-function: ease-out;
+    }
+  }
+
+  @keyframes keyframes2 {
+    0% {
+      transform: rotate(1deg);
+      animation-timing-function: ease-in;
+    }
+
+    50% {
+      transform: rotate(-1.5deg);
+      animation-timing-function: ease-out;
+    }
+  }
+
 .over {
-    height: 70vh;
+    /* height: 70vh; */
+    height: 100%;
     background-color: var(--ComplementaryColor4);
     opacity: 0.4;
 }
@@ -230,7 +268,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* justify-content: space-between; */
 }
 
 .dateOneTask {
@@ -239,4 +276,87 @@
 
 .marginBtnModalTask {
     margin-top: 8rem;
+}
+
+/*
+MOBILE
+*/
+
+.titleAndButton {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.pageTitleM {
+    margin: 2rem 2rem 2rem 20vh;
+}
+
+.taskMobile {
+    margin-left: 20vh;
+}
+
+.toDoMobile,
+.doMobile,
+.doneMobile {
+    width: 90%;
+    height: 30vh;
+    align-items: center;
+    box-shadow: 0px 4px 4px var(--darkShadow);
+    background-color: var(--ComplementaryColor1);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border-radius: 30px;
+}
+
+.taskTitleM {
+    background-color: var(--ComplementaryColor2);
+    color: var(--WHITE);
+    display: flex;
+    align-items: flex-start;
+    text-align: start;
+    border-radius: 30px;
+}
+
+.taskSpaceMobile {
+    width: auto;
+    display: flex;
+    overflow-x: visible;
+    overflow-y: hidden;
+    height: 200px;
+    width: 90vw;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cardTaskMobile {
+    height: 80%;
+    overflow-y: hidden;
+    text-align: start;
+    text-justify: auto;
+    height: 4rem;
+    width: 100px;
+    margin-left: 1.5rem;
+    background-color: var(--PrimaryColor1);
+    border-radius: 30px;
+    color: var(--WHITE);
+    padding: 20px 12px 40px 12px;
+    box-shadow: var(--box-shadow-var);
+    border: 2px solid var(--PrimaryColor2);
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 768px) {
+    .pageTitleM {
+        margin: 2rem;
+    }
+
+    .btnNewTask {
+        width: 40% !important;
+    }
+
+    .taskMobile {
+        margin-left: 2rem;
+    }
 }

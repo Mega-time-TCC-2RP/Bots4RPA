@@ -11,7 +11,7 @@
 }
 
 .registerArea {
-    width: 80vw;
+    width: 50vw;
     height: 85%;
     background: var(--WHITE);
     border: 2px solid var(--ComplementaryColor1);
@@ -109,7 +109,7 @@ input#file-upload-button {
 .eyePass {
     align-items: center;
     text-decoration: none;
-    margin-right: 5%;
+    /* margin-right: 5%; */
     position: fixed;
     padding-right: 22px;
 }
@@ -170,6 +170,9 @@ input#file-upload-button {
 @media only screen and (max-width: 768px) {
     :root {
         font-size: 0.9em;
+    }
+    .registerArea {
+        width: 80vw;
     }
 
     .robotBlue {

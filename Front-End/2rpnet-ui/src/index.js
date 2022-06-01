@@ -26,6 +26,7 @@ import Marketplace from './pages/marketplace/marketplace';
 import Assistant from './pages/myProcesses/assistant';
 import { TelaTimeline } from './pages/social/index';
 import Quest from './pages/quests';
+import DashBoard from './pages/dashboard/dashboard';
 import TesteDaltonicMode from './pages/DaltonicModeTest';
 import Profile from './pages/profile/index';
 import Config from './pages/config/config';
@@ -34,6 +35,7 @@ import NotFound from './pages/notFound/';
 import LandingPage from './pages/landingPage/landingPage';
 import RegisterCompany from './pages/registerCompany/registerCompany';
 import RegisterUser from './pages/registerUser/registerUser';
+import Dags from './pages/dags/dags';
 import RegisterUserGoogle from './pages/registerUser/registerUserGoogle';
 
 
@@ -46,8 +48,6 @@ import { LayersClear } from '@material-ui/icons';
 // Sem cadastro
 
 
-
-
 const routing = (
   <Router>
     <div>
@@ -57,6 +57,8 @@ const routing = (
         <Route path="/login" element={<Login />} /> {/* Login */}
         <Route path="/registerCompany" element={<RegisterCompany />} />
         <Route path="/registerUser" element={<RegisterUser />} />
+        <Route path='/dags' element={<Dags />} />
+        <Route path='/dashboard' element={<DashBoard />} />
         <Route path="/registerUserGoogle" element={<RegisterUserGoogle />} />
         <Route path="/Config" element={<Config />} /> {/* Config */}
         <Route path="/waitingRoom" element={<WaitingRoom />} /> {/* WaitingRoom */}

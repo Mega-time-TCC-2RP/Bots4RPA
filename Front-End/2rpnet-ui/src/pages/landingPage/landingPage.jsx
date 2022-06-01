@@ -47,7 +47,7 @@ export default function LandingPage() {
                 </section>
                 <section className='section section2'>
                     <div className='container section2Content'>
-                        <h3 className='h3 aga3-area' alt="Áreas de atendimento">Áreas de atendimento</h3>
+                        <h3 className='aga3-area' alt="Áreas de atendimento">Áreas de atendimento</h3>
                         <div className='articleArea'>
                             <article>
                                 <img src={Financas} alt="Imagem Finanças" />
@@ -70,7 +70,7 @@ export default function LandingPage() {
                 <section>
                     <div>
                         <div className='container section3'>
-                            <h3 className='h3 bold'>Não deixe que a codificação o atrapalhe</h3>
+                            <h3 className='h3'>Não deixe que a codificação o atrapalhe</h3>
                             <h5 className='h5 sectionH5'>Crie todos os campos, tabelas, painéis e automações com arrastar, soltar e clicar.</h5>
                             <div className='section3Conteint'>
                                 <img className='pageRepresentation' src={PageRepresentation} alt="" />

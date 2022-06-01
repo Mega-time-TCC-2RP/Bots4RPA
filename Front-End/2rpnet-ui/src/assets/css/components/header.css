@@ -1,21 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-.container {
-    width: 1200px;
+.container7 {
+    width: 1400px;
     margin: 0 auto;
     display: flex;
 }
 .header2 {
-    background-color: var(--WHITE);
+    background-color: var(--ComplementaryColor3);
     align-items: center;
     display: flex;
-    height: 70px;
+    height: 60px;
     justify-content: right;
+    position: fixed;
+    width: 100%;
+    z-index: 98;
 }
-
-.header2 .container{
+.header2 .container7{
     justify-content: end;
 }
-.coins {
+
+
+
+/* .coins {
     align-items: center;
     display: flex;
 }
@@ -24,12 +29,12 @@
     font-family: 'Montserrat', sans-serif;
     margin-left: 10px;
     color: var(--BLACK);
-}
-.headerInside2{
+} */
+/* .headerInside2{
     display: flex;
     width: 230px;
     justify-content: space-between;
-}
+} */
 .profile2 .profile_details img{
     height: 45px;
     width: 45px;
@@ -41,9 +46,7 @@
     opacity: 0;
     right: 65px;
     position: absolute;
-    /* top: 0;
-    left: 0; */
-    height: 250px;
+    height: auto;
     width: 220px;
     background: var(--WHITE);
     padding: 10px 20px;
@@ -55,35 +58,29 @@
     
 }
 .details.active {
+    margin-top: 60px;
     opacity: 1;
     pointer-events: auto;
     z-index: 100;
     box-shadow: 0px 4px 4px var(--darkShadow);;
 }
-.details ul{
-    margin-top: 16px;
-     padding: 0px;
-}
-.details ul li{
-    position: relative;
-    height: 40px;
-    width: 200px;
-    margin: 0 5px;
-    list-style: none;
-    /* line-height: 50px; */
-    
-}
-.details ul li .Link:hover{
-    background: rgb(240, 240, 240);
-}
-.details ul li .Link{
-    color: var(--ComplementaryColor2);
-    font-size: 18px;
-    /* pointer-events: none; */
-}
-#log_out{
-    margin-top: 0;
+.details .logout:hover{
     cursor: pointer;
+    background: var(--darkShadow);
+}
+.details .myProfile:hover{
+    cursor: pointer;
+    background: var(--darkShadow);
+}
+.logout{
+    border-radius: 12px;
+}
+.myProfile {
+    border-radius: 12px;
+}
+.details span{
+    margin-left: 20px;
+    font-size: 1em;
 }
 
 .profile_details{
@@ -103,7 +100,14 @@
     font-size: 14px;
     font-weight: 400;
 }
-
+@media only screen and (max-width: 767px) {
+    .container7{
+        width: 75%;
+    }
+    .body-pd{
+        padding-top: 60px;
+    }
+}
 /* .logout:hover{
     background: var(--ComplementaryColor4);
     border-radius: 10px;
@@ -127,7 +131,7 @@
     background: var(--ComplementaryColor4);
     border-radius: 50px;
 } */
-.coins img{
+/* .coins img{
     width: 30px;
     height: 30px;
-}
+} */

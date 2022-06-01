@@ -68,6 +68,7 @@ export default function ModalM({ assistant }) {
                 if (resposta.status === 200) {
                     console.log('Assistente ' + assistant.idAssistant + ' foi excluído!',);
                     CloseModal(assistant.idAssistant)
+                    window.location.href = "http://localhost:3000/home"
                 }
             })
             .catch((erro) => console.log(erro))
@@ -93,7 +94,7 @@ export default function ModalM({ assistant }) {
             }).catch(erro => console.log(erro))
     };
 
-    function permitirTextArea(idAssistant, assistantDescription) {  
+    function permitirTextArea(idAssistant, assistantDescription) {
         var textoDescricao = document.getElementById("texto_desc" + idAssistant)
         textoDescricao.removeAttribute("readOnly");
 
@@ -129,7 +130,7 @@ export default function ModalM({ assistant }) {
                     <div className='Sbox-modal-assistant'>
                         <div className='assistant-id'>
                             <div className='box-img-modal'>
-                                <img src={Azul_Home} className="assistant-modal" />
+                                <img src={Azul_Home} className="Sassistant-modal" />
                                 <button
                                     className='button-edit'
                                     onClick={() => permitirTextArea(assistant.idAssistant, assistant.assistantDescription)}
@@ -212,10 +213,12 @@ export default function ModalM({ assistant }) {
                             <div className='container-graphic'>
 
                                 <div className='box-quantity'>
-                                    <h1>Quantidade de execuções:</h1>
-                                    <div className='subtitle-quantity'>
-                                        <div className='square-blue'></div>
-                                        <span>Quantidade</span>
+                                    <div className='container-boxQ'>
+                                        <h1>Quantidade de execuções:</h1>
+                                        <div className='subtitle-quantity'>
+                                            <div className='square-blue'></div>
+                                            <span>Quantidade</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='graphic2-right-side'>

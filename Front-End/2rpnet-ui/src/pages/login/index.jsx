@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import VLibras from '@djpfs/react-vlibras'
 
 //img:
-import logoMaior from '../../assets/img/logoMaior.png'
+// import logoMaior from '../../assets/img/logoMaior.png'
+import logoMaior from '../../assets/img/LogoConvite.png'
 import Vermelho from '../../assets/img/Vermelho.png'
 import Azul from '../../assets/img/Azul.png'
 import Robo from '../../assets/img/roboLandingPage.png'
@@ -95,7 +96,7 @@ export default function Login() {
                                         // verifica se o usuário logado é do tipo administrador
                                         //mudar aqui e no menu principal se o cadastro for liberado para
                                         //todos os usuarios
-                                        if (parseJwt().Role == '1' || parseJwt().Role == '2') {
+                                        if (parseJwt().Role === '1' || parseJwt().Role === '2') {
                                                 history('/config')
                                         }
                                         else if (parseJwt().Role === '3') {
@@ -172,8 +173,7 @@ export default function Login() {
                                 <ToastContainer role="alert" />
                                 <img src={Azul} className='img-blue' alt="imagem de um robô vermelho" />
                                 <VLibras />
-                                <div className='registerArea'>
-
+                                <div className='registerArea registerLogin'>
                                         <div className='registerContent'>
                                                 <img src={logoMaior} className='logo-Header' alt="Logo 2RP" />
                                                 <form className='loginForm formRegister' onSubmit={handleSubmit} >

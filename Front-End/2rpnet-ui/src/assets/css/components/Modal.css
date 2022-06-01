@@ -31,8 +31,8 @@
 }
 
 .SmodalContainer {
-    width: 94.125em;
-    height: 55.2em;
+    width: 75em;
+    height: 43em;
     display: flex;
     flex-direction: column;
     padding: 1.563rem;
@@ -64,7 +64,7 @@
 
 .assistant-id {
     width: 100%;
-    height: 40%;
+    height: 37%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -73,10 +73,11 @@
     /* background-color: rgb(0, 134, 60); */
 }
 
-/* 
-.Sassistant-modal{
-display: flex;
-} */
+.Sassistant-modal {
+    display: flex;
+    width: 22vh;
+}
+
 .box-img-modal {
     width: 74%;
     display: flex;
@@ -87,7 +88,6 @@ display: flex;
 
 .Sbox-assistantName {
     width: 100%;
-
     /* background-color: #fcff98; */
 }
 
@@ -97,7 +97,7 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 27px;
+    font-size: 22px;
     justify-content: center;
     overflow-y: hidden;
     color: #17233C;
@@ -105,7 +105,7 @@ display: flex;
 
 .assistant-info {
     width: 100%;
-    height: 53%;
+    height: 62%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -124,7 +124,7 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 19px;
     line-height: 27px;
     display: flex;
     align-items: center;
@@ -133,10 +133,8 @@ display: flex;
 }
 
 .box-paragraph {
-    width: 25.188em;
-    height: 8.5em;
-    /* height: 12.688em; */
-    /* margin-top: 1.3rem; */
+    width: 21em;
+    height: 7.9em;
     display: flex;
     flex-direction: column;
 
@@ -148,7 +146,7 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     text-align: left;
     line-height: 31px;
     color: #636363;
@@ -177,7 +175,7 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 19px;
     line-height: 27px;
 
     color: #3475BB;
@@ -188,7 +186,7 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
 
     color: #636363;
@@ -202,8 +200,8 @@ display: flex;
 }
 
 .graphic-1 {
-    width: 98%;
-    height: 360px;
+    width: 95%;
+    height: 290px;
     display: flex;
     justify-content: center;
     border-radius: 30px;
@@ -219,8 +217,9 @@ display: flex;
 }
 
 .container-left {
-    width: 264px;
-    height: 210px;
+    /* width: 264px; */
+    width: 80%;
+    height: 60%;
     margin-top: 22px;
     display: flex;
     flex-direction: column;
@@ -228,13 +227,13 @@ display: flex;
 }
 
 .box-label1-health {
-    width: 282px;
+    width: 286px;
     display: flex;
     align-items: center;
 }
 
 .box-label2-health {
-    width: 282px;
+    width: 286px;
     margin-top: 28px;
     display: flex;
     align-items: center;
@@ -244,7 +243,7 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 27px;
     display: flex;
     align-items: center;
@@ -253,16 +252,16 @@ display: flex;
 }
 
 .square-green {
-    width: 33px;
-    height: 33px;
+    width: 30px;
+    height: 30px;
 
     border-radius: 10px;
     background: #3FDA9F;
 }
 
 .square-red {
-    width: 33px;
-    height: 33px;
+    width: 30px;
+    height: 30px;
 
     border-radius: 10px;
     background: #E41500;
@@ -272,11 +271,11 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
     display: flex;
     align-items: center;
-    text-indent: 24px;
+    text-indent: 14px;
 
     color: #636363;
 }
@@ -292,14 +291,15 @@ display: flex;
 }
 
 .GraphicHealth {
-    width: 258.58px !important;
-    height: 258.93px !important;
+    width: 177px !important;
+    height: 170px !important;
 }
 
 .graphic-2 {
-    width: 98%;
-    height: 360px;
-    margin-top: 55px;
+    width: 95%;
+    /* height: 290px; */
+    height: 50%;
+    margin-top: 1.875rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -308,8 +308,9 @@ display: flex;
 }
 
 .container-graphic {
-    width: 651px;
-    height: 303px;
+    /* width: 651px; */
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
 
@@ -320,28 +321,45 @@ display: flex;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 27px;
     display: flex;
     align-items: center;
-    text-indent: 10px;
+    /* text-indent: 24px; */
+    /* margin-top: 16px; */
     color: #3475BB;
 
 }
 
 .box-quantity {
-    width: 316px;
-    height: 142px;
+    /* width: 316px;
+    height: 142px; */
+    /* margin-top: 22px; */
+    width: 65%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
+    align-items: flex-end;
 
     /* background-color: #ffa4a4; */
 }
 
+.container-boxQ {
+    width: 264px;
+    height: 50%;
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* background-color: #79ffa1; */
+}
+
 .square-blue {
-    width: 33px;
-    height: 33px;
+    width: 30px;
+    height: 30px;
 
     border-radius: 10px;
     background: #022041;
@@ -360,14 +378,6 @@ display: flex;
     color: #636363;
 }
 
-.subtitle-quantity {
-    display: flex;
-    margin-left: 17px;
-    align-items: center;
-
-    /* background-color: #fff3a4; */
-}
-
 .graphic2-right-side {
     width: 302px;
     height: 100%;
@@ -378,37 +388,15 @@ display: flex;
     /* background-color: #af7dff; */
 }
 
-.box-graphic-quantity {
-    width: 250px;
-    height: 250px;
-    display: flex;
-    border: 14px solid #3375BA;
-    border-radius: 74px;
-    justify-content: center;
-    align-items: center;
-}
-
-.box-graphic-quantity span {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 108px;
-    line-height: 132px;
-    display: flex;
-    align-items: center;
-
-    color: #022041;
-}
-
 .button-delete {
-    width: 10em;
-    height: 2.6em;
+    width: 8em;
+    height: 2em;
     border-radius: 64px;
     border: none;
     font-family: 'Exo';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 27px;
     background: #E41500;
 
@@ -441,15 +429,15 @@ display: flex;
 }
 
 .btn-save-modal {
-    width: 10em;
-    height: 2.6em;
+    width: 8em;
+    height: 2em;
     margin-top: 1.2rem;
     border-radius: 64px;
     border: none;
     font-family: 'Exo';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 27px;
     display: flex;
     align-items: center;
@@ -459,42 +447,11 @@ display: flex;
     background: #3475BB;
 }
 
-.box-quantity h1 {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 27px;
-    display: flex;
-    align-items: center;
-    text-indent: 10px;
-    color: #3475BB;
-
-}
-
-.box-quantity {
-    width: 316px;
-    height: 142px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    /* background-color: #ffa4a4; */
-}
-
-.square-blue {
-    width: 33px;
-    height: 33px;
-
-    border-radius: 10px;
-    background: #022041;
-}
-
 .box-quantity span {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
     display: flex;
     align-items: center;
@@ -505,13 +462,14 @@ display: flex;
 
 .subtitle-quantity {
     display: flex;
-    margin-left: 17px;
+    width: 282px;
+    /* margin-left: 1.375rem; */
 
     /* background-color: #fff3a4; */
 }
 
 .graphic2-right-side {
-    width: 302px;
+    width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -521,8 +479,8 @@ display: flex;
 }
 
 .box-graphic-quantity {
-    width: 230px;
-    height: 230px;
+    width: 165px;
+    height: 165px;
     display: flex;
     border: 14px solid #3375BA;
     border-radius: 74px;
@@ -545,11 +503,11 @@ display: flex;
 /* Responsividade */
 
 @media (max-width: 768px) {
-    .graphic-1{
+    .graphic-1 {
         width: 100%;
     }
 
-    .graphic-2{
+    .graphic-2 {
         width: 100%;
     }
 
@@ -661,7 +619,7 @@ display: flex;
 
     .button-delete {
         width: 8em;
-        height: 2.5em;
+        height: 2em;
         font-size: 15px;
         line-height: 27px;
     }
