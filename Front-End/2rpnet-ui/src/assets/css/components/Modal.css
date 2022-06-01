@@ -73,7 +73,6 @@
     /* background-color: rgb(0, 134, 60); */
 }
 
-
 .Sassistant-modal {
     display: flex;
     width: 22vh;
@@ -226,13 +225,13 @@
 }
 
 .box-label1-health {
-    width: 282px;
+    width: 286px;
     display: flex;
     align-items: center;
 }
 
 .box-label2-health {
-    width: 282px;
+    width: 286px;
     margin-top: 28px;
     display: flex;
     align-items: center;
@@ -384,28 +383,6 @@
     justify-content: center;
 
     /* background-color: #af7dff; */
-}
-
-.box-graphic-quantity {
-    width: 250px;
-    height: 250px;
-    display: flex;
-    border: 14px solid #3375BA;
-    border-radius: 74px;
-    justify-content: center;
-    align-items: center;
-}
-
-.box-graphic-quantity span {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 108px;
-    line-height: 132px;
-    display: flex;
-    align-items: center;
-
-    color: #022041;
 }
 
 .button-delete {

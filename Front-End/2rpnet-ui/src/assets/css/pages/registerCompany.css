@@ -109,7 +109,7 @@ input#file-upload-button {
 .eyePass {
     align-items: center;
     text-decoration: none;
-    margin-right: 5%;
+    /* margin-right: 5%; */
     position: fixed;
     padding-right: 22px;
 }
