@@ -19,7 +19,7 @@
             Method responsible for create a Run process
             </summary>
         </member>
-        <member name="M:_2RPNET_API.Controllers.Assistant40Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
+        <member name="M:_2RPNET_API.Controllers.Assistant79Controller.NewRun(_2RPNET_API.ViewModels.SendEmailViewModel)">
             <summary>
             Method responsible for create a Run process
             </summary>
@@ -38,25 +38,37 @@
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.FindByIdEmployee(System.Int32)">
             <summary>
-            Method responsible for list Assistant by unique id
+            Method responsible for list Assistant by unique Id Employee
             </summary>
             <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.Create(_2RPNET_API.Domains.Assistant)">
             <summary>
-            Method responsible for analyze all Assistants
+            Method responsible for create Assistants
             </summary>
             <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.Update(System.Int32,_2RPNET_API.Domains.Assistant)">
             <summary>
-            Method responsible for update all Assistants
+            Method responsible for update Assistant
             </summary>
             <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantsController.Delete(System.Int32)">
             <summary>
-            Method responsible for delete all Assistants 
+            Method responsible for delete Assistants 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantsController.EnviaEmail(System.Int32,_2RPNET_API.ViewModels.SendEmailViewModel)">
+            <summary>
+            Method responsible for send emails
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantsController.EnviaEmail(_2RPNET_API.ViewModels.SendEmailViewModel)">
+            <summary>
+            Method responsible for send personalized emails
             </summary>
             <returns></returns>
         </member>
@@ -72,27 +84,39 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ListProcessByAssistant(System.Int32)">
+            <summary>
+            Method responsible for list Process by unique Assistant
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.NewProcedure(_2RPNET_API.Domains.AssistantProcedure)">
             <summary>
-            Method responsible for create all Assistants Process
+            Method responsible for create Assistants Process
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ManipulateScript(System.Int32)">
+            <summary>
+            Method responsible for Manipulate Script by Assistant
             </summary>
             <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.Update(System.Int32,_2RPNET_API.Domains.AssistantProcedure)">
             <summary>
-            Method responsible for update all Assistants Process
+            Method responsible for update Assistants Process
             </summary>
             <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.Deletar(System.Int32)">
             <summary>
-            Method responsible for delete all Assistants Process
+            Method responsible for delete all Assistants Process by unique Assistant
             </summary>
             <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Controllers.AssistantProcedureController.ChangeVerification(System.Int32,_2RPNET_API.ViewModels.ArrayViewModel)">
             <summary>
-            Method responsible for get analyze Assistants
+            Method responsible for analyze Assistants Procedures
             </summary>
             <returns></returns>
         </member>
@@ -150,7 +174,7 @@
         </member>
         <member name="M:_2RPNET_API.Controllers.UserNameController.Create(_2RPNET_API.Domains.UserName)">
             <summary>
-            Method responsible for create all users
+            Method responsible for create users
             </summary>
             <param name="NewUser"></param>
             <returns></returns>

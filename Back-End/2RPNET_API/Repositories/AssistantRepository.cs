@@ -105,7 +105,7 @@ namespace _2RPNET_API.Repositories
 
 
                 client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                client.Authenticate("bots4rpa@gmail.com", "Grupo8_manha");
+                client.Authenticate("bots4rpa@gmail.com", "kiwxgcfzvuczefnp", default);
                 await client.SendAsync(message);
                 client.Disconnect(true);
                 client.Dispose();
@@ -139,7 +139,7 @@ namespace _2RPNET_API.Repositories
 
 
                 client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                client.Authenticate("bots4rpa@gmail.com", "Grupo8_manha");
+                client.Authenticate("bots4rpa@gmail.com", "kiwxgcfzvuczefnp", default);
                 await client.SendAsync(message);
                 client.Disconnect(true);
                 client.Dispose();
