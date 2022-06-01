@@ -1,5 +1,8 @@
 --Triggers Library Assistant
 
+DROP TRIGGER [dbo].[AssistantsLibraries];
+GO
+
 CREATE TRIGGER [dbo].[AssistantsLibraries]
 ON Assistant
 AFTER INSERT
@@ -7,7 +10,7 @@ AS
 BEGIN
 		DECLARE @IdAssistant INT;
 		DECLARE @IdEmployee INT;
-		DECLARE @AssistantName INT;
+		DECLARE @AssistantName VARCHAR;
 		SET @IdAssistant = (SELECT IdAssistant FROM inserted);
 		SET @IdEmployee = (SELECT IdEmployee FROM inserted);
 		SET @AssistantName = (SELECT AssistantName FROM inserted);

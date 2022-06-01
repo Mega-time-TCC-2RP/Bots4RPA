@@ -235,11 +235,9 @@ GO
 CREATE TABLE Run(
    IdRun INT PRIMARY KEY IDENTITY(1,1),
    IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
-   IdWorkflow INT FOREIGN KEY REFERENCES Workflow(IdWorkflow),
    RunQuantity INT,
    RunDate DATETIME,
    RunStatus BIT,
-   RunDescription VARCHAR(500)
 );
 GO
 
@@ -269,16 +267,18 @@ GO
 */
 
 --create EmailVerification table
-CREATE TABLE EmailVerification(
-   IdEmailVerification INT PRIMARY KEY IDENTITY(1,1),
-   IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
-   Username VARCHAR(100) NOT NULL UNIQUE,
-   UserPassword VARCHAR(100) NOT NULL,
-   Host VARCHAR(100) NOT NULL,
-   Gateway VARCHAR(4) NOT NULL,
-   Cryptography VARCHAR(100) NOT NULL
-);
-GO
+--CREATE TABLE EmailVerification(
+--   IdEmailVerification INT PRIMARY KEY IDENTITY(1,1),
+--   IdAssistant INT FOREIGN KEY REFERENCES Assistant(IdAssistant),
+--   Username VARCHAR(100) NOT NULL UNIQUE,
+--   UserPassword VARCHAR(100) NOT NULL,
+--   Host VARCHAR(100) NOT NULL,
+--   Gateway VARCHAR(4) NOT NULL,
+--   Cryptography VARCHAR(100) NOT NULL
+--);
+--GO
+
+--DROP TABLE EmailVerification
 
 --Morning X Afternoon tables
 
