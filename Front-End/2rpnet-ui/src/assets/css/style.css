@@ -631,6 +631,15 @@
 }
 
 @media (max-width: 991px) {
+
+    .form-home {
+        margin-left: 2.4rem;
+    }
+
+    .cards-container {
+        margin-left: 2.4rem;
+    }
+
     .bottom-container {
         height: 450px;
         padding-bottom: 10%;
@@ -742,6 +751,21 @@
     }
 }
 
+@media (max-width: 670px) {
+    .box-details {
+        display: none;
+    }
+
+    .card1 img {
+        height: 47%;
+    }
+
+    .icon-play {
+        width: 1.5em;
+        height: 2em;
+    }
+}
+
 @media (max-width: 600px) {
     .bottom-posts-content {
         width: 80%;
@@ -754,6 +778,41 @@
     ::-webkit-scrollbar {
         width: 0.4rem;
         height: 0.6rem;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 540px) {
+    .img-onboarding {
+        right: 33px;
+        top: 0px;
+    }
+
+    .form-home {
+        width: 100%;
+    }
+
+    .Input-Home {
+        width: 11em;
+        height: 2.6em;
+        margin-left: 1.25rem;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 1rem;
+    }
+
+    .button-assistant {
+        width: 12em;
+        height: 2.6em;
+        margin-top: none;
+        margin-left: unset;
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.3rem;
+        height: 0.5rem;
         padding: 0.5rem;
     }
 }
