@@ -570,9 +570,9 @@ export default function Home() {
                     highlightedPosts.map((post) => {
                       return (
                         <SwiperSlide className="swiper-slide-HomeTasks">
-                          <div className="bottom-posts-content cardPattern">
+                          <Link to='/social'><div className="bottom-posts-content cardPattern">
                             <div className="chatListItem--lines">
-                              <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                            <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
                               <div className="chatItemList-line">
                                 <div className="PostItem-name h5">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
                                 <p className="PostItem-role p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
@@ -585,7 +585,7 @@ export default function Home() {
                             }
                             <h2 className="TituloPostDestaque h5">{post.title}</h2>
                             <p className="post-text-bottom-home p">{post.postDescription}</p>
-                          </div>
+                          </div></Link>
                         </SwiperSlide>
                       )
                     }) :
