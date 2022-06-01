@@ -201,8 +201,9 @@ a {
 .pageRepresentation {
     /* width: 605px;
     height: 368px; */
-    width: 42%;
-    height: 100%;
+    max-width: 42%;
+    width: 100%;
+    
 }
 
 .textConteint {
@@ -232,6 +233,21 @@ a {
         flex-direction: column;
         height: 700px;
     }
+    .section3Conteint {
+        display: flex;
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .pageRepresentation {
+        /* width: 605px;
+        height: 368px; */
+        max-width: none;
+        width: 100%;
+        
+    }
+    
 
 
 }
@@ -264,7 +280,7 @@ a {
 
     .pageRepresentation {
         width: 100%;
-        height: 350px;
+       
     }
 
     .cool-robot-landingpage {
