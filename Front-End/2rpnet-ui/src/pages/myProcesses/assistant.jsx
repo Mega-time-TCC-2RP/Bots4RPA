@@ -50,6 +50,7 @@ export default function Assistant() {
     }
 
     function GetProceduresById() {
+        console.log('.')
         fetch(API + '/api/AssistantProcedure/Assistant/' + idAssistant, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
@@ -62,7 +63,10 @@ export default function Assistant() {
             )
             .catch((error) => console.log(error));
     };
-    useEffect(GetProceduresById)
+    
+    useEffect(() => {
+        GetProceduresById()
+    }, [])
 
     function returnModalEmail(procedure) {
         if (procedure.procedureName != "Enviar email para alguem") {
@@ -471,7 +475,6 @@ export default function Assistant() {
                 }
             }
         }
-
         setProceduresList(Procedures);
     }
 

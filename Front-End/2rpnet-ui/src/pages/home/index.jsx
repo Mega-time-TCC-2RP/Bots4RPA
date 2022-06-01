@@ -212,7 +212,7 @@ export default function Home() {
   function Refresh() {
     setTimeout(function () {
       window.location.href = "http://localhost:3000/home";
-    }, 500);
+    }, 7000);
   }
 
   function GetAssistant() {
