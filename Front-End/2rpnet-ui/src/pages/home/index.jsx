@@ -331,7 +331,7 @@ export default function Home() {
     GetMyQuests();
     GetHighlightedPosts();
     GetMyAssistants();
-    GetAssistant()
+    GetAssistant();
   }, [])
 
   return (

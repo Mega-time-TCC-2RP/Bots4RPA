@@ -160,8 +160,7 @@ export default function Dags() {
                             <thead>
                                 <th className='center-dags'>Nome</th>
                                 <th>Vezes Lançadas(total)</th>
-                                <th>Horário Início</th>
-                                <th>Horário Término</th>
+                                
                                 <th>Data</th>
                                 <th>Último Lançamento</th>
                                 <th>Duração</th>
@@ -172,8 +171,7 @@ export default function Dags() {
                                         <tr key={key}>
                                             <td className='center-dags'>{dag.Nome}</td>
                                             <td>{dag.VezesLancadas}</td>
-                                            <td>{dag.HorarioInicio}</td>
-                                            <td>{dag.HorarioFinal}</td>
+                                            
                                             <td>{dag.Data}</td>
                                             <td>{dag.UltimoLancamento}</td>
                                             <td>{dag.Duracao}</td>
