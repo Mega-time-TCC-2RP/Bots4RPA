@@ -321,7 +321,7 @@ function App() {
             <div className="h5">Data de Entrega:</div>
             <div className="p dateOneTask">{myQuests.endDate}</div>
           </div>
-          <form>
+          <div className="h5">Situação da Tarefa:</div>
             <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
               <optgroup>
                 {
@@ -352,7 +352,6 @@ function App() {
                   onClick={(e) => { handleCloseTask(e); patchStatusTask(e) }}
                   value="Salvar Alterações" />
             }
-          </form>
         </div>
       </div>
     )
@@ -431,7 +430,7 @@ function App() {
                 </div>
               </div>
             </Modal>
-            <h2 className="pageTitle pageTitleD h2">{width}</h2>
+            <h2 className="pageTitle pageTitleD h2">Painel Organizacional</h2>
             <div className='taskCalendar'>
               <section className="task">
                 <div id="todoID"
@@ -811,7 +810,7 @@ function App() {
               </div>
             </Modal>
             <div className="titleAndButton">
-              <h2 className="pageTitle pageTitleM h2">{width}</h2>
+              <h2 className="pageTitle pageTitleM h2">Painel Organizacional</h2>
               <input
                 className="btnNewTask button"
                 type="button"
