@@ -137,6 +137,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         {
                             putUser.UserValidation = false;
                         }
+                        if (QueryUser.Employees.First().Confirmation == true) { 
+                            putEmployee.Confirmation = true;
+                        }
+                        else
+                        {
+                            putEmployee.Confirmation = false;
+                        }
+
                         putEmployee.IdOffice = user.IdOffice;
                         putEmployee.IdUser = QueryUser.IdUser;
                     }
@@ -162,6 +170,15 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         if (user.IdCorporation != QueryUser.Employees.First().IdCorporation)
                         {
                             putUser.UserValidation = false;
+                        }
+
+                        if (QueryUser.Employees.First().Confirmation == true)
+                        {
+                            putEmployee.Confirmation = true;
+                        }
+                        else
+                        {
+                            putEmployee.Confirmation = false;
                         }
                         putEmployee.IdOffice = user.IdOffice;
                         putEmployee.IdUser = QueryUser.IdUser;

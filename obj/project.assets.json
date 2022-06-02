@@ -9106,24 +9106,40 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\43866300824.INFOSCS\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+=======
+    "C:\\Users\\43392993832\\.nuget\\packages\\": {}
+>>>>>>> 59196126fb9754bb59c5c633aee8c2c895a623dc
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\43866300824.INFOSCS\\Desktop\\TCC2\\tarde-api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
       "projectName": "2rpnet.rpa.webAPI",
       "projectPath": "C:\\Users\\43866300824.INFOSCS\\Desktop\\TCC2\\tarde-api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
       "packagesPath": "C:\\Users\\43866300824.INFOSCS\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\43866300824.INFOSCS\\Desktop\\TCC2\\tarde-api\\Bots-4RPA\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\43392993832\\Desktop\\ProjetoTCC\\Back-end\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
+      "projectName": "2rpnet.rpa.webAPI",
+      "projectPath": "C:\\Users\\43392993832\\Desktop\\ProjetoTCC\\Back-end\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
+      "packagesPath": "C:\\Users\\43392993832\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\43392993832\\Desktop\\ProjetoTCC\\Back-end\\Bots-4RPA\\obj\\",
+>>>>>>> 59196126fb9754bb59c5c633aee8c2c895a623dc
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\43866300824.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+=======
+        "C:\\Users\\43392993832\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 59196126fb9754bb59c5c633aee8c2c895a623dc
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9198,12 +9214,15 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+<<<<<<< HEAD
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
             "version": "[5.0.13, 5.0.13]"
           }
         ],
+=======
+>>>>>>> 59196126fb9754bb59c5c633aee8c2c895a623dc
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9212,7 +9231,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+>>>>>>> 59196126fb9754bb59c5c633aee8c2c895a623dc
       }
     }
   }
