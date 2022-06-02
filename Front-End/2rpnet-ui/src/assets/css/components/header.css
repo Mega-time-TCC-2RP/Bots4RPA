@@ -100,7 +100,7 @@
     font-size: 14px;
     font-weight: 400;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
     .container7{
         width: 75%;
     }

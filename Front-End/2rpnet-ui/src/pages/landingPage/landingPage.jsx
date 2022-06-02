@@ -28,7 +28,7 @@ export default function LandingPage() {
         <div>
             <VLibras/>
             <div className='landingPage'>
-                <div className='header container'>
+                <div className='header '>
                     <div className='headerInside container'>
                         <img src={Logo} className="logoHeader "alt="Logo 2RP" />
                         <div className='headerNav'>

@@ -18,11 +18,7 @@ import '../../assets/css/components/fonts.css'
 export default function DashBoard() {
         return(
                 <div>
-                        <Navbar/>
-                        <VLibras/>
-                        <div className='h1 dashboard-aaa'>
-                                DASHBOARD
-                        </div>
+                        
                 </div>
         )
 

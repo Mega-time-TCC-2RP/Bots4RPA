@@ -160,7 +160,6 @@ export default function Dags() {
                             <thead>
                                 <th className='center-dags'>Nome</th>
                                 <th>Vezes Lançadas(total)</th>
-                                
                                 <th>Data</th>
                                 <th>Último Lançamento</th>
                                 <th>Duração</th>

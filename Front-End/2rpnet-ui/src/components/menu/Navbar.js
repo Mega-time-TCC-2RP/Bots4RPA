@@ -11,6 +11,7 @@ import * as AiIcons from 'react-icons/ai'
 import * as RiIcons from 'react-icons/ri'
 import * as BsIcons from 'react-icons/bs'
 import * as HiIcons from 'react-icons/hi'
+import * as RiDashboardFill from 'react-icons/ri'
 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
@@ -114,6 +115,15 @@ function Navbar() {
             <Link to="/dags" className='Link'>
               <FaIcons.FaTable className='icon2' alt="botão loja" />
               <span className='Links_name' alt="botão dAGS">Registros</span>
+            </Link>
+          </li>
+          : null
+        }
+        {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+          <li>
+            <Link to="/dashboard" className='Link'>
+              <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
+              <span className='Links_name' alt="botão dAGS">Dashboard</span>
             </Link>
           </li>
           : null

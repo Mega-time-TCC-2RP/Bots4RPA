@@ -292,7 +292,7 @@ html {
     visibility: hidden;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .hd{
         visibility: visible;
     }
