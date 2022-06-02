@@ -120,13 +120,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:_2RPNET_API.Controllers.LoginController.Login(_2RPNET_API.ViewModels.LoginViewModel)">
-            <summary>
-            Method responsible for logging into the application
-            </summary>
-            <param name="UserLogin"></param>
-            <returns></returns>
-        </member>
         <member name="M:_2RPNET_API.Controllers.RunController.ReadAll">
             <summary>
             Method responsible for list all run process
@@ -149,41 +142,6 @@
             <summary>
             Method responsible for list Run by unique id
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.ReadAll">
-            <summary>
-            Method responsible for list all Users
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.ReadMy(System.Int32)">
-            <summary>
-            Method responsible for list User by unique id
-            </summary>
-            <param name="Id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.Update(System.Int32,_2RPNET_API.Domains.UserName)">
-            <summary>
-            Method responsible for update user by unique id 
-            </summary>
-            <param name="IdUserName"></param>
-            <param name="UpdatedUser"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.Create(_2RPNET_API.Domains.UserName)">
-            <summary>
-            Method responsible for create users
-            </summary>
-            <param name="NewUser"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_2RPNET_API.Controllers.UserNameController.Delete(System.Int32)">
-            <summary>
-            Method responsible for delete user by unique id
-            </summary>
-            <param name="IdUserName"></param>
             <returns></returns>
         </member>
         <member name="M:_2RPNET_API.Utils.UploadImage.UploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String[])">

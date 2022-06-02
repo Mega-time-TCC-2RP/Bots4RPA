@@ -8607,19 +8607,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\44037739828.INFOSCS\\.nuget\\packages\\": {}
+    "C:\\Users\\Ricardo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\44037739828.INFOSCS\\Desktop\\Bots-4RPAB\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+      "projectUniqueName": "C:\\Users\\Ricardo\\Desktop\\backend_manha\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
       "projectName": "2RPNET_API",
-      "projectPath": "C:\\Users\\44037739828.INFOSCS\\Desktop\\Bots-4RPAB\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
-      "packagesPath": "C:\\Users\\44037739828.INFOSCS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\44037739828.INFOSCS\\Desktop\\Bots-4RPAB\\Back-End\\2RPNET_API\\obj\\",
+      "projectPath": "C:\\Users\\Ricardo\\Desktop\\backend_manha\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+      "packagesPath": "C:\\Users\\Ricardo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ricardo\\Desktop\\backend_manha\\Bots-4RPA\\Back-End\\2RPNET_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\44037739828.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ricardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8702,12 +8702,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.16, 5.0.16]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -8716,7 +8710,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

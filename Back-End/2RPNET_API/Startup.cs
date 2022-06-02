@@ -75,10 +75,10 @@ namespace _2RPNET_API
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("RPA-token-autenticacao")),
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("2rp-chave-autenticacao")),
                         ClockSkew = TimeSpan.FromMinutes(30),
-                        ValidIssuer = "RPA.webAPI",
-                        ValidAudience = "RPA.webAPI"
+                        ValidIssuer = "2rp.webAPI",
+                        ValidAudience = "2rp.webAPI"
                     };
                 });
 
@@ -88,7 +88,6 @@ namespace _2RPNET_API
 
 
             services.AddTransient<DbContext, RPAContext>();
-            services.AddTransient<IUserNameRepository, UserNameRepository>();
             services.AddTransient<IRunRepository, RunRepository>();
             services.AddTransient<IAssistantProcedureRepository, AssistantProcedureRepository>();
             services.AddTransient<IAssistantRepository, AssistantRepository>();
