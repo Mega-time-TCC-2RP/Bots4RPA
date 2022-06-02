@@ -53,7 +53,7 @@ export default function Assistant() {
         console.log('.')
         fetch(API + '/api/AssistantProcedure/Assistant/' + idAssistant, {
             headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
         })
             .then((response) => response.json())
@@ -181,7 +181,8 @@ export default function Assistant() {
 
                 fetch(myURL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
                     body: myBody
                 })
                     .then((response) => {
@@ -208,7 +209,8 @@ export default function Assistant() {
 
         fetch(myURL2, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') }
         })
             .then((response) => {
                 // console.log("before if");
@@ -242,7 +244,7 @@ export default function Assistant() {
 
         fetch(myURL, {
             headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
         })
             .then((response) => response.json())
@@ -258,7 +260,8 @@ export default function Assistant() {
         var getURL = API + "/api/AssistantProcedure/Assistant/" + idAssistant;
         fetch(getURL, {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
         })
             .then((response) => {
                 return response.json()
@@ -281,7 +284,8 @@ export default function Assistant() {
 
                                 fetch(epURL, {
                                     method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
+                                    headers: { 'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
                                     body: epBody
                                 })
                                     .then((response) => {
@@ -316,7 +320,8 @@ export default function Assistant() {
 
         fetch(eURL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
             body: eBody
         })
             .then((response) => {
@@ -329,7 +334,8 @@ export default function Assistant() {
                     var myUrl = API + "/api/Run/" + idAssistant
                     const requestOptions = {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
                         body: JSON.stringify({ "runStatus": true })
                     };
 
@@ -351,7 +357,8 @@ export default function Assistant() {
                     var myUrl = "http://localhost:5000/api/Run/" + idAssistant
                     const requestOptions = {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
                         body: JSON.stringify({ "runStatus": false })
                     };
 

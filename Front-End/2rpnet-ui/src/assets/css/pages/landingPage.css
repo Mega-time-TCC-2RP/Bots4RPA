@@ -251,6 +251,11 @@ a {
 
 
 }
+@media only screen and (max-width: 1280px){
+    .container{
+        width: 1200px;
+    }
+}
 
 @media only screen and (max-width: 375px) {
     .landingPage {

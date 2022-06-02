@@ -88,7 +88,8 @@ export default function Home() {
     var getURL = API + "/api/AssistantProcedure/Assistant/" + idAssistant;
     fetch(getURL, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
     })
       .then((response) => {
         return response.json()
@@ -111,7 +112,8 @@ export default function Home() {
 
                 fetch(epURL, {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                  headers: { 'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
                   body: epBody
                 })
                   .then((response) => {
@@ -146,7 +148,8 @@ export default function Home() {
 
     fetch(eURL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
       body: eBody
     })
       .then((response) => {
@@ -159,7 +162,8 @@ export default function Home() {
           var myUrl = API + "/api/Run/" + idAssistant
           const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
             body: JSON.stringify({ "runStatus": true })
           };
 
@@ -181,7 +185,8 @@ export default function Home() {
           var myUrl = "http://localhost:5000/api/Run/" + idAssistant
           const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
             body: JSON.stringify({ "runStatus": false })
           };
 
@@ -219,7 +224,7 @@ export default function Home() {
     console.log('getAssistant')
     fetch(API + '/api/Assistants/Employee/' + parseJwt().idEmployee, {
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
     })
       .then((response) => response.json())
@@ -233,7 +238,7 @@ export default function Home() {
     console.log('Função GetAssistants da Home')
     fetch(API + '/api/Assistants/Employee/' + parseJwt().idEmployee, {
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
     })
       .then((response) => response.json())
@@ -276,7 +281,7 @@ export default function Home() {
     if (parseJwt().Role != "1") {
       axios.get('http://grupo7.azurewebsites.net/api/Workflows/GetMine', {
         headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+          'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
       }).then((response) => {
         // console.log(response)
@@ -293,7 +298,7 @@ export default function Home() {
     else {
       axios.get('http://grupo7.azurewebsites.net/api/Workflows', {
         headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+          'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
       }).then((response) => {
         console.log(response)
@@ -312,7 +317,7 @@ export default function Home() {
   const GetHighlightedPosts = () => {
     axios.get('https://grupo7.azurewebsites.net/api/Posts/Highlights', {
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
     }).then((response) => {
       // console.log(response)
@@ -570,9 +575,9 @@ export default function Home() {
                     highlightedPosts.map((post) => {
                       return (
                         <SwiperSlide className="swiper-slide-HomeTasks">
-                          <div className="bottom-posts-content cardPattern">
+                          <Link to='/social'><div className="bottom-posts-content cardPattern">
                             <div className="chatListItem--lines">
-                              <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                            <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
                               <div className="chatItemList-line">
                                 <div className="PostItem-name h5">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
                                 <p className="PostItem-role p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
@@ -585,7 +590,7 @@ export default function Home() {
                             }
                             <h2 className="TituloPostDestaque h5">{post.title}</h2>
                             <p className="post-text-bottom-home p">{post.postDescription}</p>
-                          </div>
+                          </div></Link>
                         </SwiperSlide>
                       )
                     }) :
