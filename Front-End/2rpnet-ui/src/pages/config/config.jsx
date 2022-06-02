@@ -118,6 +118,9 @@ const steps = [
     },
     {
         id: 'Step4'
+    },
+    {
+        id: 'Step4'
     }
 ];
 

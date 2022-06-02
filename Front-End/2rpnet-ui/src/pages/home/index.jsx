@@ -88,8 +88,10 @@ export default function Home() {
     var getURL = API + "/api/AssistantProcedure/Assistant/" + idAssistant;
     fetch(getURL, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      },
     })
       .then((response) => {
         return response.json()
@@ -112,8 +114,10 @@ export default function Home() {
 
                 fetch(epURL, {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json',
-                  'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+                  },
                   body: epBody
                 })
                   .then((response) => {
@@ -148,8 +152,10 @@ export default function Home() {
 
     fetch(eURL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      },
       body: eBody
     })
       .then((response) => {
@@ -162,8 +168,10 @@ export default function Home() {
           var myUrl = API + "/api/Run/" + idAssistant
           const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            },
             body: JSON.stringify({ "runStatus": true })
           };
 
@@ -178,15 +186,17 @@ export default function Home() {
               }
             }).catch(error => console.log(error))
 
-            Refresh()
-    
+          Refresh()
+
         } else {
           toast.error("A execução deu errado :/");
           var myUrl = "http://localhost:5000/api/Run/" + idAssistant
           const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            },
             body: JSON.stringify({ "runStatus": false })
           };
 
@@ -210,9 +220,7 @@ export default function Home() {
         toast.error("A execução deu errado :/");
         setIsExecuting(false);
       })
-
   }
-
   // Gambiarra para o método atualizar bonitinho
   function Refresh() {
     setTimeout(function () {
@@ -346,7 +354,7 @@ export default function Home() {
       <Header />
       <div className='body-pd'>
 
-        
+
         <VLibras />
         <img
           src={onBoardingBot}
@@ -577,7 +585,7 @@ export default function Home() {
                         <SwiperSlide className="swiper-slide-HomeTasks">
                           <Link to='/social'><div className="bottom-posts-content cardPattern">
                             <div className="chatListItem--lines">
-                            <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
+                              <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
                               <div className="chatItemList-line">
                                 <div className="PostItem-name h5">{post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.userName1}</div>
                                 <p className="PostItem-role p">{post.idPlayerNavigation.idEmployeeNavigation.idOfficeNavigation.titleOffice}</p>
