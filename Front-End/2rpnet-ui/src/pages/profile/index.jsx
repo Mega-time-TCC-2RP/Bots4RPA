@@ -135,7 +135,7 @@ export default function Profile() {
     return (
         <div className='ProfileContainer'>
             <Navbar />
-            <VLibras/>
+            <Header/>            <VLibras/>
             <div className='perfilpage body-pd profile'>
                 {/* <Header /> */}
                 <h1 className='container h2 semi-bold' alt="configurações">Perfil</h1>

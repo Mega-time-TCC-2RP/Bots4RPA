@@ -1,6 +1,5 @@
 .perfilpage {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
     overflow: auto;
     height: 100vh;
@@ -323,7 +322,7 @@
     background-color: unset;
     color: var(--BLACK);
     width: 300px;
-    height: 500px;
+    height: auto;
 
     /* efeito de zoom */
     max-width: 100%;
