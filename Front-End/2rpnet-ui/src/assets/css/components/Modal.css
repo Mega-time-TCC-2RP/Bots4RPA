@@ -243,7 +243,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 27px;
     display: flex;
     align-items: center;
@@ -321,7 +321,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 27px;
     display: flex;
     align-items: center;
@@ -341,13 +341,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    align-items: flex-end;
+    /* align-items: flex-end; */
 
     /* background-color: #ffa4a4; */
 }
 
 .container-boxQ {
-    width: 264px;
+    width: 80%;
     height: 50%;
     margin-top: 22px;
     display: flex;
@@ -369,7 +369,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 24px;
     display: flex;
     align-items: center;
@@ -492,7 +492,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 90px;
+    font-size: 75px;
     line-height: 132px;
     display: flex;
     align-items: center;
