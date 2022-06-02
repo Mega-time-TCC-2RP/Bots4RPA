@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj": {}
+    "C:\\Users\\43866300824.INFOSCS\\Desktop\\TCC2\\tarde-api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj": {
+    "C:\\Users\\43866300824.INFOSCS\\Desktop\\TCC2\\tarde-api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
+        "projectUniqueName": "C:\\Users\\43866300824.INFOSCS\\Desktop\\TCC2\\tarde-api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
         "projectName": "2rpnet.rpa.webAPI",
-        "projectPath": "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
-        "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pichau\\Desktop\\ProjetoTcc\\api\\Bots-4RPA\\obj\\",
+        "projectPath": "C:\\Users\\43866300824.INFOSCS\\Desktop\\TCC2\\tarde-api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
+        "packagesPath": "C:\\Users\\43866300824.INFOSCS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\43866300824.INFOSCS\\Desktop\\TCC2\\tarde-api\\Bots-4RPA\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\43866300824.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,7 +96,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.16, 5.0.16]"
+              "version": "[5.0.13, 5.0.13]"
             }
           ],
           "frameworkReferences": {
@@ -103,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

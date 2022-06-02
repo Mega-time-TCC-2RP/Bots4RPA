@@ -174,7 +174,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     AddressName = corporateForm.AddressName,
                     Phone = corporateForm.CorpPhone,
                     Cnpj = corporateForm.Cnpj,
-                    CorporatePhoto = CorpUploadResult
+                    CorporatePhoto = CorpUploadResult,
+                    
                 };
                 Corporation postedCorporate = ctx.Create(corporate);
 
@@ -336,7 +337,18 @@ namespace _2rpnet.rpa.webAPI.Controllers
             {
                 if (ctx.SearchByID(CorporateId) == null)
                     return NotFound("Id da empresa inválido");
-                UserName User = Uctx.ReadAll().FirstOrDefault(U => U.Employees.First().IdCorporation == CorporateId);
+                List<UserName> Users = Uctx.ReadAll().ToList();
+                UserName User = new UserName();
+                foreach (UserName UserQuery in Users)
+                {
+                    if (UserQuery.IdUserType == 2)
+                    {
+                        if (UserQuery.Employees.First().IdCorporation == CorporateId && UserQuery.Employees.First().Confirmation == true)
+                        {
+                            User = UserQuery;
+                        }
+                    }
+                }
                 Uctx.ValidateUser(User);
                 return NoContent();
             }

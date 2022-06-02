@@ -19,7 +19,6 @@ namespace _2rpnet.rpa.webAPI.Domains
         public string Phone { get; set; }
         public string Cnpj { get; set; }
         public string CorporatePhoto { get; set; }
-
         public virtual ICollection<Employee> Employees { get; set; }
     }
 }
