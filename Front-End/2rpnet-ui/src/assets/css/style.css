@@ -363,8 +363,8 @@
 }
 
 .ItemPost-avatar {
-    width: 70px;
-    height: 70px;
+    width: 4em;
+    height: 4em;
     border-radius: 35px;
     margin-left: 15px;
     cursor: pointer;
@@ -378,6 +378,7 @@
     border-bottom: 1px solid var(--ComplementaryColor1);
     padding-right: 15px;
     margin-left: 15px;
+    padding-bottom: 0.5rem;
 }
 
 .chatItemList-line {
