@@ -28,7 +28,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import moment from 'moment';
+// import moment from 'moment'; LINHA COMENTADA PELO ERRO Q TAVAA DANDO 
 
 const stylesCustom = {
   content: {
@@ -332,7 +332,7 @@ function App() {
           </div>
           <div className="dateArea">
             <div className="h5">Data de Entrega:</div>
-            <div className="p dateOneTask">{moment(myQuests.endDate).format()}</div>
+            {/* <div className="p dateOneTask">{moment(myQuests.endDate).format()}</div> LINHA COMENTADA PELO ERRO Q TAVAA DANDO */} 
           </div>
           <div className="h5">Situação da Tarefa:</div>
             <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
