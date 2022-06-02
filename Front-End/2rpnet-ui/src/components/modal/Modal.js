@@ -19,7 +19,7 @@ export default function ModalM({ assistant }) {
     var baseUrl = API + "/api/Run/ListQuantity/" + assistant.idAssistant
     var header = {
         headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
         },
     }
     useEffect(() => {
@@ -61,7 +61,7 @@ export default function ModalM({ assistant }) {
         fetch(API + '/api/Assistants/' + assistant.idAssistant, {
             method: 'DELETE',
             headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
             },
         })
             .then((resposta) => {
@@ -77,7 +77,7 @@ export default function ModalM({ assistant }) {
     function UpdateDescription() {
         const requestOptions = {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
             body: JSON.stringify({ "assistantDescription": Description })
         };
 
