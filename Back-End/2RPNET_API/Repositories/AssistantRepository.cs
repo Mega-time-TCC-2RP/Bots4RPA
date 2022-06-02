@@ -32,8 +32,24 @@ namespace _2RPNET_API.Repositories
         {
             NewAssistant.CreationDate = DateTime.Now;
             NewAssistant.AlterationDate = DateTime.Now;
+            Employee employeeAssistant = Ctx.Employees.ToList().FirstOrDefault(E => E.IdEmployee == NewAssistant.IdEmployee);
+            Corporation employeeCorp = Ctx.Corporations.Include(C => C.Employees).ThenInclude(E => E.IdUserNavigation).FirstOrDefault(C => C.IdCorporation == employeeAssistant.IdCorporation);
             Ctx.Assistants.Add(NewAssistant);
             Ctx.SaveChanges();
+            foreach (Employee item in employeeCorp.Employees)
+            {
+                if (item.IdUserNavigation.IdUserType == 2 || item.IdEmployee == NewAssistant.IdEmployee)
+                {
+                    LibraryAssistant LbAssistant = new()
+                    {
+                        IdAssistant = NewAssistant.IdAssistant,
+                        IdEmployee = item.IdEmployee,
+                        Nickname = NewAssistant.AssistantName,
+                    };
+                    Ctx.LibraryAssistants.Add(LbAssistant);
+                    Ctx.SaveChanges();
+                }
+            }
         }
 
         public void Delete(int IdAssistant)
@@ -45,7 +61,11 @@ namespace _2RPNET_API.Repositories
             //Ctx.SaveChanges();
 
            
-            Assistant AssistantSought = SearchByID(IdAssistant);
+            Assistant AssistantSought = Ctx.Assistants.Include(A => A.LibraryAssistants).FirstOrDefault(a => a.IdAssistant == IdAssistant);
+            foreach (LibraryAssistant item in AssistantSought.LibraryAssistants)
+            {
+                Ctx.LibraryAssistants.Remove(item);
+            }
             Ctx.Assistants.Remove(AssistantSought);
             //DELETA OS AQUIVOS DO ASSISTANT 
             string path = $"./StaticFiles/Files/AssistantProcess" + $"{IdAssistant}" + ".cs";
