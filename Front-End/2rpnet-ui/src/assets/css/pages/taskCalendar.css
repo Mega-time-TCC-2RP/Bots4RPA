@@ -41,7 +41,7 @@
     padding: 55px 16px 55px 16px;
     box-shadow: var(--box-shadow-var);
     border: 2px solid var(--PrimaryColor2);
-    font-weight: 600;
+    /* font-weight: 600; */
 }
 
 .taskTitle,
@@ -88,7 +88,14 @@
 .calendarTitle {
     grid-column: span 5;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: centers; */
+    align-items: center;
+}
+
+#weekCalendar {
+    margin-top: 0.25rem;
+    opacity: 0.6;
 }
 
 .lastCalend {

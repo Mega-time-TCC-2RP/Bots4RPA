@@ -28,6 +28,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import moment from 'moment';
 
 const stylesCustom = {
   content: {
@@ -195,6 +196,14 @@ function App() {
 
       document.getElementById("calend" + date).style.color = "var(--WHITE)";
       document.getElementById("calend" + date).style.backgroundColor = "var(--PrimaryColor1)";
+      
+      let indexMonth = new Date().getMonth()
+      let day30 = [1, 3, 5, 8, 10]
+
+      if (indexMonth === day30) {
+        const element = document.classList('.lastCalend');
+        element.remove();
+      } 
     }
   }
 
@@ -273,17 +282,21 @@ function App() {
     }
   }
 
-  const month = () => {
+  const monthAndWeek = () => {
     if (width >= 992) {
       const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+      const week = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
 
       let indexMonth = new Date().getMonth()
+      let indexWeek = new Date().getDay()
 
       let setMonth = months[indexMonth]
+      let setWeek = week[indexWeek]
 
       // console.log(months[indexMonth]);
 
       document.getElementById("monthCalendar").innerHTML = setMonth
+      document.getElementById("weekCalendar").innerHTML = setWeek
     }
   }
 
@@ -319,7 +332,7 @@ function App() {
           </div>
           <div className="dateArea">
             <div className="h5">Data de Entrega:</div>
-            <div className="p dateOneTask">{myQuests.endDate}</div>
+            <div className="p dateOneTask">{moment(myQuests.endDate).format()}</div>
           </div>
           <div className="h5">Situação da Tarefa:</div>
             <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
@@ -360,7 +373,7 @@ function App() {
   useEffect(() => {
     getWorkflowList()
     day()
-    month()
+    monthAndWeek()
     dragNDrop()
   });
 
@@ -563,7 +576,10 @@ function App() {
               <div className="calendarAndBtn">
 
                 <section className="calendar p">
-                  <div className="calendarTitle"><h5 id="monthCalendar" className="h5">Calendário</h5></div>
+                  <div className="calendarTitle">
+                    <h5 id="monthCalendar" className="h5">Calendário</h5>
+                    <p id="weekCalendar" className="p semi-bold">Semana</p>
+                  </div>
                   <input id="calend1"
                     className="btnCalendar p"
                     type="button"
