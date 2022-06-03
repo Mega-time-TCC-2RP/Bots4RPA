@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 
 namespace _2rpnet.rpa.webAPI.Controllers
@@ -17,11 +18,13 @@ namespace _2rpnet.rpa.webAPI.Controllers
     {
         private readonly IAssistantRepository ctx;
         private readonly IEmployeeRepository Ectx;
+        private readonly IUserNameRepository Uctx;
 
-        public AssistantsController(IAssistantRepository context, IEmployeeRepository contextEmployee)
+        public AssistantsController(IAssistantRepository context, IEmployeeRepository contextEmployee, IUserNameRepository contextUserName)
         {
             ctx = context;
             Ectx = contextEmployee;
+            Uctx = contextUserName;
         }
 
         [HttpGet]
@@ -30,7 +33,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
         {
             try
             {
-                int EmployeeId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "idEmployee").Value);
+                int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+                int EmployeeId = Uctx.SearchByID(UserId).Employees.First().IdUser;
                 int CorpId = Ectx.SearchByID(EmployeeId).IdCorporation;
                 List<AssistantDagViewModel> dags = new List<AssistantDagViewModel>();
                 List<Assistant> assistants = ctx.GetDagsInfo(CorpId);
