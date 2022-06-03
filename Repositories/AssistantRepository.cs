@@ -22,6 +22,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                 Runs = assistantDags.Runs,
                 CreationDate = assistantDags.CreationDate,
                 IdEmployeeNavigation = new Employee() { 
+                    IdCorporation = assistantDags.IdEmployeeNavigation.IdCorporation,
                     IdUserNavigation = new UserName()
                     {
                         UserName1 = assistantDags.IdEmployeeNavigation.IdUserNavigation.UserName1,
