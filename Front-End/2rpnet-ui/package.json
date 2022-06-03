@@ -21,6 +21,7 @@
     "flatlist-react": "^1.5.0",
     "formik": "^2.2.9",
     "moment": "^2.29.3",
+    "moment-with-locales-es6": "^1.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.2",
     "react-chartjs-2": "^4.1.0",

@@ -28,7 +28,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-// import moment from 'moment'; LINHA COMENTADA PELO ERRO Q TAVAA DANDO 
+import moment from 'moment';
 
 const stylesCustom = {
   content: {
@@ -332,7 +332,7 @@ function App() {
           </div>
           <div className="dateArea">
             <div className="h5">Data de Entrega:</div>
-            {/* <div className="p dateOneTask">{moment(myQuests.endDate).format()}</div> LINHA COMENTADA PELO ERRO Q TAVAA DANDO */} 
+            <div className="p dateOneTask">{moment(myQuests.endDate).format("LL")}</div>
           </div>
           <div className="h5">Situação da Tarefa:</div>
             <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
@@ -369,8 +369,28 @@ function App() {
       </div>
     )
   }
+  
+  const tes = () => {
+    var march = moment('2017-03')
+    console.log(march.format('MMMM')) // 'March'
+
+    moment.locale('de') // returns the new locale, in this case 'de'
+    console.log(march.format('MMMM')) // 'March' still, since the instance was before the locale was set
+
+    var deMarch = moment('2017-03')
+    console.log(deMarch.format('MMMM')) // 'März'
+
+    // You can, however, change just the locale of a specific moment
+    march.locale('es')
+    console.log(march.format('MMMM')) // 'Marzo'
+
+    var agr = moment('2022-06')
+    agr.locale('es')
+    console.log(agr.format('MMMM'));
+  }
 
   useEffect(() => {
+    tes()
     getWorkflowList()
     day()
     monthAndWeek()
