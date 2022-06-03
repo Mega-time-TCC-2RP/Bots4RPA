@@ -29,6 +29,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import moment from 'moment';
+import 'moment/locale/pt-br'
 
 const stylesCustom = {
   content: {
@@ -137,11 +138,9 @@ function App() {
   }
 
   // Consumo da API - Patch Status - Atualizacao de estado do card
-  const patchStatusTask = (event) => {
-    event.preventDefault()
-
+  const patchStatusTask = (idQuest, status) => {
     axios
-      .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + idQuest + '/' + statusTask, {
+      .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + idQuest + '/' + status, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
@@ -335,7 +334,7 @@ function App() {
             <div className="p dateOneTask">{moment(myQuests.endDate).format("LL")}</div>
           </div>
           <div className="h5">Situação da Tarefa:</div>
-            <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
+            <select className='select' onChange={(e) => patchStatusTask(myQuests.idWorkflow, e.target.value)}>
               <optgroup>
                 {
                   myQuests.idStatus === 1 ?
@@ -351,46 +350,16 @@ function App() {
                 }
               </optgroup>
             </select>
-            {
-              statusTask === '' ||
-                statusTask === null ||
-                statusTask === 0 ||
-                statusTask === myQuests.idStatus ?
-                <input className="button btnNewTask marginBtnModalTask"
-                  type="button"
-                  onClick={(e) => { handleCloseTask(e) }}
-                  value="Fechar Tarefa" /> :
-                <input className="button btnNewTask marginBtnModalTask"
-                  type="button"
-                  onClick={(e) => { handleCloseTask(e); patchStatusTask(e) }}
-                  value="Salvar Alterações" />
-            }
+              <input className="button btnNewTask marginBtnModalTask"
+                type="button"
+                onClick={(e) => { handleCloseTask(e) }}
+                value="Fechar Tarefa" />
         </div>
       </div>
     )
   }
-  
-  const tes = () => {
-    var march = moment('2017-03')
-    console.log(march.format('MMMM')) // 'March'
-
-    moment.locale('de') // returns the new locale, in this case 'de'
-    console.log(march.format('MMMM')) // 'March' still, since the instance was before the locale was set
-
-    var deMarch = moment('2017-03')
-    console.log(deMarch.format('MMMM')) // 'März'
-
-    // You can, however, change just the locale of a specific moment
-    march.locale('es')
-    console.log(march.format('MMMM')) // 'Marzo'
-
-    var agr = moment('2022-06')
-    agr.locale('es')
-    console.log(agr.format('MMMM'));
-  }
 
   useEffect(() => {
-    tes()
     getWorkflowList()
     day()
     monthAndWeek()
