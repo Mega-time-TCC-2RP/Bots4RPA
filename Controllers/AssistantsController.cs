@@ -24,19 +24,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
             Ectx = contextEmployee;
         }
 
-        [HttpGet("{CorpId}")]
-        [Authorize(Roles = "1,2")]
-        public IActionResult GetDagsAssistants(int CorpId)
+        [HttpGet]
+        [Authorize(Roles = "2")]
+        public IActionResult GetDagsAssistants()
         {
             try
             {
-                int Role = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
-                if (Role != 1)
-                {
-
-                    int EmployeeId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "idEmployee").Value);
-                    CorpId = Ectx.SearchByID(EmployeeId).IdCorporation;
-                }
+                int EmployeeId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "idEmployee").Value);
+                int CorpId = Ectx.SearchByID(EmployeeId).IdCorporation;
                 List<AssistantDagViewModel> dags = new List<AssistantDagViewModel>();
                 List<Assistant> assistants = ctx.GetDagsInfo(CorpId);
                 foreach (Assistant unmountedDag in assistants)
