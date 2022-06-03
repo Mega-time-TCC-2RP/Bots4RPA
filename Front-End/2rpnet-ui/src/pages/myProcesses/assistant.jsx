@@ -354,7 +354,7 @@ export default function Assistant() {
 
                 } else {
                     toast.error("A execução deu errado :/");
-                    var myUrl = "http://localhost:5000/api/Run/" + idAssistant
+                    var myUrl = API + "/api/Run/" + idAssistant
                     const requestOptions = {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json',

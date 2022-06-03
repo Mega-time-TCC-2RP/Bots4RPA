@@ -190,7 +190,7 @@ export default function Home() {
 
         } else {
           toast.error("A execução deu errado :/");
-          var myUrl = "http://localhost:5000/api/Run/" + idAssistant
+          var myUrl = API + "/api/Run/" + idAssistant
           const requestOptions = {
             method: 'POST',
             headers: {
