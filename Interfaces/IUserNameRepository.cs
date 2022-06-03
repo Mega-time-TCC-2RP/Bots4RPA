@@ -17,7 +17,5 @@ namespace _2rpnet.rpa.webAPI.Interfaces
         void ValidateUser(UserName queryUser);
         UserName GoogleLogin(string googleId, string email);
         void EncryptGoogleId(UserName user);
-
-        void DeletarLuccaEmergencia(int idLucca);
     }
 }

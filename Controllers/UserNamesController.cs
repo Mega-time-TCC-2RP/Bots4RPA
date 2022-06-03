@@ -131,13 +131,13 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         putUser.UserName1 = user.UserName1;
                         putUser.UserValidation = putUser.UserValidation;
 
-                        putEmployee.IdEmployee = QueryUser.Employees.FirstOrDefault().IdEmployee;
+                        putEmployee.IdEmployee = QueryUser.Employees.First().IdEmployee;
                         putEmployee.IdCorporation = user.IdCorporation;
-                        if (user.IdCorporation != QueryUser.Employees.FirstOrDefault().IdCorporation)
+                        if (user.IdCorporation != QueryUser.Employees.First().IdCorporation)
                         {
                             putUser.UserValidation = false;
                         }
-                        if (QueryUser.Employees.FirstOrDefault().Confirmation == true) { 
+                        if (QueryUser.Employees.First().Confirmation == true) { 
                             putEmployee.Confirmation = true;
                         }
                         else
@@ -165,14 +165,14 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         putUser.UserName1 = user.UserName1;
                         putUser.UserValidation = putUser.UserValidation;
 
-                        putEmployee.IdEmployee = QueryUser.Employees.FirstOrDefault().IdEmployee;
+                        putEmployee.IdEmployee = QueryUser.Employees.First().IdEmployee;
                         putEmployee.IdCorporation = user.IdCorporation;
-                        if (user.IdCorporation != QueryUser.Employees.FirstOrDefault().IdCorporation)
+                        if (user.IdCorporation != QueryUser.Employees.First().IdCorporation)
                         {
                             putUser.UserValidation = false;
                         }
 
-                        if (QueryUser.Employees.FirstOrDefault().Confirmation == true)
+                        if (QueryUser.Employees.First().Confirmation == true)
                         {
                             putEmployee.Confirmation = true;
                         }
@@ -373,7 +373,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     return NotFound();
                 }
-                if (ctx.SearchByID(UserId).Employees.FirstOrDefault().IdCorporation != user.Employees.FirstOrDefault().IdCorporation && UserRole == 2)
+                if (ctx.SearchByID(UserId).Employees.First().IdCorporation != user.Employees.First().IdCorporation && UserRole == 2)
                 {
                     return Forbid("O usuário administrador só pode deletar usuários da sua empresa");
                 }
@@ -381,17 +381,17 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 {
                     Upload.RemoveFile(user.PhotoUser);
                 }
-                List<Employee> UserEmployee = Ectx.ReadAll().Where(E => E.IdEmployee == user.Employees.FirstOrDefault().IdEmployee).ToList();
-                UserEmployee.FirstOrDefault().Players = Pctx.ReadAll().Where(P => P.IdEmployee == UserEmployee.FirstOrDefault().IdEmployee).ToList();
+                List<Employee> UserEmployee = Ectx.ReadAll().Where(E => E.IdEmployee == user.Employees.First().IdEmployee).ToList();
+                UserEmployee.First().Players = Pctx.ReadAll().Where(P => P.IdEmployee == UserEmployee.First().IdEmployee).ToList();
 
-                if (user.Employees.FirstOrDefault().Players.Count == 1)
+                if (user.Employees.First().Players.Count == 1)
                 {
-                    List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == user.Employees.FirstOrDefault().Players.FirstOrDefault().IdPlayer).ToList();
-                    List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == user.Employees.FirstOrDefault().Players.FirstOrDefault().IdPlayer).ToList();
-                    List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == user.Employees.FirstOrDefault().Players.FirstOrDefault().IdPlayer).ToList();
-                    UserEmployee.FirstOrDefault().Players.FirstOrDefault().Posts = UserPosts;
-                    UserEmployee.FirstOrDefault().Players.FirstOrDefault().LibrarySkins = UserSkins;
-                    UserEmployee.FirstOrDefault().Players.FirstOrDefault().LibraryTrophies = UserTrophies;
+                    List<Post> UserPosts = PostCtx.ReadAll().Where(Post => Post.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                    List<LibrarySkin> UserSkins = LSctx.ReadAll().Where(LS => LS.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                    List<LibraryTrophy> UserTrophies = LTctx.ReadAll().Where(LT => LT.IdPlayer == user.Employees.First().Players.First().IdPlayer).ToList();
+                    UserEmployee.First().Players.First().Posts = UserPosts;
+                    UserEmployee.First().Players.First().LibrarySkins = UserSkins;
+                    UserEmployee.First().Players.First().LibraryTrophies = UserTrophies;
                 }
                 ctx.Delete(user);
                 return NoContent();
@@ -428,7 +428,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
 
                 UserName QueryUser = ctx.SearchByID(idUser);
-                if (ctx.SearchByID(UserId).Employees.FirstOrDefault().IdCorporation != QueryUser.Employees.FirstOrDefault().IdCorporation)
+                if (ctx.SearchByID(UserId).Employees.First().IdCorporation != QueryUser.Employees.First().IdCorporation)
                 {
                     return Forbid("O usuário administrador só pode validar usuários da sua empresa");
                 }
@@ -472,13 +472,6 @@ namespace _2rpnet.rpa.webAPI.Controllers
                 return BadRequest(error);
                 throw;
             }
-        }
-
-        [HttpDelete("DeletarLuccaEmergencia/{IdLucca}")]
-        public IActionResult DeletarLucca(int IdLucca)
-        {
-            ctx.DeletarLuccaEmergencia(IdLucca);
-            return NoContent();
         }
 
     }

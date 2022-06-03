@@ -35,17 +35,17 @@ namespace _2rpnet.rpa.webAPI.Repositories
             var dataUser = datauser;
             if (dataUser.IdUserType == 3)
             {
-                foreach (var item in dataUser.Employees.FirstOrDefault().Players.FirstOrDefault().LibraryTrophies)
+                foreach (var item in dataUser.Employees.First().Players.First().LibraryTrophies)
                 {
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                foreach(var item in dataUser.Employees.FirstOrDefault().LibraryAssistants)
+                foreach(var item in dataUser.Employees.First().LibraryAssistants)
                 {
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                foreach(var item in dataUser.Employees.FirstOrDefault().Assistants)
+                foreach(var item in dataUser.Employees.First().Assistants)
                 {
                     foreach(var item2 in ctx.LibraryAssistants.ToList().FindAll(La => La.IdAssistant == item.IdAssistant))
                     {
@@ -55,7 +55,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                foreach (var item in dataUser.Employees.FirstOrDefault().Players.FirstOrDefault().Posts)
+                foreach (var item in dataUser.Employees.First().Players.First().Posts)
                 {
                     foreach (var item2 in item.Comments)
                     {
@@ -70,15 +70,15 @@ namespace _2rpnet.rpa.webAPI.Repositories
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                foreach (var item in dataUser.Employees.FirstOrDefault().Players.FirstOrDefault().LibrarySkins)
+                foreach (var item in dataUser.Employees.First().Players.First().LibrarySkins)
                 {
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                ctx.Entry(dataUser.Employees.FirstOrDefault().Players.FirstOrDefault()).State = EntityState.Deleted;
+                ctx.Entry(dataUser.Employees.First().Players.First()).State = EntityState.Deleted;
                 ctx.SaveChanges();
             }
-            ctx.Entry(dataUser.Employees.FirstOrDefault()).State = EntityState.Deleted;
+            ctx.Entry(dataUser.Employees.First()).State = EntityState.Deleted;
             ctx.SaveChanges();
             ctx.Entry(dataUser).State = EntityState.Deleted;
             ctx.SaveChanges();
@@ -267,13 +267,6 @@ namespace _2rpnet.rpa.webAPI.Repositories
             _user.GoogleId = Crypt.GenerateHash(_user.GoogleId);
             ctx.UserNames.Update(_user);
             await ctx.SaveChangesAsync();
-        }
-
-        public void DeletarLuccaEmergencia(int idLucca)
-        {
-            UserName User = ctx.UserNames.AsNoTracking().FirstOrDefault(U => U.IdUser == idLucca);
-            ctx.Remove(User);
-            ctx.SaveChanges();
         }
     }
 }
