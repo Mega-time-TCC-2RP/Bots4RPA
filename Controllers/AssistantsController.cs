@@ -24,7 +24,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             Ectx = contextEmployee;
         }
 
-        [HttpGet]
+        [HttpGet("/{CorpId}")]
         [Authorize(Roles = "1,2")]
         public IActionResult GetDagsAssistants(int CorpId)
         {
