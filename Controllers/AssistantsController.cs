@@ -35,7 +35,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int CorpId = Uctx.SearchByID(UserId).Employees.First().IdCorporation;
+                UserName user = Uctx.SearchByID(UserId);
+                int CorpId = user.Employees.First().IdCorporation;
                 List<AssistantDagViewModel> dags = new List<AssistantDagViewModel>();
                 List<Assistant> assistants = ctx.GetDagsInfo(CorpId);
                 foreach (Assistant unmountedDag in assistants)
@@ -44,11 +45,19 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     dag.AssistantCreationDate = unmountedDag.CreationDate;
                     dag.AssistantName = unmountedDag.AssistantName;
                     dag.EmployeeName = unmountedDag.IdEmployeeNavigation.IdUserNavigation.UserName1;
-                    dag.LastRunDate = unmountedDag.Runs.OrderByDescending(run => run.RunDate).First().RunDate;
+                    if(unmountedDag.Runs.Count != 0)
+                    {
+                        dag.LastRunDate = unmountedDag.Runs.OrderByDescending(run => run.RunDate).FirstOrDefault().RunDate;
+                        int succesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == true).Count();
+                        int unsuccesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == false).Count();
+                        dag.SuccesPercentage = (succesfulRuns * 100) / (succesfulRuns + unsuccesfulRuns);
+                    }
+                    else
+                    {
+                        dag.SuccesPercentage = 0;
+                        dag.LastRunDate = null;
+                    }
                     dag.RunsCount = unmountedDag.Runs.Count;
-                    int succesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == true).Count();
-                    int unsuccesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == false).Count();
-                    dag.SuccesPercentage = (succesfulRuns * 100) / (succesfulRuns + unsuccesfulRuns);
 
                     dags.Add(dag);
                 }
