@@ -244,15 +244,17 @@ export default function Home() {
 
   function GetMyAssistants() {
     console.log('Função GetAssistants da Home')
-    fetch(API + '/api/Assistants/Employee/' + parseJwt().idEmployee, {
+    fetch('http://grupo7.azurewebsites.net/api/LibraryAssistants', {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
     })
       .then((response) => response.json())
-      .then((data) =>
+      .then((data) =>{
+
+        console.log(data)
         setAssistantsList(data)
-        // console.log(data)
+      }
       )
       .catch((error) => console.log(error));
   };
@@ -444,12 +446,12 @@ export default function Home() {
                 {AssistantsList.map((assistant) => {
                   return (
                     <div className="containerSmodal">
-                      <ModalM assistant={assistant} />
+                      <ModalM assistant={assistant.idAssistantNavigation} />
                       <div className="card1">
 
                         <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
                         <div className="container-AssistantName">
-                          <h5>{assistant.assistantName}</h5>
+                          <h5>{assistant.idAssistantNavigation.assistantName}</h5>
                         </div>
                         {
                           isExecuting === false ? (
