@@ -21,15 +21,15 @@ export default function Guide() {
             <VLibras />
             <Navbar />
             <div className='conteiner-guide'>
-                <span className='h2'>Guia Definitivo</span>
+                <span className='h2'>Guia</span>
             </div>
             <div className='video-container-timeline'>
-                <iframe width="1246" height="701" src="https://www.youtube.com/embed/WZIGwN-5Ioo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            <div className='body-conteiner'>
+                <iframe width="1246" height="701" src="https://www.youtube.com/embed/6uphTNGYziU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                <div className='body-conteiner'>
                 </div>
             </div>
-            <div className='ninaninanaooo'>
 
-            </div>
             <div className='conteiner-timeline'>
                 <span className='h2 timeline-title-sec-container'>Passo a passo</span>
                 <div class="container-timeline">
@@ -65,7 +65,7 @@ export default function Guide() {
                 </div>
 
             </div>
-            <Footer  />
+            <Footer />
         </div>
     )
 }

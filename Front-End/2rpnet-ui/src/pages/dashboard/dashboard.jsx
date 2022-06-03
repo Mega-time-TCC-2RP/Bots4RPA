@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import VLibras from '@djpfs/react-vlibras'
-import axios, { Axios } from 'axios';
+// // import Sidebar from "../../components/sidebar/Sidebar";
+// import Navbar from "../../components/menu/Navbar";
+// import "./home.scss";
+// import Widget from "../dashboard/widget/widget";
+// import Featured from "../dashboard/featured/featured";
+// import Chart from "./chart/Chart";
+// import Table from "./table/Table";
 
+// const Home = () => {
+//   return (
+//     <div className="home">
+//       {/* <Sidebar /> */}
+//       <div className="homeContainer">
+//         <Navbar />
+//         <div className="widgets">
+//           <Widget type="user" />
+//           <Widget type="order" />
+//           <Widget type="earning" />
+//           <Widget type="balance" />
+//         </div>
+//         <div className="charts">
+//           <Featured />
+//           <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+//         </div>
+//         <div className="listContainer">
+//           <div className="listTitle">Latest Transactions</div>
+//           <Table />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
-//Components
-import Footer from '../../components/footer/footer'
-import Header from '../../components/header/header'
-import Navbar from '../../components/menu/Navbar'
-
-//css
-import '../../assets/css/pages/dashboard.css'
-import '../../assets/css/components/button.css'
-import '../../assets/css/components/fonts.css'
-
-
-export default function DashBoard() {
-        return(
-                <div>
-                        
-                </div>
-        )
-
-}
+// export default Home;
