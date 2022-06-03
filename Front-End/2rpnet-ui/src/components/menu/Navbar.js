@@ -245,6 +245,15 @@ function Navbar() {
           } */}
           {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
             <li>
+              <Link to="/dags" className='Link'>
+                <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão dAGS">Dags</span>
+              </Link>
+            </li>
+            : null
+          }
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
               <Link to="/marketplace" className='Link'>
                 <RiIcons.RiShoppingBagFill className='icon2' alt="botão loja" />
                 <span className='Links_name' alt="botão loja">Loja</span>
@@ -342,14 +351,14 @@ function Navbar() {
             </Link>
           </li>
           {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
-          <li>
-            <Link to="/dashboard" className='Link'>
-              <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
-              <span className='Links_name' alt="botão dAGS">Dashboard</span>
-            </Link>
-          </li>
-          : null
-          } 
+            <li>
+              <Link to="/dashboard" className='Link'>
+                <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão dAGS">Dashboard</span>
+              </Link>
+            </li>
+            : null
+          }
           <li>
             <Link to="/guide" className='Link'>
               <RiIcons.RiGuideFill className='icon2' alt="botão guias" />
