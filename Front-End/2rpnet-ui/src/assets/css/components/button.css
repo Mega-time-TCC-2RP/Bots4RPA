@@ -2,7 +2,7 @@
 
 .button {
     background: var(--PrimaryColor2);
-    width: 400px !important;
+    width: 100%;
     height: 45px !important;
     color: var(--WHITE);
     border-radius: 64px;
@@ -29,8 +29,9 @@
 }
 
 @media screen and (max-width:765px) {
-    .button{
+    button {
         height: 40px !important;
+        width: 100%;
         font-size: 1.3em;
     }
 }
@@ -38,7 +39,7 @@
 @media only screen and (max-width: 375px) {
     .button {
         background: var(--PrimaryColor2);
-        width: 200px !important;
+        width: 100%;
         height: 40px !important;
         color: var(--WHITE);
         border-radius: 64px;

@@ -17,6 +17,12 @@ body {
     width: 100%;
     margin: 0 auto;
 }
+.landbutton-test {
+    font-size: 1rem;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    width: 200px;
+}
 
 a {
     text-decoration: none;
@@ -103,6 +109,7 @@ a {
 .content-landing {
     align-items: flex-start !important;
 }
+lan
 
 .section h2 {
     font-family: 'Montserrat', sans-serif;
@@ -113,11 +120,11 @@ a {
 }
 
 .section h6 {
-    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 500;
     line-height: 30px;
     color: var(--ComplementaryColor2);
+    margin-top: 2rem;
 }
 
 .section2 {
@@ -260,6 +267,14 @@ a {
     .container{
         width: 1200px;
     }
+    .landbutton-test {
+        margin-top: 32px;
+        margin-bottom: 32px;
+        width: 140px;
+    }
+    .content-landing{
+        margin-top: 2rem;
+    }
 }
 
 @media only screen and (max-width: 375px) {
@@ -303,6 +318,7 @@ a {
         margin-top: 30px;
         margin-left: 35px;
         margin-bottom: 30px;
+        width: 140px;
     }
 
     .header {

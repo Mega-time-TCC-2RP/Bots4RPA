@@ -546,10 +546,6 @@
         width: 100%;
     }
 
-    .button {
-        width: 100% !important;
-    }
-
     #validarUsuarios {
         visibility: hidden;
         display: none;
