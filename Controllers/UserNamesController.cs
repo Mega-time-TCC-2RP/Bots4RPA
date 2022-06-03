@@ -474,5 +474,12 @@ namespace _2rpnet.rpa.webAPI.Controllers
             }
         }
 
+        [HttpDelete("DeletarLuccaEmergencia/{IdLucca}")]
+        public IActionResult DeletarLucca(int IdLucca)
+        {
+            ctx.DeletarLuccaEmergencia(IdLucca);
+            return NoContent();
+        }
+
     }
 }

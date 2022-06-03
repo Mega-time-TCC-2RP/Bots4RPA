@@ -268,5 +268,11 @@ namespace _2rpnet.rpa.webAPI.Repositories
             ctx.UserNames.Update(_user);
             await ctx.SaveChangesAsync();
         }
+
+        public void DeletarLuccaEmergencia(int idLucca)
+        {
+            UserName User = ctx.UserNames.AsNoTracking().FirstOrDefault(U => U.IdUser == idLucca);
+            ctx.Remove(User);
+        }
     }
 }
