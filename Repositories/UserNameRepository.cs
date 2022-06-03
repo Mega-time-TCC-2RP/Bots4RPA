@@ -35,17 +35,17 @@ namespace _2rpnet.rpa.webAPI.Repositories
             var dataUser = datauser;
             if (dataUser.IdUserType == 3)
             {
-                foreach (var item in dataUser.Employees.First().Players.First().LibraryTrophies)
+                foreach (var item in dataUser.Employees.FirstOrDefault().Players.FirstOrDefault().LibraryTrophies)
                 {
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                foreach(var item in dataUser.Employees.First().LibraryAssistants)
+                foreach(var item in dataUser.Employees.FirstOrDefault().LibraryAssistants)
                 {
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                foreach(var item in dataUser.Employees.First().Assistants)
+                foreach(var item in dataUser.Employees.FirstOrDefault().Assistants)
                 {
                     foreach(var item2 in ctx.LibraryAssistants.ToList().FindAll(La => La.IdAssistant == item.IdAssistant))
                     {
@@ -55,7 +55,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                foreach (var item in dataUser.Employees.First().Players.First().Posts)
+                foreach (var item in dataUser.Employees.FirstOrDefault().Players.FirstOrDefault().Posts)
                 {
                     foreach (var item2 in item.Comments)
                     {
@@ -70,15 +70,15 @@ namespace _2rpnet.rpa.webAPI.Repositories
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                foreach (var item in dataUser.Employees.First().Players.First().LibrarySkins)
+                foreach (var item in dataUser.Employees.FirstOrDefault().Players.FirstOrDefault().LibrarySkins)
                 {
                     ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                 }
-                ctx.Entry(dataUser.Employees.First().Players.First()).State = EntityState.Deleted;
+                ctx.Entry(dataUser.Employees.FirstOrDefault().Players.FirstOrDefault()).State = EntityState.Deleted;
                 ctx.SaveChanges();
             }
-            ctx.Entry(dataUser.Employees.First()).State = EntityState.Deleted;
+            ctx.Entry(dataUser.Employees.FirstOrDefault()).State = EntityState.Deleted;
             ctx.SaveChanges();
             ctx.Entry(dataUser).State = EntityState.Deleted;
             ctx.SaveChanges();
