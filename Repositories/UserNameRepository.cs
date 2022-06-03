@@ -273,6 +273,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         {
             UserName User = ctx.UserNames.AsNoTracking().FirstOrDefault(U => U.IdUser == idLucca);
             ctx.Remove(User);
+            ctx.SaveChanges();
         }
     }
 }
