@@ -34,8 +34,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
-                int EmployeeId = Uctx.SearchByID(UserId).Employees.First().IdUser;
-                int CorpId = Ectx.SearchByID(EmployeeId).IdCorporation;
+                int CorpId = Uctx.SearchByID(UserId).Employees.First().IdCorporation;
                 List<AssistantDagViewModel> dags = new List<AssistantDagViewModel>();
                 List<Assistant> assistants = ctx.GetDagsInfo(CorpId);
                 foreach (Assistant unmountedDag in assistants)
