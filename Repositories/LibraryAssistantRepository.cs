@@ -17,7 +17,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
         }
         public List<LibraryAssistant> GetByEmployee(int IdEmployee)
         {
-            return ctx.LibraryAssistants.Include(La => La.IdAssistantNavigation).ToList().FindAll(x => x.IdEmployee == IdEmployee);
+            return ctx.LibraryAssistants.Include(La => La.IdAssistantNavigation).Include(La => La.IdLibrarySkinNavigation).ToList().FindAll(x => x.IdEmployee == IdEmployee);
         }
     }
 }

@@ -96,15 +96,16 @@ namespace _2rpnet.rpa.webAPI
             services.AddTransient<ILibraryTrophyRepository, LibraryTrophyRepository>();
             services.AddTransient<ILikeRepository, LikeRepository>();
             services.AddTransient<IPlayerRepository, PlayerRepository>();
-            services.AddTransient<IUserTypeRepository, UserTypeRepository>(); //Ok
-            services.AddTransient<ITrophyRepository, TrophyRepository>(); //Ok
-            services.AddTransient<IStatusWorkflowRepository, StatusWorkflowRepository>(); //Ok
-            services.AddTransient<ISkinRepository, SkinRepository>(); //Ok
-            services.AddTransient<IQuestRepository, QuestRepository>(); //Ok
-            services.AddTransient<IPostRepository, PostRepository>(); //Ok
+            services.AddTransient<IUserTypeRepository, UserTypeRepository>(); 
+            services.AddTransient<ITrophyRepository, TrophyRepository>(); 
+            services.AddTransient<IStatusWorkflowRepository, StatusWorkflowRepository>(); 
+            services.AddTransient<ISkinRepository, SkinRepository>(); 
+            services.AddTransient<IQuestRepository, QuestRepository>(); 
+            services.AddTransient<IPostRepository, PostRepository>(); 
             services.AddTransient<IOfficeRepository, OfficeRepository>();
             services.AddTransient<IWorkflowRepository, WorkflowRepository>();
             services.AddTransient<ILibraryAssistantRepository, LibraryAssistantRepository>();
+            services.AddTransient<IAssistantRepository, AssistantRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
