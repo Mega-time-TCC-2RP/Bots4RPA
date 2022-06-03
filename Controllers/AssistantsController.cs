@@ -30,7 +30,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         [HttpGet]
         [Authorize(Roles = "2")]
-        public async Task<IActionResult> GetDagsAssistants()
+        public IActionResult GetDagsAssistants()
         {
             try
             {
