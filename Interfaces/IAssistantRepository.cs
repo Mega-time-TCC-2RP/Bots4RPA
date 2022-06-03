@@ -6,5 +6,7 @@ namespace _2rpnet.rpa.webAPI.Interfaces
     public interface IAssistantRepository
     {
         List<Assistant> GetDagsInfo(int IdCorporation);
+
+        List<Assistant> GetDagsUserInfo(int IdCorporation);
     }
 }

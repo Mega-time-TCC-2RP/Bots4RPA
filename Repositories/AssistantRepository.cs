@@ -33,5 +33,25 @@ namespace _2rpnet.rpa.webAPI.Repositories
 
             return dags;
         }
+
+        public List<Assistant> GetDagsUserInfo(int IdEmployee)
+        {
+            List<Assistant> dags = ctx.Assistants.Select(assistantDags => new Assistant()
+            {
+                AssistantName = assistantDags.AssistantName,
+                Runs = assistantDags.Runs,
+                CreationDate = assistantDags.CreationDate,
+                IdEmployeeNavigation = new Employee()
+                {
+                    IdCorporation = assistantDags.IdEmployeeNavigation.IdCorporation,
+                    IdUserNavigation = new UserName()
+                    {
+                        UserName1 = assistantDags.IdEmployeeNavigation.IdUserNavigation.UserName1,
+                    }
+                }
+            }).ToList().FindAll(a => a.IdEmployee == IdEmployee);
+
+            return dags;
+        }
     }
 }

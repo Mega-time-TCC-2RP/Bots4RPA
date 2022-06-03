@@ -29,40 +29,74 @@ namespace _2rpnet.rpa.webAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "2,3")]
         public IActionResult GetDagsAssistants()
         {
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
                 UserName user = Uctx.SearchByID(UserId);
-                int CorpId = user.Employees.First().IdCorporation;
-                List<AssistantDagViewModel> dags = new List<AssistantDagViewModel>();
-                List<Assistant> assistants = ctx.GetDagsInfo(CorpId);
-                foreach (Assistant unmountedDag in assistants)
+                if (user.IdUserType == 2)
                 {
-                    AssistantDagViewModel dag = new AssistantDagViewModel();
-                    dag.AssistantCreationDate = unmountedDag.CreationDate;
-                    dag.AssistantName = unmountedDag.AssistantName;
-                    dag.EmployeeName = unmountedDag.IdEmployeeNavigation.IdUserNavigation.UserName1;
-                    if(unmountedDag.Runs.Count != 0)
+                    int CorpId = user.Employees.First().IdCorporation;
+                    List<AssistantDagViewModel> dags = new List<AssistantDagViewModel>();
+                    List<Assistant> assistants = ctx.GetDagsInfo(CorpId);
+                    foreach (Assistant unmountedDag in assistants)
                     {
-                        dag.LastRunDate = unmountedDag.Runs.OrderByDescending(run => run.RunDate).FirstOrDefault().RunDate;
-                        int succesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == true).Count();
-                        int unsuccesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == false).Count();
-                        dag.SuccesPercentage = (succesfulRuns * 100) / (succesfulRuns + unsuccesfulRuns);
-                    }
-                    else
-                    {
-                        dag.SuccesPercentage = 0;
-                        dag.LastRunDate = null;
-                    }
-                    dag.RunsCount = unmountedDag.Runs.Count;
+                        AssistantDagViewModel dag = new AssistantDagViewModel();
+                        dag.AssistantCreationDate = unmountedDag.CreationDate;
+                        dag.AssistantName = unmountedDag.AssistantName;
+                        dag.EmployeeName = unmountedDag.IdEmployeeNavigation.IdUserNavigation.UserName1;
+                        if (unmountedDag.Runs.Count != 0)
+                        {
+                            dag.LastRunDate = unmountedDag.Runs.OrderByDescending(run => run.RunDate).FirstOrDefault().RunDate;
+                            int succesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == true).Count();
+                            int unsuccesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == false).Count();
+                            dag.SuccesPercentage = (succesfulRuns * 100) / (succesfulRuns + unsuccesfulRuns);
+                        }
+                        else
+                        {
+                            dag.SuccesPercentage = 0;
+                            dag.LastRunDate = null;
+                        }
+                        dag.RunsCount = unmountedDag.Runs.Count;
 
-                    dags.Add(dag);
+                        dags.Add(dag);
+                    }
+
+                    return Ok(dags);
+
                 }
+                else
+                {
+                    int EmployeeId = user.Employees.First().IdEmployee;
+                    List<AssistantDagViewModel> dags = new List<AssistantDagViewModel>();
+                    List<Assistant> assistants = ctx.GetDagsUserInfo(EmployeeId);
+                    foreach (Assistant unmountedDag in assistants)
+                    {
+                        AssistantDagViewModel dag = new AssistantDagViewModel();
+                        dag.AssistantCreationDate = unmountedDag.CreationDate;
+                        dag.AssistantName = unmountedDag.AssistantName;
+                        dag.EmployeeName = unmountedDag.IdEmployeeNavigation.IdUserNavigation.UserName1;
+                        if (unmountedDag.Runs.Count != 0)
+                        {
+                            dag.LastRunDate = unmountedDag.Runs.OrderByDescending(run => run.RunDate).FirstOrDefault().RunDate;
+                            int succesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == true).Count();
+                            int unsuccesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == false).Count();
+                            dag.SuccesPercentage = (succesfulRuns * 100) / (succesfulRuns + unsuccesfulRuns);
+                        }
+                        else
+                        {
+                            dag.SuccesPercentage = 0;
+                            dag.LastRunDate = null;
+                        }
+                        dag.RunsCount = unmountedDag.Runs.Count;
 
-                return Ok(dags);
+                        dags.Add(dag);
+                    }
+
+                    return Ok(dags);
+                }
             }
             catch (Exception error)
             {
