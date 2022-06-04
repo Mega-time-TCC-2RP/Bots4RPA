@@ -40,7 +40,6 @@ Modal.setAppElement('#root');
 
 export default function Dags() {
     const [dags, setDags] = useState([]);
-    const [birthDate1, setBirthDate1] = useState('')
 
     //onboarding
     const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
@@ -66,21 +65,16 @@ export default function Dags() {
             .then((response) => {
                 console.log('deu certoooo')
                 setDags(response.data)
-                setBirthDate1(response.data.birthDate)
             })
 
             .catch((err) => {
-                console.log('deu errado' + err)
+                console.log('deu errado: ' + err)
             })
         // ListarDags();
     }, [])
 
 
-
-
     return (
-
-
 
         <div>
             <Navbar />

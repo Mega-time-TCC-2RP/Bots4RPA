@@ -246,8 +246,8 @@ function Navbar() {
           {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
             <li>
               <Link to="/dags" className='Link'>
-                <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
-                <span className='Links_name' alt="botão dAGS">Dags</span>
+                <FaIcons.FaTable className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão dAGS">Registros</span>
               </Link>
             </li>
             : null
@@ -365,6 +365,15 @@ function Navbar() {
               <span className='Links_name' alt="botão guias">Guias</span>
             </Link>
           </li>
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/dags" className='Link'>
+                <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão dAGS">Registros</span>
+              </Link>
+            </li>
+            : null
+          }
           {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
             <li>
               <Link to="/marketplace" className='Link'>
