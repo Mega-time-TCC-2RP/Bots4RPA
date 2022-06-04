@@ -238,7 +238,7 @@
     height: 60px;
 }
 
-.TrophiesContainer button {
+.TrophieBtn {
     border: none;
     background-color: var(--WHITE);
 }
@@ -354,6 +354,14 @@
 
 .newPassword label {
     padding-left: 5%;
+}
+
+.formSkinSelect{
+    height: fill;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 @media only screen and (max-width: 1550px) {
