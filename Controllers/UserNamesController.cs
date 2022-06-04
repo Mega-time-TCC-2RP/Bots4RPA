@@ -44,8 +44,16 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo GET - Listagem
         [HttpGet]
+        [Authorize("2,3")]
         public IActionResult ReadAll()
         {
+            int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
+            int UserRole = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == "Role").Value);
+            if (UserRole == 2)
+            {
+                List<UserName> Users = ctx.ReadAll().Where(U => U.Employees.FirstOrDefault() != null).Where(U => U.Employees.First().IdCorporation == ctx.ReadAll().FirstOrDefault(E => E.IdUser == UserId).Employees.First().IdCorporation).ToList();
+                return Ok(Users);
+            }
             return Ok(ctx.ReadAll());
         }
 
