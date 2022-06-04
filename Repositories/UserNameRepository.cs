@@ -212,6 +212,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
                         IdPlayer = player.IdPlayer,
                         LibrarySkins = player.LibrarySkins.Select(ls => new LibrarySkin()
                         {
+                            IdLibrarySkins = ls.IdLibrarySkins,
                             IdSkinNavigation = ls.IdSkinNavigation,
                             UnlockData = ls.UnlockData,
                         }).ToList(),
