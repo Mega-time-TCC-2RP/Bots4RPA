@@ -9,7 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 //img:
-import Logo from '../../assets/img/logo2RPcadastro.png'
+import Logo from '../../assets/img/LogoConvite.png'
+//import Logo from '../../assets/img/logo2RPcadastro.png'
 import RoboAzul from '../../assets/img/roboAzul.png'
 import RoboVermeho from '../../assets/img/roboVermelho.png'
 

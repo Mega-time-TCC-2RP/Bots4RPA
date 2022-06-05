@@ -76,7 +76,7 @@ export default function LandingPage() {
                                 <img className='pageRepresentation' src={PageRepresentation} alt="" />
                                 <div className='textConteint'>
                                     <p>Crie os seus próprios assistentes através do fluxo de automação de acordo com as suas necessidades. Com diversas funcionalidades que podem atuar em qualquer área, é possível rodar os assistentes quando for necessário</p>
-                                    <Link to="/registerUser"><button className='button'>Começar</button></Link>
+                                    <Link to="/registerUser"><button className='button landbutton-test'>Começar</button></Link>
                                 </div>
                             </div>
                         </div>
