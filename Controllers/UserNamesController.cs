@@ -259,7 +259,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     }
                     return BadRequest("Senhas nulas só são aceitas no primeiro acesso com o google");
                 }
-                if(user.IdUserType == 1)
+                if (user.IdUserType == 1)
                 {
                     if (File != null)
                     {
@@ -296,7 +296,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                     {
                         IdUser = PostedUser.IdUser,
                         IdCorporation = user.IdCorporation,
-                        Confirmation = false
+                        Confirmation = false,
+                        IdOffice = user.IdOffice,
                     };
 
                     Employee PostedEmployee = Ectx.Create(PostEmployee);
@@ -328,7 +329,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                             {
                                 IdUser = PostedUser.IdUser,
                                 IdCorporation = user.IdCorporation,
-                                Confirmation = false
+                                Confirmation = false,
+                                IdOffice = user.IdOffice
                             },
                             Player = new Player()
                             {
@@ -336,7 +338,8 @@ namespace _2rpnet.rpa.webAPI.Controllers
                             }
                         });
                     }
-                    return Created("UsuarioCriado", new {
+                    return Created("UsuarioCriado", new
+                    {
                         User = new UserName()
                         {
                             UserName1 = user.UserName1,
@@ -353,11 +356,15 @@ namespace _2rpnet.rpa.webAPI.Controllers
                         {
                             IdUser = PostedUser.IdUser,
                             IdCorporation = user.IdCorporation,
-                            Confirmation = false
+                            Confirmation = false,
+                            IdOffice = user.IdOffice,
                         }
                     });
                 }
-                else return NotFound("Id da empresa inválido");
+                else {
+                    Upload.RemoveFile(UploadResult);
+                    return NotFound("Id da empresa inválido");
+                } 
                 }
                 catch (Exception error)
                 {
