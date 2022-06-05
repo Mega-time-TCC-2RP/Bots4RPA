@@ -44,7 +44,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
 
         // Metodo GET - Listagem
         [HttpGet]
-        [Authorize(Roles = "2,3")]
+        [Authorize(Roles = "1,2")]
         public IActionResult ReadAll()
         {
             int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(C => C.Type == JwtRegisteredClaimNames.Jti).Value);
