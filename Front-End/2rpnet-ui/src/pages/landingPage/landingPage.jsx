@@ -45,7 +45,7 @@ export default function LandingPage() {
                     </div>
                     <img src={Robo} className="cool-robot-landingpage" alt="Imagem robô" />
                 </section>
-                <section className='section section2'>
+                <section className=' section2'>
                     <div className='container7 section2Content'>
                         <h3 className='aga3-area' alt="Áreas de atendimento">Áreas de atendimento</h3>
                         <div className='articleArea'>
@@ -76,7 +76,7 @@ export default function LandingPage() {
                                 <img className='pageRepresentation' src={PageRepresentation} alt="" />
                                 <div className='textConteint'>
                                     <p>Crie os seus próprios assistentes através do fluxo de automação de acordo com as suas necessidades. Com diversas funcionalidades que podem atuar em qualquer área, é possível rodar os assistentes quando for necessário</p>
-                                    <Link to="/registerUser"><button className='button'>Começar</button></Link>
+                                    <Link to="/registerUser"><button className='button h5 landbutton-test'>Começar</button></Link>
                                 </div>
                             </div>
                         </div>
