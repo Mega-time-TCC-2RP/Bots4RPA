@@ -175,6 +175,16 @@ function App() {
             setEndDate();
             setTitleTask("");
             setDescriptionTask("");
+            getWorkflowList();
+            dragNDrop();
+            day();
+            monthAndWeek();
+
+            var container = document.getElementsByClassName("taskMap");
+            var content = container.innerHTML;
+            container.innerHTML= content; 
+            //Engenharia de emergência (último caso):
+            // document. location. reload() 
           }
         })
         .catch((error) => {
@@ -441,7 +451,7 @@ function App() {
                     <h5 className="h5">A Fazer</h5>
                   </div>
                   <div
-                    className="taskSpace">
+                    className="taskSpace taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 1) {
@@ -483,7 +493,7 @@ function App() {
                     <h5 className="h5">Fazendo</h5>
                   </div>
                   <div
-                    className="taskSpace">
+                    className="taskSpace taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 2) {
@@ -523,7 +533,7 @@ function App() {
                     <h5 className="h5">Feito</h5>
                   </div>
                   <div
-                    className="taskSpace">
+                    className="taskSpace taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 3) {
@@ -873,7 +883,7 @@ function App() {
                     <h5 className="h5">A Fazer</h5>
                   </div>
                   <div
-                    className="taskSpaceMobile">
+                    className="taskSpaceMobile taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 1) {
@@ -914,7 +924,7 @@ function App() {
                     <h5 className="h5">Fazendo</h5>
                   </div>
                   <div
-                    className="taskSpaceMobile">
+                    className="taskSpaceMobile taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 2) {
@@ -954,7 +964,7 @@ function App() {
                     <h5 className="h5">Feito</h5>
                   </div>
                   <div
-                    className="taskSpaceMobile">
+                    className="taskSpaceMobile taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 3) {

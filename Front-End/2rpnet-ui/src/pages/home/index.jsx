@@ -475,61 +475,64 @@ export default function Home() {
                       modules={[Pagination, Navigation]}
                       className="swiperHomeTasks"
                     >
-                      {AssistantsList.map((assistant) => {
-                        return (
-                          <div className="containerSmodal">
-                            <SwiperSlide className="ContainerAssistantSlide">
-                              <div className="card1">
-                                {
-                                  assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
-                                    <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={NoSkin} className="card1-img" /> :
-                                    <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={"http://grupo7.azurewebsites.net/img/" + assistant.idLibrarySkinNavigation.idSkinNavigation.skinImages} className="card1-img" />
-                                }
-                                <div className="container-AssistantName">
-                                  <h5>{assistant.idAssistantNavigation.assistantName}</h5>
-                                </div>
-                                {
-                                  isExecuting === false ? (
-                                    <button onClick={(event) => {
-                                      event.preventDefault()
-                                      Execute(assistant.idAssistant)
-
-                                    }}>
-                                      <PlayIcon />
-                                    </button>
-                                  ) : (
-                                    <button disabled onClick={(event) => {
-                                      event.preventDefault()
-                                      Execute(assistant.idAssistant)
-                                    }}>
-                                      <FontAwesomeIcon icon={faSpinner} size="lg" spin />
-                                    </button>
-                                  )
-                                }
-                                <div className="box-details">
-                                {
-                                  assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
-                                  <button
-                                  onClick={(event) => {
-                                    event.preventDefault()
-                                    OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, undefined)
-                                  }}
-                                >Ver detalhes
-                                </button> :
+                      {
+                        AssistantsList[0] !== undefined ?
+                        AssistantsList.map((assistant) => {
+                          return (
+                            <div className="containerSmodal">
+                              <SwiperSlide className="ContainerAssistantSlide">
+                                <div className="card1">
+                                  {
+                                    assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
+                                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={NoSkin} className="card1-img" /> :
+                                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={"http://grupo7.azurewebsites.net/img/" + assistant.idLibrarySkinNavigation.idSkinNavigation.skinImages} className="card1-img" />
+                                  }
+                                  <div className="container-AssistantName">
+                                    <h5>{assistant.idAssistantNavigation.assistantName}</h5>
+                                  </div>
+                                  {
+                                    isExecuting === false ? (
+                                      <button onClick={(event) => {
+                                        event.preventDefault()
+                                        Execute(assistant.idAssistant)
+  
+                                      }}>
+                                        <PlayIcon />
+                                      </button>
+                                    ) : (
+                                      <button disabled onClick={(event) => {
+                                        event.preventDefault()
+                                        Execute(assistant.idAssistant)
+                                      }}>
+                                        <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                                      </button>
+                                    )
+                                  }
+                                  <div className="box-details">
+                                  {
+                                    assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
                                     <button
                                     onClick={(event) => {
                                       event.preventDefault()
-                                      OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, assistant.idLibrarySkinNavigation.idSkinNavigation)
+                                      OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, undefined)
                                     }}
                                   >Ver detalhes
-                                  </button>
-                                }
+                                  </button> :
+                                      <button
+                                      onClick={(event) => {
+                                        event.preventDefault()
+                                        OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, assistant.idLibrarySkinNavigation.idSkinNavigation)
+                                      }}
+                                    >Ver detalhes
+                                    </button>
+                                  }
+                                  </div>
                                 </div>
-                              </div>
-                            </SwiperSlide>
-                          </div>
-                        )
-                      })}
+                              </SwiperSlide>
+                            </div>
+                          )
+                        }) : <SwiperSlide><span>Não há assistentes...</span></SwiperSlide>
+                      }
                     </Swiper> : <Swiper
                       // slidesPerView={2}
                       // spaceBetween={0}
@@ -548,61 +551,64 @@ export default function Home() {
                       modules={[Pagination, Navigation]}
                       className="swiperHomeTasks"
                     >
-                      {AssistantsList.map((assistant) => {
-                        return (
-                          <div className="containerSmodal">
-                            <SwiperSlide className="ContainerAssistantSlide">
-                              <div className="card1">
-                                {
-                                  assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
-                                    <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={NoSkin} className="card1-img" /> :
-                                    <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={"http://grupo7.azurewebsites.net/img/" + assistant.idLibrarySkinNavigation.idSkinNavigation.skinImages} className="card1-img" />
-                                }
-                                <div className="container-AssistantName">
-                                  <h5>{assistant.idAssistantNavigation.assistantName}</h5>
-                                </div>
-                                {
-                                  isExecuting === false ? (
-                                    <button onClick={(event) => {
-                                      event.preventDefault()
-                                      Execute(assistant.idAssistant)
-
-                                    }}>
-                                      <PlayIcon />
-                                    </button>
-                                  ) : (
-                                    <button disabled onClick={(event) => {
-                                      event.preventDefault()
-                                      Execute(assistant.idAssistant)
-                                    }}>
-                                      <FontAwesomeIcon icon={faSpinner} size="lg" spin />
-                                    </button>
-                                  )
-                                }
-                                <div className="box-details">
-                                {
-                                  assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
-                                  <button
-                                  onClick={(event) => {
-                                    event.preventDefault()
-                                    OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, undefined)
-                                  }}
-                                >Ver detalhes
-                                </button> :
+                      {
+                        AssistantsList[0] !== undefined ?
+                        AssistantsList.map((assistant) => {
+                          return (
+                            <div className="containerSmodal">
+                              <SwiperSlide className="ContainerAssistantSlide">
+                                <div className="card1">
+                                  {
+                                    assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
+                                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={NoSkin} className="card1-img" /> :
+                                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={"http://grupo7.azurewebsites.net/img/" + assistant.idLibrarySkinNavigation.idSkinNavigation.skinImages} className="card1-img" />
+                                  }
+                                  <div className="container-AssistantName">
+                                    <h5>{assistant.idAssistantNavigation.assistantName}</h5>
+                                  </div>
+                                  {
+                                    isExecuting === false ? (
+                                      <button onClick={(event) => {
+                                        event.preventDefault()
+                                        Execute(assistant.idAssistant)
+  
+                                      }}>
+                                        <PlayIcon />
+                                      </button>
+                                    ) : (
+                                      <button disabled onClick={(event) => {
+                                        event.preventDefault()
+                                        Execute(assistant.idAssistant)
+                                      }}>
+                                        <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                                      </button>
+                                    )
+                                  }
+                                  <div className="box-details">
+                                  {
+                                    assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
                                     <button
                                     onClick={(event) => {
                                       event.preventDefault()
-                                      OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, assistant.idLibrarySkinNavigation.idSkinNavigation)
+                                      OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, undefined)
                                     }}
                                   >Ver detalhes
-                                  </button>
-                                }
+                                  </button> :
+                                      <button
+                                      onClick={(event) => {
+                                        event.preventDefault()
+                                        OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, assistant.idLibrarySkinNavigation.idSkinNavigation)
+                                      }}
+                                    >Ver detalhes
+                                    </button>
+                                  }
+                                  </div>
                                 </div>
-                              </div>
-                            </SwiperSlide>
-                          </div>
-                        )
-                      })}
+                              </SwiperSlide>
+                            </div>
+                          )
+                        }) : <SwiperSlide><span>Não há assistentes...</span></SwiperSlide>
+                      }
                     </Swiper>
                 }
               </div>
