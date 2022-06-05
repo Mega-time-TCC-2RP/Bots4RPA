@@ -137,7 +137,7 @@ function Navbar() {
             </li>
             : null
           }
-          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+          {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
             <li>
               <Link to="/assistant" className='Link'>
                 <FaIcons.FaRobot className='icon2' alt="botão assistentes" />
@@ -145,7 +145,7 @@ function Navbar() {
               </Link>
             </li>
             : null
-          }
+          } */}
           <li>
             <Link to="/social" className='Link'>
               <AiIcons.AiFillMessage className='icon2' alt="botão fórum social" />

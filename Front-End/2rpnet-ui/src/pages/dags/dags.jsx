@@ -64,6 +64,7 @@ export default function Dags() {
         })
             .then((response) => {
                 console.log('deu certoooo')
+                console.log(response.data)
                 setDags(response.data)
             })
 
@@ -165,8 +166,8 @@ export default function Dags() {
                                         <tr key={key}>
                                             <td className='center-dags'>{dag.employeeName}</td>
                                             <td>{dag.assistantName}</td>
-                                            <td>{dag.assistantCreationDate}</td>
-                                            <td>{dag.lastRunDate}</td>
+                                            <td>{new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(dag.assistantCreationDate.split('T')[0]))}</td>
+                                            <td>{new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(dag.lastRunDate.split('T')[0]))}</td>
                                             <td>{dag.succesPercentage}%</td>
                                             <td>{dag.runsCount} Vezes</td>
                                         </tr>

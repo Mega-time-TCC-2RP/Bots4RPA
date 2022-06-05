@@ -202,6 +202,8 @@ export const TelaTimeline = (person, idx) => {
             .then(function (response) {
                 console.log(response);
                 setIsLoading(false);
+                setTituloPostCadastro("");
+                setDescricaoPostCadastro("");
                 ListarPosts();
             })
             .catch(function (error) {
@@ -230,6 +232,8 @@ export const TelaTimeline = (person, idx) => {
             }
         }).then(async (response) => {
             setIsLoading(false);
+            setDescricaoCadastroComentario("");
+            setTituloCadastroComentario("");
             let ListaPostsPosComentar = await ListarPosts();
             setComentariosModal(ListaPostsPosComentar.find((post) => post.idPost == idPostComentarios).comments)
         }).catch((error) => {

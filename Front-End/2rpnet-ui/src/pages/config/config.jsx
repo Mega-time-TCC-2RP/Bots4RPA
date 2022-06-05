@@ -309,13 +309,14 @@ export default function Config() {
                         .catch((erro) => console.log(erro))
                 }
             })
-            .catch(errorToast(),
-                bazinga => {
-                    if (bazinga.status === 401) {
-                        closeModalConfig();
-                        errorToast();
-                    }
-                }
+            .catch(
+                // errorToast(),
+                // bazinga => {
+                //     if (bazinga.status === 401) {
+                //         closeModalConfig();
+                //         errorToast();
+                //     }
+                // }
 
             )
     }
