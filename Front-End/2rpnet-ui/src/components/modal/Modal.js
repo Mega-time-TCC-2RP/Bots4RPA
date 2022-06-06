@@ -9,9 +9,10 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { DataGraphic } from '../graphic/dataGraphic'
 import { API } from '../../../src/services/api'
+import NoSkin from '../../assets/img/noSkin.png'
 // import { run } from 'cypress';
 
-export default function ModalM({ assistant }) {
+export default function ModalM({ assistant, skinObject }) {
 
     const [Description, setDescription] = useState("");
     const [chart, setChart] = useState([])
@@ -130,7 +131,11 @@ export default function ModalM({ assistant }) {
                     <div className='Sbox-modal-assistant'>
                         <div className='assistant-id'>
                             <div className='box-img-modal'>
-                                <img src={Azul_Home} className="Sassistant-modal" />
+                                {
+                                    skinObject.undefined === undefined ?
+                                        <img src={"http://grupo7.azurewebsites.net/img/" + skinObject.skinImages} className="Sassistant-modal" /> :
+                                        <img src={NoSkin} className="Sassistant-modal" />
+                                }
                                 <button
                                     className='button-edit'
                                     onClick={() => permitirTextArea(assistant.idAssistant, assistant.assistantDescription)}

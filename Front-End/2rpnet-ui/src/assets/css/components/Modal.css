@@ -1,3 +1,7 @@
+body{
+    position: relative;
+}
+
 .SmodalBackground {
     width: 100vw;
     height: 100vh;
@@ -32,7 +36,7 @@
 
 .SmodalContainer {
     width: 75em;
-    height: 43em;
+    height: 50em;
     display: flex;
     flex-direction: column;
     padding: 1.563rem;

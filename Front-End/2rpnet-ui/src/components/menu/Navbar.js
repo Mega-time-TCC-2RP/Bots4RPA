@@ -137,7 +137,7 @@ function Navbar() {
             </li>
             : null
           }
-          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+          {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
             <li>
               <Link to="/assistant" className='Link'>
                 <FaIcons.FaRobot className='icon2' alt="botão assistentes" />
@@ -145,7 +145,7 @@ function Navbar() {
               </Link>
             </li>
             : null
-          }
+          } */}
           <li>
             <Link to="/social" className='Link'>
               <AiIcons.AiFillMessage className='icon2' alt="botão fórum social" />
@@ -245,6 +245,15 @@ function Navbar() {
           } */}
           {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
             <li>
+              <Link to="/dags" className='Link'>
+                <FaIcons.FaTable className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão dAGS">Registros</span>
+              </Link>
+            </li>
+            : null
+          }
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
               <Link to="/marketplace" className='Link'>
                 <RiIcons.RiShoppingBagFill className='icon2' alt="botão loja" />
                 <span className='Links_name' alt="botão loja">Loja</span>
@@ -341,21 +350,30 @@ function Navbar() {
               <span className='Links_name' alt="botão página inicial">Home</span>
             </Link>
           </li>
-          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
-          <li>
-            <Link to="/dashboard" className='Link'>
-              <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
-              <span className='Links_name' alt="botão dAGS">Dashboard</span>
-            </Link>
-          </li>
-          : null
-          } 
+          {parseJwt().Role === '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/dashboard" className='Link'>
+                <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão dAGS">Dashboard</span>
+              </Link>
+            </li>
+            : null
+          }
           <li>
             <Link to="/guide" className='Link'>
               <RiIcons.RiGuideFill className='icon2' alt="botão guias" />
               <span className='Links_name' alt="botão guias">Guias</span>
             </Link>
           </li>
+          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+            <li>
+              <Link to="/dags" className='Link'>
+                <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
+                <span className='Links_name' alt="botão dAGS">Registros</span>
+              </Link>
+            </li>
+            : null
+          }
           {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
             <li>
               <Link to="/marketplace" className='Link'>
@@ -401,7 +419,7 @@ function Navbar() {
           <div className='profile'>
             <div onClick={signout} className='profile_details'>
               <div className='name_job'>
-                <div className='name2'>Logout</div>
+                <span className='name2'>Logout</span>
               </div>
 
             </div>

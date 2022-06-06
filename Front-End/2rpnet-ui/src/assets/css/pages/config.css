@@ -248,7 +248,7 @@
     height: 60px;
 }
 
-.TrophiesContainer button {
+.TrophieBtn {
     border: none;
     background-color: var(--WHITE);
 }

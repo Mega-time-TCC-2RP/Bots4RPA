@@ -22,7 +22,7 @@
 }
 
 .top-container {
-    height: 73vh;
+    height: 500px;
     display: flex;
     justify-content: center;
     background: #F1F1F1;
@@ -144,15 +144,20 @@
     /* background-color: aqua; */
 }
 
+.ContainerAssistantSlide{
+    height: 25.2em;
+    display: flex;
+    align-items: center;
+    width: 33% !important;
+    justify-content: center;
+}
+
 .card1 {
     width: 17.063em;
     height: 22.838em;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin-left: 0.625rem;
-    margin-right: 5rem;
 
     background: #FFFFFF;
     border: 5px solid #F2F2F2;
@@ -532,6 +537,8 @@
     animation-duration: 0.4s
 }
 
+
+
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {
@@ -749,6 +756,10 @@
         width: 0.4rem;
         height: 0.7rem;
         padding: 0.5rem;
+    }
+
+    .ContainerAssistantSlide{
+        width: 100% !important;
     }
 }
 

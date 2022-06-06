@@ -18,7 +18,7 @@ import "../../assets/css/components/navbar.css"
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 
-//onboarding
+// //onboarding
 import '../../assets/css/pages/onBoarding.css'
 import Modal from 'react-modal';
 import Blue_Head from '../../assets/img/Blue_Head.png'
@@ -28,7 +28,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-// import moment from 'moment'; LINHA COMENTADA PELO ERRO Q TAVAA DANDO 
+import moment from 'moment';
+import 'moment/locale/pt-br'
 
 const stylesCustom = {
   content: {
@@ -137,11 +138,9 @@ function App() {
   }
 
   // Consumo da API - Patch Status - Atualizacao de estado do card
-  const patchStatusTask = (event) => {
-    event.preventDefault()
-
+  const patchStatusTask = (idQuest, status) => {
     axios
-      .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + idQuest + '/' + statusTask, {
+      .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + idQuest + '/' + status, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
@@ -176,6 +175,16 @@ function App() {
             setEndDate();
             setTitleTask("");
             setDescriptionTask("");
+            getWorkflowList();
+            dragNDrop();
+            day();
+            monthAndWeek();
+
+            var container = document.getElementsByClassName("taskMap");
+            var content = container.innerHTML;
+            container.innerHTML= content; 
+            //Engenharia de emergência (último caso):
+            // document. location. reload() 
           }
         })
         .catch((error) => {
@@ -332,10 +341,10 @@ function App() {
           </div>
           <div className="dateArea">
             <div className="h5">Data de Entrega:</div>
-            {/* <div className="p dateOneTask">{moment(myQuests.endDate).format()}</div> LINHA COMENTADA PELO ERRO Q TAVAA DANDO */} 
+            <div className="p dateOneTask">{moment(myQuests.endDate).format("LL")}</div>
           </div>
           <div className="h5">Situação da Tarefa:</div>
-            <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
+            <select className='select' onChange={(e) => patchStatusTask(myQuests.idWorkflow, e.target.value)}>
               <optgroup>
                 {
                   myQuests.idStatus === 1 ?
@@ -351,20 +360,10 @@ function App() {
                 }
               </optgroup>
             </select>
-            {
-              statusTask === '' ||
-                statusTask === null ||
-                statusTask === 0 ||
-                statusTask === myQuests.idStatus ?
-                <input className="button btnNewTask marginBtnModalTask"
-                  type="button"
-                  onClick={(e) => { handleCloseTask(e) }}
-                  value="Fechar Tarefa" /> :
-                <input className="button btnNewTask marginBtnModalTask"
-                  type="button"
-                  onClick={(e) => { handleCloseTask(e); patchStatusTask(e) }}
-                  value="Salvar Alterações" />
-            }
+              <input className="button btnNewTask marginBtnModalTask"
+                type="button"
+                onClick={(e) => { handleCloseTask(e) }}
+                value="Fechar Tarefa" />
         </div>
       </div>
     )
@@ -452,7 +451,7 @@ function App() {
                     <h5 className="h5">A Fazer</h5>
                   </div>
                   <div
-                    className="taskSpace">
+                    className="taskSpace taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 1) {
@@ -494,7 +493,7 @@ function App() {
                     <h5 className="h5">Fazendo</h5>
                   </div>
                   <div
-                    className="taskSpace">
+                    className="taskSpace taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 2) {
@@ -534,7 +533,7 @@ function App() {
                     <h5 className="h5">Feito</h5>
                   </div>
                   <div
-                    className="taskSpace">
+                    className="taskSpace taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 3) {
@@ -884,7 +883,7 @@ function App() {
                     <h5 className="h5">A Fazer</h5>
                   </div>
                   <div
-                    className="taskSpaceMobile">
+                    className="taskSpaceMobile taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 1) {
@@ -925,7 +924,7 @@ function App() {
                     <h5 className="h5">Fazendo</h5>
                   </div>
                   <div
-                    className="taskSpaceMobile">
+                    className="taskSpaceMobile taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 2) {
@@ -965,7 +964,7 @@ function App() {
                     <h5 className="h5">Feito</h5>
                   </div>
                   <div
-                    className="taskSpaceMobile">
+                    className="taskSpaceMobile taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 3) {
