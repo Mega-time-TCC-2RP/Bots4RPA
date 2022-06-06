@@ -172,6 +172,7 @@ body{
     font-family:'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 600;
+    margin-right: 50%;
 }
 .profile .profile_details img{
     opacity: 1;
@@ -224,6 +225,10 @@ body{
 .sidebar.active ~ .body-pd{
     width: calc(100vw - 240px);
     left: 269px;
+}
+.sidebar.active .profile #log_out {
+    margin-left: 36%; 
+    
 }
 
 

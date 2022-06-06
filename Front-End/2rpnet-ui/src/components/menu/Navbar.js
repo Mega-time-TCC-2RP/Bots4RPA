@@ -350,7 +350,7 @@ function Navbar() {
               <span className='Links_name' alt="botão página inicial">Home</span>
             </Link>
           </li>
-          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
+          {parseJwt().Role === '1' && parseJwt().Role !== '0' ?
             <li>
               <Link to="/dashboard" className='Link'>
                 <RiIcons.RiDashboardFill className='icon2' alt="botão loja" />
@@ -419,7 +419,7 @@ function Navbar() {
           <div className='profile'>
             <div onClick={signout} className='profile_details'>
               <div className='name_job'>
-                <div className='name2'>Logout</div>
+                <span className='name2'>Logout</span>
               </div>
 
             </div>

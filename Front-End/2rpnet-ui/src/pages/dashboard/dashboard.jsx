@@ -8,9 +8,11 @@ import Table from "./table/Table";
 
 const Dashboard = () => {
   return (
-    <div className="home">
+    <div>
+      <Navbar />
+    <div className="home body-pd">
       {/* <Sidebar /> */}
-        <Navbar />
+        
       <div className="homeContainer">
         <div className="widgets">
           <Widget type="user" />
@@ -27,6 +29,7 @@ const Dashboard = () => {
           <Table />
         </div>
       </div>
+    </div>
     </div>
   );
 };
