@@ -312,9 +312,9 @@
     margin-top: 36px;
 }
 
-.ProfileContainer .body-pd {
+/* .ProfileContainer .body-pd {
     height: auto;
-}
+} */
 
 .ProfileContainer .configPage {
     height: auto;
@@ -364,6 +364,10 @@
 
 .newPassword label {
     padding-left: 5%;
+}
+
+#confirmPasswordButton {
+    width: 100%;
 }
 
 @media only screen and (max-width: 1550px) {

@@ -744,15 +744,16 @@ export default function Config() {
                                             <label className='h5' htmlFor='NovaSenha'>Nova senha</label>
                                             <input required id='NovaSenha' className='input' type="text" name="name" placeholder='Insira sua nova senha...' value={NovaSenha} onChange={(event) => setNovaSenha(event.target.value)} />
                                         </div>
-                                        {
-                                            confirmPassword === true ?
-                                                <div className='confirmPassword'>
-                                                    <input value={pass} onChange={(event) => setPass(event.target.value)} type="password" className='input' id='passConfirm' placeholder='Confirme sua Senha...' />
-                                                    <button className='button' onClick={alterUserData}>Confirmar</button>
-                                                </div>
-                                                : <button className='button' onClick={() => setConfirmPassword(true)}>Salvar Alterações</button>
-                                        }
+                                            {
 
+                                                confirmPassword === true ?
+
+                                                    <div className='confirmPassword'>
+                                                        <input value={pass} onChange={(event) => setPass(event.target.value)} type="password" className='input' id='passConfirm' placeholder='Confirme sua Senha...' />
+                                                        <button id='confirmPasswordButton' className='button' onClick={alterUserData}>Confirmar</button>
+                                                    </div>
+                                                    : <button className='button' onClick={() => setConfirmPassword(true)}>Salvar Alterações</button>
+                                            }
                                     </form>
                                 </Modal>
                             </div>
