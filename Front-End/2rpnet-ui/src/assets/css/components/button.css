@@ -2,7 +2,7 @@
 
 .button {
     background: var(--PrimaryColor2);
-    width: 100%;
+    width: 50%;
     height: 45px !important;
     color: var(--WHITE);
     border-radius: 64px;

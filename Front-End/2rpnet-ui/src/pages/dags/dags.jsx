@@ -166,8 +166,16 @@ export default function Dags() {
                                         <tr key={key}>
                                             <td className='center-dags'>{dag.employeeName}</td>
                                             <td>{dag.assistantName}</td>
-                                            <td>{new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(dag.assistantCreationDate.split('T')[0]))}</td>
-                                            <td>{new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(dag.lastRunDate.split('T')[0]))}</td>
+                                            {
+                                                dag.assistantCreationDate !== undefined ?
+                                                <td>{new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(dag.assistantCreationDate.split('T')[0]))}</td> :
+                                                <td>Carregando</td>
+                                            }
+                                            {
+                                                dag.lastRunDate !== undefined ?
+                                                <td>{new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(dag.lastRunDate.split('T')[0]))}</td> :
+                                                <td>Carregando</td>
+                                            }
                                             <td>{dag.succesPercentage}%</td>
                                             <td>{dag.runsCount} Vezes</td>
                                         </tr>
