@@ -22,6 +22,8 @@ import Procedures from '../../services/process';
 import { set } from "react-hook-form";
 
 import { API } from "../../services/api";
+import { AssistantPhoto } from "@material-ui/icons";
+import NoSkin from '../../assets/img/noSkin.png'
 
 // testar colocar uma lista com informações dos cards/bloquinhos
 export default function Assistant() {
@@ -37,6 +39,7 @@ export default function Assistant() {
     const [isExecuting, setIsExecuting] = useState(false);
     const [result, setResult] = useState("oi");
     const [resultEmail, setResultEmail] = useState("");
+    const [assistantPhoto, setAssistantPhoto] = useState("");
 
 
     const location = useLocation();
@@ -63,9 +66,25 @@ export default function Assistant() {
             )
             .catch((error) => console.log(error));
     };
+
+    function GetMyAssistants() {
+        console.log('Função GetAssistants da Home')
+        fetch('http://grupo7.azurewebsites.net/api/LibraryAssistants', {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setAssistantPhoto(data.find((a) => a.idAssistant == idAssistant).idLibrarySkinNavigation);
+          }
+          )
+          .catch((error) => console.log(error));
+      };
     
     useEffect(() => {
-        GetProceduresById()
+        GetProceduresById();
+        GetMyAssistants()
     }, [])
 
     function returnModalEmail(procedure) {
@@ -602,7 +621,13 @@ export default function Assistant() {
                         </div>
                     </div>
                     <div className="boards-skinA">
-                        <img className="boards-skinA__skin" src={Azul_Home} alt="" />
+                        {
+                            assistantPhoto !== undefined ?
+                            assistantPhoto.idSkinNavigation !== undefined ?
+                            <img className="boards-skinA__skin" src={"http://grupo7.azurewebsites.net/img/" + assistantPhoto.idSkinNavigation.skinImages} alt="" /> : <img className="boards-skinA__skin" src={NoSkin} alt="" />
+                            :
+                            <img className="boards-skinA__skin" src={NoSkin} alt="" />
+                        }
                     </div>
                 </div>
                 <ToastContainer />

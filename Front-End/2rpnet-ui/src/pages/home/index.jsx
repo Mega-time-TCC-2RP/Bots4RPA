@@ -463,9 +463,9 @@ export default function Home() {
                 {
                   window.screen.width >= 768 ?
                     <Swiper
-                      slidesPerView={2}
+                      slidesPerView={3}
                       spaceBetween={0}
-                      slidesPerGroup={2}
+                      slidesPerGroup={3}
                       loop={false}
                       loopFillGroupWithBlank={true}
                       pagination={{
