@@ -126,6 +126,7 @@ lan
 }
 
 .section2 {
+    height: 700px;
     flex-direction: column;
     background: var(--ComplementaryColor1);
 }
@@ -139,9 +140,12 @@ lan
 }
 
 .articleArea {
-    display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    gap: 20px;
 }
 
 .articleArea article {
@@ -266,7 +270,7 @@ lan
         margin-top: 2.6rem;
     }
     .section2{
-        height: 700px;
+        height: 100%;
     }
     .sectionH5{
         font-size: 1.6rem;
@@ -278,6 +282,40 @@ lan
         font-size: 1.4rem;
         text-align: center;
     }
+    .articleArea {
+        /* display: grid; */
+        /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+        justify-content: space-evenly;
+        width: 100%;
+        margin: 0 auto;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .articleArea article {
+        background: var(--WHITE);
+        box-shadow: 4px 4px 4px var(--lightShadow);
+        border-radius: 30px;
+        width: 250px;
+        height: 325px;
+        display: grid;
+        justify-items: center;
+        padding: 25px 25px 25px 25px;
+    }
+    .section2Content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+        padding: 2rem 0;
+    }
+    .section2Content h3{
+        margin-bottom: 4rem;
+        margin-top: 2rem;
+    }
+
 
 }
 
@@ -338,7 +376,9 @@ lan
     .content-landing,
     .sectionH5,
     .textConteint {
-        width: 300px;
+        width: 90%;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
     }
 
     .bold {
@@ -348,9 +388,10 @@ lan
     }
 
     .pageRepresentation {
-        width: 100%;
+        width: 90%;
        
     }
+
 
     .cool-robot-landingpage {
         width: 300px;
@@ -360,13 +401,23 @@ lan
 
     .landbutton-test {
         margin-top: 30px;
-        margin-left: 35px;
+       
         margin-bottom: 30px;
         width: 140px;
     }
 
     .header {
         visibility: hidden;
+    }
+    .headerNav{
+        visibility: visible;
+        position: absolute;
+        right: 15%;
+        margin-top: 2rem;
+    }
+    .section {
+        margin-bottom: 0;
+        margin-top: 2rem;
     }
 
     .articleArea article {
@@ -391,11 +442,6 @@ lan
         height: 975px;
     }
 
-    .articleArea article {
-        margin-top: 30px;
-
-    }
-
     .section2Content {
         justify-content: unset
     }
@@ -413,4 +459,22 @@ lan
         width: 375px;
         height: 900px;
     }
+    .section3 h3 {
+        margin-bottom: 1.6rem;
+        text-align: center;
+        font-size: 1.4rem;
+    }
+    .section3Conteint .textConteint p {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 2rem;
+        width: 90%;
+    }
+    .articleArea article p {
+        font-size: 1.2rem;
+        color: var(--ComplementaryColor2);
+        text-align: center;
+    }
+    
+    
 }
