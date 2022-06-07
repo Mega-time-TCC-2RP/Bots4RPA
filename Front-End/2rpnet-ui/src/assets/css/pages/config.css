@@ -332,7 +332,7 @@
     background-color: unset;
     color: var(--BLACK);
     width: 300px;
-    height: 500px;
+    height: 26em;
 
     /* efeito de zoom */
     max-width: 100%;
@@ -358,8 +358,9 @@
 }
 
 .skin-profile-card img {
-    width: 250px;
+    width: 220px;
     height: auto;
+    margin-bottom: 1.5rem;
 }
 
 .newPassword label {
