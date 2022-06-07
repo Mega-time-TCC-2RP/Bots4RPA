@@ -227,8 +227,8 @@ export default function Home() {
   // Gambiarra para o método atualizar bonitinho
   function Refresh() {
     setTimeout(function () {
-      window.location.href = API + "/home";
-    }, 7000);
+      window.location.href = "http://localhost:3000" + "/home";
+    }, 1000);
   }
 
   function GetAssistant() {
@@ -479,7 +479,7 @@ export default function Home() {
                         AssistantsList[0] !== undefined ?
                         AssistantsList.map((assistant) => {
                           return (
-                            <div className="containerSmodal">
+                            <div key={assistant.idAssistant} className="containerSmodal">
                               <SwiperSlide className="ContainerAssistantSlide">
                                 <div className="card1">
                                   {

@@ -301,7 +301,7 @@ export default function RegisterCompany() {
                     <img src={RoboAzul} alt="Robo Azul" />
                 </div>
                 <div className='registerArea'>
-                    <div className='registerContent'>
+                    <div className='registerContentCompany'>
                         <img className='logo-Header' id='logoRegisters' src={Logo} alt="Logo 2RPnet" />
                         <form encType='multipart/form-data' className='formRegister'>
                             {

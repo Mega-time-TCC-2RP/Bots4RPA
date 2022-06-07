@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../../assets/css/components/Modal.css"
 import Azul_Home from '../../assets/img/Azul_Home.png'
-import { Assistant } from '@material-ui/icons';
+import { Assistant, Refresh } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
 import EditIcon from '../icones/edit'
 
@@ -10,12 +10,14 @@ import { Doughnut } from 'react-chartjs-2';
 import { DataGraphic } from '../graphic/dataGraphic'
 import { API } from '../../../src/services/api'
 import NoSkin from '../../assets/img/noSkin.png'
+import { faL } from '@fortawesome/free-solid-svg-icons';
 // import { run } from 'cypress';
 
 export default function ModalM({ assistant, skinObject }) {
 
     const [Description, setDescription] = useState("");
-    const [chart, setChart] = useState([])
+    const [chart, setChart] = useState([]);
+    const [IsChangingAvaiable, setIsChangingAvaiable] = useState(false);
 
     var baseUrl = API + "/api/Run/ListQuantity/" + assistant.idAssistant
     var header = {
@@ -24,19 +26,42 @@ export default function ModalM({ assistant, skinObject }) {
         },
     }
     useEffect(() => {
-        const fetchRun = async () => {
-            fetch(baseUrl, header
-            ).then((response) => {
-                response.json().then((json) => {
+            const fetchRun = async () => {
+                fetch(baseUrl, header
+                ).then((response) => {
+                    response.json().then((json) => {
                     // console.log(json)
                     setChart(json)
                 })
-            }).catch(error => {
-                console.log(error);
-            })
+                }).catch(error => {
+                    console.log(error);
+                })
         }
 
         fetchRun()
+    }, [])
+
+    function Refresh() {
+        setTimeout(function () {
+          window.location.href = "http://localhost:3000" + "/home";
+        }, 1000);
+      }
+
+    const getCharts = async () => {
+        console.log("Pimba");
+        fetch(baseUrl, header
+        ).then((response) => {
+            response.json().then((json) => {
+            // console.log(json)
+            setChart(json)
+        })
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
+    useEffect(() => {
+        setDescription(assistant.assistantDescription);
     }, [])
 
     const data = {
@@ -54,9 +79,26 @@ export default function ModalM({ assistant, skinObject }) {
     }
 
     function CloseModal(idAssistant) {
+        setDescription("");
+        setChart([]);
+        setIsChangingAvaiable(false);
+        assistant = null;
         var modal = document.getElementById("modal" + idAssistant);
         modal.style.display = "none";
     };
+
+
+    const setDescriptionEffect = async () => {
+        setDescription(assistant.assistantDescription);
+        var modal = document.getElementById("modal" + assistant.idAssistant);
+        var display = window.getComputedStyle(modal).display;
+        if(IsChangingAvaiable === false && display === "none"){
+            setIsChangingAvaiable(false);
+        }
+        else{
+            setIsChangingAvaiable(true);
+        }
+    }
 
     function DeleteAssistant(idAssistant) {
         fetch(API + '/api/Assistants/' + assistant.idAssistant, {
@@ -73,6 +115,7 @@ export default function ModalM({ assistant, skinObject }) {
                 }
             })
             .catch((erro) => console.log(erro))
+        Refresh();
     };
 
     function UpdateDescription() {
@@ -110,9 +153,6 @@ export default function ModalM({ assistant, skinObject }) {
             btn.style.display = "none";
         }
     }
-    useEffect(() => {
-        setDescription(assistant.assistantDescription);
-    }, [])
 
     return (
         <div id={"modal" + assistant.idAssistant} className='SmodalBackground'>
@@ -153,13 +193,17 @@ export default function ModalM({ assistant, skinObject }) {
                                 <h4>Descrição:</h4>
                             </div>
                             <div className='box-paragraph'>
-                                <textarea
-                                    name="texto_desc"
-                                    style={{ resize: "none", backgroundColor: "unset" }}
-                                    id={"texto_desc" + assistant.idAssistant}
-                                    readOnly value={Description} onChange={(campo) => setDescription(campo.target.value)}>
-                                    {assistant.assistantDescription}
-                                </textarea>
+                                {
+                                    Description !== assistant.assistantDescription && IsChangingAvaiable === false &&
+                                    setDescriptionEffect()
+                                }
+                                    <textarea
+                                        name="texto_desc"
+                                        style={{ resize: "none", backgroundColor: "unset" }}
+                                        id={"texto_desc" + assistant.idAssistant}
+                                        readOnly value={Description} onChange={(campo) => setDescription(campo.target.value)}>
+                                        {assistant.assistantDescription}
+                                    </textarea>
                                 <button
                                     className='btn-save-modal'
                                     onClick={(event) => {
@@ -228,6 +272,10 @@ export default function ModalM({ assistant, skinObject }) {
                                 </div>
                                 <div className='graphic2-right-side'>
                                     <div className='box-graphic-quantity'>
+                                        {
+                                            Description !== assistant.assistantDescription && IsChangingAvaiable === false &&
+                                            getCharts()
+                                        }
                                         {chart.map((c) =>
                                             c.total != undefined && c.total != null && c.total ?
                                                 <span>{c.total}</span> : <span> 0 </span>

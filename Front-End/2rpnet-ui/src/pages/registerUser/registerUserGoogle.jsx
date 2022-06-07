@@ -254,7 +254,7 @@ const errorToast = () => {
                     <img src={RoboAzul} alt="Robo Azul" />
                 </div>
                 <div className='registerArea'>
-                    <div className='registerContent'>
+                    <div className='registerContentCompany'>
                         <img className='logoRegister' src={Logo} alt="Logo 2RPnet" />
                         <form className='formRegister' autoComplete="off" encType='multipart/form-data'>
                             {

@@ -6,7 +6,7 @@
     width: 100vw - 60px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .perfilpage h1 {
@@ -303,12 +303,12 @@
 }
 
 .ProfileContainer .body-pd {
-    height: auto;
+    height: 100vh;
 }
 
-.ProfileContainer .perfilpage {
+/* .ProfileContainer .perfilpage {
     height: auto;
-}
+} */
 
 .profile .configContent {
     height: auto;
@@ -357,7 +357,8 @@
 }
 
 .formSkinSelect{
-    height: fill;
+    /* height: fill; */
+    height: 8em;
     display: flex;
     flex-direction: column;
     align-items: center;

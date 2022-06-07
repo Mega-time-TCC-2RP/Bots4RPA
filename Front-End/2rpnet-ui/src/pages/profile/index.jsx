@@ -222,7 +222,6 @@ export default function Profile() {
                     {
                         steps[currentStep].id === 'Step1' && (
                             <div cAcessibilidadelassName='areaStep'>
-                                <h5 alt="MeusTrofeus" className="h4 semi-bold margin-ajuste-profile">Meus troféus</h5>
                                 <div className='TrophiesContainer'>
                                     {
                                         allTrophiesList.map((Trophy) => {
@@ -293,7 +292,6 @@ export default function Profile() {
                     {
                         steps[currentStep].id === 'Step2' && (
                             <div cAcessibilidadelassName='areaStep'>
-                                <h5 alt="MinhasSkins" className="h4 semi-bold margin-ajuste-profile">Minhas skins</h5>
                                 <div className="TrophiesContainer">
                                     {
                                         skinsList.map((Skin) => {
