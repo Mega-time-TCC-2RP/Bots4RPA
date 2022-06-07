@@ -61,11 +61,7 @@ namespace _2RPNET_API.Repositories
             //Ctx.SaveChanges();
 
            
-            Assistant AssistantSought = Ctx.Assistants.Include(A => A.LibraryAssistants).FirstOrDefault(a => a.IdAssistant == IdAssistant);
-            foreach (LibraryAssistant item in AssistantSought.LibraryAssistants)
-            {
-                Ctx.LibraryAssistants.Remove(item);
-            }
+            Assistant AssistantSought = Ctx.Assistants.FirstOrDefault(a => a.IdAssistant == IdAssistant);
             Ctx.Assistants.Remove(AssistantSought);
             //DELETA OS AQUIVOS DO ASSISTANT 
             string path = $"./StaticFiles/Files/AssistantProcess" + $"{IdAssistant}" + ".cs";

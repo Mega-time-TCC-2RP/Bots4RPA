@@ -8607,19 +8607,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\43392993832\\.nuget\\packages\\": {}
+    "C:\\Users\\Pedro\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\43392993832\\Desktop\\2RP\\branchApiManha\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+      "projectUniqueName": "C:\\Users\\Pedro\\Desktop\\Projeto2RP\\Branch-Api-Manha\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
       "projectName": "2RPNET_API",
-      "projectPath": "C:\\Users\\43392993832\\Desktop\\2RP\\branchApiManha\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
-      "packagesPath": "C:\\Users\\43392993832\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\43392993832\\Desktop\\2RP\\branchApiManha\\Bots-4RPA\\Back-End\\2RPNET_API\\obj\\",
+      "projectPath": "C:\\Users\\Pedro\\Desktop\\Projeto2RP\\Branch-Api-Manha\\Bots-4RPA\\Back-End\\2RPNET_API\\2RPNET_API.csproj",
+      "packagesPath": "C:\\Users\\Pedro\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Pedro\\Desktop\\Projeto2RP\\Branch-Api-Manha\\Bots-4RPA\\Back-End\\2RPNET_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\43392993832\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8710,7 +8710,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -21,12 +21,14 @@ namespace _2RPNET_API.Controllers
         private IAssistantRepository _AssistantRepository { get; set; }
         private IAssistantProcedureRepository _AssistantProcedureRepository { get; set; }
         private IRunRepository _RunRepository { get; set; }
+        private ILibraryAssistantRepository _libraryAssistantRepository { get; set; }
 
-        public AssistantsController(IAssistantRepository Assistant, IAssistantProcedureRepository assistantProcedure, IRunRepository run)
+        public AssistantsController(IAssistantRepository Assistant, IAssistantProcedureRepository assistantProcedure, IRunRepository run, ILibraryAssistantRepository libraryAssistant)
         {
             _AssistantRepository = Assistant;
             _AssistantProcedureRepository = assistantProcedure;
             _RunRepository = run;
+            _libraryAssistantRepository = libraryAssistant;
         }
 
         /// <summary>
@@ -158,6 +160,7 @@ namespace _2RPNET_API.Controllers
                 {
                     List<AssistantProcedure> listProcedures = _AssistantProcedureRepository.SearchByAssistant(IdAssistant);
                     List<Run> listRuns = _RunRepository.AssistantList(IdAssistant);
+                    List<LibraryAssistant> listLbAssistants = _libraryAssistantRepository.GetByAssistant(IdAssistant);
                     if (listProcedures != null)
                     {
                         _AssistantProcedureRepository.Delete(IdAssistant);
@@ -167,6 +170,11 @@ namespace _2RPNET_API.Controllers
                         _RunRepository.Delete(IdAssistant);
 
                     }
+                    if (listLbAssistants != null)
+                    {
+                        _libraryAssistantRepository.DeleteByAssistant(IdAssistant);
+                    }
+                    
                     _AssistantRepository.Delete(IdAssistant);
                     return Ok();
                 }
