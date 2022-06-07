@@ -357,7 +357,8 @@
 }
 
 .formSkinSelect{
-    height: fill;
+    /* height: fill; */
+    height: 8em;
     display: flex;
     flex-direction: column;
     align-items: center;
