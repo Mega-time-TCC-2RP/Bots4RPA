@@ -227,8 +227,8 @@ export default function Home() {
   // Gambiarra para o método atualizar bonitinho
   function Refresh() {
     setTimeout(function () {
-      window.location.href = API + "/home";
-    }, 7000);
+      window.location.href = "http://localhost:3000" + "/home";
+    }, 1000);
   }
 
   function GetAssistant() {

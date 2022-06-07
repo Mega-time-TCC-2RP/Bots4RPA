@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../../assets/css/components/Modal.css"
 import Azul_Home from '../../assets/img/Azul_Home.png'
-import { Assistant } from '@material-ui/icons';
+import { Assistant, Refresh } from '@material-ui/icons';
 import Graphic from '../../components/graphic/graphic'
 import EditIcon from '../icones/edit'
 
@@ -38,6 +38,12 @@ export default function ModalM({ assistant, skinObject }) {
 
         fetchRun()
     }, [])
+
+    function Refresh() {
+        setTimeout(function () {
+          window.location.href = "http://localhost:3000" + "/home";
+        }, 1000);
+      }
 
     const getCharts = async () => {
         console.log("Pimba");
@@ -93,6 +99,7 @@ export default function ModalM({ assistant, skinObject }) {
                 }
             })
             .catch((erro) => console.log(erro))
+        Refresh();
     };
 
     function UpdateDescription() {
