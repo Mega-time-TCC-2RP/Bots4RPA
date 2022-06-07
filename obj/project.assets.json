@@ -9106,19 +9106,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Pedro\\.nuget\\packages\\": {}
+    "C:\\Users\\43392993832\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pedro\\Desktop\\Projeto2RP\\Branch-Api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
+      "projectUniqueName": "C:\\Users\\43392993832\\Desktop\\2RP\\branchApi\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
       "projectName": "2rpnet.rpa.webAPI",
-      "projectPath": "C:\\Users\\Pedro\\Desktop\\Projeto2RP\\Branch-Api\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
-      "packagesPath": "C:\\Users\\Pedro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pedro\\Desktop\\Projeto2RP\\Branch-Api\\Bots-4RPA\\obj\\",
+      "projectPath": "C:\\Users\\43392993832\\Desktop\\2RP\\branchApi\\Bots-4RPA\\2rpnet.rpa.webAPI.csproj",
+      "packagesPath": "C:\\Users\\43392993832\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\43392993832\\Desktop\\2RP\\branchApi\\Bots-4RPA\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\43392993832\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9201,7 +9201,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

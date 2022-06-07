@@ -39,6 +39,7 @@ namespace _2rpnet.rpa.webAPI.Repositories
             List<Assistant> dags = ctx.Assistants.Select(assistantDags => new Assistant()
             {
                 AssistantName = assistantDags.AssistantName,
+                IdEmployee = assistantDags.IdEmployee,
                 Runs = assistantDags.Runs,
                 CreationDate = assistantDags.CreationDate,
                 IdEmployeeNavigation = new Employee()
