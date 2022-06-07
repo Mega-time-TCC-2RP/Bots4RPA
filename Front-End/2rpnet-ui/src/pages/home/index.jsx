@@ -479,7 +479,7 @@ export default function Home() {
                         AssistantsList[0] !== undefined ?
                         AssistantsList.map((assistant) => {
                           return (
-                            <div className="containerSmodal">
+                            <div key={assistant.idAssistant} className="containerSmodal">
                               <SwiperSlide className="ContainerAssistantSlide">
                                 <div className="card1">
                                   {

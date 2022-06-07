@@ -10,12 +10,14 @@ import { Doughnut } from 'react-chartjs-2';
 import { DataGraphic } from '../graphic/dataGraphic'
 import { API } from '../../../src/services/api'
 import NoSkin from '../../assets/img/noSkin.png'
+import { faL } from '@fortawesome/free-solid-svg-icons';
 // import { run } from 'cypress';
 
 export default function ModalM({ assistant, skinObject }) {
 
     const [Description, setDescription] = useState("");
     const [chart, setChart] = useState([]);
+    const [IsChangingAvaiable, setIsChangingAvaiable] = useState(false);
 
     var baseUrl = API + "/api/Run/ListQuantity/" + assistant.idAssistant
     var header = {
@@ -79,10 +81,24 @@ export default function ModalM({ assistant, skinObject }) {
     function CloseModal(idAssistant) {
         setDescription("");
         setChart([]);
+        setIsChangingAvaiable(false);
         assistant = null;
         var modal = document.getElementById("modal" + idAssistant);
         modal.style.display = "none";
     };
+
+
+    const setDescriptionEffect = async () => {
+        setDescription(assistant.assistantDescription);
+        var modal = document.getElementById("modal" + assistant.idAssistant);
+        var display = window.getComputedStyle(modal).display;
+        if(IsChangingAvaiable === false && display === "none"){
+            setIsChangingAvaiable(false);
+        }
+        else{
+            setIsChangingAvaiable(true);
+        }
+    }
 
     function DeleteAssistant(idAssistant) {
         fetch(API + '/api/Assistants/' + assistant.idAssistant, {
@@ -178,8 +194,8 @@ export default function ModalM({ assistant, skinObject }) {
                             </div>
                             <div className='box-paragraph'>
                                 {
-                                    Description !== assistant.assistantDescription &&
-                                    setDescription(assistant.assistantDescription)
+                                    Description !== assistant.assistantDescription && IsChangingAvaiable === false &&
+                                    setDescriptionEffect()
                                 }
                                     <textarea
                                         name="texto_desc"
@@ -257,7 +273,7 @@ export default function ModalM({ assistant, skinObject }) {
                                 <div className='graphic2-right-side'>
                                     <div className='box-graphic-quantity'>
                                         {
-                                            Description !== assistant.assistantDescription &&
+                                            Description !== assistant.assistantDescription && IsChangingAvaiable === false &&
                                             getCharts()
                                         }
                                         {chart.map((c) =>
