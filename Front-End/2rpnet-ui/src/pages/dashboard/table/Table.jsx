@@ -11,7 +11,7 @@ const List = () => {
   const rows = [
     {
       id: 1143155,
-      product: "Acer Nitro 5",
+      product: "Pesquisador",
       img: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
       customer: "Marcos Artes",
       date: "2 de Fevereiro",
@@ -21,7 +21,7 @@ const List = () => {
     },
     {
       id: 2235235,
-      product: "Playstation 5",
+      product: "Mega",
       img: "https://m.media-amazon.com/images/I/31JaiPXYI8L._AC_UY327_FMwebp_QL65_.jpg",
       customer: "Gsutavo Borges",
       date: "6 de Fevereiro",
@@ -31,7 +31,7 @@ const List = () => {
     },
     {
       id: 2342353,
-      product: "Redragon S101",
+      product: "Assistente de Emails",
       img: "https://m.media-amazon.com/images/I/71kr3WAj1FL._AC_UY327_FMwebp_QL65_.jpg",
       customer: "Erick Souza",
       date: "26 de Março",
@@ -41,7 +41,7 @@ const List = () => {
     },
     {
       id: 2357741,
-      product: "Razer Blade 15",
+      product: "Email para Pedro",
       img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
       customer: "Isa Medeiros",
       date: "1 de Abril",
@@ -51,7 +51,7 @@ const List = () => {
     },
     {
       id: 2342355,
-      product: "ASUS ROG Strix",
+      product: "Ver cotação do dólar",
       img: "https://m.media-amazon.com/images/I/81hH5vK-MCL._AC_UY327_FMwebp_QL65_.jpg",
       customer: "José Benedito",
       date: "14 de Abril",
@@ -65,13 +65,13 @@ const List = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className="tableCell">ID</TableCell>
-            <TableCell className="tableCell">Nome</TableCell>
-            <TableCell className="tableCell">Criador</TableCell>
-            <TableCell className="tableCell">Data</TableCell>
-            <TableCell className="tableCell">Execuções</TableCell>
-            <TableCell className="tableCell">Descrição</TableCell>
-            <TableCell className="tableCell">Status</TableCell>
+            <TableCell className="p tableCell">ID</TableCell>
+            <TableCell className="p tableCell">Nome</TableCell>
+            <TableCell className="p tableCell">Criador</TableCell>
+            <TableCell className="p tableCell">Data</TableCell>
+            <TableCell className="p tableCell">Execuções</TableCell>
+            <TableCell className="p tableCell">Descrição</TableCell>
+            <TableCell className="p tableCell">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -84,11 +84,11 @@ const List = () => {
                   {row.product}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{row.customer}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
-              <TableCell className="tableCell">{row.amount}</TableCell>
-              <TableCell className="tableCell">{row.method}</TableCell>
-              <TableCell className="tableCell">
+              <TableCell className="p tableCell">{row.customer}</TableCell>
+              <TableCell className="p tableCell">{row.date}</TableCell>
+              <TableCell className="p tableCell">{row.amount}</TableCell>
+              <TableCell className="p tableCell">{row.method}</TableCell>
+              <TableCell className="p tableCell">
                 <span className={`status ${row.status}`}>{row.status}</span>
               </TableCell>
             </TableRow>

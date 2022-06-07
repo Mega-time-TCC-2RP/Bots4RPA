@@ -17,30 +17,29 @@ const Featured = () => {
                                         <CircularProgressbar value={89} text={"89%"} strokeWidth={5} />
                                 </div>
                                 <p className="h4 title">Taxa de Sucesso de Assistentes</p>
-                                <p className="p amount">$420</p>
+                                <p className="p amount"></p>
                                 <p className="desc">
-                                        Previous transactions processing. Last payments may not be included.
                                 </p>
                                 <div className="summary">
                                         <div className="item">
-                                                <div className="itemTitle">Target</div>
+                                                <div className="p itemTitle">Perda</div>
                                                 <div className="itemResult negative">
                                                         <KeyboardArrowDownIcon fontSize="small" />
-                                                        <div className="resultAmount">$12.4k</div>
+                                                        <div className="p resultAmount">4.3%</div>
                                                 </div>
                                         </div>
                                         <div className="item">
-                                                <div className="itemTitle">Última Semana</div>
+                                                <div className="p itemTitle">Última Semana</div>
                                                 <div className="itemResult positive">
                                                         <KeyboardArrowUpOutlinedIcon fontSize="small" />
-                                                        <div className="resultAmount">$12.4k</div>
+                                                        <div className="p resultAmount">12.4%</div>
                                                 </div>
                                         </div>
                                         <div className="item">
-                                                <div className="itemTitle">Último Mês</div>
+                                                <div className="p itemTitle">Último Mês</div>
                                                 <div className="itemResult positive">
                                                         <KeyboardArrowUpOutlinedIcon fontSize="small" />
-                                                        <div className="resultAmount">$12.4k</div>
+                                                        <div className="p resultAmount">20.2%</div>
                                                 </div>
                                         </div>
                                 </div>

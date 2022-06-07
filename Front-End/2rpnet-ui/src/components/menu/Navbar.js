@@ -137,15 +137,6 @@ function Navbar() {
             </li>
             : null
           }
-          {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
-            <li>
-              <Link to="/assistant" className='Link'>
-                <FaIcons.FaRobot className='icon2' alt="botão assistentes" />
-                <span className='Links_name' alt="botão assistentes">Assistentes</span>
-              </Link>
-            </li>
-            : null
-          } */}
           <li>
             <Link to="/social" className='Link'>
               <AiIcons.AiFillMessage className='icon2' alt="botão fórum social" />
@@ -234,15 +225,6 @@ function Navbar() {
               <span className='Links_name' alt="botão guias">Guias</span>
             </Link>
           </li>
-          {/* {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
-            <li>
-              <Link to="/skinShop" className='Link'>
-                <FaIcons.FaTshirt className='icon2' alt="botão loja" />
-                <span className='Links_name' alt="botão loja de skins">Skins</span>
-              </Link>
-            </li>
-            : null
-          } */}
           {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
             <li>
               <Link to="/dags" className='Link'>
@@ -266,15 +248,6 @@ function Navbar() {
               <Link to="/quests" className='Link'>
                 <FaIcons.FaTasks className='icon2' alt="botão tarefas" />
                 <span className='Links_name' alt="botão tarefas">Tarefas</span>
-              </Link>
-            </li>
-            : null
-          }
-          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
-            <li>
-              <Link to="/assistant" className='Link'>
-                <FaIcons.FaRobot className='icon2' alt="botão assistentes" />
-                <span className='Links_name' alt="botão assistentes">Assistentes</span>
               </Link>
             </li>
             : null
@@ -388,15 +361,6 @@ function Navbar() {
               <Link to="/quests" className='Link'>
                 <FaIcons.FaTasks className='icon2' alt="botão tarefas" />
                 <span className='Links_name' alt="botão tarefas">Tarefas</span>
-              </Link>
-            </li>
-            : null
-          }
-          {parseJwt().Role !== '1' && parseJwt().Role !== '0' ?
-            <li>
-              <Link to="/assistant" className='Link'>
-                <FaIcons.FaRobot className='icon2' alt="botão assistentes" />
-                <span className='Links_name' alt="botão assistentes">Assistentes</span>
               </Link>
             </li>
             : null
