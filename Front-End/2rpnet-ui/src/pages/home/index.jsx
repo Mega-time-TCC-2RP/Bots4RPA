@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../../components/menu/Navbar'
 import VLibras from '@djpfs/react-vlibras'
 import { API } from "../../services/api";
+import NoSkin from '../../assets/img/noSkin.png'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -71,15 +72,17 @@ export default function Home() {
 
   const [isExecuting, setIsExecuting] = useState(false);
 
-  const [ListAssistants, setListAssistants] = useState([])
+  const [ListAssistants, setListAssistants] = useState([]);
   const [AssistantsList, setAssistantsList] = useState([]);
+  const [AssistantModal, setAssistantModal] = useState({});
+  const [SkinModal, setSkinModal] = useState({});
 
   const handleChange = ({ target }) => {
     if (!target.value) {
       setAssistantsList(ListAssistants);
       return;
     }
-    const filterAssistants = AssistantsList.filter(({ assistantName }) => assistantName.toLowerCase().includes(target.value.toLowerCase()));
+    const filterAssistants = AssistantsList.filter(({ idAssistantNavigation }) => idAssistantNavigation.assistantName.toLowerCase().includes(target.value.toLowerCase()));
     setAssistantsList(filterAssistants)
   }
 
@@ -88,7 +91,10 @@ export default function Home() {
     var getURL = API + "/api/AssistantProcedure/Assistant/" + idAssistant;
     fetch(getURL, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      },
     })
       .then((response) => {
         return response.json()
@@ -111,7 +117,10 @@ export default function Home() {
 
                 fetch(epURL, {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+                  },
                   body: epBody
                 })
                   .then((response) => {
@@ -146,7 +155,10 @@ export default function Home() {
 
     fetch(eURL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+      },
       body: eBody
     })
       .then((response) => {
@@ -159,7 +171,10 @@ export default function Home() {
           var myUrl = API + "/api/Run/" + idAssistant
           const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            },
             body: JSON.stringify({ "runStatus": true })
           };
 
@@ -174,14 +189,17 @@ export default function Home() {
               }
             }).catch(error => console.log(error))
 
-            Refresh()
-    
+          Refresh()
+
         } else {
           toast.error("A execução deu errado :/");
-          var myUrl = API +"/api/Run/" + idAssistant
+          var myUrl = API + "/api/Run/" + idAssistant
           const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            },
             body: JSON.stringify({ "runStatus": false })
           };
 
@@ -205,21 +223,19 @@ export default function Home() {
         toast.error("A execução deu errado :/");
         setIsExecuting(false);
       })
-
   }
-
   // Gambiarra para o método atualizar bonitinho
   function Refresh() {
     setTimeout(function () {
-      window.location.href = "http://localhost:3000/home";
-    }, 7000);
+      window.location.href = "http://localhost:3000" + "/home";
+    }, 1000);
   }
 
   function GetAssistant() {
     console.log('getAssistant')
-    fetch(API + '/api/Assistants/Employee/' + parseJwt().idEmployee, {
+    fetch('http://grupo7.azurewebsites.net/api/LibraryAssistants', {
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
     })
       .then((response) => response.json())
@@ -231,15 +247,17 @@ export default function Home() {
 
   function GetMyAssistants() {
     console.log('Função GetAssistants da Home')
-    fetch(API + '/api/Assistants/Employee/' + parseJwt().idEmployee, {
+    fetch('http://grupo7.azurewebsites.net/api/LibraryAssistants', {
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
       },
     })
       .then((response) => response.json())
-      .then((data) =>
+      .then((data) => {
+
+        console.log(data)
         setAssistantsList(data)
-        // console.log(data)
+      }
       )
       .catch((error) => console.log(error));
   };
@@ -251,8 +269,16 @@ export default function Home() {
   };
 
   // Open Assistant details modal
-  function OpenModal(idAssistant) {
+  function OpenModal(idAssistant, idAssistantNavigation, skinObject) {
     var modal = document.getElementById("modal" + idAssistant);
+    setAssistantModal(idAssistantNavigation);
+    if(skinObject !== undefined)
+      setSkinModal(skinObject);
+    else{
+      setSkinModal({
+        undefined: "undefined"
+      });
+    }
     // console.log(modal)
     modal.style.display = "flex";
   };
@@ -276,7 +302,7 @@ export default function Home() {
     if (parseJwt().Role != "1") {
       axios.get('http://grupo7.azurewebsites.net/api/Workflows/GetMine', {
         headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+          'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
       }).then((response) => {
         // console.log(response)
@@ -293,7 +319,7 @@ export default function Home() {
     else {
       axios.get('http://grupo7.azurewebsites.net/api/Workflows', {
         headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+          'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
       }).then((response) => {
         console.log(response)
@@ -312,7 +338,7 @@ export default function Home() {
   const GetHighlightedPosts = () => {
     axios.get('https://grupo7.azurewebsites.net/api/Posts/Highlights', {
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+        'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
       }
     }).then((response) => {
       // console.log(response)
@@ -331,7 +357,7 @@ export default function Home() {
     GetMyQuests();
     GetHighlightedPosts();
     GetMyAssistants();
-    GetAssistant()
+    GetAssistant();
   }, [])
 
   return (
@@ -341,7 +367,6 @@ export default function Home() {
       <Header />
       <div className='body-pd'>
 
-        
         <VLibras />
         <img
           src={onBoardingBot}
@@ -428,48 +453,164 @@ export default function Home() {
 
 
               <div className="cards-container">
-                {AssistantsList.map((assistant) => {
-                  return (
-                    <div className="containerSmodal">
-                      <ModalM assistant={assistant} />
-                      <div className="card1">
-
-                        <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={Azul_Home} className="card1-img" />
-                        <div className="container-AssistantName">
-                          <h5>{assistant.assistantName}</h5>
-                        </div>
-                        {
-                          isExecuting === false ? (
-                            <button onClick={(event) => {
-                              event.preventDefault()
-                              Execute(assistant.idAssistant)
-
-                            }}>
-                              <PlayIcon />
-                            </button>
-                          ) : (
-                            <button disabled onClick={(event) => {
-                              event.preventDefault()
-                              Execute(assistant.idAssistant)
-                            }}>
-                              <FontAwesomeIcon icon={faSpinner} size="lg" spin />
-                            </button>
+                {/* <ModalM assistant={assistant.idAssistantNavigation} /> */}
+                {
+                  (AssistantModal.idAssistant !== undefined && SkinModal !== undefined) &&
+                  <div className="containerSmodal">
+                    <ModalM assistant={AssistantModal} skinObject={SkinModal}/>
+                  </div>
+                }
+                {
+                  window.screen.width >= 768 ?
+                    <Swiper
+                      slidesPerView={3}
+                      spaceBetween={0}
+                      slidesPerGroup={3}
+                      loop={false}
+                      loopFillGroupWithBlank={true}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      navigation={true}
+                      modules={[Pagination, Navigation]}
+                      className="swiperHomeTasks"
+                    >
+                      {
+                        AssistantsList[0] !== undefined ?
+                        AssistantsList.map((assistant) => {
+                          return (
+                            <div key={assistant.idAssistant} className="containerSmodal">
+                              <SwiperSlide className="ContainerAssistantSlide">
+                                <div className="card1">
+                                  {
+                                    assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
+                                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={NoSkin} className="card1-img" /> :
+                                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={"http://grupo7.azurewebsites.net/img/" + assistant.idLibrarySkinNavigation.idSkinNavigation.skinImages} className="card1-img" />
+                                  }
+                                  <div className="container-AssistantName">
+                                    <h5>{assistant.idAssistantNavigation.assistantName}</h5>
+                                  </div>
+                                  {
+                                    isExecuting === false ? (
+                                      <button onClick={(event) => {
+                                        event.preventDefault()
+                                        Execute(assistant.idAssistant)
+  
+                                      }}>
+                                        <PlayIcon />
+                                      </button>
+                                    ) : (
+                                      <button disabled onClick={(event) => {
+                                        event.preventDefault()
+                                        Execute(assistant.idAssistant)
+                                      }}>
+                                        <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                                      </button>
+                                    )
+                                  }
+                                  <div className="box-details">
+                                  {
+                                    assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
+                                    <button
+                                    onClick={(event) => {
+                                      event.preventDefault()
+                                      OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, undefined)
+                                    }}
+                                  >Ver detalhes
+                                  </button> :
+                                      <button
+                                      onClick={(event) => {
+                                        event.preventDefault()
+                                        OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, assistant.idLibrarySkinNavigation.idSkinNavigation)
+                                      }}
+                                    >Ver detalhes
+                                    </button>
+                                  }
+                                  </div>
+                                </div>
+                              </SwiperSlide>
+                            </div>
                           )
-                        }
-                        <div className="box-details">
-                          <button
-                            onClick={(event) => {
-                              event.preventDefault()
-                              OpenModal(assistant.idAssistant)
-                            }}
-                          >Ver detalhes
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-
+                        }) : <SwiperSlide><span>Não há assistentes...</span></SwiperSlide>
+                      }
+                    </Swiper> : <Swiper
+                      // slidesPerView={2}
+                      // spaceBetween={0}
+                      // slidesPerGroup={2}
+                      // loop={false}
+                      // loopFillGroupWithBlank={true}
+                      // pagination={{
+                      //   clickable: true,
+                      // }}
+                      // navigation={true}
+                      // modules={[Pagination, Navigation]}
+                      pagination={{
+                        clickable: true
+                      }}
+                      navigation={true}
+                      modules={[Pagination, Navigation]}
+                      className="swiperHomeTasks"
+                    >
+                      {
+                        AssistantsList[0] !== undefined ?
+                        AssistantsList.map((assistant) => {
+                          return (
+                            <div className="containerSmodal">
+                              <SwiperSlide className="ContainerAssistantSlide">
+                                <div className="card1">
+                                  {
+                                    assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
+                                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={NoSkin} className="card1-img" /> :
+                                      <img onClick={() => { Navigate("/assistant", { state: { id: assistant.idAssistant } }) }} src={"http://grupo7.azurewebsites.net/img/" + assistant.idLibrarySkinNavigation.idSkinNavigation.skinImages} className="card1-img" />
+                                  }
+                                  <div className="container-AssistantName">
+                                    <h5>{assistant.idAssistantNavigation.assistantName}</h5>
+                                  </div>
+                                  {
+                                    isExecuting === false ? (
+                                      <button onClick={(event) => {
+                                        event.preventDefault()
+                                        Execute(assistant.idAssistant)
+  
+                                      }}>
+                                        <PlayIcon />
+                                      </button>
+                                    ) : (
+                                      <button disabled onClick={(event) => {
+                                        event.preventDefault()
+                                        Execute(assistant.idAssistant)
+                                      }}>
+                                        <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                                      </button>
+                                    )
+                                  }
+                                  <div className="box-details">
+                                  {
+                                    assistant.idLibrarySkinNavigation === undefined || assistant.idLibrarySkinNavigation === null ?
+                                    <button
+                                    onClick={(event) => {
+                                      event.preventDefault()
+                                      OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, undefined)
+                                    }}
+                                  >Ver detalhes
+                                  </button> :
+                                      <button
+                                      onClick={(event) => {
+                                        event.preventDefault()
+                                        OpenModal(assistant.idAssistant, assistant.idAssistantNavigation, assistant.idLibrarySkinNavigation.idSkinNavigation)
+                                      }}
+                                    >Ver detalhes
+                                    </button>
+                                  }
+                                  </div>
+                                </div>
+                              </SwiperSlide>
+                            </div>
+                          )
+                        }) : <SwiperSlide><span>Não há assistentes...</span></SwiperSlide>
+                      }
+                    </Swiper>
+                }
               </div>
             </form>
           </div>
@@ -480,9 +621,9 @@ export default function Home() {
           {
             window.screen.width >= 768 ?
               <Swiper
-                slidesPerView={1}
+                slidesPerView={2}
                 spaceBetween={0}
-                slidesPerGroup={1}
+                slidesPerGroup={2}
                 loop={false}
                 loopFillGroupWithBlank={true}
                 pagination={{
@@ -570,7 +711,7 @@ export default function Home() {
                     highlightedPosts.map((post) => {
                       return (
                         <SwiperSlide className="swiper-slide-HomeTasks">
-                          <div className="bottom-posts-content cardPattern">
+                          <Link to='/social'><div className="bottom-posts-content cardPattern">
                             <div className="chatListItem--lines">
                               <img src={"http://grupo7.azurewebsites.net/img/" + post.idPlayerNavigation.idEmployeeNavigation.idUserNavigation.photoUser} className="ItemPost-avatar" />
                               <div className="chatItemList-line">
@@ -585,7 +726,7 @@ export default function Home() {
                             }
                             <h2 className="TituloPostDestaque h5">{post.title}</h2>
                             <p className="post-text-bottom-home p">{post.postDescription}</p>
-                          </div>
+                          </div></Link>
                         </SwiperSlide>
                       )
                     }) :

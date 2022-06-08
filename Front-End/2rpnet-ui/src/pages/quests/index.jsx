@@ -18,7 +18,7 @@ import "../../assets/css/components/navbar.css"
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 
-//onboarding
+// //onboarding
 import '../../assets/css/pages/onBoarding.css'
 import Modal from 'react-modal';
 import Blue_Head from '../../assets/img/Blue_Head.png'
@@ -28,6 +28,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import moment from 'moment';
+import 'moment/locale/pt-br'
 
 const stylesCustom = {
   content: {
@@ -136,11 +138,9 @@ function App() {
   }
 
   // Consumo da API - Patch Status - Atualizacao de estado do card
-  const patchStatusTask = (event) => {
-    event.preventDefault()
-
+  const patchStatusTask = (idQuest, status) => {
     axios
-      .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + idQuest + '/' + statusTask, {
+      .patch('http://grupo7.azurewebsites.net/api/Quests/ChangeStatus/' + idQuest + '/' + status, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
         }
@@ -175,6 +175,16 @@ function App() {
             setEndDate();
             setTitleTask("");
             setDescriptionTask("");
+            getWorkflowList();
+            dragNDrop();
+            day();
+            monthAndWeek();
+
+            var container = document.getElementsByClassName("taskMap");
+            var content = container.innerHTML;
+            container.innerHTML= content; 
+            //Engenharia de emergência (último caso):
+            // document. location. reload() 
           }
         })
         .catch((error) => {
@@ -195,6 +205,14 @@ function App() {
 
       document.getElementById("calend" + date).style.color = "var(--WHITE)";
       document.getElementById("calend" + date).style.backgroundColor = "var(--PrimaryColor1)";
+      
+      let indexMonth = new Date().getMonth()
+      let day30 = [1, 3, 5, 8, 10]
+
+      if (indexMonth === day30) {
+        const element = document.classList('.lastCalend');
+        element.remove();
+      } 
     }
   }
 
@@ -273,17 +291,21 @@ function App() {
     }
   }
 
-  const month = () => {
+  const monthAndWeek = () => {
     if (width >= 992) {
       const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+      const week = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
 
       let indexMonth = new Date().getMonth()
+      let indexWeek = new Date().getDay()
 
       let setMonth = months[indexMonth]
+      let setWeek = week[indexWeek]
 
       // console.log(months[indexMonth]);
 
       document.getElementById("monthCalendar").innerHTML = setMonth
+      document.getElementById("weekCalendar").innerHTML = setWeek
     }
   }
 
@@ -319,9 +341,10 @@ function App() {
           </div>
           <div className="dateArea">
             <div className="h5">Data de Entrega:</div>
-            <div className="p dateOneTask">{myQuests.endDate}</div>
+            <div className="p dateOneTask">{moment(myQuests.endDate).format("LL")}</div>
           </div>
-            <select className='select' onChange={(e) => setStatusTask(e.target.value)}>
+          <div className="h5">Situação da Tarefa:</div>
+            <select className='select' onChange={(e) => patchStatusTask(myQuests.idWorkflow, e.target.value)}>
               <optgroup>
                 {
                   myQuests.idStatus === 1 ?
@@ -337,20 +360,10 @@ function App() {
                 }
               </optgroup>
             </select>
-            {
-              statusTask === '' ||
-                statusTask === null ||
-                statusTask === 0 ||
-                statusTask === myQuests.idStatus ?
-                <input className="button btnNewTask marginBtnModalTask"
-                  type="button"
-                  onClick={(e) => { handleCloseTask(e) }}
-                  value="Fechar Tarefa" /> :
-                <input className="button btnNewTask marginBtnModalTask"
-                  type="button"
-                  onClick={(e) => { handleCloseTask(e); patchStatusTask(e) }}
-                  value="Salvar Alterações" />
-            }
+              <input className="button btnNewTask marginBtnModalTask"
+                type="button"
+                onClick={(e) => { handleCloseTask(e) }}
+                value="Fechar Tarefa" />
         </div>
       </div>
     )
@@ -359,7 +372,7 @@ function App() {
   useEffect(() => {
     getWorkflowList()
     day()
-    month()
+    monthAndWeek()
     dragNDrop()
   });
 
@@ -438,7 +451,7 @@ function App() {
                     <h5 className="h5">A Fazer</h5>
                   </div>
                   <div
-                    className="taskSpace">
+                    className="taskSpace taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 1) {
@@ -480,7 +493,7 @@ function App() {
                     <h5 className="h5">Fazendo</h5>
                   </div>
                   <div
-                    className="taskSpace">
+                    className="taskSpace taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 2) {
@@ -520,7 +533,7 @@ function App() {
                     <h5 className="h5">Feito</h5>
                   </div>
                   <div
-                    className="taskSpace">
+                    className="taskSpace taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 3) {
@@ -562,7 +575,10 @@ function App() {
               <div className="calendarAndBtn">
 
                 <section className="calendar p">
-                  <div className="calendarTitle"><h5 id="monthCalendar" className="h5">Calendário</h5></div>
+                  <div className="calendarTitle">
+                    <h5 id="monthCalendar" className="h5">Calendário</h5>
+                    <p id="weekCalendar" className="p semi-bold">Semana</p>
+                  </div>
                   <input id="calend1"
                     className="btnCalendar p"
                     type="button"
@@ -867,7 +883,7 @@ function App() {
                     <h5 className="h5">A Fazer</h5>
                   </div>
                   <div
-                    className="taskSpaceMobile">
+                    className="taskSpaceMobile taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 1) {
@@ -908,7 +924,7 @@ function App() {
                     <h5 className="h5">Fazendo</h5>
                   </div>
                   <div
-                    className="taskSpaceMobile">
+                    className="taskSpaceMobile taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 2) {
@@ -948,7 +964,7 @@ function App() {
                     <h5 className="h5">Feito</h5>
                   </div>
                   <div
-                    className="taskSpaceMobile">
+                    className="taskSpaceMobile taskMap">
                     {
                       workflowList.map((myQuests, idx) => {
                         if (myQuests.idStatus === 3) {

@@ -84,7 +84,9 @@ export const Header = () => {
                                         {
                                             myUser.employees === nullUndefinedParams.employees ?
                                                 <div className='job'>Cargo indefinido</div> : 
-                                                <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div>
+                                                myUser.employees[0].idOfficeNavigation.titleOffice !== undefined ?
+                                                <div className='job'>{myUser.employees[0].idOfficeNavigation.titleOffice}</div> :
+                                                <div className='job'>Cargo indefinido</div>
                                         }
                                     </div>
                                 </div> :

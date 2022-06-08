@@ -41,10 +41,10 @@ table{
 }
 table th{
         background-color: rgb(214, 214, 214);
-        height: 50px;
+        height: 70px;
 }
 table td{
-        height: 30px;
+        height: 50px;
 }
 table th, td{
         padding: 1px;

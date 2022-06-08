@@ -75,6 +75,49 @@ export default function Login() {
                         email: email,
                         password: password
                 })
+                .then(resposta => {
+                        if (resposta.status === 200) {
+                                localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
+
+                                // define a variável base64 que vai receber o payload do token
+                                // let base64 = localStorage.getItem('2rp-chave-autenticacao').split('.')[1];
+                                //     console.log(base64);
+                                // exibe as propriedades da página
+                                //     console.log(parseJwt());
+                                // verifica se o usuário logado é do tipo administrador
+                                //mudar aqui e no menu principal se o cadastro for liberado para
+                                //todos os usuarios
+                                if (parseJwt().Role === '1' || parseJwt().Role === '2') {
+                                        history('/config')
+                                }
+                                else if (parseJwt().Role === '3') {
+                                        history('/home')
+
+                                        // console.log('logado: ' + usuarioAutenticado())
+                                }
+                                else {
+                                        history('/notFound')
+                                }
+                        }
+                        setIsLoading(false);
+                })
+                        // .then(resposta => {
+                        //         if(resposta.status === 401){
+                        //                 console.log('ta vindo pra waiting room')
+                        //                 history('/waitingRoom');
+                        //                 errorToast();
+                        //         };
+                        // })
+                        .catch((error) => {
+                                if ("Apenas usuários validados podem logar" === error.response.data.msg) {
+                                        history('/waitingRoom');
+                                        
+                                }
+                                errorToast();
+                                console.log(error)
+                                this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
+                                setIsLoading(false);
+                        })
                         .then(diffToast(),
                                 bazinga => {
                                         if (bazinga.status !== 200) {
@@ -83,39 +126,7 @@ export default function Login() {
                                         }
                                 }
                         )
-                        .then(resposta => {
-                                if (resposta.status === 200) {
-                                        
-                                        localStorage.setItem('2rp-chave-autenticacao', resposta.data.token);
 
-                                        // define a variável base64 que vai receber o payload do token
-                                        // let base64 = localStorage.getItem('2rp-chave-autenticacao').split('.')[1];
-                                        //     console.log(base64);
-                                        // exibe as propriedades da página
-                                        //     console.log(parseJwt());
-                                        // verifica se o usuário logado é do tipo administrador
-                                        //mudar aqui e no menu principal se o cadastro for liberado para
-                                        //todos os usuarios
-                                        if (parseJwt().Role === '1' || parseJwt().Role === '2') {
-                                                history('/config')
-                                        }
-                                        else if (parseJwt().Role === '3') {
-                                                history('/home')
-
-                                                // console.log('logado: ' + usuarioAutenticado())
-                                        }
-                                        else {
-                                                history('/notFound')
-                                        }
-                                }
-                                setIsLoading(false);
-                        })
-
-                        .catch((error) => {
-                                console.log(error)
-                                this.setState({ erroMensagem: 'E-mail e/ou senha inválidos', isLoading: false })
-                                setIsLoading(false);
-                        })
                 setIsLoading(false);
         };
 

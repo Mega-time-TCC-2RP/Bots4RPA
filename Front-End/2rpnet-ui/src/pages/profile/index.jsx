@@ -29,6 +29,10 @@ import '../../assets/css/pages/profile.css'
 import * as AiIcons from 'react-icons/ai'
 import * as SiIcons from 'react-icons/si'
 
+//toast:
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const steps = [
     {
         id: 'Step1'
@@ -65,6 +69,9 @@ export default function Profile() {
     const [trophyModalOpen, setTrophyModalOpen] = useState(false);
     const [trophyModal, setTrophyModal] = useState({});
     const [trophyModalNotEarned, setTrophyModalNotEarned] = useState(false);
+    const [assistants, setAssistants] = useState([]);
+    const [selectedAssistantId, setSelectedAssistantId] = useState(0);
+    const [changeSkinSucces, setChangeSkinSucces] = useState(false);
 
     function openModalTrophy(e, Trophy, notEarned) {
         e.preventDefault();
@@ -76,6 +83,29 @@ export default function Profile() {
     function closeModalTrophy(e) {
         e.preventDefault();
         setTrophyModalOpen(false);
+    }
+
+    const diffToast = () => {
+        toast.success('Skin alterada com sucesso!', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+    const errorToast = () => {
+        toast.error('Ops! Ocorreu um erro', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     const GetTrohpiesAndSkins = async () => {
@@ -111,6 +141,50 @@ export default function Profile() {
         })
     }
 
+    const ChangeAssistantSkin = async (e, idLibrarySkin) => {
+        e.preventDefault();
+        axios.post('http://grupo7.azurewebsites.net/api/LibraryAssistants', {
+            "idLibraryAssistant": selectedAssistantId,
+            "idLibrarySkin": idLibrarySkin
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        }).then(async (response) => {
+            setChangeSkinSucces(true);
+        }).catch((error) => {
+            setChangeSkinSucces(false);
+            if (handleAuthException(error) === true) {
+                localStorage.removeItem('2rp-chave-autenticacao')
+                Navigate('/login')
+            }
+        }).then(diffToast(),
+            bazinga => {
+                if (bazinga.status !== 200) {
+                    toast.dismiss(diffToast());
+                    errorToast()
+                }
+            }
+        )
+    }
+
+    const GetAssistants = async () => {
+        console.log('Função GetAssistants da Home')
+        fetch('http://grupo7.azurewebsites.net/api/LibraryAssistants', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao'),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+
+                console.log(data)
+                setAssistants(data)
+            }
+            )
+            .catch((error) => console.log(error));
+    }
+
     function select(nextStep) {
         setCurrentStep(nextStep)
         switch (nextStep) {
@@ -130,12 +204,13 @@ export default function Profile() {
     useEffect(() => {
         select(0);
         GetTrohpiesAndSkins();
+        GetAssistants();
     }, [])
 
     return (
         <div className='ProfileContainer'>
             <Navbar />
-            <VLibras/>
+            <Header />            <VLibras />
             <div className='perfilpage body-pd profile'>
                 {/* <Header /> */}
                 <h1 className='container h2 semi-bold' alt="configurações">Perfil</h1>
@@ -147,20 +222,19 @@ export default function Profile() {
                     {
                         steps[currentStep].id === 'Step1' && (
                             <div cAcessibilidadelassName='areaStep'>
-                                <h5 alt="MeusTrofeus" className="h4 semi-bold margin-ajuste-profile">Meus troféus</h5>
                                 <div className='TrophiesContainer'>
                                     {
                                         allTrophiesList.map((Trophy) => {
                                             if (trophiesList.find((T) => T.idTrophyNavigation.idTrophy === Trophy.idTrophy) != null && trophiesList.find((T) => T.idTrophyNavigation.idTrophy === Trophy.idTrophy) != undefined) {
                                                 return (
-                                                    <button onClick={(e) => openModalTrophy(e, Trophy, false)}>
+                                                    <button className='TrophieBtn' onClick={(e) => openModalTrophy(e, Trophy, false)}>
                                                         <img src={"http://grupo7.azurewebsites.net/img/" + Trophy.trophyImage}></img>
                                                     </button>
                                                 )
                                             }
                                             else {
                                                 return (
-                                                    <button onClick={(e) => openModalTrophy(e, Trophy, true)}>
+                                                    <button className='TrophieBtn' onClick={(e) => openModalTrophy(e, Trophy, true)}>
                                                         <img className='imgAcinzentada' src={"http://grupo7.azurewebsites.net/img/" + Trophy.trophyImage}></img>
                                                     </button>
                                                 )
@@ -218,7 +292,6 @@ export default function Profile() {
                     {
                         steps[currentStep].id === 'Step2' && (
                             <div cAcessibilidadelassName='areaStep'>
-                                <h5 alt="MinhasSkins" className="h4 semi-bold margin-ajuste-profile">Minhas skins</h5>
                                 <div className="TrophiesContainer">
                                     {
                                         skinsList.map((Skin) => {
@@ -227,6 +300,21 @@ export default function Profile() {
                                                     <img src={"http://grupo7.azurewebsites.net/img/" + Skin.idSkinNavigation.skinImages} alt="img robot" />
                                                     <span className='h6 semi-bold'>{Skin.idSkinNavigation.title}</span>
                                                     <span className='p'>{Skin.idSkinNavigation.skinDescription}</span>
+                                                    <form className='formSkinSelect' onSubmit={(e) => ChangeAssistantSkin(e, Skin.idLibrarySkins)}>
+                                                        <select onChange={(e) => setSelectedAssistantId(e.target.value)} value={selectedAssistantId} className='select'>
+                                                            <optgroup>
+                                                                <option value={0}>Selecione uma opção</option>
+                                                                {
+                                                                    assistants.map((lbAssistant) => {
+                                                                        return (
+                                                                            <option value={lbAssistant.idLiraryAssistant}>{lbAssistant.idAssistantNavigation.assistantName}</option>
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </optgroup>
+                                                        </select>
+                                                        <button className='button' type='submit'>Aplicar</button>
+                                                    </form>
                                                 </div>
                                             )
                                         })

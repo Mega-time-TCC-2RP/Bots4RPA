@@ -248,7 +248,7 @@
     height: 60px;
 }
 
-.TrophiesContainer button {
+.TrophieBtn {
     border: none;
     background-color: var(--WHITE);
 }
@@ -312,9 +312,9 @@
     margin-top: 36px;
 }
 
-.ProfileContainer .body-pd {
+/* .ProfileContainer .body-pd {
     height: auto;
-}
+} */
 
 .ProfileContainer .configPage {
     height: auto;
@@ -332,7 +332,7 @@
     background-color: unset;
     color: var(--BLACK);
     width: 300px;
-    height: 500px;
+    height: 26em;
 
     /* efeito de zoom */
     max-width: 100%;
@@ -358,12 +358,17 @@
 }
 
 .skin-profile-card img {
-    width: 250px;
+    width: 220px;
     height: auto;
+    margin-bottom: 1.5rem;
 }
 
 .newPassword label {
     padding-left: 5%;
+}
+
+#confirmPasswordButton {
+    width: 100%;
 }
 
 @media only screen and (max-width: 1550px) {
@@ -544,10 +549,6 @@
     .contentConfig {
         height: 110px;
         width: 100%;
-    }
-
-    .button {
-        width: 100% !important;
     }
 
     #validarUsuarios {

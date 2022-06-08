@@ -22,7 +22,8 @@
 }
 
 .top-container {
-    height: 73vh;
+    height: 580px;
+    /* height: 37em; */
     display: flex;
     justify-content: center;
     background: #F1F1F1;
@@ -144,15 +145,20 @@
     /* background-color: aqua; */
 }
 
+.ContainerAssistantSlide{
+    height: 25.2em;
+    display: flex;
+    align-items: center;
+    width: 33% !important;
+    justify-content: center;
+}
+
 .card1 {
     width: 17.063em;
     height: 22.838em;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin-left: 0.625rem;
-    margin-right: 5rem;
 
     background: #FFFFFF;
     border: 5px solid #F2F2F2;
@@ -175,7 +181,7 @@
 
 /* efeito de zoom */
 .card1 img {
-    width: 70%;
+    width: 72%;
     margin-top: 0.9rem;
     margin-left: 0.938rem;
     display: flex;
@@ -183,6 +189,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    height: 183px;
 }
 
 .card1 h5 {
@@ -363,8 +370,8 @@
 }
 
 .ItemPost-avatar {
-    width: 70px;
-    height: 70px;
+    width: 4em;
+    height: 4em;
     border-radius: 35px;
     margin-left: 15px;
     cursor: pointer;
@@ -378,6 +385,7 @@
     border-bottom: 1px solid var(--ComplementaryColor1);
     padding-right: 15px;
     margin-left: 15px;
+    padding-bottom: 0.5rem;
 }
 
 .chatItemList-line {
@@ -530,6 +538,8 @@
     animation-name: animatetop;
     animation-duration: 0.4s
 }
+
+
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
@@ -748,6 +758,10 @@
         width: 0.4rem;
         height: 0.7rem;
         padding: 0.5rem;
+    }
+
+    .ContainerAssistantSlide{
+        width: 100% !important;
     }
 }
 

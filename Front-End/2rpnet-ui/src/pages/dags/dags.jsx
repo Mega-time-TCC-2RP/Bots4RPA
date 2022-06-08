@@ -41,8 +41,6 @@ Modal.setAppElement('#root');
 export default function Dags() {
     const [dags, setDags] = useState([]);
 
-
-
     //onboarding
     const [onBoardingIsOpen, setOnBoardingIsOpen] = useState(false);
 
@@ -59,23 +57,25 @@ export default function Dags() {
     }
 
     useEffect(() => {
-        axios.get('https://62966746810c00c1cb75379c.mockapi.io/api/v1/dags')
+        axios.get('https://grupo7.azurewebsites.net/api/Assistants', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+              }
+        })
             .then((response) => {
+                console.log('deu certoooo')
+                console.log(response.data)
                 setDags(response.data)
             })
 
-            .catch(() => {
-                console.log('deu errado')
+            .catch((err) => {
+                console.log('deu errado: ' + err)
             })
         // ListarDags();
     }, [])
 
 
-
-
     return (
-
-
 
         <div>
             <Navbar />
@@ -108,37 +108,32 @@ export default function Dags() {
                             >
                                 <SwiperSlide className="swiper-slide-OnBoarding-social">
                                     <div className="boardingContainer">
-                                        <span className='p textoBonito'>Seja bem-vindo(a) à sua tela inicial!</span>
+                                        <span className='p textoBonito'>Aqui é a Tela de Registros!</span>
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide className="swiper-slide-OnBoarding-social">
                                     <div className="boardingContainer">
-                                        <span className='p textoBonito'>Note que nesta parte, temos diversas seções que já levam ao seus interesses!</span>
+                                        <span className='p textoBonito'>Todas as informações gerais e básicas sobre seu assistente, você encontra aqui!</span>
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide className="swiper-slide-OnBoarding-social">
                                     <div className="boardingContainer">
-                                        <span className='p textoBonito'>Gostaria de executar um assistente? Ver suas Tarefas?</span>
+                                        <span className='p textoBonito'>Quantas vezes executados, quando ocorreu o último lançamento dele, e coisas afins!</span>
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide className="swiper-slide-OnBoarding-social">
                                     <div className="boardingContainer">
-                                        <span className='p textoBonito'>Ou ver as questões mais em alta na área Social?</span>
+                                        <span className='p textoBonito'>Ser simples e direto com seus assistentes</span>
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide className="swiper-slide-OnBoarding-social">
                                     <div className="boardingContainer">
-                                        <span className='p textoBonito'>Você pode ir direto para cada um deles, sem nenhum problema!</span>
+                                        <span className='p textoBonito'>Em um lugar só, com todas as informações que você precisa!</span>
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide className="swiper-slide-OnBoarding-social">
                                     <div className="boardingContainer">
-                                        <span className='p textoBonito'>Começar aqui, é sempre perfeito para estar por dentro de tudo ao mesmo tempo.</span>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide className="swiper-slide-OnBoarding-social">
-                                    <div className="boardingContainer">
-                                        <span className='p textoBonito'>Entre e se divirta!</span>
+                                        <span className='p textoBonito'>Sinta-se a vontade para checar os dados de suas criações!</span>
                                     </div>
                                 </SwiperSlide>
                             </Swiper>
@@ -159,24 +154,30 @@ export default function Dags() {
                         >
                             <thead>
                                 <th className='center-dags'>Nome</th>
-                                <th>Vezes Lançadas(total)</th>
-                                <th>Horário Início</th>
-                                <th>Horário Término</th>
-                                <th>Data</th>
+                                <th>Nome do Assistente</th>
+                                <th>Data de criação</th>
                                 <th>Último Lançamento</th>
-                                <th>Duração</th>
+                                <th>Percentual de sucesso(%)</th>
+                                <th>Vezes Lançadas(total)</th>
                             </thead>
                             <tbody>
                                 {dags?.map((dag, key) => {
                                     return (
                                         <tr key={key}>
-                                            <td className='center-dags'>{dag.Nome}</td>
-                                            <td>{dag.VezesLancadas}</td>
-                                            <td>{dag.HorarioInicio}</td>
-                                            <td>{dag.HorarioFinal}</td>
-                                            <td>{dag.Data}</td>
-                                            <td>{dag.UltimoLancamento}</td>
-                                            <td>{dag.Duracao}</td>
+                                            <td className='center-dags'>{dag.employeeName}</td>
+                                            <td>{dag.assistantName}</td>
+                                            {
+                                                dag.assistantCreationDate !== undefined ?
+                                                <td>{new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(dag.assistantCreationDate.split('T')[0]))}</td> :
+                                                <td>Carregando</td>
+                                            }
+                                            {
+                                                dag.lastRunDate !== undefined ?
+                                                <td>{new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(dag.lastRunDate.split('T')[0]))}</td> :
+                                                <td>Carregando</td>
+                                            }
+                                            <td>{dag.succesPercentage}%</td>
+                                            <td>{dag.runsCount} Vezes</td>
                                         </tr>
                                     )
                                 })}

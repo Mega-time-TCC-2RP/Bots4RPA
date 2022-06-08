@@ -78,6 +78,7 @@ const routing = (
   </Router>
 );
 
+
 const SetTema = () => {
   let mode = localStorage.getItem('temaApp');
 

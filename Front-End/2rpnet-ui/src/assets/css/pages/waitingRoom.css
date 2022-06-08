@@ -10,7 +10,6 @@
         align-items: center;
         position: relative;
         margin: auto;
-        margin-top: 5%;    
 }
 .img-waiting{
         width: 600px;
@@ -21,4 +20,6 @@
 .waiting-button{
         margin-top: 30px;
         margin-bottom: 50px;
+        padding: 2em;
+        width: auto;
 }

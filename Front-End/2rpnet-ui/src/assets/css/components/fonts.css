@@ -7,7 +7,7 @@
 }
 
 .h1, h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: 'Montserrat', sans-serif;
     line-height: 2rem;
 }
@@ -110,7 +110,6 @@
     text-align: center;
     justify-content: center;
     padding-left: 0%;
-    margin-left: 5%;
     color: var(--WHITE);
     border-radius: 32px;
     width: 50%;

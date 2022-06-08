@@ -27,7 +27,7 @@ export default function Modal() {
         var myUrl = API+ "/api/Assistants"
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json','Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao') },
             body: JSON.stringify({ "assistantName": assistantName, "assistantDescription": assistantDescription, "idEmployee": parseJwt().idEmployee})
         };
 

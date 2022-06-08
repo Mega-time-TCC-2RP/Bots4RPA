@@ -9,7 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 //img:
-import Logo from '../../assets/img/logo2RPcadastro.png'
+import Logo from '../../assets/img/LogoConvite.png'
+//import Logo from '../../assets/img/logo2RPcadastro.png'
 import RoboAzul from '../../assets/img/roboAzul.png'
 import RoboVermeho from '../../assets/img/roboVermelho.png'
 
@@ -300,7 +301,7 @@ export default function RegisterCompany() {
                     <img src={RoboAzul} alt="Robo Azul" />
                 </div>
                 <div className='registerArea'>
-                    <div className='registerContent'>
+                    <div className='registerContentCompany'>
                         <img className='logo-Header' id='logoRegisters' src={Logo} alt="Logo 2RPnet" />
                         <form encType='multipart/form-data' className='formRegister'>
                             {

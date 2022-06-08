@@ -118,7 +118,10 @@ const steps = [
     },
     {
         id: 'Step4'
-    }
+    },
+    {
+        id: 'Step5'
+    },
 ];
 
 const configCustomStyles = {
@@ -146,6 +149,7 @@ export default function Config() {
     const [userLogado, setUserLogado] = useState({});
     const [invalidUsers, setInvalidUsers] = useState([]);
     const [invalidCorporations, setInvalidCorporations] = useState([]);
+    const [usersList, setUsersList] = useState([]);
     const [userAlterado, setUserAlterado] = useState({})
     const [pass, setPass] = useState('')
     const [NovaSenha, setNovaSenha] = useState('')
@@ -174,6 +178,23 @@ export default function Config() {
     }
 
     useEffect(listUser, []);
+
+    function listAllUsers() {
+        axios('https://grupo7.azurewebsites.net/api/UserNames', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+            }
+        })
+            .then((resposta2) => {
+                if (resposta2.status === 200) {
+                    setUsersList(resposta2.data)
+                    console.log(usersList)
+                }
+            })
+            .catch((erro) => console.log(erro));
+    }
+
+    useEffect(listAllUsers, []);
 
     const autorizeUser = (idUser) => {
         if (parseJwt().Role == '2') {
@@ -288,13 +309,14 @@ export default function Config() {
                         .catch((erro) => console.log(erro))
                 }
             })
-            .catch(errorToast(),
-                bazinga => {
-                    if (bazinga.status === 401) {
-                        closeModalConfig();
-                        errorToast();
-                    }
-                }
+            .catch(
+                // errorToast(),
+                // bazinga => {
+                //     if (bazinga.status === 401) {
+                //         closeModalConfig();
+                //         errorToast();
+                //     }
+                // }
 
             )
     }
@@ -367,6 +389,7 @@ export default function Config() {
                     document.querySelector('.Acessibilidade').classList.remove('selected')
                     if (parseJwt().Role == 2) {
                         document.querySelector('.validarUsuarios').classList.remove('selected')
+                        document.querySelector('.Usuarios').classList.remove('selected')
                     }
                     if (parseJwt().Role == 1) {
                         document.querySelector('.validarEmpresas').classList.remove('selected')
@@ -377,6 +400,7 @@ export default function Config() {
                     document.querySelector('.Acessibilidade').classList.toggle('selected')
                     if (parseJwt().Role == 2) {
                         document.querySelector('.validarUsuarios').classList.remove('selected')
+                        document.querySelector('.Usuarios').classList.remove('selected')
                     }
                     if (parseJwt().Role == 1) {
                         document.querySelector('.validarEmpresas').classList.remove('selected')
@@ -387,6 +411,7 @@ export default function Config() {
                     document.querySelector('.Acessibilidade').classList.remove('selected')
                     if (parseJwt().Role == 2) {
                         document.querySelector('.validarUsuarios').classList.toggle('selected')
+                        document.querySelector('.Usuarios').classList.remove('selected')
                     }
                     if (parseJwt().Role == 1) {
                         document.querySelector('.validarEmpresas').classList.remove('selected')
@@ -398,11 +423,34 @@ export default function Config() {
                     document.querySelector('.Acessibilidade').classList.remove('selected')
                     if (parseJwt().Role == 2) {
                         document.querySelector('.validarUsuarios').classList.remove('selected')
+                        document.querySelector('.Usuarios').classList.remove('selected')
                     }
                     if (parseJwt().Role == 1) {
                         document.querySelector('.validarEmpresas').classList.toggle('selected')
                     }
                     break;
+                case 4:
+                    console.log(steps[currentStep].id)
+                    document.querySelector('.myData').classList.remove('selected')
+                    document.querySelector('.Acessibilidade').classList.remove('selected')
+                    if (parseJwt().Role == 2) {
+                        axios('https://grupo7.azurewebsites.net/api/UserNames', {
+                            headers: {
+                                'Authorization': 'Bearer ' + localStorage.getItem('2rp-chave-autenticacao')
+                            }
+                        })
+                            .then((resposta2) => {
+                                if (resposta2.status === 200) {
+                                    setUsersList(resposta2.data)
+                                    console.log(usersList)
+                                }
+                            })
+                        document.querySelector('.validarUsuarios').classList.remove('selected')
+                        document.querySelector('.Usuarios').classList.toggle('selected')
+                    }
+                    if (parseJwt().Role == 1) {
+                        document.querySelector('.validarEmpresas').classList.remove('selected')
+                    }
                 default:
                     break;
             }
@@ -614,6 +662,7 @@ export default function Config() {
                     <span className='h4 Acessibilidade' id='Acessibilidade' onClick={() => select(1)}>Acessibilidade</span>
                     {parseJwt().Role == 2 ? <span className='h4 validarUsuarios' id='validarUsuarios' onClick={() => select(2)}>Validar usuários</span> : null}
                     {parseJwt().Role == 1 ? <span className='h4 validarEmpresas' id='validarEmpresas' onClick={() => select(3)}>Validar Empresas</span> : null}
+                    {parseJwt().Role == 2 ? <span className='h4 Usuarios' id='usuarios' onClick={() => select(4)}>Usuários</span> : null}
                 </nav>
                 <section className='configContent validUser container'>
                     {
@@ -695,15 +744,16 @@ export default function Config() {
                                             <label className='h5' htmlFor='NovaSenha'>Nova senha</label>
                                             <input required id='NovaSenha' className='input' type="text" name="name" placeholder='Insira sua nova senha...' value={NovaSenha} onChange={(event) => setNovaSenha(event.target.value)} />
                                         </div>
-                                        {
-                                            confirmPassword === true ?
-                                                <div className='confirmPassword'>
-                                                    <input value={pass} onChange={(event) => setPass(event.target.value)} type="password" className='input' id='passConfirm' placeholder='Confirme sua Senha...' />
-                                                    <button className='button' onClick={alterUserData}>Confirmar</button>
-                                                </div>
-                                                : <button className='button' onClick={() => setConfirmPassword(true)}>Salvar Alterações</button>
-                                        }
+                                            {
 
+                                                confirmPassword === true ?
+
+                                                    <div className='confirmPassword'>
+                                                        <input value={pass} onChange={(event) => setPass(event.target.value)} type="password" className='input' id='passConfirm' placeholder='Confirme sua Senha...' />
+                                                        <button id='confirmPasswordButton' className='button' onClick={alterUserData}>Confirmar</button>
+                                                    </div>
+                                                    : <button className='button' onClick={() => setConfirmPassword(true)}>Salvar Alterações</button>
+                                            }
                                     </form>
                                 </Modal>
                             </div>
@@ -804,6 +854,31 @@ export default function Config() {
                                                 <div>
                                                     <SiIcons.SiVerizon onClick={() => autorizeCorporation([corp.employees[0].idUser])} className='iconConfig' />
                                                     <AiIcons.AiOutlineClose onClick={() => deleteCorporation([corp.idCorporation])} className='iconConfig2' />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                    {
+                        steps[currentStep].id === 'Step5' && (
+                            <div className='scrollDiv'>
+                                {
+                                    usersList.map((item) => {
+                                        return (
+                                            <div key={item.idUser} className='mainContentArea contentValidUser'>
+                                                <div className='contentConfig'>
+                                                    <h5 className='semi-bold'>Email <p className='p'>{item.email}</p></h5>
+                                                    <h5>CPF <p className='p'>{item.cpf}</p></h5>
+                                                    <h5>Nome <p className='p'>{item.userName1}</p></h5>
+                                                    <h5>RG <p className='p'>{item.rg}</p></h5>
+                                                    <h5>Telefone <p className='p'>{item.phone}</p></h5>
+                                                    <h5>Data de Nascimento <p className='p'>{item.birthDate}</p></h5>
+                                                </div>
+                                                <div>
+                                                    <AiIcons.AiOutlineDelete onClick={() => deleteUser(item.idUser)} className='iconConfig2' />
                                                 </div>
                                             </div>
                                         )

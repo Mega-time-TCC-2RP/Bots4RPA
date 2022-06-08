@@ -1,13 +1,12 @@
 .perfilpage {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
     overflow: auto;
     height: 100vh;
     width: 100vw - 60px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .perfilpage h1 {
@@ -239,7 +238,7 @@
     height: 60px;
 }
 
-.TrophiesContainer button {
+.TrophieBtn {
     border: none;
     background-color: var(--WHITE);
 }
@@ -304,12 +303,12 @@
 }
 
 .ProfileContainer .body-pd {
-    height: auto;
+    height: 100vh;
 }
 
-.ProfileContainer .perfilpage {
+/* .ProfileContainer .perfilpage {
     height: auto;
-}
+} */
 
 .profile .configContent {
     height: auto;
@@ -323,7 +322,7 @@
     background-color: unset;
     color: var(--BLACK);
     width: 300px;
-    height: 500px;
+    height: auto;
 
     /* efeito de zoom */
     max-width: 100%;
@@ -355,6 +354,15 @@
 
 .newPassword label {
     padding-left: 5%;
+}
+
+.formSkinSelect{
+    /* height: fill; */
+    height: 8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 @media only screen and (max-width: 1550px) {
@@ -529,10 +537,6 @@
     .contentConfig {
         height: 110px;
         width: 100%;
-    }
-
-    .button {
-        width: 100% !important;
     }
 
     #validarUsuarios {

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .container7 {
-    width: 1400px;
+    width: 100%;
+    max-width: 1440px;
     margin: 0 auto;
     display: flex;
 }
@@ -100,7 +101,7 @@
     font-size: 14px;
     font-weight: 400;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
     .container7{
         width: 75%;
     }
