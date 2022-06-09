@@ -22,17 +22,15 @@ import Navbar from '../../../components/menu/Navbar'
 //css
 import '../../../assets/css/components/fonts.css'
 
-
-const data = [
-        { name: "Janeiro", Total: 1200 },
-        { name: "Fevereiro", Total: 2100 },
-        { name: "Março", Total: 800 },
-        { name: "Abril", Total: 1600 },
-        { name: "Maio", Total: 900 },
-        { name: "Junho", Total: 1700 },
-];
-
-const Chart = ({ aspect, title }) => {
+const Chart = ({ aspect, title, data }) => {
+        // data = [
+        //         { name: "Sucesso", Total: 1 },
+        //         { name: "Falha", Total: 0 },
+        //         { name: "Sucesso", Total: 1 },
+        //         { name: "Sucesso", Total: 1 },
+        //         { name: "Sucesso", Total: 1 },
+        //         { name: "Sucesso", Total: 1 },
+        // ];
         return (
                 <div className="chart">
                         <div className="h4 title">{title}</div>

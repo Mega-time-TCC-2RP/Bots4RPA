@@ -63,8 +63,8 @@ export default function Dags() {
               }
         })
             .then((response) => {
-                console.log('deu certoooo')
-                console.log(response.data)
+                // console.log('deu certoooo')
+                // console.log(response.data)
                 setDags(response.data)
             })
 
