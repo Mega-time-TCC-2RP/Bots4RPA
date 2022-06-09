@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _2rpnet.rpa.webAPI.Domains;
+using System;
+using System.Collections.Generic;
 
 namespace _2rpnet.rpa.webAPI.ViewModels
 {
@@ -10,5 +12,6 @@ namespace _2rpnet.rpa.webAPI.ViewModels
         public DateTime? LastRunDate { get; set; }
         public int SuccesPercentage { get; set; }
         public int RunsCount { get; set; }
+        public List<Run> Runs { get; set; }
     }
 }

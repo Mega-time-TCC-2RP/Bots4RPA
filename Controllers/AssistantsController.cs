@@ -53,6 +53,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                             int succesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == true).Count();
                             int unsuccesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == false).Count();
                             dag.SuccesPercentage = (succesfulRuns * 100) / (succesfulRuns + unsuccesfulRuns);
+                            dag.Runs = unmountedDag.Runs.ToList();
                         }
                         else
                         {
@@ -84,6 +85,7 @@ namespace _2rpnet.rpa.webAPI.Controllers
                             int succesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == true).Count();
                             int unsuccesfulRuns = unmountedDag.Runs.Where(run => run.RunStatus == false).Count();
                             dag.SuccesPercentage = (succesfulRuns * 100) / (succesfulRuns + unsuccesfulRuns);
+                            dag.Runs = unmountedDag.Runs.ToList();
                         }
                         else
                         {

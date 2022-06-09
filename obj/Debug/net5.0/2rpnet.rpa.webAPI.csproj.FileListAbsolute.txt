@@ -1091,13 +1091,10 @@ C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\appsetti
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\appsettings.json
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\2rpnet.rpa.webAPI.StaticWebAssets.xml
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\2rpnet.rpa.webAPI.exe
-C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\74a03564-b66e-4c46-80bc-d6c5beeca2fe.jpg
-C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\945fe2b0-0b6e-4a65-9b0a-7ad15a02ac23.jpg
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\agiobot.png
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\batbot.png
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Bluebot.png
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\botpool.png
-C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\fd77bfcb-e048-4ffc-ae2e-ff0c73b490a5.jpg
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Greenbot.png
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\Orangebot.png
 C:\Users\Pedro\Desktop\Projeto2RP\Branch-Api\Bots-4RPA\bin\Debug\net5.0\StaticFiles\Images\padrao.png
